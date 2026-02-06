@@ -1,0 +1,1393 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Black Iron Athletics | Best Gym in Frisco, TX | Group Training & Personal Training</title>
+    <meta name="description" content="Get in the best shape of your life at Black Iron Athletics, Frisco's veteran-owned gym. Expert coaching, group training, personal training & 24/7 access. 3000+ lives changed since 2013. Book your free consultation today!">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+    <style>
+        /* Force full width - override GHL container */
+        body, html {
+            width: 100% !important;
+            max-width: 100% !important;
+            margin: 0 !important;
+            padding: 0 !important;
+        }
+
+        /* Remove GHL's default container padding */
+        .container, .hl_page-preview--content {
+            padding: 0 !important;
+            margin: 0 !important;
+            max-width: 100% !important;
+            width: 100% !important;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --black: #000000;
+            --dark-gray: #1a1a1a;
+            --medium-gray: #333333;
+            --light-gray: #cccccc;
+            --white: #ffffff;
+            --yellow: #FFD202;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 500;
+            background: var(--black);
+            color: var(--white);
+            overflow-x: hidden;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            margin: 0;
+            padding: 0;
+            scroll-behavior: smooth;
+        }
+
+        /* Anchor offset for fixed nav */
+        #about,
+        #programs,
+        #testimonials,
+        #contact {
+            scroll-margin-top: 100px;
+        }
+
+        /* All headings use Montserrat Black */
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 900;
+            line-height: 1.2;
+        }
+
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 1.5rem 0;
+            background: var(--black);
+            z-index: 1000;
+            border-bottom: 1px solid var(--medium-gray);
+        }
+
+        .nav-container {
+            max-width: 100%;
+            margin: 0;
+            padding: 0 4rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            height: 50px;
+        }
+
+        .logo a {
+            display: block;
+            height: 100%;
+        }
+
+        .logo img {
+            height: 100%;
+            width: auto;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 3rem;
+            list-style: none;
+            align-items: center;
+        }
+
+        .nav-links > li {
+            position: relative;
+        }
+
+        .nav-links a {
+            color: var(--white);
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 900;
+            transition: color 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .nav-links > li > a:hover {
+            color: var(--yellow);
+        }
+
+        /* Dropdown Submenu */
+        .submenu {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: rgba(26, 26, 26, 0.95);
+            backdrop-filter: blur(10px);
+            min-width: 240px;
+            padding: 0.5rem 0;
+            border: 1px solid var(--medium-gray);
+            list-style: none;
+        }
+
+        .submenu li {
+            padding: 0;
+        }
+
+        .submenu a {
+            display: block;
+            padding: 1rem 1.5rem;
+            font-size: 0.85rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            transition: all 0.3s ease;
+        }
+
+        .submenu a:hover {
+            background: rgba(255, 210, 2, 0.1);
+            color: var(--yellow);
+            padding-left: 2rem;
+        }
+
+        .nav-links > li:hover .submenu {
+            display: block;
+        }
+
+        .has-submenu > a::after {
+            content: '';
+            display: inline-block;
+            width: 0;
+            height: 0;
+            margin-left: 0.5rem;
+            border-left: 4px solid transparent;
+            border-right: 4px solid transparent;
+            border-top: 5px solid var(--white);
+            transition: all 0.3s ease;
+        }
+
+        .has-submenu:hover > a::after {
+            border-top-color: var(--yellow);
+            transform: translateY(2px);
+        }
+
+        .cta-btn {
+            background: var(--yellow);
+            color: var(--black);
+            padding: 0.9rem 1.5rem;
+            border-radius: 0;
+            text-decoration: none;
+            font-weight: 900;
+            font-size: 0.85rem;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            border: 2px solid var(--yellow);
+            white-space: nowrap;
+        }
+
+        .cta-btn:hover {
+            background: var(--black);
+            color: var(--yellow);
+        }
+
+        .hero {
+            margin-top: 0;
+            padding-top: 80px;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            background: var(--black);
+        }
+
+        .hero-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.3;
+            z-index: 0;
+        }
+
+        .hero-container {
+            max-width: 100%;
+            width: 100%;
+            margin: 0;
+            padding: 4rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-content {
+            max-width: 800px;
+        }
+
+        .hero-subtitle {
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: var(--yellow);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero-content h1 {
+            font-weight: 900;
+            font-size: clamp(3rem, 8vw, 7rem);
+            line-height: 1;
+            margin-bottom: 2rem;
+            text-transform: uppercase;
+        }
+
+        .hero-content p {
+            font-size: 1.3rem;
+            color: var(--light-gray);
+            margin-bottom: 3rem;
+            font-weight: 500;
+            max-width: 600px;
+            line-height: 1.8;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .btn-primary {
+            background: var(--yellow);
+            color: var(--black);
+            padding: 1.2rem 3rem;
+            text-decoration: none;
+            font-weight: 900;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border: 2px solid var(--yellow);
+            border-radius: 0;
+        }
+
+        .btn-primary:hover {
+            background: var(--black);
+            color: var(--yellow);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--white);
+            padding: 1.2rem 3rem;
+            text-decoration: none;
+            font-weight: 900;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border: 2px solid var(--white);
+            border-radius: 0;
+        }
+
+        .btn-secondary:hover {
+            background: var(--white);
+            color: var(--black);
+        }
+
+        .stats-bar {
+            background: var(--yellow);
+            padding: 3rem 0;
+            width: 100%;
+        }
+
+        .stats-container {
+            max-width: 100%;
+            margin: 0;
+            padding: 0 4rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 3rem;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-weight: 900;
+            font-size: 3.5rem;
+            color: var(--black);
+            line-height: 1;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: var(--black);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .section {
+            padding: 6rem 0;
+            background: var(--black);
+            width: 100%;
+        }
+
+        .section-alt {
+            background: var(--dark-gray);
+        }
+
+        .section-container {
+            max-width: 100%;
+            margin: 0;
+            padding: 0 4rem;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-subtitle {
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: var(--yellow);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 1rem;
+        }
+
+        .section-title {
+            font-weight: 900;
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            margin-bottom: 1.5rem;
+            text-transform: uppercase;
+        }
+
+        .section-description {
+            font-size: 1.2rem;
+            color: var(--light-gray);
+            max-width: 800px;
+            margin: 0 auto;
+            font-weight: 500;
+        }
+
+        /* Problem Section - Enhanced */
+        .problem-section {
+            padding: 6rem 0;
+            background: var(--black);
+        }
+
+        .problem-section .section-title {
+            font-weight: 900;
+            text-align: center;
+        }
+
+        .problem-section .section-description {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .problem-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .problem-card {
+            background: var(--dark-gray);
+            padding: 2.5rem;
+            border: 2px solid var(--medium-gray);
+            border-left: 5px solid var(--yellow);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .problem-card:hover {
+            border-color: var(--yellow);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(255, 210, 2, 0.2);
+        }
+
+        .problem-card h3 {
+            font-weight: 900;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .problem-icon {
+            font-size: 2rem;
+        }
+
+        .problem-card p {
+            color: var(--light-gray);
+            line-height: 1.8;
+            font-size: 1rem;
+        }
+
+        /* Philosophy Section */
+        .philosophy-section {
+            background: var(--dark-gray);
+            padding: 4rem 0;
+        }
+
+        .philosophy-content {
+            max-width: 900px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .philosophy-section h2 {
+            font-weight: 900;
+            font-size: clamp(2rem, 4vw, 3rem);
+            color: var(--yellow);
+            margin-bottom: 1.5rem;
+            text-transform: uppercase;
+        }
+
+        .philosophy-section p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: var(--light-gray);
+            margin-bottom: 1.5rem;
+        }
+
+        .philosophy-quote {
+            font-style: italic;
+            font-size: 1rem;
+            color: var(--white);
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--medium-gray);
+        }
+
+        /* Value Props */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 0;
+            margin-top: 4rem;
+        }
+
+        .feature-card {
+            padding: 3rem;
+            background: var(--black);
+            border: 1px solid var(--medium-gray);
+            transition: all 0.3s ease;
+        }
+
+        .feature-card:hover {
+            background: var(--dark-gray);
+            border-color: var(--yellow);
+        }
+
+        .feature-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--yellow);
+        }
+
+        .feature-title {
+            font-weight: 900;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+        }
+
+        .feature-description {
+            color: var(--light-gray);
+            line-height: 1.8;
+        }
+
+        /* Getting Started Section */
+        .getting-started {
+            background: var(--black);
+            padding: 6rem 0;
+        }
+
+        .getting-started-content {
+            max-width: 100%;
+            margin: 0;
+            padding: 0 4rem;
+        }
+
+        .getting-started h2 {
+            font-weight: 900;
+            text-align: center;
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+        }
+
+        .getting-started-subtitle {
+            font-size: 1.2rem;
+            color: var(--light-gray);
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .steps-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .step-card {
+            background: var(--dark-gray);
+            padding: 2.5rem;
+            border: 2px solid var(--medium-gray);
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+
+        .step-card:hover {
+            border-color: var(--yellow);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(255, 210, 2, 0.2);
+        }
+
+        .step-number {
+            background: var(--yellow);
+            color: var(--black);
+            width: 60px;
+            height: 60px;
+            border-radius: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            font-weight: 900;
+            margin: 0 auto 1.5rem;
+        }
+
+        .step-card h3 {
+            font-weight: 900;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .step-card p {
+            color: var(--light-gray);
+            line-height: 1.8;
+        }
+
+        .cta-center {
+            text-align: center;
+            margin-top: 3rem;
+        }
+
+        /* Programs Section */
+        .programs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 4rem;
+        }
+
+        .program-card {
+            background: var(--dark-gray);
+            overflow: hidden;
+            transition: all 0.3s ease;
+            border: 2px solid var(--medium-gray);
+        }
+
+        .program-card:hover {
+            border-color: var(--yellow);
+            transform: translateY(-5px);
+        }
+
+        .program-image {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+        }
+
+        .program-content {
+            padding: 2.5rem;
+        }
+
+        .program-title {
+            font-weight: 900;
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+        }
+
+        .program-description {
+            color: var(--light-gray);
+            margin-bottom: 2rem;
+            line-height: 1.8;
+        }
+
+        .program-link {
+            color: var(--yellow);
+            text-decoration: none;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 0.9rem;
+            transition: color 0.3s ease;
+        }
+
+        .program-link:hover {
+            color: var(--white);
+        }
+
+        /* Testimonial Feature Section */
+        .testimonial-feature {
+            background: var(--dark-gray);
+            padding: 6rem 0;
+        }
+
+        .testimonial-feature h2 {
+            font-weight: 900;
+            text-align: center;
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            color: var(--yellow);
+            margin-bottom: 3rem;
+            text-transform: uppercase;
+        }
+
+        .testimonial-content {
+            max-width: 100%;
+            margin: 0;
+            padding: 0 4rem;
+        }
+
+        .reviews-rating {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .rating-number {
+            font-size: 3rem;
+            font-weight: 900;
+            color: var(--white);
+        }
+
+        .rating-stars {
+            color: var(--yellow);
+            font-size: 1.5rem;
+        }
+
+        .rating-count {
+            color: var(--light-gray);
+            font-size: 0.9rem;
+        }
+
+        /* Quote Section */
+        .quote-section {
+            background: var(--yellow);
+            padding: 3rem 4rem;
+            text-align: center;
+            width: 100%;
+        }
+
+        .quote-container {
+            max-width: 100%;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .quote-text {
+            font-weight: 900;
+            font-size: clamp(1.8rem, 4vw, 2.5rem);
+            color: var(--black);
+            line-height: 1.2;
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+        }
+
+        /* Quote Carousel */
+        .quote-carousel {
+            position: relative;
+            margin-top: 0.75rem;
+            max-width: 750px;
+            margin-left: auto;
+            margin-right: auto;
+            min-height: 120px;
+        }
+
+        .quote-slide {
+            display: none;
+            animation: fadeIn 1s ease;
+        }
+
+        .quote-slide.active {
+            display: block;
+        }
+
+        .carousel-quote {
+            font-size: 1.15rem;
+            color: var(--black);
+            font-weight: 600;
+            font-style: italic;
+            line-height: 1.4;
+            margin-bottom: 0.75rem;
+        }
+
+        .carousel-author {
+            font-size: 0.9rem;
+            color: var(--black);
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+        }
+
+        .carousel-dots {
+            text-align: center;
+            margin-top: 1rem;
+        }
+
+        .dot {
+            height: 12px;
+            width: 12px;
+            margin: 0 8px;
+            background-color: rgba(0, 0, 0, 0.3);
+            border-radius: 50%;
+            display: inline-block;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .dot.active,
+        .dot:hover {
+            background-color: var(--black);
+            transform: scale(1.2);
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Final CTA Section */
+        .cta-section {
+            background: var(--dark-gray);
+            padding: 8rem 4rem;
+            text-align: center;
+            width: 100%;
+        }
+
+        .cta-container {
+            max-width: 100%;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .cta-title {
+            font-weight: 900;
+            font-size: clamp(2.5rem, 5vw, 4.5rem);
+            margin-bottom: 1.5rem;
+            text-transform: uppercase;
+        }
+
+        .cta-subtitle {
+            font-size: 1.2rem;
+            color: var(--light-gray);
+            margin-bottom: 3rem;
+        }
+
+        /* Footer */
+        footer {
+            padding: 4rem 0 2rem;
+            background: var(--black);
+            border-top: 1px solid var(--medium-gray);
+            width: 100%;
+        }
+
+        .footer-container {
+            max-width: 100%;
+            margin: 0;
+            padding: 0 4rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 4rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-section h3 {
+            font-weight: 900;
+            margin-bottom: 1.5rem;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 0.75rem;
+        }
+
+        .footer-section a {
+            color: var(--light-gray);
+            text-decoration: none;
+            transition: color 0.3s ease;
+            font-weight: 500;
+        }
+
+        .footer-section a:hover {
+            color: var(--yellow);
+        }
+
+        .footer-logo {
+            height: 60px;
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid var(--medium-gray);
+            color: var(--light-gray);
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 1024px) {
+            nav {
+                padding: 1.5rem 2rem;
+            }
+
+            .hero-container,
+            .section-container,
+            .getting-started-content,
+            .testimonial-content {
+                padding: 4rem 2rem;
+            }
+
+            .stats-bar {
+                padding: 3rem 2rem;
+            }
+
+            .stats-container {
+                padding: 0 2rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+            }
+
+            .btn-primary,
+            .btn-secondary {
+                text-align: center;
+                width: 100%;
+            }
+
+            .programs-grid,
+            .problem-grid,
+            .steps-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="nav-container">
+            <div class="logo">
+                <a href="https://www.blackironathletics.com">
+                    <img src="https://storage.googleapis.com/msgsndr/snIUpSaFzz5WsavMB3QA/media/6980c90276757725c438432d.png" alt="Black Iron Athletics">
+                </a>
+            </div>
+            <ul class="nav-links">
+                <li class="has-submenu">
+                    <a href="about.html">About Us</a>
+                    <ul class="submenu">
+                        <li><a href="about.html#mission">Our Mission</a></li>
+                        <li><a href="about.html#team">Meet the Team</a></li>
+                        <li><a href="about.html#schedule">Class Schedule</a></li>
+                    </ul>
+                </li>
+                <li class="has-submenu">
+                    <a href="getting-started.html">Getting Started</a>
+                    <ul class="submenu">
+                        <li><a href="getting-started.html#membership">Membership Options</a></li>
+                        <li><a href="getting-started.html#what-to-expect">What to Expect</a></li>
+                        <li><a href="getting-started.html#faqs">FAQs</a></li>
+                    </ul>
+                </li>
+                <li class="has-submenu">
+                    <a href="media.html">Media</a>
+                    <ul class="submenu">
+                        <li><a href="https://www.instagram.com/blackironathleticsfrisco" target="_blank">Instagram</a></li>
+                        <li><a href="https://www.youtube.com/@blackironathleticsfrisco" target="_blank">YouTube</a></li>
+                        <li><a href="media.html#ebooks">eBooks</a></li>
+                    </ul>
+                </li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+            <a href="https://blackiron.wodify.com/OnlineSalesPage/Main?q=Classes%7COnlineMembershipId%3D235167%26LocationId%3D10409" class="cta-btn">Book Free Consultation</a>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <img src="https://storage.googleapis.com/msgsndr/snIUpSaFzz5WsavMB3QA/media/697ec53266e7ca82898c231e.jpg" alt="Training" class="hero-bg">
+        <div class="hero-container">
+            <div class="hero-content">
+                <div class="hero-subtitle">Veteran Owned & Operated</div>
+                <h1>Forge Your Strongest Self</h1>
+                <p>Where everyday people become everyday athletes. Elite coaching, proven programming, and a community that pushes you to be better.</p>
+                <div class="hero-buttons">
+                    <a href="https://blackiron.wodify.com/OnlineSalesPage/Main?q=Classes%7COnlineMembershipId%3D235167%26LocationId%3D10409" class="btn-primary">Book Your Free Consultation</a>
+                    <a href="#programs" class="btn-secondary">Our Programs</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="stats-bar">
+        <div class="stats-container">
+            <div class="stat-item">
+                <div class="stat-number">12+</div>
+                <div class="stat-label">Years Strong</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">3000+</div>
+                <div class="stat-label">Lives Changed</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">100%</div>
+                <div class="stat-label">Results Driven</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Problem Section -->
+    <section class="problem-section">
+        <div class="section-container">
+            <h2 class="section-title">We Know Getting Started Is Hard</h2>
+            <p class="section-description">You're not alone in feeling overwhelmed, uncertain, or worried. We've helped thousands of people just like you.</p>
+            
+            <div class="problem-grid">
+                <div class="problem-card">
+                    <h3><span class="problem-icon">🤷</span> Don't Know Where to Start</h3>
+                    <p>Fitness information is overwhelming. Conflicting advice everywhere. You need a clear path forward, not more confusion.</p>
+                </div>
+                
+                <div class="problem-card">
+                    <h3><span class="problem-icon">🤕</span> Worried About Getting Hurt</h3>
+                    <p>You want to be challenged and see results, but not at the cost of injury. Smart training builds you up. It doesn't break you down.</p>
+                </div>
+                
+                <div class="problem-card">
+                    <h3><span class="problem-icon">😔</span> Going It Alone Is Lonely</h3>
+                    <p>Staying consistent is tough when you're doing it solo. You need accountability, support, and a community that actually cares.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Philosophy Section -->
+    <section class="philosophy-section">
+        <div class="section-container">
+            <div class="philosophy-content">
+                <h2 style="font-size: clamp(2rem, 4vw, 3rem);">Movement Is Medicine</h2>
+                <p style="font-size: 1.1rem;">At Black Iron Athletics, we believe that prioritizing your health isn't selfish. It's an act of service. When you take care of yourself, you show up better for your family, your community, and your purpose.</p>
+                <p style="font-size: 1.1rem;">This isn't about vanity or ego. It's about building a body that serves you for life. A body that lets you play with your kids, chase your dreams, and live with confidence and vitality.</p>
+                <p class="philosophy-quote" style="font-size: 1rem;">"The greatest wealth is health. When you invest in your fitness, you invest in every area of your life."</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Transformation Video Section -->
+    <section class="section" style="background: var(--black); padding: 6rem 0;">
+        <div class="section-container">
+            <div class="section-header">
+                <div class="section-subtitle">Real Results</div>
+                <h2 class="section-title">Transformation Stories</h2>
+            </div>
+            
+            <!-- Featured Testimonial with Video Placeholder -->
+            <div style="max-width: 900px; margin: 0 auto; background: rgba(255, 255, 255, 0.05); padding: 3rem; border: 2px solid var(--medium-gray);">
+                <div style="background: rgba(255, 210, 2, 0.1); border: 2px dashed var(--yellow); padding: 4rem 2rem; margin-bottom: 2rem; text-align: center;">
+                    <p style="font-size: 1.2rem; color: var(--yellow); margin-bottom: 0.5rem;">📹 [TRANSFORMATION VIDEO PLACEHOLDER]</p>
+                    <p style="font-size: 0.9rem; color: var(--light-gray);">Featured member success story video will be displayed here</p>
+                </div>
+                
+                <p style="font-size: 1.3rem; line-height: 1.8; font-style: italic; margin-bottom: 1.5rem; text-align: center; color: var(--white);">"I was intimidated to start, worried I'd hurt myself or not keep up. The coaches met me exactly where I was, and now I'm the strongest I've been in 20 years. This community changed my life."</p>
+                <p style="font-weight: 700; color: var(--yellow); text-align: center;">— [Member Name], Member Since [Year]</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" id="about">
+        <div class="section-container">
+            <div class="section-header">
+                <h2 class="section-title">Why Black Iron Athletics</h2>
+                <p class="section-description">We combine expert coaching, thoughtful programming, and a positive atmosphere that makes you want to show up and keep coming back.</p>
+            </div>
+
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🤝</div>
+                    <h3 class="feature-title">You're Not Doing This Alone</h3>
+                    <p class="feature-description">A supportive community that celebrates every win, holds you accountable, and makes you actually want to show up.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🏋️</div>
+                    <h3 class="feature-title">Expert Guidance You Can Trust</h3>
+                    <p class="feature-description">12+ years of coaching experience ensuring you're challenged safely and effectively, not injured or overwhelmed.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">💪</div>
+                    <h3 class="feature-title">Training That Meets You Where You Are</h3>
+                    <p class="feature-description">Beginner-friendly classes that scale to your level while consistently pushing you forward. All fitness levels welcome.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🎯</div>
+                    <h3 class="feature-title">Personalized Approach</h3>
+                    <p class="feature-description">1-on-1 coaching with customized programming and unwavering accountability tailored to your unique goals.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">❄️</div>
+                    <h3 class="feature-title">Train in Comfort</h3>
+                    <p class="feature-description">Climate-controlled, spotless facility. No Texas heat holding you back, just clean equipment and focused results.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">⏰</div>
+                    <h3 class="feature-title">24/7 Access</h3>
+                    <p class="feature-description">Life gets busy. That's why we offer round-the-clock open gym access so you can train on your schedule.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Getting Started Section -->
+    <section class="getting-started">
+        <div class="getting-started-content">
+            <h2>Getting Started Is Easy</h2>
+            <p class="getting-started-subtitle">Your path to becoming an everyday athlete</p>
+            
+            <div class="steps-grid">
+                <div class="step-card">
+                    <div class="step-number">1</div>
+                    <h3>Book Your Free Consultation</h3>
+                    <p>Let's talk about your goals, concerns, and what success looks like for you. No pressure, no sales pitch. Just an honest conversation.</p>
+                </div>
+                
+                <div class="step-card">
+                    <div class="step-number">2</div>
+                    <h3>Build Your Custom Plan</h3>
+                    <p>We'll design a training approach tailored to your body, your schedule, and your fitness level. You'll know exactly what to do.</p>
+                </div>
+                
+                <div class="step-card">
+                    <div class="step-number">3</div>
+                    <h3>Start Moving</h3>
+                    <p>Join our community and become the happier, healthier athlete you're meant to be. We'll be with you every step of the way.</p>
+                </div>
+            </div>
+            
+            <div class="cta-center">
+                <a href="https://blackiron.wodify.com/OnlineSalesPage/Main?q=Classes%7COnlineMembershipId%3D235167%26LocationId%3D10409" class="btn-primary">Book Your Free Consultation</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="section section-alt" id="programs">
+        <div class="section-container">
+            <div class="section-header">
+                <div class="section-subtitle">Our Programs</div>
+                <h2 class="section-title">Find the Right Fit for You</h2>
+            </div>
+
+            <div class="programs-grid">
+                <div class="program-card">
+                    <img src="https://images.leadconnectorhq.com/image/f_webp/q_80/r_1200/u_https://assets.cdn.filesafe.space/snIUpSaFzz5WsavMB3QA/media/6859d48d4fe1870c2e37d104.png" alt="Group Training" class="program-image">
+                    <div class="program-content">
+                        <h3 class="program-title">Group Training</h3>
+                        <p class="program-description">High-energy classes designed for all fitness levels. Build strength, endurance, and confidence alongside a supportive community. Perfect for those who thrive on group energy and accountability.</p>
+                        <a href="#" class="program-link">Learn More →</a>
+                    </div>
+                </div>
+
+                <div class="program-card">
+                    <img src="https://images.leadconnectorhq.com/image/f_webp/q_80/r_1200/u_https://assets.cdn.filesafe.space/snIUpSaFzz5WsavMB3QA/media/685c09cbcaca586ab022dd1b.png" alt="Personal Training" class="program-image">
+                    <div class="program-content">
+                        <h3 class="program-title">Personal Training</h3>
+                        <p class="program-description">1-on-1 coaching tailored to your unique goals. Custom programming, form correction, and unwavering accountability. Ideal for specific goals or personalized attention.</p>
+                        <a href="#" class="program-link">Learn More →</a>
+                    </div>
+                </div>
+
+                <div class="program-card">
+                    <img src="https://images.leadconnectorhq.com/image/f_webp/q_80/r_1200/u_https://assets.cdn.filesafe.space/snIUpSaFzz5WsavMB3QA/media/6859deba730ff268efe66c61.png" alt="Nutrition" class="program-image">
+                    <div class="program-content">
+                        <h3 class="program-title">Nutrition & Accountability Coaching</h3>
+                        <p class="program-description">Personalized nutrition plans and ongoing support to fuel your results. Learn to transform your relationship with food while seeing real progress.</p>
+                        <a href="#" class="program-link">Learn More →</a>
+                    </div>
+                </div>
+
+                <div class="program-card">
+                    <img src="https://images.leadconnectorhq.com/image/f_webp/q_80/r_1200/u_https://assets.cdn.filesafe.space/snIUpSaFzz5WsavMB3QA/media/6859d48d4fe1870c2e37d104.png" alt="Open Gym" class="program-image">
+                    <div class="program-content">
+                        <h3 class="program-title">24/7 Open Gym</h3>
+                        <p class="program-description">Train on your schedule with round-the-clock access. Full equipment access anytime you need it. Perfect for self-motivated athletes who need flexibility.</p>
+                        <a href="#" class="program-link">Learn More →</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonial-feature" id="testimonials">
+        <div class="testimonial-content">
+            <h2>What Our Members Say</h2>
+            
+            <div class="reviews-rating">
+                <div class="rating-number">5.0</div>
+                <div>
+                    <div class="rating-stars">★★★★★</div>
+                    <div class="rating-count">68 reviews</div>
+                </div>
+            </div>
+
+            <!-- Elfsight Google Reviews Widget -->
+            <div style="margin-top: 3rem; margin-bottom: 3rem;">
+                <script src="https://elfsightcdn.com/platform.js" async></script>
+                <div class="elfsight-app-e9950e9a-90e9-4e39-9489-c4082001e747" data-elfsight-app-lazy></div>
+            </div>
+        </div>
+    </section>
+
+    <section class="quote-section">
+        <div class="quote-container">
+            <div class="quote-text">Train with a Purpose</div>
+            
+            <!-- Quote Carousel -->
+            <div class="quote-carousel">
+                <div class="quote-slide active">
+                    <p class="carousel-quote">"Some people want it to happen, some wish it would happen, others make it happen."</p>
+                    <p class="carousel-author">— Michael Jordan</p>
+                </div>
+                <div class="quote-slide">
+                    <p class="carousel-quote">"I hated every minute of training, but I said, 'Don't quit. Suffer now and live the rest of your life as a champion.'"</p>
+                    <p class="carousel-author">— Muhammad Ali</p>
+                </div>
+                <div class="quote-slide">
+                    <p class="carousel-quote">"Discipline is choosing between what you want now and what you want most."</p>
+                    <p class="carousel-author">— Abraham Lincoln</p>
+                </div>
+                <div class="quote-slide">
+                    <p class="carousel-quote">"Don't count the days, make the days count."</p>
+                    <p class="carousel-author">— Muhammad Ali</p>
+                </div>
+                <div class="quote-slide">
+                    <p class="carousel-quote">"The body achieves what the mind believes."</p>
+                    <p class="carousel-author">— Napoleon Hill</p>
+                </div>
+                <div class="quote-slide">
+                    <p class="carousel-quote">"Strength does not come from physical capacity. It comes from an indomitable will."</p>
+                    <p class="carousel-author">— Mahatma Gandhi</p>
+                </div>
+            </div>
+
+            <!-- Carousel Navigation Dots -->
+            <div class="carousel-dots">
+                <span class="dot active" onclick="currentSlide(0)"></span>
+                <span class="dot" onclick="currentSlide(1)"></span>
+                <span class="dot" onclick="currentSlide(2)"></span>
+                <span class="dot" onclick="currentSlide(3)"></span>
+                <span class="dot" onclick="currentSlide(4)"></span>
+                <span class="dot" onclick="currentSlide(5)"></span>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-section" id="contact">
+        <div class="cta-container">
+            <h2 class="cta-title">Ready to Transform Your Life?</h2>
+            <p class="cta-subtitle">Join the Black Iron family and discover what you're truly capable of.</p>
+            <a href="https://blackiron.wodify.com/OnlineSalesPage/Main?q=Classes%7COnlineMembershipId%3D235167%26LocationId%3D10409" class="btn-primary">Book Your Free Consultation</a>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-container">
+            <div class="footer-section">
+                <a href="https://www.blackironathletics.com">
+                    <img src="https://storage.googleapis.com/msgsndr/snIUpSaFzz5WsavMB3QA/media/6980c90276757725c438432d.png" alt="Black Iron Athletics" class="footer-logo">
+                </a>
+                <p style="color: var(--light-gray); margin-bottom: 1rem;">Forging everyday people into everyday athletes through strength, community, and purpose.</p>
+            </div>
+
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="#programs">Programs</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#gallery">Gallery</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h3>Contact</h3>
+                <p style="color: var(--light-gray); margin-bottom: 1rem;">
+                    279 Main St #122<br>
+                    Frisco, TX 75036
+                </p>
+                <p style="margin-bottom: 1.5rem;">
+                    <a href="tel:(972)785-7036" style="color: var(--yellow); font-weight: 700;">(972) 785-7036</a>
+                </p>
+                <iframe 
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3344.9875647886857!2d-96.89026308820058!3d33.15034697358084!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x864c3a240f77e3f7%3A0x9f460209df528d6e!2sBlack%20Iron%20Athletics!5e0!3m2!1sen!2sus!4v1737509000000!5m2!1sen!2sus" 
+                    width="100%" 
+                    height="200" 
+                    style="border: 1px solid var(--medium-gray); border-radius: 0; margin-top: 1rem;" 
+                    allowfullscreen="" 
+                    loading="lazy" 
+                    referrerpolicy="no-referrer-when-downgrade">
+                </iframe>
+            </div>
+
+            <div class="footer-section">
+                <h3>Hours</h3>
+                <p style="color: var(--light-gray); margin-bottom: 1rem;">
+                    Check our class calendar for an up to date schedule.
+                </p>
+                <p style="color: var(--yellow); font-weight: 700;">
+                    Open Gym: 24/7
+                </p>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2026 Black Iron Athletics. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Quote Carousel
+        let slideIndex = 0;
+        let autoSlideTimer;
+
+        function showSlides() {
+            let slides = document.getElementsByClassName("quote-slide");
+            let dots = document.getElementsByClassName("dot");
+            
+            // Hide all slides
+            for (let i = 0; i < slides.length; i++) {
+                slides[i].classList.remove("active");
+            }
+            
+            // Remove active from all dots
+            for (let i = 0; i < dots.length; i++) {
+                dots[i].classList.remove("active");
+            }
+            
+            // Increment slide index
+            slideIndex++;
+            if (slideIndex > slides.length) {
+                slideIndex = 1;
+            }
+            
+            // Show current slide
+            slides[slideIndex - 1].classList.add("active");
+            dots[slideIndex - 1].classList.add("active");
+            
+            // Change slide every 6 seconds
+            autoSlideTimer = setTimeout(showSlides, 6000);
+        }
+
+        function currentSlide(n) {
+            clearTimeout(autoSlideTimer);
+            slideIndex = n;
+            
+            let slides = document.getElementsByClassName("quote-slide");
+            let dots = document.getElementsByClassName("dot");
+            
+            // Hide all slides
+            for (let i = 0; i < slides.length; i++) {
+                slides[i].classList.remove("active");
+            }
+            
+            // Remove active from all dots
+            for (let i = 0; i < dots.length; i++) {
+                dots[i].classList.remove("active");
+            }
+            
+            // Show selected slide
+            slides[slideIndex].classList.add("active");
+            dots[slideIndex].classList.add("active");
+            
+            // Restart auto-rotation
+            autoSlideTimer = setTimeout(showSlides, 6000);
+        }
+
+        // Start the carousel when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            showSlides();
+        });
+    </script>
+
+    <!-- Schema Markup for SEO -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "GymAndHealthClub",
+      "name": "Black Iron Athletics",
+      "description": "Veteran-owned gym in Frisco, TX specializing in group training, personal training, and nutrition coaching. Helping everyday people become everyday athletes since 2013.",
+      "image": "https://storage.googleapis.com/msgsndr/snIUpSaFzz5WsavMB3QA/media/6980c90276757725c438432d.png",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "279 Main St #122",
+        "addressLocality": "Frisco",
+        "addressRegion": "TX",
+        "postalCode": "75036",
+        "addressCountry": "US"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": "33.1507",
+        "longitude": "-96.8236"
+      },
+      "telephone": "(972) 785-7036",
+      "openingHours": "Mo-Su 00:00-23:59",
+      "priceRange": "$$",
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "5.0",
+        "reviewCount": "68"
+      },
+      "url": "https://www.blackironathleticsfrisco.com"
+    }
+    </script>
+</body>
+</html>
