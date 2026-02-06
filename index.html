@@ -893,9 +893,132 @@
             }
         }
 
+        /* Hamburger Menu */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            gap: 5px;
+            width: 30px;
+            height: 30px;
+            cursor: pointer;
+            background: none;
+            border: none;
+            padding: 0;
+            z-index: 1002;
+        }
+
+        .hamburger span {
+            display: block;
+            width: 30px;
+            height: 3px;
+            background: var(--white);
+            transition: all 0.3s ease;
+        }
+
+        .hamburger.active span:nth-child(1) {
+            transform: rotate(45deg) translate(6px, 6px);
+        }
+
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(6px, -6px);
+        }
+
+        .mobile-nav-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.97);
+            z-index: 1001;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 0;
+        }
+
+        .mobile-nav-overlay.active {
+            display: flex;
+        }
+
+        .mobile-nav-overlay a {
+            color: var(--white);
+            text-decoration: none;
+            font-size: 1.2rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            padding: 1rem 2rem;
+            transition: color 0.3s ease;
+            text-align: center;
+        }
+
+        .mobile-nav-overlay a:hover {
+            color: var(--yellow);
+        }
+
+        .mobile-nav-overlay .mobile-cta {
+            margin-top: 1.5rem;
+            background: var(--yellow);
+            color: var(--black);
+            padding: 1rem 2.5rem;
+            font-size: 1rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border: 2px solid var(--yellow);
+            transition: all 0.3s ease;
+        }
+
+        .mobile-nav-overlay .mobile-cta:hover {
+            background: transparent;
+            color: var(--yellow);
+        }
+
         @media (max-width: 768px) {
+            .hamburger {
+                display: flex !important;
+            }
+
             .nav-links {
-                display: none;
+                display: none !important;
+            }
+
+            .nav-container {
+                padding: 0 1.5rem;
+                flex-wrap: wrap;
+            }
+
+            .cta-btn {
+                order: 3;
+                width: 100%;
+                text-align: center;
+                margin-top: 0.75rem;
+                padding: 0.7rem 1rem;
+                font-size: 0.8rem;
+            }
+
+            .hero {
+                min-height: 80vh;
+            }
+
+            .hero-container {
+                padding: 2rem 1.5rem;
+            }
+
+            .hero-content h1 {
+                font-size: clamp(2rem, 8vw, 4rem);
+            }
+
+            .hero-content p {
+                font-size: 1.1rem;
+                margin-bottom: 2rem;
             }
 
             .hero-buttons {
@@ -906,12 +1029,73 @@
             .btn-secondary {
                 text-align: center;
                 width: 100%;
+                padding: 1rem 2rem;
             }
 
-            .programs-grid,
+            .stats-container {
+                padding: 0 1.5rem;
+                grid-template-columns: repeat(3, 1fr);
+                gap: 1rem;
+            }
+
+            .stat-number {
+                font-size: 2rem;
+            }
+
+            .stat-label {
+                font-size: 0.75rem;
+            }
+
+            .section-container,
+            .getting-started-content,
+            .testimonial-content {
+                padding: 0 1.5rem;
+            }
+
+            .section-title {
+                font-size: clamp(1.8rem, 5vw, 2.5rem);
+            }
+
+            .section-header {
+                margin-bottom: 2rem;
+            }
+
             .problem-grid,
-            .steps-grid {
+            .features-grid,
+            .steps-grid,
+            .programs-grid {
                 grid-template-columns: 1fr;
+            }
+
+            .problem-card,
+            .feature-card,
+            .step-card {
+                padding: 1.5rem;
+            }
+
+            .program-content {
+                padding: 1.5rem;
+            }
+
+            .quote-section {
+                padding: 2rem 1.5rem;
+            }
+
+            .cta-section {
+                padding: 4rem 1.5rem;
+            }
+
+            .cta-title {
+                font-size: clamp(1.8rem, 5vw, 2.5rem);
+            }
+
+            .footer-container {
+                padding: 0 1.5rem;
+                gap: 2rem;
+            }
+
+            .modal-container {
+                max-width: calc(100% - 2rem);
             }
         }
     </style>
@@ -945,8 +1129,21 @@
                 <li><a href="contact.html">Contact</a></li>
             </ul>
             <a href="#" onclick="openLeadModal(); return false;" class="cta-btn">Book Free Consultation</a>
+            <button class="hamburger" onclick="toggleMobileNav()" aria-label="Menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
         </div>
     </nav>
+
+    <div class="mobile-nav-overlay" id="mobileNav">
+        <a href="about.html" onclick="closeMobileNav()">About Us</a>
+        <a href="getting-started.html" onclick="closeMobileNav()">Getting Started</a>
+        <a href="media.html" onclick="closeMobileNav()">Media</a>
+        <a href="contact.html" onclick="closeMobileNav()">Contact</a>
+        <a href="#" class="mobile-cta" onclick="closeMobileNav(); openLeadModal(); return false;">Book Free Consultation</a>
+    </div>
 
     <section class="hero">
         <img src="https://storage.googleapis.com/msgsndr/snIUpSaFzz5WsavMB3QA/media/697ec53266e7ca82898c231e.jpg" alt="Training" class="hero-bg">
@@ -1641,6 +1838,18 @@
             setTimeout(() => { window.location.href = 'book.html'; }, 3000);
         });
     });
+
+    // Hamburger Menu
+    function toggleMobileNav() {
+        document.getElementById('mobileNav').classList.toggle('active');
+        document.querySelector('.hamburger').classList.toggle('active');
+        document.body.style.overflow = document.getElementById('mobileNav').classList.contains('active') ? 'hidden' : '';
+    }
+    function closeMobileNav() {
+        document.getElementById('mobileNav').classList.remove('active');
+        document.querySelector('.hamburger').classList.remove('active');
+        document.body.style.overflow = '';
+    }
 </script>
 </body>
 </html>
