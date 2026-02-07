@@ -74,9 +74,7 @@
 
         /* Anchor offset for fixed nav */
         #mission,
-        #team,
-        #schedule,
-        #membership {
+        #team {
             scroll-margin-top: 100px;
         }
 
@@ -352,35 +350,63 @@
         /* Beliefs Grid */
         .beliefs-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2.5rem;
             margin-top: 4rem;
         }
 
         .belief-card {
             background: var(--dark-gray);
-            padding: 2.5rem;
+            padding: 3rem;
             border: 2px solid var(--medium-gray);
-            border-left: 5px solid var(--yellow);
-            transition: all 0.3s ease;
+            transition: all 0.4s ease;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .belief-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: var(--yellow);
+            transform: scaleX(0);
+            transition: transform 0.4s ease;
         }
 
         .belief-card:hover {
             border-color: var(--yellow);
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(255, 210, 2, 0.2);
+            transform: translateY(-8px);
+            box-shadow: 0 15px 40px rgba(255, 210, 2, 0.15);
+        }
+
+        .belief-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .belief-icon {
+            font-size: 3rem;
+            color: var(--yellow);
+            margin-bottom: 1.5rem;
+            display: inline-block;
         }
 
         .belief-card h4 {
             font-weight: 900;
             font-size: 1.5rem;
-            margin-bottom: 1rem;
-            color: var(--yellow);
+            margin-bottom: 1.2rem;
+            color: var(--white);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
 
         .belief-card p {
             color: var(--light-gray);
             line-height: 1.8;
+            font-size: 1.05rem;
         }
 
         /* Team Grid */
@@ -442,100 +468,6 @@
         .team-bio {
             color: var(--light-gray);
             line-height: 1.8;
-        }
-
-        /* Schedule Section */
-        .schedule-embed {
-            background: var(--dark-gray);
-            padding: 2rem;
-            border: 2px solid var(--medium-gray);
-            min-height: 600px;
-        }
-
-        .schedule-embed iframe {
-            border: none;
-            display: block;
-        }
-
-        /* Membership Cards */
-        .membership-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 2rem;
-            margin-top: 4rem;
-        }
-
-        .membership-card {
-            background: var(--dark-gray);
-            padding: 3rem 2rem;
-            border: 2px solid var(--medium-gray);
-            text-align: center;
-            transition: all 0.3s ease;
-        }
-
-        .membership-card:hover {
-            border-color: var(--yellow);
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(255, 210, 2, 0.2);
-        }
-
-        .membership-card.featured {
-            border-color: var(--yellow);
-            border-width: 3px;
-            position: relative;
-        }
-
-        .featured-badge {
-            position: absolute;
-            top: -15px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: var(--yellow);
-            color: var(--black);
-            padding: 0.5rem 1.5rem;
-            font-weight: 900;
-            font-size: 0.8rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .membership-title {
-            font-weight: 900;
-            font-size: 1.8rem;
-            margin-bottom: 1rem;
-            text-transform: uppercase;
-        }
-
-        .membership-price {
-            font-size: 3rem;
-            font-weight: 900;
-            color: var(--yellow);
-            margin-bottom: 0.5rem;
-        }
-
-        .membership-period {
-            color: var(--light-gray);
-            font-size: 0.9rem;
-            margin-bottom: 2rem;
-        }
-
-        .membership-features {
-            list-style: none;
-            margin-bottom: 2rem;
-            text-align: left;
-        }
-
-        .membership-features li {
-            padding: 0.75rem 0;
-            border-bottom: 1px solid var(--medium-gray);
-            color: var(--light-gray);
-        }
-
-        .membership-features li:before {
-            content: '✓';
-            color: var(--yellow);
-            font-weight: 900;
-            margin-right: 1rem;
         }
 
         .btn-primary {
@@ -792,27 +724,16 @@
             }
 
             .beliefs-grid,
-            .team-grid,
-            .membership-grid {
+            .team-grid {
                 grid-template-columns: 1fr;
             }
 
-            .belief-card,
+            .belief-card {
+                padding: 2rem;
+            }
+
             .team-content {
                 padding: 1.5rem;
-            }
-
-            .membership-card {
-                padding: 2rem 1.5rem;
-            }
-
-            .schedule-embed {
-                min-height: 400px;
-                padding: 1rem;
-            }
-
-            .schedule-embed iframe {
-                height: 400px;
             }
 
             .cta-section {
@@ -876,7 +797,7 @@
                     <ul class="submenu">
                         <li><a href="about.html#mission">Our Mission</a></li>
                         <li><a href="about.html#team">Meet the Team</a></li>
-                        <li><a href="about.html#schedule">Class Schedule</a></li>
+                        <li><a href="schedule.html">Class Schedule</a></li>
                     </ul>
                 </li>
                 <li class="has-submenu">
@@ -951,21 +872,25 @@
 
             <div class="beliefs-grid">
                 <div class="belief-card">
+                    <div class="belief-icon"><i class="fa-solid fa-heart-pulse"></i></div>
                     <h4>Movement Is Medicine</h4>
                     <p>Your health isn't selfish. It's service. When you prioritize your fitness, you show up stronger for your family, your work, and your community.</p>
                 </div>
 
                 <div class="belief-card">
+                    <div class="belief-icon"><i class="fa-solid fa-shield-halved"></i></div>
                     <h4>Quality of Life Over Ego</h4>
                     <p>Yes, looking good and feeling confident matters. But it's not about chasing someone else's idea of perfect. It's about building real strength, preventing injury, and creating a body that serves you well for decades. When you feel strong and capable, confidence follows naturally.</p>
                 </div>
 
                 <div class="belief-card">
-                    <h4>Community and Accountability</h4>
+                    <div class="belief-icon"><i class="fa-solid fa-people-group"></i></div>
+                    <h4>Community & Accountability</h4>
                     <p>You don't have to figure this out on your own. Our coaches and your fellow athletes are here to support you, push you, and celebrate every win along the way.</p>
                 </div>
 
                 <div class="belief-card">
+                    <div class="belief-icon"><i class="fa-solid fa-brain"></i></div>
                     <h4>Mental Health Matters</h4>
                     <p>We know the mental battle can be harder than the physical one. That's why we've built a community that supports the whole person, not just the workout.</p>
                 </div>
@@ -1041,96 +966,6 @@
                         <h3 class="team-name">Evan</h3>
                         <div class="team-role">Coach</div>
                     </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Schedule Section -->
-    <section id="schedule" class="section">
-        <div class="section-container">
-            <div class="section-header">
-                <div class="section-subtitle">Schedule</div>
-                <h2 class="section-title">Class Schedule</h2>
-                <p style="font-size: 1.2rem; color: var(--light-gray); max-width: 800px; margin: 1rem auto 0;">Find a class time that works for your schedule. All levels welcome.</p>
-            </div>
-
-            <div class="schedule-embed">
-                <iframe src='https://blackiron.wodify.com/OnlineSalesPage/WebIntegration?LocationId=10409&IsDarkMode=True&ProgramId=129125,106946,137222&IsDropInAvailable=True' frameborder='0' width='100%' height='600' style="border: none;"></iframe>
-            </div>
-
-            <div style="text-align: center; margin-top: 3rem;">
-                <p style="font-size: 1.1rem; color: var(--light-gray); margin-bottom: 2rem;">Questions about class times or looking for something specific?</p>
-                <a href="#" onclick="openLeadModal(); return false;" class="btn-primary">Book Your Free Consultation</a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Membership Section -->
-    <section id="membership" class="section section-alt">
-        <div class="section-container">
-            <div class="section-header">
-                <div class="section-subtitle">Pricing</div>
-                <h2 class="section-title">Membership Options</h2>
-                <p style="font-size: 1.2rem; color: var(--light-gray); max-width: 800px; margin: 1rem auto 0;">Find the plan that fits your goals and lifestyle.</p>
-            </div>
-
-            <div class="membership-grid">
-                <div class="membership-card">
-                    <h3 class="membership-title">Standard</h3>
-                    <div class="membership-period" style="margin-bottom: 2rem; color: var(--yellow); font-weight: 700;">3x Per Week</div>
-                    <ul class="membership-features">
-                        <li>3 Classes a week</li>
-                        <li>Strength & Conditioning</li>
-                        <li>Olympic Weightlifting</li>
-                        <li>Monthly Body Composition Scan</li>
-                        <li>Community Events</li>
-                    </ul>
-                    <a href="https://blackiron.wodify.com/OnlineSalesPage/Main?q=ReviewPurchase%7COnlineMembershipId%3D236019%26LocationId%3D10409%26OnlineMembershipPaymentOptionId%3D1473807" class="btn-primary">Get Started</a>
-                </div>
-
-                <div class="membership-card featured">
-                    <div class="featured-badge">Most Popular</div>
-                    <h3 class="membership-title">Unlimited + Open Gym</h3>
-                    <div class="membership-period" style="margin-bottom: 2rem; color: var(--yellow); font-weight: 700;">Train Without Limits</div>
-                    <ul class="membership-features">
-                        <li>Unlimited Classes</li>
-                        <li>Open Gym 7 Days a Week</li>
-                        <li>Private Gym Access</li>
-                        <li>Strength & Conditioning</li>
-                        <li>Olympic Weightlifting</li>
-                        <li>Monthly Body Composition Scan</li>
-                        <li>Community Events</li>
-                    </ul>
-                    <a href="https://blackiron.wodify.com/OnlineSalesPage/Main?q=ReviewPurchase%7COnlineMembershipId%3D236018%26LocationId%3D10409%26OnlineMembershipPaymentOptionId%3D1473833" class="btn-primary">Get Started</a>
-                </div>
-
-                <div class="membership-card">
-                    <h3 class="membership-title">Personal Training</h3>
-                    <div class="membership-period" style="margin-bottom: 2rem; color: var(--yellow); font-weight: 700;">1-on-1 Coaching</div>
-                    <ul class="membership-features">
-                        <li>One-on-one Coaching</li>
-                        <li>Customized Programming</li>
-                        <li>Individual Accountability</li>
-                        <li>Monthly Body Composition Scan</li>
-                        <li>Nutrition Guidance</li>
-                        <li>Community Events</li>
-                    </ul>
-                    <a href="https://blackiron.wodify.com/OnlineSalesPage/Main?q=Memberships" class="btn-primary">Get Started</a>
-                </div>
-
-                <div class="membership-card">
-                    <h3 class="membership-title">Open Gym Only</h3>
-                    <div class="membership-period" style="margin-bottom: 2rem; color: var(--yellow); font-weight: 700;">Self-Directed Training</div>
-                    <ul class="membership-features">
-                        <li>Open Gym 7 Days a Week</li>
-                        <li>Private Gym Access</li>
-                        <li>Access to All Our Programming</li>
-                        <li>Strength & Conditioning</li>
-                        <li>Olympic Weightlifting</li>
-                        <li>Hyrox</li>
-                    </ul>
-                    <a href="https://blackiron.wodify.com/OnlineSalesPage/Main?q=PaymentPlans%7cLocationId%3d10409%26OnlineMembershipId%3d303426" class="btn-primary">Get Started</a>
                 </div>
             </div>
         </div>
