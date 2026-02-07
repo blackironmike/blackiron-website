@@ -5,6 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Getting Started | Black Iron Athletics | Join Our Gym in Frisco, TX</title>
     <meta name="description" content="Start your fitness journey at Black Iron Athletics in Frisco, TX. Learn about our 3-step onboarding process, membership options, and what to expect. Beginner-friendly training.">
+    <link rel="canonical" href="https://www.blackironathleticsfrisco.com/getting-started.html">
+    <!-- Open Graph -->
+    <meta property="og:title" content="Getting Started | Black Iron Athletics | Join Our Gym in Frisco, TX">
+    <meta property="og:description" content="Start your fitness journey at Black Iron Athletics. 3-step onboarding, flexible membership options, and beginner-friendly training.">
+    <meta property="og:url" content="https://www.blackironathleticsfrisco.com/getting-started.html">
+    <meta property="og:image" content="https://storage.googleapis.com/msgsndr/snIUpSaFzz5WsavMB3QA/media/6980c90276757725c438432d.png">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Black Iron Athletics">
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Getting Started | Black Iron Athletics | Join Our Gym in Frisco, TX">
+    <meta name="twitter:description" content="Start your fitness journey at Black Iron Athletics. 3-step onboarding, flexible membership options, and beginner-friendly training.">
+    <meta name="twitter:image" content="https://storage.googleapis.com/msgsndr/snIUpSaFzz5WsavMB3QA/media/6980c90276757725c438432d.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;900&display=swap" rel="stylesheet">
@@ -852,6 +865,7 @@
                 <div class="hero-subtitle">Your Path Forward</div>
                 <h1>Start Your Journey</h1>
                 <p>Becoming an everyday athlete is easier than you think</p>
+                <a href="#" onclick="openLeadModal(); return false;" class="btn-primary" style="margin-top: 1rem;">Start Your Free Consultation</a>
             </div>
         </div>
     </section>
@@ -1121,6 +1135,78 @@
       "name": "Getting Started at Black Iron Athletics",
       "description": "Learn how to start your fitness journey at Black Iron Athletics in Frisco, TX. Simple 3-step onboarding, flexible membership options, and beginner-friendly training.",
       "url": "https://www.blackironathleticsfrisco.com/getting-started"
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Is it beginner friendly?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Absolutely. We have one-on-one onboarding to make sure you feel confident and ready to jump into the program."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Do I have to be in shape to join?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Not at all. You just have to be willing to move. Everyone starts somewhere, and we're here to meet you where you are."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What if I have an old injury?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "We work with injuries and limitations all the time. Just talk to your coach and we're happy to accommodate. You won't be a burden, you'll be supported."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How long until I see results?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Most members notice changes in how they feel within 2 weeks. Visible physical changes typically show up in 4-6 weeks with consistent training."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What if I've tried gyms before and quit?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "The difference here is community and accountability. Our coaches know your name, track your progress, and our members support each other."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can I try a class before I commit?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Your free consultation includes the opportunity to experience what we do before making any decisions."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What's your cancellation policy?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "We operate on month-to-month memberships. No long-term contracts. If you need to pause or cancel, just give us notice."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How is this different from a regular gym?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "You get expert coaching, structured programming designed for results, and a community that pushes you to show up. You're not just renting equipment access."
+          }
+        }
+      ]
     }
     </script>
 <!-- Lead Capture Popup Modal -->
@@ -1397,5 +1483,46 @@
         document.body.style.overflow = '';
     }
 </script>
+
+<!-- Sticky Mobile CTA Bar -->
+<style>
+    .sticky-mobile-cta {
+        display: none;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        background: var(--black);
+        border-top: 2px solid var(--yellow);
+        padding: 0.75rem 1.5rem;
+        z-index: 998;
+        text-align: center;
+    }
+    .sticky-mobile-cta a {
+        display: block;
+        background: var(--yellow);
+        color: var(--black);
+        padding: 0.9rem;
+        font-family: 'Montserrat', sans-serif;
+        font-weight: 900;
+        font-size: 0.9rem;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        text-decoration: none;
+        border: 2px solid var(--yellow);
+        transition: all 0.3s ease;
+    }
+    .sticky-mobile-cta a:hover {
+        background: var(--black);
+        color: var(--yellow);
+    }
+    @media (max-width: 768px) {
+        .sticky-mobile-cta { display: block; }
+        body { padding-bottom: 70px; }
+    }
+</style>
+<div class="sticky-mobile-cta">
+    <a href="#" onclick="openLeadModal(); return false;">Book Free Consultation</a>
+</div>
 </body>
 </html>

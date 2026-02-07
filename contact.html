@@ -5,6 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contact Us | Black Iron Athletics | Gym in Frisco, TX</title>
     <meta name="description" content="Get in touch with Black Iron Athletics in Frisco, TX. Questions about programs, partnerships, events, or anything else? We'd love to hear from you.">
+    <link rel="canonical" href="https://www.blackironathleticsfrisco.com/contact.html">
+    <!-- Open Graph -->
+    <meta property="og:title" content="Contact Us | Black Iron Athletics | Gym in Frisco, TX">
+    <meta property="og:description" content="Get in touch with Black Iron Athletics in Frisco, TX. Questions about programs, partnerships, events, or anything else?">
+    <meta property="og:url" content="https://www.blackironathleticsfrisco.com/contact.html">
+    <meta property="og:image" content="https://storage.googleapis.com/msgsndr/snIUpSaFzz5WsavMB3QA/media/6980c90276757725c438432d.png">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Black Iron Athletics">
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Contact Us | Black Iron Athletics | Gym in Frisco, TX">
+    <meta name="twitter:description" content="Get in touch with Black Iron Athletics in Frisco, TX. Questions about programs, partnerships, events, or anything else?">
+    <meta name="twitter:image" content="https://storage.googleapis.com/msgsndr/snIUpSaFzz5WsavMB3QA/media/6980c90276757725c438432d.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;900&display=swap" rel="stylesheet">
@@ -333,7 +346,7 @@
             box-shadow: 0 10px 30px rgba(255, 210, 2, 0.2);
         }
 
-        .contact-card h3 {
+        .contact-card h2 {
             font-weight: 900;
             font-size: 1.2rem;
             margin-bottom: 0.75rem;
@@ -396,7 +409,7 @@
             min-height: 400px;
         }
 
-        .contact-form-container h3 {
+        .contact-form-container h2 {
             font-weight: 900;
             font-size: 1.5rem;
             margin-bottom: 1rem;
@@ -742,6 +755,7 @@
                 <div class="hero-subtitle">Get in Touch</div>
                 <h1>Contact Us</h1>
                 <p>Have a question, idea, or just want to say hello? We'd love to hear from you.</p>
+                <a href="#" onclick="openLeadModal(); return false;" class="btn-primary" style="margin-top: 1rem;">Book a Free Consultation</a>
             </div>
         </div>
     </section>
@@ -753,22 +767,22 @@
                 <!-- Left Column - Contact Info -->
                 <div class="contact-info">
                     <div class="contact-card">
-                        <h3>Location</h3>
+                        <h2>Location</h2>
                         <p>279 Main St #122<br>Frisco, TX 75036</p>
                     </div>
 
                     <div class="contact-card">
-                        <h3>Phone</h3>
+                        <h2>Phone</h2>
                         <p><a href="tel:(972)785-7036">(972) 785-7036</a></p>
                     </div>
 
                     <div class="contact-card">
-                        <h3>Email</h3>
+                        <h2>Email</h2>
                         <p><a href="mailto:mike@blackironathletics.com">mike@blackironathletics.com</a></p>
                     </div>
 
                     <div class="contact-card">
-                        <h3>Follow Us</h3>
+                        <h2>Follow Us</h2>
                         <div class="social-links">
                             <a href="https://www.instagram.com/blackiron_athletics/" target="_blank"><i class="fa-brands fa-instagram"></i> Instagram</a>
                             <a href="https://www.youtube.com/channel/UCF1XjUXEs81OWY70chem6vA" target="_blank"><i class="fa-brands fa-youtube"></i> YouTube</a>
@@ -777,7 +791,7 @@
                     </div>
 
                     <div class="contact-card">
-                        <h3>Looking to Join?</h3>
+                        <h2>Looking to Join?</h2>
                         <p style="margin-bottom: 1.5rem;">If you're interested in membership, book a free consultation and we'll find the right fit for you.</p>
                         <a href="#" onclick="openLeadModal(); return false;" class="btn-primary">Book Free Consultation</a>
                     </div>
@@ -785,13 +799,34 @@
 
                 <!-- Right Column - Contact Form -->
                 <div class="contact-form-container">
-                    <h3>Send Us a Message</h3>
+                    <h2>Send Us a Message</h2>
                     <p>Partnerships, events, general questions, or anything else — drop us a line and we'll get back to you.</p>
 
-                    <!-- FORM EMBED GOES HERE -->
-                    <div style="background: rgba(255, 210, 2, 0.1); border: 2px dashed var(--yellow); padding: 3rem 2rem; text-align: center;">
-                        <p style="font-size: 1.1rem; color: var(--yellow); margin-bottom: 0.5rem;">[FORM EMBED PLACEHOLDER]</p>
-                        <p style="font-size: 0.9rem; color: var(--light-gray);">Your contact form will be embedded here</p>
+                    <form id="contactForm" action="https://api.leadconnectorhq.com/widget/form/E28b2LyV1rXS8C9NizUX" method="POST">
+                        <input type="hidden" name="notrack" value="true">
+                        <input type="hidden" name="formSource" value="contact-page">
+                        <div style="margin-bottom: 1.5rem;">
+                            <label style="display: block; font-weight: 700; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 0.5rem; color: var(--white);">Name <span style="color: var(--yellow);">*</span></label>
+                            <input type="text" name="first_name" required style="width: 100%; padding: 1rem; background: var(--black); border: 2px solid var(--medium-gray); color: var(--white); font-family: 'Montserrat', sans-serif; font-size: 1rem; font-weight: 500; transition: all 0.3s ease;" onfocus="this.style.borderColor='var(--yellow)'; this.style.background='var(--dark-gray)';" onblur="this.style.borderColor='var(--medium-gray)'; this.style.background='var(--black)';" placeholder="Your name">
+                        </div>
+                        <div style="margin-bottom: 1.5rem;">
+                            <label style="display: block; font-weight: 700; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 0.5rem; color: var(--white);">Email <span style="color: var(--yellow);">*</span></label>
+                            <input type="email" name="email" required style="width: 100%; padding: 1rem; background: var(--black); border: 2px solid var(--medium-gray); color: var(--white); font-family: 'Montserrat', sans-serif; font-size: 1rem; font-weight: 500; transition: all 0.3s ease;" onfocus="this.style.borderColor='var(--yellow)'; this.style.background='var(--dark-gray)';" onblur="this.style.borderColor='var(--medium-gray)'; this.style.background='var(--black)';" placeholder="Your email">
+                        </div>
+                        <div style="margin-bottom: 1.5rem;">
+                            <label style="display: block; font-weight: 700; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 0.5rem; color: var(--white);">Phone</label>
+                            <input type="tel" name="phone" style="width: 100%; padding: 1rem; background: var(--black); border: 2px solid var(--medium-gray); color: var(--white); font-family: 'Montserrat', sans-serif; font-size: 1rem; font-weight: 500; transition: all 0.3s ease;" onfocus="this.style.borderColor='var(--yellow)'; this.style.background='var(--dark-gray)';" onblur="this.style.borderColor='var(--medium-gray)'; this.style.background='var(--black)';" placeholder="Your phone number">
+                        </div>
+                        <div style="margin-bottom: 1.5rem;">
+                            <label style="display: block; font-weight: 700; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 0.5rem; color: var(--white);">Message <span style="color: var(--yellow);">*</span></label>
+                            <textarea name="message" required style="width: 100%; padding: 1rem; background: var(--black); border: 2px solid var(--medium-gray); color: var(--white); font-family: 'Montserrat', sans-serif; font-size: 1rem; font-weight: 500; resize: vertical; min-height: 150px; transition: all 0.3s ease;" onfocus="this.style.borderColor='var(--yellow)'; this.style.background='var(--dark-gray)';" onblur="this.style.borderColor='var(--medium-gray)'; this.style.background='var(--black)';" placeholder="How can we help?"></textarea>
+                        </div>
+                        <button type="submit" style="width: 100%; background: var(--yellow); color: var(--black); padding: 1.2rem; border: 2px solid var(--yellow); border-radius: 0; font-family: 'Montserrat', sans-serif; font-weight: 900; font-size: 1.1rem; text-transform: uppercase; letter-spacing: 1px; cursor: pointer; transition: all 0.3s ease;" onmouseover="this.style.background='var(--black)'; this.style.color='var(--yellow)';" onmouseout="this.style.background='var(--yellow)'; this.style.color='var(--black)';">Send Message</button>
+                    </form>
+                    <div id="contactSuccessMessage" style="display: none; text-align: center; padding: 2rem;">
+                        <div style="font-size: 4rem; color: var(--yellow); margin-bottom: 1rem;">&#10003;</div>
+                        <h3 style="font-weight: 900; font-size: 2rem; text-transform: uppercase; margin-bottom: 1rem;">Message Sent!</h3>
+                        <p style="color: var(--light-gray); font-size: 1.1rem; line-height: 1.6;">Thanks for reaching out. We'll get back to you as soon as possible.</p>
                     </div>
                 </div>
             </div>
@@ -868,7 +903,33 @@
       "@type": "ContactPage",
       "name": "Contact Black Iron Athletics",
       "description": "Get in touch with Black Iron Athletics in Frisco, TX for questions about programs, partnerships, events, and more.",
-      "url": "https://www.blackironathleticsfrisco.com/contact"
+      "url": "https://www.blackironathleticsfrisco.com/contact",
+      "mainEntity": {
+        "@type": "LocalBusiness",
+        "name": "Black Iron Athletics",
+        "telephone": "(972) 785-7036",
+        "email": "mike@blackironathletics.com",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "279 Main St #122",
+          "addressLocality": "Frisco",
+          "addressRegion": "TX",
+          "postalCode": "75036",
+          "addressCountry": "US"
+        },
+        "contactPoint": {
+          "@type": "ContactPoint",
+          "telephone": "(972) 785-7036",
+          "contactType": "customer service",
+          "email": "mike@blackironathletics.com",
+          "availableLanguage": "English"
+        },
+        "sameAs": [
+          "https://www.instagram.com/blackiron_athletics/",
+          "https://www.youtube.com/channel/UCF1XjUXEs81OWY70chem6vA",
+          "https://www.facebook.com/BlackIronAthletics/"
+        ]
+      }
     }
     </script>
 <!-- Lead Capture Popup Modal -->
@@ -1133,6 +1194,21 @@
         });
     });
 
+    // Contact Form Submission
+    document.getElementById('contactForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        const formData = new FormData(this);
+        fetch(this.action, { method: 'POST', body: formData, mode: 'no-cors' })
+        .then(() => {
+            document.getElementById('contactForm').style.display = 'none';
+            document.getElementById('contactSuccessMessage').style.display = 'block';
+        })
+        .catch(() => {
+            document.getElementById('contactForm').style.display = 'none';
+            document.getElementById('contactSuccessMessage').style.display = 'block';
+        });
+    });
+
     // Hamburger Menu
     function toggleMobileNav() {
         document.getElementById('mobileNav').classList.toggle('active');
@@ -1145,5 +1221,46 @@
         document.body.style.overflow = '';
     }
 </script>
+
+<!-- Sticky Mobile CTA Bar -->
+<style>
+    .sticky-mobile-cta {
+        display: none;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        background: var(--black);
+        border-top: 2px solid var(--yellow);
+        padding: 0.75rem 1.5rem;
+        z-index: 998;
+        text-align: center;
+    }
+    .sticky-mobile-cta a {
+        display: block;
+        background: var(--yellow);
+        color: var(--black);
+        padding: 0.9rem;
+        font-family: 'Montserrat', sans-serif;
+        font-weight: 900;
+        font-size: 0.9rem;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        text-decoration: none;
+        border: 2px solid var(--yellow);
+        transition: all 0.3s ease;
+    }
+    .sticky-mobile-cta a:hover {
+        background: var(--black);
+        color: var(--yellow);
+    }
+    @media (max-width: 768px) {
+        .sticky-mobile-cta { display: block; }
+        body { padding-bottom: 70px; }
+    }
+</style>
+<div class="sticky-mobile-cta">
+    <a href="#" onclick="openLeadModal(); return false;">Book Free Consultation</a>
+</div>
 </body>
 </html>

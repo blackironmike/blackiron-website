@@ -5,6 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>About Us | Black Iron Athletics | Veteran-Owned Gym in Frisco, TX</title>
     <meta name="description" content="Learn about Black Iron Athletics' mission to forge everyday people into everyday athletes. Veteran-owned gym in Frisco, TX since 2013. Meet our team and explore membership options.">
+    <link rel="canonical" href="https://www.blackironathleticsfrisco.com/about.html">
+    <!-- Open Graph -->
+    <meta property="og:title" content="About Us | Black Iron Athletics | Veteran-Owned Gym in Frisco, TX">
+    <meta property="og:description" content="Learn about Black Iron Athletics' mission to forge everyday people into everyday athletes. Veteran-owned gym in Frisco, TX since 2013.">
+    <meta property="og:url" content="https://www.blackironathleticsfrisco.com/about.html">
+    <meta property="og:image" content="https://storage.googleapis.com/msgsndr/snIUpSaFzz5WsavMB3QA/media/6980c90276757725c438432d.png">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Black Iron Athletics">
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="About Us | Black Iron Athletics | Veteran-Owned Gym in Frisco, TX">
+    <meta name="twitter:description" content="Learn about Black Iron Athletics' mission to forge everyday people into everyday athletes. Veteran-owned gym in Frisco, TX since 2013.">
+    <meta name="twitter:image" content="https://storage.googleapis.com/msgsndr/snIUpSaFzz5WsavMB3QA/media/6980c90276757725c438432d.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;900&display=swap" rel="stylesheet">
@@ -880,6 +893,7 @@
                 <div class="hero-subtitle">Our Story</div>
                 <h1>About Us</h1>
                 <p>Forging everyday people into everyday athletes through strength, community, and purpose.</p>
+                <a href="#" onclick="openLeadModal(); return false;" class="btn-primary" style="margin-top: 1rem;">Book Your Free Consultation</a>
             </div>
         </div>
     </section>
@@ -1151,7 +1165,28 @@
       "@type": "AboutPage",
       "name": "About Black Iron Athletics",
       "description": "Learn about Black Iron Athletics' mission to forge everyday people into everyday athletes. Veteran-owned gym in Frisco, TX since 2013.",
-      "url": "https://www.blackironathleticsfrisco.com/about"
+      "url": "https://www.blackironathleticsfrisco.com/about",
+      "mainEntity": {
+        "@type": "GymAndHealthClub",
+        "name": "Black Iron Athletics",
+        "foundingDate": "2013",
+        "description": "Veteran-owned gym in Frisco, TX helping everyday people become everyday athletes since 2013.",
+        "telephone": "(972) 785-7036",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "279 Main St #122",
+          "addressLocality": "Frisco",
+          "addressRegion": "TX",
+          "postalCode": "75036",
+          "addressCountry": "US"
+        },
+        "url": "https://www.blackironathleticsfrisco.com",
+        "sameAs": [
+          "https://www.instagram.com/blackiron_athletics/",
+          "https://www.youtube.com/channel/UCF1XjUXEs81OWY70chem6vA",
+          "https://www.facebook.com/BlackIronAthletics/"
+        ]
+      }
     }
     </script>
 <!-- Lead Capture Popup Modal -->
@@ -1428,5 +1463,46 @@
         document.body.style.overflow = '';
     }
 </script>
+
+<!-- Sticky Mobile CTA Bar -->
+<style>
+    .sticky-mobile-cta {
+        display: none;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        background: var(--black);
+        border-top: 2px solid var(--yellow);
+        padding: 0.75rem 1.5rem;
+        z-index: 998;
+        text-align: center;
+    }
+    .sticky-mobile-cta a {
+        display: block;
+        background: var(--yellow);
+        color: var(--black);
+        padding: 0.9rem;
+        font-family: 'Montserrat', sans-serif;
+        font-weight: 900;
+        font-size: 0.9rem;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        text-decoration: none;
+        border: 2px solid var(--yellow);
+        transition: all 0.3s ease;
+    }
+    .sticky-mobile-cta a:hover {
+        background: var(--black);
+        color: var(--yellow);
+    }
+    @media (max-width: 768px) {
+        .sticky-mobile-cta { display: block; }
+        body { padding-bottom: 70px; }
+    }
+</style>
+<div class="sticky-mobile-cta">
+    <a href="#" onclick="openLeadModal(); return false;">Book Free Consultation</a>
+</div>
 </body>
 </html>

@@ -5,6 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Media | Black Iron Athletics | Photos & Videos from Our Gym in Frisco, TX</title>
     <meta name="description" content="See Black Iron Athletics in action. Browse gym photos, member highlights, and training videos from Frisco's veteran-owned gym.">
+    <link rel="canonical" href="https://www.blackironathleticsfrisco.com/media.html">
+    <!-- Open Graph -->
+    <meta property="og:title" content="Media | Black Iron Athletics | Photos & Videos from Frisco, TX">
+    <meta property="og:description" content="See Black Iron Athletics in action. Browse gym photos, member highlights, and training videos.">
+    <meta property="og:url" content="https://www.blackironathleticsfrisco.com/media.html">
+    <meta property="og:image" content="https://storage.googleapis.com/msgsndr/snIUpSaFzz5WsavMB3QA/media/6980c90276757725c438432d.png">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Black Iron Athletics">
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Media | Black Iron Athletics | Photos & Videos from Frisco, TX">
+    <meta name="twitter:description" content="See Black Iron Athletics in action. Browse gym photos, member highlights, and training videos.">
+    <meta name="twitter:image" content="https://storage.googleapis.com/msgsndr/snIUpSaFzz5WsavMB3QA/media/6980c90276757725c438432d.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;900&display=swap" rel="stylesheet">
@@ -722,6 +735,7 @@
                 <div class="hero-subtitle">See Us in Action</div>
                 <h1>Media</h1>
                 <p>Real athletes. Real training. Real community.</p>
+                <a href="#" onclick="openLeadModal(); return false;" class="btn-primary" style="margin-top: 1rem;">Join the Community</a>
             </div>
         </div>
     </section>
@@ -892,6 +906,38 @@
       "description": "Photos and videos from Black Iron Athletics, a veteran-owned gym in Frisco, TX.",
       "url": "https://www.blackironathleticsfrisco.com/media"
     }
+    </script>
+    <script type="application/ld+json">
+    [{
+      "@context": "https://schema.org",
+      "@type": "VideoObject",
+      "name": "Black Iron Athletics - Member Transformation",
+      "description": "Member transformation story from Black Iron Athletics in Frisco, TX.",
+      "thumbnailUrl": "https://img.youtube.com/vi/orPYVQKohc0/hqdefault.jpg",
+      "uploadDate": "2024-01-01",
+      "embedUrl": "https://www.youtube.com/embed/orPYVQKohc0",
+      "contentUrl": "https://www.youtube.com/watch?v=orPYVQKohc0"
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "VideoObject",
+      "name": "Black Iron Athletics - Training Highlights",
+      "description": "Training highlights from Black Iron Athletics in Frisco, TX.",
+      "thumbnailUrl": "https://img.youtube.com/vi/b11pcYndl6I/hqdefault.jpg",
+      "uploadDate": "2024-01-01",
+      "embedUrl": "https://www.youtube.com/embed/b11pcYndl6I",
+      "contentUrl": "https://www.youtube.com/watch?v=b11pcYndl6I"
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "VideoObject",
+      "name": "Black Iron Athletics - Community & Training",
+      "description": "Community and training at Black Iron Athletics in Frisco, TX.",
+      "thumbnailUrl": "https://img.youtube.com/vi/r03sbSFQ3D8/hqdefault.jpg",
+      "uploadDate": "2024-01-01",
+      "embedUrl": "https://www.youtube.com/embed/r03sbSFQ3D8",
+      "contentUrl": "https://www.youtube.com/watch?v=r03sbSFQ3D8"
+    }]
     </script>
 <!-- Lead Capture Popup Modal -->
 <style>
@@ -1167,5 +1213,46 @@
         document.body.style.overflow = '';
     }
 </script>
+
+<!-- Sticky Mobile CTA Bar -->
+<style>
+    .sticky-mobile-cta {
+        display: none;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        background: var(--black);
+        border-top: 2px solid var(--yellow);
+        padding: 0.75rem 1.5rem;
+        z-index: 998;
+        text-align: center;
+    }
+    .sticky-mobile-cta a {
+        display: block;
+        background: var(--yellow);
+        color: var(--black);
+        padding: 0.9rem;
+        font-family: 'Montserrat', sans-serif;
+        font-weight: 900;
+        font-size: 0.9rem;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        text-decoration: none;
+        border: 2px solid var(--yellow);
+        transition: all 0.3s ease;
+    }
+    .sticky-mobile-cta a:hover {
+        background: var(--black);
+        color: var(--yellow);
+    }
+    @media (max-width: 768px) {
+        .sticky-mobile-cta { display: block; }
+        body { padding-bottom: 70px; }
+    }
+</style>
+<div class="sticky-mobile-cta">
+    <a href="#" onclick="openLeadModal(); return false;">Book Free Consultation</a>
+</div>
 </body>
 </html>

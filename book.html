@@ -5,6 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Book Your Free Consultation | Black Iron Athletics | Frisco, TX</title>
     <meta name="description" content="Book your free consultation at Black Iron Athletics in Frisco, TX. No pressure, no sales pitch — just an honest conversation about your fitness goals.">
+    <link rel="canonical" href="https://www.blackironathleticsfrisco.com/book.html">
+    <!-- Open Graph -->
+    <meta property="og:title" content="Book Your Free Consultation | Black Iron Athletics | Frisco, TX">
+    <meta property="og:description" content="Book your free consultation at Black Iron Athletics. No pressure, no sales pitch — just an honest conversation about your fitness goals.">
+    <meta property="og:url" content="https://www.blackironathleticsfrisco.com/book.html">
+    <meta property="og:image" content="https://storage.googleapis.com/msgsndr/snIUpSaFzz5WsavMB3QA/media/6980c90276757725c438432d.png">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Black Iron Athletics">
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Book Your Free Consultation | Black Iron Athletics | Frisco, TX">
+    <meta name="twitter:description" content="Book your free consultation at Black Iron Athletics. No pressure, no sales pitch — just an honest conversation about your fitness goals.">
+    <meta name="twitter:image" content="https://storage.googleapis.com/msgsndr/snIUpSaFzz5WsavMB3QA/media/6980c90276757725c438432d.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;900&display=swap" rel="stylesheet">
@@ -550,6 +563,36 @@
             <p>&copy; 2026 Black Iron Athletics. All rights reserved.</p>
         </div>
     </footer>
+    <!-- Schema Markup for SEO -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Service",
+      "name": "Free Fitness Consultation",
+      "description": "Book a free consultation at Black Iron Athletics in Frisco, TX. No pressure, no sales pitch — just an honest conversation about your fitness goals.",
+      "provider": {
+        "@type": "GymAndHealthClub",
+        "name": "Black Iron Athletics",
+        "telephone": "(972) 785-7036",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "279 Main St #122",
+          "addressLocality": "Frisco",
+          "addressRegion": "TX",
+          "postalCode": "75036",
+          "addressCountry": "US"
+        },
+        "url": "https://www.blackironathleticsfrisco.com"
+      },
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD",
+        "description": "Free consultation to discuss your fitness goals"
+      },
+      "url": "https://www.blackironathleticsfrisco.com/book.html"
+    }
+    </script>
 <!-- Lead Capture Popup Modal -->
 <style>
     .modal-overlay {
@@ -824,5 +867,46 @@
         document.body.style.overflow = '';
     }
 </script>
+
+<!-- Sticky Mobile CTA Bar -->
+<style>
+    .sticky-mobile-cta {
+        display: none;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        background: var(--black);
+        border-top: 2px solid var(--yellow);
+        padding: 0.75rem 1.5rem;
+        z-index: 998;
+        text-align: center;
+    }
+    .sticky-mobile-cta a {
+        display: block;
+        background: var(--yellow);
+        color: var(--black);
+        padding: 0.9rem;
+        font-family: 'Montserrat', sans-serif;
+        font-weight: 900;
+        font-size: 0.9rem;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        text-decoration: none;
+        border: 2px solid var(--yellow);
+        transition: all 0.3s ease;
+    }
+    .sticky-mobile-cta a:hover {
+        background: var(--black);
+        color: var(--yellow);
+    }
+    @media (max-width: 768px) {
+        .sticky-mobile-cta { display: block; }
+        body { padding-bottom: 70px; }
+    }
+</style>
+<div class="sticky-mobile-cta">
+    <a href="#" onclick="openLeadModal(); return false;">Book Free Consultation</a>
+</div>
 </body>
 </html>
