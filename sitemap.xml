@@ -85,4 +85,14 @@
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
+  <url>
+    <loc>https://www.blackironathleticsfrisco.com/privacy-policy.html</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://www.blackironathleticsfrisco.com/404.html</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.1</priority>
+  </url>
 </urlset>

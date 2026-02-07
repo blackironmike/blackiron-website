@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Page Not Found | Black Iron Athletics</title>
+    <meta name="description" content="The page you're looking for doesn't exist. Head back to Black Iron Athletics and find what you need.">
+    <link rel="icon" type="image/png" href="images/Anvil-BLACK.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        :root {
+            --black: #000000;
+            --dark-gray: #1a1a1a;
+            --medium-gray: #333333;
+            --light-gray: #cccccc;
+            --white: #ffffff;
+            --yellow: #FFD202;
+        }
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: var(--black);
+            color: var(--white);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 2rem;
+        }
+        .error-container {
+            max-width: 600px;
+        }
+        .error-logo {
+            height: 60px;
+            margin-bottom: 3rem;
+        }
+        .error-code {
+            font-size: clamp(6rem, 15vw, 10rem);
+            font-weight: 900;
+            color: var(--yellow);
+            line-height: 1;
+            margin-bottom: 1rem;
+        }
+        .error-title {
+            font-size: clamp(1.5rem, 4vw, 2.5rem);
+            font-weight: 900;
+            text-transform: uppercase;
+            margin-bottom: 1.5rem;
+        }
+        .error-text {
+            font-size: 1.1rem;
+            color: var(--light-gray);
+            line-height: 1.8;
+            margin-bottom: 3rem;
+        }
+        .error-btn {
+            display: inline-block;
+            background: var(--yellow);
+            color: var(--black);
+            padding: 1.2rem 3rem;
+            text-decoration: none;
+            font-weight: 900;
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border: 2px solid var(--yellow);
+            transition: all 0.3s ease;
+        }
+        .error-btn:hover {
+            background: var(--black);
+            color: var(--yellow);
+        }
+        .error-links {
+            margin-top: 2rem;
+            display: flex;
+            gap: 2rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        .error-links a {
+            color: var(--light-gray);
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            transition: color 0.3s ease;
+        }
+        .error-links a:hover {
+            color: var(--yellow);
+        }
+    </style>
+</head>
+<body>
+    <div class="error-container">
+        <a href="index.html">
+            <img src="https://storage.googleapis.com/msgsndr/snIUpSaFzz5WsavMB3QA/media/6980c90276757725c438432d.png" alt="Black Iron Athletics" class="error-logo">
+        </a>
+        <div class="error-code">404</div>
+        <h1 class="error-title">Page Not Found</h1>
+        <p class="error-text">Looks like this page skipped leg day. The page you're looking for doesn't exist or has been moved.</p>
+        <a href="index.html" class="error-btn">Back to Home</a>
+        <div class="error-links">
+            <a href="about.html">About Us</a>
+            <a href="getting-started.html">Getting Started</a>
+            <a href="contact.html">Contact</a>
+            <a href="blog/">Blog</a>
+        </div>
+    </div>
+</body>
+</html>
