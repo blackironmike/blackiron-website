@@ -3,20 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Black Iron Athletics | Best Gym in Frisco, TX | Group Training & Personal Training</title>
-    <meta name="description" content="Get in the best shape of your life at Black Iron Athletics, Frisco's veteran-owned gym. Expert coaching, group training, personal training & 24/7 access. 3000+ lives changed since 2013. Book your free consultation today!">
-    <link rel="canonical" href="https://www.blackironathleticsfrisco.com/">
+    <title>Group Training Classes | Black Iron Athletics | Frisco, TX</title>
+    <meta name="description" content="High-energy group fitness classes in Frisco, TX for all levels. Build strength, endurance, and confidence with expert coaching at Black Iron Athletics. Book your free consultation today.">
+    <link rel="canonical" href="https://www.blackironathleticsfrisco.com/group-training.html">
     <!-- Open Graph -->
-    <meta property="og:title" content="Black Iron Athletics | Best Gym in Frisco, TX">
-    <meta property="og:description" content="Get in the best shape of your life at Black Iron Athletics, Frisco's veteran-owned gym. Expert coaching, group training, personal training & 24/7 access.">
-    <meta property="og:url" content="https://www.blackironathleticsfrisco.com/">
+    <meta property="og:title" content="Group Training Classes | Black Iron Athletics | Frisco, TX">
+    <meta property="og:description" content="High-energy group fitness classes in Frisco, TX for all levels. Build strength, endurance, and confidence with expert coaching at Black Iron Athletics.">
+    <meta property="og:url" content="https://www.blackironathleticsfrisco.com/group-training.html">
     <meta property="og:image" content="https://storage.googleapis.com/msgsndr/snIUpSaFzz5WsavMB3QA/media/6980c90276757725c438432d.png">
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="Black Iron Athletics">
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Black Iron Athletics | Best Gym in Frisco, TX">
-    <meta name="twitter:description" content="Get in the best shape of your life at Black Iron Athletics, Frisco's veteran-owned gym. Expert coaching, group training, personal training & 24/7 access.">
+    <meta name="twitter:title" content="Group Training Classes | Black Iron Athletics | Frisco, TX">
+    <meta name="twitter:description" content="High-energy group fitness classes in Frisco, TX for all levels. Build strength, endurance, and confidence with expert coaching at Black Iron Athletics.">
     <meta name="twitter:image" content="https://storage.googleapis.com/msgsndr/snIUpSaFzz5WsavMB3QA/media/6980c90276757725c438432d.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -72,10 +72,11 @@
         }
 
         /* Anchor offset for fixed nav */
-        #about,
-        #programs,
-        #testimonials,
-        #contact {
+        #what-is-group-training,
+        #whats-included,
+        #typical-class,
+        #who-its-for,
+        #faqs {
             scroll-margin-top: 100px;
         }
 
@@ -219,10 +220,11 @@
             color: var(--yellow);
         }
 
+        /* Hero Section */
         .hero {
             margin-top: 0;
             padding-top: 80px;
-            min-height: 100vh;
+            min-height: 60vh;
             display: flex;
             align-items: center;
             position: relative;
@@ -250,7 +252,7 @@
         }
 
         .hero-content {
-            max-width: 800px;
+            max-width: 900px;
         }
 
         .hero-subtitle {
@@ -264,8 +266,8 @@
 
         .hero-content h1 {
             font-weight: 900;
-            font-size: clamp(3rem, 8vw, 7rem);
-            line-height: 1;
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            line-height: 1.1;
             margin-bottom: 2rem;
             text-transform: uppercase;
         }
@@ -275,89 +277,11 @@
             color: var(--light-gray);
             margin-bottom: 3rem;
             font-weight: 500;
+            line-height: 1.6;
             max-width: 600px;
-            line-height: 1.8;
         }
 
-        .hero-buttons {
-            display: flex;
-            gap: 1.5rem;
-            flex-wrap: wrap;
-        }
-
-        .btn-primary {
-            background: var(--yellow);
-            color: var(--black);
-            padding: 1.2rem 3rem;
-            text-decoration: none;
-            font-weight: 900;
-            font-size: 1rem;
-            transition: all 0.3s ease;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            border: 2px solid var(--yellow);
-            border-radius: 0;
-        }
-
-        .btn-primary:hover {
-            background: var(--black);
-            color: var(--yellow);
-        }
-
-        .btn-secondary {
-            background: transparent;
-            color: var(--white);
-            padding: 1.2rem 3rem;
-            text-decoration: none;
-            font-weight: 900;
-            font-size: 1rem;
-            transition: all 0.3s ease;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            border: 2px solid var(--white);
-            border-radius: 0;
-        }
-
-        .btn-secondary:hover {
-            background: var(--white);
-            color: var(--black);
-        }
-
-        .stats-bar {
-            background: var(--yellow);
-            padding: 3rem 0;
-            width: 100%;
-        }
-
-        .stats-container {
-            max-width: 100%;
-            margin: 0;
-            padding: 0 4rem;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 3rem;
-        }
-
-        .stat-item {
-            text-align: center;
-        }
-
-        .stat-number {
-            font-weight: 900;
-            font-size: 3.5rem;
-            color: var(--black);
-            line-height: 1;
-            margin-bottom: 0.5rem;
-        }
-
-        .stat-label {
-            font-size: 0.9rem;
-            font-weight: 700;
-            color: var(--black);
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
+        /* Section Styles */
         .section {
             padding: 6rem 0;
             background: var(--black);
@@ -400,103 +324,22 @@
             color: var(--light-gray);
             max-width: 800px;
             margin: 0 auto;
-            font-weight: 500;
         }
 
-        /* Problem Section - Enhanced */
-        .problem-section {
-            padding: 6rem 0;
-            background: var(--black);
-        }
-
-        .problem-section .section-title {
-            font-weight: 900;
-            text-align: center;
-        }
-
-        .problem-section .section-description {
-            text-align: center;
-            margin-bottom: 4rem;
-        }
-
-        .problem-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
-        }
-
-        .problem-card {
-            background: var(--dark-gray);
-            padding: 2.5rem;
-            border: 2px solid var(--medium-gray);
-            border-left: 5px solid var(--yellow);
-            transition: all 0.3s ease;
-            position: relative;
-        }
-
-        .problem-card:hover {
-            border-color: var(--yellow);
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(255, 210, 2, 0.2);
-        }
-
-        .problem-card h3 {
-            font-weight: 900;
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-        }
-
-        .problem-icon {
-            font-size: 2rem;
-        }
-
-        .problem-card p {
-            color: var(--light-gray);
-            line-height: 1.8;
-            font-size: 1rem;
-        }
-
-        /* Philosophy Section */
-        .philosophy-section {
-            background: var(--dark-gray);
-            padding: 4rem 0;
-        }
-
-        .philosophy-content {
+        /* Content Block */
+        .content-block {
             max-width: 900px;
             margin: 0 auto;
-            text-align: center;
         }
 
-        .philosophy-section h2 {
-            font-weight: 900;
-            font-size: clamp(2rem, 4vw, 3rem);
-            color: var(--yellow);
-            margin-bottom: 1.5rem;
-            text-transform: uppercase;
-        }
-
-        .philosophy-section p {
+        .content-block p {
             font-size: 1.1rem;
             line-height: 1.8;
             color: var(--light-gray);
             margin-bottom: 1.5rem;
         }
 
-        .philosophy-quote {
-            font-style: italic;
-            font-size: 1rem;
-            color: var(--white);
-            margin-top: 2rem;
-            padding-top: 2rem;
-            border-top: 1px solid var(--medium-gray);
-        }
-
-        /* Value Props */
+        /* Features Grid */
         .features-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -506,13 +349,13 @@
 
         .feature-card {
             padding: 3rem;
-            background: var(--black);
+            background: var(--dark-gray);
             border: 1px solid var(--medium-gray);
             transition: all 0.3s ease;
         }
 
         .feature-card:hover {
-            background: var(--dark-gray);
+            background: var(--medium-gray);
             border-color: var(--yellow);
         }
 
@@ -534,43 +377,17 @@
             line-height: 1.8;
         }
 
-        /* Getting Started Section */
-        .getting-started {
-            background: var(--black);
-            padding: 6rem 0;
-        }
-
-        .getting-started-content {
-            max-width: 100%;
-            margin: 0;
-            padding: 0 4rem;
-        }
-
-        .getting-started h2 {
-            font-weight: 900;
-            text-align: center;
-            font-size: clamp(2.5rem, 5vw, 4rem);
-            margin-bottom: 1rem;
-            text-transform: uppercase;
-        }
-
-        .getting-started-subtitle {
-            font-size: 1.2rem;
-            color: var(--light-gray);
-            text-align: center;
-            margin-bottom: 4rem;
-        }
-
+        /* Steps Grid */
         .steps-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 2rem;
-            margin-bottom: 3rem;
+            margin-top: 4rem;
         }
 
         .step-card {
-            background: var(--dark-gray);
-            padding: 2.5rem;
+            background: var(--black);
+            padding: 3rem 2rem;
             border: 2px solid var(--medium-gray);
             transition: all 0.3s ease;
             text-align: center;
@@ -587,7 +404,6 @@
             color: var(--black);
             width: 60px;
             height: 60px;
-            border-radius: 0;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -599,6 +415,15 @@
         .step-card h3 {
             font-weight: 900;
             font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .step-duration {
+            color: var(--yellow);
+            font-weight: 700;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
             margin-bottom: 1rem;
         }
 
@@ -607,211 +432,102 @@
             line-height: 1.8;
         }
 
-        .cta-center {
-            text-align: center;
-            margin-top: 3rem;
-        }
-
-        /* Programs Section */
-        .programs-grid {
+        /* Problem Cards (Who It's For) */
+        .problem-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
             gap: 2rem;
             margin-top: 4rem;
         }
 
-        .program-card {
+        .problem-card {
             background: var(--dark-gray);
-            overflow: hidden;
-            transition: all 0.3s ease;
+            padding: 2.5rem;
             border: 2px solid var(--medium-gray);
+            border-left: 5px solid var(--yellow);
+            transition: all 0.3s ease;
         }
 
-        .program-card:hover {
+        .problem-card:hover {
             border-color: var(--yellow);
             transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(255, 210, 2, 0.2);
         }
 
-        .program-image {
-            width: 100%;
-            height: 300px;
-            object-fit: cover;
-        }
-
-        .program-content {
-            padding: 2.5rem;
-        }
-
-        .program-title {
+        .problem-card h3 {
             font-weight: 900;
-            font-size: 1.8rem;
+            font-size: 1.5rem;
             margin-bottom: 1rem;
-            text-transform: uppercase;
+            color: var(--yellow);
         }
 
-        .program-description {
+        .problem-card p {
             color: var(--light-gray);
-            margin-bottom: 2rem;
             line-height: 1.8;
         }
 
-        .program-link {
-            color: var(--yellow);
-            text-decoration: none;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            font-size: 0.9rem;
-            transition: color 0.3s ease;
+        /* FAQs */
+        .faq-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+            margin: 4rem auto 0;
         }
 
-        .program-link:hover {
-            color: var(--white);
-        }
-
-        /* Testimonial Feature Section */
-        .testimonial-feature {
+        .faq-item {
             background: var(--dark-gray);
-            padding: 6rem 0;
-        }
-
-        .testimonial-feature h2 {
-            font-weight: 900;
-            text-align: center;
-            font-size: clamp(2.5rem, 5vw, 4rem);
-            color: var(--yellow);
-            margin-bottom: 3rem;
-            text-transform: uppercase;
-        }
-
-        .testimonial-content {
-            max-width: 100%;
-            margin: 0;
-            padding: 0 4rem;
-        }
-
-        .reviews-rating {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 1.5rem;
-            margin-bottom: 3rem;
-        }
-
-        .rating-number {
-            font-size: 3rem;
-            font-weight: 900;
-            color: var(--white);
-        }
-
-        .rating-stars {
-            color: var(--yellow);
-            font-size: 1.5rem;
-        }
-
-        .rating-count {
-            color: var(--light-gray);
-            font-size: 0.9rem;
-        }
-
-        /* Quote Section */
-        .quote-section {
-            background: var(--yellow);
-            padding: 3rem 4rem;
-            text-align: center;
-            width: 100%;
-        }
-
-        .quote-container {
-            max-width: 100%;
-            margin: 0 auto;
-            padding: 0 2rem;
-        }
-
-        .quote-text {
-            font-weight: 900;
-            font-size: clamp(1.8rem, 4vw, 2.5rem);
-            color: var(--black);
-            line-height: 1.2;
-            text-transform: uppercase;
-            margin-bottom: 1rem;
-        }
-
-        /* Quote Carousel */
-        .quote-carousel {
-            position: relative;
-            margin-top: 0.75rem;
-            max-width: 750px;
-            margin-left: auto;
-            margin-right: auto;
-            min-height: 120px;
-        }
-
-        .quote-slide {
-            display: none;
-            animation: fadeIn 1s ease;
-        }
-
-        .quote-slide.active {
-            display: block;
-        }
-
-        .carousel-quote {
-            font-size: 1.15rem;
-            color: var(--black);
-            font-weight: 600;
-            font-style: italic;
-            line-height: 1.4;
-            margin-bottom: 0.75rem;
-        }
-
-        .carousel-author {
-            font-size: 0.9rem;
-            color: var(--black);
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
-        }
-
-        .carousel-dots {
-            text-align: center;
-            margin-top: 1rem;
-        }
-
-        .dot {
-            height: 12px;
-            width: 12px;
-            margin: 0 8px;
-            background-color: rgba(0, 0, 0, 0.3);
-            border-radius: 50%;
-            display: inline-block;
-            cursor: pointer;
+            padding: 2rem;
+            border: 2px solid var(--medium-gray);
+            border-left: 5px solid var(--yellow);
             transition: all 0.3s ease;
         }
 
-        .dot.active,
-        .dot:hover {
-            background-color: var(--black);
-            transform: scale(1.2);
+        .faq-item:hover {
+            border-color: var(--yellow);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(255, 210, 2, 0.2);
         }
 
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
+        .faq-question {
+            font-weight: 900;
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+            color: var(--yellow);
+            line-height: 1.3;
         }
 
-        /* Final CTA Section */
+        .faq-answer {
+            color: var(--light-gray);
+            line-height: 1.7;
+            font-size: 0.95rem;
+        }
+
+        .btn-primary {
+            background: var(--yellow);
+            color: var(--black);
+            padding: 1.2rem 3rem;
+            text-decoration: none;
+            font-weight: 900;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border: 2px solid var(--yellow);
+            border-radius: 0;
+            display: inline-block;
+        }
+
+        .btn-primary:hover {
+            background: var(--black);
+            color: var(--yellow);
+        }
+
+        /* CTA Section */
         .cta-section {
             background: var(--dark-gray);
             padding: 8rem 4rem;
             text-align: center;
             width: 100%;
-        }
-
-        .cta-container {
-            max-width: 100%;
-            margin: 0 auto;
-            padding: 0 2rem;
         }
 
         .cta-title {
@@ -886,23 +602,12 @@
         }
 
         @media (max-width: 1024px) {
-            nav {
-                padding: 1.5rem 2rem;
-            }
-
+            .nav-container,
             .hero-container,
             .section-container,
-            .getting-started-content,
-            .testimonial-content {
-                padding: 4rem 2rem;
-            }
-
-            .stats-bar {
-                padding: 3rem 2rem;
-            }
-
-            .stats-container {
-                padding: 0 2rem;
+            .footer-container {
+                padding-left: 2rem;
+                padding-right: 2rem;
             }
         }
 
@@ -1018,7 +723,6 @@
             }
 
             .hero {
-                min-height: 80vh;
                 padding-top: 130px;
             }
 
@@ -1027,7 +731,7 @@
             }
 
             .hero-content h1 {
-                font-size: clamp(2rem, 8vw, 4rem);
+                font-size: clamp(2rem, 6vw, 3rem);
             }
 
             .hero-content p {
@@ -1035,40 +739,7 @@
                 margin-bottom: 2rem;
             }
 
-            .hero-buttons {
-                flex-direction: column;
-            }
-
-            .hero-buttons .btn-primary,
-            .hero-buttons .btn-secondary {
-                text-align: center;
-                width: 100%;
-            }
-
-            .btn-primary,
-            .btn-secondary {
-                padding: 0.8rem 1.5rem;
-                font-size: 0.8rem;
-                white-space: normal;
-            }
-
-            .stats-container {
-                padding: 0 1.5rem;
-                grid-template-columns: repeat(3, 1fr);
-                gap: 1rem;
-            }
-
-            .stat-number {
-                font-size: 2rem;
-            }
-
-            .stat-label {
-                font-size: 0.75rem;
-            }
-
-            .section-container,
-            .getting-started-content,
-            .testimonial-content {
+            .section-container {
                 padding: 0 1.5rem;
             }
 
@@ -1080,25 +751,27 @@
                 margin-bottom: 2rem;
             }
 
-            .problem-grid,
             .features-grid,
             .steps-grid,
-            .programs-grid {
+            .problem-grid,
+            .faq-container {
                 grid-template-columns: 1fr;
             }
 
-            .problem-card,
-            .feature-card,
-            .step-card {
-                padding: 1.5rem;
-            }
-
-            .program-content {
-                padding: 1.5rem;
-            }
-
-            .quote-section {
+            .feature-card {
                 padding: 2rem 1.5rem;
+            }
+
+            .step-card {
+                padding: 2rem 1.5rem;
+            }
+
+            .problem-card {
+                padding: 1.5rem;
+            }
+
+            .faq-item {
+                padding: 1.5rem;
             }
 
             .cta-section {
@@ -1112,6 +785,12 @@
             .footer-container {
                 padding: 0 1.5rem;
                 gap: 2rem;
+            }
+
+            .btn-primary {
+                padding: 0.8rem 1.5rem;
+                font-size: 0.8rem;
+                white-space: normal;
             }
 
             .modal-container {
@@ -1180,6 +859,7 @@
     </nav>
 
     <div class="mobile-nav-overlay" id="mobileNav">
+        <a href="index.html" onclick="closeMobileNav()">Home</a>
         <a href="about.html" onclick="closeMobileNav()">About Us</a>
         <a href="getting-started.html" onclick="closeMobileNav()">Getting Started</a>
         <a href="media.html" onclick="closeMobileNav()">Media</a>
@@ -1187,283 +867,202 @@
         <a href="#" class="mobile-cta" onclick="closeMobileNav(); openLeadModal(); return false;">Book Free Consultation</a>
     </div>
 
+    <!-- Hero Section -->
     <section class="hero">
-        <img src="https://storage.googleapis.com/msgsndr/snIUpSaFzz5WsavMB3QA/media/697ec53266e7ca82898c231e.jpg" alt="Training" class="hero-bg">
+        <img src="https://images.leadconnectorhq.com/image/f_webp/q_80/r_1200/u_https://assets.cdn.filesafe.space/snIUpSaFzz5WsavMB3QA/media/6859d48d4fe1870c2e37d104.png" alt="Group Training at Black Iron Athletics" class="hero-bg">
         <div class="hero-container">
             <div class="hero-content">
-                <h1>Forge Your Strongest Self</h1>
-                <p style="font-size: 0.95rem; color: var(--yellow); font-weight: 700; margin-bottom: 1rem; letter-spacing: 1px;">VETERAN-OWNED | EST. 2013</p>
-                <p>Where everyday people become everyday athletes. Elite coaching, proven programming, and a community that pushes you to be better.</p>
-                <div class="hero-buttons">
-                    <a href="#" onclick="openLeadModal(); return false;" class="btn-primary">Book Your Free Consultation</a>
-                    <a href="#programs" class="btn-secondary">Our Programs</a>
-                </div>
+                <div class="hero-subtitle">Our Programs</div>
+                <h1>Group Training</h1>
+                <p>High-energy classes designed for all fitness levels. Build strength, endurance, and confidence alongside a supportive community.</p>
+                <a href="#" onclick="openLeadModal(); return false;" class="btn-primary" style="margin-top: 1rem;">Book Your Free Consultation</a>
             </div>
         </div>
     </section>
 
-    <div class="stats-bar">
-        <div class="stats-container">
-            <div class="stat-item">
-                <div class="stat-number">12+</div>
-                <div class="stat-label">Years Strong</div>
-            </div>
-            <div class="stat-item">
-                <div class="stat-number">3000+</div>
-                <div class="stat-label">Lives Changed</div>
-            </div>
-            <div class="stat-item">
-                <div class="stat-number">100%</div>
-                <div class="stat-label">Results Driven</div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Problem Section -->
-    <section class="problem-section">
-        <div class="section-container">
-            <h2 class="section-title">We Know Getting Started Is Hard</h2>
-            <p class="section-description">You're not alone in feeling overwhelmed, uncertain, or worried. We've helped thousands of people just like you.</p>
-            
-            <div class="problem-grid">
-                <div class="problem-card">
-                    <h3><span class="problem-icon">🤷</span> Don't Know Where to Start</h3>
-                    <p>Fitness information is overwhelming. Conflicting advice everywhere. You need a clear path forward, not more confusion.</p>
-                </div>
-                
-                <div class="problem-card">
-                    <h3><span class="problem-icon">🤕</span> Worried About Getting Hurt</h3>
-                    <p>You want to be challenged and see results, but not at the cost of injury. Smart training builds you up. It doesn't break you down.</p>
-                </div>
-                
-                <div class="problem-card">
-                    <h3><span class="problem-icon">😔</span> Going It Alone Is Lonely</h3>
-                    <p>Staying consistent is tough when you're doing it solo. You need accountability, support, and a community that actually cares.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Philosophy Section -->
-    <section class="philosophy-section">
-        <div class="section-container">
-            <div class="philosophy-content">
-                <h2 style="font-size: clamp(2rem, 4vw, 3rem);">Movement Is Medicine</h2>
-                <p style="font-size: 1.1rem;">At Black Iron Athletics, we believe that prioritizing your health isn't selfish. It's an act of service. When you take care of yourself, you show up better for your family, your community, and your purpose.</p>
-                <p style="font-size: 1.1rem;">This isn't about vanity or ego. It's about building a body that serves you for life. A body that lets you play with your kids, chase your dreams, and live with confidence and vitality.</p>
-                <p class="philosophy-quote" style="font-size: 1rem;">"The greatest wealth is health. When you invest in your fitness, you invest in every area of your life."</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Transformation Video Section -->
-    <section class="section" style="background: var(--black); padding: 6rem 0;">
+    <!-- What Is Group Training Section -->
+    <section id="what-is-group-training" class="section section-alt">
         <div class="section-container">
             <div class="section-header">
-                <div class="section-subtitle">Real Results</div>
-                <h2 class="section-title">Transformation Stories</h2>
+                <div class="section-subtitle">The Experience</div>
+                <h2 class="section-title">What Is Group Training?</h2>
             </div>
-            
-            <div style="max-width: 900px; margin: 0 auto;">
-                <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
-                    <iframe width="560" height="315" src="https://www.youtube.com/embed/orPYVQKohc0?si=5VByhNwt8GtMyZdf" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 2px solid var(--medium-gray);"></iframe>
-                </div>
-                <p style="font-size: 1.3rem; line-height: 1.8; font-style: italic; margin-top: 2rem; text-align: center; color: var(--white);">"Fell in love with moving my body, and setting goals for myself... it was the first thing that was for ME"</p>
-                <p style="font-weight: 700; color: var(--yellow); text-align: center; margin-top: 0.75rem;">— Ashley Kim</p>
+
+            <div class="content-block">
+                <p>Group training at Black Iron Athletics is where real transformation happens. Every class is led by a certified coach who guides you through a structured workout designed to build functional strength, improve conditioning, and develop movement skills that translate to everyday life. Whether you're picking up your kids, playing a sport, or just want to feel stronger and more capable, our programming is built with purpose.</p>
+                <p>Our classes combine elements of strength training, metabolic conditioning, and gymnastic-style movements in a format that's challenging, efficient, and scalable for every fitness level. You'll never be left guessing what to do or wondering if you're doing it right. Your coach is there every step of the way, correcting form, offering modifications, and pushing you to be better than yesterday.</p>
+                <p>What makes our group training different is the community. You're not just another face in a crowded gym. You train alongside people who know your name, celebrate your wins, and hold you accountable. The energy of training together pushes you further than you'd ever go on your own, and the friendships you build here extend far beyond the gym walls.</p>
             </div>
         </div>
     </section>
 
-    <section class="section section-alt" id="about">
+    <!-- What's Included Section -->
+    <section id="whats-included" class="section">
         <div class="section-container">
             <div class="section-header">
-                <h2 class="section-title">Why Black Iron Athletics</h2>
-                <p class="section-description">We combine expert coaching, thoughtful programming, and a positive atmosphere that makes you want to show up and keep coming back.</p>
+                <div class="section-subtitle">Everything You Need</div>
+                <h2 class="section-title">What's Included</h2>
             </div>
 
             <div class="features-grid">
                 <div class="feature-card">
-                    <div class="feature-icon">🤝</div>
-                    <h3 class="feature-title">You're Not Doing This Alone</h3>
-                    <p class="feature-description">A supportive community that celebrates every win, holds you accountable, and makes you actually want to show up.</p>
+                    <div class="feature-icon">&#127941;</div>
+                    <h3 class="feature-title">Expert Coaching</h3>
+                    <p class="feature-description">Certified coaches guide every session, ensuring proper form, safe progression, and the motivation you need to push through barriers. You're never on your own.</p>
                 </div>
                 <div class="feature-card">
-                    <div class="feature-icon">🏋️</div>
-                    <h3 class="feature-title">Expert Guidance You Can Trust</h3>
-                    <p class="feature-description">12+ years of coaching experience ensuring you're challenged safely and effectively, not injured or overwhelmed.</p>
+                    <div class="feature-icon">&#9878;</div>
+                    <h3 class="feature-title">Scalable Workouts</h3>
+                    <p class="feature-description">Every movement is modified to match your current fitness level. Whether you're day one or year ten, the workout meets you where you are and challenges you to grow.</p>
                 </div>
                 <div class="feature-card">
-                    <div class="feature-icon">🎯</div>
-                    <h3 class="feature-title">Training That Meets You Where You Are</h3>
-                    <p class="feature-description">Beginner-friendly classes that scale to your level while consistently pushing you forward. All fitness levels welcome.</p>
+                    <div class="feature-icon">&#128170;</div>
+                    <h3 class="feature-title">Strength & Conditioning</h3>
+                    <p class="feature-description">Build functional strength and cardiovascular endurance through intelligently designed programming that prepares your body for anything life throws at you.</p>
                 </div>
                 <div class="feature-card">
-                    <div class="feature-icon">❄️</div>
-                    <h3 class="feature-title">Train in Comfort</h3>
-                    <p class="feature-description">Climate-controlled, spotless facility. No Texas heat holding you back, just clean equipment and focused results.</p>
+                    <div class="feature-icon">&#129309;</div>
+                    <h3 class="feature-title">Community & Accountability</h3>
+                    <p class="feature-description">Train with people who push you to show up, cheer you on during tough workouts, and become real friends outside the gym. This is your team.</p>
                 </div>
                 <div class="feature-card">
-                    <div class="feature-icon">⏰</div>
-                    <h3 class="feature-title">24/7 Access</h3>
-                    <p class="feature-description">Life gets busy. That's why we offer round-the-clock open gym access so you can train on your schedule.</p>
+                    <div class="feature-icon">&#128200;</div>
+                    <h3 class="feature-title">Progress Tracking</h3>
+                    <p class="feature-description">Track your personal records, benchmark workouts, and body composition through Wodify. See your progress over time and celebrate every milestone along the way.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">&#128203;</div>
+                    <h3 class="feature-title">Structured Programming</h3>
+                    <p class="feature-description">Our training follows periodized programming cycles designed for long-term results. No random workouts. Every session has a purpose and builds toward your goals.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Getting Started Section -->
-    <section class="getting-started">
-        <div class="getting-started-content">
-            <h2>Getting Started Is Easy</h2>
-            <p class="getting-started-subtitle">Your path to becoming an everyday athlete</p>
-            
+    <!-- A Typical Class Section -->
+    <section id="typical-class" class="section section-alt">
+        <div class="section-container">
+            <div class="section-header">
+                <div class="section-subtitle">Class Breakdown</div>
+                <h2 class="section-title">What a Typical Class Looks Like</h2>
+            </div>
+
             <div class="steps-grid">
                 <div class="step-card">
                     <div class="step-number">1</div>
-                    <h3>Book Your Free Consultation</h3>
-                    <p>Let's talk about your goals, concerns, and what success looks like for you. No pressure, no sales pitch. Just an honest conversation.</p>
+                    <h3>Warm-Up</h3>
+                    <div class="step-duration">10 Minutes</div>
+                    <p>Mobility drills, muscle activation, and movement prep to get your body ready for the work ahead. This sets the tone and prevents injury.</p>
                 </div>
-                
+
                 <div class="step-card">
                     <div class="step-number">2</div>
-                    <h3>Build Your Custom Plan</h3>
-                    <p>We'll design a training approach tailored to your body, your schedule, and your fitness level. You'll know exactly what to do.</p>
+                    <h3>Skill / Strength</h3>
+                    <div class="step-duration">15-20 Minutes</div>
+                    <p>Focused strength work or skill development. This is where you build power, refine technique, and hit new personal records under expert guidance.</p>
                 </div>
-                
+
                 <div class="step-card">
                     <div class="step-number">3</div>
-                    <h3>Start Moving</h3>
-                    <p>Join our community and become the happier, healthier athlete you're meant to be. We'll be with you every step of the way.</p>
+                    <h3>Conditioning</h3>
+                    <div class="step-duration">15-20 Minutes</div>
+                    <p>The high-intensity portion of class. Varied, challenging workouts that build endurance, burn calories, and push your mental and physical limits.</p>
                 </div>
-            </div>
-            
-            <div class="cta-center">
-                <a href="#" onclick="openLeadModal(); return false;" class="btn-primary">Book Your Free Consultation</a>
+
+                <div class="step-card">
+                    <div class="step-number">4</div>
+                    <h3>Cool Down</h3>
+                    <div class="step-duration">5 Minutes</div>
+                    <p>Recovery stretching, breathing work, and community time. Wind down, celebrate the work you put in, and connect with your training partners.</p>
+                </div>
             </div>
         </div>
     </section>
 
-    <section class="section section-alt" id="programs">
+    <!-- Who It's For Section -->
+    <section id="who-its-for" class="section">
         <div class="section-container">
             <div class="section-header">
-                <div class="section-subtitle">Our Programs</div>
-                <h2 class="section-title">Find the Right Fit for You</h2>
+                <div class="section-subtitle">For Everyone</div>
+                <h2 class="section-title">Who Is Group Training For?</h2>
             </div>
 
-            <div class="programs-grid">
-                <div class="program-card">
-                    <img src="https://images.leadconnectorhq.com/image/f_webp/q_80/r_1200/u_https://assets.cdn.filesafe.space/snIUpSaFzz5WsavMB3QA/media/6859d48d4fe1870c2e37d104.png" alt="Group Training" class="program-image">
-                    <div class="program-content">
-                        <h3 class="program-title">Group Training</h3>
-                        <p class="program-description">High-energy classes designed for all fitness levels. Build strength, endurance, and confidence alongside a supportive community. Perfect for those who thrive on group energy and accountability.</p>
-                        <a href="group-training.html" class="program-link">Learn More →</a>
-                    </div>
+            <div class="problem-grid">
+                <div class="problem-card">
+                    <h3>Beginners Who Want Guidance</h3>
+                    <p>If you're new to fitness and don't know where to start, group training gives you the structure, coaching, and support to build a strong foundation without the guesswork. Every movement is taught and scaled to your ability.</p>
                 </div>
 
-                <div class="program-card">
-                    <img src="images/barbell-overhead.jpeg" alt="Personal Training" class="program-image">
-                    <div class="program-content">
-                        <h3 class="program-title">Personal Training</h3>
-                        <p class="program-description">1-on-1 coaching tailored to your unique goals. Custom programming, form correction, and unwavering accountability. Ideal for specific goals or personalized attention.</p>
-                        <a href="personal-training.html" class="program-link">Learn More →</a>
-                    </div>
+                <div class="problem-card">
+                    <h3>People Who Thrive on Group Energy</h3>
+                    <p>If working out alone leaves you unmotivated, the energy of a group class changes everything. The camaraderie, friendly competition, and shared struggle keep you coming back day after day.</p>
                 </div>
 
-                <div class="program-card">
-                    <img src="images/member-blessed.jpeg" alt="Nutrition Coaching" class="program-image">
-                    <div class="program-content">
-                        <h3 class="program-title">Nutrition Coaching</h3>
-                        <p class="program-description">Personalized nutrition plans and ongoing support to fuel your results. Learn to transform your relationship with food while seeing real progress.</p>
-                        <a href="nutrition-coaching.html" class="program-link">Learn More →</a>
-                    </div>
+                <div class="problem-card">
+                    <h3>Athletes Who Want Structured Programming</h3>
+                    <p>If you're experienced but tired of aimless workouts, our periodized programming delivers intentional training cycles that drive consistent progress. Every session builds on the last.</p>
                 </div>
 
-                <div class="program-card">
-                    <img src="images/barbell-curl.jpeg" alt="Open Gym" class="program-image">
-                    <div class="program-content">
-                        <h3 class="program-title">24/7 Open Gym</h3>
-                        <p class="program-description">Train on your schedule with round-the-clock access. Full equipment access anytime you need it. Perfect for self-motivated athletes who need flexibility.</p>
-                        <a href="open-gym.html" class="program-link">Learn More →</a>
-                    </div>
+                <div class="problem-card">
+                    <h3>Anyone Building Functional Strength</h3>
+                    <p>If you want a body that works as good as it looks, group training builds real-world strength and endurance. Move better, feel stronger, and perform at your best in everyday life.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Testimonials Section -->
-    <section class="testimonial-feature" id="testimonials">
-        <div class="testimonial-content">
-            <h2>What Our Members Say</h2>
-            
-            <div class="reviews-rating">
-                <div class="rating-number">5.0</div>
-                <div>
-                    <div class="rating-stars">★★★★★</div>
-                    <div class="rating-count">68 reviews</div>
-                </div>
+    <!-- FAQ Section -->
+    <section id="faqs" class="section section-alt">
+        <div class="section-container">
+            <div class="section-header">
+                <div class="section-subtitle">Questions?</div>
+                <h2 class="section-title">Frequently Asked Questions</h2>
             </div>
 
-            <!-- Elfsight Google Reviews Widget -->
-            <div style="margin-top: 3rem; margin-bottom: 3rem;">
-                <script src="https://elfsightcdn.com/platform.js" async></script>
-                <div class="elfsight-app-e9950e9a-90e9-4e39-9489-c4082001e747" data-elfsight-app-lazy></div>
-            </div>
-        </div>
-    </section>
+            <div class="faq-container">
+                <div class="faq-item">
+                    <h3 class="faq-question">Do I need to be in shape to start?</h3>
+                    <p class="faq-answer">Not at all. Our group training classes welcome all fitness levels, from complete beginners to seasoned athletes. Every workout is scalable, meaning your coach will adjust movements, weights, and intensity to match where you are right now.</p>
+                </div>
 
-    <section class="quote-section">
-        <div class="quote-container">
-            <div class="quote-text">Train with a Purpose</div>
-            
-            <!-- Quote Carousel -->
-            <div class="quote-carousel">
-                <div class="quote-slide active">
-                    <p class="carousel-quote">"Some people want it to happen, some wish it would happen, others make it happen."</p>
-                    <p class="carousel-author">— Michael Jordan</p>
+                <div class="faq-item">
+                    <h3 class="faq-question">How many people are in each class?</h3>
+                    <p class="faq-answer">We keep our class sizes intentionally small so our coaches can give you personal attention. You'll never feel lost in a crowd. Every member gets real coaching, form corrections, and encouragement throughout the entire session.</p>
                 </div>
-                <div class="quote-slide">
-                    <p class="carousel-quote">"I hated every minute of training, but I said, 'Don't quit. Suffer now and live the rest of your life as a champion.'"</p>
-                    <p class="carousel-author">— Muhammad Ali</p>
-                </div>
-                <div class="quote-slide">
-                    <p class="carousel-quote">"Discipline is choosing between what you want now and what you want most."</p>
-                    <p class="carousel-author">— Abraham Lincoln</p>
-                </div>
-                <div class="quote-slide">
-                    <p class="carousel-quote">"Don't count the days, make the days count."</p>
-                    <p class="carousel-author">— Muhammad Ali</p>
-                </div>
-                <div class="quote-slide">
-                    <p class="carousel-quote">"The body achieves what the mind believes."</p>
-                    <p class="carousel-author">— Napoleon Hill</p>
-                </div>
-                <div class="quote-slide">
-                    <p class="carousel-quote">"Strength does not come from physical capacity. It comes from an indomitable will."</p>
-                    <p class="carousel-author">— Mahatma Gandhi</p>
-                </div>
-            </div>
 
-            <!-- Carousel Navigation Dots -->
-            <div class="carousel-dots">
-                <span class="dot active" onclick="currentSlide(0)"></span>
-                <span class="dot" onclick="currentSlide(1)"></span>
-                <span class="dot" onclick="currentSlide(2)"></span>
-                <span class="dot" onclick="currentSlide(3)"></span>
-                <span class="dot" onclick="currentSlide(4)"></span>
-                <span class="dot" onclick="currentSlide(5)"></span>
+                <div class="faq-item">
+                    <h3 class="faq-question">What should I bring?</h3>
+                    <p class="faq-answer">Just bring a water bottle, a towel, and a pair of athletic shoes with a flat sole. We provide all the equipment you need. Show up ready to work and we'll handle the rest.</p>
+                </div>
+
+                <div class="faq-item">
+                    <h3 class="faq-question">How often should I come?</h3>
+                    <p class="faq-answer">We recommend 3 to 5 sessions per week for the best results, but your schedule is flexible. Even 3 days a week produces incredible changes when you're consistent. Your coach can help you find the right frequency for your goals.</p>
+                </div>
+
+                <div class="faq-item">
+                    <h3 class="faq-question">Can I try a class before committing?</h3>
+                    <p class="faq-answer">Yes! The first step is to book a free consultation where we'll learn about your goals and you'll get to experience what we do firsthand. There's no pressure and no obligation. We want you to feel confident that this is the right fit.</p>
+                </div>
+
+                <div class="faq-item">
+                    <h3 class="faq-question">What if I can't do a movement?</h3>
+                    <p class="faq-answer">Our coaches provide modifications for every single movement. If you can't do a pull-up, we'll scale it. If a certain movement aggravates an old injury, we'll find an alternative. No one gets left behind, and no one gets hurt.</p>
+                </div>
             </div>
         </div>
     </section>
 
-    <section class="cta-section" id="contact">
-        <div class="cta-container">
-            <h2 class="cta-title">Ready to Transform Your Life?</h2>
-            <p class="cta-subtitle">Join 3000+ members who've transformed their lives at Black Iron Athletics.</p>
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div style="max-width: 100%; margin: 0 auto; padding: 0 2rem;">
+            <h2 class="cta-title">Ready to Join a Class?</h2>
+            <p class="cta-subtitle">Book your free consultation and experience a group training session at Black Iron Athletics.</p>
             <a href="#" onclick="openLeadModal(); return false;" class="btn-primary">Book Your Free Consultation</a>
-            <p style="font-size: 0.85rem; color: var(--yellow); margin-top: 1.5rem; font-weight: 600;">Limited spots available — Start your journey today</p>
         </div>
     </section>
 
+    <!-- Footer -->
     <footer>
         <div class="footer-container">
             <div class="footer-section">
@@ -1476,10 +1075,11 @@
             <div class="footer-section">
                 <h3>Quick Links</h3>
                 <ul>
-                    <li><a href="#programs">Programs</a></li>
-                    <li><a href="#about">About</a></li>
-                    <li><a href="#gallery">Gallery</a></li>
-                    <li><a href="#contact">Contact</a></li>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="getting-started.html">Getting Started</a></li>
+                    <li><a href="media.html">Media</a></li>
+                    <li><a href="contact.html">Contact</a></li>
                 </ul>
             </div>
 
@@ -1492,13 +1092,13 @@
                 <p style="margin-bottom: 1.5rem;">
                     <a href="tel:(972)785-7036" style="color: var(--yellow); font-weight: 700;">(972) 785-7036</a>
                 </p>
-                <iframe 
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3344.9875647886857!2d-96.89026308820058!3d33.15034697358084!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x864c3a240f77e3f7%3A0x9f460209df528d6e!2sBlack%20Iron%20Athletics!5e0!3m2!1sen!2sus!4v1737509000000!5m2!1sen!2sus" 
-                    width="100%" 
-                    height="200" 
-                    style="border: 1px solid var(--medium-gray); border-radius: 0; margin-top: 1rem;" 
-                    allowfullscreen="" 
-                    loading="lazy" 
+                <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3344.9875647886857!2d-96.89026308820058!3d33.15034697358084!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x864c3a240f77e3f7%3A0x9f460209df528d6e!2sBlack%20Iron%20Athletics!5e0!3m2!1sen!2sus!4v1737509000000!5m2!1sen!2sus"
+                    width="100%"
+                    height="200"
+                    style="border: 1px solid var(--medium-gray); border-radius: 0; margin-top: 1rem;"
+                    allowfullscreen=""
+                    loading="lazy"
                     referrerpolicy="no-referrer-when-downgrade">
                 </iframe>
             </div>
@@ -1524,145 +1124,103 @@
         </div>
     </footer>
 
-    <script>
-        // Quote Carousel
-        let slideIndex = 0;
-        let autoSlideTimer;
-
-        function showSlides() {
-            let slides = document.getElementsByClassName("quote-slide");
-            let dots = document.getElementsByClassName("dot");
-            
-            // Hide all slides
-            for (let i = 0; i < slides.length; i++) {
-                slides[i].classList.remove("active");
-            }
-            
-            // Remove active from all dots
-            for (let i = 0; i < dots.length; i++) {
-                dots[i].classList.remove("active");
-            }
-            
-            // Increment slide index
-            slideIndex++;
-            if (slideIndex > slides.length) {
-                slideIndex = 1;
-            }
-            
-            // Show current slide
-            slides[slideIndex - 1].classList.add("active");
-            dots[slideIndex - 1].classList.add("active");
-            
-            // Change slide every 6 seconds
-            autoSlideTimer = setTimeout(showSlides, 6000);
-        }
-
-        function currentSlide(n) {
-            clearTimeout(autoSlideTimer);
-            slideIndex = n;
-            
-            let slides = document.getElementsByClassName("quote-slide");
-            let dots = document.getElementsByClassName("dot");
-            
-            // Hide all slides
-            for (let i = 0; i < slides.length; i++) {
-                slides[i].classList.remove("active");
-            }
-            
-            // Remove active from all dots
-            for (let i = 0; i < dots.length; i++) {
-                dots[i].classList.remove("active");
-            }
-            
-            // Show selected slide
-            slides[slideIndex].classList.add("active");
-            dots[slideIndex].classList.add("active");
-            
-            // Restart auto-rotation
-            autoSlideTimer = setTimeout(showSlides, 6000);
-        }
-
-        // Start the carousel when page loads
-        document.addEventListener('DOMContentLoaded', function() {
-            showSlides();
-        });
-    </script>
-
-    <!-- Schema Markup for SEO -->
+    <!-- Schema Markup: Service -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
-      "@type": "GymAndHealthClub",
-      "name": "Black Iron Athletics",
-      "description": "Veteran-owned gym in Frisco, TX specializing in group training, personal training, and nutrition coaching. Helping everyday people become everyday athletes since 2013.",
-      "image": "https://storage.googleapis.com/msgsndr/snIUpSaFzz5WsavMB3QA/media/6980c90276757725c438432d.png",
-      "address": {
-        "@type": "PostalAddress",
-        "streetAddress": "279 Main St #122",
-        "addressLocality": "Frisco",
-        "addressRegion": "TX",
-        "postalCode": "75036",
-        "addressCountry": "US"
-      },
-      "geo": {
-        "@type": "GeoCoordinates",
-        "latitude": "33.1507",
-        "longitude": "-96.8236"
-      },
-      "telephone": "(972) 785-7036",
-      "openingHours": "Mo-Su 00:00-23:59",
-      "priceRange": "$$",
-      "aggregateRating": {
-        "@type": "AggregateRating",
-        "ratingValue": "5.0",
-        "reviewCount": "68"
-      },
-      "url": "https://www.blackironathleticsfrisco.com",
-      "sameAs": [
-        "https://www.instagram.com/blackiron_athletics/",
-        "https://www.youtube.com/channel/UCF1XjUXEs81OWY70chem6vA",
-        "https://www.facebook.com/BlackIronAthletics/"
-      ],
-      "hasOfferCatalog": {
-        "@type": "OfferCatalog",
-        "name": "Fitness Programs",
-        "itemListElement": [
-          {
-            "@type": "Offer",
-            "itemOffered": {
-              "@type": "Service",
-              "name": "Group Training",
-              "description": "High-energy classes designed for all fitness levels."
-            }
-          },
-          {
-            "@type": "Offer",
-            "itemOffered": {
-              "@type": "Service",
-              "name": "Personal Training",
-              "description": "1-on-1 coaching tailored to your unique goals."
-            }
-          },
-          {
-            "@type": "Offer",
-            "itemOffered": {
-              "@type": "Service",
-              "name": "Nutrition Coaching",
-              "description": "Personalized nutrition plans and ongoing support."
-            }
-          },
-          {
-            "@type": "Offer",
-            "itemOffered": {
-              "@type": "Service",
-              "name": "24/7 Open Gym",
-              "description": "Round-the-clock access to full equipment."
-            }
-          }
+      "@type": "Service",
+      "name": "Group Training Classes",
+      "description": "High-energy group fitness classes in Frisco, TX for all levels. Build strength, endurance, and confidence with expert coaching at Black Iron Athletics.",
+      "url": "https://www.blackironathleticsfrisco.com/group-training.html",
+      "provider": {
+        "@type": "GymAndHealthClub",
+        "name": "Black Iron Athletics",
+        "telephone": "(972) 785-7036",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "279 Main St #122",
+          "addressLocality": "Frisco",
+          "addressRegion": "TX",
+          "postalCode": "75036",
+          "addressCountry": "US"
+        },
+        "url": "https://www.blackironathleticsfrisco.com",
+        "sameAs": [
+          "https://www.instagram.com/blackiron_athletics/",
+          "https://www.youtube.com/channel/UCF1XjUXEs81OWY70chem6vA",
+          "https://www.facebook.com/BlackIronAthletics/"
         ]
+      },
+      "serviceType": "Group Fitness Training",
+      "areaServed": {
+        "@type": "City",
+        "name": "Frisco",
+        "containedInPlace": {
+          "@type": "State",
+          "name": "Texas"
+        }
       }
     }
     </script>
+
+    <!-- Schema Markup: FAQPage -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Do I need to be in shape to start?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Not at all. Our group training classes welcome all fitness levels, from complete beginners to seasoned athletes. Every workout is scalable, meaning your coach will adjust movements, weights, and intensity to match where you are right now."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How many people are in each class?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "We keep our class sizes intentionally small so our coaches can give you personal attention. You'll never feel lost in a crowd. Every member gets real coaching, form corrections, and encouragement throughout the entire session."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What should I bring?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Just bring a water bottle, a towel, and a pair of athletic shoes with a flat sole. We provide all the equipment you need. Show up ready to work and we'll handle the rest."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How often should I come?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "We recommend 3 to 5 sessions per week for the best results, but your schedule is flexible. Even 3 days a week produces incredible changes when you're consistent. Your coach can help you find the right frequency for your goals."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can I try a class before committing?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes! The first step is to book a free consultation where we'll learn about your goals and you'll get to experience what we do firsthand. There's no pressure and no obligation. We want you to feel confident that this is the right fit."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What if I can't do a movement?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Our coaches provide modifications for every single movement. If you can't do a pull-up, we'll scale it. If a certain movement aggravates an old injury, we'll find an alternative. No one gets left behind, and no one gets hurt."
+          }
+        }
+      ]
+    }
+    </script>
+
 <!-- Lead Capture Popup Modal -->
 <style>
     .modal-overlay {
@@ -1711,7 +1269,7 @@
         font-weight: 300;
     }
     .modal-close:hover { color: var(--yellow); }
-    .modal-header {
+    .modal-header-modal {
         text-align: center;
         margin-bottom: 2rem;
     }
@@ -1726,7 +1284,7 @@
         margin-bottom: 0.5rem;
         color: var(--white);
     }
-    .modal-subtitle {
+    .modal-subtitle-text {
         font-size: 1rem;
         color: var(--light-gray);
         font-weight: 500;
@@ -1818,10 +1376,10 @@
 <div class="modal-overlay" id="leadModal">
     <div class="modal-container">
         <button class="modal-close" onclick="closeLeadModal()">&times;</button>
-        <div class="modal-header">
+        <div class="modal-header-modal">
             <img src="https://storage.googleapis.com/msgsndr/snIUpSaFzz5WsavMB3QA/media/6980c90276757725c438432d.png" alt="Black Iron Athletics" class="modal-logo">
             <h2 class="modal-title">Start Your Application</h2>
-            <p class="modal-subtitle">Step 1: Tell us about yourself. Step 2: Schedule your consultation</p>
+            <p class="modal-subtitle-text">Step 1: Tell us about yourself. Step 2: Schedule your consultation</p>
         </div>
         <form id="modalLeadForm" action="https://api.leadconnectorhq.com/widget/form/E28b2LyV1rXS8C9NizUX" method="POST">
             <input type="hidden" name="notrack" value="true">
@@ -1912,23 +1470,17 @@
         fetch(this.action, { method: 'POST', body: formData, mode: 'no-cors' })
         .then(() => {
             document.querySelector('#modalLeadForm').style.display = 'none';
-            document.querySelector('.modal-header').style.display = 'none';
+            document.querySelector('.modal-header-modal').style.display = 'none';
             document.getElementById('modalSuccessMessage').classList.add('show');
             setTimeout(() => { window.location.href = 'book.html'; }, 3000);
         })
         .catch((error) => {
             console.error('Error:', error);
             document.querySelector('#modalLeadForm').style.display = 'none';
-            document.querySelector('.modal-header').style.display = 'none';
+            document.querySelector('.modal-header-modal').style.display = 'none';
             document.getElementById('modalSuccessMessage').classList.add('show');
             setTimeout(() => { window.location.href = 'book.html'; }, 3000);
         });
-    });
-
-    // Sticky Mobile CTA - hide when modal is open
-    window.addEventListener('scroll', function() {
-        const stickyBar = document.getElementById('stickyMobileCta');
-        if (stickyBar) stickyBar.style.display = '';
     });
 
     // Hamburger Menu
@@ -1981,7 +1533,7 @@
         body { padding-bottom: 70px; }
     }
 </style>
-<div class="sticky-mobile-cta" id="stickyMobileCta">
+<div class="sticky-mobile-cta">
     <a href="#" onclick="openLeadModal(); return false;">Book Free Consultation</a>
 </div>
 </body>
