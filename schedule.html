@@ -3,20 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Getting Started | Black Iron Athletics | Join Our Gym in Frisco, TX</title>
-    <meta name="description" content="Start your fitness journey at Black Iron Athletics in Frisco, TX. Learn about our 3-step onboarding process, membership options, and what to expect. Beginner-friendly training.">
-    <link rel="canonical" href="https://www.blackironathleticsfrisco.com/getting-started.html">
+    <title>Class Schedule | Black Iron Athletics | Gym Classes in Frisco, TX</title>
+    <meta name="description" content="View the class schedule at Black Iron Athletics in Frisco, TX. Group training, strength & conditioning, and Olympic weightlifting classes for all fitness levels. Find a time that works for you.">
+    <link rel="canonical" href="https://www.blackironathleticsfrisco.com/schedule.html">
     <!-- Open Graph -->
-    <meta property="og:title" content="Getting Started | Black Iron Athletics | Join Our Gym in Frisco, TX">
-    <meta property="og:description" content="Start your fitness journey at Black Iron Athletics. 3-step onboarding, flexible membership options, and beginner-friendly training.">
-    <meta property="og:url" content="https://www.blackironathleticsfrisco.com/getting-started.html">
+    <meta property="og:title" content="Class Schedule | Black Iron Athletics | Gym Classes in Frisco, TX">
+    <meta property="og:description" content="View the class schedule at Black Iron Athletics in Frisco, TX. Group training, strength & conditioning, and Olympic weightlifting classes for all fitness levels.">
+    <meta property="og:url" content="https://www.blackironathleticsfrisco.com/schedule.html">
     <meta property="og:image" content="https://storage.googleapis.com/msgsndr/snIUpSaFzz5WsavMB3QA/media/6980c90276757725c438432d.png">
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="Black Iron Athletics">
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Getting Started | Black Iron Athletics | Join Our Gym in Frisco, TX">
-    <meta name="twitter:description" content="Start your fitness journey at Black Iron Athletics. 3-step onboarding, flexible membership options, and beginner-friendly training.">
+    <meta name="twitter:title" content="Class Schedule | Black Iron Athletics | Gym Classes in Frisco, TX">
+    <meta name="twitter:description" content="View the class schedule at Black Iron Athletics in Frisco, TX. Group training, strength & conditioning, and Olympic weightlifting classes for all fitness levels.">
     <meta name="twitter:image" content="https://storage.googleapis.com/msgsndr/snIUpSaFzz5WsavMB3QA/media/6980c90276757725c438432d.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -72,10 +72,9 @@
         }
 
         /* Anchor offset for fixed nav */
-        #getting-started,
-        #membership,
-        #what-to-expect,
-        #faqs {
+        #schedule,
+        #class-types,
+        #before-class {
             scroll-margin-top: 100px;
         }
 
@@ -325,124 +324,99 @@
             margin: 0 auto;
         }
 
-        /* Steps Grid */
-        .steps-grid {
+        /* Schedule Embed */
+        .schedule-embed {
+            background: var(--dark-gray);
+            padding: 2rem;
+            border: 2px solid var(--medium-gray);
+            min-height: 600px;
+        }
+
+        .schedule-embed iframe {
+            border: none;
+            display: block;
+        }
+
+        /* Class Types Grid */
+        .class-types-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
             gap: 2rem;
             margin-top: 4rem;
         }
 
-        .step-card {
+        .class-type-card {
             background: var(--dark-gray);
-            padding: 3rem 2rem;
+            padding: 2.5rem;
             border: 2px solid var(--medium-gray);
             transition: all 0.3s ease;
             text-align: center;
         }
 
-        .step-card:hover {
+        .class-type-card:hover {
             border-color: var(--yellow);
             transform: translateY(-5px);
             box-shadow: 0 10px 30px rgba(255, 210, 2, 0.2);
         }
 
-        .step-number {
-            background: var(--yellow);
-            color: var(--black);
-            width: 60px;
-            height: 60px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 2rem;
-            font-weight: 900;
-            margin: 0 auto 1.5rem;
+        .class-type-icon {
+            font-size: 3rem;
+            color: var(--yellow);
+            margin-bottom: 1.5rem;
         }
 
-        .step-card h3 {
+        .class-type-card h3 {
             font-weight: 900;
             font-size: 1.5rem;
             margin-bottom: 1rem;
+            text-transform: uppercase;
         }
 
-        .step-card p {
+        .class-type-card p {
             color: var(--light-gray);
             line-height: 1.8;
         }
 
-        /* Membership Cards */
-        .membership-grid {
+        /* Info Cards Grid */
+        .info-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 2rem;
             margin-top: 4rem;
         }
 
-        .membership-card {
+        .info-card {
             background: var(--dark-gray);
-            padding: 3rem 2rem;
+            padding: 2.5rem;
             border: 2px solid var(--medium-gray);
-            text-align: center;
+            border-left: 5px solid var(--yellow);
             transition: all 0.3s ease;
         }
 
-        .membership-card:hover {
+        .info-card:hover {
             border-color: var(--yellow);
             transform: translateY(-5px);
             box-shadow: 0 10px 30px rgba(255, 210, 2, 0.2);
         }
 
-        .membership-card.featured {
-            border-color: var(--yellow);
-            border-width: 3px;
-            position: relative;
-        }
-
-        .featured-badge {
-            position: absolute;
-            top: -15px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: var(--yellow);
-            color: var(--black);
-            padding: 0.5rem 1.5rem;
+        .info-card h3 {
             font-weight: 900;
-            font-size: 0.8rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .membership-title {
-            font-weight: 900;
-            font-size: 1.8rem;
+            font-size: 1.3rem;
             margin-bottom: 1rem;
-            text-transform: uppercase;
-        }
-
-        .membership-period {
-            margin-bottom: 2rem;
             color: var(--yellow);
-            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
         }
 
-        .membership-features {
-            list-style: none;
-            margin-bottom: 2rem;
-            text-align: left;
+        .info-card-icon {
+            font-size: 1.5rem;
+            color: var(--yellow);
         }
 
-        .membership-features li {
-            padding: 0.75rem 0;
-            border-bottom: 1px solid var(--medium-gray);
+        .info-card p {
             color: var(--light-gray);
-        }
-
-        .membership-features li:before {
-            content: '✓';
-            color: var(--yellow);
-            font-weight: 900;
-            margin-right: 1rem;
+            line-height: 1.8;
         }
 
         .btn-primary {
@@ -465,78 +439,9 @@
             color: var(--yellow);
         }
 
-        /* What to Expect */
-        .expect-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-top: 4rem;
-        }
-
-        .expect-card {
-            background: var(--dark-gray);
-            padding: 2.5rem;
-            border: 2px solid var(--medium-gray);
-            border-left: 5px solid var(--yellow);
-            transition: all 0.3s ease;
-        }
-
-        .expect-card:hover {
-            border-color: var(--yellow);
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(255, 210, 2, 0.2);
-        }
-
-        .expect-card h3 {
-            font-weight: 900;
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-            color: var(--yellow);
-        }
-
-        .expect-card p {
-            color: var(--light-gray);
-            line-height: 1.8;
-        }
-
-        /* FAQs */
-        .faq-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 2rem;
-            margin: 4rem auto 0;
-        }
-
-        .faq-item {
-            background: var(--dark-gray);
-            padding: 2rem;
-            border: 2px solid var(--medium-gray);
-            transition: all 0.3s ease;
-        }
-
-        .faq-item:hover {
-            border-color: var(--yellow);
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(255, 210, 2, 0.2);
-        }
-
-        .faq-question {
-            font-weight: 900;
-            font-size: 1.1rem;
-            margin-bottom: 1rem;
-            color: var(--yellow);
-            line-height: 1.3;
-        }
-
-        .faq-answer {
-            color: var(--light-gray);
-            line-height: 1.7;
-            font-size: 0.95rem;
-        }
-
         /* CTA Section */
         .cta-section {
-            background: var(--black);
+            background: var(--dark-gray);
             padding: 8rem 4rem;
             text-align: center;
             width: 100%;
@@ -763,27 +668,26 @@
                 margin-bottom: 2rem;
             }
 
-            .steps-grid,
-            .membership-grid,
-            .expect-grid,
-            .faq-container {
+            .class-types-grid,
+            .info-grid {
                 grid-template-columns: 1fr;
             }
 
-            .step-card {
+            .class-type-card {
                 padding: 2rem 1.5rem;
             }
 
-            .membership-card {
-                padding: 2rem 1.5rem;
-            }
-
-            .expect-card {
+            .info-card {
                 padding: 1.5rem;
             }
 
-            .faq-item {
-                padding: 1.5rem;
+            .schedule-embed {
+                min-height: 400px;
+                padding: 1rem;
+            }
+
+            .schedule-embed iframe {
+                height: 400px;
             }
 
             .cta-section {
@@ -853,9 +757,9 @@
                 <li class="has-submenu">
                     <a href="getting-started.html">Getting Started</a>
                     <ul class="submenu">
-                        <li><a href="#membership">Membership Options</a></li>
-                        <li><a href="#what-to-expect">What to Expect</a></li>
-                        <li><a href="#faqs">FAQs</a></li>
+                        <li><a href="getting-started.html#membership">Membership Options</a></li>
+                        <li><a href="getting-started.html#what-to-expect">What to Expect</a></li>
+                        <li><a href="getting-started.html#faqs">FAQs</a></li>
                     </ul>
                 </li>
                 <li><a href="media.html">Media</a></li>
@@ -883,198 +787,96 @@
 
     <!-- Hero Section -->
     <section class="hero">
-        <img src="https://storage.googleapis.com/msgsndr/snIUpSaFzz5WsavMB3QA/media/69811aae10efd60e9f683c81.jpeg" alt="Start Your Journey at Black Iron Athletics" class="hero-bg">
+        <img src="images/group-warmup.JPG" alt="Group training class at Black Iron Athletics" class="hero-bg">
         <div class="hero-container">
             <div class="hero-content">
-                <div class="hero-subtitle">Your Path Forward</div>
-                <h1>Start Your Journey</h1>
-                <p>Becoming an everyday athlete is easier than you think</p>
-                <a href="#" onclick="openLeadModal(); return false;" class="btn-primary" style="margin-top: 1rem;">Start Your Free Consultation</a>
+                <div class="hero-subtitle">Plan Your Week</div>
+                <h1>Class Schedule</h1>
+                <p>Find a class time that works for your schedule. All fitness levels welcome.</p>
+                <a href="#" onclick="openLeadModal(); return false;" class="btn-primary" style="margin-top: 1rem;">Book Your Free Consultation</a>
             </div>
         </div>
     </section>
 
-    <!-- Getting Started Section -->
-    <section id="getting-started" class="section">
+    <!-- Schedule Embed Section -->
+    <section id="schedule" class="section">
         <div class="section-container">
             <div class="section-header">
-                <div class="section-subtitle">How It Works</div>
-                <h2 class="section-title">Getting Started Is Easy</h2>
-                <p class="section-description">Your path to becoming an everyday athlete</p>
+                <div class="section-subtitle">Real-Time Availability</div>
+                <h2 class="section-title">Weekly Schedule</h2>
+                <p class="section-description">Our class times are updated in real time. Reserve your spot directly from the schedule below.</p>
             </div>
 
-            <div class="steps-grid">
-                <div class="step-card">
-                    <div class="step-number">1</div>
-                    <h3>Book Your Free Consultation</h3>
-                    <p>Let's talk about your goals, concerns, and what success looks like for you. No pressure, no sales pitch. Just an honest conversation.</p>
-                </div>
-
-                <div class="step-card">
-                    <div class="step-number">2</div>
-                    <h3>Build Your Custom Plan</h3>
-                    <p>We'll design a training approach tailored to your body, your schedule, and your fitness level. You'll know exactly what to do.</p>
-                </div>
-
-                <div class="step-card">
-                    <div class="step-number">3</div>
-                    <h3>Start Moving</h3>
-                    <p>Join our community and become the happier, healthier athlete you're meant to be. We'll be with you every step of the way.</p>
-                </div>
+            <div class="schedule-embed">
+                <iframe src='https://blackiron.wodify.com/OnlineSalesPage/WebIntegration?LocationId=10409&IsDarkMode=True&ProgramId=106946,137222' frameborder='0' width='100%' height='600' style="border: none;"></iframe>
             </div>
 
             <div style="text-align: center; margin-top: 3rem;">
+                <p style="font-size: 1.1rem; color: var(--light-gray); margin-bottom: 2rem;">Questions about class times or looking for something specific?</p>
                 <a href="#" onclick="openLeadModal(); return false;" class="btn-primary">Book Your Free Consultation</a>
             </div>
         </div>
     </section>
 
-    <!-- Membership Options Section -->
-    <section id="membership" class="section section-alt">
+    <!-- Class Types Section -->
+    <section id="class-types" class="section section-alt">
         <div class="section-container">
             <div class="section-header">
-                <div class="section-subtitle">Pricing</div>
-                <h2 class="section-title">Membership Options</h2>
-                <p class="section-description">Find the plan that fits your goals and lifestyle</p>
+                <div class="section-subtitle">What We Offer</div>
+                <h2 class="section-title">Our Class Types</h2>
+                <p class="section-description">Every class is coach-led and designed to meet you where you are</p>
             </div>
 
-            <div class="membership-grid">
-                <div class="membership-card">
-                    <h3 class="membership-title">Standard</h3>
-                    <div class="membership-period">3x Per Week</div>
-                    <ul class="membership-features">
-                        <li>3 Classes a week</li>
-                        <li>Strength & Conditioning</li>
-                        <li>Olympic Weightlifting</li>
-                        <li>Monthly Body Composition Scan</li>
-                        <li>Community Events</li>
-                    </ul>
-                    <a href="https://blackiron.wodify.com/OnlineSalesPage/Main?q=ReviewPurchase%7COnlineMembershipId%3D236019%26LocationId%3D10409%26OnlineMembershipPaymentOptionId%3D1473807" class="btn-primary">Get Started</a>
+            <div class="class-types-grid">
+                <div class="class-type-card">
+                    <div class="class-type-icon"><i class="fa-solid fa-dumbbell"></i></div>
+                    <h3>Strength & Conditioning</h3>
+                    <p>Build functional strength through compound movements, kettlebells, and bodyweight exercises. Every session is coach-led and scalable.</p>
                 </div>
 
-                <div class="membership-card featured">
-                    <div class="featured-badge">Most Popular</div>
-                    <h3 class="membership-title">Unlimited + Open Gym</h3>
-                    <div class="membership-period">Train Without Limits</div>
-                    <ul class="membership-features">
-                        <li>Unlimited Classes</li>
-                        <li>Open Gym 7 Days a Week</li>
-                        <li>Private Gym Access</li>
-                        <li>Strength & Conditioning</li>
-                        <li>Olympic Weightlifting</li>
-                        <li>Monthly Body Composition Scan</li>
-                        <li>Community Events</li>
-                    </ul>
-                    <a href="https://blackiron.wodify.com/OnlineSalesPage/Main?q=ReviewPurchase%7COnlineMembershipId%3D236018%26LocationId%3D10409%26OnlineMembershipPaymentOptionId%3D1473833" class="btn-primary">Get Started</a>
+                <div class="class-type-card">
+                    <div class="class-type-icon"><i class="fa-solid fa-person-falling-burst"></i></div>
+                    <h3>Olympic Weightlifting</h3>
+                    <p>Learn the snatch and clean & jerk with expert coaching. Perfect technique, build power, and gain confidence under the bar.</p>
                 </div>
 
-                <div class="membership-card">
-                    <h3 class="membership-title">Personal Training</h3>
-                    <div class="membership-period">1-on-1 Coaching</div>
-                    <ul class="membership-features">
-                        <li>One-on-one Coaching</li>
-                        <li>Customized Programming</li>
-                        <li>Individual Accountability</li>
-                        <li>Monthly Body Composition Scan</li>
-                        <li>Nutrition Guidance</li>
-                        <li>Community Events</li>
-                    </ul>
-                    <a href="https://blackiron.wodify.com/OnlineSalesPage/Main?q=Memberships" class="btn-primary">Get Started</a>
-                </div>
-
-                <div class="membership-card">
-                    <h3 class="membership-title">Open Gym Only</h3>
-                    <div class="membership-period">Self-Directed Training</div>
-                    <ul class="membership-features">
-                        <li>Open Gym 7 Days a Week</li>
-                        <li>Private Gym Access</li>
-                        <li>Access to All Our Programming</li>
-                        <li>Strength & Conditioning</li>
-                        <li>Olympic Weightlifting</li>
-                        <li>Hyrox</li>
-                    </ul>
-                    <a href="https://blackiron.wodify.com/OnlineSalesPage/Main?q=PaymentPlans%7cLocationId%3d10409%26OnlineMembershipId%3d303426" class="btn-primary">Get Started</a>
+                <div class="class-type-card">
+                    <div class="class-type-icon"><i class="fa-solid fa-door-open"></i></div>
+                    <h3>Open Gym</h3>
+                    <p>Train on your own schedule with full access to all equipment. Follow our programming or bring your own. Available 24/7.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- What to Expect Section -->
-    <section id="what-to-expect" class="section">
+    <!-- What to Know Section -->
+    <section id="before-class" class="section">
         <div class="section-container">
             <div class="section-header">
-                <div class="section-subtitle">Your Journey</div>
-                <h2 class="section-title">What to Expect</h2>
-                <p class="section-description">Here's what happens after you book your free consultation</p>
+                <div class="section-subtitle">Be Prepared</div>
+                <h2 class="section-title">Before Your First Class</h2>
+                <p class="section-description">Here's everything you need to know to make the most of your first session</p>
             </div>
 
-            <div class="expect-grid">
-                <div class="expect-card">
-                    <h3>Free Consultation</h3>
-                    <p>We sit down and talk about your goals, any concerns you have, and what you want to achieve. This is a judgment-free conversation where we get to know you and you get to know us.</p>
+            <div class="info-grid">
+                <div class="info-card">
+                    <h3><i class="fa-solid fa-clock info-card-icon"></i> Arrive 10 Minutes Early</h3>
+                    <p>Give yourself time to check in, meet your coach, and get oriented to the gym before class starts.</p>
                 </div>
 
-                <div class="expect-card">
-                    <h3>Custom Plan Created</h3>
-                    <p>Based on your goals and fitness level, we'll build a personalized training plan. Whether you need one-on-one coaching to build confidence or you're ready to jump into group classes, we'll map out the right path for you.</p>
+                <div class="info-card">
+                    <h3><i class="fa-solid fa-bottle-water info-card-icon"></i> Bring Water & a Towel</h3>
+                    <p>Stay hydrated and ready to work. We have everything else you need to get a great workout in.</p>
                 </div>
 
-                <div class="expect-card">
-                    <h3>Start Training</h3>
-                    <p>If you're new, you'll work one-on-one with a coach to learn proper form and build confidence. If you have experience, you'll join our group classes with full support from our coaching team.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- FAQs Section -->
-    <section id="faqs" class="section section-alt">
-        <div class="section-container">
-            <div class="section-header">
-                <div class="section-subtitle">Questions?</div>
-                <h2 class="section-title">Frequently Asked Questions</h2>
-                <p class="section-description">Everything you need to know about getting started</p>
-            </div>
-
-            <div class="faq-container">
-                <div class="faq-item">
-                    <h3 class="faq-question">Is it beginner friendly?</h3>
-                    <p class="faq-answer">Absolutely. We have one-on-one onboarding to make sure you feel confident and ready to jump into the program.</p>
+                <div class="info-card">
+                    <h3><i class="fa-solid fa-shoe-prints info-card-icon"></i> Wear Athletic Shoes</h3>
+                    <p>Cross-trainers work best for our classes. Avoid running shoes as they can limit stability during lifts.</p>
                 </div>
 
-                <div class="faq-item">
-                    <h3 class="faq-question">Do I have to be in shape to join?</h3>
-                    <p class="faq-answer">Not at all. You just have to be willing to move. Everyone starts somewhere, and we're here to meet you where you are.</p>
-                </div>
-
-                <div class="faq-item">
-                    <h3 class="faq-question">What if I have an old injury?</h3>
-                    <p class="faq-answer">We work with injuries and limitations all the time. Just talk to your coach and we're happy to accommodate. You won't be a burden, you'll be supported.</p>
-                </div>
-
-                <div class="faq-item">
-                    <h3 class="faq-question">How long until I see results?</h3>
-                    <p class="faq-answer">Most members notice changes in how they feel within 2 weeks. Visible physical changes typically show up in 4-6 weeks with consistent training.</p>
-                </div>
-
-                <div class="faq-item">
-                    <h3 class="faq-question">What if I've tried gyms before and quit?</h3>
-                    <p class="faq-answer">The difference here is community and accountability. Our coaches know your name, track your progress, and our members support each other.</p>
-                </div>
-
-                <div class="faq-item">
-                    <h3 class="faq-question">Can I try a class before I commit?</h3>
-                    <p class="faq-answer">Your free consultation includes the opportunity to experience what we do before making any decisions.</p>
-                </div>
-
-                <div class="faq-item">
-                    <h3 class="faq-question">What's your cancellation policy?</h3>
-                    <p class="faq-answer">We operate on month-to-month memberships. No long-term contracts. If you need to pause or cancel, just give us notice.</p>
-                </div>
-
-                <div class="faq-item">
-                    <h3 class="faq-question">How is this different from a regular gym?</h3>
-                    <p class="faq-answer">You get expert coaching, structured programming designed for results, and a community that pushes you to show up. You're not just renting equipment access.</p>
+                <div class="info-card">
+                    <h3><i class="fa-solid fa-users info-card-icon"></i> All Levels Welcome</h3>
+                    <p>Every workout is scaled to your fitness level. Our coaches will guide you through modifications so you get the perfect challenge.</p>
                 </div>
             </div>
         </div>
@@ -1083,8 +885,8 @@
     <!-- CTA Section -->
     <section class="cta-section">
         <div style="max-width: 100%; margin: 0 auto; padding: 0 2rem;">
-            <h2 class="cta-title">Ready to Get Started?</h2>
-            <p class="cta-subtitle">Join the Black Iron family and become the athlete you're meant to be</p>
+            <h2 class="cta-title">Ready to Join a Class?</h2>
+            <p class="cta-subtitle">Book your free consultation and experience a group training session.</p>
             <a href="#" onclick="openLeadModal(); return false;" class="btn-primary">Book Your Free Consultation</a>
         </div>
     </section>
@@ -1120,13 +922,13 @@
                 <p style="margin-bottom: 1.5rem;">
                     <a href="tel:(972)785-7036" style="color: var(--yellow); font-weight: 700;">(972) 785-7036</a>
                 </p>
-                <iframe 
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3344.9875647886857!2d-96.89026308820058!3d33.15034697358084!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x864c3a240f77e3f7%3A0x9f460209df528d6e!2sBlack%20Iron%20Athletics!5e0!3m2!1sen!2sus!4v1737509000000!5m2!1sen!2sus" 
-                    width="100%" 
-                    height="200" 
-                    style="border: 1px solid var(--medium-gray); border-radius: 0; margin-top: 1rem;" 
-                    allowfullscreen="" 
-                    loading="lazy" 
+                <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3344.9875647886857!2d-96.89026308820058!3d33.15034697358084!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x864c3a240f77e3f7%3A0x9f460209df528d6e!2sBlack%20Iron%20Athletics!5e0!3m2!1sen!2sus!4v1737509000000!5m2!1sen!2sus"
+                    width="100%"
+                    height="200"
+                    style="border: 1px solid var(--medium-gray); border-radius: 0; margin-top: 1rem;"
+                    allowfullscreen=""
+                    loading="lazy"
                     referrerpolicy="no-referrer-when-downgrade">
                 </iframe>
             </div>
@@ -1157,81 +959,77 @@
     {
       "@context": "https://schema.org",
       "@type": "WebPage",
-      "name": "Getting Started at Black Iron Athletics",
-      "description": "Learn how to start your fitness journey at Black Iron Athletics in Frisco, TX. Simple 3-step onboarding, flexible membership options, and beginner-friendly training.",
-      "url": "https://www.blackironathleticsfrisco.com/getting-started"
-    }
-    </script>
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "FAQPage",
-      "mainEntity": [
-        {
-          "@type": "Question",
-          "name": "Is it beginner friendly?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Absolutely. We have one-on-one onboarding to make sure you feel confident and ready to jump into the program."
-          }
+      "name": "Class Schedule - Black Iron Athletics",
+      "description": "View the class schedule at Black Iron Athletics in Frisco, TX. Group training, strength & conditioning, and Olympic weightlifting classes for all fitness levels.",
+      "url": "https://www.blackironathleticsfrisco.com/schedule.html",
+      "mainEntity": {
+        "@type": "GymAndHealthClub",
+        "name": "Black Iron Athletics",
+        "description": "Veteran-owned gym in Frisco, TX offering group training, strength & conditioning, Olympic weightlifting, and 24/7 open gym access.",
+        "telephone": "(972) 785-7036",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "279 Main St #122",
+          "addressLocality": "Frisco",
+          "addressRegion": "TX",
+          "postalCode": "75036",
+          "addressCountry": "US"
         },
-        {
-          "@type": "Question",
-          "name": "Do I have to be in shape to join?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Not at all. You just have to be willing to move. Everyone starts somewhere, and we're here to meet you where you are."
+        "url": "https://www.blackironathleticsfrisco.com",
+        "event": [
+          {
+            "@type": "Event",
+            "name": "Strength & Conditioning Class",
+            "description": "Build functional strength through compound movements, kettlebells, and bodyweight exercises. Coach-led and scalable for all levels.",
+            "eventSchedule": {
+              "@type": "Schedule",
+              "repeatFrequency": "P1W",
+              "byDay": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
+            },
+            "location": {
+              "@type": "Place",
+              "name": "Black Iron Athletics",
+              "address": {
+                "@type": "PostalAddress",
+                "streetAddress": "279 Main St #122",
+                "addressLocality": "Frisco",
+                "addressRegion": "TX",
+                "postalCode": "75036"
+              }
+            },
+            "organizer": {
+              "@type": "Organization",
+              "name": "Black Iron Athletics",
+              "url": "https://www.blackironathleticsfrisco.com"
+            }
+          },
+          {
+            "@type": "Event",
+            "name": "Olympic Weightlifting Class",
+            "description": "Learn the snatch and clean & jerk with expert coaching. Perfect technique, build power, and gain confidence under the bar.",
+            "eventSchedule": {
+              "@type": "Schedule",
+              "repeatFrequency": "P1W"
+            },
+            "location": {
+              "@type": "Place",
+              "name": "Black Iron Athletics",
+              "address": {
+                "@type": "PostalAddress",
+                "streetAddress": "279 Main St #122",
+                "addressLocality": "Frisco",
+                "addressRegion": "TX",
+                "postalCode": "75036"
+              }
+            },
+            "organizer": {
+              "@type": "Organization",
+              "name": "Black Iron Athletics",
+              "url": "https://www.blackironathleticsfrisco.com"
+            }
           }
-        },
-        {
-          "@type": "Question",
-          "name": "What if I have an old injury?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "We work with injuries and limitations all the time. Just talk to your coach and we're happy to accommodate. You won't be a burden, you'll be supported."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "How long until I see results?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Most members notice changes in how they feel within 2 weeks. Visible physical changes typically show up in 4-6 weeks with consistent training."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "What if I've tried gyms before and quit?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "The difference here is community and accountability. Our coaches know your name, track your progress, and our members support each other."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "Can I try a class before I commit?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Your free consultation includes the opportunity to experience what we do before making any decisions."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "What's your cancellation policy?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "We operate on month-to-month memberships. No long-term contracts. If you need to pause or cancel, just give us notice."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "How is this different from a regular gym?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "You get expert coaching, structured programming designed for results, and a community that pushes you to show up. You're not just renting equipment access."
-          }
-        }
-      ]
+        ]
+      }
     }
     </script>
 <!-- Lead Capture Popup Modal -->

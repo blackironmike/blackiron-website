@@ -3,20 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Getting Started | Black Iron Athletics | Join Our Gym in Frisco, TX</title>
-    <meta name="description" content="Start your fitness journey at Black Iron Athletics in Frisco, TX. Learn about our 3-step onboarding process, membership options, and what to expect. Beginner-friendly training.">
-    <link rel="canonical" href="https://www.blackironathleticsfrisco.com/getting-started.html">
+    <title>Blog | Black Iron Athletics | Fitness Tips & Training Advice</title>
+    <meta name="description" content="Fitness tips, training advice, and gym content from Black Iron Athletics in Frisco, TX. Expert insights on strength training, nutrition, and living a stronger life.">
+    <link rel="canonical" href="https://www.blackironathleticsfrisco.com/blog/">
     <!-- Open Graph -->
-    <meta property="og:title" content="Getting Started | Black Iron Athletics | Join Our Gym in Frisco, TX">
-    <meta property="og:description" content="Start your fitness journey at Black Iron Athletics. 3-step onboarding, flexible membership options, and beginner-friendly training.">
-    <meta property="og:url" content="https://www.blackironathleticsfrisco.com/getting-started.html">
+    <meta property="og:title" content="Blog | Black Iron Athletics | Fitness Tips & Training Advice">
+    <meta property="og:description" content="Fitness tips, training advice, and gym content from Black Iron Athletics in Frisco, TX. Expert insights on strength training, nutrition, and living a stronger life.">
+    <meta property="og:url" content="https://www.blackironathleticsfrisco.com/blog/">
     <meta property="og:image" content="https://storage.googleapis.com/msgsndr/snIUpSaFzz5WsavMB3QA/media/6980c90276757725c438432d.png">
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="Black Iron Athletics">
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Getting Started | Black Iron Athletics | Join Our Gym in Frisco, TX">
-    <meta name="twitter:description" content="Start your fitness journey at Black Iron Athletics. 3-step onboarding, flexible membership options, and beginner-friendly training.">
+    <meta name="twitter:title" content="Blog | Black Iron Athletics | Fitness Tips & Training Advice">
+    <meta name="twitter:description" content="Fitness tips, training advice, and gym content from Black Iron Athletics in Frisco, TX.">
     <meta name="twitter:image" content="https://storage.googleapis.com/msgsndr/snIUpSaFzz5WsavMB3QA/media/6980c90276757725c438432d.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -31,7 +31,6 @@
             padding: 0 !important;
         }
 
-        /* Remove GHL's default container padding */
         .container, .hl_page-preview--content {
             padding: 0 !important;
             margin: 0 !important;
@@ -71,15 +70,6 @@
             scroll-behavior: smooth;
         }
 
-        /* Anchor offset for fixed nav */
-        #getting-started,
-        #membership,
-        #what-to-expect,
-        #faqs {
-            scroll-margin-top: 100px;
-        }
-
-        /* All headings use Montserrat Black */
         h1, h2, h3, h4, h5, h6 {
             font-family: 'Montserrat', sans-serif;
             font-weight: 900;
@@ -105,19 +95,9 @@
             align-items: center;
         }
 
-        .logo {
-            height: 50px;
-        }
-
-        .logo a {
-            display: block;
-            height: 100%;
-        }
-
-        .logo img {
-            height: 100%;
-            width: auto;
-        }
+        .logo { height: 50px; }
+        .logo a { display: block; height: 100%; }
+        .logo img { height: 100%; width: auto; }
 
         .nav-links {
             display: flex;
@@ -126,9 +106,7 @@
             align-items: center;
         }
 
-        .nav-links > li {
-            position: relative;
-        }
+        .nav-links > li { position: relative; }
 
         .nav-links a {
             color: var(--white);
@@ -140,11 +118,8 @@
             letter-spacing: 0.5px;
         }
 
-        .nav-links > li > a:hover {
-            color: var(--yellow);
-        }
+        .nav-links > li > a:hover { color: var(--yellow); }
 
-        /* Dropdown Submenu */
         .submenu {
             display: none;
             position: absolute;
@@ -158,9 +133,7 @@
             list-style: none;
         }
 
-        .submenu li {
-            padding: 0;
-        }
+        .submenu li { padding: 0; }
 
         .submenu a {
             display: block;
@@ -178,9 +151,7 @@
             padding-left: 2rem;
         }
 
-        .nav-links > li:hover .submenu {
-            display: block;
-        }
+        .nav-links > li:hover .submenu { display: block; }
 
         .has-submenu > a::after {
             content: '';
@@ -219,7 +190,7 @@
             color: var(--yellow);
         }
 
-        /* Hero Section */
+        /* Hero */
         .hero {
             margin-top: 0;
             padding-top: 80px;
@@ -250,9 +221,7 @@
             z-index: 1;
         }
 
-        .hero-content {
-            max-width: 800px;
-        }
+        .hero-content { max-width: 900px; }
 
         .hero-subtitle {
             font-size: 0.9rem;
@@ -280,279 +249,147 @@
             max-width: 600px;
         }
 
-        /* Section Styles */
-        .section {
+        /* Blog Grid */
+        .blog-section {
             padding: 6rem 0;
             background: var(--black);
-            width: 100%;
         }
 
-        .section-alt {
-            background: var(--dark-gray);
-        }
-
-        .section-container {
+        .blog-container {
             max-width: 100%;
             margin: 0;
             padding: 0 4rem;
         }
 
-        .section-header {
-            text-align: center;
-            margin-bottom: 4rem;
-        }
-
-        .section-subtitle {
-            font-size: 0.85rem;
-            font-weight: 700;
-            color: var(--yellow);
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            margin-bottom: 1rem;
-        }
-
-        .section-title {
-            font-weight: 900;
-            font-size: clamp(2.5rem, 5vw, 4rem);
-            margin-bottom: 1.5rem;
-            text-transform: uppercase;
-        }
-
-        .section-description {
-            font-size: 1.2rem;
-            color: var(--light-gray);
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        /* Steps Grid */
-        .steps-grid {
+        .blog-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            grid-template-columns: repeat(2, 1fr);
             gap: 2rem;
-            margin-top: 4rem;
         }
 
-        .step-card {
+        .blog-card {
             background: var(--dark-gray);
-            padding: 3rem 2rem;
             border: 2px solid var(--medium-gray);
             transition: all 0.3s ease;
-            text-align: center;
+            overflow: hidden;
         }
 
-        .step-card:hover {
+        .blog-card:hover {
             border-color: var(--yellow);
             transform: translateY(-5px);
             box-shadow: 0 10px 30px rgba(255, 210, 2, 0.2);
         }
 
-        .step-number {
-            background: var(--yellow);
-            color: var(--black);
-            width: 60px;
-            height: 60px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 2rem;
-            font-weight: 900;
-            margin: 0 auto 1.5rem;
+        .blog-card-image {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            display: block;
         }
 
-        .step-card h3 {
-            font-weight: 900;
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-        }
-
-        .step-card p {
-            color: var(--light-gray);
-            line-height: 1.8;
-        }
-
-        /* Membership Cards */
-        .membership-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2rem;
-            margin-top: 4rem;
-        }
-
-        .membership-card {
-            background: var(--dark-gray);
-            padding: 3rem 2rem;
-            border: 2px solid var(--medium-gray);
-            text-align: center;
-            transition: all 0.3s ease;
-        }
-
-        .membership-card:hover {
-            border-color: var(--yellow);
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(255, 210, 2, 0.2);
-        }
-
-        .membership-card.featured {
-            border-color: var(--yellow);
-            border-width: 3px;
-            position: relative;
-        }
-
-        .featured-badge {
-            position: absolute;
-            top: -15px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: var(--yellow);
-            color: var(--black);
-            padding: 0.5rem 1.5rem;
-            font-weight: 900;
-            font-size: 0.8rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .membership-title {
-            font-weight: 900;
-            font-size: 1.8rem;
-            margin-bottom: 1rem;
-            text-transform: uppercase;
-        }
-
-        .membership-period {
-            margin-bottom: 2rem;
-            color: var(--yellow);
-            font-weight: 700;
-        }
-
-        .membership-features {
-            list-style: none;
-            margin-bottom: 2rem;
-            text-align: left;
-        }
-
-        .membership-features li {
-            padding: 0.75rem 0;
-            border-bottom: 1px solid var(--medium-gray);
-            color: var(--light-gray);
-        }
-
-        .membership-features li:before {
-            content: '✓';
-            color: var(--yellow);
-            font-weight: 900;
-            margin-right: 1rem;
-        }
-
-        .btn-primary {
-            background: var(--yellow);
-            color: var(--black);
-            padding: 1.2rem 3rem;
-            text-decoration: none;
-            font-weight: 900;
-            font-size: 1rem;
-            transition: all 0.3s ease;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            border: 2px solid var(--yellow);
-            border-radius: 0;
-            display: inline-block;
-        }
-
-        .btn-primary:hover {
-            background: var(--black);
-            color: var(--yellow);
-        }
-
-        /* What to Expect */
-        .expect-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-top: 4rem;
-        }
-
-        .expect-card {
-            background: var(--dark-gray);
-            padding: 2.5rem;
-            border: 2px solid var(--medium-gray);
-            border-left: 5px solid var(--yellow);
-            transition: all 0.3s ease;
-        }
-
-        .expect-card:hover {
-            border-color: var(--yellow);
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(255, 210, 2, 0.2);
-        }
-
-        .expect-card h3 {
-            font-weight: 900;
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-            color: var(--yellow);
-        }
-
-        .expect-card p {
-            color: var(--light-gray);
-            line-height: 1.8;
-        }
-
-        /* FAQs */
-        .faq-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 2rem;
-            margin: 4rem auto 0;
-        }
-
-        .faq-item {
-            background: var(--dark-gray);
+        .blog-card-content {
             padding: 2rem;
-            border: 2px solid var(--medium-gray);
-            transition: all 0.3s ease;
         }
 
-        .faq-item:hover {
-            border-color: var(--yellow);
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(255, 210, 2, 0.2);
-        }
-
-        .faq-question {
-            font-weight: 900;
-            font-size: 1.1rem;
-            margin-bottom: 1rem;
+        .blog-category {
+            display: inline-block;
+            background: rgba(255, 210, 2, 0.15);
             color: var(--yellow);
+            font-size: 0.75rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            padding: 0.4rem 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .blog-card-content h3 {
+            font-weight: 900;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
             line-height: 1.3;
         }
 
-        .faq-answer {
+        .blog-card-content h3 a {
+            color: var(--white);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .blog-card-content h3 a:hover {
+            color: var(--yellow);
+        }
+
+        .blog-excerpt {
             color: var(--light-gray);
-            line-height: 1.7;
-            font-size: 0.95rem;
-        }
-
-        /* CTA Section */
-        .cta-section {
-            background: var(--black);
-            padding: 8rem 4rem;
-            text-align: center;
-            width: 100%;
-        }
-
-        .cta-title {
-            font-weight: 900;
-            font-size: clamp(2.5rem, 5vw, 4.5rem);
+            line-height: 1.8;
             margin-bottom: 1.5rem;
-            text-transform: uppercase;
+            font-size: 1rem;
         }
 
-        .cta-subtitle {
-            font-size: 1.2rem;
+        .blog-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .blog-date {
             color: var(--light-gray);
-            margin-bottom: 3rem;
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+
+        .blog-read-more {
+            color: var(--yellow);
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            transition: color 0.3s ease;
+        }
+
+        .blog-read-more:hover {
+            color: var(--white);
+        }
+
+        /* Social CTA */
+        .social-cta {
+            background: var(--dark-gray);
+            padding: 6rem 0;
+            text-align: center;
+        }
+
+        .social-cta-container {
+            max-width: 100%;
+            margin: 0;
+            padding: 0 4rem;
+        }
+
+        .social-cta h2 {
+            font-weight: 900;
+            font-size: clamp(2rem, 4vw, 3rem);
+            text-transform: uppercase;
+            margin-bottom: 2rem;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .social-links a {
+            color: var(--light-gray);
+            font-size: 2.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            color: var(--yellow);
+            transform: translateY(-3px);
         }
 
         /* Footer */
@@ -581,13 +418,8 @@
             letter-spacing: 1px;
         }
 
-        .footer-section ul {
-            list-style: none;
-        }
-
-        .footer-section ul li {
-            margin-bottom: 0.75rem;
-        }
+        .footer-section ul { list-style: none; }
+        .footer-section ul li { margin-bottom: 0.75rem; }
 
         .footer-section a {
             color: var(--light-gray);
@@ -596,9 +428,7 @@
             font-weight: 500;
         }
 
-        .footer-section a:hover {
-            color: var(--yellow);
-        }
+        .footer-section a:hover { color: var(--yellow); }
 
         .footer-logo {
             height: 60px;
@@ -611,16 +441,6 @@
             border-top: 1px solid var(--medium-gray);
             color: var(--light-gray);
             font-size: 0.9rem;
-        }
-
-        @media (max-width: 1024px) {
-            .nav-container,
-            .hero-container,
-            .section-container,
-            .footer-container {
-                padding-left: 2rem;
-                padding-right: 2rem;
-            }
         }
 
         /* Hamburger Menu */
@@ -646,17 +466,9 @@
             transition: all 0.3s ease;
         }
 
-        .hamburger.active span:nth-child(1) {
-            transform: rotate(45deg) translate(6px, 6px);
-        }
-
-        .hamburger.active span:nth-child(2) {
-            opacity: 0;
-        }
-
-        .hamburger.active span:nth-child(3) {
-            transform: rotate(-45deg) translate(6px, -6px);
-        }
+        .hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(6px, 6px); }
+        .hamburger.active span:nth-child(2) { opacity: 0; }
+        .hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(6px, -6px); }
 
         .mobile-nav-overlay {
             display: none;
@@ -673,9 +485,7 @@
             gap: 0;
         }
 
-        .mobile-nav-overlay.active {
-            display: flex;
-        }
+        .mobile-nav-overlay.active { display: flex; }
 
         .mobile-nav-overlay a {
             color: var(--white);
@@ -689,9 +499,7 @@
             text-align: center;
         }
 
-        .mobile-nav-overlay a:hover {
-            color: var(--yellow);
-        }
+        .mobile-nav-overlay a:hover { color: var(--yellow); }
 
         .mobile-nav-overlay .mobile-cta {
             margin-top: 1.5rem;
@@ -711,14 +519,20 @@
             color: var(--yellow);
         }
 
-        @media (max-width: 768px) {
-            .hamburger {
-                display: flex !important;
+        @media (max-width: 1024px) {
+            .nav-container,
+            .hero-container,
+            .blog-container,
+            .social-cta-container,
+            .footer-container {
+                padding-left: 2rem;
+                padding-right: 2rem;
             }
+        }
 
-            .nav-links {
-                display: none !important;
-            }
+        @media (max-width: 768px) {
+            .hamburger { display: flex !important; }
+            .nav-links { display: none !important; }
 
             .nav-container {
                 padding: 0 1.5rem;
@@ -734,64 +548,22 @@
                 font-size: 0.8rem;
             }
 
-            .hero {
-                padding-top: 130px;
-            }
+            .hero { padding-top: 130px; }
 
-            .hero-container {
-                padding: 2rem 1.5rem;
-            }
+            .hero-container { padding: 2rem 1.5rem; }
 
-            .hero-content h1 {
-                font-size: clamp(2rem, 6vw, 3rem);
-            }
+            .hero-content h1 { font-size: clamp(2rem, 6vw, 3rem); }
 
             .hero-content p {
                 font-size: 1.1rem;
                 margin-bottom: 2rem;
             }
 
-            .section-container {
+            .blog-grid { grid-template-columns: 1fr; }
+
+            .blog-container,
+            .social-cta-container {
                 padding: 0 1.5rem;
-            }
-
-            .section-title {
-                font-size: clamp(1.8rem, 5vw, 2.5rem);
-            }
-
-            .section-header {
-                margin-bottom: 2rem;
-            }
-
-            .steps-grid,
-            .membership-grid,
-            .expect-grid,
-            .faq-container {
-                grid-template-columns: 1fr;
-            }
-
-            .step-card {
-                padding: 2rem 1.5rem;
-            }
-
-            .membership-card {
-                padding: 2rem 1.5rem;
-            }
-
-            .expect-card {
-                padding: 1.5rem;
-            }
-
-            .faq-item {
-                padding: 1.5rem;
-            }
-
-            .cta-section {
-                padding: 4rem 1.5rem;
-            }
-
-            .cta-title {
-                font-size: clamp(1.8rem, 5vw, 2.5rem);
             }
 
             .footer-container {
@@ -799,15 +571,7 @@
                 gap: 2rem;
             }
 
-            .btn-primary {
-                padding: 0.8rem 1.5rem;
-                font-size: 0.8rem;
-                white-space: normal;
-            }
-
-            .modal-container {
-                max-width: calc(100% - 2rem);
-            }
+            .modal-container { max-width: calc(100% - 2rem); }
         }
     </style>
 </head>
@@ -816,7 +580,7 @@
     <div id="loadingScreen" style="position:fixed;top:0;left:0;width:100%;height:100%;background:#000;z-index:99999;display:flex;align-items:center;justify-content:center;opacity:1;transition:opacity 0.6s ease;">
         <div style="position:relative;width:120px;height:120px;">
             <div class="loader-ring"></div>
-            <img src="images/Anvil-WHITE.png" alt="Black Iron Athletics" style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);height:50px;opacity:0;animation:anvilFadeIn 0.8s ease 0.3s forwards;">
+            <img src="../images/Anvil-WHITE.png" alt="Black Iron Athletics" style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);height:50px;opacity:0;animation:anvilFadeIn 0.8s ease 0.3s forwards;">
         </div>
     </div>
     <style>
@@ -834,258 +598,115 @@
             });
         })();
     </script>
+
     <nav>
         <div class="nav-container">
-            <div class="logo">
-                <a href="index.html">
-                    <img src="https://storage.googleapis.com/msgsndr/snIUpSaFzz5WsavMB3QA/media/6980c90276757725c438432d.png" alt="Black Iron Athletics">
-                </a>
-            </div>
+            <div class="logo"><a href="../index.html"><img src="https://storage.googleapis.com/msgsndr/snIUpSaFzz5WsavMB3QA/media/6980c90276757725c438432d.png" alt="Black Iron Athletics"></a></div>
             <ul class="nav-links">
-                <li class="has-submenu">
-                    <a href="about.html">About Us</a>
-                    <ul class="submenu">
-                        <li><a href="about.html#mission">Our Mission</a></li>
-                        <li><a href="about.html#team">Meet the Team</a></li>
-                        <li><a href="about.html#schedule">Class Schedule</a></li>
-                    </ul>
-                </li>
-                <li class="has-submenu">
-                    <a href="getting-started.html">Getting Started</a>
-                    <ul class="submenu">
-                        <li><a href="#membership">Membership Options</a></li>
-                        <li><a href="#what-to-expect">What to Expect</a></li>
-                        <li><a href="#faqs">FAQs</a></li>
-                    </ul>
-                </li>
-                <li><a href="media.html">Media</a></li>
-                <li><a href="blog/">Blog</a></li>
-                <li><a href="contact.html">Contact</a></li>
+                <li class="has-submenu"><a href="../about.html">About Us</a><ul class="submenu"><li><a href="../about.html#mission">Our Mission</a></li><li><a href="../about.html#team">Meet the Team</a></li><li><a href="../about.html#schedule">Class Schedule</a></li></ul></li>
+                <li class="has-submenu"><a href="../getting-started.html">Getting Started</a><ul class="submenu"><li><a href="../getting-started.html#membership">Membership Options</a></li><li><a href="../getting-started.html#what-to-expect">What to Expect</a></li><li><a href="../getting-started.html#faqs">FAQs</a></li></ul></li>
+                <li><a href="../media.html">Media</a></li>
+                <li><a href="../blog/">Blog</a></li>
+                <li><a href="../contact.html">Contact</a></li>
             </ul>
             <a href="#" onclick="openLeadModal(); return false;" class="cta-btn">Book Free Consultation</a>
-            <button class="hamburger" onclick="toggleMobileNav()" aria-label="Menu">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
+            <button class="hamburger" onclick="toggleMobileNav()" aria-label="Menu"><span></span><span></span><span></span></button>
         </div>
     </nav>
-
     <div class="mobile-nav-overlay" id="mobileNav">
-        <a href="index.html" onclick="closeMobileNav()">Home</a>
-        <a href="about.html" onclick="closeMobileNav()">About Us</a>
-        <a href="getting-started.html" onclick="closeMobileNav()">Getting Started</a>
-        <a href="media.html" onclick="closeMobileNav()">Media</a>
-        <a href="blog/" onclick="closeMobileNav()">Blog</a>
-        <a href="contact.html" onclick="closeMobileNav()">Contact</a>
+        <a href="../index.html" onclick="closeMobileNav()">Home</a>
+        <a href="../about.html" onclick="closeMobileNav()">About Us</a>
+        <a href="../getting-started.html" onclick="closeMobileNav()">Getting Started</a>
+        <a href="../media.html" onclick="closeMobileNav()">Media</a>
+        <a href="../blog/" onclick="closeMobileNav()">Blog</a>
+        <a href="../contact.html" onclick="closeMobileNav()">Contact</a>
         <a href="#" class="mobile-cta" onclick="closeMobileNav(); openLeadModal(); return false;">Book Free Consultation</a>
     </div>
 
     <!-- Hero Section -->
     <section class="hero">
-        <img src="https://storage.googleapis.com/msgsndr/snIUpSaFzz5WsavMB3QA/media/69811aae10efd60e9f683c81.jpeg" alt="Start Your Journey at Black Iron Athletics" class="hero-bg">
         <div class="hero-container">
             <div class="hero-content">
-                <div class="hero-subtitle">Your Path Forward</div>
-                <h1>Start Your Journey</h1>
-                <p>Becoming an everyday athlete is easier than you think</p>
-                <a href="#" onclick="openLeadModal(); return false;" class="btn-primary" style="margin-top: 1rem;">Start Your Free Consultation</a>
+                <div class="hero-subtitle">Our Blog</div>
+                <h1>Fitness Tips & Training Advice</h1>
+                <p>Expert insights on training, nutrition, and living a stronger life.</p>
             </div>
         </div>
     </section>
 
-    <!-- Getting Started Section -->
-    <section id="getting-started" class="section">
-        <div class="section-container">
-            <div class="section-header">
-                <div class="section-subtitle">How It Works</div>
-                <h2 class="section-title">Getting Started Is Easy</h2>
-                <p class="section-description">Your path to becoming an everyday athlete</p>
-            </div>
-
-            <div class="steps-grid">
-                <div class="step-card">
-                    <div class="step-number">1</div>
-                    <h3>Book Your Free Consultation</h3>
-                    <p>Let's talk about your goals, concerns, and what success looks like for you. No pressure, no sales pitch. Just an honest conversation.</p>
+    <!-- Blog Listing Section -->
+    <section class="blog-section">
+        <div class="blog-container">
+            <div class="blog-grid">
+                <!-- Blog Card 1 -->
+                <div class="blog-card">
+                    <img src="../images/group-warmup.JPG" alt="How to Find the Best Gym in Frisco TX" class="blog-card-image">
+                    <div class="blog-card-content">
+                        <span class="blog-category">Training</span>
+                        <h3><a href="best-gym-frisco-tx.html">How to Find the Best Gym in Frisco TX</a></h3>
+                        <p class="blog-excerpt">Not all gyms are created equal. Here's what to look for when choosing a gym that actually helps you reach your goals.</p>
+                        <div class="blog-meta">
+                            <span class="blog-date">February 6, 2026</span>
+                            <a href="best-gym-frisco-tx.html" class="blog-read-more">Read More &rarr;</a>
+                        </div>
+                    </div>
                 </div>
 
-                <div class="step-card">
-                    <div class="step-number">2</div>
-                    <h3>Build Your Custom Plan</h3>
-                    <p>We'll design a training approach tailored to your body, your schedule, and your fitness level. You'll know exactly what to do.</p>
+                <!-- Blog Card 2 -->
+                <div class="blog-card">
+                    <img src="../images/back-squat.JPG" alt="Strength Training for Beginners" class="blog-card-image">
+                    <div class="blog-card-content">
+                        <span class="blog-category">Training</span>
+                        <h3><a href="strength-training-for-beginners.html">Strength Training for Beginners: A Complete Guide</a></h3>
+                        <p class="blog-excerpt">New to strength training? Here's everything you need to know to get started safely and see results.</p>
+                        <div class="blog-meta">
+                            <span class="blog-date">February 6, 2026</span>
+                            <a href="strength-training-for-beginners.html" class="blog-read-more">Read More &rarr;</a>
+                        </div>
+                    </div>
                 </div>
 
-                <div class="step-card">
-                    <div class="step-number">3</div>
-                    <h3>Start Moving</h3>
-                    <p>Join our community and become the happier, healthier athlete you're meant to be. We'll be with you every step of the way.</p>
-                </div>
-            </div>
-
-            <div style="text-align: center; margin-top: 3rem;">
-                <a href="#" onclick="openLeadModal(); return false;" class="btn-primary">Book Your Free Consultation</a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Membership Options Section -->
-    <section id="membership" class="section section-alt">
-        <div class="section-container">
-            <div class="section-header">
-                <div class="section-subtitle">Pricing</div>
-                <h2 class="section-title">Membership Options</h2>
-                <p class="section-description">Find the plan that fits your goals and lifestyle</p>
-            </div>
-
-            <div class="membership-grid">
-                <div class="membership-card">
-                    <h3 class="membership-title">Standard</h3>
-                    <div class="membership-period">3x Per Week</div>
-                    <ul class="membership-features">
-                        <li>3 Classes a week</li>
-                        <li>Strength & Conditioning</li>
-                        <li>Olympic Weightlifting</li>
-                        <li>Monthly Body Composition Scan</li>
-                        <li>Community Events</li>
-                    </ul>
-                    <a href="https://blackiron.wodify.com/OnlineSalesPage/Main?q=ReviewPurchase%7COnlineMembershipId%3D236019%26LocationId%3D10409%26OnlineMembershipPaymentOptionId%3D1473807" class="btn-primary">Get Started</a>
+                <!-- Blog Card 3 -->
+                <div class="blog-card">
+                    <img src="../images/coach-briefing.JPG" alt="Group Fitness vs Personal Training" class="blog-card-image">
+                    <div class="blog-card-content">
+                        <span class="blog-category">Fitness</span>
+                        <h3><a href="group-fitness-vs-personal-training.html">Group Fitness vs Personal Training: Which Is Right for You?</a></h3>
+                        <p class="blog-excerpt">Both options have their benefits. Here's how to decide which training style matches your goals and personality.</p>
+                        <div class="blog-meta">
+                            <span class="blog-date">February 6, 2026</span>
+                            <a href="group-fitness-vs-personal-training.html" class="blog-read-more">Read More &rarr;</a>
+                        </div>
+                    </div>
                 </div>
 
-                <div class="membership-card featured">
-                    <div class="featured-badge">Most Popular</div>
-                    <h3 class="membership-title">Unlimited + Open Gym</h3>
-                    <div class="membership-period">Train Without Limits</div>
-                    <ul class="membership-features">
-                        <li>Unlimited Classes</li>
-                        <li>Open Gym 7 Days a Week</li>
-                        <li>Private Gym Access</li>
-                        <li>Strength & Conditioning</li>
-                        <li>Olympic Weightlifting</li>
-                        <li>Monthly Body Composition Scan</li>
-                        <li>Community Events</li>
-                    </ul>
-                    <a href="https://blackiron.wodify.com/OnlineSalesPage/Main?q=ReviewPurchase%7COnlineMembershipId%3D236018%26LocationId%3D10409%26OnlineMembershipPaymentOptionId%3D1473833" class="btn-primary">Get Started</a>
-                </div>
-
-                <div class="membership-card">
-                    <h3 class="membership-title">Personal Training</h3>
-                    <div class="membership-period">1-on-1 Coaching</div>
-                    <ul class="membership-features">
-                        <li>One-on-one Coaching</li>
-                        <li>Customized Programming</li>
-                        <li>Individual Accountability</li>
-                        <li>Monthly Body Composition Scan</li>
-                        <li>Nutrition Guidance</li>
-                        <li>Community Events</li>
-                    </ul>
-                    <a href="https://blackiron.wodify.com/OnlineSalesPage/Main?q=Memberships" class="btn-primary">Get Started</a>
-                </div>
-
-                <div class="membership-card">
-                    <h3 class="membership-title">Open Gym Only</h3>
-                    <div class="membership-period">Self-Directed Training</div>
-                    <ul class="membership-features">
-                        <li>Open Gym 7 Days a Week</li>
-                        <li>Private Gym Access</li>
-                        <li>Access to All Our Programming</li>
-                        <li>Strength & Conditioning</li>
-                        <li>Olympic Weightlifting</li>
-                        <li>Hyrox</li>
-                    </ul>
-                    <a href="https://blackiron.wodify.com/OnlineSalesPage/Main?q=PaymentPlans%7cLocationId%3d10409%26OnlineMembershipId%3d303426" class="btn-primary">Get Started</a>
+                <!-- Blog Card 4 -->
+                <div class="blog-card">
+                    <img src="../images/outdoor-run.JPG" alt="How to Get Back Into Working Out" class="blog-card-image">
+                    <div class="blog-card-content">
+                        <span class="blog-category">Lifestyle</span>
+                        <h3><a href="getting-back-into-working-out.html">How to Get Back Into Working Out After a Long Break</a></h3>
+                        <p class="blog-excerpt">Life happens. Here's your no-judgment guide to getting back in the gym after time away.</p>
+                        <div class="blog-meta">
+                            <span class="blog-date">February 6, 2026</span>
+                            <a href="getting-back-into-working-out.html" class="blog-read-more">Read More &rarr;</a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- What to Expect Section -->
-    <section id="what-to-expect" class="section">
-        <div class="section-container">
-            <div class="section-header">
-                <div class="section-subtitle">Your Journey</div>
-                <h2 class="section-title">What to Expect</h2>
-                <p class="section-description">Here's what happens after you book your free consultation</p>
+    <!-- Social CTA Section -->
+    <section class="social-cta">
+        <div class="social-cta-container">
+            <h2>Want More Fitness Content?</h2>
+            <p style="color: var(--light-gray); font-size: 1.2rem;">Follow us on social media for daily tips, workouts, and community highlights.</p>
+            <div class="social-links">
+                <a href="https://www.instagram.com/blackiron_athletics/" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+                <a href="https://www.youtube.com/channel/UCF1XjUXEs81OWY70chem6vA" target="_blank"><i class="fa-brands fa-youtube"></i></a>
+                <a href="https://www.facebook.com/BlackIronAthletics/" target="_blank"><i class="fa-brands fa-facebook"></i></a>
             </div>
-
-            <div class="expect-grid">
-                <div class="expect-card">
-                    <h3>Free Consultation</h3>
-                    <p>We sit down and talk about your goals, any concerns you have, and what you want to achieve. This is a judgment-free conversation where we get to know you and you get to know us.</p>
-                </div>
-
-                <div class="expect-card">
-                    <h3>Custom Plan Created</h3>
-                    <p>Based on your goals and fitness level, we'll build a personalized training plan. Whether you need one-on-one coaching to build confidence or you're ready to jump into group classes, we'll map out the right path for you.</p>
-                </div>
-
-                <div class="expect-card">
-                    <h3>Start Training</h3>
-                    <p>If you're new, you'll work one-on-one with a coach to learn proper form and build confidence. If you have experience, you'll join our group classes with full support from our coaching team.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- FAQs Section -->
-    <section id="faqs" class="section section-alt">
-        <div class="section-container">
-            <div class="section-header">
-                <div class="section-subtitle">Questions?</div>
-                <h2 class="section-title">Frequently Asked Questions</h2>
-                <p class="section-description">Everything you need to know about getting started</p>
-            </div>
-
-            <div class="faq-container">
-                <div class="faq-item">
-                    <h3 class="faq-question">Is it beginner friendly?</h3>
-                    <p class="faq-answer">Absolutely. We have one-on-one onboarding to make sure you feel confident and ready to jump into the program.</p>
-                </div>
-
-                <div class="faq-item">
-                    <h3 class="faq-question">Do I have to be in shape to join?</h3>
-                    <p class="faq-answer">Not at all. You just have to be willing to move. Everyone starts somewhere, and we're here to meet you where you are.</p>
-                </div>
-
-                <div class="faq-item">
-                    <h3 class="faq-question">What if I have an old injury?</h3>
-                    <p class="faq-answer">We work with injuries and limitations all the time. Just talk to your coach and we're happy to accommodate. You won't be a burden, you'll be supported.</p>
-                </div>
-
-                <div class="faq-item">
-                    <h3 class="faq-question">How long until I see results?</h3>
-                    <p class="faq-answer">Most members notice changes in how they feel within 2 weeks. Visible physical changes typically show up in 4-6 weeks with consistent training.</p>
-                </div>
-
-                <div class="faq-item">
-                    <h3 class="faq-question">What if I've tried gyms before and quit?</h3>
-                    <p class="faq-answer">The difference here is community and accountability. Our coaches know your name, track your progress, and our members support each other.</p>
-                </div>
-
-                <div class="faq-item">
-                    <h3 class="faq-question">Can I try a class before I commit?</h3>
-                    <p class="faq-answer">Your free consultation includes the opportunity to experience what we do before making any decisions.</p>
-                </div>
-
-                <div class="faq-item">
-                    <h3 class="faq-question">What's your cancellation policy?</h3>
-                    <p class="faq-answer">We operate on month-to-month memberships. No long-term contracts. If you need to pause or cancel, just give us notice.</p>
-                </div>
-
-                <div class="faq-item">
-                    <h3 class="faq-question">How is this different from a regular gym?</h3>
-                    <p class="faq-answer">You get expert coaching, structured programming designed for results, and a community that pushes you to show up. You're not just renting equipment access.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- CTA Section -->
-    <section class="cta-section">
-        <div style="max-width: 100%; margin: 0 auto; padding: 0 2rem;">
-            <h2 class="cta-title">Ready to Get Started?</h2>
-            <p class="cta-subtitle">Join the Black Iron family and become the athlete you're meant to be</p>
-            <a href="#" onclick="openLeadModal(); return false;" class="btn-primary">Book Your Free Consultation</a>
         </div>
     </section>
 
@@ -1093,7 +714,7 @@
     <footer>
         <div class="footer-container">
             <div class="footer-section">
-                <a href="index.html">
+                <a href="../index.html">
                     <img src="https://storage.googleapis.com/msgsndr/snIUpSaFzz5WsavMB3QA/media/6980c90276757725c438432d.png" alt="Black Iron Athletics" class="footer-logo">
                 </a>
                 <p style="color: var(--light-gray); margin-bottom: 1rem;">Forging everyday people into everyday athletes through strength, community, and purpose.</p>
@@ -1102,12 +723,12 @@
             <div class="footer-section">
                 <h3>Quick Links</h3>
                 <ul>
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="about.html">About Us</a></li>
-                    <li><a href="getting-started.html">Getting Started</a></li>
-                    <li><a href="media.html">Media</a></li>
-                <li><a href="blog/">Blog</a></li>
-                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="../about.html">About Us</a></li>
+                    <li><a href="../getting-started.html">Getting Started</a></li>
+                    <li><a href="../media.html">Media</a></li>
+                <li><a href="../blog/">Blog</a></li>
+                    <li><a href="../contact.html">Contact</a></li>
                 </ul>
             </div>
 
@@ -1120,13 +741,13 @@
                 <p style="margin-bottom: 1.5rem;">
                     <a href="tel:(972)785-7036" style="color: var(--yellow); font-weight: 700;">(972) 785-7036</a>
                 </p>
-                <iframe 
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3344.9875647886857!2d-96.89026308820058!3d33.15034697358084!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x864c3a240f77e3f7%3A0x9f460209df528d6e!2sBlack%20Iron%20Athletics!5e0!3m2!1sen!2sus!4v1737509000000!5m2!1sen!2sus" 
-                    width="100%" 
-                    height="200" 
-                    style="border: 1px solid var(--medium-gray); border-radius: 0; margin-top: 1rem;" 
-                    allowfullscreen="" 
-                    loading="lazy" 
+                <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3344.9875647886857!2d-96.89026308820058!3d33.15034697358084!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x864c3a240f77e3f7%3A0x9f460209df528d6e!2sBlack%20Iron%20Athletics!5e0!3m2!1sen!2sus!4v1737509000000!5m2!1sen!2sus"
+                    width="100%"
+                    height="200"
+                    style="border: 1px solid var(--medium-gray); border-radius: 0; margin-top: 1rem;"
+                    allowfullscreen=""
+                    loading="lazy"
                     referrerpolicy="no-referrer-when-downgrade">
                 </iframe>
             </div>
@@ -1152,88 +773,51 @@
         </div>
     </footer>
 
-    <!-- Schema Markup for SEO -->
+    <!-- Schema Markup -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
-      "@type": "WebPage",
-      "name": "Getting Started at Black Iron Athletics",
-      "description": "Learn how to start your fitness journey at Black Iron Athletics in Frisco, TX. Simple 3-step onboarding, flexible membership options, and beginner-friendly training.",
-      "url": "https://www.blackironathleticsfrisco.com/getting-started"
-    }
-    </script>
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "FAQPage",
-      "mainEntity": [
+      "@type": "Blog",
+      "name": "Black Iron Athletics Blog",
+      "description": "Fitness tips, training advice, and gym content from Black Iron Athletics in Frisco, TX.",
+      "url": "https://www.blackironathleticsfrisco.com/blog/",
+      "publisher": {
+        "@type": "Organization",
+        "name": "Black Iron Athletics",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://storage.googleapis.com/msgsndr/snIUpSaFzz5WsavMB3QA/media/6980c90276757725c438432d.png"
+        }
+      },
+      "blogPost": [
         {
-          "@type": "Question",
-          "name": "Is it beginner friendly?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Absolutely. We have one-on-one onboarding to make sure you feel confident and ready to jump into the program."
-          }
+          "@type": "BlogPosting",
+          "headline": "How to Find the Best Gym in Frisco TX",
+          "url": "https://www.blackironathleticsfrisco.com/blog/best-gym-frisco-tx.html",
+          "datePublished": "2026-02-06"
         },
         {
-          "@type": "Question",
-          "name": "Do I have to be in shape to join?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Not at all. You just have to be willing to move. Everyone starts somewhere, and we're here to meet you where you are."
-          }
+          "@type": "BlogPosting",
+          "headline": "Strength Training for Beginners: A Complete Guide",
+          "url": "https://www.blackironathleticsfrisco.com/blog/strength-training-for-beginners.html",
+          "datePublished": "2026-02-06"
         },
         {
-          "@type": "Question",
-          "name": "What if I have an old injury?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "We work with injuries and limitations all the time. Just talk to your coach and we're happy to accommodate. You won't be a burden, you'll be supported."
-          }
+          "@type": "BlogPosting",
+          "headline": "Group Fitness vs Personal Training: Which Is Right for You?",
+          "url": "https://www.blackironathleticsfrisco.com/blog/group-fitness-vs-personal-training.html",
+          "datePublished": "2026-02-06"
         },
         {
-          "@type": "Question",
-          "name": "How long until I see results?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Most members notice changes in how they feel within 2 weeks. Visible physical changes typically show up in 4-6 weeks with consistent training."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "What if I've tried gyms before and quit?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "The difference here is community and accountability. Our coaches know your name, track your progress, and our members support each other."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "Can I try a class before I commit?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Your free consultation includes the opportunity to experience what we do before making any decisions."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "What's your cancellation policy?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "We operate on month-to-month memberships. No long-term contracts. If you need to pause or cancel, just give us notice."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "How is this different from a regular gym?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "You get expert coaching, structured programming designed for results, and a community that pushes you to show up. You're not just renting equipment access."
-          }
+          "@type": "BlogPosting",
+          "headline": "How to Get Back Into Working Out After a Long Break",
+          "url": "https://www.blackironathleticsfrisco.com/blog/getting-back-into-working-out.html",
+          "datePublished": "2026-02-06"
         }
       ]
     }
     </script>
+
 <!-- Lead Capture Popup Modal -->
 <style>
     .modal-overlay {
@@ -1485,14 +1069,14 @@
             document.querySelector('#modalLeadForm').style.display = 'none';
             document.querySelector('.modal-header-modal').style.display = 'none';
             document.getElementById('modalSuccessMessage').classList.add('show');
-            setTimeout(() => { window.location.href = 'book.html'; }, 3000);
+            setTimeout(() => { window.location.href = '../book.html'; }, 3000);
         })
         .catch((error) => {
             console.error('Error:', error);
             document.querySelector('#modalLeadForm').style.display = 'none';
             document.querySelector('.modal-header-modal').style.display = 'none';
             document.getElementById('modalSuccessMessage').classList.add('show');
-            setTimeout(() => { window.location.href = 'book.html'; }, 3000);
+            setTimeout(() => { window.location.href = '../book.html'; }, 3000);
         });
     });
 
