@@ -279,6 +279,8 @@
         .mobile-nav-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.97); z-index: 1001; flex-direction: column; align-items: center; justify-content: center; gap: 0; }
         .mobile-nav-overlay.active { display: flex; }
         .mobile-nav-overlay a { color: var(--white); text-decoration: none; font-size: 1.2rem; font-weight: 900; text-transform: uppercase; letter-spacing: 1px; padding: 1rem 2rem; transition: color 0.3s ease; text-align: center; }
+        .mobile-nav-overlay .mobile-sub-link { font-size: 0.9rem; color: var(--light-gray); padding: 0.5rem 2rem; font-weight: 700; letter-spacing: 0.5px; }
+        .mobile-nav-overlay .mobile-sub-link:hover { color: var(--yellow); }
         .mobile-nav-overlay a:hover { color: var(--yellow); }
         .mobile-nav-overlay .mobile-cta { margin-top: 1.5rem; background: var(--yellow); color: var(--black); padding: 1rem 2.5rem; font-size: 1rem; font-weight: 900; text-transform: uppercase; letter-spacing: 1px; border: 2px solid var(--yellow); transition: all 0.3s ease; }
         .mobile-nav-overlay .mobile-cta:hover { background: transparent; color: var(--yellow); }
@@ -346,7 +348,13 @@
     <div class="mobile-nav-overlay" id="mobileNav">
         <a href="../index.html" onclick="closeMobileNav()">Home</a>
         <a href="../about.html" onclick="closeMobileNav()">About Us</a>
+        <a href="../about.html#mission" class="mobile-sub-link" onclick="closeMobileNav()">Our Mission</a>
+        <a href="../about.html#team" class="mobile-sub-link" onclick="closeMobileNav()">Meet the Team</a>
+        <a href="../schedule.html" class="mobile-sub-link" onclick="closeMobileNav()">Class Schedule</a>
         <a href="../getting-started.html" onclick="closeMobileNav()">Getting Started</a>
+        <a href="../getting-started.html#membership" class="mobile-sub-link" onclick="closeMobileNav()">Membership Options</a>
+        <a href="../getting-started.html#what-to-expect" class="mobile-sub-link" onclick="closeMobileNav()">What to Expect</a>
+        <a href="../getting-started.html#faqs" class="mobile-sub-link" onclick="closeMobileNav()">FAQs</a>
         <a href="../media.html" onclick="closeMobileNav()">Media</a>
         <a href="../blog/" onclick="closeMobileNav()">Blog</a>
         <a href="../contact.html" onclick="closeMobileNav()">Contact</a>

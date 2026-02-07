@@ -630,6 +630,8 @@
             text-align: center;
         }
 
+        .mobile-nav-overlay .mobile-sub-link { font-size: 0.9rem; color: var(--light-gray); padding: 0.5rem 2rem; font-weight: 700; letter-spacing: 0.5px; }
+        .mobile-nav-overlay .mobile-sub-link:hover { color: var(--yellow); }
         .mobile-nav-overlay a:hover {
             color: var(--yellow);
         }
@@ -795,7 +797,13 @@
     <div class="mobile-nav-overlay" id="mobileNav">
         <a href="index.html" onclick="closeMobileNav()">Home</a>
         <a href="about.html" onclick="closeMobileNav()">About Us</a>
+        <a href="about.html#mission" class="mobile-sub-link" onclick="closeMobileNav()">Our Mission</a>
+        <a href="about.html#team" class="mobile-sub-link" onclick="closeMobileNav()">Meet the Team</a>
+        <a href="schedule.html" class="mobile-sub-link" onclick="closeMobileNav()">Class Schedule</a>
         <a href="getting-started.html" onclick="closeMobileNav()">Getting Started</a>
+        <a href="getting-started.html#membership" class="mobile-sub-link" onclick="closeMobileNav()">Membership Options</a>
+        <a href="getting-started.html#what-to-expect" class="mobile-sub-link" onclick="closeMobileNav()">What to Expect</a>
+        <a href="getting-started.html#faqs" class="mobile-sub-link" onclick="closeMobileNav()">FAQs</a>
         <a href="media.html" onclick="closeMobileNav()">Media</a>
         <a href="blog/" onclick="closeMobileNav()">Blog</a>
         <a href="contact.html" onclick="closeMobileNav()">Contact</a>
