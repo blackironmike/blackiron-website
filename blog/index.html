@@ -355,6 +355,94 @@
             color: var(--white);
         }
 
+        /* Blog Search & Filter */
+        .blog-search-bar {
+            position: relative;
+            margin-bottom: 2rem;
+        }
+
+        .blog-search-bar input {
+            width: 100%;
+            padding: 1rem 1rem 1rem 3rem;
+            background: var(--dark-gray);
+            border: 2px solid var(--medium-gray);
+            color: var(--white);
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1rem;
+            font-weight: 500;
+            transition: border-color 0.3s ease;
+        }
+
+        .blog-search-bar input::placeholder {
+            color: var(--light-gray);
+        }
+
+        .blog-search-bar input:focus {
+            outline: none;
+            border-color: var(--yellow);
+        }
+
+        .blog-search-bar .search-icon {
+            position: absolute;
+            left: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--light-gray);
+            font-size: 1rem;
+            pointer-events: none;
+        }
+
+        .blog-filter-buttons {
+            display: flex;
+            gap: 0.75rem;
+            margin-bottom: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .blog-filter-btn {
+            background: var(--dark-gray);
+            color: var(--light-gray);
+            border: 2px solid var(--medium-gray);
+            padding: 0.6rem 1.5rem;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .blog-filter-btn:hover {
+            border-color: var(--yellow);
+            color: var(--white);
+        }
+
+        .blog-filter-btn.active {
+            background: var(--yellow);
+            color: var(--black);
+            border-color: var(--yellow);
+            font-weight: 900;
+        }
+
+        .blog-no-results {
+            display: none;
+            grid-column: 1 / -1;
+            text-align: center;
+            padding: 4rem 2rem;
+        }
+
+        .blog-no-results h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+        }
+
+        .blog-no-results p {
+            color: var(--light-gray);
+            font-size: 1.1rem;
+        }
+
         /* Social CTA */
         .social-cta {
             background: var(--dark-gray);
@@ -651,6 +739,16 @@
     <!-- Blog Listing Section -->
     <section class="blog-section">
         <div class="blog-container">
+            <div class="blog-search-bar">
+                <i class="fa-solid fa-magnifying-glass search-icon"></i>
+                <input type="text" id="blogSearchInput" placeholder="Search articles...">
+            </div>
+            <div class="blog-filter-buttons">
+                <button class="blog-filter-btn active" data-category="all">All</button>
+                <button class="blog-filter-btn" data-category="Training">Training</button>
+                <button class="blog-filter-btn" data-category="Fitness">Fitness</button>
+                <button class="blog-filter-btn" data-category="Lifestyle">Lifestyle</button>
+            </div>
             <div class="blog-grid">
                 <!-- Blog Card 1 -->
                 <div class="blog-card">
@@ -706,6 +804,10 @@
                             <a href="getting-back-into-working-out.html" class="blog-read-more">Read More &rarr;</a>
                         </div>
                     </div>
+                </div>
+                <div class="blog-no-results" id="blogNoResults">
+                    <h3>No Articles Found</h3>
+                    <p>Try a different search term or category.</p>
                 </div>
             </div>
         </div>
@@ -942,6 +1044,51 @@
         document.querySelector('.hamburger').classList.remove('active');
         document.body.style.overflow = '';
     }
+</script>
+
+<script>
+    // Blog Search & Filter
+    (function() {
+        var searchInput = document.getElementById('blogSearchInput');
+        var filterBtns = document.querySelectorAll('.blog-filter-btn');
+        var cards = document.querySelectorAll('.blog-card');
+        var noResults = document.getElementById('blogNoResults');
+        var activeCategory = 'all';
+
+        function filterCards() {
+            var query = searchInput.value.toLowerCase().trim();
+            var visibleCount = 0;
+
+            cards.forEach(function(card) {
+                var title = card.querySelector('h3').textContent.toLowerCase();
+                var category = card.querySelector('.blog-category').textContent.trim();
+                var excerpt = card.querySelector('.blog-excerpt').textContent.toLowerCase();
+
+                var matchesSearch = !query || title.indexOf(query) !== -1 || excerpt.indexOf(query) !== -1 || category.toLowerCase().indexOf(query) !== -1;
+                var matchesCategory = activeCategory === 'all' || category === activeCategory;
+
+                if (matchesSearch && matchesCategory) {
+                    card.style.display = '';
+                    visibleCount++;
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+
+            noResults.style.display = visibleCount === 0 ? 'block' : 'none';
+        }
+
+        searchInput.addEventListener('input', filterCards);
+
+        filterBtns.forEach(function(btn) {
+            btn.addEventListener('click', function() {
+                filterBtns.forEach(function(b) { b.classList.remove('active'); });
+                btn.classList.add('active');
+                activeCategory = btn.getAttribute('data-category');
+                filterCards();
+            });
+        });
+    })();
 </script>
 
 <script src="https://link.msgsndr.com/js/form_embed.js" type="text/javascript"></script>
