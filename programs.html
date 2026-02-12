@@ -3,20 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About Us | Black Iron Athletics | Veteran-Owned Gym in Frisco, TX</title>
-    <meta name="description" content="Learn about Black Iron Athletics' mission to forge everyday people into everyday athletes. Veteran-owned gym in Frisco, TX since 2013. Meet our team and explore membership options.">
-    <link rel="canonical" href="https://www.blackironathleticsfrisco.com/about.html">
+    <title>Our Programs | Black Iron Athletics | Frisco, TX</title>
+    <meta name="description" content="Explore all programs at Black Iron Athletics in Frisco, TX — group classes, personal training, nutrition coaching, and 24/7 open gym access. Find the right fit for your goals.">
+    <link rel="canonical" href="https://www.blackironathleticsfrisco.com/programs.html">
     <!-- Open Graph -->
-    <meta property="og:title" content="About Us | Black Iron Athletics | Veteran-Owned Gym in Frisco, TX">
-    <meta property="og:description" content="Learn about Black Iron Athletics' mission to forge everyday people into everyday athletes. Veteran-owned gym in Frisco, TX since 2013.">
-    <meta property="og:url" content="https://www.blackironathleticsfrisco.com/about.html">
+    <meta property="og:title" content="Our Programs | Black Iron Athletics | Frisco, TX">
+    <meta property="og:description" content="Explore all programs at Black Iron Athletics in Frisco, TX — group classes, personal training, nutrition coaching, and 24/7 open gym access.">
+    <meta property="og:url" content="https://www.blackironathleticsfrisco.com/programs.html">
     <meta property="og:image" content="https://www.blackironathleticsfrisco.com/images/social-share.png">
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="Black Iron Athletics">
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="About Us | Black Iron Athletics | Veteran-Owned Gym in Frisco, TX">
-    <meta name="twitter:description" content="Learn about Black Iron Athletics' mission to forge everyday people into everyday athletes. Veteran-owned gym in Frisco, TX since 2013.">
+    <meta name="twitter:title" content="Our Programs | Black Iron Athletics | Frisco, TX">
+    <meta name="twitter:description" content="Explore all programs at Black Iron Athletics in Frisco, TX — group classes, personal training, nutrition coaching, and 24/7 open gym access.">
     <meta name="twitter:image" content="https://www.blackironathleticsfrisco.com/images/social-share.png">
     <link rel="icon" type="image/png" href="images/Anvil-BLACK.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -73,8 +73,10 @@
         }
 
         /* Anchor offset for fixed nav */
-        #mission,
-        #team {
+        #group-classes,
+        #personal-training,
+        #nutrition-coaching,
+        #open-gym {
             scroll-margin-top: 100px;
         }
 
@@ -317,27 +319,17 @@
             text-transform: uppercase;
         }
 
-        /* Mission Section */
-        .mission-statement {
-            font-size: 1.8rem;
-            line-height: 1.6;
-            color: var(--yellow);
-            text-align: center;
-            margin-bottom: 4rem;
-            font-weight: 600;
-            font-style: italic;
+        .section-description {
+            font-size: 1.2rem;
+            color: var(--light-gray);
+            max-width: 800px;
+            margin: 0 auto;
         }
 
+        /* Content Block */
         .content-block {
             max-width: 900px;
-            margin: 0 auto 4rem;
-        }
-
-        .content-block h3 {
-            font-weight: 900;
-            font-size: 1.8rem;
-            margin-bottom: 1.5rem;
-            text-transform: uppercase;
+            margin: 0 auto;
         }
 
         .content-block p {
@@ -347,116 +339,120 @@
             margin-bottom: 1.5rem;
         }
 
-        /* Beliefs Grid */
-        .beliefs-grid {
+        /* Feature Cards - used in Group Classes & Open Gym */
+        .features-grid {
             display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 2.5rem;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 0;
             margin-top: 4rem;
         }
 
-        .belief-card {
-            background: var(--dark-gray);
+        .feature-card {
             padding: 3rem;
-            border: 2px solid var(--medium-gray);
-            transition: all 0.4s ease;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
+            background: var(--dark-gray);
+            border: 1px solid var(--medium-gray);
+            transition: all 0.3s ease;
         }
 
-        .belief-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 4px;
-            background: var(--yellow);
-            transform: scaleX(0);
-            transition: transform 0.4s ease;
-        }
-
-        .belief-card:hover {
+        .feature-card:hover {
+            background: var(--medium-gray);
             border-color: var(--yellow);
-            transform: translateY(-8px);
-            box-shadow: 0 15px 40px rgba(255, 210, 2, 0.15);
         }
 
-        .belief-card:hover::before {
-            transform: scaleX(1);
-        }
-
-        .belief-icon {
-            font-size: 3rem;
-            color: var(--yellow);
+        .feature-icon {
+            font-size: 2.5rem;
             margin-bottom: 1.5rem;
-            display: inline-block;
+            color: var(--yellow);
         }
 
-        .belief-card h4 {
+        .feature-title {
             font-weight: 900;
             font-size: 1.5rem;
-            margin-bottom: 1.2rem;
-            color: var(--white);
+            margin-bottom: 1rem;
             text-transform: uppercase;
-            letter-spacing: 0.5px;
         }
 
-        .belief-card p {
+        .feature-description {
             color: var(--light-gray);
             line-height: 1.8;
-            font-size: 1.05rem;
         }
 
-        /* Team Grid */
-        .team-grid {
+        /* Feature Cards - centered variant for PT/Nutrition/Open Gym */
+        .feature-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 2rem;
             margin-top: 4rem;
         }
 
-        .team-card {
+        .feature-card-centered {
             background: var(--dark-gray);
-            overflow: hidden;
+            padding: 2.5rem;
             border: 2px solid var(--medium-gray);
             transition: all 0.3s ease;
+            text-align: center;
         }
 
-        .team-card:hover {
+        .feature-card-centered:hover {
             border-color: var(--yellow);
             transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(255, 210, 2, 0.2);
         }
 
-        .team-image {
-            width: 100%;
-            height: 350px;
-            background: var(--medium-gray);
+        .feature-card-centered h3 {
+            font-weight: 900;
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+        }
+
+        .feature-card-centered p {
+            color: var(--light-gray);
+            line-height: 1.8;
+        }
+
+        /* Steps Grid */
+        .steps-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 4rem;
+        }
+
+        .step-card {
+            background: var(--black);
+            padding: 3rem 2rem;
+            border: 2px solid var(--medium-gray);
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+
+        .step-card:hover {
+            border-color: var(--yellow);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(255, 210, 2, 0.2);
+        }
+
+        .step-number {
+            background: var(--yellow);
+            color: var(--black);
+            width: 60px;
+            height: 60px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 4rem;
-            color: var(--yellow);
-        }
-
-        .team-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .team-content {
-            padding: 2rem;
-        }
-
-        .team-name {
+            font-size: 2rem;
             font-weight: 900;
-            font-size: 1.8rem;
+            margin: 0 auto 1.5rem;
+        }
+
+        .step-card h3 {
+            font-weight: 900;
+            font-size: 1.5rem;
             margin-bottom: 0.5rem;
         }
 
-        .team-role {
+        .step-duration {
             color: var(--yellow);
             font-weight: 700;
             font-size: 0.9rem;
@@ -465,9 +461,26 @@
             margin-bottom: 1rem;
         }
 
-        .team-bio {
+        .step-card p {
             color: var(--light-gray);
             line-height: 1.8;
+        }
+
+        /* Callout Block */
+        .callout-block {
+            max-width: 900px;
+            margin: 4rem auto 0;
+            padding: 3rem;
+            border-left: 5px solid var(--yellow);
+            background: var(--black);
+            font-style: italic;
+        }
+
+        .callout-block p {
+            font-size: 1.2rem;
+            line-height: 1.8;
+            color: var(--light-gray);
+            margin: 0;
         }
 
         .btn-primary {
@@ -488,6 +501,26 @@
         .btn-primary:hover {
             background: var(--black);
             color: var(--yellow);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--yellow);
+            padding: 1.2rem 3rem;
+            text-decoration: none;
+            font-weight: 900;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border: 2px solid var(--yellow);
+            border-radius: 0;
+            display: inline-block;
+        }
+
+        .btn-secondary:hover {
+            background: var(--yellow);
+            color: var(--black);
         }
 
         /* CTA Section */
@@ -574,6 +607,11 @@
             .hero-container,
             .section-container,
             .footer-container {
+                padding-left: 2rem;
+                padding-right: 2rem;
+            }
+
+            .cta-section {
                 padding-left: 2rem;
                 padding-right: 2rem;
             }
@@ -725,21 +763,27 @@
                 padding: 4rem 0;
             }
 
-            .mission-statement {
-                font-size: 1.3rem;
-            }
-
-            .beliefs-grid,
-            .team-grid {
+            .features-grid,
+            .feature-grid,
+            .steps-grid {
                 grid-template-columns: 1fr;
             }
 
-            .belief-card {
-                padding: 2rem;
+            .feature-card {
+                padding: 2rem 1.5rem;
             }
 
-            .team-content {
-                padding: 1.5rem;
+            .feature-card-centered {
+                padding: 2rem 1.5rem;
+            }
+
+            .step-card {
+                padding: 2rem 1.5rem;
+            }
+
+            .callout-block {
+                padding: 2rem 1.5rem;
+                margin-top: 2rem;
             }
 
             .cta-section {
@@ -755,7 +799,8 @@
                 gap: 2rem;
             }
 
-            .btn-primary {
+            .btn-primary,
+            .btn-secondary {
                 padding: 0.8rem 1.5rem;
                 font-size: 0.8rem;
                 white-space: normal;
@@ -847,134 +892,224 @@
 
     <!-- Hero Section -->
     <section class="hero">
-        <img src="https://storage.googleapis.com/msgsndr/snIUpSaFzz5WsavMB3QA/media/69811aae76757797ee48a8d4.jpeg" alt="About Black Iron Athletics" class="hero-bg">
+        <img src="https://images.leadconnectorhq.com/image/f_webp/q_80/r_1200/u_https://assets.cdn.filesafe.space/snIUpSaFzz5WsavMB3QA/media/6859d48d4fe1870c2e37d104.png" alt="Programs at Black Iron Athletics" class="hero-bg">
         <div class="hero-container">
             <div class="hero-content">
-                <div class="hero-subtitle">Our Story</div>
-                <h1>About Us</h1>
-                <p>Forging everyday people into everyday athletes through strength, community, and purpose.</p>
+                <div class="hero-subtitle">Black Iron Athletics</div>
+                <h1>Our Programs</h1>
+                <p>From coach-led group classes to 1-on-1 personal training, nutrition coaching, and 24/7 open gym access -- we have everything you need to reach your goals.</p>
                 <a href="#" onclick="openLeadModal(); return false;" class="btn-primary" style="margin-top: 1rem;">Book Your Free Consultation</a>
             </div>
         </div>
     </section>
 
-    <!-- Mission Section -->
-    <section id="mission" class="section">
+    <!-- ========== GROUP CLASSES ========== -->
+    <section id="group-classes" class="section section-alt">
         <div class="section-container">
             <div class="section-header">
-                <div class="section-subtitle">Our Mission</div>
-                <h2 class="section-title">Why We Exist</h2>
+                <div class="section-subtitle">Coach-Led Classes</div>
+                <h2 class="section-title">Group Classes</h2>
             </div>
 
             <div class="content-block">
-                <p>Black Iron Athletics was founded in 2013 with a simple belief: movement is medicine. As a veteran-owned business, we built this gym on the principles of discipline, integrity, and service. We believe in hard work, accountability, and showing up for each other every single day.</p>
-                <p>Over 12+ years, we've helped over 3,000 people transform their lives -- from complete beginners to experienced athletes chasing new PRs. We meet people where they are and help them become who they're meant to be. Getting fit isn't about quick fixes. It's about building a body that serves you for life.</p>
+                <p>Coach-led group classes are the heart of Black Iron Athletics. Our programming has roots in CrossFit but takes a modern approach -- more structure, more predictable results, and less wear and tear on the body. Every class is led by a certified coach, scales to every fitness level, and is designed to build real-world strength, endurance, and community.</p>
             </div>
 
-            <div class="section-header" style="margin-top: 5rem;">
-                <h2 class="section-title">What We Believe</h2>
+            <!-- Class Type Highlight Cards -->
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fa-solid fa-dumbbell"></i></div>
+                    <h3 class="feature-title">Strength &amp; Conditioning</h3>
+                    <p class="feature-description">Our mainstay program. Built from CrossFit roots with a modern approach -- more structure, more predictable results, less wear and tear on the body. Combines functional strength, conditioning, and skill work in a coached 60-minute session.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fa-solid fa-weight-hanging"></i></div>
+                    <h3 class="feature-title">Weightlifting</h3>
+                    <p class="feature-description">Olympic weightlifting focused on improving your lifts and maximizing your potential with a barbell. Whether you're learning the clean &amp; jerk for the first time or chasing a new PR, this class is built for progress.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fa-solid fa-person-running"></i></div>
+                    <h3 class="feature-title">Hyrox</h3>
+                    <p class="feature-description">Focused on getting you race day ready. A blend of running and functional fitness stations designed to prepare you for Hyrox competition or just push your endurance to the next level.</p>
+                </div>
             </div>
 
-            <div class="beliefs-grid">
-                <div class="belief-card">
-                    <div class="belief-icon"><i class="fa-solid fa-shield-halved"></i></div>
-                    <h4>Quality of Life Over Ego</h4>
-                    <p>It's about building real strength and creating a body that serves you well for decades. When you feel strong and capable, confidence follows naturally.</p>
+            <!-- Philosophy Callout -->
+            <div class="callout-block">
+                <p>"Movement is movement. Whatever gets you excited to move is positive. We offer different classes because people are different, but the goal is always the same -- sweat, community, and the pursuit of happiness."</p>
+            </div>
+
+            <!-- Class Breakdown -->
+            <div style="margin-top: 5rem;">
+                <div class="section-header">
+                    <div class="section-subtitle">Class Breakdown</div>
+                    <h3 class="section-title" style="font-size: clamp(2rem, 4vw, 3rem);">What a Typical Class Looks Like</h3>
                 </div>
 
-                <div class="belief-card">
-                    <div class="belief-icon"><i class="fa-solid fa-people-group"></i></div>
-                    <h4>Community & Accountability</h4>
-                    <p>You don't have to figure this out on your own. Our coaches and your fellow athletes are here to support you, push you, and celebrate every win along the way.</p>
-                </div>
+                <div class="steps-grid">
+                    <div class="step-card">
+                        <div class="step-number">1</div>
+                        <h3>Warm-Up</h3>
+                        <div class="step-duration">10 Minutes</div>
+                        <p>Mobility, activation, and movement prep.</p>
+                    </div>
 
-                <div class="belief-card">
-                    <div class="belief-icon"><i class="fa-solid fa-brain"></i></div>
-                    <h4>Mental Health Matters</h4>
-                    <p>We know the mental battle can be harder than the physical one. That's why we've built a community that supports the whole person, not just the workout.</p>
+                    <div class="step-card">
+                        <div class="step-number">2</div>
+                        <h3>Skill / Strength</h3>
+                        <div class="step-duration">15-20 Minutes</div>
+                        <p>Build power, refine technique, hit PRs.</p>
+                    </div>
+
+                    <div class="step-card">
+                        <div class="step-number">3</div>
+                        <h3>Conditioning</h3>
+                        <div class="step-duration">15-20 Minutes</div>
+                        <p>High-intensity work that builds endurance.</p>
+                    </div>
+
+                    <div class="step-card">
+                        <div class="step-number">4</div>
+                        <h3>Cool Down</h3>
+                        <div class="step-duration">5 Minutes</div>
+                        <p>Recovery stretching and community time.</p>
+                    </div>
                 </div>
+            </div>
+
+            <div style="text-align: center; margin-top: 4rem; display: flex; gap: 1.5rem; justify-content: center; flex-wrap: wrap;">
+                <a href="schedule.html" class="btn-secondary">View Class Schedule</a>
+                <a href="#" onclick="openLeadModal(); return false;" class="btn-primary">Book Your Free Consultation</a>
             </div>
         </div>
     </section>
 
-    <!-- Team Section -->
-    <section id="team" class="section section-alt">
+    <!-- ========== PERSONAL TRAINING ========== -->
+    <section id="personal-training" class="section">
         <div class="section-container">
             <div class="section-header">
-                <div class="section-subtitle">Our Team</div>
-                <h2 class="section-title">Meet the Coaches</h2>
-                <p style="font-size: 1.2rem; color: var(--light-gray); max-width: 800px; margin: 1rem auto 0;">Expert trainers with 12+ years of experience guiding every rep, every set, every milestone.</p>
+                <div class="section-subtitle">1-on-1 Coaching</div>
+                <h2 class="section-title">Personal Training</h2>
             </div>
 
-            <div class="team-grid">
-                <div class="team-card">
-                    <div class="team-image">
-                        <img src="images/owner-headcoach-mike.jpeg" alt="Mike Manning - Owner & Head Coach at Black Iron Athletics" loading="lazy">
-                    </div>
-                    <div class="team-content">
-                        <h3 class="team-name">Mike Manning</h3>
-                        <div class="team-role">Owner & Head Coach</div>
-                    </div>
+            <div class="content-block">
+                <p>Personal training at Black Iron Athletics is dedicated 1-on-1 time with a certified coach who designs everything around YOU. Every session, every rep, every program detail is built specifically for your body, your goals, and your timeline. Your programs are customized, progressive, and data-driven so you always know where you stand and exactly what comes next.</p>
+            </div>
+
+            <div class="feature-grid">
+                <div class="feature-card-centered">
+                    <div class="feature-icon"><i class="fa-solid fa-clipboard-list"></i></div>
+                    <h3>Custom Programming</h3>
+                    <p>Every program is built specifically for your goals -- no cookie-cutter templates.</p>
                 </div>
 
-                <div class="team-card">
-                    <div class="team-image">
-                        <img src="images/general-manager-caoch-kristin.jpeg" alt="Kristin - General Manager at Black Iron Athletics" loading="lazy">
-                    </div>
-                    <div class="team-content">
-                        <h3 class="team-name">Kristin</h3>
-                        <div class="team-role">General Manager</div>
-                    </div>
+                <div class="feature-card-centered">
+                    <div class="feature-icon"><i class="fa-solid fa-user-shield"></i></div>
+                    <h3>1-on-1 Coaching</h3>
+                    <p>Undivided attention every session, focused entirely on you.</p>
                 </div>
 
-                <div class="team-card">
-                    <div class="team-image">
-                        <img src="images/coach-aileen.jpeg" alt="Aileen - Coach at Black Iron Athletics" loading="lazy">
-                    </div>
-                    <div class="team-content">
-                        <h3 class="team-name">Aileen</h3>
-                        <div class="team-role">Coach</div>
-                    </div>
+                <div class="feature-card-centered">
+                    <div class="feature-icon"><i class="fa-solid fa-bullseye"></i></div>
+                    <h3>Form &amp; Technique</h3>
+                    <p>Detailed movement correction so you move better and lift safer.</p>
                 </div>
+            </div>
 
-                <div class="team-card">
-                    <div class="team-image">
-                        <img src="images/coach-evan.jpeg" alt="Evan - Coach at Black Iron Athletics" loading="lazy">
-                    </div>
-                    <div class="team-content">
-                        <h3 class="team-name">Evan</h3>
-                        <div class="team-role">Coach</div>
-                    </div>
-                </div>
-
-                <div class="team-card">
-                    <div class="team-image">
-                        <img src="images/coach-amber.jpeg" alt="Amber - Coach at Black Iron Athletics" loading="lazy">
-                    </div>
-                    <div class="team-content">
-                        <h3 class="team-name">Amber</h3>
-                        <div class="team-role">Coach</div>
-                    </div>
-                </div>
-
-                <div class="team-card">
-                    <div class="team-image">
-                        <img src="images/coach-emily.jpeg" alt="Emily - Coach at Black Iron Athletics" loading="lazy">
-                    </div>
-                    <div class="team-content">
-                        <h3 class="team-name">Emily</h3>
-                        <div class="team-role">Coach</div>
-                    </div>
-                </div>
+            <div style="text-align: center; margin-top: 4rem;">
+                <a href="#" onclick="openLeadModal(); return false;" class="btn-primary">Book Your Free Consultation</a>
             </div>
         </div>
     </section>
 
-    <!-- CTA Section -->
-    <section class="cta-section" style="background: var(--black);">
+    <!-- ========== NUTRITION COACHING ========== -->
+    <section id="nutrition-coaching" class="section section-alt">
+        <div class="section-container">
+            <div class="section-header">
+                <div class="section-subtitle">Fuel Your Results</div>
+                <h2 class="section-title">Nutrition Coaching</h2>
+            </div>
+
+            <div class="content-block">
+                <p>Nutrition coaching at Black Iron Athletics is a sustainable, personalized approach to fueling your body the right way. You'll work 1-on-1 with a dedicated coach who builds a nutrition strategy designed specifically for you -- whether that means tracking macros, intuitive eating, or something in between. No guilt, no gimmicks, just a clear plan and real results that last.</p>
+            </div>
+
+            <div class="feature-grid">
+                <div class="feature-card-centered">
+                    <div class="feature-icon">&#127858;</div>
+                    <h3>Personalized Meal Planning</h3>
+                    <p>Custom nutrition plans built around your lifestyle and food preferences.</p>
+                </div>
+
+                <div class="feature-card-centered">
+                    <div class="feature-icon">&#128222;</div>
+                    <h3>1-on-1 Coaching Calls</h3>
+                    <p>Regular check-ins to review progress, make adjustments, and keep you on track.</p>
+                </div>
+
+                <div class="feature-card-centered">
+                    <div class="feature-icon">&#127793;</div>
+                    <h3>Habit-Based Approach</h3>
+                    <p>Sustainable habits that stick -- not crash diets that burn out.</p>
+                </div>
+            </div>
+
+            <div style="text-align: center; margin-top: 4rem;">
+                <a href="#" onclick="openLeadModal(); return false;" class="btn-primary">Book Your Free Consultation</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== 24/7 OPEN GYM ========== -->
+    <section id="open-gym" class="section">
+        <div class="section-container">
+            <div class="section-header">
+                <div class="section-subtitle">Train on Your Schedule</div>
+                <h2 class="section-title">24/7 Open Gym</h2>
+            </div>
+
+            <div class="content-block">
+                <p>Open Gym gives you full access to the Black Iron Athletics facility 24 hours a day, 7 days a week. It's the ultimate flexibility for athletes who refuse to let a busy schedule stand between them and their goals. Entry is simple and secure with key fob access, and the facility is climate-controlled and well-maintained. You can also follow our structured programming on your own schedule.</p>
+                <h3 style="font-size: 1.3rem; margin-top: 2rem; margin-bottom: 1rem; color: var(--yellow); text-transform: uppercase;">Equipment Available</h3>
+                <ul style="list-style: none; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 0.5rem;">
+                    <li style="color: var(--light-gray); padding: 0.5rem 0;">&#8226; Barbells & Plates</li>
+                    <li style="color: var(--light-gray); padding: 0.5rem 0;">&#8226; Squat Racks & Rigs</li>
+                    <li style="color: var(--light-gray); padding: 0.5rem 0;">&#8226; Dumbbells & Kettlebells</li>
+                    <li style="color: var(--light-gray); padding: 0.5rem 0;">&#8226; Cardio Equipment</li>
+                    <li style="color: var(--light-gray); padding: 0.5rem 0;">&#8226; Accessories & Bands</li>
+                    <li style="color: var(--light-gray); padding: 0.5rem 0;">&#8226; Recovery Tools</li>
+                </ul>
+            </div>
+
+            <div class="features-grid" style="background: var(--black);">
+                <div class="feature-card" style="background: var(--black);">
+                    <div class="feature-icon"><i class="fa-solid fa-clock"></i></div>
+                    <h3 class="feature-title">24/7 Access</h3>
+                    <p class="feature-description">Train any time, day or night -- the gym is always open for you.</p>
+                </div>
+                <div class="feature-card" style="background: var(--black);">
+                    <div class="feature-icon"><i class="fa-solid fa-dumbbell"></i></div>
+                    <h3 class="feature-title">Full Equipment Access</h3>
+                    <p class="feature-description">Barbells, dumbbells, rigs, cardio machines, and more.</p>
+                </div>
+                <div class="feature-card" style="background: var(--black);">
+                    <div class="feature-icon"><i class="fa-solid fa-clipboard-list"></i></div>
+                    <h3 class="feature-title">Access to Programming</h3>
+                    <p class="feature-description">Follow expert-designed workouts on your own schedule.</p>
+                </div>
+            </div>
+
+            <div style="text-align: center; margin-top: 4rem;">
+                <a href="#" onclick="openLeadModal(); return false;" class="btn-primary">Book Your Free Consultation</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== FINAL CTA ========== -->
+    <section class="cta-section">
         <div style="max-width: 100%; margin: 0 auto; padding: 0 2rem;">
             <h2 class="cta-title">Ready to Get Started?</h2>
-            <p class="cta-subtitle">Join the Black Iron family and become the athlete you're meant to be.</p>
+            <p class="cta-subtitle">Book your free consultation and find the program that fits your goals.</p>
             <a href="#" onclick="openLeadModal(); return false;" class="btn-primary">Book Your Free Consultation</a>
         </div>
     </section>
@@ -1012,13 +1147,13 @@
                 <p style="margin-bottom: 1.5rem;">
                     <a href="tel:(972)785-7036" style="color: var(--yellow); font-weight: 700;">(972) 785-7036</a>
                 </p>
-                <iframe 
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3344.9875647886857!2d-96.89026308820058!3d33.15034697358084!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x864c3a240f77e3f7%3A0x9f460209df528d6e!2sBlack%20Iron%20Athletics!5e0!3m2!1sen!2sus!4v1737509000000!5m2!1sen!2sus" 
-                    width="100%" 
-                    height="200" 
-                    style="border: 1px solid var(--medium-gray); border-radius: 0; margin-top: 1rem;" 
-                    allowfullscreen="" 
-                    loading="lazy" 
+                <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3344.9875647886857!2d-96.89026308820058!3d33.15034697358084!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x864c3a240f77e3f7%3A0x9f460209df528d6e!2sBlack%20Iron%20Athletics!5e0!3m2!1sen!2sus!4v1737509000000!5m2!1sen!2sus"
+                    width="100%"
+                    height="200"
+                    style="border: 1px solid var(--medium-gray); border-radius: 0; margin-top: 1rem;"
+                    allowfullscreen=""
+                    loading="lazy"
                     referrerpolicy="no-referrer-when-downgrade">
                 </iframe>
             </div>
@@ -1044,19 +1179,17 @@
         </div>
     </footer>
 
-    <!-- Schema Markup for SEO -->
+    <!-- Schema Markup: Service -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
-      "@type": "AboutPage",
-      "name": "About Black Iron Athletics",
-      "description": "Learn about Black Iron Athletics' mission to forge everyday people into everyday athletes. Veteran-owned gym in Frisco, TX since 2013.",
-      "url": "https://www.blackironathleticsfrisco.com/about",
-      "mainEntity": {
+      "@type": "Service",
+      "name": "Fitness Programs",
+      "description": "Explore all programs at Black Iron Athletics in Frisco, TX — group classes, personal training, nutrition coaching, and 24/7 open gym access.",
+      "url": "https://www.blackironathleticsfrisco.com/programs.html",
+      "provider": {
         "@type": "GymAndHealthClub",
         "name": "Black Iron Athletics",
-        "foundingDate": "2013",
-        "description": "Veteran-owned gym in Frisco, TX helping everyday people become everyday athletes since 2013.",
         "telephone": "(972) 785-7036",
         "address": {
           "@type": "PostalAddress",
@@ -1072,9 +1205,56 @@
           "https://www.youtube.com/channel/UCF1XjUXEs81OWY70chem6vA",
           "https://www.facebook.com/BlackIronAthletics/"
         ]
+      },
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "Fitness Programs",
+        "itemListElement": [
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Group Classes",
+              "description": "Coach-led group fitness classes including Strength & Conditioning, Weightlifting, and Hyrox."
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Personal Training",
+              "description": "1-on-1 personal training with custom programming, form correction, and accountability."
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Nutrition Coaching",
+              "description": "Personalized nutrition coaching with custom meal plans, coaching calls, and habit-based approach."
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "24/7 Open Gym",
+              "description": "Round-the-clock gym access with full equipment and structured programming."
+            }
+          }
+        ]
+      },
+      "areaServed": {
+        "@type": "City",
+        "name": "Frisco",
+        "containedInPlace": {
+          "@type": "State",
+          "name": "Texas"
+        }
       }
     }
     </script>
+
 <!-- Lead Capture Popup Modal -->
 <style>
     .modal-overlay {
@@ -1132,6 +1312,7 @@
         .modal-overlay { padding: 1rem; }
     }
 </style>
+
 <div class="modal-overlay" id="leadModal">
     <div class="modal-container">
         <button class="modal-close" onclick="closeLeadModal()">&times;</button>
@@ -1154,6 +1335,7 @@
         ></iframe>
     </div>
 </div>
+
 <script>
     function openLeadModal() {
         document.getElementById('leadModal').classList.add('active');
