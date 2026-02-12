@@ -412,42 +412,54 @@
         }
 
         /* Team Carousel */
+        .carousel-wrapper {
+            position: relative;
+            overflow: hidden;
+            margin-top: 4rem;
+        }
+
         .team-carousel {
             display: flex;
             gap: 2rem;
-            margin-top: 4rem;
-            overflow-x: auto;
-            scroll-snap-type: x mandatory;
-            -webkit-overflow-scrolling: touch;
-            padding-bottom: 1rem;
-            scrollbar-width: thin;
-            scrollbar-color: var(--yellow) var(--medium-gray);
+            transition: transform 0.5s ease;
         }
 
-        .team-carousel::-webkit-scrollbar {
-            height: 6px;
+        .carousel-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(0, 0, 0, 0.7);
+            border: 2px solid var(--yellow);
+            color: var(--yellow);
+            width: 48px;
+            height: 48px;
+            font-size: 1.2rem;
+            cursor: pointer;
+            z-index: 10;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
         }
 
-        .team-carousel::-webkit-scrollbar-track {
-            background: var(--medium-gray);
-        }
-
-        .team-carousel::-webkit-scrollbar-thumb {
+        .carousel-arrow:hover {
             background: var(--yellow);
+            color: var(--black);
         }
+
+        .carousel-prev { left: 0.5rem; }
+        .carousel-next { right: 0.5rem; }
 
         .team-card {
             background: var(--dark-gray);
             overflow: hidden;
             border: 2px solid var(--medium-gray);
-            transition: all 0.3s ease;
+            transition: border-color 0.3s ease;
             flex: 0 0 300px;
-            scroll-snap-align: start;
         }
 
         .team-card:hover {
             border-color: var(--yellow);
-            transform: translateY(-5px);
         }
 
         .team-image {
@@ -1050,8 +1062,37 @@
                 flex: 0 0 260px;
             }
 
+            .team-image {
+                height: 280px;
+            }
+
             .team-content {
                 padding: 1.5rem;
+            }
+
+            .team-name {
+                font-size: 1.4rem;
+            }
+
+            .carousel-arrow {
+                width: 36px;
+                height: 36px;
+                font-size: 0.9rem;
+            }
+
+            .carousel-prev { left: 0.25rem; }
+            .carousel-next { right: 0.25rem; }
+
+            .program-image {
+                height: 220px;
+            }
+
+            .program-content {
+                padding: 1.5rem;
+            }
+
+            .program-title {
+                font-size: 1.4rem;
             }
 
             .programs-grid {
@@ -1251,66 +1292,70 @@
                 <p style="font-size: 1.2rem; color: var(--light-gray); max-width: 800px; margin: 1rem auto 0;">Expert trainers with 12+ years of experience guiding every rep, every set, every milestone.</p>
             </div>
 
-            <div class="team-carousel">
-                <div class="team-card">
-                    <div class="team-image">
-                        <img src="images/owner-headcoach-mike.jpeg" alt="Mike Manning - Owner & Head Coach at Black Iron Athletics" loading="lazy">
+            <div class="carousel-wrapper">
+                <button class="carousel-arrow carousel-prev" aria-label="Previous coach"><i class="fa-solid fa-chevron-left"></i></button>
+                <div class="team-carousel" id="teamCarousel">
+                    <div class="team-card">
+                        <div class="team-image">
+                            <img src="images/owner-headcoach-mike.jpeg" alt="Mike Manning - Owner & Head Coach at Black Iron Athletics" loading="lazy">
+                        </div>
+                        <div class="team-content">
+                            <h3 class="team-name">Mike Manning</h3>
+                            <div class="team-role">Owner & Head Coach</div>
+                        </div>
                     </div>
-                    <div class="team-content">
-                        <h3 class="team-name">Mike Manning</h3>
-                        <div class="team-role">Owner & Head Coach</div>
-                    </div>
-                </div>
 
-                <div class="team-card">
-                    <div class="team-image">
-                        <img src="images/general-manager-caoch-kristin.jpeg" alt="Kristin - General Manager at Black Iron Athletics" loading="lazy">
+                    <div class="team-card">
+                        <div class="team-image">
+                            <img src="images/general-manager-caoch-kristin.jpeg" alt="Kristin - General Manager at Black Iron Athletics" loading="lazy">
+                        </div>
+                        <div class="team-content">
+                            <h3 class="team-name">Kristin</h3>
+                            <div class="team-role">General Manager</div>
+                        </div>
                     </div>
-                    <div class="team-content">
-                        <h3 class="team-name">Kristin</h3>
-                        <div class="team-role">General Manager</div>
-                    </div>
-                </div>
 
-                <div class="team-card">
-                    <div class="team-image">
-                        <img src="images/coach-aileen.jpeg" alt="Aileen - Coach at Black Iron Athletics" loading="lazy">
+                    <div class="team-card">
+                        <div class="team-image">
+                            <img src="images/coach-aileen.jpeg" alt="Aileen - Coach at Black Iron Athletics" loading="lazy">
+                        </div>
+                        <div class="team-content">
+                            <h3 class="team-name">Aileen</h3>
+                            <div class="team-role">Coach</div>
+                        </div>
                     </div>
-                    <div class="team-content">
-                        <h3 class="team-name">Aileen</h3>
-                        <div class="team-role">Coach</div>
-                    </div>
-                </div>
 
-                <div class="team-card">
-                    <div class="team-image">
-                        <img src="images/coach-evan.jpeg" alt="Evan - Coach at Black Iron Athletics" loading="lazy">
+                    <div class="team-card">
+                        <div class="team-image">
+                            <img src="images/coach-evan.jpeg" alt="Evan - Coach at Black Iron Athletics" loading="lazy">
+                        </div>
+                        <div class="team-content">
+                            <h3 class="team-name">Evan</h3>
+                            <div class="team-role">Coach</div>
+                        </div>
                     </div>
-                    <div class="team-content">
-                        <h3 class="team-name">Evan</h3>
-                        <div class="team-role">Coach</div>
-                    </div>
-                </div>
 
-                <div class="team-card">
-                    <div class="team-image">
-                        <img src="images/coach-amber.jpeg" alt="Amber - Coach at Black Iron Athletics" loading="lazy">
+                    <div class="team-card">
+                        <div class="team-image">
+                            <img src="images/coach-amber.jpeg" alt="Amber - Coach at Black Iron Athletics" loading="lazy">
+                        </div>
+                        <div class="team-content">
+                            <h3 class="team-name">Amber</h3>
+                            <div class="team-role">Coach</div>
+                        </div>
                     </div>
-                    <div class="team-content">
-                        <h3 class="team-name">Amber</h3>
-                        <div class="team-role">Coach</div>
-                    </div>
-                </div>
 
-                <div class="team-card">
-                    <div class="team-image">
-                        <img src="images/coach-emily.jpeg" alt="Emily - Coach at Black Iron Athletics" loading="lazy">
-                    </div>
-                    <div class="team-content">
-                        <h3 class="team-name">Emily</h3>
-                        <div class="team-role">Coach</div>
+                    <div class="team-card">
+                        <div class="team-image">
+                            <img src="images/coach-emily.jpeg" alt="Emily - Coach at Black Iron Athletics" loading="lazy">
+                        </div>
+                        <div class="team-content">
+                            <h3 class="team-name">Emily</h3>
+                            <div class="team-role">Coach</div>
+                        </div>
                     </div>
                 </div>
+                <button class="carousel-arrow carousel-next" aria-label="Next coach"><i class="fa-solid fa-chevron-right"></i></button>
             </div>
         </div>
     </section>
@@ -1760,6 +1805,92 @@
 
         var todayCol = document.querySelector('.schedule-weekly-col[data-weekday="' + todayIndex + '"]');
         if (todayCol) todayCol.classList.add('today');
+    })();
+
+    // Infinite Coach Carousel
+    (function() {
+        var carousel = document.getElementById('teamCarousel');
+        if (!carousel) return;
+        var originalCards = Array.from(carousel.querySelectorAll('.team-card'));
+        var cardCount = originalCards.length;
+
+        // Clone all cards and append + prepend for infinite illusion
+        originalCards.forEach(function(card) {
+            carousel.appendChild(card.cloneNode(true));
+        });
+        for (var i = cardCount - 1; i >= 0; i--) {
+            carousel.insertBefore(originalCards[i].cloneNode(true), carousel.firstChild);
+        }
+
+        var currentIndex = cardCount; // start at first original card
+
+        function getStep() {
+            var card = carousel.querySelector('.team-card');
+            var gap = parseFloat(getComputedStyle(carousel).gap) || 32;
+            return card.offsetWidth + gap;
+        }
+
+        function setPosition(animate) {
+            if (animate) {
+                carousel.style.transition = 'transform 0.5s ease';
+            } else {
+                carousel.style.transition = 'none';
+            }
+            carousel.style.transform = 'translateX(-' + (currentIndex * getStep()) + 'px)';
+        }
+
+        // Set initial position without animation
+        setPosition(false);
+
+        function next() {
+            currentIndex++;
+            setPosition(true);
+            setTimeout(function() {
+                if (currentIndex >= cardCount * 2) {
+                    currentIndex -= cardCount;
+                    setPosition(false);
+                }
+            }, 520);
+        }
+
+        function prev() {
+            currentIndex--;
+            setPosition(true);
+            setTimeout(function() {
+                if (currentIndex < cardCount) {
+                    currentIndex += cardCount;
+                    setPosition(false);
+                }
+            }, 520);
+        }
+
+        document.querySelector('.carousel-prev').addEventListener('click', prev);
+        document.querySelector('.carousel-next').addEventListener('click', next);
+
+        // Auto-scroll every 4 seconds
+        var autoPlay = setInterval(next, 4000);
+        var wrapper = carousel.parentElement;
+        wrapper.addEventListener('mouseenter', function() { clearInterval(autoPlay); });
+        wrapper.addEventListener('mouseleave', function() { autoPlay = setInterval(next, 4000); });
+
+        // Touch swipe support for mobile
+        var touchStartX = 0;
+        var touchEndX = 0;
+        wrapper.addEventListener('touchstart', function(e) {
+            touchStartX = e.changedTouches[0].screenX;
+            clearInterval(autoPlay);
+        }, { passive: true });
+        wrapper.addEventListener('touchend', function(e) {
+            touchEndX = e.changedTouches[0].screenX;
+            var diff = touchStartX - touchEndX;
+            if (Math.abs(diff) > 50) {
+                if (diff > 0) { next(); } else { prev(); }
+            }
+            autoPlay = setInterval(next, 4000);
+        }, { passive: true });
+
+        // Recalculate on resize
+        window.addEventListener('resize', function() { setPosition(false); });
     })();
 
     // Hamburger Menu
