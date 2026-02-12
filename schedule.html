@@ -390,9 +390,25 @@
             transition: all 0.3s ease;
         }
 
+        .schedule-card.type-weightlifting {
+            border-left-color: #ff0003;
+        }
+
+        .schedule-card.type-hyrox {
+            border-left-color: #1c94d9;
+        }
+
         .schedule-card:hover {
             border-color: var(--yellow);
             transform: translateX(4px);
+        }
+
+        .schedule-card.type-weightlifting:hover {
+            border-color: #ff0003;
+        }
+
+        .schedule-card.type-hyrox:hover {
+            border-color: #1c94d9;
         }
 
         .schedule-time {
@@ -411,11 +427,66 @@
             letter-spacing: 0.5px;
         }
 
+        .schedule-class-name .type-tag {
+            display: inline-block;
+            font-size: 0.65rem;
+            font-weight: 700;
+            padding: 0.15rem 0.5rem;
+            margin-left: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            vertical-align: middle;
+        }
+
+        .type-tag.tag-sc {
+            background: rgba(255, 210, 2, 0.15);
+            color: var(--yellow);
+            border: 1px solid rgba(255, 210, 2, 0.3);
+        }
+
+        .type-tag.tag-wl {
+            background: rgba(255, 0, 3, 0.15);
+            color: #ff4444;
+            border: 1px solid rgba(255, 0, 3, 0.3);
+        }
+
+        .type-tag.tag-hyrox {
+            background: rgba(28, 148, 217, 0.15);
+            color: #1c94d9;
+            border: 1px solid rgba(28, 148, 217, 0.3);
+        }
+
         .schedule-duration {
             font-size: 0.85rem;
             color: var(--light-gray);
             margin-top: 0.25rem;
         }
+
+        .schedule-legend {
+            display: flex;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.85rem;
+            color: var(--light-gray);
+            font-weight: 600;
+        }
+
+        .legend-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 0;
+        }
+
+        .legend-dot.dot-sc { background: var(--yellow); }
+        .legend-dot.dot-wl { background: #ff0003; }
+        .legend-dot.dot-hyrox { background: #1c94d9; }
 
         /* Class Types Grid */
         .class-types-grid {
@@ -858,6 +929,12 @@
                 <p class="section-description">All classes are coach-led, 60 minutes, and scalable for every fitness level.</p>
             </div>
 
+            <div class="schedule-legend">
+                <div class="legend-item"><div class="legend-dot dot-sc"></div> Strength & Conditioning</div>
+                <div class="legend-item"><div class="legend-dot dot-wl"></div> Weightlifting</div>
+                <div class="legend-item"><div class="legend-dot dot-hyrox"></div> Hyrox</div>
+            </div>
+
             <div class="schedule-tabs" role="tablist">
                 <button class="schedule-tab" data-day="monday" role="tab">Mon</button>
                 <button class="schedule-tab" data-day="tuesday" role="tab">Tue</button>
@@ -872,35 +949,27 @@
                 <div class="schedule-list">
                     <div class="schedule-card">
                         <div class="schedule-time">5:15 AM</div>
-                        <div><div class="schedule-class-name">Group Training</div><div class="schedule-duration">60 min</div></div>
+                        <div><div class="schedule-class-name">Strength & Conditioning</div><div class="schedule-duration">60 min</div></div>
                     </div>
                     <div class="schedule-card">
                         <div class="schedule-time">6:15 AM</div>
-                        <div><div class="schedule-class-name">Group Training</div><div class="schedule-duration">60 min</div></div>
+                        <div><div class="schedule-class-name">Strength & Conditioning</div><div class="schedule-duration">60 min</div></div>
                     </div>
                     <div class="schedule-card">
                         <div class="schedule-time">9:30 AM</div>
-                        <div><div class="schedule-class-name">Group Training</div><div class="schedule-duration">60 min</div></div>
+                        <div><div class="schedule-class-name">Strength & Conditioning</div><div class="schedule-duration">60 min</div></div>
                     </div>
                     <div class="schedule-card">
                         <div class="schedule-time">12:00 PM</div>
-                        <div><div class="schedule-class-name">Group Training</div><div class="schedule-duration">60 min</div></div>
+                        <div><div class="schedule-class-name">Strength & Conditioning</div><div class="schedule-duration">60 min</div></div>
                     </div>
                     <div class="schedule-card">
-                        <div class="schedule-time">4:00 PM</div>
-                        <div><div class="schedule-class-name">Group Training</div><div class="schedule-duration">60 min</div></div>
+                        <div class="schedule-time">4:15 PM</div>
+                        <div><div class="schedule-class-name">Strength & Conditioning</div><div class="schedule-duration">60 min</div></div>
                     </div>
                     <div class="schedule-card">
-                        <div class="schedule-time">5:00 PM</div>
-                        <div><div class="schedule-class-name">Group Training</div><div class="schedule-duration">60 min</div></div>
-                    </div>
-                    <div class="schedule-card">
-                        <div class="schedule-time">6:00 PM</div>
-                        <div><div class="schedule-class-name">Group Training</div><div class="schedule-duration">60 min</div></div>
-                    </div>
-                    <div class="schedule-card">
-                        <div class="schedule-time">7:00 PM</div>
-                        <div><div class="schedule-class-name">Group Training</div><div class="schedule-duration">60 min</div></div>
+                        <div class="schedule-time">5:15 PM</div>
+                        <div><div class="schedule-class-name">Strength & Conditioning</div><div class="schedule-duration">60 min</div></div>
                     </div>
                 </div>
             </div>
@@ -910,31 +979,31 @@
                 <div class="schedule-list">
                     <div class="schedule-card">
                         <div class="schedule-time">5:15 AM</div>
-                        <div><div class="schedule-class-name">Group Training</div><div class="schedule-duration">60 min</div></div>
+                        <div><div class="schedule-class-name">Strength & Conditioning</div><div class="schedule-duration">60 min</div></div>
                     </div>
                     <div class="schedule-card">
                         <div class="schedule-time">6:15 AM</div>
-                        <div><div class="schedule-class-name">Group Training</div><div class="schedule-duration">60 min</div></div>
+                        <div><div class="schedule-class-name">Strength & Conditioning</div><div class="schedule-duration">60 min</div></div>
                     </div>
                     <div class="schedule-card">
                         <div class="schedule-time">9:30 AM</div>
-                        <div><div class="schedule-class-name">Group Training</div><div class="schedule-duration">60 min</div></div>
+                        <div><div class="schedule-class-name">Strength & Conditioning</div><div class="schedule-duration">60 min</div></div>
+                    </div>
+                    <div class="schedule-card type-weightlifting">
+                        <div class="schedule-time">11:00 AM</div>
+                        <div><div class="schedule-class-name">Weightlifting</div><div class="schedule-duration">60 min</div></div>
                     </div>
                     <div class="schedule-card">
                         <div class="schedule-time">12:00 PM</div>
-                        <div><div class="schedule-class-name">Group Training</div><div class="schedule-duration">60 min</div></div>
+                        <div><div class="schedule-class-name">Strength & Conditioning</div><div class="schedule-duration">60 min</div></div>
                     </div>
                     <div class="schedule-card">
-                        <div class="schedule-time">4:00 PM</div>
-                        <div><div class="schedule-class-name">Group Training</div><div class="schedule-duration">60 min</div></div>
+                        <div class="schedule-time">4:15 PM</div>
+                        <div><div class="schedule-class-name">Strength & Conditioning</div><div class="schedule-duration">60 min</div></div>
                     </div>
                     <div class="schedule-card">
-                        <div class="schedule-time">5:00 PM</div>
-                        <div><div class="schedule-class-name">Group Training</div><div class="schedule-duration">60 min</div></div>
-                    </div>
-                    <div class="schedule-card">
-                        <div class="schedule-time">6:00 PM</div>
-                        <div><div class="schedule-class-name">Group Training</div><div class="schedule-duration">60 min</div></div>
+                        <div class="schedule-time">5:15 PM</div>
+                        <div><div class="schedule-class-name">Strength & Conditioning</div><div class="schedule-duration">60 min</div></div>
                     </div>
                 </div>
             </div>
@@ -944,35 +1013,31 @@
                 <div class="schedule-list">
                     <div class="schedule-card">
                         <div class="schedule-time">5:15 AM</div>
-                        <div><div class="schedule-class-name">Group Training</div><div class="schedule-duration">60 min</div></div>
+                        <div><div class="schedule-class-name">Strength & Conditioning</div><div class="schedule-duration">60 min</div></div>
                     </div>
                     <div class="schedule-card">
                         <div class="schedule-time">6:15 AM</div>
-                        <div><div class="schedule-class-name">Group Training</div><div class="schedule-duration">60 min</div></div>
+                        <div><div class="schedule-class-name">Strength & Conditioning</div><div class="schedule-duration">60 min</div></div>
                     </div>
                     <div class="schedule-card">
                         <div class="schedule-time">9:30 AM</div>
-                        <div><div class="schedule-class-name">Group Training</div><div class="schedule-duration">60 min</div></div>
+                        <div><div class="schedule-class-name">Strength & Conditioning</div><div class="schedule-duration">60 min</div></div>
                     </div>
                     <div class="schedule-card">
                         <div class="schedule-time">12:00 PM</div>
-                        <div><div class="schedule-class-name">Group Training</div><div class="schedule-duration">60 min</div></div>
+                        <div><div class="schedule-class-name">Strength & Conditioning</div><div class="schedule-duration">60 min</div></div>
                     </div>
                     <div class="schedule-card">
-                        <div class="schedule-time">4:00 PM</div>
-                        <div><div class="schedule-class-name">Group Training</div><div class="schedule-duration">60 min</div></div>
+                        <div class="schedule-time">4:15 PM</div>
+                        <div><div class="schedule-class-name">Strength & Conditioning</div><div class="schedule-duration">60 min</div></div>
                     </div>
                     <div class="schedule-card">
-                        <div class="schedule-time">5:00 PM</div>
-                        <div><div class="schedule-class-name">Group Training</div><div class="schedule-duration">60 min</div></div>
+                        <div class="schedule-time">5:15 PM</div>
+                        <div><div class="schedule-class-name">Strength & Conditioning</div><div class="schedule-duration">60 min</div></div>
                     </div>
-                    <div class="schedule-card">
-                        <div class="schedule-time">6:00 PM</div>
-                        <div><div class="schedule-class-name">Group Training</div><div class="schedule-duration">60 min</div></div>
-                    </div>
-                    <div class="schedule-card">
-                        <div class="schedule-time">7:00 PM</div>
-                        <div><div class="schedule-class-name">Group Training</div><div class="schedule-duration">60 min</div></div>
+                    <div class="schedule-card type-hyrox">
+                        <div class="schedule-time">6:15 PM</div>
+                        <div><div class="schedule-class-name">Hyrox</div><div class="schedule-duration">60 min</div></div>
                     </div>
                 </div>
             </div>
@@ -982,31 +1047,31 @@
                 <div class="schedule-list">
                     <div class="schedule-card">
                         <div class="schedule-time">5:15 AM</div>
-                        <div><div class="schedule-class-name">Group Training</div><div class="schedule-duration">60 min</div></div>
+                        <div><div class="schedule-class-name">Strength & Conditioning</div><div class="schedule-duration">60 min</div></div>
                     </div>
                     <div class="schedule-card">
                         <div class="schedule-time">6:15 AM</div>
-                        <div><div class="schedule-class-name">Group Training</div><div class="schedule-duration">60 min</div></div>
+                        <div><div class="schedule-class-name">Strength & Conditioning</div><div class="schedule-duration">60 min</div></div>
                     </div>
                     <div class="schedule-card">
                         <div class="schedule-time">9:30 AM</div>
-                        <div><div class="schedule-class-name">Group Training</div><div class="schedule-duration">60 min</div></div>
+                        <div><div class="schedule-class-name">Strength & Conditioning</div><div class="schedule-duration">60 min</div></div>
+                    </div>
+                    <div class="schedule-card type-weightlifting">
+                        <div class="schedule-time">11:00 AM</div>
+                        <div><div class="schedule-class-name">Weightlifting</div><div class="schedule-duration">60 min</div></div>
                     </div>
                     <div class="schedule-card">
                         <div class="schedule-time">12:00 PM</div>
-                        <div><div class="schedule-class-name">Group Training</div><div class="schedule-duration">60 min</div></div>
+                        <div><div class="schedule-class-name">Strength & Conditioning</div><div class="schedule-duration">60 min</div></div>
                     </div>
                     <div class="schedule-card">
-                        <div class="schedule-time">4:00 PM</div>
-                        <div><div class="schedule-class-name">Group Training</div><div class="schedule-duration">60 min</div></div>
+                        <div class="schedule-time">4:15 PM</div>
+                        <div><div class="schedule-class-name">Strength & Conditioning</div><div class="schedule-duration">60 min</div></div>
                     </div>
                     <div class="schedule-card">
-                        <div class="schedule-time">5:00 PM</div>
-                        <div><div class="schedule-class-name">Group Training</div><div class="schedule-duration">60 min</div></div>
-                    </div>
-                    <div class="schedule-card">
-                        <div class="schedule-time">6:00 PM</div>
-                        <div><div class="schedule-class-name">Group Training</div><div class="schedule-duration">60 min</div></div>
+                        <div class="schedule-time">5:15 PM</div>
+                        <div><div class="schedule-class-name">Strength & Conditioning</div><div class="schedule-duration">60 min</div></div>
                     </div>
                 </div>
             </div>
@@ -1016,31 +1081,27 @@
                 <div class="schedule-list">
                     <div class="schedule-card">
                         <div class="schedule-time">5:15 AM</div>
-                        <div><div class="schedule-class-name">Group Training</div><div class="schedule-duration">60 min</div></div>
+                        <div><div class="schedule-class-name">Strength & Conditioning</div><div class="schedule-duration">60 min</div></div>
                     </div>
                     <div class="schedule-card">
                         <div class="schedule-time">6:15 AM</div>
-                        <div><div class="schedule-class-name">Group Training</div><div class="schedule-duration">60 min</div></div>
+                        <div><div class="schedule-class-name">Strength & Conditioning</div><div class="schedule-duration">60 min</div></div>
                     </div>
                     <div class="schedule-card">
                         <div class="schedule-time">9:30 AM</div>
-                        <div><div class="schedule-class-name">Group Training</div><div class="schedule-duration">60 min</div></div>
+                        <div><div class="schedule-class-name">Strength & Conditioning</div><div class="schedule-duration">60 min</div></div>
                     </div>
                     <div class="schedule-card">
                         <div class="schedule-time">12:00 PM</div>
-                        <div><div class="schedule-class-name">Group Training</div><div class="schedule-duration">60 min</div></div>
+                        <div><div class="schedule-class-name">Strength & Conditioning</div><div class="schedule-duration">60 min</div></div>
                     </div>
                     <div class="schedule-card">
-                        <div class="schedule-time">4:00 PM</div>
-                        <div><div class="schedule-class-name">Group Training</div><div class="schedule-duration">60 min</div></div>
+                        <div class="schedule-time">4:15 PM</div>
+                        <div><div class="schedule-class-name">Strength & Conditioning</div><div class="schedule-duration">60 min</div></div>
                     </div>
                     <div class="schedule-card">
-                        <div class="schedule-time">5:00 PM</div>
-                        <div><div class="schedule-class-name">Group Training</div><div class="schedule-duration">60 min</div></div>
-                    </div>
-                    <div class="schedule-card">
-                        <div class="schedule-time">6:00 PM</div>
-                        <div><div class="schedule-class-name">Group Training</div><div class="schedule-duration">60 min</div></div>
+                        <div class="schedule-time">5:15 PM</div>
+                        <div><div class="schedule-class-name">Strength & Conditioning</div><div class="schedule-duration">60 min</div></div>
                     </div>
                 </div>
             </div>
@@ -1048,17 +1109,17 @@
             <!-- Saturday -->
             <div class="schedule-day" data-day="saturday">
                 <div class="schedule-list">
-                    <div class="schedule-card">
-                        <div class="schedule-time">7:00 AM</div>
-                        <div><div class="schedule-class-name">Group Training</div><div class="schedule-duration">60 min</div></div>
-                    </div>
-                    <div class="schedule-card">
-                        <div class="schedule-time">8:15 AM</div>
-                        <div><div class="schedule-class-name">Group Training</div><div class="schedule-duration">60 min</div></div>
+                    <div class="schedule-card type-weightlifting">
+                        <div class="schedule-time">8:30 AM</div>
+                        <div><div class="schedule-class-name">Weightlifting</div><div class="schedule-duration">60 min</div></div>
                     </div>
                     <div class="schedule-card">
                         <div class="schedule-time">9:30 AM</div>
-                        <div><div class="schedule-class-name">Group Training</div><div class="schedule-duration">60 min</div></div>
+                        <div><div class="schedule-class-name">Strength & Conditioning</div><div class="schedule-duration">60 min</div></div>
+                    </div>
+                    <div class="schedule-card type-hyrox">
+                        <div class="schedule-time">10:30 AM</div>
+                        <div><div class="schedule-class-name">Hyrox</div><div class="schedule-duration">60 min</div></div>
                     </div>
                 </div>
             </div>
@@ -1088,14 +1149,8 @@
 
                 <div class="class-type-card">
                     <div class="class-type-icon"><i class="fa-solid fa-person-falling-burst"></i></div>
-                    <h3>Olympic Weightlifting</h3>
+                    <h3>Weightlifting</h3>
                     <p>Learn the snatch and clean & jerk with expert coaching. Perfect technique, build power, and gain confidence under the bar.</p>
-                </div>
-
-                <div class="class-type-card">
-                    <div class="class-type-icon"><i class="fa-solid fa-door-open"></i></div>
-                    <h3>Open Gym</h3>
-                    <p>Train on your own schedule with full access to all equipment. Follow our programming or bring your own. Available 24/7.</p>
                 </div>
 
                 <div class="class-type-card">
