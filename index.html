@@ -73,7 +73,6 @@
         }
 
         /* Anchor offset for fixed nav */
-        #about,
         #programs,
         #testimonials,
         #contact {
@@ -461,79 +460,6 @@
             font-size: 1rem;
         }
 
-        /* Philosophy Section */
-        .philosophy-section {
-            background: var(--dark-gray);
-            padding: 4rem 0;
-        }
-
-        .philosophy-content {
-            max-width: 900px;
-            margin: 0 auto;
-            text-align: center;
-        }
-
-        .philosophy-section h2 {
-            font-weight: 900;
-            font-size: clamp(2rem, 4vw, 3rem);
-            color: var(--yellow);
-            margin-bottom: 1.5rem;
-            text-transform: uppercase;
-        }
-
-        .philosophy-section p {
-            font-size: 1.1rem;
-            line-height: 1.8;
-            color: var(--light-gray);
-            margin-bottom: 1.5rem;
-        }
-
-        .philosophy-quote {
-            font-style: italic;
-            font-size: 1rem;
-            color: var(--white);
-            margin-top: 2rem;
-            padding-top: 2rem;
-            border-top: 1px solid var(--medium-gray);
-        }
-
-        /* Value Props */
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 0;
-            margin-top: 4rem;
-        }
-
-        .feature-card {
-            padding: 3rem;
-            background: var(--black);
-            border: 1px solid var(--medium-gray);
-            transition: all 0.3s ease;
-        }
-
-        .feature-card:hover {
-            background: var(--dark-gray);
-            border-color: var(--yellow);
-        }
-
-        .feature-icon {
-            font-size: 2.5rem;
-            margin-bottom: 1.5rem;
-            color: var(--yellow);
-        }
-
-        .feature-title {
-            font-weight: 900;
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-            text-transform: uppercase;
-        }
-
-        .feature-description {
-            color: var(--light-gray);
-            line-height: 1.8;
-        }
 
         /* Getting Started Section */
         .getting-started {
@@ -715,91 +641,7 @@
             font-size: 0.9rem;
         }
 
-        /* Quote Section */
-        .quote-section {
-            background: var(--yellow);
-            padding: 3rem 4rem;
-            text-align: center;
-            width: 100%;
-        }
 
-        .quote-container {
-            max-width: 100%;
-            margin: 0 auto;
-            padding: 0 2rem;
-        }
-
-        .quote-text {
-            font-weight: 900;
-            font-size: clamp(1.8rem, 4vw, 2.5rem);
-            color: var(--black);
-            line-height: 1.2;
-            text-transform: uppercase;
-            margin-bottom: 1rem;
-        }
-
-        /* Quote Carousel */
-        .quote-carousel {
-            position: relative;
-            margin-top: 0.75rem;
-            max-width: 750px;
-            margin-left: auto;
-            margin-right: auto;
-            min-height: 120px;
-        }
-
-        .quote-slide {
-            display: none;
-            animation: fadeIn 1s ease;
-        }
-
-        .quote-slide.active {
-            display: block;
-        }
-
-        .carousel-quote {
-            font-size: 1.15rem;
-            color: var(--black);
-            font-weight: 600;
-            font-style: italic;
-            line-height: 1.4;
-            margin-bottom: 0.75rem;
-        }
-
-        .carousel-author {
-            font-size: 0.9rem;
-            color: var(--black);
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
-        }
-
-        .carousel-dots {
-            text-align: center;
-            margin-top: 1rem;
-        }
-
-        .dot {
-            height: 12px;
-            width: 12px;
-            margin: 0 8px;
-            background-color: rgba(0, 0, 0, 0.3);
-            border-radius: 50%;
-            display: inline-block;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .dot.active,
-        .dot:hover {
-            background-color: var(--black);
-            transform: scale(1.2);
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
 
         /* Final CTA Section */
         .cta-section {
@@ -1083,14 +925,12 @@
             }
 
             .problem-grid,
-            .features-grid,
             .steps-grid,
             .programs-grid {
                 grid-template-columns: 1fr;
             }
 
             .problem-card,
-            .feature-card,
             .step-card {
                 padding: 1.5rem;
             }
@@ -1105,10 +945,6 @@
 
             .section {
                 padding: 4rem 0;
-            }
-
-            .quote-section {
-                padding: 2rem 1.5rem;
             }
 
             .cta-section {
@@ -1263,69 +1099,31 @@
         </div>
     </section>
 
-    <!-- Philosophy Section -->
-    <section class="philosophy-section">
-        <div class="section-container">
-            <div class="philosophy-content">
-                <h2 style="font-size: clamp(2rem, 4vw, 3rem);">Movement Is Medicine</h2>
-                <p style="font-size: 1.1rem;">At Black Iron Athletics, we believe that prioritizing your health isn't selfish. It's an act of service. When you take care of yourself, you show up better for your family, your community, and your purpose.</p>
-                <p style="font-size: 1.1rem;">This isn't about vanity or ego. It's about building a body that serves you for life. A body that lets you play with your kids, chase your dreams, and live with confidence and vitality.</p>
-                <p class="philosophy-quote" style="font-size: 1rem;">"The greatest wealth is health. When you invest in your fitness, you invest in every area of your life."</p>
-            </div>
-        </div>
-    </section>
+    <!-- What Our Members Say - Social Proof -->
+    <section class="testimonial-feature" id="testimonials">
+        <div class="testimonial-content">
+            <h2>What Our Members Say</h2>
 
-    <!-- Transformation Video Section -->
-    <section class="section" style="background: var(--black); padding: 6rem 0;">
-        <div class="section-container">
-            <div class="section-header">
-                <div class="section-subtitle">Real Results</div>
-                <h2 class="section-title">Transformation Stories</h2>
-            </div>
-            
-            <div style="max-width: 900px; margin: 0 auto;">
+            <div style="max-width: 900px; margin: 0 auto 3rem;">
                 <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
                     <iframe width="560" height="315" src="https://www.youtube.com/embed/orPYVQKohc0?si=5VByhNwt8GtMyZdf" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 2px solid var(--medium-gray);"></iframe>
                 </div>
                 <p style="font-size: 1.3rem; line-height: 1.8; font-style: italic; margin-top: 2rem; text-align: center; color: var(--white);">"Fell in love with moving my body, and setting goals for myself... it was the first thing that was for ME"</p>
                 <p style="font-weight: 700; color: var(--yellow); text-align: center; margin-top: 0.75rem;">— Ashley Kim</p>
             </div>
-        </div>
-    </section>
 
-    <section class="section section-alt" id="about">
-        <div class="section-container">
-            <div class="section-header">
-                <h2 class="section-title">Why Black Iron Athletics</h2>
-                <p class="section-description">We combine expert coaching, thoughtful programming, and a positive atmosphere that makes you want to show up and keep coming back.</p>
+            <div class="reviews-rating">
+                <div class="rating-number">5.0</div>
+                <div>
+                    <div class="rating-stars">★★★★★</div>
+                    <div class="rating-count">68 reviews</div>
+                </div>
             </div>
 
-            <div class="features-grid">
-                <div class="feature-card">
-                    <div class="feature-icon">🤝</div>
-                    <h3 class="feature-title">You're Not Doing This Alone</h3>
-                    <p class="feature-description">A supportive community that celebrates every win, holds you accountable, and makes you actually want to show up.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">🏋️</div>
-                    <h3 class="feature-title">Expert Guidance You Can Trust</h3>
-                    <p class="feature-description">12+ years of coaching experience ensuring you're challenged safely and effectively, not injured or overwhelmed.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">🎯</div>
-                    <h3 class="feature-title">Training That Meets You Where You Are</h3>
-                    <p class="feature-description">Beginner-friendly classes that scale to your level while consistently pushing you forward. All fitness levels welcome.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">❄️</div>
-                    <h3 class="feature-title">Train in Comfort</h3>
-                    <p class="feature-description">Climate-controlled, spotless facility. No Texas heat holding you back, just clean equipment and focused results.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">⏰</div>
-                    <h3 class="feature-title">24/7 Access</h3>
-                    <p class="feature-description">Life gets busy. That's why we offer round-the-clock open gym access so you can train on your schedule.</p>
-                </div>
+            <!-- Elfsight Google Reviews Widget -->
+            <div style="margin-top: 3rem; margin-bottom: 3rem;">
+                <script src="https://elfsightcdn.com/platform.js" async></script>
+                <div class="elfsight-app-e9950e9a-90e9-4e39-9489-c4082001e747" data-elfsight-app-lazy></div>
             </div>
         </div>
     </section>
@@ -1374,7 +1172,7 @@
                     <img src="https://images.leadconnectorhq.com/image/f_webp/q_80/r_1200/u_https://assets.cdn.filesafe.space/snIUpSaFzz5WsavMB3QA/media/6859d48d4fe1870c2e37d104.png" alt="Group Training" class="program-image" loading="lazy">
                     <div class="program-content">
                         <h3 class="program-title">Group Training</h3>
-                        <p class="program-description">High-energy classes designed for all fitness levels. Build strength, endurance, and confidence alongside a supportive community. Perfect for those who thrive on group energy and accountability.</p>
+                        <p class="program-description">High-energy, coach-led classes for all fitness levels.</p>
                         <a href="group-training.html" class="program-link">Learn More →</a>
                     </div>
                 </div>
@@ -1383,7 +1181,7 @@
                     <img src="images/barbell-overhead.jpeg" alt="Personal Training" class="program-image" loading="lazy">
                     <div class="program-content">
                         <h3 class="program-title">Personal Training</h3>
-                        <p class="program-description">1-on-1 coaching tailored to your unique goals. Custom programming, form correction, and unwavering accountability. Ideal for specific goals or personalized attention.</p>
+                        <p class="program-description">1-on-1 coaching custom-built for your goals.</p>
                         <a href="personal-training.html" class="program-link">Learn More →</a>
                     </div>
                 </div>
@@ -1392,7 +1190,7 @@
                     <img src="images/member-blessed.jpeg" alt="Nutrition Coaching" class="program-image" loading="lazy">
                     <div class="program-content">
                         <h3 class="program-title">Nutrition Coaching</h3>
-                        <p class="program-description">Personalized nutrition plans and ongoing support to fuel your results. Learn to transform your relationship with food while seeing real progress.</p>
+                        <p class="program-description">Personalized plans to fuel your results.</p>
                         <a href="nutrition-coaching.html" class="program-link">Learn More →</a>
                     </div>
                 </div>
@@ -1401,7 +1199,7 @@
                     <img src="images/barbell-curl.jpeg" alt="Open Gym" class="program-image" loading="lazy">
                     <div class="program-content">
                         <h3 class="program-title">24/7 Open Gym</h3>
-                        <p class="program-description">Train on your schedule with round-the-clock access. Full equipment access anytime you need it. Perfect for self-motivated athletes who need flexibility.</p>
+                        <p class="program-description">24/7 access to train on your schedule.</p>
                         <a href="open-gym.html" class="program-link">Learn More →</a>
                     </div>
                 </div>
@@ -1409,70 +1207,6 @@
         </div>
     </section>
 
-    <!-- Testimonials Section -->
-    <section class="testimonial-feature" id="testimonials">
-        <div class="testimonial-content">
-            <h2>What Our Members Say</h2>
-            
-            <div class="reviews-rating">
-                <div class="rating-number">5.0</div>
-                <div>
-                    <div class="rating-stars">★★★★★</div>
-                    <div class="rating-count">68 reviews</div>
-                </div>
-            </div>
-
-            <!-- Elfsight Google Reviews Widget -->
-            <div style="margin-top: 3rem; margin-bottom: 3rem;">
-                <script src="https://elfsightcdn.com/platform.js" async></script>
-                <div class="elfsight-app-e9950e9a-90e9-4e39-9489-c4082001e747" data-elfsight-app-lazy></div>
-            </div>
-        </div>
-    </section>
-
-    <section class="quote-section">
-        <div class="quote-container">
-            <div class="quote-text">Train with a Purpose</div>
-            
-            <!-- Quote Carousel -->
-            <div class="quote-carousel">
-                <div class="quote-slide active">
-                    <p class="carousel-quote">"Some people want it to happen, some wish it would happen, others make it happen."</p>
-                    <p class="carousel-author">— Michael Jordan</p>
-                </div>
-                <div class="quote-slide">
-                    <p class="carousel-quote">"I hated every minute of training, but I said, 'Don't quit. Suffer now and live the rest of your life as a champion.'"</p>
-                    <p class="carousel-author">— Muhammad Ali</p>
-                </div>
-                <div class="quote-slide">
-                    <p class="carousel-quote">"Discipline is choosing between what you want now and what you want most."</p>
-                    <p class="carousel-author">— Abraham Lincoln</p>
-                </div>
-                <div class="quote-slide">
-                    <p class="carousel-quote">"Don't count the days, make the days count."</p>
-                    <p class="carousel-author">— Muhammad Ali</p>
-                </div>
-                <div class="quote-slide">
-                    <p class="carousel-quote">"The body achieves what the mind believes."</p>
-                    <p class="carousel-author">— Napoleon Hill</p>
-                </div>
-                <div class="quote-slide">
-                    <p class="carousel-quote">"Strength does not come from physical capacity. It comes from an indomitable will."</p>
-                    <p class="carousel-author">— Mahatma Gandhi</p>
-                </div>
-            </div>
-
-            <!-- Carousel Navigation Dots -->
-            <div class="carousel-dots">
-                <span class="dot active" onclick="currentSlide(0)"></span>
-                <span class="dot" onclick="currentSlide(1)"></span>
-                <span class="dot" onclick="currentSlide(2)"></span>
-                <span class="dot" onclick="currentSlide(3)"></span>
-                <span class="dot" onclick="currentSlide(4)"></span>
-                <span class="dot" onclick="currentSlide(5)"></span>
-            </div>
-        </div>
-    </section>
 
     <section class="cta-section" id="contact">
         <div class="cta-container">
@@ -1545,70 +1279,6 @@
             <p>&copy; 2026 Black Iron Athletics. All rights reserved.</p>
         </div>
     </footer>
-
-    <script>
-        // Quote Carousel
-        let slideIndex = 0;
-        let autoSlideTimer;
-
-        function showSlides() {
-            let slides = document.getElementsByClassName("quote-slide");
-            let dots = document.getElementsByClassName("dot");
-            
-            // Hide all slides
-            for (let i = 0; i < slides.length; i++) {
-                slides[i].classList.remove("active");
-            }
-            
-            // Remove active from all dots
-            for (let i = 0; i < dots.length; i++) {
-                dots[i].classList.remove("active");
-            }
-            
-            // Increment slide index
-            slideIndex++;
-            if (slideIndex > slides.length) {
-                slideIndex = 1;
-            }
-            
-            // Show current slide
-            slides[slideIndex - 1].classList.add("active");
-            dots[slideIndex - 1].classList.add("active");
-            
-            // Change slide every 6 seconds
-            autoSlideTimer = setTimeout(showSlides, 6000);
-        }
-
-        function currentSlide(n) {
-            clearTimeout(autoSlideTimer);
-            slideIndex = n;
-            
-            let slides = document.getElementsByClassName("quote-slide");
-            let dots = document.getElementsByClassName("dot");
-            
-            // Hide all slides
-            for (let i = 0; i < slides.length; i++) {
-                slides[i].classList.remove("active");
-            }
-            
-            // Remove active from all dots
-            for (let i = 0; i < dots.length; i++) {
-                dots[i].classList.remove("active");
-            }
-            
-            // Show selected slide
-            slides[slideIndex].classList.add("active");
-            dots[slideIndex].classList.add("active");
-            
-            // Restart auto-rotation
-            autoSlideTimer = setTimeout(showSlides, 6000);
-        }
-
-        // Start the carousel when page loads
-        document.addEventListener('DOMContentLoaded', function() {
-            showSlides();
-        });
-    </script>
 
     <!-- Schema Markup for SEO -->
     <script type="application/ld+json">

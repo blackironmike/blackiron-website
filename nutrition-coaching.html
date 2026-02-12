@@ -75,8 +75,6 @@
         /* Anchor offset for fixed nav */
         #what-is-nutrition-coaching,
         #whats-included,
-        #who-its-for,
-        #how-it-works,
         #faqs {
             scroll-margin-top: 100px;
         }
@@ -382,86 +380,6 @@
             line-height: 1.8;
         }
 
-        /* Problem Cards (Who It's For - yellow left border) */
-        .problem-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-top: 4rem;
-        }
-
-        .problem-card {
-            background: var(--dark-gray);
-            padding: 2.5rem;
-            border: 2px solid var(--medium-gray);
-            border-left: 5px solid var(--yellow);
-            transition: all 0.3s ease;
-        }
-
-        .problem-card:hover {
-            border-color: var(--yellow);
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(255, 210, 2, 0.2);
-        }
-
-        .problem-card h3 {
-            font-weight: 900;
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-            color: var(--yellow);
-        }
-
-        .problem-card p {
-            color: var(--light-gray);
-            line-height: 1.8;
-        }
-
-        /* Steps Grid */
-        .steps-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 2rem;
-            margin-top: 4rem;
-        }
-
-        .step-card {
-            background: var(--dark-gray);
-            padding: 3rem 2rem;
-            border: 2px solid var(--medium-gray);
-            transition: all 0.3s ease;
-            text-align: center;
-        }
-
-        .step-card:hover {
-            border-color: var(--yellow);
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(255, 210, 2, 0.2);
-        }
-
-        .step-number {
-            background: var(--yellow);
-            color: var(--black);
-            width: 60px;
-            height: 60px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 2rem;
-            font-weight: 900;
-            margin: 0 auto 1.5rem;
-        }
-
-        .step-card h3 {
-            font-weight: 900;
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-        }
-
-        .step-card p {
-            color: var(--light-gray);
-            line-height: 1.8;
-        }
-
         /* FAQs */
         .faq-container {
             display: grid;
@@ -758,21 +676,11 @@
             }
 
             .feature-grid,
-            .problem-grid,
-            .steps-grid,
             .faq-container {
                 grid-template-columns: 1fr;
             }
 
             .feature-card {
-                padding: 2rem 1.5rem;
-            }
-
-            .problem-card {
-                padding: 1.5rem;
-            }
-
-            .step-card {
                 padding: 2rem 1.5rem;
             }
 
@@ -903,9 +811,7 @@
                 <h2 class="section-title">What Is Nutrition Coaching?</h2>
             </div>
             <div class="about-content">
-                <p>This is not a fad diet. It is not a restrictive meal plan that leaves you hungry, frustrated, and right back where you started. Nutrition coaching at Black Iron Athletics is a sustainable, personalized approach to fueling your body the right way -- built around your life, your preferences, and your goals.</p>
-                <p>You will work 1-on-1 with a dedicated coach who takes the time to understand how you eat, how you train, and what has or has not worked for you in the past. From there, they build a nutrition strategy designed specifically for you. Whether that means tracking macros, following an intuitive eating approach, or something in between, we meet you where you are and build from there.</p>
-                <p>The goal is simple: help you develop a relationship with food that supports your training, your health, and your long-term well-being. No guilt. No gimmicks. Just a clear plan, consistent support, and real results that last.</p>
+                <p>Nutrition coaching at Black Iron Athletics is a sustainable, personalized approach to fueling your body the right way. You'll work 1-on-1 with a dedicated coach who builds a nutrition strategy designed specifically for you -- whether that means tracking macros, intuitive eating, or something in between. No guilt, no gimmicks, just a clear plan and real results that last.</p>
             </div>
         </div>
     </section>
@@ -923,106 +829,20 @@
                 <div class="feature-card">
                     <div class="feature-icon">&#127858;</div>
                     <h3>Personalized Meal Planning</h3>
-                    <p>Custom nutrition plans built around your lifestyle, food preferences, and schedule. No cookie-cutter templates -- everything is designed specifically for you.</p>
+                    <p>Custom nutrition plans built around your lifestyle and food preferences.</p>
                 </div>
 
                 <div class="feature-card">
                     <div class="feature-icon">&#128222;</div>
                     <h3>1-on-1 Coaching Calls</h3>
-                    <p>Regular check-ins with your coach to review progress, make adjustments, and keep you on track. You are never doing this alone.</p>
-                </div>
-
-                <div class="feature-card">
-                    <div class="feature-icon">&#128202;</div>
-                    <h3>Macro & Calorie Guidance</h3>
-                    <p>Learn exactly what to eat and how much. Your coach will dial in your macros and calories based on your goals, whether that is fat loss, muscle gain, or performance.</p>
+                    <p>Regular check-ins to review progress, make adjustments, and keep you on track.</p>
                 </div>
 
                 <div class="feature-card">
                     <div class="feature-icon">&#127793;</div>
                     <h3>Habit-Based Approach</h3>
-                    <p>We focus on building sustainable habits that stick, not crash diets that burn out. Small, consistent changes lead to massive long-term results.</p>
+                    <p>Sustainable habits that stick -- not crash diets that burn out.</p>
                 </div>
-
-                <div class="feature-card">
-                    <div class="feature-icon">&#128170;</div>
-                    <h3>Body Composition Tracking</h3>
-                    <p>Monthly body composition scans to measure your progress objectively. See exactly how your body is changing beyond what the scale shows.</p>
-                </div>
-
-                <div class="feature-card">
-                    <div class="feature-icon">&#128172;</div>
-                    <h3>Ongoing Support</h3>
-                    <p>Text and email access to your coach between sessions. Have a question about a meal, a restaurant menu, or a tough day? Your coach is just a message away.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Who It's For Section -->
-    <section id="who-its-for" class="section section-alt">
-        <div class="section-container">
-            <div class="section-header">
-                <div class="section-subtitle">Is This For You?</div>
-                <h2 class="section-title">Who It's For</h2>
-                <p class="section-description">Nutrition coaching is for anyone ready to stop guessing and start seeing results</p>
-            </div>
-
-            <div class="problem-grid">
-                <div class="problem-card">
-                    <h3>Train Hard, Eat Wrong</h3>
-                    <p>You put in the work at the gym but cannot seem to dial in your nutrition. You know food matters, but you are not sure what to eat or how much. It is time to close the gap between your effort and your results.</p>
-                </div>
-
-                <div class="problem-card">
-                    <h3>Tired of Yo-Yo Dieting</h3>
-                    <p>You have tried every diet out there and you are frustrated with the cycle of restriction, binging, and starting over. You want a sustainable approach that delivers lasting results without the misery.</p>
-                </div>
-
-                <div class="problem-card">
-                    <h3>Performance-Driven Athletes</h3>
-                    <p>You are looking to optimize your performance through nutrition. Whether you compete or just want to perform your best in training, proper fueling is the edge you have been missing.</p>
-                </div>
-
-                <div class="problem-card">
-                    <h3>Body Composition Goals</h3>
-                    <p>You want to lose fat, build muscle, or both. You know the gym is only half the equation and you are ready to take control of the other half with expert guidance and accountability.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- How It Works Section -->
-    <section id="how-it-works" class="section">
-        <div class="section-container">
-            <div class="section-header">
-                <div class="section-subtitle">The Process</div>
-                <h2 class="section-title">How It Works</h2>
-                <p class="section-description">Getting started with nutrition coaching is simple</p>
-            </div>
-
-            <div class="steps-grid">
-                <div class="step-card">
-                    <div class="step-number">1</div>
-                    <h3>Initial Assessment</h3>
-                    <p>We start with a deep dive into your goals, current eating habits, lifestyle, and what has worked or failed for you in the past. This gives your coach everything they need to build your plan.</p>
-                </div>
-
-                <div class="step-card">
-                    <div class="step-number">2</div>
-                    <h3>Custom Plan</h3>
-                    <p>Your coach designs a personalized nutrition strategy tailored to your body, your goals, and your life. No generic templates. This is your plan, built for you.</p>
-                </div>
-
-                <div class="step-card">
-                    <div class="step-number">3</div>
-                    <h3>Execute & Adjust</h3>
-                    <p>Follow the plan, check in regularly with your coach, and make adjustments as needed. Nutrition is not static, and neither is your plan. We evolve with you as your body changes.</p>
-                </div>
-            </div>
-
-            <div style="text-align: center; margin-top: 3rem;">
-                <a href="#" onclick="openLeadModal(); return false;" class="btn-primary">Book Your Free Consultation</a>
             </div>
         </div>
     </section>
@@ -1048,25 +868,11 @@
                 </div>
 
                 <div class="faq-item">
-                    <h3 class="faq-question">How often do we check in?</h3>
-                    <p class="faq-answer">Check-ins happen weekly or bi-weekly depending on your plan and your needs. Between check-ins, you have direct access to your coach via text and email for any questions that come up.</p>
-                </div>
-
-                <div class="faq-item">
-                    <h3 class="faq-question">Will I have to give up foods I love?</h3>
-                    <p class="faq-answer">No. We believe in balance and moderation, not restriction. Your coach will teach you how to enjoy the foods you love while still making progress toward your goals. Sustainability is the priority.</p>
-                </div>
-
-                <div class="faq-item">
-                    <h3 class="faq-question">How soon will I see results?</h3>
-                    <p class="faq-answer">Most clients begin to see and feel changes within 2-4 weeks. Energy levels improve, clothes fit differently, and training performance picks up. Long-term body composition changes build from there with consistency.</p>
-                </div>
-
-                <div class="faq-item">
                     <h3 class="faq-question">Do you work with dietary restrictions?</h3>
                     <p class="faq-answer">Yes. We accommodate all dietary needs and restrictions including vegetarian, vegan, gluten-free, dairy-free, food allergies, and more. Your plan is built around what works for your body.</p>
                 </div>
             </div>
+            <div style="text-align: center; margin-top: 3rem;"><a href="faq.html" class="btn-primary" style="background: transparent; color: var(--yellow); border-color: var(--yellow);">View All FAQs →</a></div>
         </div>
     </section>
 
@@ -1197,30 +1003,6 @@
           "acceptedAnswer": {
             "@type": "Answer",
             "text": "Yes. Nutrition coaching is available as a standalone service or combined with any of our training memberships. Whether you train with us or somewhere else, we can help you dial in your nutrition."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "How often do we check in?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Check-ins happen weekly or bi-weekly depending on your plan and your needs. Between check-ins, you have direct access to your coach via text and email for any questions that come up."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "Will I have to give up foods I love?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "No. We believe in balance and moderation, not restriction. Your coach will teach you how to enjoy the foods you love while still making progress toward your goals. Sustainability is the priority."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "How soon will I see results?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Most clients begin to see and feel changes within 2-4 weeks. Energy levels improve, clothes fit differently, and training performance picks up. Long-term body composition changes build from there with consistency."
           }
         },
         {

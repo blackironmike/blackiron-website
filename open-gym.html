@@ -75,8 +75,6 @@
         /* Anchor offset for fixed nav */
         #what-is-open-gym,
         #whats-included,
-        #who-its-for,
-        #equipment,
         #faq {
             scroll-margin-top: 100px;
         }
@@ -398,82 +396,6 @@
             line-height: 1.8;
         }
 
-        /* Problem Cards (yellow left border) */
-        .problem-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
-        }
-
-        .problem-card {
-            background: var(--dark-gray);
-            padding: 2.5rem;
-            border: 2px solid var(--medium-gray);
-            border-left: 5px solid var(--yellow);
-            transition: all 0.3s ease;
-            position: relative;
-        }
-
-        .problem-card:hover {
-            border-color: var(--yellow);
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(255, 210, 2, 0.2);
-        }
-
-        .problem-card h3 {
-            font-weight: 900;
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-            color: var(--yellow);
-        }
-
-        .problem-card p {
-            color: var(--light-gray);
-            line-height: 1.8;
-            font-size: 1rem;
-        }
-
-        /* Equipment Grid */
-        .equipment-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-top: 4rem;
-        }
-
-        .equipment-card {
-            background: var(--dark-gray);
-            padding: 2.5rem;
-            border: 2px solid var(--medium-gray);
-            transition: all 0.3s ease;
-        }
-
-        .equipment-card:hover {
-            border-color: var(--yellow);
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(255, 210, 2, 0.2);
-        }
-
-        .equipment-card .equipment-icon {
-            font-size: 2rem;
-            color: var(--yellow);
-            margin-bottom: 1rem;
-        }
-
-        .equipment-card h3 {
-            font-weight: 900;
-            font-size: 1.3rem;
-            margin-bottom: 0.75rem;
-            text-transform: uppercase;
-        }
-
-        .equipment-card p {
-            color: var(--light-gray);
-            line-height: 1.7;
-            font-size: 0.95rem;
-        }
-
         /* FAQ Section */
         .faq-container {
             display: grid;
@@ -752,18 +674,8 @@
                 padding: 1.5rem;
             }
 
-            .problem-grid,
-            .equipment-grid,
             .faq-container {
                 grid-template-columns: 1fr;
-            }
-
-            .problem-card {
-                padding: 1.5rem;
-            }
-
-            .equipment-card {
-                padding: 1.5rem;
             }
 
             .faq-item {
@@ -891,9 +803,16 @@
                 <h2 class="section-title">What Is Open Gym?</h2>
             </div>
             <div class="content-block">
-                <p>Open Gym gives you full access to the Black Iron Athletics facility 24 hours a day, 7 days a week. Whether you prefer training at 5 AM before work, during your lunch break, or at midnight when the rest of the world is asleep, the gym is yours. It's the ultimate flexibility for athletes who refuse to let a busy schedule stand between them and their goals.</p>
-                <p>This program is perfect for self-motivated athletes who want the freedom to train on their own terms. You'll have access to everything in the facility -- barbells, dumbbells, squat racks, rigs, cardio machines, and more. Entry is simple and secure with key fob or code access, and the facility is climate-controlled, clean, and well-maintained every single day.</p>
-                <p>Can't make it to a scheduled class? No problem. Open Gym members can also follow Black Iron's structured programming on their own schedule. You get the benefit of expert-designed workouts with the flexibility to complete them whenever it works for you.</p>
+                <p>Open Gym gives you full access to the Black Iron Athletics facility 24 hours a day, 7 days a week. It's the ultimate flexibility for athletes who refuse to let a busy schedule stand between them and their goals. Entry is simple and secure with key fob access, and the facility is climate-controlled and well-maintained. You can also follow our structured programming on your own schedule.</p>
+                <h3 style="font-size: 1.3rem; margin-top: 2rem; margin-bottom: 1rem; color: var(--yellow); text-transform: uppercase;">Equipment Available</h3>
+                <ul style="list-style: none; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 0.5rem;">
+                    <li style="color: var(--light-gray); padding: 0.5rem 0;">&#8226; Barbells & Plates</li>
+                    <li style="color: var(--light-gray); padding: 0.5rem 0;">&#8226; Squat Racks & Rigs</li>
+                    <li style="color: var(--light-gray); padding: 0.5rem 0;">&#8226; Dumbbells & Kettlebells</li>
+                    <li style="color: var(--light-gray); padding: 0.5rem 0;">&#8226; Cardio Equipment</li>
+                    <li style="color: var(--light-gray); padding: 0.5rem 0;">&#8226; Accessories & Bands</li>
+                    <li style="color: var(--light-gray); padding: 0.5rem 0;">&#8226; Recovery Tools</li>
+                </ul>
             </div>
         </div>
     </section>
@@ -910,105 +829,17 @@
                 <div class="feature-card">
                     <div class="feature-icon"><i class="fa-solid fa-clock"></i></div>
                     <h3 class="feature-title">24/7 Access</h3>
-                    <p class="feature-description">Train any time, day or night. Early morning, late night, weekends, holidays -- the gym is always open for you.</p>
+                    <p class="feature-description">Train any time, day or night -- the gym is always open for you.</p>
                 </div>
                 <div class="feature-card">
                     <div class="feature-icon"><i class="fa-solid fa-dumbbell"></i></div>
                     <h3 class="feature-title">Full Equipment Access</h3>
-                    <p class="feature-description">Barbells, dumbbells, rigs, cardio machines, and more. Everything you need for a complete workout, every single time.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon"><i class="fa-solid fa-snowflake"></i></div>
-                    <h3 class="feature-title">Climate Controlled</h3>
-                    <p class="feature-description">AC in summer, heat in winter -- no excuses. Train in comfort year-round regardless of what Texas weather throws at you.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon"><i class="fa-solid fa-broom"></i></div>
-                    <h3 class="feature-title">Clean & Well-Maintained</h3>
-                    <p class="feature-description">Spotless facility, maintained daily. We take pride in keeping our space clean so you can focus on your training.</p>
+                    <p class="feature-description">Barbells, dumbbells, rigs, cardio machines, and more.</p>
                 </div>
                 <div class="feature-card">
                     <div class="feature-icon"><i class="fa-solid fa-clipboard-list"></i></div>
                     <h3 class="feature-title">Access to Programming</h3>
-                    <p class="feature-description">Follow our structured programming on your own time. Expert-designed workouts without needing to attend a scheduled class.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon"><i class="fa-solid fa-lock"></i></div>
-                    <h3 class="feature-title">Private Facility</h3>
-                    <p class="feature-description">Secure key fob access, no crowds. Train in a private, members-only environment without the chaos of big-box gyms.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Who It's For Section -->
-    <section id="who-its-for" class="section section-alt">
-        <div class="section-container">
-            <div class="section-header">
-                <div class="section-subtitle">Is This Right for You?</div>
-                <h2 class="section-title">Who It's For</h2>
-                <p class="section-description">Open Gym is built for athletes who need flexibility without sacrificing quality.</p>
-            </div>
-
-            <div class="problem-grid">
-                <div class="problem-card">
-                    <h3>Early Birds & Night Owls</h3>
-                    <p>You train outside normal hours because that's when your schedule allows it. Whether it's a 4 AM session before the kids wake up or a late-night lift after work, the gym is ready when you are.</p>
-                </div>
-                <div class="problem-card">
-                    <h3>Self-Motivated Athletes</h3>
-                    <p>You prefer training independently and don't need someone watching over every rep. You know what you want, you have the discipline, and you just need the space and equipment to get it done.</p>
-                </div>
-                <div class="problem-card">
-                    <h3>Busy Professionals</h3>
-                    <p>Your schedule changes week to week and you can't commit to a fixed class time. Open Gym gives you the flexibility to train whenever a window opens up -- no scheduling conflicts, no missed workouts.</p>
-                </div>
-                <div class="problem-card">
-                    <h3>Extra Training Sessions</h3>
-                    <p>You're already a group class member and want to supplement with additional training. Use Open Gym for extra skill work, strength sessions, or cardio on your own time.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Equipment & Facility Section -->
-    <section id="equipment" class="section">
-        <div class="section-container">
-            <div class="section-header">
-                <div class="section-subtitle">Our Facility</div>
-                <h2 class="section-title">What's in the Gym</h2>
-            </div>
-
-            <div class="equipment-grid">
-                <div class="equipment-card">
-                    <div class="equipment-icon"><i class="fa-solid fa-dumbbell"></i></div>
-                    <h3>Barbells & Plates</h3>
-                    <p>Olympic bars, bumper plates, specialty bars -- everything you need for heavy lifts and Olympic movements.</p>
-                </div>
-                <div class="equipment-card">
-                    <div class="equipment-icon"><i class="fa-solid fa-grip-lines-vertical"></i></div>
-                    <h3>Squat Racks & Rigs</h3>
-                    <p>Multiple stations for squats, pull-ups, muscle-ups, and more. Never wait for a rack.</p>
-                </div>
-                <div class="equipment-card">
-                    <div class="equipment-icon"><i class="fa-solid fa-weight-hanging"></i></div>
-                    <h3>Dumbbells & Kettlebells</h3>
-                    <p>Full range of weights for any workout -- from accessory work to full-body kettlebell sessions.</p>
-                </div>
-                <div class="equipment-card">
-                    <div class="equipment-icon"><i class="fa-solid fa-heart-pulse"></i></div>
-                    <h3>Cardio Equipment</h3>
-                    <p>Rowers, bikes, ski ergs -- all the tools you need for conditioning and endurance work.</p>
-                </div>
-                <div class="equipment-card">
-                    <div class="equipment-icon"><i class="fa-solid fa-box"></i></div>
-                    <h3>Accessories</h3>
-                    <p>Bands, boxes, medicine balls, jump ropes -- everything for a well-rounded training session.</p>
-                </div>
-                <div class="equipment-card">
-                    <div class="equipment-icon"><i class="fa-solid fa-spa"></i></div>
-                    <h3>Recovery</h3>
-                    <p>Foam rollers, lacrosse balls, stretching area -- take care of your body before and after every session.</p>
+                    <p class="feature-description">Follow expert-designed workouts on your own schedule.</p>
                 </div>
             </div>
         </div>
@@ -1029,26 +860,15 @@
                     <p class="faq-answer">Open Gym members receive a secure key fob and access code with their membership. Simply use your key fob or code at the door to enter the facility any time, day or night.</p>
                 </div>
                 <div class="faq-item">
-                    <h3 class="faq-question">Is the gym monitored?</h3>
-                    <p class="faq-answer">Yes. We have security cameras throughout the facility for the safety of all our members. Your security is a top priority, and the monitoring system runs 24/7.</p>
-                </div>
-                <div class="faq-item">
                     <h3 class="faq-question">Can I bring a friend?</h3>
                     <p class="faq-answer">For safety and liability purposes, only active members can access the facility during open gym hours. If your friend is interested in joining, have them book a free consultation and we'll get them set up.</p>
-                </div>
-                <div class="faq-item">
-                    <h3 class="faq-question">What if I need help with equipment?</h3>
-                    <p class="faq-answer">Our coaches are available during scheduled class hours to help with form, programming questions, or equipment guidance. We also provide programming guides so you always know what to do during your open gym sessions.</p>
-                </div>
-                <div class="faq-item">
-                    <h3 class="faq-question">Is there a separate open gym area?</h3>
-                    <p class="faq-answer">No -- and that's the best part. You have access to the full facility, including all equipment, racks, rigs, and floor space. The entire gym is yours to use.</p>
                 </div>
                 <div class="faq-item">
                     <h3 class="faq-question">Can I combine open gym with group classes?</h3>
                     <p class="faq-answer">Absolutely. Our Unlimited + Open Gym membership includes both unlimited group classes and full 24/7 open gym access. It's the best of both worlds for athletes who want coaching and flexibility.</p>
                 </div>
             </div>
+            <div style="text-align: center; margin-top: 3rem;"><a href="faq.html" class="btn-primary" style="background: transparent; color: var(--yellow); border-color: var(--yellow);">View All FAQs →</a></div>
         </div>
     </section>
 
@@ -1177,34 +997,10 @@
         },
         {
           "@type": "Question",
-          "name": "Is the gym monitored?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Yes. We have security cameras throughout the facility for the safety of all our members. Your security is a top priority, and the monitoring system runs 24/7."
-          }
-        },
-        {
-          "@type": "Question",
           "name": "Can I bring a friend?",
           "acceptedAnswer": {
             "@type": "Answer",
             "text": "For safety and liability purposes, only active members can access the facility during open gym hours. If your friend is interested in joining, have them book a free consultation and we'll get them set up."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "What if I need help with equipment?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Our coaches are available during scheduled class hours to help with form, programming questions, or equipment guidance. We also provide programming guides so you always know what to do during your open gym sessions."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "Is there a separate open gym area?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "No -- and that's the best part. You have access to the full facility, including all equipment, racks, rigs, and floor space. The entire gym is yours to use."
           }
         },
         {

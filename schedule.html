@@ -74,8 +74,7 @@
 
         /* Anchor offset for fixed nav */
         #schedule,
-        #class-types,
-        #before-class {
+        #class-types {
             scroll-margin-top: 100px;
         }
 
@@ -378,48 +377,6 @@
             line-height: 1.8;
         }
 
-        /* Info Cards Grid */
-        .info-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2rem;
-            margin-top: 4rem;
-        }
-
-        .info-card {
-            background: var(--dark-gray);
-            padding: 2.5rem;
-            border: 2px solid var(--medium-gray);
-            border-left: 5px solid var(--yellow);
-            transition: all 0.3s ease;
-        }
-
-        .info-card:hover {
-            border-color: var(--yellow);
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(255, 210, 2, 0.2);
-        }
-
-        .info-card h3 {
-            font-weight: 900;
-            font-size: 1.3rem;
-            margin-bottom: 1rem;
-            color: var(--yellow);
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-        }
-
-        .info-card-icon {
-            font-size: 1.5rem;
-            color: var(--yellow);
-        }
-
-        .info-card p {
-            color: var(--light-gray);
-            line-height: 1.8;
-        }
-
         .btn-primary {
             background: var(--yellow);
             color: var(--black);
@@ -675,17 +632,12 @@
                 padding: 4rem 0;
             }
 
-            .class-types-grid,
-            .info-grid {
+            .class-types-grid {
                 grid-template-columns: 1fr;
             }
 
             .class-type-card {
                 padding: 2rem 1.5rem;
-            }
-
-            .info-card {
-                padding: 1.5rem;
             }
 
             .schedule-embed {
@@ -863,39 +815,6 @@
                     <div class="class-type-icon"><i class="fa-solid fa-fire"></i></div>
                     <h3>Hyrox</h3>
                     <p>Train for the world's largest fitness race. Build endurance, strength, and mental grit with workouts designed around the 8 Hyrox stations.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- What to Know Section -->
-    <section id="before-class" class="section">
-        <div class="section-container">
-            <div class="section-header">
-                <div class="section-subtitle">Be Prepared</div>
-                <h2 class="section-title">Before Your First Class</h2>
-                <p class="section-description">Here's everything you need to know to make the most of your first session</p>
-            </div>
-
-            <div class="info-grid">
-                <div class="info-card">
-                    <h3><i class="fa-solid fa-clock info-card-icon"></i> Arrive 10 Minutes Early</h3>
-                    <p>Give yourself time to check in, meet your coach, and get oriented to the gym before class starts.</p>
-                </div>
-
-                <div class="info-card">
-                    <h3><i class="fa-solid fa-bottle-water info-card-icon"></i> Bring Water & a Towel</h3>
-                    <p>Stay hydrated and ready to work. We have everything else you need to get a great workout in.</p>
-                </div>
-
-                <div class="info-card">
-                    <h3><i class="fa-solid fa-shoe-prints info-card-icon"></i> Wear Athletic Shoes</h3>
-                    <p>Cross-trainers work best for our classes. Avoid running shoes as they can limit stability during lifts.</p>
-                </div>
-
-                <div class="info-card">
-                    <h3><i class="fa-solid fa-users info-card-icon"></i> All Levels Welcome</h3>
-                    <p>Every workout is scaled to your fitness level. Our coaches will guide you through modifications so you get the perfect challenge.</p>
                 </div>
             </div>
         </div>

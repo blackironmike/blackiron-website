@@ -378,86 +378,6 @@
             line-height: 1.8;
         }
 
-        /* Problem Cards (yellow left border) */
-        .problem-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-top: 4rem;
-        }
-
-        .problem-card {
-            background: var(--dark-gray);
-            padding: 2.5rem;
-            border: 2px solid var(--medium-gray);
-            border-left: 5px solid var(--yellow);
-            transition: all 0.3s ease;
-        }
-
-        .problem-card:hover {
-            border-color: var(--yellow);
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(255, 210, 2, 0.2);
-        }
-
-        .problem-card h3 {
-            font-weight: 900;
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-            color: var(--yellow);
-        }
-
-        .problem-card p {
-            color: var(--light-gray);
-            line-height: 1.8;
-        }
-
-        /* Steps Grid */
-        .steps-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 2rem;
-            margin-top: 4rem;
-        }
-
-        .step-card {
-            background: var(--dark-gray);
-            padding: 3rem 2rem;
-            border: 2px solid var(--medium-gray);
-            transition: all 0.3s ease;
-            text-align: center;
-        }
-
-        .step-card:hover {
-            border-color: var(--yellow);
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(255, 210, 2, 0.2);
-        }
-
-        .step-number {
-            background: var(--yellow);
-            color: var(--black);
-            width: 60px;
-            height: 60px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 2rem;
-            font-weight: 900;
-            margin: 0 auto 1.5rem;
-        }
-
-        .step-card h3 {
-            font-weight: 900;
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-        }
-
-        .step-card p {
-            color: var(--light-gray);
-            line-height: 1.8;
-        }
-
         /* FAQs */
         .faq-container {
             display: grid;
@@ -749,21 +669,11 @@
             }
 
             .feature-grid,
-            .problem-grid,
-            .steps-grid,
             .faq-container {
                 grid-template-columns: 1fr;
             }
 
             .feature-card {
-                padding: 2rem 1.5rem;
-            }
-
-            .problem-card {
-                padding: 1.5rem;
-            }
-
-            .step-card {
                 padding: 2rem 1.5rem;
             }
 
@@ -893,9 +803,7 @@
             </div>
 
             <div class="content-block">
-                <p>Personal training at Black Iron Athletics is dedicated 1-on-1 time with a certified coach who designs everything around YOU. Every session, every rep, every program detail is built specifically for your body, your goals, and your timeline. This isn't a generic plan pulled from the internet -- it's expert coaching with your name on it.</p>
-                <p>Personal training is ideal for people with specific goals like weight loss, injury rehabilitation, or competition preparation. It's also the perfect fit for anyone who wants undivided attention from their coach, prefers a private training environment, or simply wants to accelerate their results with a more focused approach.</p>
-                <p>Your programs are customized, progressive, and data-driven. We track everything -- your lifts, your body composition, your movement quality -- so that every decision we make is backed by real numbers, not guesswork. You'll always know where you stand and exactly what comes next.</p>
+                <p>Personal training at Black Iron Athletics is dedicated 1-on-1 time with a certified coach who designs everything around YOU. Every session, every rep, every program detail is built specifically for your body, your goals, and your timeline. Your programs are customized, progressive, and data-driven so you always know where you stand and exactly what comes next.</p>
             </div>
         </div>
     </section>
@@ -912,104 +820,20 @@
                 <div class="feature-card">
                     <div class="feature-icon"><i class="fa-solid fa-clipboard-list"></i></div>
                     <h3>Custom Programming</h3>
-                    <p>Every program is built specifically for your goals and your body. No cookie-cutter templates. Your training plan evolves as you do.</p>
+                    <p>Every program is built specifically for your goals -- no cookie-cutter templates.</p>
                 </div>
 
                 <div class="feature-card">
                     <div class="feature-icon"><i class="fa-solid fa-user-shield"></i></div>
                     <h3>1-on-1 Coaching</h3>
-                    <p>Undivided attention every session. Your coach is focused entirely on you -- cueing your movements, pushing your limits, and keeping you safe.</p>
+                    <p>Undivided attention every session, focused entirely on you.</p>
                 </div>
 
                 <div class="feature-card">
                     <div class="feature-icon"><i class="fa-solid fa-bullseye"></i></div>
                     <h3>Form &amp; Technique</h3>
-                    <p>Detailed movement correction and optimization so you move better, lift safer, and get stronger without risking injury.</p>
+                    <p>Detailed movement correction so you move better and lift safer.</p>
                 </div>
-
-                <div class="feature-card">
-                    <div class="feature-icon"><i class="fa-solid fa-apple-whole"></i></div>
-                    <h3>Nutrition Guidance</h3>
-                    <p>Fueling strategies to complement your training. We help you dial in your nutrition so your effort in the gym translates to real results.</p>
-                </div>
-
-                <div class="feature-card">
-                    <div class="feature-icon"><i class="fa-solid fa-chart-line"></i></div>
-                    <h3>Progress Tracking</h3>
-                    <p>Regular assessments and body composition scans so you can see exactly how far you've come and what's ahead.</p>
-                </div>
-
-                <div class="feature-card">
-                    <div class="feature-icon"><i class="fa-solid fa-calendar-check"></i></div>
-                    <h3>Flexible Scheduling</h3>
-                    <p>Sessions that fit your life. We work around your schedule so training never feels like a burden -- it becomes the best part of your day.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Who It's For Section -->
-    <section class="section section-alt">
-        <div class="section-container">
-            <div class="section-header">
-                <div class="section-subtitle">Is This For You?</div>
-                <h2 class="section-title">Who Is Personal Training For?</h2>
-            </div>
-
-            <div class="problem-grid">
-                <div class="problem-card">
-                    <h3>Specific Goals</h3>
-                    <p>You have a clear target -- weight loss, muscle gain, sport performance -- and you want a structured, expert-led plan to get there as efficiently as possible.</p>
-                </div>
-
-                <div class="problem-card">
-                    <h3>Injury Recovery</h3>
-                    <p>You're recovering from an injury and need careful, guided training that respects your limitations while rebuilding your strength and confidence.</p>
-                </div>
-
-                <div class="problem-card">
-                    <h3>Busy Professionals</h3>
-                    <p>Your time is limited and valuable. You want maximum results in minimum time with a coach who makes every minute of your session count.</p>
-                </div>
-
-                <div class="problem-card">
-                    <h3>Personalized Experience</h3>
-                    <p>You want a completely personalized fitness experience -- your own program, your own pace, and a coach who knows your body and your story inside and out.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- How It Works Section -->
-    <section class="section">
-        <div class="section-container">
-            <div class="section-header">
-                <div class="section-subtitle">The Process</div>
-                <h2 class="section-title">How It Works</h2>
-            </div>
-
-            <div class="steps-grid">
-                <div class="step-card">
-                    <div class="step-number">1</div>
-                    <h3>Free Consultation</h3>
-                    <p>We sit down and discuss your goals, assess your current fitness level, and create a game plan. No pressure, no commitment -- just a real conversation about what you want to achieve.</p>
-                </div>
-
-                <div class="step-card">
-                    <div class="step-number">2</div>
-                    <h3>Custom Program Design</h3>
-                    <p>Your coach builds your personalized training program from the ground up. Every exercise, every set, every progression is designed with your goals and your body in mind.</p>
-                </div>
-
-                <div class="step-card">
-                    <div class="step-number">3</div>
-                    <h3>Train &amp; Transform</h3>
-                    <p>Execute the plan with expert guidance every step of the way. Your coach is with you through every session, every milestone, and every breakthrough.</p>
-                </div>
-            </div>
-
-            <div style="text-align: center; margin-top: 3rem;">
-                <a href="#" onclick="openLeadModal(); return false;" class="btn-primary">Book Your Free Consultation</a>
             </div>
         </div>
     </section>
@@ -1024,16 +848,6 @@
 
             <div class="faq-container">
                 <div class="faq-item">
-                    <h3 class="faq-question">How often should I train?</h3>
-                    <p class="faq-answer">Most personal training clients train 2-4 times per week depending on their goals, schedule, and recovery needs. During your consultation, we'll recommend the ideal frequency for your situation.</p>
-                </div>
-
-                <div class="faq-item">
-                    <h3 class="faq-question">What if I'm a complete beginner?</h3>
-                    <p class="faq-answer">Personal training is the perfect starting point. We meet you exactly where you are -- no experience required. Your coach will teach you proper form, build your confidence, and progress you at the right pace.</p>
-                </div>
-
-                <div class="faq-item">
                     <h3 class="faq-question">How long are sessions?</h3>
                     <p class="faq-answer">Sessions are typically 60 minutes. That gives us enough time for a proper warm-up, your training session, and a cool-down -- all with expert coaching throughout.</p>
                 </div>
@@ -1044,15 +858,12 @@
                 </div>
 
                 <div class="faq-item">
-                    <h3 class="faq-question">Do you offer nutrition coaching with personal training?</h3>
-                    <p class="faq-answer">Yes, nutrition guidance is included as part of your personal training program. Your coach will help you build sustainable eating habits that support your training and accelerate your results.</p>
-                </div>
-
-                <div class="faq-item">
                     <h3 class="faq-question">What results can I expect?</h3>
                     <p class="faq-answer">Results depend on your goals and consistency, but most clients see significant progress within 6-8 weeks. Whether it's weight loss, strength gains, or improved movement quality, we track everything so you can see your transformation in real time.</p>
                 </div>
             </div>
+
+            <div style="text-align: center; margin-top: 3rem;"><a href="faq.html" class="btn-primary" style="background: transparent; color: var(--yellow); border-color: var(--yellow);">View All FAQs →</a></div>
         </div>
     </section>
 
@@ -1173,22 +984,6 @@
       "mainEntity": [
         {
           "@type": "Question",
-          "name": "How often should I train?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Most personal training clients train 2-4 times per week depending on their goals, schedule, and recovery needs. During your consultation, we'll recommend the ideal frequency for your situation."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "What if I'm a complete beginner?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Personal training is the perfect starting point. We meet you exactly where you are -- no experience required. Your coach will teach you proper form, build your confidence, and progress you at the right pace."
-          }
-        },
-        {
-          "@type": "Question",
           "name": "How long are sessions?",
           "acceptedAnswer": {
             "@type": "Answer",
@@ -1201,14 +996,6 @@
           "acceptedAnswer": {
             "@type": "Answer",
             "text": "Absolutely. Many of our members do both. Personal training builds your individual strengths while group classes add community, variety, and extra conditioning."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "Do you offer nutrition coaching with personal training?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Yes, nutrition guidance is included as part of your personal training program. Your coach will help you build sustainable eating habits that support your training and accelerate your results."
           }
         },
         {
