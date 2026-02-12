@@ -331,31 +331,17 @@
 
         .gallery-carousel {
             display: flex;
-            transition: transform 0.5s ease;
-        }
-
-        .gallery-slide {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            grid-template-rows: 1fr 1fr;
             gap: 0.75rem;
-            flex: 0 0 100%;
-            height: 500px;
-        }
-
-        .gallery-slide .gallery-portrait {
-            grid-row: 1 / -1;
-            grid-column: 1;
+            transition: transform 0.5s ease;
+            height: 450px;
         }
 
         .gallery-item {
-            overflow: hidden;
+            flex: 0 0 auto;
+            height: 100%;
             border: 2px solid var(--medium-gray);
             transition: border-color 0.3s ease;
-            background: var(--dark-gray);
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            overflow: hidden;
         }
 
         .gallery-item:hover {
@@ -363,9 +349,8 @@
         }
 
         .gallery-item img {
-            max-width: 100%;
-            max-height: 100%;
-            object-fit: contain;
+            height: 100%;
+            width: auto;
             display: block;
         }
 
@@ -546,8 +531,8 @@
                 padding-right: 2rem;
             }
 
-            .gallery-slide {
-                height: 400px;
+            .gallery-carousel {
+                height: 350px;
             }
         }
 
@@ -697,9 +682,8 @@
                 padding: 4rem 0;
             }
 
-            .gallery-slide {
-                height: 300px;
-                gap: 0.5rem;
+            .gallery-carousel {
+                height: 280px;
             }
 
             .carousel-arrow {
@@ -843,31 +827,21 @@
             <div class="gallery-carousel-wrapper">
                 <button class="carousel-arrow gallery-prev" aria-label="Previous photos"><i class="fa-solid fa-chevron-left"></i></button>
                 <div class="gallery-carousel" id="galleryCarousel">
-                    <div class="gallery-slide">
-                        <div class="gallery-item gallery-portrait"><img src="images/members-laughing.JPG" alt="Members celebrating together" loading="lazy"></div>
-                        <div class="gallery-item"><img src="images/coach-smiling.jpeg" alt="Coach at Black Iron Athletics" loading="lazy"></div>
-                        <div class="gallery-item"><img src="images/overhead-press-bw.jpeg" alt="Overhead press" loading="lazy"></div>
-                    </div>
-                    <div class="gallery-slide">
-                        <div class="gallery-item gallery-portrait"><img src="images/member-blessed.jpeg" alt="Member smiling at the gym" loading="lazy"></div>
-                        <div class="gallery-item"><img src="images/snatch-action.jpeg" alt="Barbell snatch" loading="lazy"></div>
-                        <div class="gallery-item"><img src="images/coach-briefing.JPG" alt="Coach briefing the class" loading="lazy"></div>
-                    </div>
-                    <div class="gallery-slide">
-                        <div class="gallery-item gallery-portrait"><img src="images/barbell-curl.jpeg" alt="Barbell training" loading="lazy"></div>
-                        <div class="gallery-item"><img src="images/back-squat.JPG" alt="Back squat" loading="lazy"></div>
-                        <div class="gallery-item"><img src="images/member-laughing.jpeg" alt="Member laughing at the gym" loading="lazy"></div>
-                    </div>
-                    <div class="gallery-slide">
-                        <div class="gallery-item gallery-portrait"><img src="images/squat-tattooed.JPG" alt="Squatting heavy" loading="lazy"></div>
-                        <div class="gallery-item"><img src="images/group-warmup.JPG" alt="Group warmup" loading="lazy"></div>
-                        <div class="gallery-item"><img src="images/member-coaching.JPG" alt="Coach working with member" loading="lazy"></div>
-                    </div>
-                    <div class="gallery-slide">
-                        <div class="gallery-item gallery-portrait"><img src="images/barbell-overhead.jpeg" alt="Barbell overhead" loading="lazy"></div>
-                        <div class="gallery-item"><img src="images/pullup-bar.JPG" alt="Pull-ups" loading="lazy"></div>
-                        <div class="gallery-item"><img src="images/outdoor-run.JPG" alt="Outdoor running" loading="lazy"></div>
-                    </div>
+                    <div class="gallery-item"><img src="images/members-laughing.JPG" alt="Members celebrating together" loading="lazy"></div>
+                    <div class="gallery-item"><img src="images/coach-smiling.jpeg" alt="Coach at Black Iron Athletics" loading="lazy"></div>
+                    <div class="gallery-item"><img src="images/snatch-action.jpeg" alt="Barbell snatch" loading="lazy"></div>
+                    <div class="gallery-item"><img src="images/overhead-press-bw.jpeg" alt="Overhead press" loading="lazy"></div>
+                    <div class="gallery-item"><img src="images/member-blessed.jpeg" alt="Member smiling at the gym" loading="lazy"></div>
+                    <div class="gallery-item"><img src="images/coach-briefing.JPG" alt="Coach briefing the class" loading="lazy"></div>
+                    <div class="gallery-item"><img src="images/member-laughing.jpeg" alt="Member laughing at the gym" loading="lazy"></div>
+                    <div class="gallery-item"><img src="images/back-squat.JPG" alt="Back squat" loading="lazy"></div>
+                    <div class="gallery-item"><img src="images/member-coaching.JPG" alt="Coach working with member" loading="lazy"></div>
+                    <div class="gallery-item"><img src="images/barbell-curl.jpeg" alt="Barbell training" loading="lazy"></div>
+                    <div class="gallery-item"><img src="images/pullup-bar.JPG" alt="Pull-ups" loading="lazy"></div>
+                    <div class="gallery-item"><img src="images/group-warmup.JPG" alt="Group warmup" loading="lazy"></div>
+                    <div class="gallery-item"><img src="images/outdoor-run.JPG" alt="Outdoor running" loading="lazy"></div>
+                    <div class="gallery-item"><img src="images/squat-tattooed.JPG" alt="Squatting heavy" loading="lazy"></div>
+                    <div class="gallery-item"><img src="images/barbell-overhead.jpeg" alt="Barbell overhead" loading="lazy"></div>
                 </div>
                 <button class="carousel-arrow gallery-next" aria-label="Next photos"><i class="fa-solid fa-chevron-right"></i></button>
             </div>
@@ -1118,40 +1092,52 @@
     (function() {
         var carousel = document.getElementById('galleryCarousel');
         if (!carousel) return;
-        var originalSlides = Array.from(carousel.querySelectorAll('.gallery-slide'));
-        var slideCount = originalSlides.length;
+        var originalItems = Array.from(carousel.querySelectorAll('.gallery-item'));
+        var itemCount = originalItems.length;
 
-        // Clone slides for infinite loop
-        originalSlides.forEach(function(slide) {
-            carousel.appendChild(slide.cloneNode(true));
+        // Clone items for infinite loop
+        originalItems.forEach(function(item) {
+            carousel.appendChild(item.cloneNode(true));
         });
-        for (var i = slideCount - 1; i >= 0; i--) {
-            carousel.insertBefore(originalSlides[i].cloneNode(true), carousel.firstChild);
+        for (var i = itemCount - 1; i >= 0; i--) {
+            carousel.insertBefore(originalItems[i].cloneNode(true), carousel.firstChild);
         }
 
-        var currentIndex = slideCount;
+        var allItems = carousel.querySelectorAll('.gallery-item');
+        var currentIndex = itemCount;
+        var gap = parseFloat(getComputedStyle(carousel).gap) || 12;
 
-        function getStep() {
-            return carousel.parentElement.offsetWidth;
+        function getOffset(index) {
+            var offset = 0;
+            for (var i = 0; i < index; i++) {
+                offset += allItems[i].offsetWidth + gap;
+            }
+            return offset;
         }
 
         function setPosition(animate) {
-            if (animate) {
-                carousel.style.transition = 'transform 0.5s ease';
-            } else {
-                carousel.style.transition = 'none';
-            }
-            carousel.style.transform = 'translateX(-' + (currentIndex * getStep()) + 'px)';
+            carousel.style.transition = animate ? 'transform 0.5s ease' : 'none';
+            carousel.style.transform = 'translateX(-' + getOffset(currentIndex) + 'px)';
         }
 
+        // Wait for images to load before positioning
+        var loadCount = 0;
+        var imgs = carousel.querySelectorAll('img');
+        function onLoad() {
+            loadCount++;
+            if (loadCount >= imgs.length) setPosition(false);
+        }
+        imgs.forEach(function(img) {
+            if (img.complete) { onLoad(); } else { img.addEventListener('load', onLoad); }
+        });
         setPosition(false);
 
         function next() {
             currentIndex++;
             setPosition(true);
             setTimeout(function() {
-                if (currentIndex >= slideCount * 2) {
-                    currentIndex -= slideCount;
+                if (currentIndex >= itemCount * 2) {
+                    currentIndex -= itemCount;
                     setPosition(false);
                 }
             }, 520);
@@ -1161,8 +1147,8 @@
             currentIndex--;
             setPosition(true);
             setTimeout(function() {
-                if (currentIndex < slideCount) {
-                    currentIndex += slideCount;
+                if (currentIndex < itemCount) {
+                    currentIndex += itemCount;
                     setPosition(false);
                 }
             }, 520);
@@ -1171,11 +1157,11 @@
         document.querySelector('.gallery-prev').addEventListener('click', prev);
         document.querySelector('.gallery-next').addEventListener('click', next);
 
-        // Auto-scroll every 5 seconds
-        var autoPlay = setInterval(next, 5000);
+        // Auto-scroll every 4 seconds
+        var autoPlay = setInterval(next, 4000);
         var wrapper = carousel.parentElement;
         wrapper.addEventListener('mouseenter', function() { clearInterval(autoPlay); });
-        wrapper.addEventListener('mouseleave', function() { autoPlay = setInterval(next, 5000); });
+        wrapper.addEventListener('mouseleave', function() { autoPlay = setInterval(next, 4000); });
 
         // Touch swipe support
         var touchStartX = 0;
@@ -1188,7 +1174,7 @@
             if (Math.abs(diff) > 50) {
                 if (diff > 0) { next(); } else { prev(); }
             }
-            autoPlay = setInterval(next, 5000);
+            autoPlay = setInterval(next, 4000);
         }, { passive: true });
 
         window.addEventListener('resize', function() { setPosition(false); });
