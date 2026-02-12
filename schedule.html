@@ -488,6 +488,100 @@
         .legend-dot.dot-wl { background: #ff0003; }
         .legend-dot.dot-hyrox { background: #1c94d9; }
 
+        /* Weekly Calendar (Desktop) */
+        .schedule-weekly {
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            border: 2px solid var(--medium-gray);
+        }
+
+        .schedule-weekly-col {
+            border-right: 1px solid var(--medium-gray);
+        }
+
+        .schedule-weekly-col:last-child {
+            border-right: none;
+        }
+
+        .schedule-weekly-header {
+            background: var(--dark-gray);
+            color: var(--light-gray);
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            text-transform: uppercase;
+            text-align: center;
+            padding: 1rem;
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+            border-bottom: 1px solid var(--medium-gray);
+        }
+
+        .schedule-weekly-col.today .schedule-weekly-header {
+            background: var(--yellow);
+            color: var(--black);
+            font-weight: 900;
+        }
+
+        .schedule-weekly-classes {
+            padding: 0.5rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            min-height: 400px;
+        }
+
+        .weekly-class {
+            padding: 0.75rem;
+            border-left: 3px solid var(--yellow);
+            background: rgba(255, 255, 255, 0.03);
+            transition: all 0.3s ease;
+        }
+
+        .weekly-class:hover {
+            background: rgba(255, 210, 2, 0.08);
+            transform: translateX(2px);
+        }
+
+        .weekly-class.type-weightlifting {
+            border-left-color: #ff0003;
+        }
+
+        .weekly-class.type-hyrox {
+            border-left-color: #1c94d9;
+        }
+
+        .weekly-class-time {
+            font-weight: 900;
+            font-size: 0.85rem;
+            color: var(--yellow);
+            margin-bottom: 0.2rem;
+        }
+
+        .weekly-class.type-weightlifting .weekly-class-time {
+            color: #ff4444;
+        }
+
+        .weekly-class.type-hyrox .weekly-class-time {
+            color: #1c94d9;
+        }
+
+        .weekly-class-name {
+            font-weight: 600;
+            font-size: 0.7rem;
+            color: var(--light-gray);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        /* Desktop: show weekly, hide daily */
+        .schedule-daily {
+            display: none;
+        }
+
+        .schedule-weekly {
+            display: grid;
+        }
+
         /* Class Types Grid */
         .class-types-grid {
             display: grid;
@@ -791,6 +885,14 @@
                 padding: 2rem 1.5rem;
             }
 
+            .schedule-weekly {
+                display: none;
+            }
+
+            .schedule-daily {
+                display: block;
+            }
+
             .schedule-tab {
                 padding: 0.75rem 1rem;
                 font-size: 0.75rem;
@@ -935,6 +1037,78 @@
                 <div class="legend-item"><div class="legend-dot dot-hyrox"></div> Hyrox</div>
             </div>
 
+            <!-- Weekly Calendar (Desktop) -->
+            <div class="schedule-weekly">
+                <div class="schedule-weekly-col" data-weekday="1">
+                    <div class="schedule-weekly-header">Monday</div>
+                    <div class="schedule-weekly-classes">
+                        <div class="weekly-class"><div class="weekly-class-time">5:15 AM</div><div class="weekly-class-name">S&C</div></div>
+                        <div class="weekly-class"><div class="weekly-class-time">6:15 AM</div><div class="weekly-class-name">S&C</div></div>
+                        <div class="weekly-class"><div class="weekly-class-time">9:30 AM</div><div class="weekly-class-name">S&C</div></div>
+                        <div class="weekly-class"><div class="weekly-class-time">12:00 PM</div><div class="weekly-class-name">S&C</div></div>
+                        <div class="weekly-class"><div class="weekly-class-time">4:15 PM</div><div class="weekly-class-name">S&C</div></div>
+                        <div class="weekly-class"><div class="weekly-class-time">5:15 PM</div><div class="weekly-class-name">S&C</div></div>
+                    </div>
+                </div>
+                <div class="schedule-weekly-col" data-weekday="2">
+                    <div class="schedule-weekly-header">Tuesday</div>
+                    <div class="schedule-weekly-classes">
+                        <div class="weekly-class"><div class="weekly-class-time">5:15 AM</div><div class="weekly-class-name">S&C</div></div>
+                        <div class="weekly-class"><div class="weekly-class-time">6:15 AM</div><div class="weekly-class-name">S&C</div></div>
+                        <div class="weekly-class"><div class="weekly-class-time">9:30 AM</div><div class="weekly-class-name">S&C</div></div>
+                        <div class="weekly-class type-weightlifting"><div class="weekly-class-time">11:00 AM</div><div class="weekly-class-name">Weightlifting</div></div>
+                        <div class="weekly-class"><div class="weekly-class-time">12:00 PM</div><div class="weekly-class-name">S&C</div></div>
+                        <div class="weekly-class"><div class="weekly-class-time">4:15 PM</div><div class="weekly-class-name">S&C</div></div>
+                        <div class="weekly-class"><div class="weekly-class-time">5:15 PM</div><div class="weekly-class-name">S&C</div></div>
+                    </div>
+                </div>
+                <div class="schedule-weekly-col" data-weekday="3">
+                    <div class="schedule-weekly-header">Wednesday</div>
+                    <div class="schedule-weekly-classes">
+                        <div class="weekly-class"><div class="weekly-class-time">5:15 AM</div><div class="weekly-class-name">S&C</div></div>
+                        <div class="weekly-class"><div class="weekly-class-time">6:15 AM</div><div class="weekly-class-name">S&C</div></div>
+                        <div class="weekly-class"><div class="weekly-class-time">9:30 AM</div><div class="weekly-class-name">S&C</div></div>
+                        <div class="weekly-class"><div class="weekly-class-time">12:00 PM</div><div class="weekly-class-name">S&C</div></div>
+                        <div class="weekly-class"><div class="weekly-class-time">4:15 PM</div><div class="weekly-class-name">S&C</div></div>
+                        <div class="weekly-class"><div class="weekly-class-time">5:15 PM</div><div class="weekly-class-name">S&C</div></div>
+                        <div class="weekly-class type-hyrox"><div class="weekly-class-time">6:15 PM</div><div class="weekly-class-name">Hyrox</div></div>
+                    </div>
+                </div>
+                <div class="schedule-weekly-col" data-weekday="4">
+                    <div class="schedule-weekly-header">Thursday</div>
+                    <div class="schedule-weekly-classes">
+                        <div class="weekly-class"><div class="weekly-class-time">5:15 AM</div><div class="weekly-class-name">S&C</div></div>
+                        <div class="weekly-class"><div class="weekly-class-time">6:15 AM</div><div class="weekly-class-name">S&C</div></div>
+                        <div class="weekly-class"><div class="weekly-class-time">9:30 AM</div><div class="weekly-class-name">S&C</div></div>
+                        <div class="weekly-class type-weightlifting"><div class="weekly-class-time">11:00 AM</div><div class="weekly-class-name">Weightlifting</div></div>
+                        <div class="weekly-class"><div class="weekly-class-time">12:00 PM</div><div class="weekly-class-name">S&C</div></div>
+                        <div class="weekly-class"><div class="weekly-class-time">4:15 PM</div><div class="weekly-class-name">S&C</div></div>
+                        <div class="weekly-class"><div class="weekly-class-time">5:15 PM</div><div class="weekly-class-name">S&C</div></div>
+                    </div>
+                </div>
+                <div class="schedule-weekly-col" data-weekday="5">
+                    <div class="schedule-weekly-header">Friday</div>
+                    <div class="schedule-weekly-classes">
+                        <div class="weekly-class"><div class="weekly-class-time">5:15 AM</div><div class="weekly-class-name">S&C</div></div>
+                        <div class="weekly-class"><div class="weekly-class-time">6:15 AM</div><div class="weekly-class-name">S&C</div></div>
+                        <div class="weekly-class"><div class="weekly-class-time">9:30 AM</div><div class="weekly-class-name">S&C</div></div>
+                        <div class="weekly-class"><div class="weekly-class-time">12:00 PM</div><div class="weekly-class-name">S&C</div></div>
+                        <div class="weekly-class"><div class="weekly-class-time">4:15 PM</div><div class="weekly-class-name">S&C</div></div>
+                        <div class="weekly-class"><div class="weekly-class-time">5:15 PM</div><div class="weekly-class-name">S&C</div></div>
+                    </div>
+                </div>
+                <div class="schedule-weekly-col" data-weekday="6">
+                    <div class="schedule-weekly-header">Saturday</div>
+                    <div class="schedule-weekly-classes">
+                        <div class="weekly-class type-weightlifting"><div class="weekly-class-time">8:30 AM</div><div class="weekly-class-name">Weightlifting</div></div>
+                        <div class="weekly-class"><div class="weekly-class-time">9:30 AM</div><div class="weekly-class-name">S&C</div></div>
+                        <div class="weekly-class type-hyrox"><div class="weekly-class-time">10:30 AM</div><div class="weekly-class-name">Hyrox</div></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Daily Calendar (Mobile) -->
+            <div class="schedule-daily">
             <div class="schedule-tabs" role="tablist">
                 <button class="schedule-tab" data-day="monday" role="tab">Mon</button>
                 <button class="schedule-tab" data-day="tuesday" role="tab">Tue</button>
@@ -1123,6 +1297,7 @@
                     </div>
                 </div>
             </div>
+            </div><!-- end schedule-daily -->
 
             <div style="text-align: center; margin-top: 3rem;">
                 <p style="font-size: 1.1rem; color: var(--light-gray); margin-bottom: 2rem;">Questions about class times or looking for something specific?</p>
@@ -1411,14 +1586,16 @@
         if (e.key === 'Escape') { closeLeadModal(); }
     });
 
-    // Schedule Tabs
+    // Schedule Tabs (Mobile) + Weekly Highlight (Desktop)
     (function() {
         var tabs = document.querySelectorAll('.schedule-tab');
         var days = document.querySelectorAll('.schedule-day');
         var dayNames = ['sunday','monday','tuesday','wednesday','thursday','friday','saturday'];
-        var today = dayNames[new Date().getDay()];
-        if (today === 'sunday') today = 'monday';
+        var todayIndex = new Date().getDay();
+        var today = dayNames[todayIndex];
+        if (today === 'sunday') { today = 'monday'; todayIndex = 1; }
 
+        // Mobile: tab switching
         function showDay(day) {
             tabs.forEach(function(t) { t.classList.remove('active'); });
             days.forEach(function(d) { d.classList.remove('active'); });
@@ -1435,6 +1612,10 @@
         });
 
         showDay(today);
+
+        // Desktop: highlight today's column
+        var todayCol = document.querySelector('.schedule-weekly-col[data-weekday="' + todayIndex + '"]');
+        if (todayCol) todayCol.classList.add('today');
     })();
 
     // Hamburger Menu
