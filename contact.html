@@ -837,35 +837,23 @@
 
                 <!-- Right Column - Contact Form -->
                 <div class="contact-form-container">
-                    <h2>Send Us a Message</h2>
-                    <p>Partnerships, events, general questions, or anything else — drop us a line and we'll get back to you.</p>
-
-                    <form id="contactForm" action="https://api.leadconnectorhq.com/widget/form/vw0hMdDkTCL6K5N3i7vF" method="POST">
-                        <input type="hidden" name="notrack" value="true">
-                        <input type="hidden" name="formSource" value="contact-page">
-                        <div style="margin-bottom: 1.5rem;">
-                            <label style="display: block; font-weight: 700; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 0.5rem; color: var(--white);">Name <span style="color: var(--yellow);">*</span></label>
-                            <input type="text" name="first_name" required style="width: 100%; padding: 1rem; background: var(--black); border: 2px solid var(--medium-gray); color: var(--white); font-family: 'Montserrat', sans-serif; font-size: 1rem; font-weight: 500; transition: all 0.3s ease;" onfocus="this.style.borderColor='var(--yellow)'; this.style.background='var(--dark-gray)';" onblur="this.style.borderColor='var(--medium-gray)'; this.style.background='var(--black)';" placeholder="Your name">
-                        </div>
-                        <div style="margin-bottom: 1.5rem;">
-                            <label style="display: block; font-weight: 700; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 0.5rem; color: var(--white);">Email <span style="color: var(--yellow);">*</span></label>
-                            <input type="email" name="email" required style="width: 100%; padding: 1rem; background: var(--black); border: 2px solid var(--medium-gray); color: var(--white); font-family: 'Montserrat', sans-serif; font-size: 1rem; font-weight: 500; transition: all 0.3s ease;" onfocus="this.style.borderColor='var(--yellow)'; this.style.background='var(--dark-gray)';" onblur="this.style.borderColor='var(--medium-gray)'; this.style.background='var(--black)';" placeholder="Your email">
-                        </div>
-                        <div style="margin-bottom: 1.5rem;">
-                            <label style="display: block; font-weight: 700; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 0.5rem; color: var(--white);">Phone</label>
-                            <input type="tel" name="phone" style="width: 100%; padding: 1rem; background: var(--black); border: 2px solid var(--medium-gray); color: var(--white); font-family: 'Montserrat', sans-serif; font-size: 1rem; font-weight: 500; transition: all 0.3s ease;" onfocus="this.style.borderColor='var(--yellow)'; this.style.background='var(--dark-gray)';" onblur="this.style.borderColor='var(--medium-gray)'; this.style.background='var(--black)';" placeholder="Your phone number">
-                        </div>
-                        <div style="margin-bottom: 1.5rem;">
-                            <label style="display: block; font-weight: 700; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 0.5rem; color: var(--white);">Message <span style="color: var(--yellow);">*</span></label>
-                            <textarea name="message" required style="width: 100%; padding: 1rem; background: var(--black); border: 2px solid var(--medium-gray); color: var(--white); font-family: 'Montserrat', sans-serif; font-size: 1rem; font-weight: 500; resize: vertical; min-height: 150px; transition: all 0.3s ease;" onfocus="this.style.borderColor='var(--yellow)'; this.style.background='var(--dark-gray)';" onblur="this.style.borderColor='var(--medium-gray)'; this.style.background='var(--black)';" placeholder="How can we help?"></textarea>
-                        </div>
-                        <button type="submit" style="width: 100%; background: var(--yellow); color: var(--black); padding: 1.2rem; border: 2px solid var(--yellow); border-radius: 0; font-family: 'Montserrat', sans-serif; font-weight: 900; font-size: 1.1rem; text-transform: uppercase; letter-spacing: 1px; cursor: pointer; transition: all 0.3s ease;" onmouseover="this.style.background='var(--black)'; this.style.color='var(--yellow)';" onmouseout="this.style.background='var(--yellow)'; this.style.color='var(--black)';">Send Message</button>
-                    </form>
-                    <div id="contactSuccessMessage" style="display: none; text-align: center; padding: 2rem;">
-                        <div style="font-size: 4rem; color: var(--yellow); margin-bottom: 1rem;">&#10003;</div>
-                        <h3 style="font-weight: 900; font-size: 2rem; text-transform: uppercase; margin-bottom: 1rem;">Message Sent!</h3>
-                        <p style="color: var(--light-gray); font-size: 1.1rem; line-height: 1.6;">Thanks for reaching out. We'll get back to you as soon as possible.</p>
-                    </div>
+                    <iframe
+                        src="https://api.leadconnectorhq.com/widget/form/vw0hMdDkTCL6K5N3i7vF"
+                        style="width:100%;height:565px;border:none;"
+                        id="contact-form-vw0hMdDkTCL6K5N3i7vF"
+                        data-layout="{'id':'INLINE'}"
+                        data-trigger-type="alwaysShow"
+                        data-trigger-value=""
+                        data-activation-type="alwaysActivated"
+                        data-activation-value=""
+                        data-deactivation-type="neverDeactivate"
+                        data-deactivation-value=""
+                        data-form-name="Form 2"
+                        data-height="565"
+                        data-layout-iframe-id="contact-form-vw0hMdDkTCL6K5N3i7vF"
+                        data-form-id="vw0hMdDkTCL6K5N3i7vF"
+                        title="Contact Form"
+                    ></iframe>
                 </div>
             </div>
         </div>
@@ -1070,20 +1058,6 @@
         if (e.key === 'Escape') { closeLeadModal(); }
     });
 
-    // Contact Form Submission
-    document.getElementById('contactForm').addEventListener('submit', function(e) {
-        e.preventDefault();
-        const formData = new FormData(this);
-        fetch('https://services.leadconnectorhq.com/hooks/snIUpSaFzz5WsavMB3QA/webhook-trigger/veLUixC2knBKTHuJDVJm', { method: 'POST', body: formData, mode: 'no-cors' })
-        .then(() => {
-            document.getElementById('contactForm').style.display = 'none';
-            document.getElementById('contactSuccessMessage').style.display = 'block';
-        })
-        .catch(() => {
-            document.getElementById('contactForm').style.display = 'none';
-            document.getElementById('contactSuccessMessage').style.display = 'block';
-        });
-    });
 
     // Hamburger Menu
     function toggleMobileNav() {
