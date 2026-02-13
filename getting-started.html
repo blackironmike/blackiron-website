@@ -556,6 +556,18 @@
             margin-bottom: 3rem;
         }
 
+        /* Map Section */
+        .map-section {
+            width: 100%;
+        }
+
+        .map-section iframe {
+            width: 100%;
+            height: 400px;
+            border: none;
+            display: block;
+        }
+
         /* Footer */
         footer {
             padding: 4rem 0 2rem;
@@ -799,6 +811,10 @@
 
             .cta-title {
                 font-size: clamp(1.8rem, 5vw, 2.5rem);
+            }
+
+            .map-section iframe {
+                height: 250px;
             }
 
             .footer-container {
@@ -1058,6 +1074,16 @@
         </div>
     </section>
 
+    <!-- Map Section -->
+    <div class="map-section">
+        <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3344.9875647886857!2d-96.89026308820058!3d33.15034697358084!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x864c3a240f77e3f7%3A0x9f460209df528d6e!2sBlack%20Iron%20Athletics!5e0!3m2!1sen!2sus!4v1737509000000!5m2!1sen!2sus"
+            allowfullscreen=""
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade">
+        </iframe>
+    </div>
+
     <!-- Footer -->
     <footer>
         <div class="footer-container">
@@ -1091,15 +1117,6 @@
                 <p style="margin-bottom: 1.5rem;">
                     <a href="tel:(972)785-7036" style="color: var(--yellow); font-weight: 700;">(972) 785-7036</a>
                 </p>
-                <iframe 
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3344.9875647886857!2d-96.89026308820058!3d33.15034697358084!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x864c3a240f77e3f7%3A0x9f460209df528d6e!2sBlack%20Iron%20Athletics!5e0!3m2!1sen!2sus!4v1737509000000!5m2!1sen!2sus" 
-                    width="100%" 
-                    height="200" 
-                    style="border: 1px solid var(--medium-gray); border-radius: 0; margin-top: 1rem;" 
-                    allowfullscreen="" 
-                    loading="lazy" 
-                    referrerpolicy="no-referrer-when-downgrade">
-                </iframe>
             </div>
 
             <div class="footer-section">
