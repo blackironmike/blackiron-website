@@ -604,6 +604,30 @@
             box-shadow: 0 10px 30px rgba(255, 210, 2, 0.2);
         }
 
+        .class-type-card.type-sc {
+            border-top: 4px solid var(--yellow);
+        }
+        .class-type-card.type-weightlifting {
+            border-top: 4px solid #ff0003;
+        }
+        .class-type-card.type-weightlifting .class-type-icon {
+            color: #ff0003;
+        }
+        .class-type-card.type-weightlifting:hover {
+            border-color: #ff0003;
+            box-shadow: 0 10px 30px rgba(255, 0, 3, 0.2);
+        }
+        .class-type-card.type-hyrox {
+            border-top: 4px solid #1c94d9;
+        }
+        .class-type-card.type-hyrox .class-type-icon {
+            color: #1c94d9;
+        }
+        .class-type-card.type-hyrox:hover {
+            border-color: #1c94d9;
+            box-shadow: 0 10px 30px rgba(28, 148, 217, 0.2);
+        }
+
         .class-type-icon {
             font-size: 3rem;
             color: var(--yellow);
@@ -1317,19 +1341,19 @@
             </div>
 
             <div class="class-types-grid">
-                <div class="class-type-card">
+                <div class="class-type-card type-sc">
                     <div class="class-type-icon"><i class="fa-solid fa-weight-hanging"></i></div>
                     <h3>Strength &amp; Conditioning</h3>
                     <p>Our mainstay program. Built from CrossFit roots with a modern approach -- more structure, more predictable results, less wear and tear on the body. Combines functional strength, conditioning, and skill work in a coached 60-minute session.</p>
                 </div>
 
-                <div class="class-type-card">
+                <div class="class-type-card type-weightlifting">
                     <div class="class-type-icon"><i class="fa-solid fa-dumbbell"></i></div>
                     <h3>Weightlifting</h3>
                     <p>Olympic weightlifting focused on improving your lifts and maximizing your potential with a barbell. Whether you're learning the clean &amp; jerk for the first time or chasing a new PR, this class is built for progress.</p>
                 </div>
 
-                <div class="class-type-card">
+                <div class="class-type-card type-hyrox">
                     <div class="class-type-icon"><i class="fa-solid fa-person-running"></i></div>
                     <h3>Hyrox</h3>
                     <p>Focused on getting you race day ready. A blend of running and functional fitness stations designed to prepare you for Hyrox competition or just push your endurance to the next level.</p>
