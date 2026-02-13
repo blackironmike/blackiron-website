@@ -334,11 +334,17 @@
         }
 
         .contact-card {
-            background: var(--dark-gray);
+            background: var(--black);
             padding: 2rem;
             border: 2px solid var(--medium-gray);
             border-left: 5px solid var(--yellow);
             transition: all 0.3s ease;
+        }
+
+        .contact-card .card-icon {
+            font-size: 2.5rem;
+            color: var(--yellow);
+            margin-bottom: 1rem;
         }
 
         .contact-card:hover {
@@ -805,21 +811,19 @@
                 <!-- Left Column - Contact Info -->
                 <div class="contact-info">
                     <div class="contact-card">
+                        <i class="fa-solid fa-location-dot card-icon"></i>
                         <h2>Location</h2>
                         <p>279 Main St #122<br>Frisco, TX 75036</p>
                     </div>
 
                     <div class="contact-card">
+                        <i class="fa-solid fa-phone card-icon"></i>
                         <h2>Phone</h2>
                         <p><a href="tel:(972)785-7036">(972) 785-7036</a></p>
                     </div>
 
                     <div class="contact-card">
-                        <h2>Email</h2>
-                        <p><a href="mailto:mike@blackironathletics.com">mike@blackironathletics.com</a></p>
-                    </div>
-
-                    <div class="contact-card">
+                        <i class="fa-solid fa-share-nodes card-icon"></i>
                         <h2>Follow Us</h2>
                         <div class="social-links">
                             <a href="https://www.instagram.com/blackiron_athletics/" target="_blank"><i class="fa-brands fa-instagram"></i> Instagram</a>
@@ -829,6 +833,7 @@
                     </div>
 
                     <div class="contact-card">
+                        <i class="fa-solid fa-dumbbell card-icon"></i>
                         <h2>Looking to Join?</h2>
                         <p style="margin-bottom: 1.5rem;">If you're interested in membership, book a free consultation and we'll find the right fit for you.</p>
                         <a href="#" onclick="openLeadModal(); return false;" class="btn-primary">Book Free Consultation</a>
