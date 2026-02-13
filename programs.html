@@ -377,6 +377,46 @@
             line-height: 1.8;
         }
 
+        /* Class Type Cards (Group Classes) */
+        .class-types-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+            margin-top: 4rem;
+        }
+
+        .class-type-card {
+            background: var(--dark-gray);
+            padding: 2.5rem;
+            border: 2px solid var(--medium-gray);
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+
+        .class-type-card:hover {
+            border-color: var(--yellow);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(255, 210, 2, 0.2);
+        }
+
+        .class-type-icon {
+            font-size: 3rem;
+            color: var(--yellow);
+            margin-bottom: 1.5rem;
+        }
+
+        .class-type-card h3 {
+            font-weight: 900;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+        }
+
+        .class-type-card p {
+            color: var(--light-gray);
+            line-height: 1.8;
+        }
+
         /* Feature Cards - centered variant for PT/Nutrition/Open Gym */
         .feature-grid {
             display: grid;
@@ -765,11 +805,16 @@
 
             .features-grid,
             .feature-grid,
-            .steps-grid {
+            .steps-grid,
+            .class-types-grid {
                 grid-template-columns: 1fr;
             }
 
             .feature-card {
+                padding: 2rem 1.5rem;
+            }
+
+            .class-type-card {
                 padding: 2rem 1.5rem;
             }
 
@@ -915,21 +960,21 @@
             </div>
 
             <!-- Class Type Highlight Cards -->
-            <div class="features-grid">
-                <div class="feature-card">
-                    <div class="feature-icon"><i class="fa-solid fa-weight-hanging"></i></div>
-                    <h3 class="feature-title">Strength &amp; Conditioning</h3>
-                    <p class="feature-description">Our mainstay program. Built from CrossFit roots with a modern approach -- more structure, more predictable results, less wear and tear on the body. Combines functional strength, conditioning, and skill work in a coached 60-minute session.</p>
+            <div class="class-types-grid">
+                <div class="class-type-card">
+                    <div class="class-type-icon"><i class="fa-solid fa-weight-hanging"></i></div>
+                    <h3>Strength &amp; Conditioning</h3>
+                    <p>Our mainstay program. Built from CrossFit roots with a modern approach -- more structure, more predictable results, less wear and tear on the body. Combines functional strength, conditioning, and skill work in a coached 60-minute session.</p>
                 </div>
-                <div class="feature-card">
-                    <div class="feature-icon"><i class="fa-solid fa-dumbbell"></i></div>
-                    <h3 class="feature-title">Weightlifting</h3>
-                    <p class="feature-description">Olympic weightlifting focused on improving your lifts and maximizing your potential with a barbell. Whether you're learning the clean &amp; jerk for the first time or chasing a new PR, this class is built for progress.</p>
+                <div class="class-type-card">
+                    <div class="class-type-icon"><i class="fa-solid fa-dumbbell"></i></div>
+                    <h3>Weightlifting</h3>
+                    <p>Olympic weightlifting focused on improving your lifts and maximizing your potential with a barbell. Whether you're learning the clean &amp; jerk for the first time or chasing a new PR, this class is built for progress.</p>
                 </div>
-                <div class="feature-card">
-                    <div class="feature-icon"><i class="fa-solid fa-person-running"></i></div>
-                    <h3 class="feature-title">Hyrox</h3>
-                    <p class="feature-description">Focused on getting you race day ready. A blend of running and functional fitness stations designed to prepare you for Hyrox competition or just push your endurance to the next level.</p>
+                <div class="class-type-card">
+                    <div class="class-type-icon"><i class="fa-solid fa-person-running"></i></div>
+                    <h3>Hyrox</h3>
+                    <p>Focused on getting you race day ready. A blend of running and functional fitness stations designed to prepare you for Hyrox competition or just push your endurance to the next level.</p>
                 </div>
             </div>
 
