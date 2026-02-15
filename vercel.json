@@ -1,0 +1,15 @@
+{
+  "redirects": [
+    {
+      "source": "/:path(.*)",
+      "has": [
+        {
+          "type": "host",
+          "value": "blackironathletics.com"
+        }
+      ],
+      "destination": "https://www.blackironathletics.com/:path",
+      "permanent": true
+    }
+  ]
+}
