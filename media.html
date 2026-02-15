@@ -21,6 +21,7 @@
     <meta name="twitter:description" content="See Black Iron Athletics in action. Browse gym photos, member highlights, and training videos.">
     <meta name="twitter:image" content="https://www.blackironathletics.com/images/social-share.png">
     <link rel="icon" type="image/png" href="images/anvil-favicon.png">
+    <link rel="preload" as="image" href="images/coach-briefing.webp">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;900&display=swap" rel="stylesheet">
@@ -744,28 +745,6 @@
     </style>
 </head>
 <body>
-    <!-- Loading Screen -->
-    <div id="loadingScreen" style="position:fixed;top:0;left:0;width:100%;height:100%;background:#000;z-index:99999;display:flex;align-items:center;justify-content:center;opacity:1;transition:opacity 0.6s ease;">
-        <div style="position:relative;width:120px;height:120px;">
-            <div class="loader-ring"></div>
-            <img src="images/Anvil-WHITE.png" alt="Black Iron Athletics" style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);height:50px;opacity:0;animation:anvilFadeIn 0.8s ease 0.3s forwards;">
-        </div>
-    </div>
-    <style>
-        .loader-ring{width:120px;height:120px;border:3px solid rgba(255,255,255,0.1);border-top:3px solid #FFD202;border-radius:50%;animation:loaderSpin 1s linear infinite;}
-        @keyframes loaderSpin{0%{transform:rotate(0deg)}100%{transform:rotate(360deg)}}
-        @keyframes anvilFadeIn{0%{opacity:0}100%{opacity:1}}
-    </style>
-    <script>
-        (function(){
-            var ls = document.getElementById('loadingScreen');
-            if(sessionStorage.getItem('bia_loaded')){ls.style.display='none';return;}
-            sessionStorage.setItem('bia_loaded','1');
-            window.addEventListener('load',function(){
-                setTimeout(function(){ls.style.opacity='0';setTimeout(function(){ls.style.display='none';},600);},1400);
-            });
-        })();
-    </script>
     <nav>
         <div class="nav-container">
             <div class="logo">
@@ -821,7 +800,7 @@
 
     <!-- Hero Section -->
     <section class="hero">
-        <img src="images/coach-briefing.JPG" alt="Inside Black Iron Athletics" class="hero-bg" fetchpriority="high">
+        <img src="images/coach-briefing.webp" alt="Inside Black Iron Athletics" class="hero-bg" fetchpriority="high">
         <div class="hero-container">
             <div class="hero-content">
                 <div class="hero-subtitle">See Us in Action</div>
@@ -843,21 +822,21 @@
             <div class="gallery-carousel-wrapper">
                 <button class="carousel-arrow gallery-prev" aria-label="Previous photos"><i class="fa-solid fa-chevron-left"></i></button>
                 <div class="gallery-carousel" id="galleryCarousel">
-                    <div class="gallery-item"><img src="images/members-laughing.JPG" alt="Members celebrating together" loading="lazy"></div>
-                    <div class="gallery-item"><img src="images/coach-smiling.jpeg" alt="Coach at Black Iron Athletics" loading="lazy"></div>
-                    <div class="gallery-item"><img src="images/snatch-action.jpeg" alt="Barbell snatch" loading="lazy"></div>
-                    <div class="gallery-item"><img src="images/overhead-press-bw.jpeg" alt="Overhead press" loading="lazy"></div>
-                    <div class="gallery-item"><img src="images/member-blessed.jpeg" alt="Member smiling at the gym" loading="lazy"></div>
-                    <div class="gallery-item"><img src="images/coach-briefing.JPG" alt="Coach briefing the class" loading="lazy"></div>
-                    <div class="gallery-item"><img src="images/member-laughing.jpeg" alt="Member laughing at the gym" loading="lazy"></div>
-                    <div class="gallery-item"><img src="images/back-squat.JPG" alt="Back squat" loading="lazy"></div>
-                    <div class="gallery-item"><img src="images/member-coaching.JPG" alt="Coach working with member" loading="lazy"></div>
-                    <div class="gallery-item"><img src="images/barbell-curl.jpeg" alt="Barbell training" loading="lazy"></div>
-                    <div class="gallery-item"><img src="images/pullup-bar.JPG" alt="Pull-ups" loading="lazy"></div>
-                    <div class="gallery-item"><img src="images/group-warmup.JPG" alt="Group warmup" loading="lazy"></div>
-                    <div class="gallery-item"><img src="images/outdoor-run.JPG" alt="Outdoor running" loading="lazy"></div>
-                    <div class="gallery-item"><img src="images/squat-tattooed.JPG" alt="Squatting heavy" loading="lazy"></div>
-                    <div class="gallery-item"><img src="images/barbell-overhead.jpeg" alt="Barbell overhead" loading="lazy"></div>
+                    <div class="gallery-item"><img src="images/members-laughing.webp" alt="Members celebrating together" loading="lazy"></div>
+                    <div class="gallery-item"><img src="images/coach-smiling.webp" alt="Coach at Black Iron Athletics" loading="lazy"></div>
+                    <div class="gallery-item"><img src="images/snatch-action.webp" alt="Barbell snatch" loading="lazy"></div>
+                    <div class="gallery-item"><img src="images/overhead-press-bw.webp" alt="Overhead press" loading="lazy"></div>
+                    <div class="gallery-item"><img src="images/member-blessed.webp" alt="Member smiling at the gym" loading="lazy"></div>
+                    <div class="gallery-item"><img src="images/coach-briefing.webp" alt="Coach briefing the class" loading="lazy"></div>
+                    <div class="gallery-item"><img src="images/member-laughing.webp" alt="Member laughing at the gym" loading="lazy"></div>
+                    <div class="gallery-item"><img src="images/back-squat.webp" alt="Back squat" loading="lazy"></div>
+                    <div class="gallery-item"><img src="images/member-coaching.webp" alt="Coach working with member" loading="lazy"></div>
+                    <div class="gallery-item"><img src="images/barbell-curl.webp" alt="Barbell training" loading="lazy"></div>
+                    <div class="gallery-item"><img src="images/pullup-bar.webp" alt="Pull-ups" loading="lazy"></div>
+                    <div class="gallery-item"><img src="images/group-warmup.webp" alt="Group warmup" loading="lazy"></div>
+                    <div class="gallery-item"><img src="images/outdoor-run.webp" alt="Outdoor running" loading="lazy"></div>
+                    <div class="gallery-item"><img src="images/squat-tattooed.webp" alt="Squatting heavy" loading="lazy"></div>
+                    <div class="gallery-item"><img src="images/barbell-overhead.webp" alt="Barbell overhead" loading="lazy"></div>
                 </div>
                 <button class="carousel-arrow gallery-next" aria-label="Next photos"><i class="fa-solid fa-chevron-right"></i></button>
             </div>

@@ -19,6 +19,7 @@
     <meta name="twitter:description" content="Fitness tips, training advice, and gym content from Black Iron Athletics in Frisco, TX.">
     <meta name="twitter:image" content="https://www.blackironathletics.com/images/social-share.png">
     <link rel="icon" type="image/png" href="../images/anvil-favicon.png">
+    <link rel="preload" as="image" href="https://storage.googleapis.com/msgsndr/snIUpSaFzz5WsavMB3QA/media/697ec53266e7ca82898c231e.jpg">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;900&display=swap" rel="stylesheet">
@@ -688,29 +689,6 @@
     </style>
 </head>
 <body>
-    <!-- Loading Screen -->
-    <div id="loadingScreen" style="position:fixed;top:0;left:0;width:100%;height:100%;background:#000;z-index:99999;display:flex;align-items:center;justify-content:center;opacity:1;transition:opacity 0.6s ease;">
-        <div style="position:relative;width:120px;height:120px;">
-            <div class="loader-ring"></div>
-            <img src="../images/Anvil-WHITE.png" alt="Black Iron Athletics" style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);height:50px;opacity:0;animation:anvilFadeIn 0.8s ease 0.3s forwards;">
-        </div>
-    </div>
-    <style>
-        .loader-ring{width:120px;height:120px;border:3px solid rgba(255,255,255,0.1);border-top:3px solid #FFD202;border-radius:50%;animation:loaderSpin 1s linear infinite;}
-        @keyframes loaderSpin{0%{transform:rotate(0deg)}100%{transform:rotate(360deg)}}
-        @keyframes anvilFadeIn{0%{opacity:0}100%{opacity:1}}
-    </style>
-    <script>
-        (function(){
-            var ls = document.getElementById('loadingScreen');
-            if(sessionStorage.getItem('bia_loaded')){ls.style.display='none';return;}
-            sessionStorage.setItem('bia_loaded','1');
-            window.addEventListener('load',function(){
-                setTimeout(function(){ls.style.opacity='0';setTimeout(function(){ls.style.display='none';},600);},1400);
-            });
-        })();
-    </script>
-
     <nav>
         <div class="nav-container">
             <div class="logo"><a href="../index.html"><img src="https://storage.googleapis.com/msgsndr/snIUpSaFzz5WsavMB3QA/media/6980c90276757725c438432d.png" alt="Black Iron Athletics"></a></div>
@@ -769,7 +747,7 @@
             <div class="blog-grid">
                 <!-- Blog Card: CrossFit Alternative -->
                 <div class="blog-card">
-                    <img src="../images/members-laughing.JPG" alt="CrossFit Alternative in Frisco TX - Black Iron Athletics" class="blog-card-image" loading="lazy" style="object-position: center 25%">
+                    <img src="../images/members-laughing.webp" alt="CrossFit Alternative in Frisco TX - Black Iron Athletics" class="blog-card-image" loading="lazy" style="object-position: center 25%">
                     <div class="blog-card-content">
                         <span class="blog-category">Training</span>
                         <h3><a href="crossfit-alternative-frisco-tx.html">Why Black Iron Athletics Is the Best CrossFit Alternative in Frisco, TX</a></h3>
@@ -783,7 +761,7 @@
 
                 <!-- Blog Card: Olympic Weightlifting -->
                 <div class="blog-card">
-                    <img src="../images/snatch-action.jpeg" alt="Olympic Weightlifting Classes in Frisco TX" class="blog-card-image" loading="lazy" style="object-position: center 60%">
+                    <img src="../images/snatch-action.webp" alt="Olympic Weightlifting Classes in Frisco TX" class="blog-card-image" loading="lazy" style="object-position: center 60%">
                     <div class="blog-card-content">
                         <span class="blog-category">Training</span>
                         <h3><a href="olympic-weightlifting-frisco-tx.html">Olympic Weightlifting Classes in Frisco, TX</a></h3>
@@ -797,7 +775,7 @@
 
                 <!-- Blog Card: HYROX Training -->
                 <div class="blog-card">
-                    <img src="../images/outdoor-run.JPG" alt="HYROX Training in Frisco TX" class="blog-card-image" loading="lazy" style="object-position: center 30%">
+                    <img src="../images/outdoor-run.webp" alt="HYROX Training in Frisco TX" class="blog-card-image" loading="lazy" style="object-position: center 30%">
                     <div class="blog-card-content">
                         <span class="blog-category">Training</span>
                         <h3><a href="hyrox-training-frisco-tx.html">HYROX Training in Frisco, TX</a></h3>
@@ -811,7 +789,7 @@
 
                 <!-- Blog Card 1 -->
                 <div class="blog-card">
-                    <img src="../images/group-warmup.JPG" alt="How to Find the Best Gym in Frisco TX" class="blog-card-image" loading="lazy">
+                    <img src="../images/group-warmup.webp" alt="How to Find the Best Gym in Frisco TX" class="blog-card-image" loading="lazy">
                     <div class="blog-card-content">
                         <span class="blog-category">Training</span>
                         <h3><a href="best-gym-frisco-tx.html">How to Find the Best Gym in Frisco TX</a></h3>
@@ -825,7 +803,7 @@
 
                 <!-- Blog Card 2 -->
                 <div class="blog-card">
-                    <img src="../images/back-squat.JPG" alt="Strength Training for Beginners" class="blog-card-image" loading="lazy">
+                    <img src="../images/back-squat.webp" alt="Strength Training for Beginners" class="blog-card-image" loading="lazy">
                     <div class="blog-card-content">
                         <span class="blog-category">Training</span>
                         <h3><a href="strength-training-for-beginners.html">Strength Training for Beginners: A Complete Guide</a></h3>
@@ -839,7 +817,7 @@
 
                 <!-- Blog Card 3 -->
                 <div class="blog-card">
-                    <img src="../images/coach-briefing.JPG" alt="Group Fitness vs Personal Training" class="blog-card-image" loading="lazy">
+                    <img src="../images/coach-briefing.webp" alt="Group Fitness vs Personal Training" class="blog-card-image" loading="lazy">
                     <div class="blog-card-content">
                         <span class="blog-category">Fitness</span>
                         <h3><a href="group-fitness-vs-personal-training.html">Group Fitness vs Personal Training: Which Is Right for You?</a></h3>
@@ -853,7 +831,7 @@
 
                 <!-- Blog Card 4 -->
                 <div class="blog-card">
-                    <img src="../images/coach-smiling.jpeg" alt="How to Get Back Into Working Out" class="blog-card-image" loading="lazy">
+                    <img src="../images/coach-smiling.webp" alt="How to Get Back Into Working Out" class="blog-card-image" loading="lazy">
                     <div class="blog-card-content">
                         <span class="blog-category">Lifestyle</span>
                         <h3><a href="getting-back-into-working-out.html">How to Get Back Into Working Out After a Long Break</a></h3>
