@@ -22,7 +22,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"></noscript>
     <style>
         /* Force full width - override GHL container */
         body, html {
@@ -742,7 +743,7 @@
 
     <!-- Hero Section -->
     <section class="hero">
-        <img src="https://storage.googleapis.com/msgsndr/snIUpSaFzz5WsavMB3QA/media/697ec53266e7ca82898c231e.jpg" alt="Black Iron Athletics Blog" class="hero-bg">
+        <img src="https://storage.googleapis.com/msgsndr/snIUpSaFzz5WsavMB3QA/media/697ec53266e7ca82898c231e.jpg" alt="Black Iron Athletics Blog" class="hero-bg" fetchpriority="high">
         <div class="hero-container">
             <div class="hero-content">
                 <div class="hero-subtitle">Our Blog</div>
@@ -899,7 +900,7 @@
         <div class="footer-container">
             <div class="footer-section">
                 <a href="../index.html">
-                    <img src="https://storage.googleapis.com/msgsndr/snIUpSaFzz5WsavMB3QA/media/6980c90276757725c438432d.png" alt="Black Iron Athletics" class="footer-logo">
+                    <img src="https://storage.googleapis.com/msgsndr/snIUpSaFzz5WsavMB3QA/media/6980c90276757725c438432d.png" alt="Black Iron Athletics" class="footer-logo" loading="lazy">
                 </a>
                 <p style="color: var(--light-gray); margin-bottom: 1rem;">Forging everyday people into everyday athletes through strength, community, and purpose.</p>
             </div>
@@ -1070,7 +1071,7 @@
     <div class="modal-container">
         <button class="modal-close" onclick="closeLeadModal()">&times;</button>
         <iframe
-            src="https://api.leadconnectorhq.com/widget/form/vw0hMdDkTCL6K5N3i7vF"
+            data-src="https://api.leadconnectorhq.com/widget/form/vw0hMdDkTCL6K5N3i7vF"
             style="width:100%;height:100%;border:none;border-radius:4px"
             id="inline-vw0hMdDkTCL6K5N3i7vF"
             data-layout="{'id':'INLINE'}"
@@ -1093,7 +1094,7 @@
     <div class="modal-container">
         <button class="modal-close" onclick="closeCancelModal()">&times;</button>
         <iframe
-            src="https://api.leadconnectorhq.com/widget/form/d4jtjY9fM2Hv9zVTzLwj"
+            data-src="https://api.leadconnectorhq.com/widget/form/d4jtjY9fM2Hv9zVTzLwj"
             style="width:100%;height:100%;border:none;border-radius:4px"
             id="inline-d4jtjY9fM2Hv9zVTzLwj"
             data-layout="{'id':'INLINE'}"
@@ -1114,7 +1115,10 @@
 
 <script>
     function openLeadModal() {
-        document.getElementById('leadModal').classList.add('active');
+        var modal = document.getElementById('leadModal');
+        var iframe = modal.querySelector('iframe');
+        if (iframe && !iframe.src && iframe.dataset.src) { iframe.src = iframe.dataset.src; }
+        modal.classList.add('active');
         document.body.style.overflow = 'hidden';
     }
     function closeLeadModal() {
@@ -1129,7 +1133,10 @@
     });
 
     function openCancelModal() {
-        document.getElementById('cancelModal').classList.add('active');
+        var modal = document.getElementById('cancelModal');
+        var iframe = modal.querySelector('iframe');
+        if (iframe && !iframe.src && iframe.dataset.src) { iframe.src = iframe.dataset.src; }
+        modal.classList.add('active');
         document.body.style.overflow = 'hidden';
     }
     function closeCancelModal() {
@@ -1198,6 +1205,6 @@
     })();
 </script>
 
-<script src="https://link.msgsndr.com/js/form_embed.js" type="text/javascript"></script>
+<script src="https://link.msgsndr.com/js/form_embed.js" type="text/javascript" defer></script>
 </body>
 </html>
