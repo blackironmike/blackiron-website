@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -427,6 +427,12 @@
             <p>Book your free consultation and try an Olympic weightlifting class at Black Iron Athletics in Frisco, TX. All experience levels welcome -- from your first snatch to your next PR.</p>
             <a href="#" onclick="openLeadModal(); return false;" class="btn-primary">Book Free Consultation</a>
         </div>
+
+        <div class="article-cta-box" style="margin-top: 2rem; border-left-color: var(--white);">
+            <h3>Get Tips Like This in Your Inbox</h3>
+            <p>Subscribe for weekly training, nutrition, and supplement tips from the coaches at Black Iron Athletics.</p>
+            <a href="#" onclick="openSubscribeModal(); return false;" class="btn-primary"><i class="fa-solid fa-envelope" style="margin-right: 0.5rem;"></i> Subscribe</a>
+        </div>
     </div>
 
     <!-- Map Section -->
@@ -450,6 +456,7 @@
                     <li><a href="../schedule.html">Class Schedule</a></li>
                     <li><a href="../faq.html">FAQ</a></li>
                     <li><a href="../macro-calculator.html">Macro Calculator</a></li>
+                    <li><a href="#" onclick="openSubscribeModal(); return false;">Subscribe</a></li>
                     <li><a href="#" onclick="openCancelModal(); return false;">Cancel Membership</a></li>
                 </ul>
             </div>
@@ -603,6 +610,28 @@
         ></iframe>
     </div>
 </div>
+<div class="modal-overlay" id="subscribeModal">
+    <div class="modal-container">
+        <button class="modal-close" onclick="closeSubscribeModal()">&times;</button>
+        <iframe
+            data-src="https://api.leadconnectorhq.com/widget/form/GnNJNaEX8InuIeGxWjaI"
+            style="width:100%;height:100%;border:none;border-radius:4px"
+            id="inline-GnNJNaEX8InuIeGxWjaI"
+            data-layout="{'id':'INLINE'}"
+            data-trigger-type="alwaysShow"
+            data-trigger-value=""
+            data-activation-type="alwaysActivated"
+            data-activation-value=""
+            data-deactivation-type="neverDeactivate"
+            data-deactivation-value=""
+            data-form-name="Subscribe"
+            data-height="430"
+            data-layout-iframe-id="inline-GnNJNaEX8InuIeGxWjaI"
+            data-form-id="GnNJNaEX8InuIeGxWjaI"
+            title="Subscribe"
+        ></iframe>
+    </div>
+</div>
 
 <script>
     function openLeadModal() {
@@ -620,7 +649,7 @@
         if (e.target === this) { closeLeadModal(); }
     });
     document.addEventListener('keydown', function(e) {
-        if (e.key === 'Escape') { closeLeadModal(); closeCancelModal(); }
+        if (e.key === 'Escape') { closeLeadModal(); closeCancelModal(); closeSubscribeModal(); }
     });
 
     function openCancelModal() {
@@ -636,6 +665,20 @@
     }
     document.getElementById('cancelModal').addEventListener('click', function(e) {
         if (e.target === this) { closeCancelModal(); }
+    });
+    function openSubscribeModal() {
+        var modal = document.getElementById('subscribeModal');
+        var iframe = modal.querySelector('iframe');
+        if (iframe && !iframe.src && iframe.dataset.src) { iframe.src = iframe.dataset.src; }
+        modal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    }
+    function closeSubscribeModal() {
+        document.getElementById('subscribeModal').classList.remove('active');
+        document.body.style.overflow = '';
+    }
+    document.getElementById('subscribeModal').addEventListener('click', function(e) {
+        if (e.target === this) { closeSubscribeModal(); }
     });
     function toggleMobileNav() { document.getElementById('mobileNav').classList.toggle('active'); document.querySelector('.hamburger').classList.toggle('active'); document.body.style.overflow = document.getElementById('mobileNav').classList.contains('active') ? 'hidden' : ''; }
     function closeMobileNav() { document.getElementById('mobileNav').classList.remove('active'); document.querySelector('.hamburger').classList.remove('active'); document.body.style.overflow = ''; }

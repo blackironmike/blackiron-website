@@ -1511,13 +1511,22 @@
         </div>
     </section>
 
-    <!-- Final CTA Section -->
+    <!-- Subscribe CTA Section -->
     <section class="cta-section">
         <div style="max-width: 100%; margin: 0 auto; padding: 0 2rem;">
-            <h2 class="cta-title">Ready to Dial In Your Nutrition?</h2>
-            <p class="cta-subtitle">Book a free consultation and get a personalized nutrition plan built on real data.</p>
+            <h2 class="cta-title">Get Training & Nutrition Tips</h2>
+            <p class="cta-subtitle">Subscribe for weekly tips on training, nutrition, and supplements — straight from the coaches at Black Iron Athletics.</p>
+            <a href="#" onclick="openSubscribeModal(); return false;" class="btn-primary"><i class="fa-solid fa-envelope" style="margin-right: 0.5rem;"></i> Subscribe</a>
+        </div>
+    </section>
+
+    <!-- Final CTA Section -->
+    <section class="section">
+        <div style="max-width: 100%; margin: 0 auto; padding: 0 4rem; text-align: center;">
+            <h2 class="section-title">Ready to Dial In Your Nutrition?</h2>
+            <p class="section-description" style="margin-bottom: 3rem;">Book a free consultation and get a personalized nutrition plan built on real data.</p>
             <a href="#" onclick="openLeadModal(); return false;" class="btn-primary">Book Free Consultation</a>
-            <p class="cta-note"><i class="fa-solid fa-check" style="margin-right: 0.5rem;"></i> Includes free InBody body composition scan</p>
+            <p style="font-size: 0.95rem; color: var(--yellow); font-weight: 600; margin-top: 1.5rem;"><i class="fa-solid fa-check" style="margin-right: 0.5rem;"></i> Includes free InBody body composition scan</p>
         </div>
     </section>
 
@@ -1549,6 +1558,7 @@
                     <li><a href="schedule.html">Class Schedule</a></li>
                     <li><a href="faq.html">FAQ</a></li>
                     <li><a href="macro-calculator.html">Macro Calculator</a></li>
+                    <li><a href="#" onclick="openSubscribeModal(); return false;">Subscribe</a></li>
                     <li><a href="#" onclick="openCancelModal(); return false;">Cancel Membership</a></li>
                 </ul>
             </div>
@@ -1756,6 +1766,29 @@
     </div>
 </div>
 
+<div class="modal-overlay" id="subscribeModal">
+    <div class="modal-container">
+        <button class="modal-close" onclick="closeSubscribeModal()">&times;</button>
+        <iframe
+            data-src="https://api.leadconnectorhq.com/widget/form/GnNJNaEX8InuIeGxWjaI"
+            style="width:100%;height:100%;border:none;border-radius:4px"
+            id="inline-GnNJNaEX8InuIeGxWjaI"
+            data-layout="{'id':'INLINE'}"
+            data-trigger-type="alwaysShow"
+            data-trigger-value=""
+            data-activation-type="alwaysActivated"
+            data-activation-value=""
+            data-deactivation-type="neverDeactivate"
+            data-deactivation-value=""
+            data-form-name="Subscribe"
+            data-height="430"
+            data-layout-iframe-id="inline-GnNJNaEX8InuIeGxWjaI"
+            data-form-id="GnNJNaEX8InuIeGxWjaI"
+            title="Subscribe"
+        ></iframe>
+    </div>
+</div>
+
 <script>
     // ===== MACRO CALCULATOR =====
     function calculateMacros(e) {
@@ -1908,7 +1941,7 @@
         if (e.target === this) { closeLeadModal(); }
     });
     document.addEventListener('keydown', function(e) {
-        if (e.key === 'Escape') { closeLeadModal(); closeCancelModal(); }
+        if (e.key === 'Escape') { closeLeadModal(); closeCancelModal(); closeSubscribeModal(); }
     });
 
     function openCancelModal() {
@@ -1924,6 +1957,22 @@
     }
     document.getElementById('cancelModal').addEventListener('click', function(e) {
         if (e.target === this) { closeCancelModal(); }
+    });
+
+    // ===== SUBSCRIBE MODAL =====
+    function openSubscribeModal() {
+        var modal = document.getElementById('subscribeModal');
+        var iframe = modal.querySelector('iframe');
+        if (iframe && !iframe.src && iframe.dataset.src) { iframe.src = iframe.dataset.src; }
+        modal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    }
+    function closeSubscribeModal() {
+        document.getElementById('subscribeModal').classList.remove('active');
+        document.body.style.overflow = '';
+    }
+    document.getElementById('subscribeModal').addEventListener('click', function(e) {
+        if (e.target === this) { closeSubscribeModal(); }
     });
 
     // ===== MOBILE NAV =====
