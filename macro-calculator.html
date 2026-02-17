@@ -797,6 +797,54 @@
             line-height: 1.8;
         }
 
+        /* ===== SUPPLEMENT CARDS ===== */
+        .shop-btn {
+            background: var(--yellow);
+            color: var(--black);
+            padding: 0.9rem 2rem;
+            text-decoration: none;
+            font-weight: 900;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border: 2px solid var(--yellow);
+            border-radius: 0;
+            display: inline-block;
+        }
+
+        .shop-btn:hover {
+            background: var(--black);
+            color: var(--yellow);
+        }
+
+        .shop-all-link {
+            text-align: center;
+            margin-top: 3rem;
+        }
+
+        .shop-all-link a {
+            color: var(--yellow);
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            transition: color 0.3s ease;
+        }
+
+        .shop-all-link a:hover {
+            color: var(--white);
+        }
+
+        .affiliate-disclaimer {
+            text-align: center;
+            margin-top: 2rem;
+            font-size: 0.8rem;
+            color: var(--medium-gray);
+            font-weight: 500;
+        }
+
         /* ===== FAQs ===== */
         .faq-container {
             display: grid;
@@ -1096,6 +1144,8 @@
             }
 
             .modal-container { max-width: calc(100% - 2rem); }
+
+            .shop-btn { padding: 0.7rem 1.5rem; font-size: 0.8rem; }
         }
     </style>
 </head>
@@ -1370,8 +1420,53 @@
         </div>
     </section>
 
+    <!-- Thorne Supplements Section -->
+    <section class="section section-alt">
+        <div class="section-container">
+            <div class="section-header">
+                <div class="section-subtitle">Trusted Supplements</div>
+                <h2 class="section-title">Fuel Your Results</h2>
+                <p class="section-description">We partner with Thorne because they set the standard for quality. Every product is NSF Certified for Sport and trusted by over 100 professional sports teams. If you are serious about your training, your supplements should be too.</p>
+            </div>
+
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fa-solid fa-flask"></i></div>
+                    <h3>Creatine</h3>
+                    <p>5g creatine monohydrate per serving. Unflavored and NSF Certified for Sport. The gold standard for strength and power — nothing extra, nothing unnecessary.</p>
+                    <div style="margin-top: 1.5rem;">
+                        <a href="https://s.thorne.com/ivqHX" target="_blank" rel="noopener" class="shop-btn">Shop Now</a>
+                    </div>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fa-solid fa-brain"></i></div>
+                    <h3>Creatine + Alpha GPC</h3>
+                    <p>5g creatine plus 600mg Alpha GPC in a watermelon lemonade flavor. The mind-muscle formula for sharper focus and stronger performance in every session.</p>
+                    <div style="margin-top: 1.5rem;">
+                        <a href="https://s.thorne.com/haXyy" target="_blank" rel="noopener" class="shop-btn">Shop Now</a>
+                    </div>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fa-solid fa-dumbbell"></i></div>
+                    <h3>Creatine + BCAAs</h3>
+                    <p>5g creatine plus 5g BCAAs in a 2:1:1 ratio. Peach mango flavor built for strength, endurance, and faster recovery between training sessions.</p>
+                    <div style="margin-top: 1.5rem;">
+                        <a href="https://s.thorne.com/I8sYP" target="_blank" rel="noopener" class="shop-btn">Shop Now</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="shop-all-link">
+                <a href="https://www.thorne.com/u/blackiron" target="_blank" rel="noopener">Shop All Thorne Supplements &rarr;</a>
+            </div>
+            <p class="affiliate-disclaimer">Black Iron Athletics is a Thorne affiliate partner.</p>
+        </div>
+    </section>
+
     <!-- FAQ Section -->
-    <section id="faqs" class="section section-alt">
+    <section id="faqs" class="section">
         <div class="section-container">
             <div class="section-header">
                 <div class="section-subtitle">Questions?</div>
