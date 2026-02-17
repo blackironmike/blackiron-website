@@ -1209,7 +1209,7 @@
         if (!sessionStorage.getItem('subscribeDismissed')) {
             openSubscribeModal();
         }
-    }, 10000);
+    }, 5000);
     var origCloseSubscribe = closeSubscribeModal;
     closeSubscribeModal = function() {
         sessionStorage.setItem('subscribeDismissed', '1');
