@@ -1986,6 +1986,18 @@
         document.querySelector('.hamburger').classList.remove('active');
         document.body.style.overflow = '';
     }
+
+    // ===== AUTO SUBSCRIBE POPUP =====
+    setTimeout(function() {
+        if (!sessionStorage.getItem('subscribeDismissed')) {
+            openSubscribeModal();
+        }
+    }, 10000);
+    var origCloseSubscribe = closeSubscribeModal;
+    closeSubscribeModal = function() {
+        sessionStorage.setItem('subscribeDismissed', '1');
+        origCloseSubscribe();
+    };
 </script>
 
 <script src="https://link.msgsndr.com/js/form_embed.js" type="text/javascript" defer></script>
