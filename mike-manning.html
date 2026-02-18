@@ -1,25 +1,25 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HYROX Training in Frisco, TX | Black Iron Athletics Blog</title>
-    <meta name="description" content="Looking for HYROX training in Frisco, TX? Learn what HYROX is, how to prepare for a HYROX race, and why Black Iron Athletics is the best HYROX gym near you. Expert coaching for all fitness levels.">
-    <link rel="canonical" href="https://www.blackironathletics.com/blog/hyrox-training-frisco-tx.html">
+    <title>Mike Manning | Owner & Head Coach | Black Iron Athletics</title>
+    <meta name="description" content="Meet Mike Manning — U.S. Marine Corps veteran, coach of 20+ years, and owner of Black Iron Athletics in Frisco, TX. Learn about his journey from the Marines to building one of the top gyms in North Texas.">
+    <link rel="canonical" href="https://www.blackironathletics.com/mike-manning.html">
     <!-- Open Graph -->
-    <meta property="og:title" content="HYROX Training in Frisco, TX | Black Iron Athletics Blog">
-    <meta property="og:description" content="Looking for HYROX training in Frisco, TX? Learn what HYROX is, how to prepare for a HYROX race, and why Black Iron Athletics is the best HYROX gym near you.">
-    <meta property="og:url" content="https://www.blackironathletics.com/blog/hyrox-training-frisco-tx.html">
-    <meta property="og:image" content="https://www.blackironathletics.com/images/social-share.png">
-    <meta property="og:type" content="article">
+    <meta property="og:title" content="Mike Manning | Owner & Head Coach | Black Iron Athletics">
+    <meta property="og:description" content="Meet Mike Manning — U.S. Marine Corps veteran, coach of 20+ years, and owner of Black Iron Athletics in Frisco, TX.">
+    <meta property="og:url" content="https://www.blackironathletics.com/mike-manning.html">
+    <meta property="og:image" content="https://www.blackironathletics.com/images/owner-headcoach-mike.webp">
+    <meta property="og:type" content="profile">
     <meta property="og:site_name" content="Black Iron Athletics">
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="HYROX Training in Frisco, TX | Black Iron Athletics Blog">
-    <meta name="twitter:description" content="Looking for HYROX training in Frisco, TX? Learn what HYROX is, how to prepare for a HYROX race, and why Black Iron Athletics is the best HYROX gym near you.">
-    <meta name="twitter:image" content="https://www.blackironathletics.com/images/social-share.png">
-    <link rel="icon" type="image/png" href="../images/anvil-favicon.png">
-    <link rel="preload" as="image" href="../images/outdoor-run.webp">
+    <meta name="twitter:title" content="Mike Manning | Owner & Head Coach | Black Iron Athletics">
+    <meta name="twitter:description" content="Meet Mike Manning — U.S. Marine Corps veteran, coach of 20+ years, and owner of Black Iron Athletics in Frisco, TX.">
+    <meta name="twitter:image" content="https://www.blackironathletics.com/images/owner-headcoach-mike.webp">
+    <link rel="icon" type="image/png" href="images/anvil-favicon.png">
+    <link rel="preload" as="image" href="images/owner-headcoach-mike.webp">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;900&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
@@ -113,7 +113,7 @@
         .article-hero {
             margin-top: 0;
             padding-top: 80px;
-            min-height: 85vh;
+            min-height: 60vh;
             display: flex;
             align-items: flex-end;
             position: relative;
@@ -127,7 +127,6 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
-            object-position: center 30%;
             opacity: 0.3;
             z-index: 0;
         }
@@ -160,42 +159,76 @@
             font-weight: 900;
             font-size: clamp(2rem, 5vw, 3.5rem);
             line-height: 1.1;
-            margin-bottom: 1.5rem;
+            margin-bottom: 1rem;
             text-transform: uppercase;
             max-width: 900px;
         }
 
-        .article-meta {
-            display: flex;
-            gap: 2rem;
-            color: var(--light-gray);
-            font-size: 0.9rem;
+        .article-hero .hero-role {
+            font-size: 1.2rem;
+            color: var(--yellow);
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
-        .article-meta span { font-weight: 500; }
-        .article-meta i { margin-right: 0.5rem; color: var(--yellow); }
-
-        /* Article */
+        /* Article / Bio Content */
         .article-content {
             max-width: 800px;
             margin: 0 auto;
             padding: 4rem;
         }
 
-        .back-to-blog {
-            display: inline-block;
-            color: var(--yellow);
-            text-decoration: none;
-            font-weight: 700;
-            font-size: 0.9rem;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
+        /* Bio Intro Card */
+        .bio-intro {
+            display: flex;
+            gap: 3rem;
+            align-items: flex-start;
             margin-bottom: 3rem;
-            transition: color 0.3s ease;
+            padding-bottom: 3rem;
+            border-bottom: 1px solid var(--medium-gray);
         }
 
-        .back-to-blog:hover { color: var(--white); }
+        .bio-photo {
+            width: 250px;
+            min-width: 250px;
+            height: 250px;
+            object-fit: cover;
+            border-radius: 0;
+        }
 
+        .bio-facts { flex: 1; }
+
+        .bio-facts h2 {
+            font-weight: 900;
+            font-size: 1.4rem;
+            text-transform: uppercase;
+            margin-bottom: 1.5rem;
+            color: var(--white);
+        }
+
+        .bio-fact-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+            font-size: 1rem;
+            color: var(--light-gray);
+        }
+
+        .bio-fact-item i {
+            color: var(--yellow);
+            font-size: 1.1rem;
+            width: 20px;
+            text-align: center;
+        }
+
+        .bio-fact-item strong {
+            color: var(--white);
+            font-weight: 700;
+        }
+
+        /* Bio Body */
         .article-body p {
             font-size: 1.1rem;
             line-height: 1.8;
@@ -212,16 +245,32 @@
             margin-bottom: 1.5rem;
         }
 
-        .article-body ul, .article-body ol {
-            margin-bottom: 1.5rem;
-            padding-left: 2rem;
+        /* Certifications Grid */
+        .certifications-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+            margin-top: 1.5rem;
         }
 
-        .article-body li {
-            font-size: 1.1rem;
-            line-height: 1.8;
-            color: var(--light-gray);
-            margin-bottom: 0.5rem;
+        .cert-item {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 1rem 1.25rem;
+            background: var(--dark-gray);
+            border: 1px solid var(--medium-gray);
+        }
+
+        .cert-item i {
+            color: var(--yellow);
+            font-size: 1.2rem;
+        }
+
+        .cert-item span {
+            color: var(--white);
+            font-weight: 600;
+            font-size: 0.95rem;
         }
 
         /* CTA Box */
@@ -245,22 +294,6 @@
             line-height: 1.8;
             margin-bottom: 2rem;
         }
-
-        .author-box {
-            display: flex;
-            align-items: center;
-            gap: 1.5rem;
-            padding: 2rem;
-            background: var(--dark-gray);
-            margin-top: 3rem;
-            border: 1px solid var(--medium-gray);
-        }
-        .author-box-image { flex-shrink: 0; }
-        .author-box-image img { width: 80px; height: 80px; border-radius: 50%; object-fit: cover; }
-        .author-box-label { display: block; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1px; color: var(--yellow); font-weight: 700; margin-bottom: 0.25rem; }
-        .author-box-name { display: block; font-weight: 900; font-size: 1.1rem; color: var(--white); text-decoration: none; transition: color 0.3s ease; }
-        .author-box-name:hover { color: var(--yellow); }
-        .author-box-bio { font-size: 0.9rem; color: var(--light-gray); line-height: 1.6; margin-top: 0.5rem; margin-bottom: 0; }
 
         .btn-primary {
             background: var(--yellow);
@@ -326,7 +359,10 @@
             .article-content { padding: 3rem 1.5rem; }
             .article-body h2 { font-size: 1.4rem; }
             .article-cta-box { padding: 2rem 1.5rem; }
-            .author-box { flex-direction: column; text-align: center; }
+            .bio-intro { flex-direction: column; gap: 2rem; align-items: center; text-align: center; }
+            .bio-photo { width: 200px; min-width: 200px; height: 200px; }
+            .bio-fact-item { justify-content: center; }
+            .certifications-grid { grid-template-columns: 1fr; }
             .map-section iframe { height: 250px; }
             .footer-container { padding: 0 1.5rem; gap: 2rem; }
             .btn-primary { padding: 0.8rem 1.5rem; font-size: 0.8rem; white-space: normal; }
@@ -337,119 +373,135 @@
 <body>
     <nav>
         <div class="nav-container">
-            <div class="logo"><a href="../index.html"><img src="../images/logo.png" alt="Black Iron Athletics"></a></div>
+            <div class="logo">
+                <a href="index.html">
+                    <img src="images/logo.png" alt="Black Iron Athletics">
+                </a>
+            </div>
             <ul class="nav-links">
-                <li class="has-submenu"><a href="../about.html">About Us</a><ul class="submenu"><li><a href="../about.html#mission">Our Mission</a></li><li><a href="../about.html#team">Meet the Team</a></li><li><a href="../programs.html">Programs</a></li><li><a href="../schedule.html">Class Schedule</a></li></ul></li>
-                <li class="has-submenu"><a href="../getting-started.html">Getting Started</a><ul class="submenu"><li><a href="../getting-started.html#membership">Membership Options</a></li><li><a href="../getting-started.html#faqs">FAQs</a></li></ul></li>
-                <li><a href="../media.html">Media</a></li>
-                <li><a href="../blog/">Blog</a></li>
-                <li><a href="../contact.html">Contact</a></li>
+                <li class="has-submenu">
+                    <a href="about.html">About Us</a>
+                    <ul class="submenu">
+                        <li><a href="about.html#mission">Our Mission</a></li>
+                        <li><a href="about.html#team">Meet the Team</a></li>
+                        <li><a href="programs.html">Programs</a></li>
+                        <li><a href="schedule.html">Class Schedule</a></li>
+                    </ul>
+                </li>
+                <li class="has-submenu">
+                    <a href="getting-started.html">Getting Started</a>
+                    <ul class="submenu">
+                        <li><a href="getting-started.html#membership">Membership Options</a></li>
+                        <li><a href="getting-started.html#faqs">FAQs</a></li>
+                    </ul>
+                </li>
+                <li><a href="media.html">Media</a></li>
+                <li><a href="blog/">Blog</a></li>
+                <li><a href="contact.html">Contact</a></li>
             </ul>
             <a href="#" onclick="openLeadModal(); return false;" class="cta-btn">Book Free Consultation</a>
-            <button class="hamburger" onclick="toggleMobileNav()" aria-label="Menu"><span></span><span></span><span></span></button>
+            <button class="hamburger" onclick="toggleMobileNav()" aria-label="Menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
         </div>
     </nav>
+
     <div class="mobile-nav-overlay" id="mobileNav">
-        <a href="../index.html" onclick="closeMobileNav()">Home</a>
-        <a href="../about.html" onclick="closeMobileNav()">About Us</a>
-        <a href="../about.html#mission" class="mobile-sub-link" onclick="closeMobileNav()">Our Mission</a>
-        <a href="../about.html#team" class="mobile-sub-link" onclick="closeMobileNav()">Meet the Team</a>
-        <a href="../programs.html" class="mobile-sub-link" onclick="closeMobileNav()">Programs</a>
-        <a href="../schedule.html" class="mobile-sub-link" onclick="closeMobileNav()">Class Schedule</a>
-        <a href="../getting-started.html" onclick="closeMobileNav()">Getting Started</a>
-        <a href="../getting-started.html#membership" class="mobile-sub-link" onclick="closeMobileNav()">Membership Options</a>
-        <a href="../getting-started.html#faqs" class="mobile-sub-link" onclick="closeMobileNav()">FAQs</a>
-        <a href="../media.html" onclick="closeMobileNav()">Media</a>
-        <a href="../blog/" onclick="closeMobileNav()">Blog</a>
-        <a href="../contact.html" onclick="closeMobileNav()">Contact</a>
+        <a href="index.html" onclick="closeMobileNav()">Home</a>
+        <a href="about.html" onclick="closeMobileNav()">About Us</a>
+        <a href="about.html#mission" class="mobile-sub-link" onclick="closeMobileNav()">Our Mission</a>
+        <a href="about.html#team" class="mobile-sub-link" onclick="closeMobileNav()">Meet the Team</a>
+        <a href="programs.html" class="mobile-sub-link" onclick="closeMobileNav()">Programs</a>
+        <a href="schedule.html" class="mobile-sub-link" onclick="closeMobileNav()">Class Schedule</a>
+        <a href="getting-started.html" onclick="closeMobileNav()">Getting Started</a>
+        <a href="getting-started.html#membership" class="mobile-sub-link" onclick="closeMobileNav()">Membership Options</a>
+        <a href="getting-started.html#faqs" class="mobile-sub-link" onclick="closeMobileNav()">FAQs</a>
+        <a href="media.html" onclick="closeMobileNav()">Media</a>
+        <a href="blog/" onclick="closeMobileNav()">Blog</a>
+        <a href="contact.html" onclick="closeMobileNav()">Contact</a>
         <a href="#" class="mobile-cta" onclick="closeMobileNav(); openLeadModal(); return false;">Book Free Consultation</a>
     </div>
 
-    <!-- Article Hero -->
+    <!-- Hero -->
     <section class="article-hero">
-        <img src="../images/outdoor-run.webp" alt="HYROX Training in Frisco TX" class="article-hero-bg">
+        <img src="images/owner-headcoach-mike.webp" alt="Mike Manning - Owner and Head Coach of Black Iron Athletics" class="article-hero-bg">
         <div class="article-hero-container">
-            <div class="breadcrumb"><a href="index.html">Blog</a> &gt; HYROX Training in Frisco, TX</div>
-            <h1>HYROX Training in Frisco, TX</h1>
-            <div class="article-meta">
-                <span><i class="fa-regular fa-calendar"></i> February 13, 2026</span>
-                <span><i class="fa-regular fa-clock"></i> 6 min read</span>
-            </div>
+            <div class="breadcrumb"><a href="about.html">About Us</a> &gt; Mike Manning</div>
+            <h1>Mike Manning</h1>
+            <span class="hero-role">Owner & Head Coach</span>
         </div>
     </section>
 
-    <!-- Article Content -->
+    <!-- Bio Content -->
     <div class="article-content">
-        <a href="index.html" class="back-to-blog">&larr; Back to Blog</a>
 
-        <div class="article-body">
-            <p>If you have been anywhere near the fitness world in the last few years, you have probably heard the word HYROX. It is showing up everywhere -- on social media, in gym conversations, and in cities across the globe. And for good reason. HYROX is one of the most exciting developments in fitness competition, and the training behind it is some of the most effective programming you can do. If you are looking for HYROX training in Frisco, TX, here is everything you need to know.</p>
-
-            <h2>What Is HYROX?</h2>
-
-            <p>HYROX is a global fitness race that combines running with functional workout stations. Think of it as the ultimate test of hybrid fitness -- you need endurance, strength, grip, and the mental toughness to keep moving when your body is telling you to stop. It is one of the fastest-growing fitness competitions in the world, with races happening in major cities across the U.S., Europe, and beyond.</p>
-
-            <p>Here is how it works. Every HYROX race follows the same format: 8 rounds of a 1km run followed by a functional exercise station. The stations are sled push, sled pull, burpee broad jumps, rowing, farmers carry, sandbag lunges, wall balls, and ski erg. Same format every time, no matter where in the world you race. That means you can train specifically for it, track your progress, and compete against yourself and others on a level playing field.</p>
-
-            <p>But here is the thing most people do not realize -- you do not have to compete in a HYROX race to benefit from HYROX training. The preparation alone will get you in incredible shape. The combination of running, functional strength, and sustained effort under fatigue builds a type of fitness that carries over into everything else you do.</p>
-
-            <h2>Why HYROX Training Is Different</h2>
-
-            <p>HYROX is not just cardio. And it is not just strength training. It lives right in the middle -- and that is exactly where most people want to be. Too many people get stuck in a rut of doing only one thing. They are either running five days a week and losing muscle, or they are lifting heavy and gassing out walking up a flight of stairs. HYROX training forces you to be good at both.</p>
-
-            <p>Training for HYROX builds endurance, raw strength, grip strength, mental toughness, and the ability to perform when you are already fatigued. That last part is what separates HYROX from most other training styles. It is not about how strong you are when you are fresh. It is about how well you can push a sled after you just ran a kilometer. It is about holding onto a farmers carry when your grip is already shot from rowing.</p>
-
-            <p>If you are tired of choosing between running and lifting, HYROX training is the answer. It is a style of training that makes you genuinely good at everything. You will be stronger, faster, and more resilient -- and you will look like it too.</p>
-
-            <h2>What Our HYROX Classes Look Like</h2>
-
-            <p>Our HYROX classes at Black Iron Athletics are designed to simulate race conditions so you build the fitness and confidence to perform on race day. Every class is coached, structured, and purposeful. You will never walk in wondering what to do -- our coaches have the programming dialed in.</p>
-
-            <p>A typical class includes running intervals, sled pushes and pulls, rowing and ski erg work, sandbag carries and lunges, wall balls, and more. We mix the volume and intensity throughout the week so you are building capacity without burning out. Some days are heavy on the running and endurance side. Other days focus on the strength stations. And then there are the days where we put it all together and you get a taste of what race day feels like.</p>
-
-            <p>Every movement is scalable to any fitness level. If you have never touched a sled or a ski erg, that is fine. Our coaches will teach you proper technique and scale the weight and distance to where you are right now. You will build up over time. And even if you never plan to set foot in an actual HYROX race, you will be in the best shape of your life training like you are going to.</p>
-
-            <h2>Who Is HYROX For?</h2>
-
-            <p>HYROX is for anyone who wants a goal to train for, a community to train with, and a program that delivers real results. That is a pretty wide net -- and that is the point.</p>
-
-            <p>We see former runners who got bored of just logging miles and wanted something that also builds strength. We see former lifters who realized they had no engine and could not sustain effort for more than 30 seconds. We see former athletes who have not competed in anything since high school or college and miss having something to push for. And we see complete beginners who have never done any of this before and just want to get in great shape.</p>
-
-            <p>All of them have found their home in HYROX training. You do not need to be fast. You do not need to be strong. You just need to be willing to work. Our coaches will handle the programming, the technique, and the progression. You just have to show up and put in the effort.</p>
-
-            <h2>Why Train HYROX at Black Iron Athletics</h2>
-
-            <p>We are one of the few gyms in the Frisco area offering dedicated HYROX training classes. This is not a trend we are chasing -- it is a style of training that aligns perfectly with what we have always believed in: building well-rounded, capable athletes out of everyday people.</p>
-
-            <p>Our facility has everything you need to train for HYROX the right way. We have sleds, rowers, ski ergs, sandbags, wall balls, and running routes. You are not going to be subbing out movements because the gym does not have the right equipment. When you train here, you train on the same gear you will use on race day.</p>
-
-            <p>Our coaches understand HYROX programming and know how to get you race-ready. They know how to build your aerobic base, develop your strength under fatigue, and peak you for competition day. But just as importantly, they know how to keep it fun and keep you healthy in the process. Nobody benefits from getting run into the ground.</p>
-
-            <p>We also offer strength and conditioning and Olympic weightlifting classes to complement your HYROX training. The members who get the best results are the ones who combine HYROX-specific work with a solid strength foundation. Our programming makes that easy to do.</p>
-
-            <p>Black Iron Athletics has been serving the Frisco community since 2013. We are veteran-owned, coach-led, and community-driven. We serve members from Frisco, Prosper, McKinney, Plano, and surrounding areas. If you are searching for a HYROX gym near you, this is it.</p>
+        <!-- Photo + Intro Row -->
+        <div class="bio-intro">
+            <img src="images/owner-headcoach-mike.webp" alt="Mike Manning" class="bio-photo" loading="lazy">
+            <div class="bio-facts">
+                <h2>At a Glance</h2>
+                <div class="bio-fact-item">
+                    <i class="fa-solid fa-shield-halved"></i>
+                    <span><strong>Role:</strong> Owner & Head Coach</span>
+                </div>
+                <div class="bio-fact-item">
+                    <i class="fa-solid fa-dumbbell"></i>
+                    <span><strong>Experience:</strong> 20+ Years Coaching</span>
+                </div>
+                <div class="bio-fact-item">
+                    <i class="fa-solid fa-flag-usa"></i>
+                    <span><strong>Background:</strong> U.S. Marine Corps Veteran</span>
+                </div>
+                <div class="bio-fact-item">
+                    <i class="fa-solid fa-certificate"></i>
+                    <span><strong>Certifications:</strong> USAW L1, CF-L2, CPT</span>
+                </div>
+            </div>
         </div>
 
-        <div class="author-box">
-            <a href="../mike-manning.html" class="author-box-image">
-                <img src="../images/owner-headcoach-mike.webp" alt="Mike Manning" loading="lazy">
-            </a>
-            <div class="author-box-info">
-                <span class="author-box-label">Written by</span>
-                <a href="../mike-manning.html" class="author-box-name">Mike Manning</a>
-                <p class="author-box-bio">U.S. Marine Corps veteran, owner and head coach of Black Iron Athletics in Frisco, TX. Over 20 years of coaching experience with certifications in USA Weightlifting, personal training, and more.</p>
+        <!-- Full Bio -->
+        <div class="article-body">
+            <p>Mike Manning is a U.S. Marine Corps veteran, coach, and the owner of Black Iron Athletics in Frisco, TX. A wrestler and powerlifter in high school, Mike began personal training as a teenager and continued coaching through two combat tours overseas. He has been coaching professionally since 2012 and holds certifications including USA Weightlifting Level 1, CrossFit Level 2, Certified Personal Trainer, and CrossFit Gymnastics.</p>
+
+            <p>After a decade running Black Iron as a CrossFit affiliate, Mike stepped away from the brand to sharpen the gym's mission — helping everyday people find their identity as athletes through movement, nutrition, and community.</p>
+
+            <p>As head coach and programmer, Mike's specialties include Olympic weightlifting and strength & conditioning programming. He believes that the barbell is one of the most powerful tools for transforming not just the body, but the mind — building discipline, resilience, and confidence that carry over into every area of life.</p>
+
+            <p>When he's not coaching or programming workouts, he's home with his wife and two sons.</p>
+
+            <h2>Certifications</h2>
+            <div class="certifications-grid">
+                <div class="cert-item">
+                    <i class="fa-solid fa-certificate"></i>
+                    <span>USA Weightlifting Level 1</span>
+                </div>
+                <div class="cert-item">
+                    <i class="fa-solid fa-certificate"></i>
+                    <span>CrossFit Level 2</span>
+                </div>
+                <div class="cert-item">
+                    <i class="fa-solid fa-certificate"></i>
+                    <span>Certified Personal Trainer</span>
+                </div>
+                <div class="cert-item">
+                    <i class="fa-solid fa-certificate"></i>
+                    <span>CrossFit Gymnastics</span>
+                </div>
             </div>
         </div>
 
         <!-- CTA Box -->
         <div class="article-cta-box">
-            <h3>Ready to Train for HYROX?</h3>
-            <p>Book your free consultation and try a HYROX class at Black Iron Athletics in Frisco, TX. Whether you are preparing for your first race or just want elite-level fitness, we will get you there.</p>
+            <h3>Train with Mike</h3>
+            <p>Book your free consultation and find out what Black Iron Athletics can do for you.</p>
             <a href="#" onclick="openLeadModal(); return false;" class="btn-primary">Book Free Consultation</a>
         </div>
 
+        <!-- Subscribe CTA Box -->
         <div class="article-cta-box" style="margin-top: 2rem; border-left-color: var(--white);">
-            <h3>Get Tips Like This in Your Inbox</h3>
+            <h3>Get Tips from the Coaches</h3>
             <p>Subscribe for weekly training, nutrition, and supplement tips from the coaches at Black Iron Athletics.</p>
             <a href="#" onclick="openSubscribeModal(); return false;" class="btn-primary"><i class="fa-solid fa-envelope" style="margin-right: 0.5rem;"></i> Subscribe</a>
         </div>
@@ -464,35 +516,48 @@
     <footer>
         <div class="footer-container">
             <div class="footer-section">
-                <a href="../index.html">
-                    <img src="../images/logo.png" alt="Black Iron Athletics" class="footer-logo" loading="lazy">
+                <a href="index.html">
+                    <img src="images/logo.png" alt="Black Iron Athletics" class="footer-logo" loading="lazy">
                 </a>
                 <p style="color: var(--light-gray); margin-bottom: 1rem;">Forging everyday people into everyday athletes through strength, community, and purpose.</p>
             </div>
+
             <div class="footer-section">
                 <h3>Quick Links</h3>
                 <ul>
-                    <li><a href="../index.html">Home</a></li>
-                    <li><a href="../schedule.html">Class Schedule</a></li>
-                    <li><a href="../faq.html">FAQ</a></li>
-                    <li><a href="../macro-calculator.html">Macro Calculator</a></li>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="schedule.html">Class Schedule</a></li>
+                    <li><a href="faq.html">FAQ</a></li>
+                    <li><a href="macro-calculator.html">Macro Calculator</a></li>
                     <li><a href="#" onclick="openSubscribeModal(); return false;">Subscribe</a></li>
                     <li><a href="#" onclick="openCancelModal(); return false;">Cancel Membership</a></li>
-                    <li><a href="../privacy-policy.html">Terms & Privacy Policy</a></li>
-                    <li><a href="../privacy-policy.html#sms-terms">SMS Terms</a></li>
+                    <li><a href="privacy-policy.html">Terms & Privacy Policy</a></li>
+                    <li><a href="privacy-policy.html#sms-terms">SMS Terms</a></li>
                 </ul>
             </div>
+
             <div class="footer-section">
                 <h3>Contact</h3>
-                <p style="color: var(--light-gray); margin-bottom: 1rem;">279 Main St #122<br>Frisco, TX 75036</p>
-                <p style="margin-bottom: 1.5rem;"><a href="tel:(972)785-7036" style="color: var(--yellow); font-weight: 700;">(972) 785-7036</a></p>
+                <p style="color: var(--light-gray); margin-bottom: 1rem;">
+                    279 Main St #122<br>
+                    Frisco, TX 75036
+                </p>
+                <p style="margin-bottom: 1.5rem;">
+                    <a href="tel:(972)785-7036" style="color: var(--yellow); font-weight: 700;">(972) 785-7036</a>
+                </p>
             </div>
+
             <div class="footer-section">
                 <h3>Hours</h3>
-                <p style="color: var(--light-gray); margin-bottom: 1rem;">Check our class calendar for an up to date schedule.</p>
-                <p style="color: var(--yellow); font-weight: 700;">Open Gym: 24/7</p>
+                <p style="color: var(--light-gray); margin-bottom: 1rem;">
+                    Check our class calendar for an up to date schedule.
+                </p>
+                <p style="color: var(--yellow); font-weight: 700;">
+                    Open Gym: 24/7
+                </p>
             </div>
         </div>
+
         <div class="footer-bottom">
             <div style="margin-bottom: 1.5rem; display: flex; justify-content: center; gap: 1.5rem; font-size: 1.5rem;">
                 <a href="https://www.instagram.com/blackiron_athletics/" target="_blank" style="color: var(--light-gray); transition: color 0.3s ease;" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
@@ -507,22 +572,17 @@
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
-      "@type": "Article",
-      "headline": "HYROX Training in Frisco, TX",
-      "description": "Looking for HYROX training in Frisco, TX? Learn what HYROX is, how to prepare for a HYROX race, and why Black Iron Athletics is the best HYROX gym near you. Expert coaching for all fitness levels.",
-      "datePublished": "2026-02-13",
-      "dateModified": "2026-02-13",
-      "author": { "@type": "Person", "name": "Mike Manning", "url": "https://www.blackironathletics.com/mike-manning.html" },
-      "publisher": {
+      "@type": "Person",
+      "name": "Mike Manning",
+      "jobTitle": "Owner & Head Coach",
+      "worksFor": {
         "@type": "Organization",
         "name": "Black Iron Athletics",
-        "logo": {
-          "@type": "ImageObject",
-          "url": "https://www.blackironathletics.com/images/logo.png"
-        }
+        "url": "https://www.blackironathletics.com"
       },
-      "url": "https://www.blackironathletics.com/blog/hyrox-training-frisco-tx.html",
-      "mainEntityOfPage": "https://www.blackironathletics.com/blog/hyrox-training-frisco-tx.html"
+      "image": "https://www.blackironathletics.com/images/owner-headcoach-mike.webp",
+      "url": "https://www.blackironathletics.com/mike-manning.html",
+      "description": "U.S. Marine Corps veteran and owner of Black Iron Athletics in Frisco, TX. Over 20 years of coaching experience."
     }
     </script>
 

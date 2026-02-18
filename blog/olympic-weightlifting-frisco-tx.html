@@ -246,6 +246,22 @@
             margin-bottom: 2rem;
         }
 
+        .author-box {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            padding: 2rem;
+            background: var(--dark-gray);
+            margin-top: 3rem;
+            border: 1px solid var(--medium-gray);
+        }
+        .author-box-image { flex-shrink: 0; }
+        .author-box-image img { width: 80px; height: 80px; border-radius: 50%; object-fit: cover; }
+        .author-box-label { display: block; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1px; color: var(--yellow); font-weight: 700; margin-bottom: 0.25rem; }
+        .author-box-name { display: block; font-weight: 900; font-size: 1.1rem; color: var(--white); text-decoration: none; transition: color 0.3s ease; }
+        .author-box-name:hover { color: var(--yellow); }
+        .author-box-bio { font-size: 0.9rem; color: var(--light-gray); line-height: 1.6; margin-top: 0.5rem; margin-bottom: 0; }
+
         .btn-primary {
             background: var(--yellow);
             color: var(--black);
@@ -310,6 +326,7 @@
             .article-content { padding: 3rem 1.5rem; }
             .article-body h2 { font-size: 1.4rem; }
             .article-cta-box { padding: 2rem 1.5rem; }
+            .author-box { flex-direction: column; text-align: center; }
             .map-section iframe { height: 250px; }
             .footer-container { padding: 0 1.5rem; gap: 2rem; }
             .btn-primary { padding: 0.8rem 1.5rem; font-size: 0.8rem; white-space: normal; }
@@ -421,7 +438,17 @@
             <p>We are a veteran-owned gym that serves members from Frisco, Prosper, McKinney, Plano, and the surrounding areas. If you are searching for an Olympic lifting gym near me, we are worth the drive. Come see the facility, meet the coaches, and try a class. That is all we ask.</p>
         </div>
 
-        <!-- CTA Box -->
+        <div class="author-box">
+            <a href="../mike-manning.html" class="author-box-image">
+                <img src="../images/owner-headcoach-mike.webp" alt="Mike Manning" loading="lazy">
+            </a>
+            <div class="author-box-info">
+                <span class="author-box-label">Written by</span>
+                <a href="../mike-manning.html" class="author-box-name">Mike Manning</a>
+                <p class="author-box-bio">U.S. Marine Corps veteran, owner and head coach of Black Iron Athletics in Frisco, TX. Over 20 years of coaching experience with certifications in USA Weightlifting, personal training, and more.</p>
+            </div>
+        </div>
+
         <div class="article-cta-box">
             <h3>Ready to Learn the Lifts?</h3>
             <p>Book your free consultation and try an Olympic weightlifting class at Black Iron Athletics in Frisco, TX. All experience levels welcome -- from your first snatch to your next PR.</p>
@@ -492,10 +519,7 @@
       "description": "Looking for Olympic weightlifting classes in Frisco, TX? Learn about the benefits of Olympic lifting, what to expect in class, and why Black Iron Athletics is the best place to train. Snatch, clean & jerk coaching for all levels.",
       "datePublished": "2026-02-13",
       "dateModified": "2026-02-13",
-      "author": {
-        "@type": "Organization",
-        "name": "Black Iron Athletics"
-      },
+      "author": { "@type": "Person", "name": "Mike Manning", "url": "https://www.blackironathletics.com/mike-manning.html" },
       "publisher": {
         "@type": "Organization",
         "name": "Black Iron Athletics",
