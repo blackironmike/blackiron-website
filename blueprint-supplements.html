@@ -770,6 +770,15 @@
             transform: translateY(-5px);
         }
 
+        .phase-note-card.maintain {
+            border-top: 4px solid var(--phase-maintain);
+        }
+
+        .phase-note-card.maintain:hover {
+            border-color: var(--phase-maintain);
+            box-shadow: 0 10px 30px rgba(46, 134, 193, 0.15);
+        }
+
         .phase-note-card.cutting {
             border-top: 4px solid var(--phase-cut);
         }
@@ -1230,6 +1239,12 @@
             </div>
 
             <div class="phase-notes-grid">
+                <div class="phase-note-card maintain">
+                    <div class="phase-note-label" style="color: var(--phase-maintain);">During a Maintain</div>
+                    <h3>Building the Baseline</h3>
+                    <p>Maintenance phases are where you establish your hydration habits. Hit your baseline every day without fail. This is when you build the consistency that carries you through the harder phases. If you can nail your water intake when nothing feels urgent, you'll be dialed in when it matters most.</p>
+                </div>
+
                 <div class="phase-note-card cutting">
                     <div class="phase-note-label" style="color: var(--phase-cut);">During a Cut</div>
                     <h3>Hunger, Performance &amp; Recovery</h3>
