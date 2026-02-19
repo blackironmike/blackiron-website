@@ -387,6 +387,27 @@
             color: var(--black);
         }
 
+        .btn-secondary {
+            background: transparent;
+            color: var(--white);
+            padding: 1.2rem 3rem;
+            text-decoration: none;
+            font-weight: 900;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border: 2px solid var(--white);
+            border-radius: 0;
+            display: inline-block;
+            cursor: pointer;
+        }
+
+        .btn-secondary:hover {
+            background: var(--white);
+            color: var(--black);
+        }
+
         /* ===== FEATURE CARDS ===== */
         .features-grid {
             display: grid;
@@ -848,6 +869,12 @@
                 white-space: normal;
             }
 
+            .btn-secondary {
+                padding: 0.8rem 1.5rem;
+                font-size: 0.8rem;
+                white-space: normal;
+            }
+
             .btn-outline {
                 padding: 0.8rem 1.5rem;
                 font-size: 0.8rem;
@@ -950,7 +977,7 @@
                 <p>A year-round system for how you look, feel, and perform. Stop dieting in circles. Start training your nutrition with the same intention you bring to the barbell.</p>
                 <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
                     <a href="https://www.blackironathletics.com?msopen=/member/plans/8ald2adtff" class="btn-primary">Get the Blueprint &mdash; $99/year</a>
-                    <a href="blueprint-how-to-use.html" class="btn-outline">Your Blueprint</a>
+                    <a href="blueprint-how-to-use.html" class="btn-secondary">Your Blueprint</a>
                 </div>
             </div>
         </div>
