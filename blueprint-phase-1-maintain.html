@@ -3,25 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About Us | Black Iron Athletics | Veteran-Owned Gym in Frisco, TX Since 2013</title>
-    <meta name="description" content="Black Iron Athletics is a veteran-owned strength & conditioning gym in Frisco, TX. Since 2013, we've helped 3000+ members through expert coaching, HYROX training, Olympic weightlifting & personal training. Serving Frisco, Prosper, McKinney & Plano.">
+    <title>Phase 1: Maintain (January–March) | 4-Phase Nutrition Blueprint | Black Iron Athletics</title>
+    <meta name="description" content="Phase 1 of the 4-Phase Nutrition Blueprint — Maintain. January through March. Reset after the holidays, stabilize your weight, build tracking habits, and prepare your body for the work ahead.">
     <meta name="geo.region" content="US-TX">
     <meta name="geo.placename" content="Frisco">
-    <link rel="canonical" href="https://www.blackironathletics.com/about.html">
+    <link rel="canonical" href="https://www.blackironathletics.com/blueprint-phase-1-maintain.html">
     <!-- Open Graph -->
-    <meta property="og:title" content="About Us | Black Iron Athletics | Veteran-Owned Gym in Frisco, TX">
-    <meta property="og:description" content="Veteran-owned strength & conditioning gym in Frisco, TX since 2013. 3000+ members transformed through expert coaching, HYROX, weightlifting & personal training.">
-    <meta property="og:url" content="https://www.blackironathletics.com/about.html">
+    <meta property="og:title" content="Phase 1: Maintain (January–March) | 4-Phase Nutrition Blueprint | Black Iron Athletics">
+    <meta property="og:description" content="Phase 1 of the 4-Phase Nutrition Blueprint — Maintain. Reset after the holidays, stabilize your weight, and prepare for the cut ahead.">
+    <meta property="og:url" content="https://www.blackironathletics.com/blueprint-phase-1-maintain.html">
     <meta property="og:image" content="https://www.blackironathletics.com/images/social-share.png">
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="Black Iron Athletics">
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="About Us | Black Iron Athletics | Veteran-Owned Gym in Frisco, TX">
-    <meta name="twitter:description" content="Veteran-owned strength & conditioning gym in Frisco, TX since 2013. 3000+ members transformed through expert coaching, HYROX, weightlifting & personal training.">
+    <meta name="twitter:title" content="Phase 1: Maintain (January–March) | 4-Phase Nutrition Blueprint | Black Iron Athletics">
+    <meta name="twitter:description" content="Phase 1 of the 4-Phase Nutrition Blueprint — Maintain. Reset after the holidays, stabilize your weight, and prepare for the cut ahead.">
     <meta name="twitter:image" content="https://www.blackironathletics.com/images/social-share.png">
     <link rel="icon" type="image/png" href="images/anvil-favicon.png">
-    <link rel="preload" as="image" href="images/hero-about.webp">
+    <link rel="preload" as="image" href="images/hero-macro-calculator.webp">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;900&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
@@ -29,6 +29,16 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" media="print" onload="this.media='all'">
     <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"></noscript>
     <style>@font-face{font-family:"Font Awesome 6 Brands";font-display:swap}@font-face{font-family:"Font Awesome 6 Free";font-display:swap}</style>
+    <!-- MemberSpace -->
+    <script>
+        var MemberSpace = window.MemberSpace || {"subdomain":"blackironathletics"};
+        (function(d){
+            var s = d.createElement("script");
+            s.src = "https://cdn.memberspace.com/scripts/widgets.js";
+            var e = d.getElementsByTagName("script")[0];
+            e.parentNode.insertBefore(s,e);
+        }(document));
+    </script>
     <style>
         /* Force full width - override GHL container */
         body, html {
@@ -38,7 +48,6 @@
             padding: 0 !important;
         }
 
-        /* Remove GHL's default container padding */
         .container, .hl_page-preview--content {
             padding: 0 !important;
             margin: 0 !important;
@@ -59,6 +68,9 @@
             --light-gray: #cccccc;
             --white: #ffffff;
             --yellow: #FFD202;
+            --phase-maintain: #2E86C1;
+            --phase-cut: #ff0003;
+            --phase-build: #27AE60;
         }
 
         body {
@@ -78,20 +90,13 @@
             scroll-behavior: smooth;
         }
 
-        /* Anchor offset for fixed nav */
-        #mission,
-        #team,
-        #programs {
-            scroll-margin-top: 100px;
-        }
-
-        /* All headings use Montserrat Black */
         h1, h2, h3, h4, h5, h6 {
             font-family: 'Montserrat', sans-serif;
             font-weight: 900;
             line-height: 1.2;
         }
 
+        /* ===== NAV ===== */
         nav {
             position: fixed;
             top: 0;
@@ -111,19 +116,9 @@
             align-items: center;
         }
 
-        .logo {
-            height: 50px;
-        }
-
-        .logo a {
-            display: block;
-            height: 100%;
-        }
-
-        .logo img {
-            height: 100%;
-            width: auto;
-        }
+        .logo { height: 50px; }
+        .logo a { display: block; height: 100%; }
+        .logo img { height: 100%; width: auto; }
 
         .nav-links {
             display: flex;
@@ -132,9 +127,7 @@
             align-items: center;
         }
 
-        .nav-links > li {
-            position: relative;
-        }
+        .nav-links > li { position: relative; }
 
         .nav-links a {
             color: var(--white);
@@ -146,11 +139,8 @@
             letter-spacing: 0.5px;
         }
 
-        .nav-links > li > a:hover {
-            color: var(--yellow);
-        }
+        .nav-links > li > a:hover { color: var(--yellow); }
 
-        /* Dropdown Submenu */
         .submenu {
             display: none;
             position: absolute;
@@ -164,9 +154,7 @@
             list-style: none;
         }
 
-        .submenu li {
-            padding: 0;
-        }
+        .submenu li { padding: 0; }
 
         .submenu a {
             display: block;
@@ -184,9 +172,7 @@
             padding-left: 2rem;
         }
 
-        .nav-links > li:hover .submenu {
-            display: block;
-        }
+        .nav-links > li:hover .submenu { display: block; }
 
         .has-submenu > a::after {
             content: '';
@@ -203,6 +189,12 @@
         .has-submenu:hover > a::after {
             border-top-color: var(--yellow);
             transform: translateY(2px);
+        }
+
+        .nav-cta-group {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
         }
 
         .cta-btn {
@@ -225,7 +217,27 @@
             color: var(--yellow);
         }
 
-        /* Hero Section */
+        .login-btn {
+            color: var(--yellow);
+            padding: 0.9rem 1.5rem;
+            border-radius: 0;
+            text-decoration: none;
+            font-weight: 900;
+            font-size: 0.85rem;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            border: 2px solid var(--yellow);
+            white-space: nowrap;
+            background: transparent;
+        }
+
+        .login-btn:hover {
+            background: var(--yellow);
+            color: var(--black);
+        }
+
+        /* ===== HERO ===== */
         .hero {
             margin-top: 0;
             padding-top: 80px;
@@ -234,6 +246,7 @@
             align-items: center;
             position: relative;
             background: var(--black);
+            border-top: 4px solid var(--phase-maintain);
         }
 
         .hero-bg {
@@ -243,8 +256,17 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
-            object-position: center 60%;
             opacity: 0.3;
+            z-index: 0;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(46, 134, 193, 0.15) 0%, transparent 60%);
             z-index: 0;
         }
 
@@ -257,14 +279,12 @@
             z-index: 1;
         }
 
-        .hero-content {
-            max-width: 900px;
-        }
+        .hero-content { max-width: 800px; }
 
         .hero-subtitle {
             font-size: 0.9rem;
             font-weight: 700;
-            color: var(--yellow);
+            color: var(--phase-maintain);
             text-transform: uppercase;
             letter-spacing: 2px;
             margin-bottom: 1.5rem;
@@ -287,16 +307,62 @@
             max-width: 600px;
         }
 
-        /* Section Styles */
+        /* ===== BLUEPRINT SUB-NAV ===== */
+        .blueprint-subnav {
+            background: var(--dark-gray);
+            border-bottom: 1px solid var(--medium-gray);
+            width: 100%;
+            position: relative;
+            z-index: 10;
+        }
+
+        .blueprint-subnav-container {
+            max-width: 100%;
+            margin: 0;
+            padding: 0 4rem;
+            display: flex;
+            align-items: center;
+            gap: 0;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: none;
+        }
+
+        .blueprint-subnav-container::-webkit-scrollbar {
+            display: none;
+        }
+
+        .blueprint-subnav a {
+            color: var(--light-gray);
+            text-decoration: none;
+            font-size: 0.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            padding: 1rem 1.25rem;
+            white-space: nowrap;
+            transition: all 0.3s ease;
+            border-bottom: 2px solid transparent;
+            display: block;
+        }
+
+        .blueprint-subnav a:hover {
+            color: var(--yellow);
+        }
+
+        .blueprint-subnav a.active {
+            color: var(--yellow);
+            border-bottom: 2px solid var(--yellow);
+        }
+
+        /* ===== SECTIONS ===== */
         .section {
             padding: 6rem 0;
             background: var(--black);
             width: 100%;
         }
 
-        .section-alt {
-            background: var(--dark-gray);
-        }
+        .section-alt { background: var(--dark-gray); }
 
         .section-container {
             max-width: 100%;
@@ -325,245 +391,11 @@
             text-transform: uppercase;
         }
 
-        /* Mission Section */
-        .mission-statement {
-            font-size: 1.8rem;
-            line-height: 1.6;
-            color: var(--yellow);
-            text-align: center;
-            margin-bottom: 4rem;
-            font-weight: 600;
-            font-style: italic;
-        }
-
-        .content-block {
-            max-width: 900px;
-            margin: 0 auto 4rem;
-        }
-
-        .content-block h3 {
-            font-weight: 900;
-            font-size: 1.8rem;
-            margin-bottom: 1.5rem;
-            text-transform: uppercase;
-        }
-
-        .content-block p {
-            font-size: 1.1rem;
-            line-height: 1.8;
-            color: var(--light-gray);
-            margin-bottom: 1.5rem;
-        }
-
-        /* Beliefs Grid */
-        .beliefs-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 2.5rem;
-            margin-top: 4rem;
-        }
-
-        .belief-card {
-            background: var(--dark-gray);
-            padding: 3rem;
-            border: 2px solid var(--medium-gray);
-            transition: all 0.4s ease;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .belief-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 4px;
-            background: var(--yellow);
-            transform: scaleX(0);
-            transition: transform 0.4s ease;
-        }
-
-        .belief-card:hover {
-            border-color: var(--yellow);
-            transform: translateY(-8px);
-            box-shadow: 0 15px 40px rgba(255, 210, 2, 0.15);
-        }
-
-        .belief-card:hover::before {
-            transform: scaleX(1);
-        }
-
-        .belief-icon {
-            font-size: 3rem;
-            color: var(--yellow);
-            margin-bottom: 1.5rem;
-            display: inline-block;
-        }
-
-        .belief-card h4 {
-            font-weight: 900;
-            font-size: 1.5rem;
-            margin-bottom: 1.2rem;
-            color: var(--white);
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-
-        .belief-card p {
-            color: var(--light-gray);
-            line-height: 1.8;
-            font-size: 1.05rem;
-        }
-
-        /* Team Carousel */
-        .carousel-wrapper {
-            position: relative;
-            overflow: hidden;
-            margin-top: 4rem;
-        }
-
-        .team-carousel {
-            display: flex;
-            gap: 2rem;
-            transition: transform 0.5s ease;
-        }
-
-        .carousel-arrow {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            background: rgba(0, 0, 0, 0.7);
-            border: 2px solid var(--yellow);
-            color: var(--yellow);
-            width: 48px;
-            height: 48px;
+        .section-description {
             font-size: 1.2rem;
-            cursor: pointer;
-            z-index: 10;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.3s ease;
-        }
-
-        .carousel-arrow:hover {
-            background: var(--yellow);
-            color: var(--black);
-        }
-
-        .carousel-prev { left: 0.5rem; }
-        .carousel-next { right: 0.5rem; }
-
-        .team-card {
-            background: var(--black);
-            overflow: hidden;
-            border: 2px solid var(--medium-gray);
-            transition: border-color 0.3s ease;
-            flex: 0 0 300px;
-        }
-
-        .team-card:hover {
-            border-color: var(--yellow);
-        }
-
-        .team-image {
-            width: 100%;
-            height: 350px;
-            background: var(--medium-gray);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 4rem;
-            color: var(--yellow);
-        }
-
-        .team-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .team-content {
-            padding: 2rem;
-        }
-
-        .team-name {
-            font-weight: 900;
-            font-size: 1.8rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .team-role {
-            color: var(--yellow);
-            font-weight: 700;
-            font-size: 0.9rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-bottom: 1rem;
-        }
-
-        .team-bio {
             color: var(--light-gray);
-            line-height: 1.8;
-        }
-
-        /* Programs Section */
-        .programs-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 2rem;
-            margin-top: 4rem;
-        }
-
-        .program-card {
-            background: var(--dark-gray);
-            overflow: hidden;
-            transition: all 0.3s ease;
-            border: 2px solid var(--medium-gray);
-        }
-
-        .program-card:hover {
-            border-color: var(--yellow);
-            transform: translateY(-5px);
-        }
-
-        .program-image {
-            width: 100%;
-            height: 300px;
-            object-fit: cover;
-        }
-
-        .program-content {
-            padding: 2.5rem;
-        }
-
-        .program-title {
-            font-weight: 900;
-            font-size: 1.8rem;
-            margin-bottom: 1rem;
-            text-transform: uppercase;
-        }
-
-        .program-description {
-            color: var(--light-gray);
-            margin-bottom: 2rem;
-            line-height: 1.8;
-        }
-
-        .program-link {
-            color: var(--yellow);
-            text-decoration: none;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            font-size: 0.9rem;
-            transition: color 0.3s ease;
-        }
-
-        .program-link:hover {
-            color: var(--white);
+            max-width: 800px;
+            margin: 0 auto;
         }
 
         .btn-primary {
@@ -579,6 +411,7 @@
             border: 2px solid var(--yellow);
             border-radius: 0;
             display: inline-block;
+            cursor: pointer;
         }
 
         .btn-primary:hover {
@@ -586,7 +419,298 @@
             color: var(--yellow);
         }
 
-        /* CTA Section */
+        .btn-outline {
+            background: transparent;
+            color: var(--yellow);
+            padding: 1.2rem 3rem;
+            text-decoration: none;
+            font-weight: 900;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border: 2px solid var(--yellow);
+            border-radius: 0;
+            display: inline-block;
+            cursor: pointer;
+        }
+
+        .btn-outline:hover {
+            background: var(--yellow);
+            color: var(--black);
+        }
+
+        /* ===== FEATURE CARDS ===== */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 4rem;
+        }
+
+        .feature-card {
+            background: var(--dark-gray);
+            padding: 3rem 2rem;
+            border: 2px solid var(--medium-gray);
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .section-alt .feature-card {
+            background: var(--black);
+        }
+
+        .feature-card:hover {
+            border-color: var(--yellow);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(255, 210, 2, 0.2);
+        }
+
+        .feature-icon {
+            font-size: 2.5rem;
+            color: var(--yellow);
+            margin-bottom: 1.5rem;
+        }
+
+        .feature-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+        }
+
+        .feature-card p {
+            color: var(--light-gray);
+            line-height: 1.8;
+        }
+
+        /* ===== CONTENT BLOCK ===== */
+        .content-block {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .content-block p {
+            color: var(--light-gray);
+            line-height: 1.8;
+            font-size: 1.05rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .content-block strong {
+            color: var(--white);
+        }
+
+        /* ===== YOUR NUMBERS ===== */
+        .numbers-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .number-card {
+            background: var(--dark-gray);
+            border: 2px solid var(--medium-gray);
+            padding: 1.5rem;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .section-alt .number-card {
+            background: var(--black);
+        }
+
+        .number-card:hover {
+            border-color: var(--phase-maintain);
+        }
+
+        .number-card h4 {
+            font-size: 0.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--phase-maintain);
+            margin-bottom: 0.5rem;
+        }
+
+        .number-card p {
+            color: var(--light-gray);
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
+        /* ===== TIMELINE CARDS ===== */
+        .timeline-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .timeline-card {
+            background: var(--dark-gray);
+            border: 2px solid var(--medium-gray);
+            padding: 2.5rem 2rem;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .section-alt .timeline-card {
+            background: var(--black);
+        }
+
+        .timeline-card:hover {
+            border-color: var(--phase-maintain);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(46, 134, 193, 0.2);
+        }
+
+        .timeline-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: var(--phase-maintain);
+        }
+
+        .timeline-label {
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: var(--phase-maintain);
+            margin-bottom: 0.75rem;
+        }
+
+        .timeline-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+        }
+
+        .timeline-card p {
+            color: var(--light-gray);
+            line-height: 1.8;
+            font-size: 0.95rem;
+        }
+
+        /* ===== CHECKLIST ===== */
+        .checklist-container {
+            max-width: 700px;
+            margin: 3rem auto 0;
+        }
+
+        .checklist-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1.25rem;
+            padding: 1.25rem 0;
+            border-bottom: 1px solid var(--medium-gray);
+        }
+
+        .checklist-item:last-child {
+            border-bottom: none;
+        }
+
+        .checklist-box {
+            flex-shrink: 0;
+            width: 28px;
+            height: 28px;
+            border: 2px solid var(--phase-maintain);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 2px;
+        }
+
+        .checklist-box::after {
+            content: '';
+            display: block;
+            width: 10px;
+            height: 10px;
+            background: transparent;
+        }
+
+        .checklist-item p {
+            color: var(--light-gray);
+            line-height: 1.7;
+            font-size: 1rem;
+        }
+
+        .checklist-item strong {
+            color: var(--white);
+        }
+
+        /* ===== BOTTOM NAV ===== */
+        .bottom-nav {
+            display: flex;
+            justify-content: flex-end;
+            margin-top: 3rem;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .bottom-nav-link {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            background: var(--dark-gray);
+            border: 2px solid var(--medium-gray);
+            padding: 1.5rem 2rem;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            max-width: 350px;
+        }
+
+        .section-alt .bottom-nav-link {
+            background: var(--black);
+        }
+
+        .bottom-nav-link:hover {
+            border-color: var(--phase-cut);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(255, 0, 3, 0.15);
+        }
+
+        .bottom-nav-text {
+            text-align: left;
+        }
+
+        .bottom-nav-label {
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--light-gray);
+            margin-bottom: 0.25rem;
+        }
+
+        .bottom-nav-title {
+            font-size: 1.1rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            color: var(--white);
+        }
+
+        .bottom-nav-dates {
+            font-size: 0.85rem;
+            color: var(--light-gray);
+            font-weight: 600;
+        }
+
+        .bottom-nav-arrow {
+            color: var(--phase-cut);
+            font-size: 1.5rem;
+            flex-shrink: 0;
+        }
+
+        /* ===== CTA SECTION ===== */
         .cta-section {
             background: var(--dark-gray);
             padding: 8rem 4rem;
@@ -607,10 +731,15 @@
             margin-bottom: 3rem;
         }
 
-        /* Map Section */
-        .map-section {
-            width: 100%;
+        .cta-note {
+            font-size: 0.95rem;
+            color: var(--yellow);
+            font-weight: 600;
+            margin-top: 1.5rem;
         }
+
+        /* ===== MAP ===== */
+        .map-section { width: 100%; }
 
         .map-section iframe {
             width: 100%;
@@ -619,7 +748,7 @@
             display: block;
         }
 
-        /* Footer */
+        /* ===== FOOTER ===== */
         footer {
             padding: 4rem 0 2rem;
             background: var(--black);
@@ -645,13 +774,8 @@
             letter-spacing: 1px;
         }
 
-        .footer-section ul {
-            list-style: none;
-        }
-
-        .footer-section ul li {
-            margin-bottom: 0.75rem;
-        }
+        .footer-section ul { list-style: none; }
+        .footer-section ul li { margin-bottom: 0.75rem; }
 
         .footer-section a {
             color: var(--light-gray);
@@ -660,9 +784,7 @@
             font-weight: 500;
         }
 
-        .footer-section a:hover {
-            color: var(--yellow);
-        }
+        .footer-section a:hover { color: var(--yellow); }
 
         .footer-logo {
             height: 60px;
@@ -677,17 +799,7 @@
             font-size: 0.9rem;
         }
 
-        @media (max-width: 1024px) {
-            .nav-container,
-            .hero-container,
-            .section-container,
-            .footer-container {
-                padding-left: 2rem;
-                padding-right: 2rem;
-            }
-        }
-
-        /* Hamburger Menu */
+        /* ===== HAMBURGER / MOBILE NAV ===== */
         .hamburger {
             display: none;
             flex-direction: column;
@@ -710,17 +822,9 @@
             transition: all 0.3s ease;
         }
 
-        .hamburger.active span:nth-child(1) {
-            transform: rotate(45deg) translate(6px, 6px);
-        }
-
-        .hamburger.active span:nth-child(2) {
-            opacity: 0;
-        }
-
-        .hamburger.active span:nth-child(3) {
-            transform: rotate(-45deg) translate(6px, -6px);
-        }
+        .hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(6px, 6px); }
+        .hamburger.active span:nth-child(2) { opacity: 0; }
+        .hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(6px, -6px); }
 
         .mobile-nav-overlay {
             display: none;
@@ -737,9 +841,7 @@
             gap: 0;
         }
 
-        .mobile-nav-overlay.active {
-            display: flex;
-        }
+        .mobile-nav-overlay.active { display: flex; }
 
         .mobile-nav-overlay a {
             color: var(--white);
@@ -755,9 +857,7 @@
 
         .mobile-nav-overlay .mobile-sub-link { font-size: 0.9rem; color: var(--light-gray); padding: 0.5rem 2rem; font-weight: 700; letter-spacing: 0.5px; }
         .mobile-nav-overlay .mobile-sub-link:hover { color: var(--yellow); }
-        .mobile-nav-overlay a:hover {
-            color: var(--yellow);
-        }
+        .mobile-nav-overlay a:hover { color: var(--yellow); }
 
         .mobile-nav-overlay .mobile-cta {
             margin-top: 1.5rem;
@@ -777,14 +877,49 @@
             color: var(--yellow);
         }
 
-        @media (max-width: 768px) {
-            .hamburger {
-                display: flex !important;
+        .mobile-nav-overlay .mobile-login {
+            margin-top: 0.75rem;
+            color: var(--yellow);
+            border: 2px solid var(--yellow);
+            padding: 1rem 2.5rem;
+            font-size: 1rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            background: transparent;
+        }
+
+        .mobile-nav-overlay .mobile-login:hover {
+            background: var(--yellow);
+            color: var(--black);
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 1024px) {
+            .nav-container,
+            .hero-container,
+            .section-container,
+            .footer-container {
+                padding-left: 2rem;
+                padding-right: 2rem;
             }
 
-            .nav-links {
-                display: none !important;
+            .cta-section {
+                padding-left: 2rem;
+                padding-right: 2rem;
             }
+
+            .blueprint-subnav-container {
+                padding-left: 2rem;
+                padding-right: 2rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hamburger { display: flex !important; }
+            .nav-links { display: none !important; }
+            .nav-cta-group .login-btn { display: none; }
 
             .nav-container {
                 padding: 0 1.5rem;
@@ -800,107 +935,36 @@
                 font-size: 0.8rem;
             }
 
-            .hero {
-                padding-top: 130px;
-            }
-
-            .hero-container {
-                padding: 2rem 1.5rem;
-            }
-
-            .hero-content h1 {
-                font-size: clamp(2rem, 6vw, 3rem);
-            }
-
-            .hero-content p {
-                font-size: 1.1rem;
-                margin-bottom: 2rem;
-            }
+            .hero { padding-top: 130px; }
+            .hero-container { padding: 2rem 1.5rem; }
+            .hero-content h1 { font-size: clamp(2rem, 6vw, 3rem); }
+            .hero-content p { font-size: 1.1rem; margin-bottom: 2rem; }
 
             .section-container {
                 padding: 0 1.5rem;
             }
 
-            .section-title {
-                font-size: clamp(1.8rem, 5vw, 2.5rem);
-            }
+            .section-title { font-size: clamp(1.8rem, 5vw, 2.5rem); }
+            .section-header { margin-bottom: 2rem; }
+            .section { padding: 4rem 0; }
 
-            .section-header {
-                margin-bottom: 2rem;
-            }
-
-            .section {
-                padding: 4rem 0;
-            }
-
-            .mission-statement {
-                font-size: 1.3rem;
-            }
-
-            .beliefs-grid {
+            .features-grid {
                 grid-template-columns: 1fr;
             }
 
-            .belief-card {
-                padding: 2rem;
-            }
-
-            .team-carousel {
-                gap: 1rem;
-            }
-
-            .team-card {
-                flex: 0 0 260px;
-            }
-
-            .team-image {
-                height: 280px;
-            }
-
-            .team-content {
-                padding: 1.5rem;
-            }
-
-            .team-name {
-                font-size: 1.4rem;
-            }
-
-            .carousel-arrow {
-                width: 36px;
-                height: 36px;
-                font-size: 0.9rem;
-            }
-
-            .carousel-prev { left: 0.25rem; }
-            .carousel-next { right: 0.25rem; }
-
-            .program-image {
-                height: 220px;
-            }
-
-            .program-content {
-                padding: 1.5rem;
-            }
-
-            .program-title {
-                font-size: 1.4rem;
-            }
-
-            .programs-grid {
+            .timeline-grid {
                 grid-template-columns: 1fr;
             }
 
-            .cta-section {
-                padding: 4rem 1.5rem;
+            .blueprint-subnav-container {
+                padding-left: 1.5rem;
+                padding-right: 1.5rem;
             }
 
-            .cta-title {
-                font-size: clamp(1.8rem, 5vw, 2.5rem);
-            }
+            .cta-section { padding: 4rem 1.5rem; }
+            .cta-title { font-size: clamp(1.8rem, 5vw, 2.5rem); }
 
-            .map-section iframe {
-                height: 250px;
-            }
+            .map-section iframe { height: 250px; }
 
             .footer-container {
                 padding: 0 1.5rem;
@@ -913,9 +977,18 @@
                 white-space: normal;
             }
 
-            .modal-container {
-                max-width: calc(100% - 2rem);
+            .btn-outline {
+                padding: 0.8rem 1.5rem;
+                font-size: 0.8rem;
+                white-space: normal;
             }
+
+            .bottom-nav-link {
+                max-width: 100%;
+                width: 100%;
+            }
+
+            .modal-container { max-width: calc(100% - 2rem); }
         }
     </style>
 </head>
@@ -955,7 +1028,10 @@
                 </li>
                 <li><a href="contact.html">Contact</a></li>
             </ul>
-            <a href="#" onclick="openLeadModal(); return false;" class="cta-btn">Book Free Consultation</a>
+            <div class="nav-cta-group">
+                <a href="#" class="login-btn" data-ms-modal="login" onclick="return false;">Member Login</a>
+                <a href="#" onclick="openLeadModal(); return false;" class="cta-btn">Book Free Consultation</a>
+            </div>
             <button class="hamburger" onclick="toggleMobileNav()" aria-label="Menu">
                 <span></span>
                 <span></span>
@@ -981,196 +1057,168 @@
         <a href="blueprint.html" class="mobile-sub-link" onclick="closeMobileNav()">4-Phase Blueprint</a>
         <a href="contact.html" onclick="closeMobileNav()">Contact</a>
         <a href="#" class="mobile-cta" onclick="closeMobileNav(); openLeadModal(); return false;">Book Free Consultation</a>
+        <a href="#" class="mobile-login" data-ms-modal="login" onclick="closeMobileNav(); return false;">Member Login</a>
     </div>
 
     <!-- Hero Section -->
     <section class="hero">
-        <img src="images/hero-about.webp" alt="About Black Iron Athletics" class="hero-bg" fetchpriority="high">
+        <img src="images/hero-macro-calculator.webp" alt="Phase 1 Maintenance nutrition" class="hero-bg" fetchpriority="high">
+        <div class="hero-overlay"></div>
         <div class="hero-container">
             <div class="hero-content">
-                <div class="hero-subtitle">Our Story</div>
-                <h1>About Us</h1>
-                <p>Forging everyday people into everyday athletes through strength, community, and purpose.</p>
+                <div class="hero-subtitle">Phase 1 &bull; January &ndash; March</div>
+                <h1>Maintain</h1>
+                <p>This is your foundation-setting phase. You're not trying to lose weight or gain weight. You're teaching your body what "normal" looks like and building the habits that make every other phase work.</p>
             </div>
         </div>
     </section>
 
-    <!-- Mission Section -->
-    <section id="mission" class="section">
+    <!-- Blueprint Sub-Nav -->
+    <div class="blueprint-subnav">
+        <div class="blueprint-subnav-container">
+            <a href="blueprint-how-to-use.html">How to Use</a>
+            <a href="blueprint-phase-1-maintain.html" class="active">Phase 1: Maintain</a>
+            <a href="blueprint-phase-2-cut.html">Phase 2: Cut</a>
+            <a href="blueprint-phase-3-maintain.html">Phase 3: Maintain</a>
+            <a href="blueprint-phase-4-build.html">Phase 4: Build</a>
+            <a href="blueprint-supplements.html">Supplements</a>
+            <a href="blueprint-decade.html">Decade Roadmap</a>
+        </div>
+    </div>
+
+    <!-- The Purpose -->
+    <section class="section">
         <div class="section-container">
             <div class="section-header">
-                <div class="section-subtitle">Our Mission</div>
-                <h2 class="section-title">Why We Exist</h2>
+                <div class="section-subtitle">Why You Start Here</div>
+                <h2 class="section-title">The Purpose</h2>
             </div>
 
             <div class="content-block">
-                <p>Black Iron Athletics was founded in 2013 with a simple belief: movement is medicine. As a veteran-owned business, we built this gym on the principles of discipline, integrity, and service. We believe in hard work, accountability, and showing up for each other every single day.</p>
-                <p>Over 12+ years, we've helped over 3,000 people transform their lives -- from complete beginners to experienced athletes chasing new PRs. We meet people where they are and help them become who they're meant to be. Getting fit isn't about quick fixes. It's about building a body that serves you for life.</p>
-            </div>
-
-            <div class="section-header" style="margin-top: 5rem;">
-                <h2 class="section-title">What We Believe</h2>
-            </div>
-
-            <div class="beliefs-grid">
-                <div class="belief-card">
-                    <div class="belief-icon"><i class="fa-solid fa-shield-halved"></i></div>
-                    <h4>Quality of Life Over Ego</h4>
-                    <p>It's about building real strength and creating a body that serves you well for decades. When you feel strong and capable, confidence follows naturally.</p>
-                </div>
-
-                <div class="belief-card">
-                    <div class="belief-icon"><i class="fa-solid fa-people-group"></i></div>
-                    <h4>Community & Accountability</h4>
-                    <p>You don't have to figure this out on your own. Our coaches and your fellow athletes are here to support you, push you, and celebrate every win along the way.</p>
-                </div>
-
-                <div class="belief-card">
-                    <div class="belief-icon"><i class="fa-solid fa-brain"></i></div>
-                    <h4>Mental Health Matters</h4>
-                    <p>We know the mental battle can be harder than the physical one. That's why we've built a community that supports the whole person, not just the workout.</p>
-                </div>
-
-                <div class="belief-card">
-                    <div class="belief-icon"><i class="fa-solid fa-apple-whole"></i></div>
-                    <h4>Nutrition Is the Foundation</h4>
-                    <p>You can't out-train a bad diet. Nutrition is the most important piece of the puzzle — it fuels your performance, your recovery, and your results. We help you build habits that last.</p>
-                </div>
+                <p>This is your foundation-setting phase. You're not trying to lose weight or gain weight. You're teaching your body what "normal" looks like. For many people &mdash; especially those coming off holiday eating or years of yo-yo dieting &mdash; this is the most important phase of the entire year.</p>
+                <p>Most people make the mistake of jumping straight into a cut on January 1st, when their willpower and habits are at their weakest. Instead, you spend Q1 rebuilding consistency. You stabilize your weight, lock in your tracking habits, and prepare your body for the work ahead.</p>
+                <p>Maintenance is where you practice the skills that make every other phase work: <strong>consistent tracking, hitting protein targets, building meal routines, and learning to eat at your actual energy needs</strong> without the psychological pressure of a deficit or surplus.</p>
             </div>
         </div>
     </section>
 
-    <!-- Team Section -->
-    <section id="team" class="section section-alt">
+    <!-- Your Numbers -->
+    <section class="section section-alt">
         <div class="section-container">
             <div class="section-header">
-                <div class="section-subtitle">Our Team</div>
-                <h2 class="section-title">Meet the Coaches</h2>
-                <p style="font-size: 1.2rem; color: var(--light-gray); max-width: 800px; margin: 1rem auto 0;">Expert trainers with 12+ years of experience guiding every rep, every set, every milestone.</p>
+                <div class="section-subtitle">Calculator Setting: "Maintain"</div>
+                <h2 class="section-title">Your Numbers</h2>
+                <p class="section-description">Open the Black Iron Macro Calculator, enter your current stats, and set the goal to "Maintain." Your daily targets for this phase are below.</p>
             </div>
 
-            <div class="carousel-wrapper">
-                <button class="carousel-arrow carousel-prev" aria-label="Previous coach"><i class="fa-solid fa-chevron-left"></i></button>
-                <div class="team-carousel" id="teamCarousel">
-                    <a href="mike-manning.html" class="team-card" style="text-decoration: none; color: inherit;">
-                        <div class="team-image">
-                            <img src="images/owner-headcoach-mike.webp" alt="Mike Manning - Owner & Head Coach at Black Iron Athletics" loading="lazy">
-                        </div>
-                        <div class="team-content">
-                            <h3 class="team-name">Mike Manning</h3>
-                            <div class="team-role">Owner & Head Coach</div>
-                        </div>
-                    </a>
-
-                    <div class="team-card">
-                        <div class="team-image">
-                            <img src="images/general-manager-caoch-kristin.webp" alt="Kristin - General Manager at Black Iron Athletics" loading="lazy">
-                        </div>
-                        <div class="team-content">
-                            <h3 class="team-name">Kristin</h3>
-                            <div class="team-role">General Manager</div>
-                        </div>
-                    </div>
-
-                    <div class="team-card">
-                        <div class="team-image">
-                            <img src="images/coach-aileen.webp" alt="Aileen - Coach at Black Iron Athletics" loading="lazy">
-                        </div>
-                        <div class="team-content">
-                            <h3 class="team-name">Aileen</h3>
-                            <div class="team-role">Coach</div>
-                        </div>
-                    </div>
-
-                    <div class="team-card">
-                        <div class="team-image">
-                            <img src="images/coach-evan.webp" alt="Evan - Coach at Black Iron Athletics" loading="lazy">
-                        </div>
-                        <div class="team-content">
-                            <h3 class="team-name">Evan</h3>
-                            <div class="team-role">Coach</div>
-                        </div>
-                    </div>
-
-                    <div class="team-card">
-                        <div class="team-image">
-                            <img src="images/coach-amber.webp" alt="Amber - Coach at Black Iron Athletics" loading="lazy">
-                        </div>
-                        <div class="team-content">
-                            <h3 class="team-name">Amber</h3>
-                            <div class="team-role">Coach</div>
-                        </div>
-                    </div>
-
-                    <div class="team-card">
-                        <div class="team-image">
-                            <img src="images/coach-emily.webp" alt="Emily - Coach at Black Iron Athletics" loading="lazy">
-                        </div>
-                        <div class="team-content">
-                            <h3 class="team-name">Emily</h3>
-                            <div class="team-role">Coach</div>
-                        </div>
-                    </div>
+            <div class="numbers-grid">
+                <div class="number-card">
+                    <h4>Calories</h4>
+                    <p>Your TDEE &mdash; this is your maintenance number, the calories your body burns in a day.</p>
                 </div>
-                <button class="carousel-arrow carousel-next" aria-label="Next coach"><i class="fa-solid fa-chevron-right"></i></button>
+                <div class="number-card">
+                    <h4>Protein</h4>
+                    <p>Hit this number every single day. This is non-negotiable in every phase.</p>
+                </div>
+                <div class="number-card">
+                    <h4>Carbs & Fat</h4>
+                    <p>Follow the calculator's split. These can flex slightly day to day as long as total calories and protein stay on target.</p>
+                </div>
+            </div>
+
+            <div style="text-align: center; margin-top: 3rem;">
+                <a href="macro-calculator.html" target="_blank" class="btn-outline">Open the Macro Calculator <i class="fa-solid fa-arrow-up-right-from-square" style="margin-left: 0.5rem; font-size: 0.85rem;"></i></a>
             </div>
         </div>
     </section>
 
-    <!-- What We Offer Section -->
-    <section id="programs" class="section">
+    <!-- What to Expect -->
+    <section class="section">
         <div class="section-container">
             <div class="section-header">
-                <div class="section-subtitle">What We Offer</div>
-                <h2 class="section-title">Everything You Need to Succeed</h2>
+                <div class="section-subtitle">Week by Week</div>
+                <h2 class="section-title">What to Expect</h2>
+                <p class="section-description">Here's what the next 12 weeks look like as your body stabilizes and your habits lock in.</p>
             </div>
 
-            <div class="programs-grid">
-                <div class="program-card">
-                    <img src="https://images.leadconnectorhq.com/image/f_webp/q_80/r_1200/u_https://assets.cdn.filesafe.space/snIUpSaFzz5WsavMB3QA/media/6859d48d4fe1870c2e37d104.png" alt="Group Training" class="program-image" loading="lazy">
-                    <div class="program-content">
-                        <h3 class="program-title">Group Training</h3>
-                        <p class="program-description">High-energy, coach-led classes for all fitness levels.</p>
-                        <a href="programs.html#group-classes" class="program-link">Learn More &rarr;</a>
-                    </div>
+            <div class="timeline-grid">
+                <div class="timeline-card">
+                    <div class="timeline-label">Weeks 1&ndash;2</div>
+                    <h3>Water Weight Normalizing</h3>
+                    <p>If you're coming off holiday eating, your weight may drop initially as water retention normalizes. This is not fat loss &mdash; it's your body recalibrating. Don't chase it.</p>
                 </div>
 
-                <div class="program-card">
-                    <img src="images/barbell-overhead.webp" alt="Personal Training" class="program-image" loading="lazy">
-                    <div class="program-content">
-                        <h3 class="program-title">Personal Training</h3>
-                        <p class="program-description">1-on-1 coaching custom-built for your goals.</p>
-                        <a href="programs.html#personal-training" class="program-link">Learn More &rarr;</a>
-                    </div>
+                <div class="timeline-card">
+                    <div class="timeline-label">Weeks 3&ndash;8</div>
+                    <h3>Stabilization</h3>
+                    <p>Your weight should stabilize within a 2&ndash;3 lb range. If it's trending up or down consistently, your activity level input may need adjusting. Rerun the calculator.</p>
                 </div>
 
-                <div class="program-card">
-                    <img src="images/member-blessed.webp" alt="Nutrition Coaching" class="program-image" loading="lazy">
-                    <div class="program-content">
-                        <h3 class="program-title">Nutrition Coaching</h3>
-                        <p class="program-description">Personalized plans to fuel your results.</p>
-                        <a href="programs.html#nutrition-coaching" class="program-link">Learn More &rarr;</a>
-                    </div>
-                </div>
-
-                <div class="program-card">
-                    <img src="images/barbell-curl.webp" alt="Open Gym" class="program-image" loading="lazy">
-                    <div class="program-content">
-                        <h3 class="program-title">24/7 Open Gym</h3>
-                        <p class="program-description">24/7 access to train on your schedule.</p>
-                        <a href="programs.html#open-gym" class="program-link">Learn More &rarr;</a>
-                    </div>
+                <div class="timeline-card">
+                    <div class="timeline-label">Weeks 9&ndash;12</div>
+                    <h3>Ready for the Cut</h3>
+                    <p>By now, tracking should feel automatic. Your energy and performance in the gym should be consistent. You're ready for the cut.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- CTA Section -->
+    <!-- Phase Transition Checklist -->
+    <section class="section section-alt">
+        <div class="section-container">
+            <div class="section-header">
+                <div class="section-subtitle">Before April 1</div>
+                <h2 class="section-title">Phase Transition Checklist</h2>
+                <p class="section-description">Before moving to Phase 2 (Cut) on April 1, confirm that you've met each of these criteria.</p>
+            </div>
+
+            <div class="checklist-container">
+                <div class="checklist-item">
+                    <div class="checklist-box"></div>
+                    <p>Your <strong>weight has been stable</strong> (&plusmn;2&ndash;3 lbs) for at least 2&ndash;3 weeks</p>
+                </div>
+
+                <div class="checklist-item">
+                    <div class="checklist-box"></div>
+                    <p>You've been <strong>consistently tracking</strong> for at least 4 weeks</p>
+                </div>
+
+                <div class="checklist-item">
+                    <div class="checklist-box"></div>
+                    <p>You've <strong>recalculated your macros</strong> with your current weight, goal set to "Lose Fat"</p>
+                </div>
+
+                <div class="checklist-item">
+                    <div class="checklist-box"></div>
+                    <p>You're <strong>mentally ready</strong> for 12 weeks of intentional deficit</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Next Phase Navigation -->
+    <section class="section">
+        <div class="section-container">
+            <div class="bottom-nav">
+                <a href="blueprint-phase-2-cut.html" class="bottom-nav-link">
+                    <div class="bottom-nav-text">
+                        <div class="bottom-nav-label">Next Phase</div>
+                        <div class="bottom-nav-title" style="color: var(--phase-cut);">Cut</div>
+                        <div class="bottom-nav-dates">April &ndash; June</div>
+                    </div>
+                    <div class="bottom-nav-arrow"><i class="fa-solid fa-arrow-right"></i></div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Final CTA Section -->
     <section class="cta-section">
         <div style="max-width: 100%; margin: 0 auto; padding: 0 2rem;">
-            <h2 class="cta-title">Ready to Get Started?</h2>
-            <p class="cta-subtitle">Join the Black Iron family and become the athlete you're meant to be.</p>
-            <a href="#" onclick="openLeadModal(); return false;" class="btn-primary">Book Free Consultation</a>
+            <h2 class="cta-title">Phase 2: Cut Starts April 1</h2>
+            <p class="cta-subtitle">The cutting phase is the highest-motivation moment of the year. Don't start without a system.</p>
+            <a href="#" class="btn-primary" data-ms-modal="signup" onclick="return false;">Get the Blueprint &mdash; $99/year</a>
+            <p class="cta-note">Founding Member pricing. Limited spots.</p>
         </div>
     </section>
 
@@ -1241,37 +1289,23 @@
         </div>
     </footer>
 
-    <!-- Schema Markup for SEO -->
+    <!-- Schema Markup -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
-      "@type": "AboutPage",
-      "name": "About Black Iron Athletics",
-      "description": "Learn about Black Iron Athletics' mission to forge everyday people into everyday athletes. Veteran-owned gym in Frisco, TX since 2013.",
-      "url": "https://www.blackironathletics.com/about.html",
-      "mainEntity": {
-        "@type": "GymAndHealthClub",
+      "@type": "Article",
+      "headline": "Phase 1: Maintain — January through March",
+      "description": "The foundation-setting phase of the 4-Phase Nutrition Blueprint. Stabilize your weight, build tracking habits, and prepare for the cut ahead.",
+      "author": { "@type": "Organization", "name": "Black Iron Athletics" },
+      "publisher": {
+        "@type": "Organization",
         "name": "Black Iron Athletics",
-        "foundingDate": "2013",
-        "description": "Veteran-owned gym in Frisco, TX helping everyday people become everyday athletes since 2013.",
-        "telephone": "(972) 785-7036",
-        "address": {
-          "@type": "PostalAddress",
-          "streetAddress": "279 Main St #122",
-          "addressLocality": "Frisco",
-          "addressRegion": "TX",
-          "postalCode": "75036",
-          "addressCountry": "US"
-        },
-        "url": "https://www.blackironathletics.com",
-        "sameAs": [
-          "https://www.instagram.com/blackiron_athletics/",
-          "https://www.youtube.com/channel/UCF1XjUXEs81OWY70chem6vA",
-          "https://www.facebook.com/BlackIronAthletics/"
-        ]
-      }
+        "url": "https://www.blackironathletics.com"
+      },
+      "mainEntityOfPage": "https://www.blackironathletics.com/blueprint-phase-1-maintain.html"
     }
     </script>
+
 <!-- Lead Capture Popup Modal -->
 <style>
     .modal-overlay {
@@ -1329,6 +1363,7 @@
         .modal-overlay { padding: 1rem; }
     }
 </style>
+
 <div class="modal-overlay" id="leadModal">
     <div class="modal-container">
         <button class="modal-close" onclick="closeLeadModal()">&times;</button>
@@ -1374,6 +1409,7 @@
         ></iframe>
     </div>
 </div>
+
 <div class="modal-overlay" id="subscribeModal">
     <div class="modal-container">
         <button class="modal-close" onclick="closeSubscribeModal()">&times;</button>
@@ -1398,6 +1434,7 @@
 </div>
 
 <script>
+    // ===== MODALS =====
     function openLeadModal() {
         var modal = document.getElementById('leadModal');
         var iframe = modal.querySelector('iframe');
@@ -1430,6 +1467,8 @@
     document.getElementById('cancelModal').addEventListener('click', function(e) {
         if (e.target === this) { closeCancelModal(); }
     });
+
+    // ===== SUBSCRIBE MODAL =====
     function openSubscribeModal() {
         var modal = document.getElementById('subscribeModal');
         var iframe = modal.querySelector('iframe');
@@ -1445,93 +1484,7 @@
         if (e.target === this) { closeSubscribeModal(); }
     });
 
-    // Infinite Coach Carousel
-    (function() {
-        var carousel = document.getElementById('teamCarousel');
-        if (!carousel) return;
-        var originalCards = Array.from(carousel.querySelectorAll('.team-card'));
-        var cardCount = originalCards.length;
-
-        // Clone all cards and append + prepend for infinite illusion
-        originalCards.forEach(function(card) {
-            carousel.appendChild(card.cloneNode(true));
-        });
-        for (var i = cardCount - 1; i >= 0; i--) {
-            carousel.insertBefore(originalCards[i].cloneNode(true), carousel.firstChild);
-        }
-
-        var currentIndex = cardCount; // start at first original card
-
-        function getStep() {
-            var card = carousel.querySelector('.team-card');
-            var gap = parseFloat(getComputedStyle(carousel).gap) || 32;
-            return card.offsetWidth + gap;
-        }
-
-        function setPosition(animate) {
-            if (animate) {
-                carousel.style.transition = 'transform 0.5s ease';
-            } else {
-                carousel.style.transition = 'none';
-            }
-            carousel.style.transform = 'translateX(-' + (currentIndex * getStep()) + 'px)';
-        }
-
-        // Set initial position without animation
-        setPosition(false);
-
-        function next() {
-            currentIndex++;
-            setPosition(true);
-            setTimeout(function() {
-                if (currentIndex >= cardCount * 2) {
-                    currentIndex -= cardCount;
-                    setPosition(false);
-                }
-            }, 520);
-        }
-
-        function prev() {
-            currentIndex--;
-            setPosition(true);
-            setTimeout(function() {
-                if (currentIndex < cardCount) {
-                    currentIndex += cardCount;
-                    setPosition(false);
-                }
-            }, 520);
-        }
-
-        document.querySelector('.carousel-prev').addEventListener('click', prev);
-        document.querySelector('.carousel-next').addEventListener('click', next);
-
-        // Auto-scroll every 4 seconds
-        var autoPlay = setInterval(next, 4000);
-        var wrapper = carousel.parentElement;
-        wrapper.addEventListener('mouseenter', function() { clearInterval(autoPlay); });
-        wrapper.addEventListener('mouseleave', function() { autoPlay = setInterval(next, 4000); });
-
-        // Touch swipe support for mobile
-        var touchStartX = 0;
-        var touchEndX = 0;
-        wrapper.addEventListener('touchstart', function(e) {
-            touchStartX = e.changedTouches[0].screenX;
-            clearInterval(autoPlay);
-        }, { passive: true });
-        wrapper.addEventListener('touchend', function(e) {
-            touchEndX = e.changedTouches[0].screenX;
-            var diff = touchStartX - touchEndX;
-            if (Math.abs(diff) > 50) {
-                if (diff > 0) { next(); } else { prev(); }
-            }
-            autoPlay = setInterval(next, 4000);
-        }, { passive: true });
-
-        // Recalculate on resize
-        window.addEventListener('resize', function() { setPosition(false); });
-    })();
-
-    // Hamburger Menu
+    // ===== MOBILE NAV =====
     function toggleMobileNav() {
         document.getElementById('mobileNav').classList.toggle('active');
         document.querySelector('.hamburger').classList.toggle('active');
@@ -1542,6 +1495,7 @@
         document.querySelector('.hamburger').classList.remove('active');
         document.body.style.overflow = '';
     }
+
 </script>
 
 <script src="https://link.msgsndr.com/js/form_embed.js" type="text/javascript" defer></script>

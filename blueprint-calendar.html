@@ -3,25 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About Us | Black Iron Athletics | Veteran-Owned Gym in Frisco, TX Since 2013</title>
-    <meta name="description" content="Black Iron Athletics is a veteran-owned strength & conditioning gym in Frisco, TX. Since 2013, we've helped 3000+ members through expert coaching, HYROX training, Olympic weightlifting & personal training. Serving Frisco, Prosper, McKinney & Plano.">
+    <title>The 4-Phase Calendar | Your Year, Mapped Out | Black Iron Athletics</title>
+    <meta name="description" content="See the full 4-Phase Nutrition Calendar — Maintain, Cut, Maintain, Build. Know exactly what to eat and when, all year long. Powered by the Black Iron Macro Calculator.">
     <meta name="geo.region" content="US-TX">
     <meta name="geo.placename" content="Frisco">
-    <link rel="canonical" href="https://www.blackironathletics.com/about.html">
+    <link rel="canonical" href="https://www.blackironathletics.com/blueprint-calendar.html">
     <!-- Open Graph -->
-    <meta property="og:title" content="About Us | Black Iron Athletics | Veteran-Owned Gym in Frisco, TX">
-    <meta property="og:description" content="Veteran-owned strength & conditioning gym in Frisco, TX since 2013. 3000+ members transformed through expert coaching, HYROX, weightlifting & personal training.">
-    <meta property="og:url" content="https://www.blackironathletics.com/about.html">
+    <meta property="og:title" content="The 4-Phase Calendar | Your Year, Mapped Out | Black Iron Athletics">
+    <meta property="og:description" content="See the full 4-Phase Nutrition Calendar — Maintain, Cut, Maintain, Build. Know exactly what to eat and when, all year long. Powered by the Black Iron Macro Calculator.">
+    <meta property="og:url" content="https://www.blackironathletics.com/blueprint-calendar.html">
     <meta property="og:image" content="https://www.blackironathletics.com/images/social-share.png">
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="Black Iron Athletics">
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="About Us | Black Iron Athletics | Veteran-Owned Gym in Frisco, TX">
-    <meta name="twitter:description" content="Veteran-owned strength & conditioning gym in Frisco, TX since 2013. 3000+ members transformed through expert coaching, HYROX, weightlifting & personal training.">
+    <meta name="twitter:title" content="The 4-Phase Calendar | Your Year, Mapped Out | Black Iron Athletics">
+    <meta name="twitter:description" content="See the full 4-Phase Nutrition Calendar — Maintain, Cut, Maintain, Build. Know exactly what to eat and when, all year long. Powered by the Black Iron Macro Calculator.">
     <meta name="twitter:image" content="https://www.blackironathletics.com/images/social-share.png">
     <link rel="icon" type="image/png" href="images/anvil-favicon.png">
-    <link rel="preload" as="image" href="images/hero-about.webp">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;900&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
@@ -29,6 +28,16 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" media="print" onload="this.media='all'">
     <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"></noscript>
     <style>@font-face{font-family:"Font Awesome 6 Brands";font-display:swap}@font-face{font-family:"Font Awesome 6 Free";font-display:swap}</style>
+    <!-- MemberSpace -->
+    <script>
+        var MemberSpace = window.MemberSpace || {"subdomain":"blackironathletics"};
+        (function(d){
+            var s = d.createElement("script");
+            s.src = "https://cdn.memberspace.com/scripts/widgets.js";
+            var e = d.getElementsByTagName("script")[0];
+            e.parentNode.insertBefore(s,e);
+        }(document));
+    </script>
     <style>
         /* Force full width - override GHL container */
         body, html {
@@ -38,7 +47,6 @@
             padding: 0 !important;
         }
 
-        /* Remove GHL's default container padding */
         .container, .hl_page-preview--content {
             padding: 0 !important;
             margin: 0 !important;
@@ -59,6 +67,9 @@
             --light-gray: #cccccc;
             --white: #ffffff;
             --yellow: #FFD202;
+            --phase-maintain: #2E86C1;
+            --phase-cut: #ff0003;
+            --phase-build: #27AE60;
         }
 
         body {
@@ -78,20 +89,13 @@
             scroll-behavior: smooth;
         }
 
-        /* Anchor offset for fixed nav */
-        #mission,
-        #team,
-        #programs {
-            scroll-margin-top: 100px;
-        }
-
-        /* All headings use Montserrat Black */
         h1, h2, h3, h4, h5, h6 {
             font-family: 'Montserrat', sans-serif;
             font-weight: 900;
             line-height: 1.2;
         }
 
+        /* ===== NAV ===== */
         nav {
             position: fixed;
             top: 0;
@@ -111,19 +115,9 @@
             align-items: center;
         }
 
-        .logo {
-            height: 50px;
-        }
-
-        .logo a {
-            display: block;
-            height: 100%;
-        }
-
-        .logo img {
-            height: 100%;
-            width: auto;
-        }
+        .logo { height: 50px; }
+        .logo a { display: block; height: 100%; }
+        .logo img { height: 100%; width: auto; }
 
         .nav-links {
             display: flex;
@@ -132,9 +126,7 @@
             align-items: center;
         }
 
-        .nav-links > li {
-            position: relative;
-        }
+        .nav-links > li { position: relative; }
 
         .nav-links a {
             color: var(--white);
@@ -146,11 +138,8 @@
             letter-spacing: 0.5px;
         }
 
-        .nav-links > li > a:hover {
-            color: var(--yellow);
-        }
+        .nav-links > li > a:hover { color: var(--yellow); }
 
-        /* Dropdown Submenu */
         .submenu {
             display: none;
             position: absolute;
@@ -164,9 +153,7 @@
             list-style: none;
         }
 
-        .submenu li {
-            padding: 0;
-        }
+        .submenu li { padding: 0; }
 
         .submenu a {
             display: block;
@@ -184,9 +171,7 @@
             padding-left: 2rem;
         }
 
-        .nav-links > li:hover .submenu {
-            display: block;
-        }
+        .nav-links > li:hover .submenu { display: block; }
 
         .has-submenu > a::after {
             content: '';
@@ -203,6 +188,12 @@
         .has-submenu:hover > a::after {
             border-top-color: var(--yellow);
             transform: translateY(2px);
+        }
+
+        .nav-cta-group {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
         }
 
         .cta-btn {
@@ -225,7 +216,27 @@
             color: var(--yellow);
         }
 
-        /* Hero Section */
+        .login-btn {
+            color: var(--yellow);
+            padding: 0.9rem 1.5rem;
+            border-radius: 0;
+            text-decoration: none;
+            font-weight: 900;
+            font-size: 0.85rem;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            border: 2px solid var(--yellow);
+            white-space: nowrap;
+            background: transparent;
+        }
+
+        .login-btn:hover {
+            background: var(--yellow);
+            color: var(--black);
+        }
+
+        /* ===== HERO ===== */
         .hero {
             margin-top: 0;
             padding-top: 80px;
@@ -243,7 +254,6 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
-            object-position: center 60%;
             opacity: 0.3;
             z-index: 0;
         }
@@ -257,9 +267,7 @@
             z-index: 1;
         }
 
-        .hero-content {
-            max-width: 900px;
-        }
+        .hero-content { max-width: 800px; }
 
         .hero-subtitle {
             font-size: 0.9rem;
@@ -287,16 +295,14 @@
             max-width: 600px;
         }
 
-        /* Section Styles */
+        /* ===== SECTIONS ===== */
         .section {
             padding: 6rem 0;
             background: var(--black);
             width: 100%;
         }
 
-        .section-alt {
-            background: var(--dark-gray);
-        }
+        .section-alt { background: var(--dark-gray); }
 
         .section-container {
             max-width: 100%;
@@ -325,245 +331,11 @@
             text-transform: uppercase;
         }
 
-        /* Mission Section */
-        .mission-statement {
-            font-size: 1.8rem;
-            line-height: 1.6;
-            color: var(--yellow);
-            text-align: center;
-            margin-bottom: 4rem;
-            font-weight: 600;
-            font-style: italic;
-        }
-
-        .content-block {
-            max-width: 900px;
-            margin: 0 auto 4rem;
-        }
-
-        .content-block h3 {
-            font-weight: 900;
-            font-size: 1.8rem;
-            margin-bottom: 1.5rem;
-            text-transform: uppercase;
-        }
-
-        .content-block p {
-            font-size: 1.1rem;
-            line-height: 1.8;
-            color: var(--light-gray);
-            margin-bottom: 1.5rem;
-        }
-
-        /* Beliefs Grid */
-        .beliefs-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 2.5rem;
-            margin-top: 4rem;
-        }
-
-        .belief-card {
-            background: var(--dark-gray);
-            padding: 3rem;
-            border: 2px solid var(--medium-gray);
-            transition: all 0.4s ease;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .belief-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 4px;
-            background: var(--yellow);
-            transform: scaleX(0);
-            transition: transform 0.4s ease;
-        }
-
-        .belief-card:hover {
-            border-color: var(--yellow);
-            transform: translateY(-8px);
-            box-shadow: 0 15px 40px rgba(255, 210, 2, 0.15);
-        }
-
-        .belief-card:hover::before {
-            transform: scaleX(1);
-        }
-
-        .belief-icon {
-            font-size: 3rem;
-            color: var(--yellow);
-            margin-bottom: 1.5rem;
-            display: inline-block;
-        }
-
-        .belief-card h4 {
-            font-weight: 900;
-            font-size: 1.5rem;
-            margin-bottom: 1.2rem;
-            color: var(--white);
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-
-        .belief-card p {
-            color: var(--light-gray);
-            line-height: 1.8;
-            font-size: 1.05rem;
-        }
-
-        /* Team Carousel */
-        .carousel-wrapper {
-            position: relative;
-            overflow: hidden;
-            margin-top: 4rem;
-        }
-
-        .team-carousel {
-            display: flex;
-            gap: 2rem;
-            transition: transform 0.5s ease;
-        }
-
-        .carousel-arrow {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            background: rgba(0, 0, 0, 0.7);
-            border: 2px solid var(--yellow);
-            color: var(--yellow);
-            width: 48px;
-            height: 48px;
+        .section-description {
             font-size: 1.2rem;
-            cursor: pointer;
-            z-index: 10;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.3s ease;
-        }
-
-        .carousel-arrow:hover {
-            background: var(--yellow);
-            color: var(--black);
-        }
-
-        .carousel-prev { left: 0.5rem; }
-        .carousel-next { right: 0.5rem; }
-
-        .team-card {
-            background: var(--black);
-            overflow: hidden;
-            border: 2px solid var(--medium-gray);
-            transition: border-color 0.3s ease;
-            flex: 0 0 300px;
-        }
-
-        .team-card:hover {
-            border-color: var(--yellow);
-        }
-
-        .team-image {
-            width: 100%;
-            height: 350px;
-            background: var(--medium-gray);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 4rem;
-            color: var(--yellow);
-        }
-
-        .team-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .team-content {
-            padding: 2rem;
-        }
-
-        .team-name {
-            font-weight: 900;
-            font-size: 1.8rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .team-role {
-            color: var(--yellow);
-            font-weight: 700;
-            font-size: 0.9rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-bottom: 1rem;
-        }
-
-        .team-bio {
             color: var(--light-gray);
-            line-height: 1.8;
-        }
-
-        /* Programs Section */
-        .programs-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 2rem;
-            margin-top: 4rem;
-        }
-
-        .program-card {
-            background: var(--dark-gray);
-            overflow: hidden;
-            transition: all 0.3s ease;
-            border: 2px solid var(--medium-gray);
-        }
-
-        .program-card:hover {
-            border-color: var(--yellow);
-            transform: translateY(-5px);
-        }
-
-        .program-image {
-            width: 100%;
-            height: 300px;
-            object-fit: cover;
-        }
-
-        .program-content {
-            padding: 2.5rem;
-        }
-
-        .program-title {
-            font-weight: 900;
-            font-size: 1.8rem;
-            margin-bottom: 1rem;
-            text-transform: uppercase;
-        }
-
-        .program-description {
-            color: var(--light-gray);
-            margin-bottom: 2rem;
-            line-height: 1.8;
-        }
-
-        .program-link {
-            color: var(--yellow);
-            text-decoration: none;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            font-size: 0.9rem;
-            transition: color 0.3s ease;
-        }
-
-        .program-link:hover {
-            color: var(--white);
+            max-width: 800px;
+            margin: 0 auto;
         }
 
         .btn-primary {
@@ -579,6 +351,7 @@
             border: 2px solid var(--yellow);
             border-radius: 0;
             display: inline-block;
+            cursor: pointer;
         }
 
         .btn-primary:hover {
@@ -586,7 +359,284 @@
             color: var(--yellow);
         }
 
-        /* CTA Section */
+        .btn-outline {
+            background: transparent;
+            color: var(--yellow);
+            padding: 1.2rem 3rem;
+            text-decoration: none;
+            font-weight: 900;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border: 2px solid var(--yellow);
+            border-radius: 0;
+            display: inline-block;
+            cursor: pointer;
+        }
+
+        .btn-outline:hover {
+            background: var(--yellow);
+            color: var(--black);
+        }
+
+        /* ===== FEATURE CARDS ===== */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 4rem;
+        }
+
+        .feature-card {
+            background: var(--dark-gray);
+            padding: 3rem 2rem;
+            border: 2px solid var(--medium-gray);
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .section-alt .feature-card {
+            background: var(--black);
+        }
+
+        .feature-card:hover {
+            border-color: var(--yellow);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(255, 210, 2, 0.2);
+        }
+
+        .feature-icon {
+            font-size: 2.5rem;
+            color: var(--yellow);
+            margin-bottom: 1.5rem;
+        }
+
+        .feature-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+        }
+
+        .feature-card p {
+            color: var(--light-gray);
+            line-height: 1.8;
+        }
+
+        /* ===== PHASE CARDS ===== */
+        .phase-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+            margin-top: 4rem;
+        }
+
+        .phase-card {
+            background: var(--dark-gray);
+            border: 2px solid var(--medium-gray);
+            padding: 2.5rem 2rem;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .phase-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(255, 210, 2, 0.1);
+        }
+
+        .phase-label {
+            font-size: 0.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-bottom: 0.75rem;
+        }
+
+        .phase-name {
+            font-size: 1.5rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            margin-bottom: 0.5rem;
+        }
+
+        .phase-dates {
+            font-size: 0.9rem;
+            color: var(--light-gray);
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+        }
+
+        .phase-description {
+            color: var(--light-gray);
+            line-height: 1.8;
+            font-size: 0.95rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .phase-setting {
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: var(--yellow);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        /* ===== WHY THIS TIMING GRID ===== */
+        .timing-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            margin-top: 4rem;
+        }
+
+        .timing-card {
+            background: var(--black);
+            padding: 2.5rem 2rem;
+            border: 2px solid var(--medium-gray);
+            transition: all 0.3s ease;
+        }
+
+        .timing-card:hover {
+            border-color: var(--yellow);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(255, 210, 2, 0.2);
+        }
+
+        .timing-card-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.25rem;
+        }
+
+        .timing-quarter {
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            padding: 0.3rem 0.75rem;
+            border: 2px solid;
+            display: inline-block;
+        }
+
+        .timing-card h3 {
+            font-size: 1.3rem;
+            text-transform: uppercase;
+        }
+
+        .timing-card p {
+            color: var(--light-gray);
+            line-height: 1.8;
+            font-size: 0.95rem;
+        }
+
+        /* ===== CALCULATOR SETTINGS ===== */
+        .settings-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+            margin-top: 4rem;
+        }
+
+        .setting-card {
+            background: var(--dark-gray);
+            padding: 2rem 1.5rem;
+            border: 2px solid var(--medium-gray);
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .setting-card:hover {
+            border-color: var(--yellow);
+            transform: translateY(-3px);
+        }
+
+        .setting-phase {
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-bottom: 0.5rem;
+        }
+
+        .setting-name {
+            font-size: 1.2rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            margin-bottom: 0.5rem;
+        }
+
+        .setting-dates {
+            font-size: 0.85rem;
+            color: var(--light-gray);
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .setting-value {
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: var(--yellow);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            padding: 0.5rem 1rem;
+            border: 2px solid var(--yellow);
+            display: inline-block;
+        }
+
+        /* ===== TEASER CARDS ===== */
+        .teaser-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            margin-top: 4rem;
+        }
+
+        .teaser-card {
+            background: var(--dark-gray);
+            padding: 2.5rem 2rem;
+            border: 2px solid var(--medium-gray);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .teaser-card:hover {
+            border-color: var(--yellow);
+        }
+
+        .teaser-card-phase {
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-bottom: 0.75rem;
+        }
+
+        .teaser-card h3 {
+            font-size: 1.2rem;
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+        }
+
+        .teaser-card p {
+            color: var(--light-gray);
+            line-height: 1.8;
+            font-size: 0.95rem;
+            margin-bottom: 1rem;
+        }
+
+        .teaser-lock {
+            font-size: 0.8rem;
+            font-weight: 700;
+            color: var(--yellow);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        /* ===== CTA SECTION ===== */
         .cta-section {
             background: var(--dark-gray);
             padding: 8rem 4rem;
@@ -607,10 +657,15 @@
             margin-bottom: 3rem;
         }
 
-        /* Map Section */
-        .map-section {
-            width: 100%;
+        .cta-note {
+            font-size: 0.95rem;
+            color: var(--yellow);
+            font-weight: 600;
+            margin-top: 1.5rem;
         }
+
+        /* ===== MAP ===== */
+        .map-section { width: 100%; }
 
         .map-section iframe {
             width: 100%;
@@ -619,7 +674,7 @@
             display: block;
         }
 
-        /* Footer */
+        /* ===== FOOTER ===== */
         footer {
             padding: 4rem 0 2rem;
             background: var(--black);
@@ -645,13 +700,8 @@
             letter-spacing: 1px;
         }
 
-        .footer-section ul {
-            list-style: none;
-        }
-
-        .footer-section ul li {
-            margin-bottom: 0.75rem;
-        }
+        .footer-section ul { list-style: none; }
+        .footer-section ul li { margin-bottom: 0.75rem; }
 
         .footer-section a {
             color: var(--light-gray);
@@ -660,9 +710,7 @@
             font-weight: 500;
         }
 
-        .footer-section a:hover {
-            color: var(--yellow);
-        }
+        .footer-section a:hover { color: var(--yellow); }
 
         .footer-logo {
             height: 60px;
@@ -677,17 +725,7 @@
             font-size: 0.9rem;
         }
 
-        @media (max-width: 1024px) {
-            .nav-container,
-            .hero-container,
-            .section-container,
-            .footer-container {
-                padding-left: 2rem;
-                padding-right: 2rem;
-            }
-        }
-
-        /* Hamburger Menu */
+        /* ===== HAMBURGER / MOBILE NAV ===== */
         .hamburger {
             display: none;
             flex-direction: column;
@@ -710,17 +748,9 @@
             transition: all 0.3s ease;
         }
 
-        .hamburger.active span:nth-child(1) {
-            transform: rotate(45deg) translate(6px, 6px);
-        }
-
-        .hamburger.active span:nth-child(2) {
-            opacity: 0;
-        }
-
-        .hamburger.active span:nth-child(3) {
-            transform: rotate(-45deg) translate(6px, -6px);
-        }
+        .hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(6px, 6px); }
+        .hamburger.active span:nth-child(2) { opacity: 0; }
+        .hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(6px, -6px); }
 
         .mobile-nav-overlay {
             display: none;
@@ -737,9 +767,7 @@
             gap: 0;
         }
 
-        .mobile-nav-overlay.active {
-            display: flex;
-        }
+        .mobile-nav-overlay.active { display: flex; }
 
         .mobile-nav-overlay a {
             color: var(--white);
@@ -755,9 +783,7 @@
 
         .mobile-nav-overlay .mobile-sub-link { font-size: 0.9rem; color: var(--light-gray); padding: 0.5rem 2rem; font-weight: 700; letter-spacing: 0.5px; }
         .mobile-nav-overlay .mobile-sub-link:hover { color: var(--yellow); }
-        .mobile-nav-overlay a:hover {
-            color: var(--yellow);
-        }
+        .mobile-nav-overlay a:hover { color: var(--yellow); }
 
         .mobile-nav-overlay .mobile-cta {
             margin-top: 1.5rem;
@@ -777,14 +803,44 @@
             color: var(--yellow);
         }
 
-        @media (max-width: 768px) {
-            .hamburger {
-                display: flex !important;
+        .mobile-nav-overlay .mobile-login {
+            margin-top: 0.75rem;
+            color: var(--yellow);
+            border: 2px solid var(--yellow);
+            padding: 1rem 2.5rem;
+            font-size: 1rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            background: transparent;
+        }
+
+        .mobile-nav-overlay .mobile-login:hover {
+            background: var(--yellow);
+            color: var(--black);
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 1024px) {
+            .nav-container,
+            .hero-container,
+            .section-container,
+            .footer-container {
+                padding-left: 2rem;
+                padding-right: 2rem;
             }
 
-            .nav-links {
-                display: none !important;
+            .cta-section {
+                padding-left: 2rem;
+                padding-right: 2rem;
             }
+        }
+
+        @media (max-width: 768px) {
+            .hamburger { display: flex !important; }
+            .nav-links { display: none !important; }
+            .nav-cta-group .login-btn { display: none; }
 
             .nav-container {
                 padding: 0 1.5rem;
@@ -800,107 +856,43 @@
                 font-size: 0.8rem;
             }
 
-            .hero {
-                padding-top: 130px;
-            }
-
-            .hero-container {
-                padding: 2rem 1.5rem;
-            }
-
-            .hero-content h1 {
-                font-size: clamp(2rem, 6vw, 3rem);
-            }
-
-            .hero-content p {
-                font-size: 1.1rem;
-                margin-bottom: 2rem;
-            }
+            .hero { padding-top: 130px; }
+            .hero-container { padding: 2rem 1.5rem; }
+            .hero-content h1 { font-size: clamp(2rem, 6vw, 3rem); }
+            .hero-content p { font-size: 1.1rem; margin-bottom: 2rem; }
 
             .section-container {
                 padding: 0 1.5rem;
             }
 
-            .section-title {
-                font-size: clamp(1.8rem, 5vw, 2.5rem);
-            }
+            .section-title { font-size: clamp(1.8rem, 5vw, 2.5rem); }
+            .section-header { margin-bottom: 2rem; }
+            .section { padding: 4rem 0; }
 
-            .section-header {
-                margin-bottom: 2rem;
-            }
-
-            .section {
-                padding: 4rem 0;
-            }
-
-            .mission-statement {
-                font-size: 1.3rem;
-            }
-
-            .beliefs-grid {
+            .features-grid {
                 grid-template-columns: 1fr;
             }
 
-            .belief-card {
-                padding: 2rem;
+            .phase-grid {
+                grid-template-columns: 1fr 1fr;
             }
 
-            .team-carousel {
-                gap: 1rem;
-            }
-
-            .team-card {
-                flex: 0 0 260px;
-            }
-
-            .team-image {
-                height: 280px;
-            }
-
-            .team-content {
-                padding: 1.5rem;
-            }
-
-            .team-name {
-                font-size: 1.4rem;
-            }
-
-            .carousel-arrow {
-                width: 36px;
-                height: 36px;
-                font-size: 0.9rem;
-            }
-
-            .carousel-prev { left: 0.25rem; }
-            .carousel-next { right: 0.25rem; }
-
-            .program-image {
-                height: 220px;
-            }
-
-            .program-content {
-                padding: 1.5rem;
-            }
-
-            .program-title {
-                font-size: 1.4rem;
-            }
-
-            .programs-grid {
+            .timing-grid {
                 grid-template-columns: 1fr;
             }
 
-            .cta-section {
-                padding: 4rem 1.5rem;
+            .settings-grid {
+                grid-template-columns: 1fr 1fr;
             }
 
-            .cta-title {
-                font-size: clamp(1.8rem, 5vw, 2.5rem);
+            .teaser-grid {
+                grid-template-columns: 1fr;
             }
 
-            .map-section iframe {
-                height: 250px;
-            }
+            .cta-section { padding: 4rem 1.5rem; }
+            .cta-title { font-size: clamp(1.8rem, 5vw, 2.5rem); }
+
+            .map-section iframe { height: 250px; }
 
             .footer-container {
                 padding: 0 1.5rem;
@@ -913,8 +905,22 @@
                 white-space: normal;
             }
 
-            .modal-container {
-                max-width: calc(100% - 2rem);
+            .btn-outline {
+                padding: 0.8rem 1.5rem;
+                font-size: 0.8rem;
+                white-space: normal;
+            }
+
+            .modal-container { max-width: calc(100% - 2rem); }
+        }
+
+        @media (max-width: 480px) {
+            .phase-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .settings-grid {
+                grid-template-columns: 1fr;
             }
         }
     </style>
@@ -955,7 +961,10 @@
                 </li>
                 <li><a href="contact.html">Contact</a></li>
             </ul>
-            <a href="#" onclick="openLeadModal(); return false;" class="cta-btn">Book Free Consultation</a>
+            <div class="nav-cta-group">
+                <a href="#" class="login-btn" data-ms-modal="login" onclick="return false;">Member Login</a>
+                <a href="#" onclick="openLeadModal(); return false;" class="cta-btn">Book Free Consultation</a>
+            </div>
             <button class="hamburger" onclick="toggleMobileNav()" aria-label="Menu">
                 <span></span>
                 <span></span>
@@ -981,196 +990,205 @@
         <a href="blueprint.html" class="mobile-sub-link" onclick="closeMobileNav()">4-Phase Blueprint</a>
         <a href="contact.html" onclick="closeMobileNav()">Contact</a>
         <a href="#" class="mobile-cta" onclick="closeMobileNav(); openLeadModal(); return false;">Book Free Consultation</a>
+        <a href="#" class="mobile-login" data-ms-modal="login" onclick="closeMobileNav(); return false;">Member Login</a>
     </div>
 
     <!-- Hero Section -->
     <section class="hero">
-        <img src="images/hero-about.webp" alt="About Black Iron Athletics" class="hero-bg" fetchpriority="high">
+        <img src="images/hero-macro-calculator.webp" alt="4-Phase nutrition calendar" class="hero-bg" fetchpriority="high">
         <div class="hero-container">
             <div class="hero-content">
-                <div class="hero-subtitle">Our Story</div>
-                <h1>About Us</h1>
-                <p>Forging everyday people into everyday athletes through strength, community, and purpose.</p>
+                <div class="hero-subtitle">The Calendar</div>
+                <h1>Your Year, Mapped Out</h1>
+                <p>Four intentional phases. Twelve months of purpose. Every phase sets up the next. Here's exactly when each phase happens and why the timing matters.</p>
+                <a href="blueprint.html#pricing" class="btn-primary" data-ms-modal="signup">Get the Blueprint &mdash; $99/year</a>
             </div>
         </div>
     </section>
 
-    <!-- Mission Section -->
-    <section id="mission" class="section">
+    <!-- Phase Calendar Visual -->
+    <section class="section">
         <div class="section-container">
             <div class="section-header">
-                <div class="section-subtitle">Our Mission</div>
-                <h2 class="section-title">Why We Exist</h2>
+                <div class="section-subtitle">The System</div>
+                <h2 class="section-title">The 4-Phase Calendar</h2>
+                <p class="section-description">Four intentional phases. Twelve months of purpose. Every phase sets up the next.</p>
             </div>
 
-            <div class="content-block">
-                <p>Black Iron Athletics was founded in 2013 with a simple belief: movement is medicine. As a veteran-owned business, we built this gym on the principles of discipline, integrity, and service. We believe in hard work, accountability, and showing up for each other every single day.</p>
-                <p>Over 12+ years, we've helped over 3,000 people transform their lives -- from complete beginners to experienced athletes chasing new PRs. We meet people where they are and help them become who they're meant to be. Getting fit isn't about quick fixes. It's about building a body that serves you for life.</p>
-            </div>
-
-            <div class="section-header" style="margin-top: 5rem;">
-                <h2 class="section-title">What We Believe</h2>
-            </div>
-
-            <div class="beliefs-grid">
-                <div class="belief-card">
-                    <div class="belief-icon"><i class="fa-solid fa-shield-halved"></i></div>
-                    <h4>Quality of Life Over Ego</h4>
-                    <p>It's about building real strength and creating a body that serves you well for decades. When you feel strong and capable, confidence follows naturally.</p>
+            <div class="phase-grid">
+                <div class="phase-card" style="border-top: 4px solid var(--phase-maintain);">
+                    <div class="phase-label" style="color: var(--phase-maintain);">Phase 1</div>
+                    <h3 class="phase-name">Maintain</h3>
+                    <div class="phase-dates">Jan 1 &ndash; Mar 31</div>
+                    <p class="phase-description">Reset and stabilize after the holidays. Rebuild consistency, lock in tracking habits, and prepare your body for the work ahead.</p>
+                    <div class="phase-setting">Calculator: "Maintain"</div>
                 </div>
 
-                <div class="belief-card">
-                    <div class="belief-icon"><i class="fa-solid fa-people-group"></i></div>
-                    <h4>Community & Accountability</h4>
-                    <p>You don't have to figure this out on your own. Our coaches and your fellow athletes are here to support you, push you, and celebrate every win along the way.</p>
+                <div class="phase-card" style="border-top: 4px solid var(--phase-cut);">
+                    <div class="phase-label" style="color: var(--phase-cut);">Phase 2</div>
+                    <h3 class="phase-name">Cut</h3>
+                    <div class="phase-dates">Apr 1 &ndash; Jun 30</div>
+                    <p class="phase-description">Reduce body fat while preserving muscle. Enter summer looking and feeling your best with a strategic, time-bound deficit.</p>
+                    <div class="phase-setting">Calculator: "Lose Fat"</div>
                 </div>
 
-                <div class="belief-card">
-                    <div class="belief-icon"><i class="fa-solid fa-brain"></i></div>
-                    <h4>Mental Health Matters</h4>
-                    <p>We know the mental battle can be harder than the physical one. That's why we've built a community that supports the whole person, not just the workout.</p>
+                <div class="phase-card" style="border-top: 4px solid var(--phase-maintain);">
+                    <div class="phase-label" style="color: var(--phase-maintain);">Phase 3</div>
+                    <h3 class="phase-name">Maintain</h3>
+                    <div class="phase-dates">Jul 1 &ndash; Sep 30</div>
+                    <p class="phase-description">Lock in your new body composition. Reverse diet back to maintenance, recover your metabolism, and enjoy summer at your leanest.</p>
+                    <div class="phase-setting">Calculator: "Maintain"</div>
                 </div>
 
-                <div class="belief-card">
-                    <div class="belief-icon"><i class="fa-solid fa-apple-whole"></i></div>
-                    <h4>Nutrition Is the Foundation</h4>
-                    <p>You can't out-train a bad diet. Nutrition is the most important piece of the puzzle — it fuels your performance, your recovery, and your results. We help you build habits that last.</p>
+                <div class="phase-card" style="border-top: 4px solid var(--phase-build);">
+                    <div class="phase-label" style="color: var(--phase-build);">Phase 4</div>
+                    <h3 class="phase-name">Build</h3>
+                    <div class="phase-dates">Oct 1 &ndash; Dec 31</div>
+                    <p class="phase-description">Invest in next year's results. Fuel muscle growth in a controlled surplus. Holiday meals work for you, not against you.</p>
+                    <div class="phase-setting">Calculator: "Build Muscle"</div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Team Section -->
-    <section id="team" class="section section-alt">
+    <!-- Why This Timing? -->
+    <section class="section section-alt">
         <div class="section-container">
             <div class="section-header">
-                <div class="section-subtitle">Our Team</div>
-                <h2 class="section-title">Meet the Coaches</h2>
-                <p style="font-size: 1.2rem; color: var(--light-gray); max-width: 800px; margin: 1rem auto 0;">Expert trainers with 12+ years of experience guiding every rep, every set, every milestone.</p>
+                <div class="section-subtitle">The Strategy</div>
+                <h2 class="section-title">Why This Timing?</h2>
+                <p class="section-description">Every quarter is chosen for a reason. The phases align with real life &mdash; holidays, seasons, motivation, and biology.</p>
             </div>
 
-            <div class="carousel-wrapper">
-                <button class="carousel-arrow carousel-prev" aria-label="Previous coach"><i class="fa-solid fa-chevron-left"></i></button>
-                <div class="team-carousel" id="teamCarousel">
-                    <a href="mike-manning.html" class="team-card" style="text-decoration: none; color: inherit;">
-                        <div class="team-image">
-                            <img src="images/owner-headcoach-mike.webp" alt="Mike Manning - Owner & Head Coach at Black Iron Athletics" loading="lazy">
-                        </div>
-                        <div class="team-content">
-                            <h3 class="team-name">Mike Manning</h3>
-                            <div class="team-role">Owner & Head Coach</div>
-                        </div>
-                    </a>
-
-                    <div class="team-card">
-                        <div class="team-image">
-                            <img src="images/general-manager-caoch-kristin.webp" alt="Kristin - General Manager at Black Iron Athletics" loading="lazy">
-                        </div>
-                        <div class="team-content">
-                            <h3 class="team-name">Kristin</h3>
-                            <div class="team-role">General Manager</div>
-                        </div>
+            <div class="timing-grid">
+                <div class="timing-card">
+                    <div class="timing-card-header">
+                        <span class="timing-quarter" style="color: var(--phase-maintain); border-color: var(--phase-maintain);">Q1</span>
+                        <h3>January &ndash; March: Maintain</h3>
                     </div>
-
-                    <div class="team-card">
-                        <div class="team-image">
-                            <img src="images/coach-aileen.webp" alt="Aileen - Coach at Black Iron Athletics" loading="lazy">
-                        </div>
-                        <div class="team-content">
-                            <h3 class="team-name">Aileen</h3>
-                            <div class="team-role">Coach</div>
-                        </div>
-                    </div>
-
-                    <div class="team-card">
-                        <div class="team-image">
-                            <img src="images/coach-evan.webp" alt="Evan - Coach at Black Iron Athletics" loading="lazy">
-                        </div>
-                        <div class="team-content">
-                            <h3 class="team-name">Evan</h3>
-                            <div class="team-role">Coach</div>
-                        </div>
-                    </div>
-
-                    <div class="team-card">
-                        <div class="team-image">
-                            <img src="images/coach-amber.webp" alt="Amber - Coach at Black Iron Athletics" loading="lazy">
-                        </div>
-                        <div class="team-content">
-                            <h3 class="team-name">Amber</h3>
-                            <div class="team-role">Coach</div>
-                        </div>
-                    </div>
-
-                    <div class="team-card">
-                        <div class="team-image">
-                            <img src="images/coach-emily.webp" alt="Emily - Coach at Black Iron Athletics" loading="lazy">
-                        </div>
-                        <div class="team-content">
-                            <h3 class="team-name">Emily</h3>
-                            <div class="team-role">Coach</div>
-                        </div>
-                    </div>
+                    <p>You're coming off the holidays. Most people are bloated, overtrained, or both. Instead of jumping straight into a cut when your willpower and habits are at their weakest, you spend Q1 rebuilding consistency. You stabilize your weight, lock in your tracking habits, and prepare your body for the work ahead.</p>
                 </div>
-                <button class="carousel-arrow carousel-next" aria-label="Next coach"><i class="fa-solid fa-chevron-right"></i></button>
+
+                <div class="timing-card">
+                    <div class="timing-card-header">
+                        <span class="timing-quarter" style="color: var(--phase-cut); border-color: var(--phase-cut);">Q2</span>
+                        <h3>April &ndash; June: Cut</h3>
+                    </div>
+                    <p>Spring into summer. You're cutting when motivation is naturally high &mdash; warmer weather, longer days, and summer on the horizon. You enter summer looking and feeling your best. Three months is the sweet spot: long enough for real progress, short enough that your metabolism doesn't stall out.</p>
+                </div>
+
+                <div class="timing-card">
+                    <div class="timing-card-header">
+                        <span class="timing-quarter" style="color: var(--phase-maintain); border-color: var(--phase-maintain);">Q3</span>
+                        <h3>July &ndash; September: Maintain</h3>
+                    </div>
+                    <p>You just finished a 3-month cut. Your metabolism needs a break, and summer is for living. This phase locks in your new body composition, restores your metabolic rate, and lets you enjoy cookouts and vacations without stress. You earned this.</p>
+                </div>
+
+                <div class="timing-card">
+                    <div class="timing-card-header">
+                        <span class="timing-quarter" style="color: var(--phase-build); border-color: var(--phase-build);">Q4</span>
+                        <h3>October &ndash; December: Build</h3>
+                    </div>
+                    <p>Fall and winter. Cooler weather, heavier clothes, holidays with big meals. This is the perfect time to be in a caloric surplus. You're fueling hard training, adding lean muscle, and the holiday meals work for you instead of against you. The muscle you build here is what your next year's cut will reveal.</p>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- What We Offer Section -->
-    <section id="programs" class="section">
+    <!-- Calculator Settings -->
+    <section class="section">
         <div class="section-container">
             <div class="section-header">
-                <div class="section-subtitle">What We Offer</div>
-                <h2 class="section-title">Everything You Need to Succeed</h2>
+                <div class="section-subtitle">Powered by Your Numbers</div>
+                <h2 class="section-title">Calculator Settings by Phase</h2>
+                <p class="section-description">Run the Black Iron Macro Calculator three times &mdash; once for each goal setting &mdash; and you have your numbers for the entire year.</p>
             </div>
 
-            <div class="programs-grid">
-                <div class="program-card">
-                    <img src="https://images.leadconnectorhq.com/image/f_webp/q_80/r_1200/u_https://assets.cdn.filesafe.space/snIUpSaFzz5WsavMB3QA/media/6859d48d4fe1870c2e37d104.png" alt="Group Training" class="program-image" loading="lazy">
-                    <div class="program-content">
-                        <h3 class="program-title">Group Training</h3>
-                        <p class="program-description">High-energy, coach-led classes for all fitness levels.</p>
-                        <a href="programs.html#group-classes" class="program-link">Learn More &rarr;</a>
-                    </div>
+            <div class="settings-grid">
+                <div class="setting-card" style="border-top: 4px solid var(--phase-maintain);">
+                    <div class="setting-phase" style="color: var(--phase-maintain);">Phase 1</div>
+                    <div class="setting-name">Maintain</div>
+                    <div class="setting-dates">Jan &ndash; Mar</div>
+                    <div class="setting-value">"Maintain"</div>
                 </div>
 
-                <div class="program-card">
-                    <img src="images/barbell-overhead.webp" alt="Personal Training" class="program-image" loading="lazy">
-                    <div class="program-content">
-                        <h3 class="program-title">Personal Training</h3>
-                        <p class="program-description">1-on-1 coaching custom-built for your goals.</p>
-                        <a href="programs.html#personal-training" class="program-link">Learn More &rarr;</a>
-                    </div>
+                <div class="setting-card" style="border-top: 4px solid var(--phase-cut);">
+                    <div class="setting-phase" style="color: var(--phase-cut);">Phase 2</div>
+                    <div class="setting-name">Cut</div>
+                    <div class="setting-dates">Apr &ndash; Jun</div>
+                    <div class="setting-value">"Lose Fat"</div>
                 </div>
 
-                <div class="program-card">
-                    <img src="images/member-blessed.webp" alt="Nutrition Coaching" class="program-image" loading="lazy">
-                    <div class="program-content">
-                        <h3 class="program-title">Nutrition Coaching</h3>
-                        <p class="program-description">Personalized plans to fuel your results.</p>
-                        <a href="programs.html#nutrition-coaching" class="program-link">Learn More &rarr;</a>
-                    </div>
+                <div class="setting-card" style="border-top: 4px solid var(--phase-maintain);">
+                    <div class="setting-phase" style="color: var(--phase-maintain);">Phase 3</div>
+                    <div class="setting-name">Maintain</div>
+                    <div class="setting-dates">Jul &ndash; Sep</div>
+                    <div class="setting-value">"Maintain"</div>
                 </div>
 
-                <div class="program-card">
-                    <img src="images/barbell-curl.webp" alt="Open Gym" class="program-image" loading="lazy">
-                    <div class="program-content">
-                        <h3 class="program-title">24/7 Open Gym</h3>
-                        <p class="program-description">24/7 access to train on your schedule.</p>
-                        <a href="programs.html#open-gym" class="program-link">Learn More &rarr;</a>
-                    </div>
+                <div class="setting-card" style="border-top: 4px solid var(--phase-build);">
+                    <div class="setting-phase" style="color: var(--phase-build);">Phase 4</div>
+                    <div class="setting-name">Build</div>
+                    <div class="setting-dates">Oct &ndash; Dec</div>
+                    <div class="setting-value">"Build Muscle"</div>
+                </div>
+            </div>
+
+            <div style="text-align: center; margin-top: 3rem;">
+                <a href="macro-calculator.html" class="btn-outline">Try the Free Calculator &rarr;</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Premium Teasers -->
+    <section class="section section-alt">
+        <div class="section-container">
+            <div class="section-header">
+                <div class="section-subtitle">Go Deeper</div>
+                <h2 class="section-title">What's Inside Each Phase</h2>
+                <p class="section-description">The calendar shows you the what and when. The full Blueprint shows you the how &mdash; week by week, phase by phase.</p>
+            </div>
+
+            <div class="teaser-grid">
+                <div class="teaser-card" style="border-top: 4px solid var(--phase-maintain);">
+                    <div class="teaser-card-phase" style="color: var(--phase-maintain);">Phase 1: Maintain (Jan &ndash; Mar)</div>
+                    <h3>Post-Holiday Reset</h3>
+                    <p>The full Phase 1 guide covers week-by-week expectations, transition checklists, and the rules that make maintenance work. Learn why you start with maintenance instead of a cut, what to expect as your body recalibrates, and exactly when you're ready for Phase 2.</p>
+                    <div class="teaser-lock"><i class="fa-solid fa-lock"></i> Available in the full Blueprint</div>
+                </div>
+
+                <div class="teaser-card" style="border-top: 4px solid var(--phase-cut);">
+                    <div class="teaser-card-phase" style="color: var(--phase-cut);">Phase 2: Cut (Apr &ndash; Jun)</div>
+                    <h3>Strategic Fat Loss</h3>
+                    <p>The full Phase 2 guide covers the cutting rules that protect your muscle, week-by-week expectations from the initial drop through the grind, and the transition checklist for moving to post-cut maintenance without rebounding.</p>
+                    <div class="teaser-lock"><i class="fa-solid fa-lock"></i> Available in the full Blueprint</div>
+                </div>
+
+                <div class="teaser-card" style="border-top: 4px solid var(--phase-maintain);">
+                    <div class="teaser-card-phase" style="color: var(--phase-maintain);">Phase 3: Maintain (Jul &ndash; Sep)</div>
+                    <h3>Lock In Your Results</h3>
+                    <p>The full Phase 3 guide covers reverse dieting protocols, how to gradually bring calories back up without fat rebound, the summer mindset for enjoying life at your leanest, and the checklist for transitioning into the build phase.</p>
+                    <div class="teaser-lock"><i class="fa-solid fa-lock"></i> Available in the full Blueprint</div>
+                </div>
+
+                <div class="teaser-card" style="border-top: 4px solid var(--phase-build);">
+                    <div class="teaser-card-phase" style="color: var(--phase-build);">Phase 4: Build (Oct &ndash; Dec)</div>
+                    <h3>Invest in Next Year</h3>
+                    <p>The full Phase 4 guide covers building phase rules for lean gains, how to navigate holidays in a surplus with purpose, week-by-week expectations, and year-end measurements to compare your progress year over year.</p>
+                    <div class="teaser-lock"><i class="fa-solid fa-lock"></i> Available in the full Blueprint</div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- CTA Section -->
+    <!-- Bottom CTA Section -->
     <section class="cta-section">
         <div style="max-width: 100%; margin: 0 auto; padding: 0 2rem;">
-            <h2 class="cta-title">Ready to Get Started?</h2>
-            <p class="cta-subtitle">Join the Black Iron family and become the athlete you're meant to be.</p>
-            <a href="#" onclick="openLeadModal(); return false;" class="btn-primary">Book Free Consultation</a>
+            <h2 class="cta-title">Get the Complete Phase-by-Phase Guide</h2>
+            <p class="cta-subtitle">The calendar shows you the system. The Blueprint gives you everything you need to execute it &mdash; week by week, phase by phase, all year long.</p>
+            <a href="blueprint.html#pricing" class="btn-primary" data-ms-modal="signup">Get the Blueprint &mdash; $99/year</a>
+            <p class="cta-note">Founding Member pricing. Limited spots.</p>
         </div>
     </section>
 
@@ -1241,37 +1259,43 @@
         </div>
     </footer>
 
-    <!-- Schema Markup for SEO -->
+    <!-- Schema Markup -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
-      "@type": "AboutPage",
-      "name": "About Black Iron Athletics",
-      "description": "Learn about Black Iron Athletics' mission to forge everyday people into everyday athletes. Veteran-owned gym in Frisco, TX since 2013.",
-      "url": "https://www.blackironathletics.com/about.html",
-      "mainEntity": {
-        "@type": "GymAndHealthClub",
-        "name": "Black Iron Athletics",
-        "foundingDate": "2013",
-        "description": "Veteran-owned gym in Frisco, TX helping everyday people become everyday athletes since 2013.",
-        "telephone": "(972) 785-7036",
-        "address": {
-          "@type": "PostalAddress",
-          "streetAddress": "279 Main St #122",
-          "addressLocality": "Frisco",
-          "addressRegion": "TX",
-          "postalCode": "75036",
-          "addressCountry": "US"
-        },
-        "url": "https://www.blackironathletics.com",
-        "sameAs": [
-          "https://www.instagram.com/blackiron_athletics/",
-          "https://www.youtube.com/channel/UCF1XjUXEs81OWY70chem6vA",
-          "https://www.facebook.com/BlackIronAthletics/"
-        ]
+      "@type": "Product",
+      "name": "The 4-Phase Nutrition Blueprint",
+      "description": "A year-round nutrition periodization system with 4 phases — Maintain, Cut, Maintain, Build. Includes phase guides, macro calculator integration, supplement protocols, and The Decade Roadmap.",
+      "brand": { "@type": "Organization", "name": "Black Iron Athletics" },
+      "offers": {
+        "@type": "Offer",
+        "price": "99",
+        "priceCurrency": "USD",
+        "availability": "https://schema.org/InStock",
+        "url": "https://www.blackironathletics.com/blueprint.html"
       }
     }
     </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebPage",
+      "name": "The 4-Phase Calendar — Your Year, Mapped Out",
+      "description": "See the full 4-Phase Nutrition Calendar — Maintain, Cut, Maintain, Build. Know exactly what to eat and when, all year long. Powered by the Black Iron Macro Calculator.",
+      "url": "https://www.blackironathletics.com/blueprint-calendar.html",
+      "isPartOf": {
+        "@type": "WebSite",
+        "name": "Black Iron Athletics",
+        "url": "https://www.blackironathletics.com"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "Black Iron Athletics",
+        "url": "https://www.blackironathletics.com"
+      }
+    }
+    </script>
+
 <!-- Lead Capture Popup Modal -->
 <style>
     .modal-overlay {
@@ -1329,6 +1353,7 @@
         .modal-overlay { padding: 1rem; }
     }
 </style>
+
 <div class="modal-overlay" id="leadModal">
     <div class="modal-container">
         <button class="modal-close" onclick="closeLeadModal()">&times;</button>
@@ -1374,6 +1399,7 @@
         ></iframe>
     </div>
 </div>
+
 <div class="modal-overlay" id="subscribeModal">
     <div class="modal-container">
         <button class="modal-close" onclick="closeSubscribeModal()">&times;</button>
@@ -1398,6 +1424,7 @@
 </div>
 
 <script>
+    // ===== MODALS =====
     function openLeadModal() {
         var modal = document.getElementById('leadModal');
         var iframe = modal.querySelector('iframe');
@@ -1430,6 +1457,8 @@
     document.getElementById('cancelModal').addEventListener('click', function(e) {
         if (e.target === this) { closeCancelModal(); }
     });
+
+    // ===== SUBSCRIBE MODAL =====
     function openSubscribeModal() {
         var modal = document.getElementById('subscribeModal');
         var iframe = modal.querySelector('iframe');
@@ -1445,93 +1474,7 @@
         if (e.target === this) { closeSubscribeModal(); }
     });
 
-    // Infinite Coach Carousel
-    (function() {
-        var carousel = document.getElementById('teamCarousel');
-        if (!carousel) return;
-        var originalCards = Array.from(carousel.querySelectorAll('.team-card'));
-        var cardCount = originalCards.length;
-
-        // Clone all cards and append + prepend for infinite illusion
-        originalCards.forEach(function(card) {
-            carousel.appendChild(card.cloneNode(true));
-        });
-        for (var i = cardCount - 1; i >= 0; i--) {
-            carousel.insertBefore(originalCards[i].cloneNode(true), carousel.firstChild);
-        }
-
-        var currentIndex = cardCount; // start at first original card
-
-        function getStep() {
-            var card = carousel.querySelector('.team-card');
-            var gap = parseFloat(getComputedStyle(carousel).gap) || 32;
-            return card.offsetWidth + gap;
-        }
-
-        function setPosition(animate) {
-            if (animate) {
-                carousel.style.transition = 'transform 0.5s ease';
-            } else {
-                carousel.style.transition = 'none';
-            }
-            carousel.style.transform = 'translateX(-' + (currentIndex * getStep()) + 'px)';
-        }
-
-        // Set initial position without animation
-        setPosition(false);
-
-        function next() {
-            currentIndex++;
-            setPosition(true);
-            setTimeout(function() {
-                if (currentIndex >= cardCount * 2) {
-                    currentIndex -= cardCount;
-                    setPosition(false);
-                }
-            }, 520);
-        }
-
-        function prev() {
-            currentIndex--;
-            setPosition(true);
-            setTimeout(function() {
-                if (currentIndex < cardCount) {
-                    currentIndex += cardCount;
-                    setPosition(false);
-                }
-            }, 520);
-        }
-
-        document.querySelector('.carousel-prev').addEventListener('click', prev);
-        document.querySelector('.carousel-next').addEventListener('click', next);
-
-        // Auto-scroll every 4 seconds
-        var autoPlay = setInterval(next, 4000);
-        var wrapper = carousel.parentElement;
-        wrapper.addEventListener('mouseenter', function() { clearInterval(autoPlay); });
-        wrapper.addEventListener('mouseleave', function() { autoPlay = setInterval(next, 4000); });
-
-        // Touch swipe support for mobile
-        var touchStartX = 0;
-        var touchEndX = 0;
-        wrapper.addEventListener('touchstart', function(e) {
-            touchStartX = e.changedTouches[0].screenX;
-            clearInterval(autoPlay);
-        }, { passive: true });
-        wrapper.addEventListener('touchend', function(e) {
-            touchEndX = e.changedTouches[0].screenX;
-            var diff = touchStartX - touchEndX;
-            if (Math.abs(diff) > 50) {
-                if (diff > 0) { next(); } else { prev(); }
-            }
-            autoPlay = setInterval(next, 4000);
-        }, { passive: true });
-
-        // Recalculate on resize
-        window.addEventListener('resize', function() { setPosition(false); });
-    })();
-
-    // Hamburger Menu
+    // ===== MOBILE NAV =====
     function toggleMobileNav() {
         document.getElementById('mobileNav').classList.toggle('active');
         document.querySelector('.hamburger').classList.toggle('active');
@@ -1542,6 +1485,7 @@
         document.querySelector('.hamburger').classList.remove('active');
         document.body.style.overflow = '';
     }
+
 </script>
 
 <script src="https://link.msgsndr.com/js/form_embed.js" type="text/javascript" defer></script>

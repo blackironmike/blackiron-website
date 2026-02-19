@@ -3,25 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Strength & Conditioning, HYROX & Weightlifting Classes | Black Iron Athletics | Frisco, TX</title>
-    <meta name="description" content="Explore programs at Black Iron Athletics in Frisco, TX — the best CrossFit alternative for functional fitness, HIIT, WODs, strength & conditioning, HYROX, Olympic weightlifting, personal training & 24/7 open gym. All fitness levels welcome.">
+    <title>The 4-Phase Nutrition Blueprint | Year-Round Nutrition System | Black Iron Athletics</title>
+    <meta name="description" content="A year-round nutrition periodization system with 4 phases — Maintain, Cut, Maintain, Build. Powered by the Black Iron Macro Calculator. Founding member pricing: $99/year.">
     <meta name="geo.region" content="US-TX">
     <meta name="geo.placename" content="Frisco">
-    <link rel="canonical" href="https://www.blackironathletics.com/programs.html">
+    <link rel="canonical" href="https://www.blackironathletics.com/blueprint.html">
     <!-- Open Graph -->
-    <meta property="og:title" content="Strength & Conditioning, HYROX & Weightlifting | Black Iron Athletics | Frisco, TX">
-    <meta property="og:description" content="The best CrossFit alternative in Frisco, TX. Functional fitness, HIIT, WODs, strength & conditioning, HYROX, Olympic weightlifting, personal training & 24/7 open gym.">
-    <meta property="og:url" content="https://www.blackironathletics.com/programs.html">
+    <meta property="og:title" content="The 4-Phase Nutrition Blueprint | Year-Round Nutrition System | Black Iron Athletics">
+    <meta property="og:description" content="A year-round nutrition periodization system with 4 phases — Maintain, Cut, Maintain, Build. Powered by the Black Iron Macro Calculator. Founding member pricing: $99/year.">
+    <meta property="og:url" content="https://www.blackironathletics.com/blueprint.html">
     <meta property="og:image" content="https://www.blackironathletics.com/images/social-share.png">
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="Black Iron Athletics">
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Strength & Conditioning, HYROX & Weightlifting | Black Iron Athletics | Frisco, TX">
-    <meta name="twitter:description" content="The best CrossFit alternative in Frisco, TX. Functional fitness, HIIT, WODs, strength & conditioning, HYROX, Olympic weightlifting, personal training & 24/7 open gym.">
+    <meta name="twitter:title" content="The 4-Phase Nutrition Blueprint | Year-Round Nutrition System | Black Iron Athletics">
+    <meta name="twitter:description" content="A year-round nutrition periodization system with 4 phases — Maintain, Cut, Maintain, Build. Powered by the Black Iron Macro Calculator. Founding member pricing: $99/year.">
     <meta name="twitter:image" content="https://www.blackironathletics.com/images/social-share.png">
     <link rel="icon" type="image/png" href="images/anvil-favicon.png">
-    <link rel="preload" as="image" href="https://images.leadconnectorhq.com/image/f_webp/q_80/r_1200/u_https://assets.cdn.filesafe.space/snIUpSaFzz5WsavMB3QA/media/6859d48d4fe1870c2e37d104.png">
+    <link rel="preload" as="image" href="images/hero-macro-calculator.webp">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;900&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
@@ -29,6 +29,16 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" media="print" onload="this.media='all'">
     <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"></noscript>
     <style>@font-face{font-family:"Font Awesome 6 Brands";font-display:swap}@font-face{font-family:"Font Awesome 6 Free";font-display:swap}</style>
+    <!-- MemberSpace -->
+    <script>
+        var MemberSpace = window.MemberSpace || {"subdomain":"blackironathletics"};
+        (function(d){
+            var s = d.createElement("script");
+            s.src = "https://cdn.memberspace.com/scripts/widgets.js";
+            var e = d.getElementsByTagName("script")[0];
+            e.parentNode.insertBefore(s,e);
+        }(document));
+    </script>
     <style>
         /* Force full width - override GHL container */
         body, html {
@@ -38,7 +48,6 @@
             padding: 0 !important;
         }
 
-        /* Remove GHL's default container padding */
         .container, .hl_page-preview--content {
             padding: 0 !important;
             margin: 0 !important;
@@ -59,6 +68,9 @@
             --light-gray: #cccccc;
             --white: #ffffff;
             --yellow: #FFD202;
+            --phase-maintain: #2E86C1;
+            --phase-cut: #ff0003;
+            --phase-build: #27AE60;
         }
 
         body {
@@ -78,21 +90,18 @@
             scroll-behavior: smooth;
         }
 
-        /* Anchor offset for fixed nav */
-        #group-classes,
-        #personal-training,
-        #nutrition-coaching,
-        #open-gym {
+        #pricing,
+        #faqs {
             scroll-margin-top: 100px;
         }
 
-        /* All headings use Montserrat Black */
         h1, h2, h3, h4, h5, h6 {
             font-family: 'Montserrat', sans-serif;
             font-weight: 900;
             line-height: 1.2;
         }
 
+        /* ===== NAV ===== */
         nav {
             position: fixed;
             top: 0;
@@ -112,19 +121,9 @@
             align-items: center;
         }
 
-        .logo {
-            height: 50px;
-        }
-
-        .logo a {
-            display: block;
-            height: 100%;
-        }
-
-        .logo img {
-            height: 100%;
-            width: auto;
-        }
+        .logo { height: 50px; }
+        .logo a { display: block; height: 100%; }
+        .logo img { height: 100%; width: auto; }
 
         .nav-links {
             display: flex;
@@ -133,9 +132,7 @@
             align-items: center;
         }
 
-        .nav-links > li {
-            position: relative;
-        }
+        .nav-links > li { position: relative; }
 
         .nav-links a {
             color: var(--white);
@@ -147,11 +144,8 @@
             letter-spacing: 0.5px;
         }
 
-        .nav-links > li > a:hover {
-            color: var(--yellow);
-        }
+        .nav-links > li > a:hover { color: var(--yellow); }
 
-        /* Dropdown Submenu */
         .submenu {
             display: none;
             position: absolute;
@@ -165,9 +159,7 @@
             list-style: none;
         }
 
-        .submenu li {
-            padding: 0;
-        }
+        .submenu li { padding: 0; }
 
         .submenu a {
             display: block;
@@ -185,9 +177,7 @@
             padding-left: 2rem;
         }
 
-        .nav-links > li:hover .submenu {
-            display: block;
-        }
+        .nav-links > li:hover .submenu { display: block; }
 
         .has-submenu > a::after {
             content: '';
@@ -204,6 +194,12 @@
         .has-submenu:hover > a::after {
             border-top-color: var(--yellow);
             transform: translateY(2px);
+        }
+
+        .nav-cta-group {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
         }
 
         .cta-btn {
@@ -226,7 +222,27 @@
             color: var(--yellow);
         }
 
-        /* Hero Section */
+        .login-btn {
+            color: var(--yellow);
+            padding: 0.9rem 1.5rem;
+            border-radius: 0;
+            text-decoration: none;
+            font-weight: 900;
+            font-size: 0.85rem;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            border: 2px solid var(--yellow);
+            white-space: nowrap;
+            background: transparent;
+        }
+
+        .login-btn:hover {
+            background: var(--yellow);
+            color: var(--black);
+        }
+
+        /* ===== HERO ===== */
         .hero {
             margin-top: 0;
             padding-top: 80px;
@@ -257,9 +273,7 @@
             z-index: 1;
         }
 
-        .hero-content {
-            max-width: 900px;
-        }
+        .hero-content { max-width: 800px; }
 
         .hero-subtitle {
             font-size: 0.9rem;
@@ -287,16 +301,14 @@
             max-width: 600px;
         }
 
-        /* Section Styles */
+        /* ===== SECTIONS ===== */
         .section {
             padding: 6rem 0;
             background: var(--black);
             width: 100%;
         }
 
-        .section-alt {
-            background: var(--dark-gray);
-        }
+        .section-alt { background: var(--dark-gray); }
 
         .section-container {
             max-width: 100%;
@@ -332,248 +344,6 @@
             margin: 0 auto;
         }
 
-        /* Content Block */
-        .content-block {
-            max-width: 900px;
-            margin: 0 auto;
-        }
-
-        .content-block p {
-            font-size: 1.1rem;
-            line-height: 1.8;
-            color: var(--light-gray);
-            margin-bottom: 1.5rem;
-        }
-
-        /* Feature Cards - used in Group Classes & Open Gym */
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 0;
-            margin-top: 4rem;
-        }
-
-        .feature-card {
-            padding: 3rem;
-            background: var(--dark-gray);
-            border: 1px solid var(--medium-gray);
-            transition: all 0.3s ease;
-        }
-
-        .feature-card:hover {
-            background: var(--medium-gray);
-            border-color: var(--yellow);
-        }
-
-        .feature-icon {
-            font-size: 2.5rem;
-            margin-bottom: 1.5rem;
-            color: var(--yellow);
-        }
-
-        .feature-title {
-            font-weight: 900;
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-            text-transform: uppercase;
-        }
-
-        .feature-description {
-            color: var(--light-gray);
-            line-height: 1.8;
-        }
-
-        /* Class Type Cards (Group Classes) */
-        .class-types-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 2rem;
-            margin-top: 4rem;
-        }
-
-        .class-type-card {
-            background: var(--dark-gray);
-            padding: 2.5rem;
-            border: 2px solid var(--medium-gray);
-            transition: all 0.3s ease;
-            text-align: center;
-        }
-
-        .class-type-card:hover {
-            border-color: var(--yellow);
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(255, 210, 2, 0.2);
-        }
-
-        .class-type-card.type-sc {
-            border-top: 4px solid var(--yellow);
-        }
-        .class-type-card.type-weightlifting {
-            border-top: 4px solid #ff0003;
-        }
-        .class-type-card.type-weightlifting .class-type-icon {
-            color: #ff0003;
-        }
-        .class-type-card.type-weightlifting:hover {
-            border-color: #ff0003;
-            box-shadow: 0 10px 30px rgba(255, 0, 3, 0.2);
-        }
-        .class-type-card.type-hyrox {
-            border-top: 4px solid #1c94d9;
-        }
-        .class-type-card.type-hyrox .class-type-icon {
-            color: #1c94d9;
-        }
-        .class-type-card.type-hyrox:hover {
-            border-color: #1c94d9;
-            box-shadow: 0 10px 30px rgba(28, 148, 217, 0.2);
-        }
-
-        .class-type-icon {
-            font-size: 3rem;
-            color: var(--yellow);
-            margin-bottom: 1.5rem;
-        }
-
-        .class-type-card h3 {
-            font-weight: 900;
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-            text-transform: uppercase;
-        }
-
-        .class-type-card p {
-            color: var(--light-gray);
-            line-height: 1.8;
-        }
-
-        /* Feature Cards - centered variant for PT/Nutrition/Open Gym */
-        .feature-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-top: 4rem;
-        }
-
-        .feature-card-centered {
-            background: var(--dark-gray);
-            padding: 2.5rem;
-            border: 2px solid var(--medium-gray);
-            transition: all 0.3s ease;
-            text-align: center;
-        }
-
-        .feature-card-centered:hover {
-            border-color: var(--yellow);
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(255, 210, 2, 0.2);
-        }
-
-        .feature-card-centered.type-pt {
-            border-top: 4px solid #9b59b6;
-        }
-        .feature-card-centered.type-pt .feature-icon {
-            color: #9b59b6;
-        }
-        .feature-card-centered.type-pt:hover {
-            border-color: #9b59b6;
-            box-shadow: 0 10px 30px rgba(155, 89, 182, 0.2);
-        }
-        .feature-card-centered.type-nutrition {
-            border-top: 4px solid #22c55e;
-        }
-        .feature-card-centered.type-nutrition .feature-icon {
-            color: #22c55e;
-        }
-        .feature-card-centered.type-nutrition:hover {
-            border-color: #22c55e;
-            box-shadow: 0 10px 30px rgba(34, 197, 94, 0.2);
-        }
-
-        .feature-card-centered h3 {
-            font-weight: 900;
-            font-size: 1.3rem;
-            margin-bottom: 1rem;
-            text-transform: uppercase;
-        }
-
-        .feature-card-centered p {
-            color: var(--light-gray);
-            line-height: 1.8;
-        }
-
-        /* Steps Grid */
-        .steps-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            margin-top: 4rem;
-        }
-
-        .step-card {
-            background: var(--black);
-            padding: 3rem 2rem;
-            border: 2px solid var(--medium-gray);
-            transition: all 0.3s ease;
-            text-align: center;
-        }
-
-        .step-card:hover {
-            border-color: var(--yellow);
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(255, 210, 2, 0.2);
-        }
-
-        .step-number {
-            background: var(--yellow);
-            color: var(--black);
-            width: 60px;
-            height: 60px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 2rem;
-            font-weight: 900;
-            margin: 0 auto 1.5rem;
-        }
-
-        .step-card h3 {
-            font-weight: 900;
-            font-size: 1.5rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .step-duration {
-            color: var(--yellow);
-            font-weight: 700;
-            font-size: 0.9rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-bottom: 1rem;
-        }
-
-        .step-card p {
-            color: var(--light-gray);
-            line-height: 1.8;
-        }
-
-        /* Callout Block */
-        .callout-block {
-            max-width: 900px;
-            margin: 4rem auto 0;
-            padding: 3rem;
-            border-left: 5px solid var(--yellow);
-            background: var(--black);
-            font-style: italic;
-        }
-
-        .callout-block p {
-            font-size: 1.2rem;
-            line-height: 1.8;
-            color: var(--light-gray);
-            margin: 0;
-        }
-
         .btn-primary {
             background: var(--yellow);
             color: var(--black);
@@ -587,6 +357,7 @@
             border: 2px solid var(--yellow);
             border-radius: 0;
             display: inline-block;
+            cursor: pointer;
         }
 
         .btn-primary:hover {
@@ -594,9 +365,9 @@
             color: var(--yellow);
         }
 
-        .btn-secondary {
+        .btn-outline {
             background: transparent;
-            color: var(--white);
+            color: var(--yellow);
             padding: 1.2rem 3rem;
             text-decoration: none;
             font-weight: 900;
@@ -604,19 +375,223 @@
             transition: all 0.3s ease;
             text-transform: uppercase;
             letter-spacing: 1px;
-            border: 2px solid var(--white);
+            border: 2px solid var(--yellow);
             border-radius: 0;
             display: inline-block;
+            cursor: pointer;
         }
 
-        .btn-secondary:hover {
-            background: var(--white);
+        .btn-outline:hover {
+            background: var(--yellow);
             color: var(--black);
         }
 
-        /* CTA Section */
-        .cta-section {
+        /* ===== FEATURE CARDS ===== */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 4rem;
+        }
+
+        .feature-card {
+            background: var(--dark-gray);
+            padding: 3rem 2rem;
+            border: 2px solid var(--medium-gray);
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .section-alt .feature-card {
             background: var(--black);
+        }
+
+        .feature-card:hover {
+            border-color: var(--yellow);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(255, 210, 2, 0.2);
+        }
+
+        .feature-icon {
+            font-size: 2.5rem;
+            color: var(--yellow);
+            margin-bottom: 1.5rem;
+        }
+
+        .feature-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+        }
+
+        .feature-card p {
+            color: var(--light-gray);
+            line-height: 1.8;
+        }
+
+        /* ===== PHASE CARDS ===== */
+        .phase-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+            margin-top: 4rem;
+        }
+
+        .phase-card {
+            background: var(--dark-gray);
+            border: 2px solid var(--medium-gray);
+            padding: 2.5rem 2rem;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .phase-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(255, 210, 2, 0.1);
+        }
+
+        .phase-label {
+            font-size: 0.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-bottom: 0.75rem;
+        }
+
+        .phase-name {
+            font-size: 1.5rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            margin-bottom: 0.5rem;
+        }
+
+        .phase-dates {
+            font-size: 0.9rem;
+            color: var(--light-gray);
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+        }
+
+        .phase-description {
+            color: var(--light-gray);
+            line-height: 1.8;
+            font-size: 0.95rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .phase-setting {
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: var(--yellow);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        /* ===== PRICING ===== */
+        .pricing-card {
+            max-width: 500px;
+            margin: 0 auto;
+            background: var(--black);
+            border: 3px solid var(--yellow);
+            padding: 3.5rem 3rem;
+            text-align: center;
+        }
+
+        .pricing-badge {
+            display: inline-block;
+            background: var(--yellow);
+            color: var(--black);
+            font-weight: 900;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            padding: 0.5rem 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .pricing-amount {
+            font-size: 4rem;
+            font-weight: 900;
+            color: var(--white);
+            line-height: 1;
+        }
+
+        .pricing-period {
+            font-size: 1.2rem;
+            color: var(--light-gray);
+            font-weight: 600;
+            margin-bottom: 2rem;
+        }
+
+        .pricing-features {
+            list-style: none;
+            text-align: left;
+            margin-bottom: 2.5rem;
+        }
+
+        .pricing-features li {
+            color: var(--light-gray);
+            padding: 0.75rem 0;
+            border-bottom: 1px solid var(--medium-gray);
+            font-size: 0.95rem;
+        }
+
+        .pricing-features li i {
+            color: var(--yellow);
+            margin-right: 0.75rem;
+            width: 20px;
+            text-align: center;
+        }
+
+        .pricing-note {
+            font-size: 0.85rem;
+            color: var(--light-gray);
+            margin-top: 1.5rem;
+        }
+
+        .btn-primary.btn-full {
+            width: 100%;
+            text-align: center;
+        }
+
+        /* ===== FAQs ===== */
+        .faq-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+            margin: 4rem auto 0;
+        }
+
+        .faq-item {
+            background: var(--dark-gray);
+            padding: 2rem;
+            border: 2px solid var(--medium-gray);
+            transition: all 0.3s ease;
+        }
+
+        .faq-item:hover {
+            border-color: var(--yellow);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(255, 210, 2, 0.2);
+        }
+
+        .faq-question {
+            font-weight: 900;
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+            color: var(--yellow);
+            line-height: 1.3;
+        }
+
+        .faq-answer {
+            color: var(--light-gray);
+            line-height: 1.7;
+            font-size: 0.95rem;
+        }
+
+        /* ===== CTA SECTION ===== */
+        .cta-section {
+            background: var(--dark-gray);
             padding: 8rem 4rem;
             text-align: center;
             width: 100%;
@@ -635,10 +610,15 @@
             margin-bottom: 3rem;
         }
 
-        /* Map Section */
-        .map-section {
-            width: 100%;
+        .cta-note {
+            font-size: 0.95rem;
+            color: var(--yellow);
+            font-weight: 600;
+            margin-top: 1.5rem;
         }
+
+        /* ===== MAP ===== */
+        .map-section { width: 100%; }
 
         .map-section iframe {
             width: 100%;
@@ -647,7 +627,7 @@
             display: block;
         }
 
-        /* Footer */
+        /* ===== FOOTER ===== */
         footer {
             padding: 4rem 0 2rem;
             background: var(--black);
@@ -673,13 +653,8 @@
             letter-spacing: 1px;
         }
 
-        .footer-section ul {
-            list-style: none;
-        }
-
-        .footer-section ul li {
-            margin-bottom: 0.75rem;
-        }
+        .footer-section ul { list-style: none; }
+        .footer-section ul li { margin-bottom: 0.75rem; }
 
         .footer-section a {
             color: var(--light-gray);
@@ -688,9 +663,7 @@
             font-weight: 500;
         }
 
-        .footer-section a:hover {
-            color: var(--yellow);
-        }
+        .footer-section a:hover { color: var(--yellow); }
 
         .footer-logo {
             height: 60px;
@@ -705,22 +678,7 @@
             font-size: 0.9rem;
         }
 
-        @media (max-width: 1024px) {
-            .nav-container,
-            .hero-container,
-            .section-container,
-            .footer-container {
-                padding-left: 2rem;
-                padding-right: 2rem;
-            }
-
-            .cta-section {
-                padding-left: 2rem;
-                padding-right: 2rem;
-            }
-        }
-
-        /* Hamburger Menu */
+        /* ===== HAMBURGER / MOBILE NAV ===== */
         .hamburger {
             display: none;
             flex-direction: column;
@@ -743,17 +701,9 @@
             transition: all 0.3s ease;
         }
 
-        .hamburger.active span:nth-child(1) {
-            transform: rotate(45deg) translate(6px, 6px);
-        }
-
-        .hamburger.active span:nth-child(2) {
-            opacity: 0;
-        }
-
-        .hamburger.active span:nth-child(3) {
-            transform: rotate(-45deg) translate(6px, -6px);
-        }
+        .hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(6px, 6px); }
+        .hamburger.active span:nth-child(2) { opacity: 0; }
+        .hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(6px, -6px); }
 
         .mobile-nav-overlay {
             display: none;
@@ -770,9 +720,7 @@
             gap: 0;
         }
 
-        .mobile-nav-overlay.active {
-            display: flex;
-        }
+        .mobile-nav-overlay.active { display: flex; }
 
         .mobile-nav-overlay a {
             color: var(--white);
@@ -788,9 +736,7 @@
 
         .mobile-nav-overlay .mobile-sub-link { font-size: 0.9rem; color: var(--light-gray); padding: 0.5rem 2rem; font-weight: 700; letter-spacing: 0.5px; }
         .mobile-nav-overlay .mobile-sub-link:hover { color: var(--yellow); }
-        .mobile-nav-overlay a:hover {
-            color: var(--yellow);
-        }
+        .mobile-nav-overlay a:hover { color: var(--yellow); }
 
         .mobile-nav-overlay .mobile-cta {
             margin-top: 1.5rem;
@@ -810,14 +756,44 @@
             color: var(--yellow);
         }
 
-        @media (max-width: 768px) {
-            .hamburger {
-                display: flex !important;
+        .mobile-nav-overlay .mobile-login {
+            margin-top: 0.75rem;
+            color: var(--yellow);
+            border: 2px solid var(--yellow);
+            padding: 1rem 2.5rem;
+            font-size: 1rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            background: transparent;
+        }
+
+        .mobile-nav-overlay .mobile-login:hover {
+            background: var(--yellow);
+            color: var(--black);
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 1024px) {
+            .nav-container,
+            .hero-container,
+            .section-container,
+            .footer-container {
+                padding-left: 2rem;
+                padding-right: 2rem;
             }
 
-            .nav-links {
-                display: none !important;
+            .cta-section {
+                padding-left: 2rem;
+                padding-right: 2rem;
             }
+        }
+
+        @media (max-width: 768px) {
+            .hamburger { display: flex !important; }
+            .nav-links { display: none !important; }
+            .nav-cta-group .login-btn { display: none; }
 
             .nav-container {
                 padding: 0 1.5rem;
@@ -833,93 +809,64 @@
                 font-size: 0.8rem;
             }
 
-            .hero {
-                padding-top: 130px;
-            }
-
-            .hero-container {
-                padding: 2rem 1.5rem;
-            }
-
-            .hero-content h1 {
-                font-size: clamp(2rem, 6vw, 3rem);
-            }
-
-            .hero-content p {
-                font-size: 1.1rem;
-                margin-bottom: 2rem;
-            }
+            .hero { padding-top: 130px; }
+            .hero-container { padding: 2rem 1.5rem; }
+            .hero-content h1 { font-size: clamp(2rem, 6vw, 3rem); }
+            .hero-content p { font-size: 1.1rem; margin-bottom: 2rem; }
 
             .section-container {
                 padding: 0 1.5rem;
             }
 
-            .section-title {
-                font-size: clamp(1.8rem, 5vw, 2.5rem);
-            }
-
-            .section-header {
-                margin-bottom: 2rem;
-            }
-
-            .section {
-                padding: 4rem 0;
-            }
+            .section-title { font-size: clamp(1.8rem, 5vw, 2.5rem); }
+            .section-header { margin-bottom: 2rem; }
+            .section { padding: 4rem 0; }
 
             .features-grid,
-            .feature-grid,
-            .steps-grid,
-            .class-types-grid {
+            .faq-container {
                 grid-template-columns: 1fr;
             }
 
-            .feature-card {
-                padding: 2rem 1.5rem;
+            .phase-grid {
+                grid-template-columns: 1fr 1fr;
             }
 
-            .class-type-card {
-                padding: 2rem 1.5rem;
-            }
+            .cta-section { padding: 4rem 1.5rem; }
+            .cta-title { font-size: clamp(1.8rem, 5vw, 2.5rem); }
 
-            .feature-card-centered {
-                padding: 2rem 1.5rem;
-            }
-
-            .step-card {
-                padding: 2rem 1.5rem;
-            }
-
-            .callout-block {
-                padding: 2rem 1.5rem;
-                margin-top: 2rem;
-            }
-
-            .cta-section {
-                padding: 4rem 1.5rem;
-            }
-
-            .cta-title {
-                font-size: clamp(1.8rem, 5vw, 2.5rem);
-            }
-
-            .map-section iframe {
-                height: 250px;
-            }
+            .map-section iframe { height: 250px; }
 
             .footer-container {
                 padding: 0 1.5rem;
                 gap: 2rem;
             }
 
-            .btn-primary,
-            .btn-secondary {
+            .btn-primary {
                 padding: 0.8rem 1.5rem;
                 font-size: 0.8rem;
                 white-space: normal;
             }
 
-            .modal-container {
-                max-width: calc(100% - 2rem);
+            .btn-outline {
+                padding: 0.8rem 1.5rem;
+                font-size: 0.8rem;
+                white-space: normal;
+            }
+
+            .pricing-card {
+                padding: 2.5rem 1.5rem;
+            }
+
+            .pricing-amount {
+                font-size: 3rem;
+            }
+
+            .modal-container { max-width: calc(100% - 2rem); }
+        }
+
+        @media (max-width: 480px) {
+            .phase-grid {
+                grid-template-columns: 1fr;
             }
         }
     </style>
@@ -960,7 +907,10 @@
                 </li>
                 <li><a href="contact.html">Contact</a></li>
             </ul>
-            <a href="#" onclick="openLeadModal(); return false;" class="cta-btn">Book Free Consultation</a>
+            <div class="nav-cta-group">
+                <a href="#" class="login-btn" data-ms-modal="login" onclick="return false;">Member Login</a>
+                <a href="#" onclick="openLeadModal(); return false;" class="cta-btn">Book Free Consultation</a>
+            </div>
             <button class="hamburger" onclick="toggleMobileNav()" aria-label="Menu">
                 <span></span>
                 <span></span>
@@ -986,182 +936,268 @@
         <a href="blueprint.html" class="mobile-sub-link" onclick="closeMobileNav()">4-Phase Blueprint</a>
         <a href="contact.html" onclick="closeMobileNav()">Contact</a>
         <a href="#" class="mobile-cta" onclick="closeMobileNav(); openLeadModal(); return false;">Book Free Consultation</a>
+        <a href="#" class="mobile-login" data-ms-modal="login" onclick="closeMobileNav(); return false;">Member Login</a>
     </div>
 
     <!-- Hero Section -->
     <section class="hero">
-        <img src="https://images.leadconnectorhq.com/image/f_webp/q_80/r_1200/u_https://assets.cdn.filesafe.space/snIUpSaFzz5WsavMB3QA/media/6859d48d4fe1870c2e37d104.png" alt="Programs at Black Iron Athletics" class="hero-bg" fetchpriority="high">
+        <img src="images/hero-macro-calculator.webp" alt="Healthy nutrition and fitness" class="hero-bg" fetchpriority="high">
         <div class="hero-container">
             <div class="hero-content">
-                <div class="hero-subtitle">Black Iron Athletics</div>
-                <h1>Our Programs</h1>
-                <p>From coach-led group classes to 1-on-1 personal training, nutrition coaching, and 24/7 open gym access -- we have everything you need to reach your goals.</p>
+                <div class="hero-subtitle">Year-Round Nutrition System</div>
+                <h1>The 4-Phase Nutrition Blueprint</h1>
+                <p>A year-round system for how you look, feel, and perform. Stop dieting in circles. Start training your nutrition with the same intention you bring to the barbell.</p>
+                <a href="#pricing" class="btn-primary">Get the Blueprint &mdash; $99/year</a>
             </div>
         </div>
     </section>
 
-    <!-- ========== GROUP CLASSES ========== -->
-    <section id="group-classes" class="section">
+    <!-- The Problem Section -->
+    <section class="section">
         <div class="section-container">
             <div class="section-header">
-                <div class="section-subtitle">Coach-Led Classes</div>
-                <h2 class="section-title">Group Classes</h2>
+                <div class="section-subtitle">The Problem</div>
+                <h2 class="section-title">Why Most Nutrition Plans Fail</h2>
+                <p class="section-description">Most people either diet hard for 8-12 weeks and fall off completely, or eat the same way year-round and wonder why they're stuck. Both approaches ignore a fundamental truth — your body needs different things at different times.</p>
             </div>
 
-            <div class="content-block">
-                <p>Coach-led group classes are the heart of Black Iron Athletics. After over a decade as a CrossFit affiliate, we evolved our programming into something better -- taking the best elements of functional fitness and combining them with smarter structure, more predictable results, and less wear and tear on the body. Every class is led by a certified coach, scales to every fitness level, and is designed to build real-world strength, endurance, and community. If you are looking for a CrossFit alternative in Frisco that delivers the same intensity and camaraderie without the affiliation, you have found it.</p>
-            </div>
-
-            <!-- Class Type Highlight Cards -->
-            <div class="class-types-grid">
-                <div class="class-type-card type-sc">
-                    <div class="class-type-icon"><i class="fa-solid fa-weight-hanging"></i></div>
-                    <h3>Strength &amp; Conditioning</h3>
-                    <p>Our mainstay program. Built from over a decade of CrossFit coaching experience with a modern approach. Each 60-minute session includes functional strength work, HIIT-style metabolic conditioning (metcons), and skill development. Think AMRAPs, EMOMs, and workout-of-the-day style programming -- all with smarter structure and expert coaching.</p>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fa-solid fa-repeat"></i></div>
+                    <h3>The Yo-Yo Cycle</h3>
+                    <p>You cut hard, lose weight, bounce back, repeat. Each cycle gets harder as your metabolism adapts to chronic restriction. The approach is broken, not your willpower.</p>
                 </div>
-                <div class="class-type-card type-weightlifting">
-                    <div class="class-type-icon"><i class="fa-solid fa-dumbbell"></i></div>
-                    <h3>Weightlifting</h3>
-                    <p>Olympic weightlifting focused on improving your lifts and maximizing your potential with a barbell. Whether you're learning the clean &amp; jerk for the first time or chasing a new PR, this class is built for progress.</p>
-                </div>
-                <div class="class-type-card type-hyrox">
-                    <div class="class-type-icon"><i class="fa-solid fa-person-running"></i></div>
-                    <h3>Hyrox</h3>
-                    <p>Focused on getting you race day ready. A blend of running and functional fitness stations designed to prepare you for Hyrox competition or just push your endurance to the next level.</p>
-                </div>
-            </div>
 
-            <!-- Philosophy Callout -->
-            <div class="callout-block">
-                <p>"All movement is good movement. We offer different classes because people have different passions — but the mission never changes: sweat together, grow together, and enjoy the process."</p>
-            </div>
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fa-solid fa-calendar-xmark"></i></div>
+                    <h3>No Off-Season</h3>
+                    <p>You eat the same way every day of the year and expect different results. Without intentional phases, your body has no reason to change.</p>
+                </div>
 
-            <div style="text-align: center; margin-top: 4rem; display: flex; gap: 1.5rem; justify-content: center; flex-wrap: wrap;">
-                <a href="schedule.html" class="btn-secondary">View Class Schedule</a>
-                <a href="#" onclick="openLeadModal(); return false;" class="btn-primary">Book Free Consultation</a>
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fa-solid fa-brain"></i></div>
+                    <h3>Willpower Over System</h3>
+                    <p>You rely on motivation instead of structure. When life gets busy, the plan falls apart. A system runs whether you feel like it or not.</p>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- ========== PERSONAL TRAINING ========== -->
-    <section id="personal-training" class="section section-alt">
+    <!-- The Solution Section -->
+    <section class="section section-alt">
         <div class="section-container">
             <div class="section-header">
-                <div class="section-subtitle">1-on-1 Coaching</div>
-                <h2 class="section-title">Personal Training</h2>
+                <div class="section-subtitle">The Solution</div>
+                <h2 class="section-title">Nutrition Periodization</h2>
+                <p class="section-description">Just like smart training programs cycle through different intensities, your nutrition should too. The 4-Phase Blueprint aligns your eating with intentional seasons — so your metabolism stays healthy, you make real progress, and you build a sustainable lifestyle.</p>
             </div>
 
-            <div class="content-block">
-                <p>Personal training at Black Iron Athletics is dedicated 1-on-1 time with a certified coach who designs everything around YOU. Every session, every rep, every program detail is built specifically for your body, your goals, and your timeline. Your programs are customized, progressive, and data-driven so you always know where you stand and exactly what comes next.</p>
-            </div>
-
-            <div class="feature-grid">
-                <div class="feature-card-centered type-pt" style="background: var(--black);">
-                    <div class="feature-icon"><i class="fa-solid fa-clipboard-list"></i></div>
-                    <h3>Custom Programming</h3>
-                    <p>Every program is built specifically for your goals -- no cookie-cutter templates.</p>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fa-solid fa-arrows-rotate"></i></div>
+                    <h3>Healthy Metabolism</h3>
+                    <p>By limiting your cut to 3 months and following it with maintenance and building phases, you keep your metabolism responsive and avoid the diet damage that comes from chronic restriction.</p>
                 </div>
 
-                <div class="feature-card-centered type-pt" style="background: var(--black);">
-                    <div class="feature-icon"><i class="fa-solid fa-user-shield"></i></div>
-                    <h3>1-on-1 Coaching</h3>
-                    <p>Undivided attention every session, focused entirely on you.</p>
-                </div>
-
-                <div class="feature-card-centered type-pt" style="background: var(--black);">
+                <div class="feature-card">
                     <div class="feature-icon"><i class="fa-solid fa-bullseye"></i></div>
-                    <h3>Form &amp; Technique</h3>
-                    <p>Detailed movement correction so you move better and lift safer.</p>
+                    <h3>Focused Progress</h3>
+                    <p>Building muscle requires a surplus. Losing fat requires a deficit. Dedicated phases let you focus your body's resources on one goal at a time instead of spinning your wheels.</p>
                 </div>
-            </div>
 
-            <div style="text-align: center; margin-top: 4rem;">
-                <a href="#" onclick="openLeadModal(); return false;" class="btn-primary">Book Free Consultation</a>
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fa-solid fa-infinity"></i></div>
+                    <h3>Sustainable For Life</h3>
+                    <p>Knowing your cut has an end date makes it manageable. Knowing a building phase is coming gives you something to look forward to. This isn't a diet — it's a system you can run for decades.</p>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- ========== NUTRITION COACHING ========== -->
-    <section id="nutrition-coaching" class="section">
+    <!-- The 4-Phase Calendar Section -->
+    <section class="section">
         <div class="section-container">
             <div class="section-header">
-                <div class="section-subtitle">Fuel Your Results</div>
-                <h2 class="section-title">Nutrition Coaching</h2>
+                <div class="section-subtitle">The System</div>
+                <h2 class="section-title">Your Year, Mapped Out</h2>
+                <p class="section-description">Four intentional phases. Twelve months of purpose. Every phase sets up the next.</p>
             </div>
 
-            <div class="content-block">
-                <p>Nutrition coaching at Black Iron Athletics is a sustainable, personalized approach to fueling your body the right way. You'll work 1-on-1 with a dedicated coach who builds a nutrition strategy designed specifically for you -- whether that means tracking macros, intuitive eating, or something in between. No guilt, no gimmicks, just a clear plan and real results that last.</p>
-            </div>
-
-            <div class="feature-grid">
-                <div class="feature-card-centered type-nutrition">
-                    <div class="feature-icon"><i class="fa-solid fa-apple-whole"></i></div>
-                    <h3>Personalized Meal Planning</h3>
-                    <p>Custom nutrition plans built around your lifestyle and food preferences.</p>
+            <div class="phase-grid">
+                <div class="phase-card" style="border-top: 4px solid #2E86C1;">
+                    <div class="phase-label" style="color: #2E86C1;">PHASE 1</div>
+                    <h3 class="phase-name">Maintain</h3>
+                    <div class="phase-dates">Jan 1 – Mar 31</div>
+                    <p class="phase-description">Reset and stabilize after the holidays. Rebuild consistency, lock in tracking habits, and prepare your body for the work ahead.</p>
+                    <div class="phase-setting">Calculator Setting: "Maintain"</div>
                 </div>
 
-                <div class="feature-card-centered type-nutrition">
-                    <div class="feature-icon"><i class="fa-solid fa-clipboard-list"></i></div>
-                    <h3>1-on-1 Coaching</h3>
-                    <p>Regular check-ins to review progress, make adjustments, and keep you on track.</p>
+                <div class="phase-card" style="border-top: 4px solid #ff0003;">
+                    <div class="phase-label" style="color: #ff0003;">PHASE 2</div>
+                    <h3 class="phase-name">Cut</h3>
+                    <div class="phase-dates">Apr 1 – Jun 30</div>
+                    <p class="phase-description">Reduce body fat while preserving muscle. Enter summer looking and feeling your best with a strategic, time-bound deficit.</p>
+                    <div class="phase-setting">Calculator Setting: "Lose Fat"</div>
                 </div>
 
-                <div class="feature-card-centered type-nutrition">
-                    <div class="feature-icon"><i class="fa-solid fa-seedling"></i></div>
-                    <h3>Habit-Based Approach</h3>
-                    <p>Sustainable habits that stick -- not crash diets that burn out.</p>
+                <div class="phase-card" style="border-top: 4px solid #2E86C1;">
+                    <div class="phase-label" style="color: #2E86C1;">PHASE 3</div>
+                    <h3 class="phase-name">Maintain</h3>
+                    <div class="phase-dates">Jul 1 – Sep 30</div>
+                    <p class="phase-description">Lock in your new body composition. Reverse diet back to maintenance, recover your metabolism, and enjoy summer at your leanest.</p>
+                    <div class="phase-setting">Calculator Setting: "Maintain"</div>
                 </div>
-            </div>
 
-            <div style="text-align: center; margin-top: 4rem; display: flex; justify-content: center; gap: 1.5rem; flex-wrap: wrap;">
-                <a href="#" onclick="openLeadModal(); return false;" class="btn-primary">Book Free Consultation</a>
-                <a href="macro-calculator.html" class="btn-secondary">Free Macro Calculator</a>
+                <div class="phase-card" style="border-top: 4px solid #27AE60;">
+                    <div class="phase-label" style="color: #27AE60;">PHASE 4</div>
+                    <h3 class="phase-name">Build</h3>
+                    <div class="phase-dates">Oct 1 – Dec 31</div>
+                    <p class="phase-description">Invest in next year's results. Fuel muscle growth in a controlled surplus. Holiday meals work for you, not against you.</p>
+                    <div class="phase-setting">Calculator Setting: "Build Muscle"</div>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- ========== 24/7 OPEN GYM ========== -->
-    <section id="open-gym" class="section section-alt">
+    <!-- What You Get Section -->
+    <section class="section section-alt">
         <div class="section-container">
             <div class="section-header">
-                <div class="section-subtitle">Train on Your Schedule</div>
-                <h2 class="section-title">24/7 Open Gym</h2>
+                <div class="section-subtitle">What's Inside</div>
+                <h2 class="section-title">Everything You Need</h2>
+                <p class="section-description">The Blueprint gives you the complete system — not just what to eat, but when, why, and how to transition between phases.</p>
             </div>
 
-            <div class="content-block">
-                <p>Open Gym gives you access to the Black Iron Athletics facility between classes and after hours — 24 hours a day, 7 days a week. It's the ultimate flexibility for athletes who want to train on their own schedule. Entry is simple and secure with key fob access, and the facility is climate-controlled and well-maintained. You can also follow our structured programming at your own pace.</p>
-            </div>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fa-solid fa-map"></i></div>
+                    <h3>4 Complete Phase Guides</h3>
+                    <p>Detailed breakdowns for Maintain, Cut, Maintain, and Build — with week-by-week expectations, transition checklists, and the rules that make each phase work.</p>
+                </div>
 
-            <div class="class-types-grid">
-                <div class="class-type-card" style="background: var(--black);">
-                    <div class="class-type-icon"><i class="fa-solid fa-clock"></i></div>
-                    <h3>24/7 Access</h3>
-                    <p>Train between classes and after hours — the gym is always open for you.</p>
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fa-solid fa-calculator"></i></div>
+                    <h3>Macro Calculator Integration</h3>
+                    <p>Your existing macro calculator generates your exact numbers for every phase. Run it 3 times and you have your entire year mapped out.</p>
                 </div>
-                <div class="class-type-card" style="background: var(--black);">
-                    <div class="class-type-icon"><i class="fa-solid fa-dumbbell"></i></div>
-                    <h3>Full Equipment Access</h3>
-                    <p>Barbells, dumbbells, rigs, cardio machines, and more.</p>
-                </div>
-                <div class="class-type-card" style="background: var(--black);">
-                    <div class="class-type-icon"><i class="fa-solid fa-clipboard-list"></i></div>
-                    <h3>Access to Programming</h3>
-                    <p>Follow expert-designed workouts at your own pace.</p>
-                </div>
-            </div>
 
-            <div style="text-align: center; margin-top: 4rem;">
-                <a href="#" onclick="openLeadModal(); return false;" class="btn-primary">Book Free Consultation</a>
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fa-solid fa-flask"></i></div>
+                    <h3>Supplement Protocols</h3>
+                    <p>Phase-specific Thorne supplement stacks — what to take, when, and why. NSF Certified for Sport products with direct links.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fa-solid fa-droplet"></i></div>
+                    <h3>Hydration Guide</h3>
+                    <p>Baseline hydration targets, training-day adjustments, electrolyte guidance, and phase-specific considerations.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fa-solid fa-road"></i></div>
+                    <h3>The Decade Roadmap</h3>
+                    <p>A Year 1 through Year 10 progression framework that turns this from a one-time plan into a lifelong system.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fa-solid fa-clipboard-check"></i></div>
+                    <h3>Phase Transition Checklists</h3>
+                    <p>Step-by-step checklists at every transition point so you never have to guess when or how to switch phases.</p>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- ========== FINAL CTA ========== -->
+    <!-- Powered By Section -->
+    <section class="section">
+        <div class="section-container">
+            <div class="section-header">
+                <div class="section-subtitle">Powered By</div>
+                <h2 class="section-title">Your Macro Calculator</h2>
+                <p class="section-description">Everything in this Blueprint is powered by the Black Iron Macro Calculator. Run it three times — one for each goal — and you have your numbers for the entire year.</p>
+            </div>
+            <div style="text-align: center;">
+                <a href="macro-calculator.html" class="btn-outline">Try the Free Calculator &rarr;</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section id="pricing" class="section section-alt">
+        <div class="section-container">
+            <div class="section-header">
+                <div class="section-subtitle">Get Started</div>
+                <h2 class="section-title">Founding Member Pricing</h2>
+            </div>
+
+            <div class="pricing-card">
+                <div class="pricing-badge">Founding Member</div>
+                <div class="pricing-amount">$99</div>
+                <div class="pricing-period">per year</div>
+                <ul class="pricing-features">
+                    <li><i class="fa-solid fa-check"></i> 4 complete phase guides with week-by-week breakdowns</li>
+                    <li><i class="fa-solid fa-check"></i> Macro calculator integration for every phase</li>
+                    <li><i class="fa-solid fa-check"></i> Phase transition checklists</li>
+                    <li><i class="fa-solid fa-check"></i> Thorne supplement protocols by phase</li>
+                    <li><i class="fa-solid fa-check"></i> Hydration guide</li>
+                    <li><i class="fa-solid fa-check"></i> The Decade Roadmap (Years 1-10)</li>
+                    <li><i class="fa-solid fa-check"></i> All future updates included</li>
+                </ul>
+                <a href="#" class="btn-primary btn-full" data-ms-modal="signup" onclick="return false;">Get the Blueprint</a>
+                <p class="pricing-note">Price increases to $149 after the first 50 members.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section id="faqs" class="section">
+        <div class="section-container">
+            <div class="section-header">
+                <div class="section-subtitle">Questions?</div>
+                <h2 class="section-title">Blueprint FAQs</h2>
+            </div>
+
+            <div class="faq-container">
+                <div class="faq-item">
+                    <h3 class="faq-question">Do I need to be a Black Iron Athletics member?</h3>
+                    <p class="faq-answer">No. The Blueprint works for anyone, anywhere. It's built around the free Black Iron Macro Calculator, which is available online to everyone. If you're a local BIA member, you'll get even more value from InBody scans and in-person coaching, but the system works independently.</p>
+                </div>
+
+                <div class="faq-item">
+                    <h3 class="faq-question">Do I need to track macros?</h3>
+                    <p class="faq-answer">We strongly recommend it, especially in Year 1. Tracking gives you the data to make each phase work. Most people need 2-3 years of consistent tracking before they can intuitively eat at their targets. The Decade Roadmap covers this progression.</p>
+                </div>
+
+                <div class="faq-item">
+                    <h3 class="faq-question">What if I'm starting mid-year?</h3>
+                    <p class="faq-answer">Jump into whatever phase aligns with the current calendar quarter. The system is designed as an annual cycle — you'll get the full experience your first January.</p>
+                </div>
+
+                <div class="faq-item">
+                    <h3 class="faq-question">Is this a meal plan?</h3>
+                    <p class="faq-answer">No. The Blueprint gives you macro targets and a structured framework for each phase. You choose what to eat. This is about flexibility and sustainability, not rigid meal plans that fall apart after two weeks.</p>
+                </div>
+
+                <div class="faq-item">
+                    <h3 class="faq-question">What if I have a medical condition?</h3>
+                    <p class="faq-answer">This Blueprint provides general nutrition guidance. It is not medical advice. If you have diabetes, thyroid conditions, eating disorders, or any other medical concern, consult your doctor before starting any nutrition program.</p>
+                </div>
+
+                <div class="faq-item">
+                    <h3 class="faq-question">Can I cancel anytime?</h3>
+                    <p class="faq-answer">Yes. Your subscription renews annually. You can cancel anytime before renewal and keep access through the end of your paid year.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Final CTA Section -->
     <section class="cta-section">
         <div style="max-width: 100%; margin: 0 auto; padding: 0 2rem;">
-            <h2 class="cta-title">Ready to Get Started?</h2>
-            <p class="cta-subtitle">Book your free consultation and find the program that fits your goals.</p>
-            <a href="#" onclick="openLeadModal(); return false;" class="btn-primary">Book Free Consultation</a>
+            <h2 class="cta-title">Phase 2: Cut Starts April 1</h2>
+            <p class="cta-subtitle">The cutting phase is the highest-motivation moment of the year. Don't start without a system.</p>
+            <a href="#pricing" class="btn-primary">Get the Blueprint &mdash; $99/year</a>
+            <p class="cta-note">Founding Member pricing. Limited spots.</p>
         </div>
     </section>
 
@@ -1232,79 +1268,77 @@
         </div>
     </footer>
 
-    <!-- Schema Markup: Service -->
+    <!-- Schema Markup -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
-      "@type": "Service",
-      "name": "Fitness Programs",
-      "description": "Explore all programs at Black Iron Athletics in Frisco, TX — group classes, personal training, nutrition coaching, and 24/7 open gym access.",
-      "url": "https://www.blackironathletics.com/programs.html",
-      "provider": {
-        "@type": "GymAndHealthClub",
-        "name": "Black Iron Athletics",
-        "telephone": "(972) 785-7036",
-        "address": {
-          "@type": "PostalAddress",
-          "streetAddress": "279 Main St #122",
-          "addressLocality": "Frisco",
-          "addressRegion": "TX",
-          "postalCode": "75036",
-          "addressCountry": "US"
-        },
-        "url": "https://www.blackironathletics.com",
-        "sameAs": [
-          "https://www.instagram.com/blackiron_athletics/",
-          "https://www.youtube.com/channel/UCF1XjUXEs81OWY70chem6vA",
-          "https://www.facebook.com/BlackIronAthletics/"
-        ]
-      },
-      "hasOfferCatalog": {
-        "@type": "OfferCatalog",
-        "name": "Fitness Programs",
-        "itemListElement": [
-          {
-            "@type": "Offer",
-            "itemOffered": {
-              "@type": "Service",
-              "name": "Group Classes",
-              "description": "Coach-led group fitness classes including Strength & Conditioning, Weightlifting, and Hyrox."
-            }
-          },
-          {
-            "@type": "Offer",
-            "itemOffered": {
-              "@type": "Service",
-              "name": "Personal Training",
-              "description": "1-on-1 personal training with custom programming, form correction, and accountability."
-            }
-          },
-          {
-            "@type": "Offer",
-            "itemOffered": {
-              "@type": "Service",
-              "name": "Nutrition Coaching",
-              "description": "Personalized nutrition coaching with custom meal plans, coaching calls, and habit-based approach."
-            }
-          },
-          {
-            "@type": "Offer",
-            "itemOffered": {
-              "@type": "Service",
-              "name": "24/7 Open Gym",
-              "description": "Round-the-clock gym access with full equipment and structured programming."
-            }
-          }
-        ]
-      },
-      "areaServed": {
-        "@type": "City",
-        "name": "Frisco",
-        "containedInPlace": {
-          "@type": "State",
-          "name": "Texas"
-        }
+      "@type": "Product",
+      "name": "The 4-Phase Nutrition Blueprint",
+      "description": "A year-round nutrition periodization system with 4 phases — Maintain, Cut, Maintain, Build. Includes phase guides, macro calculator integration, supplement protocols, and The Decade Roadmap.",
+      "brand": { "@type": "Organization", "name": "Black Iron Athletics" },
+      "offers": {
+        "@type": "Offer",
+        "price": "99",
+        "priceCurrency": "USD",
+        "availability": "https://schema.org/InStock",
+        "url": "https://www.blackironathletics.com/blueprint.html"
       }
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Do I need to be a Black Iron Athletics member?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No. The Blueprint works for anyone, anywhere. It's built around the free Black Iron Macro Calculator, which is available online to everyone. If you're a local BIA member, you'll get even more value from InBody scans and in-person coaching, but the system works independently."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Do I need to track macros?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "We strongly recommend it, especially in Year 1. Tracking gives you the data to make each phase work. Most people need 2-3 years of consistent tracking before they can intuitively eat at their targets. The Decade Roadmap covers this progression."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What if I'm starting mid-year?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Jump into whatever phase aligns with the current calendar quarter. The system is designed as an annual cycle — you'll get the full experience your first January."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Is this a meal plan?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No. The Blueprint gives you macro targets and a structured framework for each phase. You choose what to eat. This is about flexibility and sustainability, not rigid meal plans that fall apart after two weeks."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What if I have a medical condition?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "This Blueprint provides general nutrition guidance. It is not medical advice. If you have diabetes, thyroid conditions, eating disorders, or any other medical concern, consult your doctor before starting any nutrition program."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can I cancel anytime?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. Your subscription renews annually. You can cancel anytime before renewal and keep access through the end of your paid year."
+          }
+        }
+      ]
     }
     </script>
 
@@ -1411,6 +1445,7 @@
         ></iframe>
     </div>
 </div>
+
 <div class="modal-overlay" id="subscribeModal">
     <div class="modal-container">
         <button class="modal-close" onclick="closeSubscribeModal()">&times;</button>
@@ -1435,6 +1470,7 @@
 </div>
 
 <script>
+    // ===== MODALS =====
     function openLeadModal() {
         var modal = document.getElementById('leadModal');
         var iframe = modal.querySelector('iframe');
@@ -1467,6 +1503,8 @@
     document.getElementById('cancelModal').addEventListener('click', function(e) {
         if (e.target === this) { closeCancelModal(); }
     });
+
+    // ===== SUBSCRIBE MODAL =====
     function openSubscribeModal() {
         var modal = document.getElementById('subscribeModal');
         var iframe = modal.querySelector('iframe');
@@ -1482,7 +1520,7 @@
         if (e.target === this) { closeSubscribeModal(); }
     });
 
-    // Hamburger Menu
+    // ===== MOBILE NAV =====
     function toggleMobileNav() {
         document.getElementById('mobileNav').classList.toggle('active');
         document.querySelector('.hamburger').classList.toggle('active');
@@ -1493,6 +1531,7 @@
         document.querySelector('.hamburger').classList.remove('active');
         document.body.style.overflow = '';
     }
+
 </script>
 
 <script src="https://link.msgsndr.com/js/form_embed.js" type="text/javascript" defer></script>
