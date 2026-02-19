@@ -659,6 +659,11 @@
             transform: translateY(-5px);
         }
 
+        .adjustment-card.maintain:hover {
+            border-color: var(--phase-maintain);
+            box-shadow: 0 10px 30px rgba(46, 134, 193, 0.2);
+        }
+
         .adjustment-card.cutting:hover {
             border-color: var(--phase-cut);
             box-shadow: 0 10px 30px rgba(255, 0, 3, 0.2);
@@ -1346,10 +1351,20 @@
             <div class="section-header">
                 <div class="section-subtitle">Phase-Specific Changes</div>
                 <h2 class="section-title">Supplement Adjustments</h2>
-                <p class="section-description">Your foundation stack stays the same year-round. Here's what changes during the cutting and building phases.</p>
+                <p class="section-description">Your foundation stack stays the same year-round. Here's how each phase adjusts around it.</p>
             </div>
 
             <div class="adjustment-grid">
+                <div class="adjustment-card maintain" style="border-top: 4px solid var(--phase-maintain);">
+                    <div class="adjustment-label" style="color: var(--phase-maintain);">Maintain Phases (Jan-Mar &amp; Jul-Sep)</div>
+                    <h3>Foundation Only</h3>
+                    <ul class="adjustment-list">
+                        <li><i class="fa-solid fa-circle-check continue"></i> <strong>FOLLOW</strong> the Year-Round Foundation Stack exactly as listed above -- no additions, no removals</li>
+                        <li><i class="fa-solid fa-circle-check continue"></i> <strong>CONTINUE</strong> Creatine at <strong>5g daily</strong> -- standard maintenance dose to support strength and recovery</li>
+                        <li><i class="fa-solid fa-circle-check continue"></i> <strong>CONTINUE</strong> Whey Protein, Multivitamin, and BCAAs as directed</li>
+                    </ul>
+                </div>
+
                 <div class="adjustment-card cutting" style="border-top: 4px solid var(--phase-cut);">
                     <div class="adjustment-label" style="color: var(--phase-cut);">Cutting Phase (Apr-Jun)</div>
                     <h3>Cutting Adjustments</h3>
