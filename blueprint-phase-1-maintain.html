@@ -647,43 +647,42 @@
             color: var(--white);
         }
 
-        /* ===== BOTTOM NAV ===== */
-        .bottom-nav {
+        /* ===== WHAT'S NEXT ===== */
+        .phase-links {
             display: flex;
-            justify-content: flex-end;
-            margin-top: 3rem;
-            max-width: 800px;
-            margin-left: auto;
-            margin-right: auto;
+            gap: 2rem;
+            max-width: 900px;
+            margin: 0 auto;
         }
 
-        .bottom-nav-link {
+        .phase-link-card {
+            flex: 1;
             display: flex;
             align-items: center;
-            gap: 1rem;
+            gap: 1.5rem;
             background: var(--dark-gray);
             border: 2px solid var(--medium-gray);
-            padding: 1.5rem 2rem;
+            border-top: 4px solid var(--medium-gray);
+            padding: 2rem;
             text-decoration: none;
             transition: all 0.3s ease;
-            max-width: 350px;
         }
 
-        .section-alt .bottom-nav-link {
+        .section-alt .phase-link-card {
             background: var(--black);
         }
 
-        .bottom-nav-link:hover {
+        .phase-link-card.next {
+            border-top-color: var(--phase-cut);
+        }
+
+        .phase-link-card.next:hover {
             border-color: var(--phase-cut);
-            transform: translateY(-3px);
+            transform: translateY(-5px);
             box-shadow: 0 10px 30px rgba(255, 0, 3, 0.15);
         }
 
-        .bottom-nav-text {
-            text-align: left;
-        }
-
-        .bottom-nav-label {
+        .phase-link-label {
             font-size: 0.75rem;
             font-weight: 700;
             text-transform: uppercase;
@@ -692,23 +691,27 @@
             margin-bottom: 0.25rem;
         }
 
-        .bottom-nav-title {
-            font-size: 1.1rem;
+        .phase-link-name {
+            font-size: 1.5rem;
             font-weight: 900;
             text-transform: uppercase;
             color: var(--white);
+            margin-bottom: 0.25rem;
         }
 
-        .bottom-nav-dates {
+        .phase-link-dates {
             font-size: 0.85rem;
             color: var(--light-gray);
             font-weight: 600;
         }
 
-        .bottom-nav-arrow {
-            color: var(--phase-cut);
+        .phase-link-arrow {
             font-size: 1.5rem;
             flex-shrink: 0;
+        }
+
+        .phase-link-card.next .phase-link-arrow {
+            color: var(--phase-cut);
         }
 
         /* ===== CTA SECTION ===== */
@@ -985,9 +988,8 @@
                 white-space: normal;
             }
 
-            .bottom-nav-link {
-                max-width: 100%;
-                width: 100%;
+            .phase-links {
+                flex-direction: column;
             }
 
             .modal-container { max-width: calc(100% - 2rem); }
@@ -1196,17 +1198,21 @@
         </div>
     </section>
 
-    <!-- Next Phase Navigation -->
+    <!-- What's Next -->
     <section class="section">
         <div class="section-container">
-            <div class="bottom-nav">
-                <a href="blueprint-phase-2-cut.html" class="bottom-nav-link">
-                    <div class="bottom-nav-text">
-                        <div class="bottom-nav-label">Next Phase</div>
-                        <div class="bottom-nav-title" style="color: var(--phase-cut);">Cut</div>
-                        <div class="bottom-nav-dates">April &ndash; June</div>
+            <div class="section-header">
+                <div class="section-subtitle">Continue Your Journey</div>
+                <h2 class="section-title">What's Next</h2>
+            </div>
+            <div class="phase-links">
+                <a href="blueprint-phase-2-cut.html" class="phase-link-card next">
+                    <div class="phase-link-content">
+                        <div class="phase-link-label">Next Phase</div>
+                        <div class="phase-link-name" style="color: var(--phase-cut);">Phase 2: Cut</div>
+                        <div class="phase-link-dates">April &ndash; June</div>
                     </div>
-                    <div class="bottom-nav-arrow"><i class="fa-solid fa-arrow-right"></i></div>
+                    <div class="phase-link-arrow"><i class="fa-solid fa-arrow-right"></i></div>
                 </a>
             </div>
         </div>

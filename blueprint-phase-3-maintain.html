@@ -692,31 +692,85 @@
             line-height: 1.6;
         }
 
-        /* ===== PHASE NAV (Bottom) ===== */
-        .phase-nav {
+        /* ===== WHAT'S NEXT ===== */
+        .phase-links {
             display: flex;
-            justify-content: space-between;
-            align-items: center;
-            max-width: 800px;
+            gap: 2rem;
+            max-width: 900px;
             margin: 0 auto;
-            padding-top: 2rem;
         }
 
-        .phase-nav a {
-            color: var(--yellow);
+        .phase-link-card {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            background: var(--dark-gray);
+            border: 2px solid var(--medium-gray);
+            border-top: 4px solid var(--medium-gray);
+            padding: 2rem;
             text-decoration: none;
-            font-weight: 900;
-            font-size: 1rem;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
             transition: all 0.3s ease;
-            padding: 1rem 2rem;
-            border: 2px solid var(--yellow);
         }
 
-        .phase-nav a:hover {
-            background: var(--yellow);
-            color: var(--black);
+        .section-alt .phase-link-card {
+            background: var(--black);
+        }
+
+        .phase-link-card.prev {
+            border-top-color: var(--phase-cut);
+        }
+
+        .phase-link-card.prev:hover {
+            border-color: var(--phase-cut);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(255, 0, 3, 0.15);
+        }
+
+        .phase-link-card.next {
+            border-top-color: var(--phase-build);
+        }
+
+        .phase-link-card.next:hover {
+            border-color: var(--phase-build);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(39, 174, 96, 0.15);
+        }
+
+        .phase-link-label {
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--light-gray);
+            margin-bottom: 0.25rem;
+        }
+
+        .phase-link-name {
+            font-size: 1.5rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            color: var(--white);
+            margin-bottom: 0.25rem;
+        }
+
+        .phase-link-dates {
+            font-size: 0.85rem;
+            color: var(--light-gray);
+            font-weight: 600;
+        }
+
+        .phase-link-arrow {
+            font-size: 1.5rem;
+            flex-shrink: 0;
+        }
+
+        .phase-link-card.prev .phase-link-arrow {
+            color: var(--phase-cut);
+        }
+
+        .phase-link-card.next .phase-link-arrow {
+            color: var(--phase-build);
         }
 
         /* ===== MAP ===== */
@@ -970,15 +1024,8 @@
                 white-space: normal;
             }
 
-            .phase-nav {
+            .phase-links {
                 flex-direction: column;
-                gap: 1rem;
-            }
-
-            .phase-nav a {
-                width: 100%;
-                text-align: center;
-                font-size: 0.85rem;
             }
 
             .checklist-container {
@@ -1261,12 +1308,30 @@
         </div>
     </section>
 
-    <!-- Bottom Phase Navigation -->
+    <!-- What's Next -->
     <section class="section" data-ms-content="members">
         <div class="section-container">
-            <div class="phase-nav">
-                <a href="blueprint-phase-2-cut.html">&larr; Phase 2: Cut</a>
-                <a href="blueprint-phase-4-build.html">Phase 4: Build &rarr;</a>
+            <div class="section-header">
+                <div class="section-subtitle">Continue Your Journey</div>
+                <h2 class="section-title">What's Next</h2>
+            </div>
+            <div class="phase-links">
+                <a href="blueprint-phase-2-cut.html" class="phase-link-card prev">
+                    <div class="phase-link-arrow"><i class="fa-solid fa-arrow-left"></i></div>
+                    <div class="phase-link-content">
+                        <div class="phase-link-label">Previous Phase</div>
+                        <div class="phase-link-name" style="color: var(--phase-cut);">Phase 2: Cut</div>
+                        <div class="phase-link-dates">April &ndash; June</div>
+                    </div>
+                </a>
+                <a href="blueprint-phase-4-build.html" class="phase-link-card next">
+                    <div class="phase-link-content">
+                        <div class="phase-link-label">Next Phase</div>
+                        <div class="phase-link-name" style="color: var(--phase-build);">Phase 4: Build</div>
+                        <div class="phase-link-dates">October &ndash; December</div>
+                    </div>
+                    <div class="phase-link-arrow"><i class="fa-solid fa-arrow-right"></i></div>
+                </a>
             </div>
         </div>
     </section>
