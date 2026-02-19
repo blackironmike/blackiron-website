@@ -501,22 +501,22 @@
             color: var(--white);
         }
 
-        /* ===== YOUR NUMBERS ===== */
+        /* ===== NUMBERS CARD ===== */
         .numbers-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 1.5rem;
-            margin: 2rem 0;
-            max-width: 800px;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+            max-width: 900px;
             margin-left: auto;
             margin-right: auto;
         }
 
         .number-card {
             background: var(--dark-gray);
+            padding: 2.5rem 2rem;
             border: 2px solid var(--medium-gray);
-            padding: 1.5rem;
-            text-align: center;
+            border-top: 4px solid var(--phase-maintain);
             transition: all 0.3s ease;
         }
 
@@ -526,21 +526,21 @@
 
         .number-card:hover {
             border-color: var(--phase-maintain);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(46, 134, 193, 0.15);
         }
 
-        .number-card h4 {
-            font-size: 0.8rem;
-            font-weight: 700;
+        .number-card h3 {
+            font-size: 1.1rem;
+            margin-bottom: 0.75rem;
             text-transform: uppercase;
-            letter-spacing: 1px;
             color: var(--phase-maintain);
-            margin-bottom: 0.5rem;
         }
 
         .number-card p {
             color: var(--light-gray);
-            font-size: 0.9rem;
-            line-height: 1.6;
+            line-height: 1.8;
+            font-size: 0.95rem;
         }
 
         /* ===== TIMELINE CARDS ===== */
@@ -953,7 +953,8 @@
                 grid-template-columns: 1fr;
             }
 
-            .timeline-grid {
+            .timeline-grid,
+            .numbers-grid {
                 grid-template-columns: 1fr;
             }
 
@@ -1103,32 +1104,30 @@
         </div>
     </section>
 
-    <!-- Your Numbers -->
+    <!-- Your Numbers Section -->
     <section class="section section-alt">
         <div class="section-container">
             <div class="section-header">
-                <div class="section-subtitle">Calculator Setting: "Maintain"</div>
-                <h2 class="section-title">Your Numbers</h2>
+                <div class="section-subtitle">Your Numbers</div>
+                <h2 class="section-title">Set Your Calculator to "Maintain"</h2>
                 <p class="section-description">Open the Black Iron Macro Calculator, enter your current stats, and set the goal to "Maintain." Your daily targets for this phase are below.</p>
             </div>
-
             <div class="numbers-grid">
                 <div class="number-card">
-                    <h4>Calories</h4>
-                    <p>Your TDEE &mdash; this is your maintenance number, the calories your body burns in a day.</p>
+                    <h3>Calories</h3>
+                    <p>Your TDEE &mdash; this is your maintenance number, the calories your body burns in a day. No surplus, no deficit. Just fueling what you do.</p>
                 </div>
                 <div class="number-card">
-                    <h4>Protein</h4>
-                    <p>Hit this number every single day. This is non-negotiable in every phase.</p>
+                    <h3>Protein</h3>
+                    <p>Hit this number every single day. This is non-negotiable in every phase. Protein protects your muscle and keeps you full.</p>
                 </div>
                 <div class="number-card">
-                    <h4>Carbs & Fat</h4>
+                    <h3>Carbs &amp; Fat</h3>
                     <p>Follow the calculator's split. These can flex slightly day to day as long as total calories and protein stay on target.</p>
                 </div>
             </div>
-
             <div style="text-align: center; margin-top: 3rem;">
-                <a href="macro-calculator.html" target="_blank" class="btn-outline">Open the Macro Calculator <i class="fa-solid fa-arrow-up-right-from-square" style="margin-left: 0.5rem; font-size: 0.85rem;"></i></a>
+                <a href="macro-calculator.html" class="btn-outline">Open the Macro Calculator &rarr;</a>
             </div>
         </div>
     </section>

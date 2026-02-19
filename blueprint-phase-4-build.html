@@ -607,38 +607,46 @@
             font-size: 0.95rem;
         }
 
-        /* ===== MACRO TARGETS ===== */
-        .macro-targets {
+        /* ===== NUMBERS CARD ===== */
+        .numbers-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 1.5rem;
-            margin: 2rem 0;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
-        .macro-target {
+        .number-card {
             background: var(--dark-gray);
+            padding: 2.5rem 2rem;
             border: 2px solid var(--medium-gray);
-            padding: 1.5rem;
-            text-align: center;
+            border-top: 4px solid var(--phase-build);
+            transition: all 0.3s ease;
         }
 
-        .section-alt .macro-target {
+        .section-alt .number-card {
             background: var(--black);
         }
 
-        .macro-target-label {
-            font-size: 0.8rem;
-            font-weight: 700;
-            color: var(--phase-build);
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-bottom: 0.5rem;
+        .number-card:hover {
+            border-color: var(--phase-build);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(39, 174, 96, 0.15);
         }
 
-        .macro-target-value {
+        .number-card h3 {
             font-size: 1.1rem;
-            font-weight: 700;
-            color: var(--white);
+            margin-bottom: 0.75rem;
+            text-transform: uppercase;
+            color: var(--phase-build);
+        }
+
+        .number-card p {
+            color: var(--light-gray);
+            line-height: 1.8;
+            font-size: 0.95rem;
         }
 
         /* ===== CHECKLIST ===== */
@@ -935,8 +943,8 @@
                 grid-template-columns: 1fr;
             }
 
-            .macro-targets {
-                grid-template-columns: 1fr 1fr;
+            .numbers-grid {
+                grid-template-columns: 1fr;
             }
 
             .cta-section { padding: 4rem 1.5rem; }
@@ -973,12 +981,6 @@
             }
 
             .modal-container { max-width: calc(100% - 2rem); }
-        }
-
-        @media (max-width: 480px) {
-            .macro-targets {
-                grid-template-columns: 1fr;
-            }
         }
     </style>
 </head>
@@ -1095,35 +1097,26 @@
     <section class="section section-alt">
         <div class="section-container">
             <div class="section-header">
-                <div class="section-subtitle" style="color: var(--phase-build);">Calculator Setting: "Build Muscle"</div>
-                <h2 class="section-title">Your Numbers</h2>
+                <div class="section-subtitle">Your Numbers</div>
+                <h2 class="section-title">Set Your Calculator to "Build Muscle"</h2>
                 <p class="section-description">Rerun the Black Iron Macro Calculator with your current weight. Set the goal to "Build Muscle."</p>
             </div>
-
-            <div class="macro-targets">
-                <div class="macro-target">
-                    <div class="macro-target-label">Calories</div>
-                    <div class="macro-target-value">Above Your TDEE</div>
+            <div class="numbers-grid">
+                <div class="number-card">
+                    <h3>Calories</h3>
+                    <p>Your daily target will be above your TDEE. The calculator sets a moderate surplus &mdash; enough to support muscle growth without excessive fat gain.</p>
                 </div>
-                <div class="macro-target">
-                    <div class="macro-target-label">Protein</div>
-                    <div class="macro-target-value">High</div>
+                <div class="number-card">
+                    <h3>Protein</h3>
+                    <p>Stays high &mdash; you need amino acids to build new tissue. <strong style="color: var(--white);">Do not compromise on this number.</strong></p>
                 </div>
-                <div class="macro-target">
-                    <div class="macro-target-label">Carbs</div>
-                    <div class="macro-target-value">Highest of Any Phase</div>
-                </div>
-                <div class="macro-target">
-                    <div class="macro-target-label">Fat</div>
-                    <div class="macro-target-value">Moderate</div>
+                <div class="number-card">
+                    <h3>Carbs &amp; Fat</h3>
+                    <p>Carbs are higher than any other phase &mdash; they fuel intense training and drive the insulin response that supports muscle growth. Fat stays moderate for hormonal health.</p>
                 </div>
             </div>
-
-            <div class="content-block" style="margin-top: 2rem;">
-                <p>The calculator sets a moderate surplus that supports muscle growth without excessive fat gain. Protein stays high -- you need amino acids to build new tissue. Carbs are higher than any other phase because they fuel intense training and drive the insulin response that supports muscle growth. This is when you eat the most carbs all year. Fat stays moderate -- enough for hormonal health and satiety, but carbs take priority in a surplus.</p>
-                <div style="text-align: center; margin-top: 2rem;">
-                    <a href="macro-calculator.html" class="btn-outline">Run the Calculator &rarr;</a>
-                </div>
+            <div style="text-align: center; margin-top: 3rem;">
+                <a href="macro-calculator.html" class="btn-outline">Open the Macro Calculator &rarr;</a>
             </div>
         </div>
     </section>
