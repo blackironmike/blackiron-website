@@ -1,0 +1,2782 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Dashboard | 4-Phase Nutrition Blueprint | Black Iron Athletics</title>
+    <meta name="description" content="Your personal Athlete Dashboard — track macros, weight, body composition, and phase progress through the 4-Phase Nutrition Blueprint.">
+    <meta name="geo.region" content="US-TX">
+    <meta name="geo.placename" content="Frisco">
+    <link rel="canonical" href="https://www.blackironathletics.com/blueprint-dashboard.html">
+    <meta property="og:title" content="My Dashboard | 4-Phase Nutrition Blueprint | Black Iron Athletics">
+    <meta property="og:description" content="Your personal Athlete Dashboard — track macros, weight, body composition, and phase progress.">
+    <meta property="og:url" content="https://www.blackironathletics.com/blueprint-dashboard.html">
+    <meta property="og:image" content="https://www.blackironathletics.com/images/social-share.png">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Black Iron Athletics">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="My Dashboard | 4-Phase Nutrition Blueprint | Black Iron Athletics">
+    <meta name="twitter:description" content="Your personal Athlete Dashboard — track macros, weight, body composition, and phase progress.">
+    <meta name="twitter:image" content="https://www.blackironathletics.com/images/social-share.png">
+    <link rel="icon" type="image/png" href="images/anvil-favicon.png">
+    <link rel="preload" as="image" href="images/hero-blueprint-how-to-use.webp">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;900&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;900&display=swap" rel="stylesheet"></noscript>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"></noscript>
+    <style>@font-face{font-family:"Font Awesome 6 Brands";font-display:swap}@font-face{font-family:"Font Awesome 6 Free";font-display:swap}</style>
+    <!-- MemberSpace -->
+    <script>
+        var MemberSpace = window.MemberSpace || {"subdomain":"blackironathletics"};
+        (function(d){
+            var s = d.createElement("script");
+            s.src = "https://cdn.memberspace.com/scripts/widgets.js";
+            var e = d.getElementsByTagName("script")[0];
+            e.parentNode.insertBefore(s,e);
+        }(document));
+    </script>
+    <style>#ms-tab, .ms-tab { display: none !important; }</style>
+    <!-- Supabase + Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4"></script>
+    <style>
+        /* Force full width - override GHL container */
+        body, html {
+            width: 100% !important;
+            max-width: 100% !important;
+            margin: 0 !important;
+            padding: 0 !important;
+        }
+
+        .container, .hl_page-preview--content {
+            padding: 0 !important;
+            margin: 0 !important;
+            max-width: 100% !important;
+            width: 100% !important;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --black: #000000;
+            --dark-gray: #1a1a1a;
+            --medium-gray: #333333;
+            --light-gray: #cccccc;
+            --white: #ffffff;
+            --yellow: #FFD202;
+            --phase-maintain: #2E86C1;
+            --phase-cut: #ff0003;
+            --phase-build: #27AE60;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 500;
+            background: var(--black);
+            color: var(--white);
+            overflow-x: hidden;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            margin: 0;
+            padding: 0;
+            scroll-behavior: smooth;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 900;
+            line-height: 1.2;
+        }
+
+        /* ===== NAV ===== */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 1.5rem 0;
+            background: var(--black);
+            z-index: 1000;
+            border-bottom: 1px solid var(--medium-gray);
+        }
+
+        .nav-container {
+            max-width: 100%;
+            margin: 0;
+            padding: 0 4rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo { height: 50px; }
+        .logo a { display: block; height: 100%; }
+        .logo img { height: 100%; width: auto; }
+
+        .nav-links {
+            display: flex;
+            gap: 3rem;
+            list-style: none;
+            align-items: center;
+        }
+
+        .nav-links > li { position: relative; }
+
+        .nav-links a {
+            color: var(--white);
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 900;
+            transition: color 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .nav-links > li > a:hover { color: var(--yellow); }
+
+        .submenu {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: rgba(26, 26, 26, 0.95);
+            backdrop-filter: blur(10px);
+            min-width: 240px;
+            padding: 0.5rem 0;
+            border: 1px solid var(--medium-gray);
+            list-style: none;
+        }
+
+        .submenu li { padding: 0; }
+
+        .submenu a {
+            display: block;
+            padding: 1rem 1.5rem;
+            font-size: 0.85rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            transition: all 0.3s ease;
+        }
+
+        .submenu a:hover {
+            background: rgba(255, 210, 2, 0.1);
+            color: var(--yellow);
+            padding-left: 2rem;
+        }
+
+        .nav-links > li:hover .submenu { display: block; }
+
+        .has-submenu > a::after {
+            content: '';
+            display: inline-block;
+            width: 0;
+            height: 0;
+            margin-left: 0.5rem;
+            border-left: 4px solid transparent;
+            border-right: 4px solid transparent;
+            border-top: 5px solid var(--white);
+            transition: all 0.3s ease;
+        }
+
+        .has-submenu:hover > a::after {
+            border-top-color: var(--yellow);
+            transform: translateY(2px);
+        }
+
+        .nav-cta-group {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .cta-btn {
+            background: var(--yellow);
+            color: var(--black);
+            padding: 0.9rem 1.5rem;
+            border-radius: 0;
+            text-decoration: none;
+            font-weight: 900;
+            font-size: 0.85rem;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            border: 2px solid var(--yellow);
+            white-space: nowrap;
+        }
+
+        .cta-btn:hover {
+            background: var(--black);
+            color: var(--yellow);
+        }
+
+        .login-btn {
+            color: var(--yellow);
+            padding: 0.9rem 1.5rem;
+            border-radius: 0;
+            text-decoration: none;
+            font-weight: 900;
+            font-size: 0.85rem;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            border: 2px solid var(--yellow);
+            white-space: nowrap;
+            background: transparent;
+        }
+
+        .login-btn:hover {
+            background: var(--yellow);
+            color: var(--black);
+        }
+
+        /* ===== HERO ===== */
+        .hero {
+            margin-top: 0;
+            padding-top: 80px;
+            min-height: 60vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            background: var(--black);
+        }
+
+        .hero-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.5;
+            z-index: 0;
+        }
+
+        .hero-container {
+            max-width: 100%;
+            width: 100%;
+            margin: 0;
+            padding: 4rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-content { max-width: 800px; }
+
+        .hero-subtitle {
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: var(--yellow);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero-content h1 {
+            font-weight: 900;
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            line-height: 1.1;
+            margin-bottom: 2rem;
+            text-transform: uppercase;
+        }
+
+        .hero-content p {
+            font-size: 1.3rem;
+            color: var(--light-gray);
+            margin-bottom: 3rem;
+            font-weight: 500;
+            line-height: 1.6;
+            max-width: 600px;
+        }
+
+        /* ===== BLUEPRINT SUB-NAV ===== */
+        .blueprint-subnav {
+            background: var(--dark-gray);
+            border-bottom: 1px solid var(--medium-gray);
+            width: 100%;
+            position: relative;
+            z-index: 10;
+        }
+
+        .blueprint-subnav-container {
+            max-width: 100%;
+            margin: 0;
+            padding: 0 4rem;
+            display: flex;
+            align-items: center;
+            gap: 0;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: none;
+        }
+
+        .blueprint-subnav-container::-webkit-scrollbar {
+            display: none;
+        }
+
+        .blueprint-subnav a {
+            color: var(--light-gray);
+            text-decoration: none;
+            font-size: 0.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            padding: 1rem 1.25rem;
+            white-space: nowrap;
+            transition: all 0.3s ease;
+            border-bottom: 2px solid transparent;
+            display: block;
+        }
+
+        .blueprint-subnav a:hover {
+            color: var(--yellow);
+        }
+
+        .blueprint-subnav a.active {
+            color: var(--yellow);
+            border-bottom: 2px solid var(--yellow);
+        }
+
+        /* ===== SECTIONS ===== */
+        .section {
+            padding: 6rem 0;
+            background: var(--black);
+            width: 100%;
+        }
+
+        .section-alt { background: var(--dark-gray); }
+
+        .section-container {
+            max-width: 100%;
+            margin: 0;
+            padding: 0 4rem;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-subtitle {
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: var(--yellow);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 1rem;
+        }
+
+        .section-title {
+            font-weight: 900;
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            margin-bottom: 1.5rem;
+            text-transform: uppercase;
+        }
+
+        .section-description {
+            font-size: 1.2rem;
+            color: var(--light-gray);
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .btn-primary {
+            background: var(--yellow);
+            color: var(--black);
+            padding: 1.2rem 3rem;
+            text-decoration: none;
+            font-weight: 900;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border: 2px solid var(--yellow);
+            border-radius: 0;
+            display: inline-block;
+            cursor: pointer;
+        }
+
+        .btn-primary:hover {
+            background: var(--black);
+            color: var(--yellow);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--yellow);
+            padding: 1.2rem 3rem;
+            text-decoration: none;
+            font-weight: 900;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border: 2px solid var(--yellow);
+            border-radius: 0;
+            display: inline-block;
+            cursor: pointer;
+        }
+
+        .btn-outline:hover {
+            background: var(--yellow);
+            color: var(--black);
+        }
+
+        .btn-small {
+            padding: 0.7rem 1.5rem;
+            font-size: 0.85rem;
+        }
+
+        /* ===== FEATURE CARDS ===== */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .feature-card {
+            background: var(--dark-gray);
+            padding: 2.5rem 2rem;
+            border: 2px solid var(--medium-gray);
+            text-align: center;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: block;
+        }
+
+        .section-alt .feature-card {
+            background: var(--black);
+        }
+
+        .feature-card:hover {
+            border-color: var(--yellow);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(255, 210, 2, 0.2);
+        }
+
+        .feature-icon {
+            font-size: 2.5rem;
+            color: var(--yellow);
+            margin-bottom: 1.5rem;
+        }
+
+        .feature-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 0.75rem;
+            text-transform: uppercase;
+            color: var(--white);
+        }
+
+        .feature-card p {
+            color: var(--light-gray);
+            line-height: 1.8;
+        }
+
+        /* ===== STAT CARDS ===== */
+        .stats-row {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .stat-card {
+            background: var(--black);
+            border: 2px solid var(--medium-gray);
+            padding: 2rem 1.5rem;
+            text-align: center;
+        }
+
+        .section .stat-card {
+            background: var(--dark-gray);
+        }
+
+        .section-alt .stat-card {
+            background: var(--black);
+        }
+
+        .stat-card.highlighted {
+            border-color: var(--yellow);
+            border-width: 3px;
+        }
+
+        .stat-card-label {
+            font-size: 0.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: var(--light-gray);
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-card-value {
+            font-size: 2.5rem;
+            font-weight: 900;
+            color: var(--white);
+            line-height: 1.2;
+        }
+
+        .stat-card.highlighted .stat-card-value {
+            color: var(--yellow);
+        }
+
+        .stat-card-unit {
+            font-size: 0.85rem;
+            color: var(--light-gray);
+            font-weight: 600;
+            margin-top: 0.25rem;
+        }
+
+        /* ===== AUTH CONTAINER ===== */
+        .auth-container {
+            max-width: 480px;
+            margin: 0 auto;
+            padding: 3rem;
+            background: var(--dark-gray);
+            border: 2px solid var(--medium-gray);
+        }
+
+        .auth-container h2 {
+            font-size: 1.5rem;
+            text-transform: uppercase;
+            margin-bottom: 0.5rem;
+            text-align: center;
+        }
+
+        .auth-container p.auth-subtitle {
+            color: var(--light-gray);
+            text-align: center;
+            margin-bottom: 2rem;
+            font-size: 0.95rem;
+        }
+
+        .auth-container .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .auth-container label {
+            display: block;
+            font-weight: 700;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 0.5rem;
+            color: var(--white);
+        }
+
+        .auth-container input[type="email"],
+        .auth-container input[type="password"] {
+            width: 100%;
+            padding: 1rem 1.25rem;
+            background: var(--black);
+            border: 2px solid var(--medium-gray);
+            border-radius: 0;
+            color: var(--white);
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1rem;
+            font-weight: 500;
+            transition: border-color 0.3s ease;
+        }
+
+        .auth-container input:focus {
+            outline: none;
+            border-color: var(--yellow);
+        }
+
+        .auth-container .btn-primary {
+            width: 100%;
+            margin-top: 0.5rem;
+        }
+
+        .auth-toggle {
+            text-align: center;
+            margin-top: 1.5rem;
+            color: var(--light-gray);
+            font-size: 0.9rem;
+        }
+
+        .auth-toggle a {
+            color: var(--yellow);
+            text-decoration: underline;
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        .auth-error {
+            color: #ff4444;
+            font-size: 0.85rem;
+            margin-top: 0.5rem;
+            text-align: center;
+            display: none;
+        }
+
+        /* ===== USER BAR ===== */
+        .user-bar {
+            background: var(--dark-gray);
+            border-bottom: 1px solid var(--medium-gray);
+            padding: 0.75rem 4rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .user-bar-email {
+            color: var(--light-gray);
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        .user-bar-email i {
+            color: var(--yellow);
+            margin-right: 0.5rem;
+        }
+
+        .user-bar button {
+            background: transparent;
+            border: 1px solid var(--medium-gray);
+            color: var(--light-gray);
+            padding: 0.4rem 1rem;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .user-bar button:hover {
+            border-color: var(--yellow);
+            color: var(--yellow);
+        }
+
+        /* ===== PHASE BANNER ===== */
+        .phase-banner {
+            padding: 2.5rem 4rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .phase-banner-label {
+            font-size: 1.1rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 0.75rem;
+        }
+
+        .phase-banner-dates {
+            font-size: 0.95rem;
+            font-weight: 600;
+            margin-bottom: 1.25rem;
+            opacity: 0.9;
+        }
+
+        .phase-banner-countdown {
+            font-size: 0.85rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 0.75rem;
+        }
+
+        .phase-progress-bar {
+            max-width: 500px;
+            margin: 0 auto;
+            height: 8px;
+            background: rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+        }
+
+        .phase-progress-fill {
+            height: 100%;
+            background: rgba(255, 255, 255, 0.9);
+            transition: width 0.6s ease;
+        }
+
+        /* ===== DASHBOARD GRID ===== */
+        .dash-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 0;
+        }
+
+        .dash-card {
+            background: var(--dark-gray);
+            border: 2px solid var(--medium-gray);
+            padding: 2.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .dash-card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+
+        .dash-card-title {
+            font-size: 1.3rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .dash-card-title i {
+            color: var(--yellow);
+            margin-right: 0.75rem;
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 3rem 2rem;
+            color: var(--light-gray);
+        }
+
+        .empty-state i {
+            font-size: 3rem;
+            color: var(--medium-gray);
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .empty-state p {
+            margin-bottom: 1.5rem;
+            font-size: 1rem;
+        }
+
+        /* ===== COLLAPSIBLE FORM ===== */
+        .collapsible-toggle {
+            background: transparent;
+            border: 2px solid var(--medium-gray);
+            color: var(--yellow);
+            padding: 0.75rem 1.5rem;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.85rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .collapsible-toggle:hover {
+            border-color: var(--yellow);
+        }
+
+        .collapsible-toggle i {
+            transition: transform 0.3s ease;
+        }
+
+        .collapsible-toggle.open i {
+            transform: rotate(180deg);
+        }
+
+        .collapsible-content {
+            display: none;
+            margin-top: 1.5rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid var(--medium-gray);
+        }
+
+        .collapsible-content.open {
+            display: block;
+        }
+
+        /* ===== INLINE FORM ===== */
+        .dash-form {
+            max-width: 600px;
+        }
+
+        .dash-form .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .dash-form label {
+            display: block;
+            font-weight: 700;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 0.5rem;
+            color: var(--white);
+        }
+
+        .dash-form input[type="number"],
+        .dash-form input[type="date"],
+        .dash-form input[type="text"],
+        .dash-form select,
+        .dash-form textarea {
+            width: 100%;
+            padding: 0.85rem 1rem;
+            background: var(--black);
+            border: 2px solid var(--medium-gray);
+            border-radius: 0;
+            color: var(--white);
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: border-color 0.3s ease;
+            -moz-appearance: textfield;
+        }
+
+        .dash-form input:focus,
+        .dash-form select:focus,
+        .dash-form textarea:focus {
+            outline: none;
+            border-color: var(--yellow);
+        }
+
+        .dash-form input[type="number"]::-webkit-outer-spin-button,
+        .dash-form input[type="number"]::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+
+        .dash-form select {
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%23cccccc' d='M6 8L0 0h12z'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 1rem center;
+            padding-right: 2.5rem;
+        }
+
+        .dash-form select option {
+            background: var(--dark-gray);
+            color: var(--white);
+        }
+
+        .dash-form textarea {
+            resize: vertical;
+            min-height: 60px;
+        }
+
+        .form-row {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .form-row .form-group {
+            flex: 1;
+        }
+
+        .dash-form .btn-primary {
+            padding: 0.85rem 2rem;
+            font-size: 0.9rem;
+        }
+
+        .form-error {
+            color: #ff4444;
+            font-size: 0.85rem;
+            margin-top: 0.5rem;
+            display: none;
+        }
+
+        .form-success {
+            color: var(--phase-build);
+            font-size: 0.85rem;
+            margin-top: 0.5rem;
+            display: none;
+        }
+
+        /* ===== WEIGHT CHART ===== */
+        .weight-chart-container {
+            margin-top: 2rem;
+            position: relative;
+            height: 350px;
+        }
+
+        /* ===== BODY COMP ===== */
+        .body-comp-summary {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .body-comp-item {
+            background: var(--black);
+            border: 1px solid var(--medium-gray);
+            padding: 1.25rem;
+            text-align: center;
+        }
+
+        .body-comp-item .label {
+            font-size: 0.7rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--light-gray);
+            margin-bottom: 0.25rem;
+        }
+
+        .body-comp-item .value {
+            font-size: 1.5rem;
+            font-weight: 900;
+        }
+
+        /* ===== CHECKLIST INTERACTIVE ===== */
+        .checklist-interactive {
+            max-width: 700px;
+        }
+
+        .checklist-interactive .checklist-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            padding: 1.25rem 0;
+            border-bottom: 1px solid var(--medium-gray);
+        }
+
+        .checklist-interactive .checklist-item:last-child {
+            border-bottom: none;
+        }
+
+        .checklist-checkbox {
+            flex-shrink: 0;
+            width: 28px;
+            height: 28px;
+            border: 2px solid var(--yellow);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 2px;
+            background: transparent;
+        }
+
+        .checklist-checkbox.checked {
+            background: var(--yellow);
+        }
+
+        .checklist-checkbox.checked::after {
+            content: '\f00c';
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            color: var(--black);
+            font-size: 0.85rem;
+        }
+
+        .checklist-interactive .checklist-text {
+            color: var(--light-gray);
+            line-height: 1.7;
+            font-size: 0.95rem;
+        }
+
+        .checklist-interactive .checklist-item.checked .checklist-text {
+            text-decoration: line-through;
+            opacity: 0.5;
+        }
+
+        /* ===== YEAR-OVER-YEAR ===== */
+        .yoy-timeline {
+            max-width: 800px;
+        }
+
+        .yoy-year {
+            margin-bottom: 2.5rem;
+        }
+
+        .yoy-year-label {
+            font-size: 1.1rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 1rem;
+            color: var(--yellow);
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .yoy-badge {
+            background: var(--yellow);
+            color: var(--black);
+            font-size: 0.65rem;
+            font-weight: 900;
+            padding: 0.25rem 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .yoy-phases {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+
+        .yoy-phase-card {
+            background: var(--black);
+            border: 1px solid var(--medium-gray);
+            padding: 1.25rem;
+        }
+
+        .yoy-phase-name {
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 0.5rem;
+        }
+
+        .yoy-phase-dates {
+            font-size: 0.8rem;
+            color: var(--light-gray);
+            margin-bottom: 0.5rem;
+        }
+
+        .yoy-phase-weight {
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        .yoy-phase-change {
+            font-size: 0.8rem;
+            font-weight: 700;
+            margin-top: 0.25rem;
+        }
+
+        .yoy-phase-change.loss { color: var(--phase-cut); }
+        .yoy-phase-change.gain { color: var(--phase-build); }
+        .yoy-phase-change.neutral { color: var(--phase-maintain); }
+
+        /* ===== QUICK LINKS ===== */
+        .quick-links-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+
+        /* ===== CTA SECTION ===== */
+        .cta-section {
+            background: var(--dark-gray);
+            padding: 8rem 4rem;
+            text-align: center;
+            width: 100%;
+        }
+
+        .cta-title {
+            font-weight: 900;
+            font-size: clamp(2.5rem, 5vw, 4.5rem);
+            margin-bottom: 1.5rem;
+            text-transform: uppercase;
+        }
+
+        .cta-subtitle {
+            font-size: 1.2rem;
+            color: var(--light-gray);
+            margin-bottom: 3rem;
+        }
+
+        /* ===== MAP ===== */
+        .map-section { width: 100%; }
+
+        .map-section iframe {
+            width: 100%;
+            height: 400px;
+            border: none;
+            display: block;
+        }
+
+        /* ===== FOOTER ===== */
+        footer {
+            padding: 4rem 0 2rem;
+            background: var(--black);
+            border-top: 1px solid var(--medium-gray);
+            width: 100%;
+        }
+
+        .footer-container {
+            max-width: 100%;
+            margin: 0;
+            padding: 0 4rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 4rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-section h3 {
+            font-weight: 900;
+            margin-bottom: 1.5rem;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+        }
+
+        .footer-section ul { list-style: none; }
+        .footer-section ul li { margin-bottom: 0.75rem; }
+
+        .footer-section a {
+            color: var(--light-gray);
+            text-decoration: none;
+            transition: color 0.3s ease;
+            font-weight: 500;
+        }
+
+        .footer-section a:hover { color: var(--yellow); }
+
+        .footer-logo {
+            height: 60px;
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid var(--medium-gray);
+            color: var(--light-gray);
+            font-size: 0.9rem;
+        }
+
+        /* ===== HAMBURGER / MOBILE NAV ===== */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            gap: 5px;
+            width: 30px;
+            height: 30px;
+            cursor: pointer;
+            background: none;
+            border: none;
+            padding: 0;
+            z-index: 1002;
+        }
+
+        .hamburger span {
+            display: block;
+            width: 30px;
+            height: 3px;
+            background: var(--white);
+            transition: all 0.3s ease;
+        }
+
+        .hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(6px, 6px); }
+        .hamburger.active span:nth-child(2) { opacity: 0; }
+        .hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(6px, -6px); }
+
+        .mobile-nav-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.97);
+            z-index: 1001;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 0;
+        }
+
+        .mobile-nav-overlay.active { display: flex; }
+
+        .mobile-nav-overlay a {
+            color: var(--white);
+            text-decoration: none;
+            font-size: 1.2rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            padding: 1rem 2rem;
+            transition: color 0.3s ease;
+            text-align: center;
+        }
+
+        .mobile-nav-overlay .mobile-sub-link { font-size: 0.9rem; color: var(--light-gray); padding: 0.5rem 2rem; font-weight: 700; letter-spacing: 0.5px; }
+        .mobile-nav-overlay .mobile-sub-link:hover { color: var(--yellow); }
+        .mobile-nav-overlay a:hover { color: var(--yellow); }
+
+        .mobile-nav-overlay .mobile-cta {
+            margin-top: 1.5rem;
+            background: var(--yellow);
+            color: var(--black);
+            padding: 1rem 2.5rem;
+            font-size: 1rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border: 2px solid var(--yellow);
+            transition: all 0.3s ease;
+        }
+
+        .mobile-nav-overlay .mobile-cta:hover {
+            background: transparent;
+            color: var(--yellow);
+        }
+
+        .mobile-nav-overlay .mobile-login {
+            margin-top: 0.75rem;
+            color: var(--yellow);
+            border: 2px solid var(--yellow);
+            padding: 1rem 2.5rem;
+            font-size: 1rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            background: transparent;
+        }
+
+        .mobile-nav-overlay .mobile-login:hover {
+            background: var(--yellow);
+            color: var(--black);
+        }
+
+        /* ===== MODAL ===== */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 9999;
+            overflow-y: auto;
+            padding: 2rem;
+        }
+
+        .modal-overlay.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-container {
+            background: #1a1a1a;
+            border: 2px solid var(--medium-gray);
+            max-width: 700px;
+            width: 100%;
+            position: relative;
+            margin: auto;
+            animation: modalSlideIn 0.3s ease-out;
+            padding: 2.5rem;
+        }
+
+        @keyframes modalSlideIn {
+            from { opacity: 0; transform: translateY(-50px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 0.5rem;
+            right: 0.5rem;
+            background: transparent;
+            border: none;
+            color: var(--light-gray);
+            font-size: 2rem;
+            cursor: pointer;
+            line-height: 1;
+            padding: 0.5rem;
+            transition: color 0.3s ease;
+            font-weight: 300;
+            z-index: 10000;
+        }
+
+        .modal-close:hover { color: var(--yellow); }
+
+        .modal-container h3 {
+            font-size: 1.3rem;
+            text-transform: uppercase;
+            margin-bottom: 1.5rem;
+        }
+
+        .modal-container iframe {
+            width: 100%;
+            border: none;
+            display: block;
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 1024px) {
+            .nav-container,
+            .hero-container,
+            .section-container,
+            .footer-container {
+                padding-left: 2rem;
+                padding-right: 2rem;
+            }
+
+            .cta-section {
+                padding-left: 2rem;
+                padding-right: 2rem;
+            }
+
+            .blueprint-subnav-container {
+                padding-left: 2rem;
+                padding-right: 2rem;
+            }
+
+            .user-bar {
+                padding-left: 2rem;
+                padding-right: 2rem;
+            }
+
+            .phase-banner {
+                padding-left: 2rem;
+                padding-right: 2rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hamburger { display: flex !important; }
+            .nav-links { display: none !important; }
+            .nav-cta-group .login-btn { display: none; }
+
+            .nav-container {
+                padding: 0 1.5rem;
+                flex-wrap: wrap;
+            }
+
+            .cta-btn {
+                order: 3;
+                width: 100%;
+                text-align: center;
+                margin-top: 0.75rem;
+                padding: 0.7rem 1rem;
+                font-size: 0.8rem;
+            }
+
+            .hero { padding-top: 130px; }
+            .hero-container { padding: 2rem 1.5rem; }
+            .hero-content h1 { font-size: clamp(2rem, 6vw, 3rem); }
+            .hero-content p { font-size: 1.1rem; margin-bottom: 2rem; }
+
+            .section-container { padding: 0 1.5rem; }
+            .section-title { font-size: clamp(1.8rem, 5vw, 2.5rem); }
+            .section-header { margin-bottom: 2rem; }
+            .section { padding: 4rem 0; }
+
+            .features-grid { grid-template-columns: 1fr; }
+
+            .blueprint-subnav-container {
+                padding-left: 1.5rem;
+                padding-right: 1.5rem;
+            }
+
+            .cta-section { padding: 4rem 1.5rem; }
+            .cta-title { font-size: clamp(1.8rem, 5vw, 2.5rem); }
+
+            .map-section iframe { height: 250px; }
+
+            .footer-container {
+                padding: 0 1.5rem;
+                gap: 2rem;
+            }
+
+            .btn-primary, .btn-outline {
+                padding: 0.8rem 1.5rem;
+                font-size: 0.8rem;
+                white-space: normal;
+            }
+
+            .stats-row {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .stat-card-value {
+                font-size: 2rem;
+            }
+
+            .user-bar {
+                padding: 0.75rem 1.5rem;
+                flex-wrap: wrap;
+                gap: 0.5rem;
+            }
+
+            .phase-banner {
+                padding: 2rem 1.5rem;
+            }
+
+            .dash-card {
+                padding: 1.5rem;
+            }
+
+            .form-row {
+                flex-direction: column;
+            }
+
+            .weight-chart-container {
+                height: 250px;
+            }
+
+            .body-comp-summary {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .yoy-phases {
+                grid-template-columns: 1fr;
+            }
+
+            .modal-overlay { padding: 1rem; }
+            .modal-container {
+                max-width: calc(100% - 2rem);
+                padding: 1.5rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .stats-row {
+                grid-template-columns: 1fr;
+            }
+
+            .body-comp-summary {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="nav-container">
+            <div class="logo">
+                <a href="index.html">
+                    <img src="images/logo.png" alt="Black Iron Athletics">
+                </a>
+            </div>
+            <ul class="nav-links">
+                <li class="has-submenu">
+                    <a href="about.html">About Us</a>
+                    <ul class="submenu">
+                        <li><a href="about.html#mission">Our Mission</a></li>
+                        <li><a href="about.html#team">Meet the Team</a></li>
+                        <li><a href="programs.html">Programs</a></li>
+                        <li><a href="schedule.html">Class Schedule</a></li>
+                    </ul>
+                </li>
+                <li class="has-submenu">
+                    <a href="getting-started.html">Getting Started</a>
+                    <ul class="submenu">
+                        <li><a href="getting-started.html#membership">Membership Options</a></li>
+                        <li><a href="getting-started.html#faqs">FAQs</a></li>
+                    </ul>
+                </li>
+                <li><a href="media.html">Media</a></li>
+                <li><a href="blog/">Blog</a></li>
+                <li class="has-submenu">
+                    <a href="#">Nutrition</a>
+                    <ul class="submenu">
+                        <li><a href="macro-calculator.html">Macro Calculator</a></li>
+                        <li><a href="blueprint.html">4-Phase Blueprint</a></li>
+                    </ul>
+                </li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+            <div class="nav-cta-group">
+                <a href="https://www.blackironathletics.com?msopen=/member/sign_in" class="login-btn">Member Login</a>
+                <a href="#" onclick="openLeadModal(); return false;" class="cta-btn">Book Free Consultation</a>
+            </div>
+            <button class="hamburger" onclick="toggleMobileNav()" aria-label="Menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <div class="mobile-nav-overlay" id="mobileNav">
+        <a href="index.html" onclick="closeMobileNav()">Home</a>
+        <a href="about.html" onclick="closeMobileNav()">About Us</a>
+        <a href="about.html#mission" class="mobile-sub-link" onclick="closeMobileNav()">Our Mission</a>
+        <a href="about.html#team" class="mobile-sub-link" onclick="closeMobileNav()">Meet the Team</a>
+        <a href="programs.html" class="mobile-sub-link" onclick="closeMobileNav()">Programs</a>
+        <a href="schedule.html" class="mobile-sub-link" onclick="closeMobileNav()">Class Schedule</a>
+        <a href="getting-started.html" onclick="closeMobileNav()">Getting Started</a>
+        <a href="getting-started.html#membership" class="mobile-sub-link" onclick="closeMobileNav()">Membership Options</a>
+        <a href="getting-started.html#faqs" class="mobile-sub-link" onclick="closeMobileNav()">FAQs</a>
+        <a href="media.html" onclick="closeMobileNav()">Media</a>
+        <a href="blog/" onclick="closeMobileNav()">Blog</a>
+        <a href="#" onclick="closeMobileNav()">Nutrition</a>
+        <a href="macro-calculator.html" class="mobile-sub-link" onclick="closeMobileNav()">Macro Calculator</a>
+        <a href="blueprint.html" class="mobile-sub-link" onclick="closeMobileNav()">4-Phase Blueprint</a>
+        <a href="contact.html" onclick="closeMobileNav()">Contact</a>
+        <a href="#" class="mobile-cta" onclick="closeMobileNav(); openLeadModal(); return false;">Book Free Consultation</a>
+        <a href="https://www.blackironathletics.com?msopen=/member/sign_in" class="mobile-login" onclick="closeMobileNav()">Member Login</a>
+    </div>
+
+    <!-- Hero Section (shown when NOT logged in) -->
+    <section class="hero" id="authHero">
+        <img src="images/hero-blueprint-how-to-use.webp" alt="Athlete Dashboard" class="hero-bg" fetchpriority="high">
+        <div class="hero-container">
+            <div class="hero-content">
+                <div class="hero-subtitle">Athlete Dashboard</div>
+                <h1>Your Blueprint Command Center</h1>
+                <p>Track your macros, log your weight, monitor body composition, and follow your phase progress &mdash; all in one place.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Auth Section (shown when NOT logged in) -->
+    <section class="section section-alt" id="authSection">
+        <div class="section-container">
+            <div class="auth-container">
+                <h2 id="authTitle">Sign In</h2>
+                <p class="auth-subtitle" id="authSubtitle">Access your personal dashboard</p>
+                <div id="authError" class="auth-error"></div>
+                <form id="authForm" onsubmit="handleAuth(event)">
+                    <div class="form-group">
+                        <label for="authEmail">Email</label>
+                        <input type="email" id="authEmail" required placeholder="you@example.com">
+                    </div>
+                    <div class="form-group">
+                        <label for="authPassword">Password</label>
+                        <input type="password" id="authPassword" required placeholder="Your password" minlength="6">
+                    </div>
+                    <button type="submit" class="btn-primary" id="authSubmitBtn">Sign In</button>
+                </form>
+                <div class="auth-toggle">
+                    <span id="authToggleText">Don't have an account?</span>
+                    <a onclick="toggleAuthMode()"> <span id="authToggleLink">Sign Up</span></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================ -->
+    <!-- DASHBOARD (shown when logged in)            -->
+    <!-- ============================================ -->
+    <div id="dashboardContainer" style="display: none;">
+
+        <!-- User Bar -->
+        <div class="user-bar">
+            <span class="user-bar-email"><i class="fa-solid fa-user"></i> <span id="userEmail"></span></span>
+            <button onclick="handleLogout()"><i class="fa-solid fa-right-from-bracket"></i> Sign Out</button>
+        </div>
+
+        <!-- Blueprint Sub-Nav -->
+        <div class="blueprint-subnav">
+            <div class="blueprint-subnav-container">
+                <a href="blueprint-dashboard.html" class="active">My Dashboard</a>
+                <a href="blueprint-phase-1-maintain.html">Phase 1: Maintain</a>
+                <a href="blueprint-phase-2-cut.html">Phase 2: Cut</a>
+                <a href="blueprint-phase-3-maintain.html">Phase 3: Maintain</a>
+                <a href="blueprint-phase-4-build.html">Phase 4: Build</a>
+                <a href="blueprint-supplements.html">Supplements</a>
+                <a href="blueprint-decade.html">Decade Roadmap</a>
+            </div>
+        </div>
+
+        <!-- Section 1: Phase Status Banner -->
+        <div class="phase-banner" id="phaseBanner">
+            <div class="phase-banner-label" id="phaseBannerLabel">PHASE 1: MAINTAIN</div>
+            <div class="phase-banner-dates" id="phaseBannerDates">January 1 to March 31</div>
+            <div class="phase-banner-countdown" id="phaseBannerCountdown">90 days remaining</div>
+            <div class="phase-progress-bar">
+                <div class="phase-progress-fill" id="phaseProgressFill" style="width: 0%"></div>
+            </div>
+        </div>
+
+        <!-- Section 2: My Macros -->
+        <section class="section">
+            <div class="section-container">
+                <div class="dash-card">
+                    <div class="dash-card-header">
+                        <h3 class="dash-card-title"><i class="fa-solid fa-fire"></i> My Macros</h3>
+                        <a href="macro-calculator.html" class="btn-outline btn-small">Recalculate</a>
+                    </div>
+                    <div id="macrosContent">
+                        <div id="macrosPopulated" style="display: none;">
+                            <div class="stats-row" id="macroCards">
+                                <div class="stat-card highlighted">
+                                    <div class="stat-card-label">Calories</div>
+                                    <div class="stat-card-value" id="macroCals">--</div>
+                                    <div class="stat-card-unit">per day</div>
+                                </div>
+                                <div class="stat-card" style="border-top: 4px solid var(--yellow);">
+                                    <div class="stat-card-label">Protein</div>
+                                    <div class="stat-card-value" id="macroProtein">--</div>
+                                    <div class="stat-card-unit">grams</div>
+                                </div>
+                                <div class="stat-card" style="border-top: 4px solid #4CAF50;">
+                                    <div class="stat-card-label">Carbs</div>
+                                    <div class="stat-card-value" id="macroCarbs">--</div>
+                                    <div class="stat-card-unit">grams</div>
+                                </div>
+                                <div class="stat-card" style="border-top: 4px solid #2196F3;">
+                                    <div class="stat-card-label">Fat</div>
+                                    <div class="stat-card-value" id="macroFat">--</div>
+                                    <div class="stat-card-unit">grams</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="macrosEmpty" class="empty-state">
+                            <i class="fa-solid fa-calculator"></i>
+                            <p>No macros saved for this phase yet.</p>
+                            <a href="macro-calculator.html" class="btn-primary btn-small">Calculate Your Macros</a>
+                        </div>
+                    </div>
+                    <button class="collapsible-toggle" onclick="toggleCollapsible(this)">
+                        <i class="fa-solid fa-chevron-down"></i> Save My Macros
+                    </button>
+                    <div class="collapsible-content">
+                        <form class="dash-form" id="macroForm" onsubmit="saveMacros(event)">
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="macroCalInput">Calories</label>
+                                    <input type="number" id="macroCalInput" required min="800" max="8000" placeholder="e.g. 2200">
+                                </div>
+                                <div class="form-group">
+                                    <label for="macroProteinInput">Protein (g)</label>
+                                    <input type="number" id="macroProteinInput" required min="30" max="500" placeholder="e.g. 180">
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="macroCarbsInput">Carbs (g)</label>
+                                    <input type="number" id="macroCarbsInput" required min="0" max="800" placeholder="e.g. 220">
+                                </div>
+                                <div class="form-group">
+                                    <label for="macroFatInput">Fat (g)</label>
+                                    <input type="number" id="macroFatInput" required min="10" max="300" placeholder="e.g. 65">
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="macroWeightInput">Body Weight (lbs)</label>
+                                    <input type="number" id="macroWeightInput" min="50" max="700" step="0.1" placeholder="e.g. 185">
+                                </div>
+                                <div class="form-group">
+                                    <label for="macroActivityInput">Activity Level</label>
+                                    <select id="macroActivityInput">
+                                        <option value="">Select...</option>
+                                        <option value="1.2">Sedentary</option>
+                                        <option value="1.375">Lightly Active</option>
+                                        <option value="1.55">Moderately Active</option>
+                                        <option value="1.725">Very Active</option>
+                                        <option value="1.9">Extremely Active</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <button type="submit" class="btn-primary btn-small">Save Macros</button>
+                            <div id="macroSaveSuccess" class="form-success">Macros saved!</div>
+                            <div id="macroSaveError" class="form-error">Error saving macros. Please try again.</div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 3: Weight Tracker -->
+        <section class="section section-alt">
+            <div class="section-container">
+                <div class="dash-card" style="background: var(--black);">
+                    <div class="dash-card-header">
+                        <h3 class="dash-card-title"><i class="fa-solid fa-weight-scale"></i> Weight Tracker</h3>
+                    </div>
+                    <form class="dash-form" id="weightForm" onsubmit="saveWeight(event)" style="margin-bottom: 2rem;">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="weightInput">Weight (lbs)</label>
+                                <input type="number" id="weightInput" required min="50" max="700" step="0.1" placeholder="e.g. 185.4">
+                            </div>
+                            <div class="form-group">
+                                <label for="weightDate">Date</label>
+                                <input type="date" id="weightDate">
+                            </div>
+                            <div class="form-group">
+                                <label for="weightNotes">Notes (optional)</label>
+                                <input type="text" id="weightNotes" placeholder="e.g. Post-vacation">
+                            </div>
+                        </div>
+                        <button type="submit" class="btn-primary btn-small">Log Weight</button>
+                        <div id="weightSaveSuccess" class="form-success">Weight logged!</div>
+                        <div id="weightSaveError" class="form-error">Error logging weight.</div>
+                    </form>
+                    <div class="stats-row" id="weightSummary" style="grid-template-columns: repeat(3, 1fr);">
+                        <div class="stat-card">
+                            <div class="stat-card-label">Start Weight</div>
+                            <div class="stat-card-value" id="weightStart">--</div>
+                            <div class="stat-card-unit">lbs</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-card-label">Current Weight</div>
+                            <div class="stat-card-value" id="weightCurrent">--</div>
+                            <div class="stat-card-unit">lbs</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-card-label">Change</div>
+                            <div class="stat-card-value" id="weightChange">--</div>
+                            <div class="stat-card-unit">lbs</div>
+                        </div>
+                    </div>
+                    <div class="weight-chart-container">
+                        <canvas id="weightChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 4: Body Composition -->
+        <section class="section">
+            <div class="section-container">
+                <div class="dash-card">
+                    <div class="dash-card-header">
+                        <h3 class="dash-card-title"><i class="fa-solid fa-person-rays"></i> Body Composition</h3>
+                        <button class="btn-outline btn-small" onclick="openBodyCompModal()">Log Body Comp</button>
+                    </div>
+                    <div id="bodyCompContent">
+                        <div id="bodyCompPopulated" style="display: none;">
+                            <div class="body-comp-summary" id="bodyCompSummary"></div>
+                            <div class="weight-chart-container" style="margin-top: 2rem;">
+                                <canvas id="bodyCompChart"></canvas>
+                            </div>
+                        </div>
+                        <div id="bodyCompEmpty" class="empty-state">
+                            <i class="fa-solid fa-chart-line"></i>
+                            <p>No body composition data logged yet.</p>
+                            <button class="btn-primary btn-small" onclick="openBodyCompModal()">Log Your First Entry</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 5: Phase Transition Checklist -->
+        <section class="section section-alt">
+            <div class="section-container">
+                <div class="dash-card" style="background: var(--black);">
+                    <div class="dash-card-header">
+                        <h3 class="dash-card-title"><i class="fa-solid fa-clipboard-check"></i> <span id="checklistTitle">Phase Transition Checklist</span></h3>
+                    </div>
+                    <p style="color: var(--light-gray); margin-bottom: 1.5rem;" id="checklistSubtitle">Complete these before moving to the next phase.</p>
+                    <div class="checklist-interactive" id="checklistContainer"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 6: Year-over-Year Summary -->
+        <section class="section">
+            <div class="section-container">
+                <div class="dash-card">
+                    <div class="dash-card-header">
+                        <h3 class="dash-card-title"><i class="fa-solid fa-chart-column"></i> Year-over-Year Summary</h3>
+                    </div>
+                    <div id="yoyContent">
+                        <div id="yoyPopulated" class="yoy-timeline" style="display: none;"></div>
+                        <div id="yoyEmpty" class="empty-state">
+                            <i class="fa-solid fa-calendar-days"></i>
+                            <p>Your year-over-year data will appear here as you complete phases.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 7: Quick Links -->
+        <section class="section section-alt">
+            <div class="section-container">
+                <div class="section-header">
+                    <div class="section-subtitle">Quick Links</div>
+                    <h2 class="section-title">Jump Back In</h2>
+                </div>
+                <div class="quick-links-grid features-grid" style="margin-top: 0;">
+                    <a href="blueprint-phase-1-maintain.html" class="feature-card" id="quickLinkPhase">
+                        <div class="feature-icon"><i class="fa-solid fa-book-open"></i></div>
+                        <h3 id="quickLinkPhaseTitle">Go to Phase 1 Guide</h3>
+                        <p>Read the full guide for your current phase.</p>
+                    </a>
+                    <a href="macro-calculator.html" class="feature-card">
+                        <div class="feature-icon"><i class="fa-solid fa-calculator"></i></div>
+                        <h3>Macro Calculator</h3>
+                        <p>Calculate or recalculate your daily targets.</p>
+                    </a>
+                    <a href="blueprint-supplements.html" class="feature-card">
+                        <div class="feature-icon"><i class="fa-solid fa-capsules"></i></div>
+                        <h3>Supplement Protocols</h3>
+                        <p>Evidence-based supplement recommendations.</p>
+                    </a>
+                    <a href="blueprint-decade.html" class="feature-card">
+                        <div class="feature-icon"><i class="fa-solid fa-road"></i></div>
+                        <h3>Decade Roadmap</h3>
+                        <p>See your 10-year body composition trajectory.</p>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+    </div><!-- end #dashboardContainer -->
+
+    <!-- Map Section -->
+    <div class="map-section">
+        <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3344.9875647886857!2d-96.89026308820058!3d33.15034697358084!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x864c3a240f77e3f7%3A0x9f460209df528d6e!2sBlack%20Iron%20Athletics!5e0!3m2!1sen!2sus!4v1737509000000!5m2!1sen!2sus"
+            title="Black Iron Athletics location on Google Maps"
+            allowfullscreen=""
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade">
+        </iframe>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-section">
+                <a href="index.html">
+                    <img src="images/logo.png" alt="Black Iron Athletics" class="footer-logo" loading="lazy">
+                </a>
+                <p style="color: var(--light-gray); margin-bottom: 1rem;">Forging everyday people into everyday athletes through strength, community, and purpose.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="schedule.html">Class Schedule</a></li>
+                    <li><a href="faq.html">FAQ</a></li>
+                    <li><a href="macro-calculator.html">Macro Calculator</a></li>
+                    <li><a href="#" onclick="openSubscribeModal(); return false;">Subscribe</a></li>
+                    <li><a href="#" onclick="openCancelModal(); return false;">Cancel Membership</a></li>
+                    <li><a href="privacy-policy.html">Terms & Privacy Policy</a></li>
+                    <li><a href="privacy-policy.html#sms-terms">SMS Terms</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Contact</h3>
+                <p style="color: var(--light-gray); margin-bottom: 1rem;">
+                    279 Main St #122<br>
+                    Frisco, TX 75036
+                </p>
+                <p style="margin-bottom: 1.5rem;">
+                    <a href="tel:(972)785-7036" style="color: var(--yellow); font-weight: 700;">(972) 785-7036</a>
+                </p>
+            </div>
+            <div class="footer-section">
+                <h3>Hours</h3>
+                <p style="color: var(--light-gray); margin-bottom: 1rem;">
+                    Check our class calendar for an up to date schedule.
+                </p>
+                <p style="color: var(--yellow); font-weight: 700;">
+                    Open Gym: 24/7
+                </p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div style="margin-bottom: 1.5rem; display: flex; justify-content: center; gap: 1.5rem; font-size: 1.5rem;">
+                <a href="https://www.instagram.com/blackiron_athletics/" target="_blank" style="color: var(--light-gray); transition: color 0.3s ease;" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                <a href="https://www.youtube.com/channel/UCF1XjUXEs81OWY70chem6vA" target="_blank" style="color: var(--light-gray); transition: color 0.3s ease;" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+                <a href="https://www.facebook.com/BlackIronAthletics/" target="_blank" style="color: var(--light-gray); transition: color 0.3s ease;" aria-label="Facebook"><i class="fa-brands fa-facebook"></i></a>
+            </div>
+            <p>&copy; 2026 Black Iron Athletics. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Body Comp Modal -->
+    <div class="modal-overlay" id="bodyCompModal">
+        <div class="modal-container">
+            <button class="modal-close" onclick="closeBodyCompModal()">&times;</button>
+            <h3>Log Body Composition</h3>
+            <form class="dash-form" id="bodyCompForm" onsubmit="saveBodyComp(event)">
+                <div class="form-group">
+                    <label for="bodyCompSource">Source</label>
+                    <select id="bodyCompSource" onchange="toggleBodyCompFields()">
+                        <option value="inbody">InBody Scan</option>
+                        <option value="dexa">DEXA Scan</option>
+                        <option value="manual">Manual Measurements</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="bodyCompDate">Date</label>
+                    <input type="date" id="bodyCompDate">
+                </div>
+                <!-- InBody/DEXA Fields -->
+                <div id="scanFields">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="bcBodyFat">Body Fat %</label>
+                            <input type="number" id="bcBodyFat" step="0.1" min="1" max="60" placeholder="e.g. 18.5">
+                        </div>
+                        <div class="form-group">
+                            <label for="bcSMM">Skeletal Muscle Mass (lbs)</label>
+                            <input type="number" id="bcSMM" step="0.1" min="10" max="300" placeholder="e.g. 85.2">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="bcLBM">Lean Body Mass (lbs)</label>
+                            <input type="number" id="bcLBM" step="0.1" min="30" max="400" placeholder="e.g. 155">
+                        </div>
+                        <div class="form-group">
+                            <label for="bcFatMass">Body Fat Mass (lbs)</label>
+                            <input type="number" id="bcFatMass" step="0.1" min="0" max="300" placeholder="e.g. 30.5">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="bcTBW">Total Body Water (lbs)</label>
+                            <input type="number" id="bcTBW" step="0.1" min="10" max="300" placeholder="e.g. 100">
+                        </div>
+                        <div class="form-group">
+                            <label for="bcInBodyScore">InBody Score</label>
+                            <input type="number" id="bcInBodyScore" min="0" max="100" placeholder="e.g. 78">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="bcBMR">BMR (kcal)</label>
+                        <input type="number" id="bcBMR" min="500" max="5000" placeholder="e.g. 1750">
+                    </div>
+                </div>
+                <!-- Manual Fields -->
+                <div id="manualFields" style="display: none;">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="bcWaist">Waist (in)</label>
+                            <input type="number" id="bcWaist" step="0.1" min="15" max="70" placeholder="e.g. 33.5">
+                        </div>
+                        <div class="form-group">
+                            <label for="bcHip">Hip (in)</label>
+                            <input type="number" id="bcHip" step="0.1" min="20" max="80" placeholder="e.g. 38">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="bcChest">Chest (in)</label>
+                            <input type="number" id="bcChest" step="0.1" min="20" max="70" placeholder="e.g. 42">
+                        </div>
+                        <div class="form-group">
+                            <label for="bcArm">Arm (in)</label>
+                            <input type="number" id="bcArm" step="0.1" min="5" max="30" placeholder="e.g. 15.5">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="bcThigh">Thigh (in)</label>
+                        <input type="number" id="bcThigh" step="0.1" min="10" max="45" placeholder="e.g. 24">
+                    </div>
+                </div>
+                <button type="submit" class="btn-primary btn-small" style="margin-top: 1rem;">Save Body Comp</button>
+                <div id="bodyCompSaveSuccess" class="form-success">Body comp saved!</div>
+                <div id="bodyCompSaveError" class="form-error">Error saving body comp.</div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Lead Capture Modal -->
+    <div class="modal-overlay" id="leadModal">
+        <div class="modal-container" style="padding: 0;">
+            <button class="modal-close" onclick="closeLeadModal()">&times;</button>
+            <iframe
+                data-src="https://api.leadconnectorhq.com/widget/form/vw0hMdDkTCL6K5N3i7vF"
+                style="width:100%;height:100%;border:none;border-radius:4px"
+                id="inline-vw0hMdDkTCL6K5N3i7vF"
+                data-layout="{'id':'INLINE'}"
+                data-trigger-type="alwaysShow"
+                data-trigger-value=""
+                data-activation-type="alwaysActivated"
+                data-activation-value=""
+                data-deactivation-type="neverDeactivate"
+                data-deactivation-value=""
+                data-form-name="Form 2"
+                data-height="565"
+                data-layout-iframe-id="inline-vw0hMdDkTCL6K5N3i7vF"
+                data-form-id="vw0hMdDkTCL6K5N3i7vF"
+                title="Form 2"
+            ></iframe>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="cancelModal">
+        <div class="modal-container" style="padding: 0;">
+            <button class="modal-close" onclick="closeCancelModal()">&times;</button>
+            <iframe
+                data-src="https://api.leadconnectorhq.com/widget/form/d4jtjY9fM2Hv9zVTzLwj"
+                style="width:100%;height:100%;border:none;border-radius:4px"
+                id="inline-d4jtjY9fM2Hv9zVTzLwj"
+                data-layout="{'id':'INLINE'}"
+                data-trigger-type="alwaysShow"
+                data-trigger-value=""
+                data-activation-type="alwaysActivated"
+                data-activation-value=""
+                data-deactivation-type="neverDeactivate"
+                data-deactivation-value=""
+                data-form-name="Membership Cancellation Form"
+                data-height="787"
+                data-layout-iframe-id="inline-d4jtjY9fM2Hv9zVTzLwj"
+                data-form-id="d4jtjY9fM2Hv9zVTzLwj"
+                title="Membership Cancellation Form"
+            ></iframe>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="subscribeModal">
+        <div class="modal-container" style="padding: 0;">
+            <button class="modal-close" onclick="closeSubscribeModal()">&times;</button>
+            <iframe
+                data-src="https://api.leadconnectorhq.com/widget/form/GnNJNaEX8InuIeGxWjaI"
+                style="width:100%;height:100%;border:none;border-radius:4px"
+                id="inline-GnNJNaEX8InuIeGxWjaI"
+                data-layout="{'id':'INLINE'}"
+                data-trigger-type="alwaysShow"
+                data-trigger-value=""
+                data-activation-type="alwaysActivated"
+                data-activation-value=""
+                data-deactivation-type="neverDeactivate"
+                data-deactivation-value=""
+                data-form-name="Subscribe"
+                data-height="430"
+                data-layout-iframe-id="inline-GnNJNaEX8InuIeGxWjaI"
+                data-form-id="GnNJNaEX8InuIeGxWjaI"
+                title="Subscribe"
+            ></iframe>
+        </div>
+    </div>
+
+<script>
+// ===== SUPABASE INIT =====
+// TODO: Replace with your Supabase project URL and anon key
+var SUPABASE_URL = 'YOUR_SUPABASE_URL';
+var SUPABASE_KEY = 'YOUR_SUPABASE_ANON_KEY';
+var supabase = window.supabase ? window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY) : null;
+
+// ===== PHASE ENGINE =====
+function getPhaseInfo(date) {
+    var d = date || new Date();
+    var month = d.getMonth(); // 0-indexed
+    var year = d.getFullYear();
+    var phases = [
+        { num: 1, name: 'Maintain', startMonth: 0, endMonth: 2, color: 'var(--phase-maintain)', colorHex: '#2E86C1', link: 'blueprint-phase-1-maintain.html' },
+        { num: 2, name: 'Cut', startMonth: 3, endMonth: 5, color: 'var(--phase-cut)', colorHex: '#ff0003', link: 'blueprint-phase-2-cut.html' },
+        { num: 3, name: 'Maintain', startMonth: 6, endMonth: 8, color: 'var(--phase-maintain)', colorHex: '#2E86C1', link: 'blueprint-phase-3-maintain.html' },
+        { num: 4, name: 'Build', startMonth: 9, endMonth: 11, color: 'var(--phase-build)', colorHex: '#27AE60', link: 'blueprint-phase-4-build.html' }
+    ];
+    var phase = phases[Math.floor(month / 3)];
+    var startDate = new Date(year, phase.startMonth, 1);
+    var endDate = new Date(year, phase.endMonth + 1, 0); // last day of end month
+    var totalDays = Math.ceil((endDate - startDate) / (1000 * 60 * 60 * 24)) + 1;
+    var elapsed = Math.ceil((d - startDate) / (1000 * 60 * 60 * 24)) + 1;
+    var remaining = Math.max(0, totalDays - elapsed);
+    var progress = Math.min(100, Math.round((elapsed / totalDays) * 100));
+    var monthNames = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+    return {
+        num: phase.num,
+        name: phase.name,
+        color: phase.color,
+        colorHex: phase.colorHex,
+        link: phase.link,
+        year: year,
+        startDate: startDate,
+        endDate: endDate,
+        startLabel: monthNames[phase.startMonth] + ' 1',
+        endLabel: monthNames[phase.endMonth] + ' ' + endDate.getDate(),
+        totalDays: totalDays,
+        remaining: remaining,
+        progress: progress,
+        quarterKey: 'Q' + phase.num + '_' + year
+    };
+}
+
+function getNextTransition(phaseNum) {
+    var transitions = {
+        1: {
+            label: 'Phase 1 → Phase 2 (Cut)',
+            items: [
+                { key: '1to2_stable', text: 'Weight has been stable (±2-3 lbs) for 2-3 weeks' },
+                { key: '1to2_tracking', text: 'Been consistently tracking for 4+ weeks' },
+                { key: '1to2_recalc', text: 'Recalculated macros with goal set to "Lose Fat"' },
+                { key: '1to2_ready', text: 'Mentally prepared for a 12-week caloric deficit' }
+            ]
+        },
+        2: {
+            label: 'Phase 2 → Phase 3 (Maintain)',
+            items: [
+                { key: '2to3_complete', text: 'Completed the full 12-week cut phase' },
+                { key: '2to3_recalc', text: 'Recalculated macros with goal set to "Maintain"' },
+                { key: '2to3_reverse', text: 'Understand that the reverse diet should be gradual' },
+                { key: '2to3_photos', text: 'Taken end-of-cut progress photos' }
+            ]
+        },
+        3: {
+            label: 'Phase 3 → Phase 4 (Build)',
+            items: [
+                { key: '3to4_stable', text: 'Weight has been stable (±2-3 lbs) for 3-4 weeks' },
+                { key: '3to4_energy', text: 'Energy and performance are back to baseline' },
+                { key: '3to4_recalc', text: 'Recalculated macros with goal set to "Build Muscle"' },
+                { key: '3to4_expect', text: 'Understand that body weight will increase during this phase' }
+            ]
+        },
+        4: {
+            label: 'Phase 4 → Phase 1 (Maintain)',
+            items: [
+                { key: '4to1_complete', text: 'Completed the full 12-week build phase' },
+                { key: '4to1_recalc', text: 'Recalculated macros with goal set to "Maintain"' },
+                { key: '4to1_expect', text: 'Understand that maintenance means less food than building' },
+                { key: '4to1_photos', text: 'Taken year-over-year comparison photos' }
+            ]
+        }
+    };
+    return transitions[phaseNum];
+}
+
+// ===== AUTH FLOW =====
+var isSignUp = false;
+
+function toggleAuthMode() {
+    isSignUp = !isSignUp;
+    document.getElementById('authTitle').textContent = isSignUp ? 'Create Account' : 'Sign In';
+    document.getElementById('authSubtitle').textContent = isSignUp ? 'Start tracking your Blueprint progress' : 'Access your personal dashboard';
+    document.getElementById('authSubmitBtn').textContent = isSignUp ? 'Create Account' : 'Sign In';
+    document.getElementById('authToggleText').textContent = isSignUp ? 'Already have an account?' : "Don't have an account?";
+    document.getElementById('authToggleLink').textContent = isSignUp ? 'Sign In' : 'Sign Up';
+    document.getElementById('authError').style.display = 'none';
+}
+
+async function handleAuth(e) {
+    e.preventDefault();
+    if (!supabase) { showAuthError('Dashboard not configured yet. Please check back soon.'); return; }
+    var email = document.getElementById('authEmail').value;
+    var password = document.getElementById('authPassword').value;
+    document.getElementById('authSubmitBtn').textContent = isSignUp ? 'Creating...' : 'Signing in...';
+    document.getElementById('authSubmitBtn').disabled = true;
+    try {
+        var result;
+        if (isSignUp) {
+            result = await supabase.auth.signUp({ email: email, password: password });
+        } else {
+            result = await supabase.auth.signInWithPassword({ email: email, password: password });
+        }
+        if (result.error) {
+            showAuthError(result.error.message);
+        } else if (isSignUp && result.data && !result.data.session) {
+            showAuthError('Check your email to confirm your account, then sign in.');
+        } else {
+            showDashboard(result.data.user);
+        }
+    } catch (err) {
+        showAuthError('Something went wrong. Please try again.');
+    }
+    document.getElementById('authSubmitBtn').textContent = isSignUp ? 'Create Account' : 'Sign In';
+    document.getElementById('authSubmitBtn').disabled = false;
+}
+
+function showAuthError(msg) {
+    var el = document.getElementById('authError');
+    el.textContent = msg;
+    el.style.display = 'block';
+}
+
+async function handleLogout() {
+    if (supabase) { await supabase.auth.signOut(); }
+    hideDashboard();
+}
+
+async function checkSession() {
+    if (!supabase) return;
+    var { data } = await supabase.auth.getSession();
+    if (data && data.session) {
+        showDashboard(data.session.user);
+    }
+}
+
+// ===== DASHBOARD STATE =====
+function showDashboard(user) {
+    document.getElementById('authHero').style.display = 'none';
+    document.getElementById('authSection').style.display = 'none';
+    document.getElementById('dashboardContainer').style.display = 'block';
+    document.getElementById('userEmail').textContent = user.email;
+    initDashboard(user);
+}
+
+function hideDashboard() {
+    document.getElementById('authHero').style.display = '';
+    document.getElementById('authSection').style.display = '';
+    document.getElementById('dashboardContainer').style.display = 'none';
+}
+
+async function initDashboard(user) {
+    var phase = getPhaseInfo();
+    renderPhaseBanner(phase);
+    renderQuickLinks(phase);
+    renderChecklist(phase);
+    setWeightDateDefault();
+    setBodyCompDateDefault();
+    if (supabase && user) {
+        loadMacros(user.id, phase);
+        loadWeightData(user.id, phase);
+        loadBodyCompData(user.id);
+        loadChecklistProgress(user.id, phase);
+        loadYearOverYear(user.id);
+    }
+}
+
+// ===== PHASE BANNER =====
+function renderPhaseBanner(phase) {
+    var banner = document.getElementById('phaseBanner');
+    banner.style.background = phase.colorHex;
+    banner.style.color = phase.num === 4 ? '#000' : '#fff';
+    document.getElementById('phaseBannerLabel').textContent = 'PHASE ' + phase.num + ': ' + phase.name.toUpperCase();
+    document.getElementById('phaseBannerDates').textContent = phase.startLabel + ' to ' + phase.endLabel;
+    document.getElementById('phaseBannerCountdown').textContent = phase.remaining + ' days remaining';
+    document.getElementById('phaseProgressFill').style.width = phase.progress + '%';
+}
+
+// ===== QUICK LINKS =====
+function renderQuickLinks(phase) {
+    var link = document.getElementById('quickLinkPhase');
+    link.href = phase.link;
+    document.getElementById('quickLinkPhaseTitle').textContent = 'Go to Phase ' + phase.num + ' Guide';
+}
+
+// ===== MACROS =====
+async function loadMacros(userId, phase) {
+    try {
+        var { data, error } = await supabase.from('saved_macros').select('*')
+            .eq('user_id', userId).eq('phase', phase.num).eq('year', phase.year).single();
+        if (data && !error) {
+            document.getElementById('macroCals').textContent = data.calories;
+            document.getElementById('macroProtein').textContent = data.protein;
+            document.getElementById('macroCarbs').textContent = data.carbs;
+            document.getElementById('macroFat').textContent = data.fat;
+            document.getElementById('macrosPopulated').style.display = 'block';
+            document.getElementById('macrosEmpty').style.display = 'none';
+            // Pre-fill form
+            document.getElementById('macroCalInput').value = data.calories;
+            document.getElementById('macroProteinInput').value = data.protein;
+            document.getElementById('macroCarbsInput').value = data.carbs;
+            document.getElementById('macroFatInput').value = data.fat;
+            if (data.weight) document.getElementById('macroWeightInput').value = data.weight;
+            if (data.activity_level) document.getElementById('macroActivityInput').value = data.activity_level;
+        }
+    } catch (e) { /* empty state shown by default */ }
+}
+
+async function saveMacros(e) {
+    e.preventDefault();
+    if (!supabase) return;
+    var phase = getPhaseInfo();
+    var { data: { user } } = await supabase.auth.getUser();
+    if (!user) return;
+    var payload = {
+        user_id: user.id,
+        phase: phase.num,
+        year: phase.year,
+        calories: parseInt(document.getElementById('macroCalInput').value),
+        protein: parseInt(document.getElementById('macroProteinInput').value),
+        carbs: parseInt(document.getElementById('macroCarbsInput').value),
+        fat: parseInt(document.getElementById('macroFatInput').value),
+        weight: parseFloat(document.getElementById('macroWeightInput').value) || null,
+        activity_level: document.getElementById('macroActivityInput').value || null
+    };
+    try {
+        var { error } = await supabase.from('saved_macros').upsert(payload, { onConflict: 'user_id,phase,year' });
+        if (error) throw error;
+        flashMessage('macroSaveSuccess');
+        loadMacros(user.id, phase);
+    } catch (err) {
+        flashMessage('macroSaveError');
+    }
+}
+
+// ===== WEIGHT TRACKER =====
+var weightChart = null;
+
+function setWeightDateDefault() {
+    document.getElementById('weightDate').valueAsDate = new Date();
+}
+
+async function saveWeight(e) {
+    e.preventDefault();
+    if (!supabase) return;
+    var { data: { user } } = await supabase.auth.getUser();
+    if (!user) return;
+    var payload = {
+        user_id: user.id,
+        weight: parseFloat(document.getElementById('weightInput').value),
+        logged_date: document.getElementById('weightDate').value,
+        notes: document.getElementById('weightNotes').value || null
+    };
+    try {
+        var { error } = await supabase.from('weight_log').insert(payload);
+        if (error) throw error;
+        flashMessage('weightSaveSuccess');
+        document.getElementById('weightInput').value = '';
+        document.getElementById('weightNotes').value = '';
+        setWeightDateDefault();
+        loadWeightData(user.id, getPhaseInfo());
+    } catch (err) {
+        flashMessage('weightSaveError');
+    }
+}
+
+async function loadWeightData(userId, phase) {
+    try {
+        var { data, error } = await supabase.from('weight_log').select('*')
+            .eq('user_id', userId).order('logged_date', { ascending: true });
+        if (error || !data || data.length === 0) return;
+
+        // Filter for current phase period
+        var phaseStart = phase.startDate.toISOString().split('T')[0];
+        var phaseEnd = phase.endDate.toISOString().split('T')[0];
+        var phaseData = data.filter(function(d) { return d.logged_date >= phaseStart && d.logged_date <= phaseEnd; });
+
+        if (phaseData.length > 0) {
+            var startW = phaseData[0].weight;
+            var currentW = phaseData[phaseData.length - 1].weight;
+            var change = (currentW - startW).toFixed(1);
+            document.getElementById('weightStart').textContent = startW.toFixed(1);
+            document.getElementById('weightCurrent').textContent = currentW.toFixed(1);
+            document.getElementById('weightChange').textContent = (change > 0 ? '+' : '') + change;
+            var changeEl = document.getElementById('weightChange');
+            if (change < 0) changeEl.style.color = 'var(--phase-cut)';
+            else if (change > 0) changeEl.style.color = 'var(--phase-build)';
+            else changeEl.style.color = 'var(--phase-maintain)';
+        }
+
+        renderWeightChart(data);
+    } catch (e) { /* fail silently */ }
+}
+
+function renderWeightChart(data) {
+    var ctx = document.getElementById('weightChart').getContext('2d');
+    if (weightChart) weightChart.destroy();
+
+    var labels = data.map(function(d) { return d.logged_date; });
+    var weights = data.map(function(d) { return d.weight; });
+
+    // Phase background bands plugin
+    var phaseBandsPlugin = {
+        id: 'phaseBands',
+        beforeDraw: function(chart) {
+            var xScale = chart.scales.x;
+            var yScale = chart.scales.y;
+            var ctx2 = chart.ctx;
+            if (!xScale || !yScale) return;
+            var year = new Date(data[0].logged_date).getFullYear();
+            var endYear = new Date(data[data.length - 1].logged_date).getFullYear();
+            for (var y = year; y <= endYear; y++) {
+                var quarters = [
+                    { start: y+'-01-01', end: y+'-03-31', color: 'rgba(46,134,193,0.08)' },
+                    { start: y+'-04-01', end: y+'-06-30', color: 'rgba(255,0,3,0.08)' },
+                    { start: y+'-07-01', end: y+'-09-30', color: 'rgba(46,134,193,0.08)' },
+                    { start: y+'-10-01', end: y+'-12-31', color: 'rgba(39,174,96,0.08)' }
+                ];
+                quarters.forEach(function(q) {
+                    var xStart = xScale.getPixelForValue(q.start);
+                    var xEnd = xScale.getPixelForValue(q.end);
+                    if (isNaN(xStart) || isNaN(xEnd)) return;
+                    ctx2.fillStyle = q.color;
+                    ctx2.fillRect(xStart, yScale.top, xEnd - xStart, yScale.bottom - yScale.top);
+                });
+            }
+        }
+    };
+
+    weightChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: labels,
+            datasets: [{
+                label: 'Weight (lbs)',
+                data: weights,
+                borderColor: '#FFD202',
+                backgroundColor: 'rgba(255, 210, 2, 0.1)',
+                borderWidth: 2,
+                pointRadius: 4,
+                pointBackgroundColor: '#FFD202',
+                fill: true,
+                tension: 0.3
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: { display: false },
+                tooltip: {
+                    backgroundColor: '#1a1a1a',
+                    titleColor: '#fff',
+                    bodyColor: '#ccc',
+                    borderColor: '#333',
+                    borderWidth: 1,
+                    titleFont: { family: 'Montserrat', weight: '700' },
+                    bodyFont: { family: 'Montserrat' }
+                }
+            },
+            scales: {
+                x: {
+                    ticks: { color: '#ccc', font: { family: 'Montserrat', size: 11 }, maxTicksLimit: 10 },
+                    grid: { color: 'rgba(51,51,51,0.5)' }
+                },
+                y: {
+                    ticks: { color: '#ccc', font: { family: 'Montserrat', size: 11 } },
+                    grid: { color: 'rgba(51,51,51,0.5)' }
+                }
+            }
+        },
+        plugins: [phaseBandsPlugin]
+    });
+}
+
+// ===== BODY COMPOSITION =====
+var bodyCompChart = null;
+
+function setBodyCompDateDefault() {
+    document.getElementById('bodyCompDate').valueAsDate = new Date();
+}
+
+function openBodyCompModal() {
+    document.getElementById('bodyCompModal').classList.add('active');
+    document.body.style.overflow = 'hidden';
+}
+
+function closeBodyCompModal() {
+    document.getElementById('bodyCompModal').classList.remove('active');
+    document.body.style.overflow = '';
+}
+
+document.getElementById('bodyCompModal').addEventListener('click', function(e) {
+    if (e.target === this) closeBodyCompModal();
+});
+
+function toggleBodyCompFields() {
+    var source = document.getElementById('bodyCompSource').value;
+    document.getElementById('scanFields').style.display = (source === 'manual') ? 'none' : 'block';
+    document.getElementById('manualFields').style.display = (source === 'manual') ? 'block' : 'none';
+}
+
+async function saveBodyComp(e) {
+    e.preventDefault();
+    if (!supabase) return;
+    var { data: { user } } = await supabase.auth.getUser();
+    if (!user) return;
+    var source = document.getElementById('bodyCompSource').value;
+    var payload = {
+        user_id: user.id,
+        source: source,
+        logged_date: document.getElementById('bodyCompDate').value,
+        body_fat_pct: parseFloat(document.getElementById('bcBodyFat').value) || null,
+        skeletal_muscle_mass: parseFloat(document.getElementById('bcSMM').value) || null,
+        lean_body_mass: parseFloat(document.getElementById('bcLBM').value) || null,
+        body_fat_mass: parseFloat(document.getElementById('bcFatMass').value) || null,
+        total_body_water: parseFloat(document.getElementById('bcTBW').value) || null,
+        inbody_score: parseInt(document.getElementById('bcInBodyScore').value) || null,
+        bmr: parseInt(document.getElementById('bcBMR').value) || null,
+        waist: parseFloat(document.getElementById('bcWaist').value) || null,
+        hip: parseFloat(document.getElementById('bcHip').value) || null,
+        chest: parseFloat(document.getElementById('bcChest').value) || null,
+        arm: parseFloat(document.getElementById('bcArm').value) || null,
+        thigh: parseFloat(document.getElementById('bcThigh').value) || null
+    };
+    try {
+        var { error } = await supabase.from('body_composition').insert(payload);
+        if (error) throw error;
+        flashMessage('bodyCompSaveSuccess');
+        closeBodyCompModal();
+        loadBodyCompData(user.id);
+    } catch (err) {
+        flashMessage('bodyCompSaveError');
+    }
+}
+
+async function loadBodyCompData(userId) {
+    try {
+        var { data, error } = await supabase.from('body_composition').select('*')
+            .eq('user_id', userId).order('logged_date', { ascending: true });
+        if (error || !data || data.length === 0) return;
+
+        // Show latest entry summary
+        var latest = data[data.length - 1];
+        var summaryHtml = '';
+        if (latest.body_fat_pct) summaryHtml += '<div class="body-comp-item"><div class="label">Body Fat</div><div class="value">' + latest.body_fat_pct + '%</div></div>';
+        if (latest.skeletal_muscle_mass) summaryHtml += '<div class="body-comp-item"><div class="label">Skeletal Muscle</div><div class="value">' + latest.skeletal_muscle_mass + ' lbs</div></div>';
+        if (latest.lean_body_mass) summaryHtml += '<div class="body-comp-item"><div class="label">Lean Mass</div><div class="value">' + latest.lean_body_mass + ' lbs</div></div>';
+        if (latest.body_fat_mass) summaryHtml += '<div class="body-comp-item"><div class="label">Fat Mass</div><div class="value">' + latest.body_fat_mass + ' lbs</div></div>';
+        if (latest.inbody_score) summaryHtml += '<div class="body-comp-item"><div class="label">InBody Score</div><div class="value">' + latest.inbody_score + '</div></div>';
+        if (latest.bmr) summaryHtml += '<div class="body-comp-item"><div class="label">BMR</div><div class="value">' + latest.bmr + '</div></div>';
+        if (latest.waist) summaryHtml += '<div class="body-comp-item"><div class="label">Waist</div><div class="value">' + latest.waist + ' in</div></div>';
+        if (latest.hip) summaryHtml += '<div class="body-comp-item"><div class="label">Hip</div><div class="value">' + latest.hip + ' in</div></div>';
+
+        if (summaryHtml) {
+            document.getElementById('bodyCompSummary').innerHTML = summaryHtml;
+            document.getElementById('bodyCompPopulated').style.display = 'block';
+            document.getElementById('bodyCompEmpty').style.display = 'none';
+        }
+
+        // Render chart if we have body fat and/or SMM data across time
+        var chartData = data.filter(function(d) { return d.body_fat_pct || d.skeletal_muscle_mass; });
+        if (chartData.length >= 2) renderBodyCompChart(chartData);
+    } catch (e) { /* fail silently */ }
+}
+
+function renderBodyCompChart(data) {
+    var ctx = document.getElementById('bodyCompChart').getContext('2d');
+    if (bodyCompChart) bodyCompChart.destroy();
+
+    var labels = data.map(function(d) { return d.logged_date; });
+    var bfData = data.map(function(d) { return d.body_fat_pct; });
+    var smmData = data.map(function(d) { return d.skeletal_muscle_mass; });
+
+    var datasets = [];
+    if (bfData.some(function(v) { return v !== null; })) {
+        datasets.push({
+            label: 'Body Fat %',
+            data: bfData,
+            borderColor: '#ff0003',
+            backgroundColor: 'rgba(255,0,3,0.1)',
+            borderWidth: 2,
+            pointRadius: 4,
+            pointBackgroundColor: '#ff0003',
+            yAxisID: 'y',
+            tension: 0.3
+        });
+    }
+    if (smmData.some(function(v) { return v !== null; })) {
+        datasets.push({
+            label: 'Skeletal Muscle (lbs)',
+            data: smmData,
+            borderColor: '#27AE60',
+            backgroundColor: 'rgba(39,174,96,0.1)',
+            borderWidth: 2,
+            pointRadius: 4,
+            pointBackgroundColor: '#27AE60',
+            yAxisID: 'y1',
+            tension: 0.3
+        });
+    }
+
+    bodyCompChart = new Chart(ctx, {
+        type: 'line',
+        data: { labels: labels, datasets: datasets },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: {
+                    labels: { color: '#ccc', font: { family: 'Montserrat', weight: '600' } }
+                },
+                tooltip: {
+                    backgroundColor: '#1a1a1a',
+                    titleColor: '#fff',
+                    bodyColor: '#ccc',
+                    borderColor: '#333',
+                    borderWidth: 1,
+                    titleFont: { family: 'Montserrat', weight: '700' },
+                    bodyFont: { family: 'Montserrat' }
+                }
+            },
+            scales: {
+                x: {
+                    ticks: { color: '#ccc', font: { family: 'Montserrat', size: 11 }, maxTicksLimit: 10 },
+                    grid: { color: 'rgba(51,51,51,0.5)' }
+                },
+                y: {
+                    type: 'linear',
+                    position: 'left',
+                    title: { display: true, text: 'Body Fat %', color: '#ff0003', font: { family: 'Montserrat', weight: '700' } },
+                    ticks: { color: '#ff0003', font: { family: 'Montserrat', size: 11 } },
+                    grid: { color: 'rgba(51,51,51,0.5)' }
+                },
+                y1: {
+                    type: 'linear',
+                    position: 'right',
+                    title: { display: true, text: 'Muscle Mass (lbs)', color: '#27AE60', font: { family: 'Montserrat', weight: '700' } },
+                    ticks: { color: '#27AE60', font: { family: 'Montserrat', size: 11 } },
+                    grid: { drawOnChartArea: false }
+                }
+            }
+        }
+    });
+}
+
+// ===== CHECKLIST =====
+function renderChecklist(phase) {
+    var transition = getNextTransition(phase.num);
+    document.getElementById('checklistTitle').textContent = transition.label;
+    var container = document.getElementById('checklistContainer');
+    var html = '';
+    transition.items.forEach(function(item) {
+        html += '<div class="checklist-item" data-key="' + item.key + '">' +
+            '<div class="checklist-checkbox" onclick="toggleChecklistItem(this, \'' + item.key + '\')"></div>' +
+            '<span class="checklist-text">' + item.text + '</span>' +
+            '</div>';
+    });
+    container.innerHTML = html;
+}
+
+async function toggleChecklistItem(el, key) {
+    var isChecked = el.classList.toggle('checked');
+    el.closest('.checklist-item').classList.toggle('checked', isChecked);
+    if (!supabase) return;
+    var { data: { user } } = await supabase.auth.getUser();
+    if (!user) return;
+    var phase = getPhaseInfo();
+    try {
+        if (isChecked) {
+            await supabase.from('checklist_progress').upsert({
+                user_id: user.id,
+                item_key: key,
+                phase: phase.num,
+                year: phase.year,
+                completed: true
+            }, { onConflict: 'user_id,item_key,phase,year' });
+        } else {
+            await supabase.from('checklist_progress').delete()
+                .eq('user_id', user.id).eq('item_key', key).eq('phase', phase.num).eq('year', phase.year);
+        }
+    } catch (e) { /* fail silently */ }
+}
+
+async function loadChecklistProgress(userId, phase) {
+    try {
+        var { data, error } = await supabase.from('checklist_progress').select('item_key')
+            .eq('user_id', userId).eq('phase', phase.num).eq('year', phase.year).eq('completed', true);
+        if (error || !data) return;
+        data.forEach(function(row) {
+            var item = document.querySelector('.checklist-item[data-key="' + row.item_key + '"]');
+            if (item) {
+                item.classList.add('checked');
+                item.querySelector('.checklist-checkbox').classList.add('checked');
+            }
+        });
+    } catch (e) { /* fail silently */ }
+}
+
+// ===== YEAR-OVER-YEAR =====
+async function loadYearOverYear(userId) {
+    try {
+        var { data, error } = await supabase.from('phase_history').select('*')
+            .eq('user_id', userId).order('year', { ascending: false }).order('phase', { ascending: true });
+        if (error || !data || data.length === 0) return;
+
+        var byYear = {};
+        data.forEach(function(row) {
+            if (!byYear[row.year]) byYear[row.year] = [];
+            byYear[row.year].push(row);
+        });
+
+        var phaseNames = { 1: 'Maintain', 2: 'Cut', 3: 'Maintain', 4: 'Build' };
+        var phaseColors = { 1: 'var(--phase-maintain)', 2: 'var(--phase-cut)', 3: 'var(--phase-maintain)', 4: 'var(--phase-build)' };
+        var html = '';
+        var years = Object.keys(byYear).sort(function(a, b) { return b - a; });
+
+        years.forEach(function(year) {
+            var phases = byYear[year];
+            var badge = phases.length >= 4 ? ' <span class="yoy-badge">Year Complete</span>' : '';
+            html += '<div class="yoy-year">';
+            html += '<div class="yoy-year-label">' + year + badge + '</div>';
+            html += '<div class="yoy-phases">';
+            phases.forEach(function(p) {
+                var change = p.end_weight && p.start_weight ? (p.end_weight - p.start_weight).toFixed(1) : null;
+                var changeClass = change < 0 ? 'loss' : change > 0 ? 'gain' : 'neutral';
+                var changeText = change !== null ? ((change > 0 ? '+' : '') + change + ' lbs') : '--';
+                html += '<div class="yoy-phase-card">';
+                html += '<div class="yoy-phase-name" style="color: ' + phaseColors[p.phase] + ';">Phase ' + p.phase + ': ' + phaseNames[p.phase] + '</div>';
+                if (p.start_date && p.end_date) html += '<div class="yoy-phase-dates">' + p.start_date + ' to ' + p.end_date + '</div>';
+                if (p.start_weight) html += '<div class="yoy-phase-weight">' + p.start_weight + ' → ' + (p.end_weight || '--') + ' lbs</div>';
+                html += '<div class="yoy-phase-change ' + changeClass + '">' + changeText + '</div>';
+                html += '</div>';
+            });
+            html += '</div></div>';
+        });
+
+        document.getElementById('yoyPopulated').innerHTML = html;
+        document.getElementById('yoyPopulated').style.display = 'block';
+        document.getElementById('yoyEmpty').style.display = 'none';
+    } catch (e) { /* fail silently */ }
+}
+
+// ===== UTILITIES =====
+function toggleCollapsible(btn) {
+    btn.classList.toggle('open');
+    var content = btn.nextElementSibling;
+    content.classList.toggle('open');
+}
+
+function flashMessage(id) {
+    var el = document.getElementById(id);
+    el.style.display = 'block';
+    setTimeout(function() { el.style.display = 'none'; }, 3000);
+}
+
+// ===== MODALS =====
+function openLeadModal() {
+    var modal = document.getElementById('leadModal');
+    var iframe = modal.querySelector('iframe');
+    if (iframe && !iframe.src && iframe.dataset.src) { iframe.src = iframe.dataset.src; }
+    modal.classList.add('active');
+    document.body.style.overflow = 'hidden';
+}
+function closeLeadModal() {
+    document.getElementById('leadModal').classList.remove('active');
+    document.body.style.overflow = '';
+}
+document.getElementById('leadModal').addEventListener('click', function(e) {
+    if (e.target === this) { closeLeadModal(); }
+});
+document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') { closeLeadModal(); closeCancelModal(); closeSubscribeModal(); closeBodyCompModal(); }
+});
+
+function openCancelModal() {
+    var modal = document.getElementById('cancelModal');
+    var iframe = modal.querySelector('iframe');
+    if (iframe && !iframe.src && iframe.dataset.src) { iframe.src = iframe.dataset.src; }
+    modal.classList.add('active');
+    document.body.style.overflow = 'hidden';
+}
+function closeCancelModal() {
+    document.getElementById('cancelModal').classList.remove('active');
+    document.body.style.overflow = '';
+}
+document.getElementById('cancelModal').addEventListener('click', function(e) {
+    if (e.target === this) { closeCancelModal(); }
+});
+
+function openSubscribeModal() {
+    var modal = document.getElementById('subscribeModal');
+    var iframe = modal.querySelector('iframe');
+    if (iframe && !iframe.src && iframe.dataset.src) { iframe.src = iframe.dataset.src; }
+    modal.classList.add('active');
+    document.body.style.overflow = 'hidden';
+}
+function closeSubscribeModal() {
+    document.getElementById('subscribeModal').classList.remove('active');
+    document.body.style.overflow = '';
+}
+document.getElementById('subscribeModal').addEventListener('click', function(e) {
+    if (e.target === this) { closeSubscribeModal(); }
+});
+
+// ===== MOBILE NAV =====
+function toggleMobileNav() {
+    document.getElementById('mobileNav').classList.toggle('active');
+    document.querySelector('.hamburger').classList.toggle('active');
+    document.body.style.overflow = document.getElementById('mobileNav').classList.contains('active') ? 'hidden' : '';
+}
+function closeMobileNav() {
+    document.getElementById('mobileNav').classList.remove('active');
+    document.querySelector('.hamburger').classList.remove('active');
+    document.body.style.overflow = '';
+}
+
+// ===== INIT =====
+checkSession();
+</script>
+
+<script src="https://link.msgsndr.com/js/form_embed.js" type="text/javascript" defer></script>
+<script src="https://widgets.leadconnectorhq.com/loader.js" data-resources-url="https://widgets.leadconnectorhq.com/chat-widget/loader.js" data-widget-id="6995d6d76e6009387f78d31e"></script>
+</body>
+</html>
