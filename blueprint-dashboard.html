@@ -2534,8 +2534,13 @@ async function saveMacros(e) {
 // ===== WEIGHT TRACKER =====
 var weightChart = null;
 
+function todayLocalString() {
+    var d = new Date();
+    return d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0');
+}
+
 function setWeightDateDefault() {
-    document.getElementById('weightDate').valueAsDate = new Date();
+    document.getElementById('weightDate').value = todayLocalString();
 }
 
 async function saveWeight(e) {
@@ -2675,7 +2680,7 @@ function renderWeightChart(data) {
 var bodyCompChart = null;
 
 function setBodyCompDateDefault() {
-    document.getElementById('bodyCompDate').valueAsDate = new Date();
+    document.getElementById('bodyCompDate').value = todayLocalString();
 }
 
 function openBodyCompModal() {
@@ -3071,6 +3076,9 @@ function useCalculatedMacros() {
     document.getElementById('macroFatInput').value = results.dataset.fat;
     document.getElementById('macroWeightInput').value = results.dataset.weight;
     document.getElementById('macroActivityInput').value = results.dataset.activity;
+
+    // Auto-fill weight tracker
+    document.getElementById('weightInput').value = results.dataset.weight;
 
     // Open the collapsible save form
     var toggle = document.querySelector('#macroForm').closest('.collapsible-content').previousElementSibling;
