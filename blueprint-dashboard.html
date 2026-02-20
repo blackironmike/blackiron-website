@@ -480,6 +480,10 @@
             margin-bottom: 2rem;
         }
 
+        .stats-row-3 {
+            grid-template-columns: repeat(3, 1fr);
+        }
+
         .stat-card {
             background: var(--black);
             border: 2px solid var(--medium-gray);
@@ -1755,6 +1759,11 @@
                 flex-wrap: wrap;
             }
 
+            .nav-cta-group {
+                order: 3;
+                width: 100%;
+            }
+
             .cta-btn {
                 order: 3;
                 width: 100%;
@@ -1805,6 +1814,10 @@
                 grid-template-columns: repeat(2, 1fr);
             }
 
+            .stats-row-3 {
+                grid-template-columns: 1fr;
+            }
+
             .stat-card-value {
                 font-size: 2rem;
             }
@@ -1842,16 +1855,22 @@
             .weight-history-row {
                 flex-wrap: wrap;
                 gap: 0.5rem;
+                padding: 1rem 0;
             }
 
             .weight-history-date {
-                width: 90px;
+                width: auto;
+                flex: 1;
                 font-size: 0.8rem;
             }
 
             .weight-history-weight {
-                width: 70px;
+                width: auto;
                 font-size: 0.85rem;
+            }
+
+            .weight-history-actions {
+                margin-left: auto;
             }
 
             .weight-history-notes {
@@ -1862,7 +1881,17 @@
             }
 
             .weight-history-row input[type="date"] {
-                width: 110px;
+                width: 100%;
+                flex: 1;
+            }
+
+            .weight-history-row input[type="number"] {
+                width: 70px;
+            }
+
+            .weight-history-row input[type="text"] {
+                flex-basis: 100%;
+                order: 4;
             }
 
             .modal-overlay { padding: 1rem; }
@@ -1911,7 +1940,7 @@
                 <li><a href="media.html">Media</a></li>
                 <li><a href="blog/">Blog</a></li>
                 <li class="has-submenu">
-                    <a href="#">Nutrition</a>
+                    <a href="blueprint.html">Nutrition</a>
                     <ul class="submenu">
                         <li><a href="macro-calculator.html">Macro Calculator</a></li>
                         <li><a href="blueprint.html">4-Phase Blueprint</a></li>
@@ -1943,7 +1972,7 @@
         <a href="getting-started.html#faqs" class="mobile-sub-link" onclick="closeMobileNav()">FAQs</a>
         <a href="media.html" onclick="closeMobileNav()">Media</a>
         <a href="blog/" onclick="closeMobileNav()">Blog</a>
-        <a href="#" onclick="closeMobileNav()">Nutrition</a>
+        <a href="blueprint.html" onclick="closeMobileNav()">Nutrition</a>
         <a href="macro-calculator.html" class="mobile-sub-link" onclick="closeMobileNav()">Macro Calculator</a>
         <a href="blueprint.html" class="mobile-sub-link" onclick="closeMobileNav()">4-Phase Blueprint</a>
         <a href="contact.html" onclick="closeMobileNav()">Contact</a>
@@ -2159,7 +2188,7 @@
                         <div id="weightSaveSuccess" class="form-success">Weight logged!</div>
                         <div id="weightSaveError" class="form-error">Error logging weight.</div>
                     </form>
-                    <div class="stats-row" id="weightSummary" style="grid-template-columns: repeat(3, 1fr);">
+                    <div class="stats-row stats-row-3" id="weightSummary">
                         <div class="stat-card">
                             <div class="stat-card-label">Start Weight</div>
                             <div class="stat-card-value" id="weightStart">--</div>
