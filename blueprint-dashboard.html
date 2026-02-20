@@ -902,6 +902,110 @@
             height: 350px;
         }
 
+        /* ===== WEIGHT HISTORY ===== */
+        .weight-history {
+            margin-top: 1.5rem;
+        }
+
+        .weight-history-list {
+            max-height: 400px;
+            overflow-y: auto;
+        }
+
+        .weight-history-row {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 0.75rem 0;
+            border-bottom: 1px solid var(--medium-gray);
+            font-size: 0.9rem;
+        }
+
+        .weight-history-row:last-child {
+            border-bottom: none;
+        }
+
+        .weight-history-date {
+            width: 110px;
+            flex-shrink: 0;
+            color: var(--light-gray);
+        }
+
+        .weight-history-weight {
+            width: 80px;
+            flex-shrink: 0;
+            font-weight: 700;
+            color: var(--yellow);
+        }
+
+        .weight-history-notes {
+            flex: 1;
+            color: var(--light-gray);
+            font-size: 0.85rem;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        .weight-history-actions {
+            display: flex;
+            gap: 0.5rem;
+            flex-shrink: 0;
+        }
+
+        .weight-history-actions button {
+            background: transparent;
+            border: 1px solid var(--medium-gray);
+            color: var(--light-gray);
+            width: 32px;
+            height: 32px;
+            cursor: pointer;
+            font-size: 0.8rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .weight-history-actions button:hover {
+            border-color: var(--yellow);
+            color: var(--yellow);
+        }
+
+        .weight-history-actions button.delete-btn:hover {
+            border-color: var(--phase-cut);
+            color: var(--phase-cut);
+        }
+
+        .weight-history-row input {
+            background: var(--medium-gray);
+            border: 1px solid var(--light-gray);
+            color: var(--white);
+            padding: 0.4rem 0.5rem;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.85rem;
+        }
+
+        .weight-history-row input[type="date"] {
+            width: 130px;
+        }
+
+        .weight-history-row input[type="number"] {
+            width: 80px;
+        }
+
+        .weight-history-row input[type="text"] {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .weight-history-empty {
+            color: var(--light-gray);
+            font-size: 0.9rem;
+            padding: 1rem 0;
+            text-align: center;
+        }
+
         /* ===== BODY COMP ===== */
         .body-comp-summary {
             display: grid;
@@ -1859,6 +1963,14 @@
                     <div class="weight-chart-container">
                         <canvas id="weightChart"></canvas>
                     </div>
+                    <div class="weight-history">
+                        <button class="collapsible-toggle" onclick="toggleCollapsible(this)">
+                            <i class="fa-solid fa-chevron-down"></i> Weight History
+                        </button>
+                        <div class="collapsible-content">
+                            <div class="weight-history-list" id="weightHistoryList"></div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
@@ -2592,6 +2704,7 @@ async function loadWeightData(userId, phase) {
         }
 
         renderWeightChart(data);
+        renderWeightHistory(phaseData);
     } catch (e) { /* fail silently */ }
 }
 
@@ -2674,6 +2787,84 @@ function renderWeightChart(data) {
         },
         plugins: [phaseBandsPlugin]
     });
+}
+
+// ===== WEIGHT HISTORY =====
+function renderWeightHistory(entries) {
+    var container = document.getElementById('weightHistoryList');
+    if (!container) return;
+    if (!entries || entries.length === 0) {
+        container.innerHTML = '<div class="weight-history-empty">No weight entries for this phase yet.</div>';
+        return;
+    }
+    var sorted = entries.slice().sort(function(a, b) { return b.logged_date.localeCompare(a.logged_date); });
+    var html = '';
+    sorted.forEach(function(entry) {
+        html += '<div class="weight-history-row" id="wh-row-' + entry.id + '">'
+            + '<span class="weight-history-date">' + entry.logged_date + '</span>'
+            + '<span class="weight-history-weight">' + entry.weight.toFixed(1) + ' lbs</span>'
+            + '<span class="weight-history-notes">' + (entry.notes || '—') + '</span>'
+            + '<span class="weight-history-actions">'
+            + '<button onclick="editWeightEntry(\'' + entry.id + '\', \'' + entry.logged_date + '\', ' + entry.weight + ', \'' + (entry.notes || '').replace(/'/g, "\\'") + '\')" title="Edit"><i class="fa-solid fa-pen"></i></button>'
+            + '<button class="delete-btn" onclick="deleteWeightEntry(\'' + entry.id + '\')" title="Delete"><i class="fa-solid fa-trash"></i></button>'
+            + '</span>'
+            + '</div>';
+    });
+    container.innerHTML = html;
+}
+
+function editWeightEntry(id, date, weight, notes) {
+    var row = document.getElementById('wh-row-' + id);
+    if (!row) return;
+    row.innerHTML = '<input type="date" id="wh-date-' + id + '" value="' + date + '">'
+        + '<input type="number" id="wh-weight-' + id + '" value="' + weight + '" step="0.1" min="50" max="700">'
+        + '<input type="text" id="wh-notes-' + id + '" value="' + notes + '" placeholder="Notes">'
+        + '<span class="weight-history-actions">'
+        + '<button onclick="saveWeightEdit(\'' + id + '\')" title="Save" style="border-color:var(--phase-build);color:var(--phase-build)"><i class="fa-solid fa-check"></i></button>'
+        + '<button onclick="cancelWeightEdit()" title="Cancel"><i class="fa-solid fa-xmark"></i></button>'
+        + '</span>';
+}
+
+async function saveWeightEdit(id) {
+    if (!supabase) return;
+    var dateVal = document.getElementById('wh-date-' + id).value;
+    var weightVal = parseFloat(document.getElementById('wh-weight-' + id).value);
+    var notesVal = document.getElementById('wh-notes-' + id).value || null;
+    if (!dateVal || isNaN(weightVal)) return;
+    try {
+        var { error } = await supabase.from('weight_log').update({
+            logged_date: dateVal,
+            weight: weightVal,
+            notes: notesVal
+        }).eq('id', id);
+        if (error) throw error;
+        var { data: { user } } = await supabase.auth.getUser();
+        if (user) loadWeightData(user.id, getPhaseInfo());
+    } catch (err) {
+        alert('Error saving edit. Please try again.');
+    }
+}
+
+function cancelWeightEdit() {
+    // Reload the weight data to revert the row back to display mode
+    (async function() {
+        if (!supabase) return;
+        var { data: { user } } = await supabase.auth.getUser();
+        if (user) loadWeightData(user.id, getPhaseInfo());
+    })();
+}
+
+async function deleteWeightEntry(id) {
+    if (!confirm('Delete this weight entry? This cannot be undone.')) return;
+    if (!supabase) return;
+    try {
+        var { error } = await supabase.from('weight_log').delete().eq('id', id);
+        if (error) throw error;
+        var { data: { user } } = await supabase.auth.getUser();
+        if (user) loadWeightData(user.id, getPhaseInfo());
+    } catch (err) {
+        alert('Error deleting entry. Please try again.');
+    }
 }
 
 // ===== BODY COMPOSITION =====
