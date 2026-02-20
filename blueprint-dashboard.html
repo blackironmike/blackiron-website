@@ -818,6 +818,54 @@
             transition: width 0.6s ease;
         }
 
+        /* ===== DASHBOARD HERO ===== */
+        .dash-hero {
+            padding-top: 80px;
+            min-height: 40vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            background: var(--black);
+        }
+
+        .dash-hero-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.4;
+            z-index: 0;
+        }
+
+        .dash-hero-container {
+            max-width: 100%;
+            width: 100%;
+            margin: 0;
+            padding: 3rem 4rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .dash-hero-content { max-width: 800px; }
+
+        .dash-hero-subtitle {
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: var(--yellow);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 1rem;
+        }
+
+        .dash-hero-content h1 {
+            font-weight: 900;
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            line-height: 1.1;
+            text-transform: uppercase;
+        }
+
         /* ===== DASHBOARD GRID ===== */
         .dash-grid {
             display: grid;
@@ -1686,6 +1734,11 @@
                 padding-right: 2rem;
             }
 
+            .dash-hero-container {
+                padding-left: 2rem;
+                padding-right: 2rem;
+            }
+
             .phase-banner {
                 padding-left: 2rem;
                 padding-right: 2rem;
@@ -1715,6 +1768,10 @@
             .hero-container { padding: 2rem 1.5rem; }
             .hero-content h1 { font-size: clamp(2rem, 6vw, 3rem); }
             .hero-content p { font-size: 1.1rem; margin-bottom: 2rem; }
+
+            .dash-hero { padding-top: 130px; min-height: 30vh; }
+            .dash-hero-container { padding: 2rem 1.5rem; }
+            .dash-hero-content h1 { font-size: clamp(1.8rem, 5vw, 2.5rem); }
 
             .section-container { padding: 0 1.5rem; }
             .section-title { font-size: clamp(1.8rem, 5vw, 2.5rem); }
@@ -1951,6 +2008,17 @@
             <p><i class="fa-solid fa-check-circle" style="color: #27AE60;"></i> <strong>Coaching Call Purchased!</strong> Book your 30-minute session now.</p>
             <a href="https://api.leadconnectorhq.com/widget/booking/COACHING_CALENDAR_ID" target="_blank">Schedule Your Call &rarr;</a>
         </div>
+
+        <!-- Dashboard Hero Image -->
+        <section class="dash-hero">
+            <img src="images/hero-blueprint-how-to-use.webp" alt="Athlete Dashboard" class="dash-hero-bg">
+            <div class="dash-hero-container">
+                <div class="dash-hero-content">
+                    <div class="dash-hero-subtitle">Athlete Dashboard</div>
+                    <h1>Your Blueprint Command Center</h1>
+                </div>
+            </div>
+        </section>
 
         <!-- Section 1: Phase Status Banner -->
         <div class="phase-banner" id="phaseBanner">
