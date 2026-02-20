@@ -1308,6 +1308,137 @@
             display: block;
         }
 
+        /* ===== CALC MODAL FORM ===== */
+        .calc-gender-options,
+        .calc-goal-options {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .calc-gender-option,
+        .calc-goal-option {
+            flex: 1;
+        }
+
+        .calc-gender-option input[type="radio"],
+        .calc-goal-option input[type="radio"] {
+            display: none;
+        }
+
+        .calc-gender-option label,
+        .calc-goal-option label {
+            display: block;
+            text-align: center;
+            padding: 0.75rem 1rem;
+            border: 2px solid var(--medium-gray);
+            cursor: pointer;
+            font-weight: 700;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            color: var(--light-gray);
+        }
+
+        .calc-gender-option input:checked + label,
+        .calc-goal-option input:checked + label {
+            border-color: var(--yellow);
+            color: var(--yellow);
+            background: rgba(255, 210, 2, 0.1);
+        }
+
+        .calc-height-inputs {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .calc-height-field {
+            flex: 1;
+            position: relative;
+        }
+
+        .calc-height-field input {
+            width: 100%;
+            padding: 0.85rem 2.5rem 0.85rem 1rem;
+            background: var(--black);
+            border: 2px solid var(--medium-gray);
+            border-radius: 0;
+            color: var(--white);
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.95rem;
+            font-weight: 500;
+            -moz-appearance: textfield;
+        }
+
+        .calc-height-field input::-webkit-outer-spin-button,
+        .calc-height-field input::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+
+        .calc-height-field input:focus {
+            outline: none;
+            border-color: var(--yellow);
+        }
+
+        .calc-height-unit {
+            position: absolute;
+            right: 0.75rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--light-gray);
+            font-size: 0.85rem;
+            font-weight: 600;
+            pointer-events: none;
+        }
+
+        .calc-results {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 0.75rem;
+            margin: 1.5rem 0;
+        }
+
+        .calc-result-card {
+            background: var(--black);
+            border: 1px solid var(--medium-gray);
+            padding: 1rem;
+            text-align: center;
+        }
+
+        .calc-result-card.highlighted {
+            border-color: var(--yellow);
+            border-width: 2px;
+        }
+
+        .calc-result-label {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--light-gray);
+            margin-bottom: 0.25rem;
+        }
+
+        .calc-result-value {
+            font-size: 1.5rem;
+            font-weight: 900;
+            color: var(--white);
+        }
+
+        .calc-result-unit {
+            font-size: 0.7rem;
+            color: var(--light-gray);
+        }
+
+        @media (max-width: 600px) {
+            .calc-results {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .calc-goal-options {
+                flex-direction: column;
+            }
+        }
+
         @keyframes fadeInUp {
             from { opacity: 0; transform: translateY(30px); }
             to { opacity: 1; transform: translateY(0); }
@@ -1598,7 +1729,7 @@
                 <div class="dash-card">
                     <div class="dash-card-header">
                         <h3 class="dash-card-title"><i class="fa-solid fa-fire"></i> My Macros</h3>
-                        <a href="macro-calculator.html" class="btn-outline btn-small">Recalculate</a>
+                        <button class="btn-outline btn-small" onclick="openCalcModal()">Recalculate</button>
                     </div>
                     <div id="macrosContent">
                         <div id="macrosPopulated" style="display: none;">
@@ -1628,7 +1759,7 @@
                         <div id="macrosEmpty" class="empty-state">
                             <i class="fa-solid fa-calculator"></i>
                             <p>No macros saved for this phase yet.</p>
-                            <a href="macro-calculator.html" class="btn-primary btn-small">Calculate Your Macros</a>
+                            <button class="btn-primary btn-small" onclick="openCalcModal()">Calculate Your Macros</button>
                         </div>
                     </div>
                     <button class="collapsible-toggle" onclick="toggleCollapsible(this)">
@@ -1972,6 +2103,116 @@
                 <div id="bodyCompSaveSuccess" class="form-success">Body comp saved!</div>
                 <div id="bodyCompSaveError" class="form-error">Error saving body comp.</div>
             </form>
+        </div>
+    </div>
+
+    <!-- Macro Calculator Modal -->
+    <div class="modal-overlay" id="calcModal">
+        <div class="modal-container">
+            <button class="modal-close" onclick="closeCalcModal()">&times;</button>
+            <h3><i class="fa-solid fa-calculator"></i> Macro Calculator</h3>
+            <form class="dash-form" id="calcModalForm" onsubmit="calculateMacrosModal(event)">
+                <!-- Gender -->
+                <div class="form-group">
+                    <label>Gender</label>
+                    <div class="calc-gender-options">
+                        <div class="calc-gender-option">
+                            <input type="radio" id="calcMale" name="calcGender" value="male" checked>
+                            <label for="calcMale"><i class="fa-solid fa-mars"></i> Male</label>
+                        </div>
+                        <div class="calc-gender-option">
+                            <input type="radio" id="calcFemale" name="calcGender" value="female">
+                            <label for="calcFemale"><i class="fa-solid fa-venus"></i> Female</label>
+                        </div>
+                    </div>
+                </div>
+                <!-- Age -->
+                <div class="form-group">
+                    <label for="calcAge">Age</label>
+                    <input type="number" id="calcAge" min="15" max="100" placeholder="e.g. 30" required>
+                    <div class="form-error" id="calcAgeError">Please enter an age between 15 and 100.</div>
+                </div>
+                <!-- Height -->
+                <div class="form-group">
+                    <label>Height</label>
+                    <div class="calc-height-inputs">
+                        <div class="calc-height-field">
+                            <input type="number" id="calcFeet" min="3" max="8" placeholder="Feet" required>
+                            <span class="calc-height-unit">ft</span>
+                        </div>
+                        <div class="calc-height-field">
+                            <input type="number" id="calcInches" min="0" max="11" placeholder="Inches" required>
+                            <span class="calc-height-unit">in</span>
+                        </div>
+                    </div>
+                    <div class="form-error" id="calcHeightError">Please enter a valid height.</div>
+                </div>
+                <!-- Weight -->
+                <div class="form-group">
+                    <label for="calcWeight">Weight (lbs)</label>
+                    <input type="number" id="calcWeight" min="50" max="700" placeholder="e.g. 180" required>
+                    <div class="form-error" id="calcWeightError">Please enter a weight between 50 and 700 lbs.</div>
+                </div>
+                <!-- Activity -->
+                <div class="form-group">
+                    <label for="calcActivity">Activity Level</label>
+                    <select id="calcActivity" required>
+                        <option value="" disabled selected>Select your activity level</option>
+                        <option value="1.2">Sedentary (desk job, little exercise)</option>
+                        <option value="1.375">Lightly Active (light exercise 1-3 days/week)</option>
+                        <option value="1.55">Moderately Active (exercise 3-5 days/week)</option>
+                        <option value="1.725">Very Active (hard exercise 6-7 days/week)</option>
+                        <option value="1.9">Extremely Active (athlete / physical job + training)</option>
+                    </select>
+                </div>
+                <!-- Goal -->
+                <div class="form-group">
+                    <label>Goal</label>
+                    <div class="calc-goal-options">
+                        <div class="calc-goal-option">
+                            <input type="radio" id="calcLose" name="calcGoal" value="lose">
+                            <label for="calcLose"><i class="fa-solid fa-fire"></i> Lose Fat</label>
+                        </div>
+                        <div class="calc-goal-option">
+                            <input type="radio" id="calcMaintain" name="calcGoal" value="maintain" checked>
+                            <label for="calcMaintain"><i class="fa-solid fa-scale-balanced"></i> Maintain</label>
+                        </div>
+                        <div class="calc-goal-option">
+                            <input type="radio" id="calcBuild" name="calcGoal" value="build">
+                            <label for="calcBuild"><i class="fa-solid fa-dumbbell"></i> Build Muscle</label>
+                        </div>
+                    </div>
+                </div>
+                <button type="submit" class="btn-primary btn-small" style="width: 100%;"><i class="fa-solid fa-calculator" style="margin-right: 0.5rem;"></i> Calculate My Macros</button>
+            </form>
+            <!-- Results (hidden until calculated) -->
+            <div id="calcResults" style="display: none;">
+                <hr style="border: 1px solid var(--medium-gray); margin: 1.5rem 0;">
+                <h3 style="font-size: 1.1rem; margin-bottom: 0.5rem;">Your Results</h3>
+                <div class="calc-results">
+                    <div class="calc-result-card highlighted">
+                        <div class="calc-result-label">Calories</div>
+                        <div class="calc-result-value" id="calcResultCals">--</div>
+                        <div class="calc-result-unit">per day</div>
+                    </div>
+                    <div class="calc-result-card" style="border-top: 3px solid var(--yellow);">
+                        <div class="calc-result-label">Protein</div>
+                        <div class="calc-result-value" id="calcResultProtein">--</div>
+                        <div class="calc-result-unit">grams</div>
+                    </div>
+                    <div class="calc-result-card" style="border-top: 3px solid #4CAF50;">
+                        <div class="calc-result-label">Carbs</div>
+                        <div class="calc-result-value" id="calcResultCarbs">--</div>
+                        <div class="calc-result-unit">grams</div>
+                    </div>
+                    <div class="calc-result-card" style="border-top: 3px solid #2196F3;">
+                        <div class="calc-result-label">Fat</div>
+                        <div class="calc-result-value" id="calcResultFat">--</div>
+                        <div class="calc-result-unit">grams</div>
+                    </div>
+                </div>
+                <button class="btn-primary btn-small" onclick="useCalculatedMacros()" style="width: 100%;"><i class="fa-solid fa-arrow-right" style="margin-right: 0.5rem;"></i> Use These Macros</button>
+            </div>
         </div>
     </div>
 
@@ -2711,6 +2952,136 @@ function flashMessage(id) {
     setTimeout(function() { el.style.display = 'none'; }, 3000);
 }
 
+// ===== CALC MODAL =====
+function openCalcModal() {
+    // Auto-select goal based on current phase
+    var phase = getPhaseInfo();
+    if (phase.num === 2) {
+        document.getElementById('calcLose').checked = true;
+    } else if (phase.num === 4) {
+        document.getElementById('calcBuild').checked = true;
+    } else {
+        document.getElementById('calcMaintain').checked = true;
+    }
+    document.getElementById('calcResults').style.display = 'none';
+    document.getElementById('calcModal').classList.add('active');
+    document.body.style.overflow = 'hidden';
+}
+
+function closeCalcModal() {
+    document.getElementById('calcModal').classList.remove('active');
+    document.body.style.overflow = '';
+}
+
+document.getElementById('calcModal').addEventListener('click', function(e) {
+    if (e.target === this) closeCalcModal();
+});
+
+function calculateMacrosModal(e) {
+    e.preventDefault();
+
+    var gender = document.querySelector('input[name="calcGender"]:checked').value;
+    var age = parseInt(document.getElementById('calcAge').value);
+    var feet = parseInt(document.getElementById('calcFeet').value);
+    var inches = parseInt(document.getElementById('calcInches').value);
+    var weight = parseFloat(document.getElementById('calcWeight').value);
+    var activity = parseFloat(document.getElementById('calcActivity').value);
+    var goal = document.querySelector('input[name="calcGoal"]:checked').value;
+
+    // Validate
+    var valid = true;
+    document.querySelectorAll('#calcModalForm .form-error').forEach(function(el) { el.style.display = 'none'; });
+
+    if (isNaN(age) || age < 15 || age > 100) {
+        document.getElementById('calcAgeError').style.display = 'block';
+        valid = false;
+    }
+    if (isNaN(feet) || feet < 3 || feet > 8 || isNaN(inches) || inches < 0 || inches > 11) {
+        document.getElementById('calcHeightError').style.display = 'block';
+        valid = false;
+    }
+    if (isNaN(weight) || weight < 50 || weight > 700) {
+        document.getElementById('calcWeightError').style.display = 'block';
+        valid = false;
+    }
+    if (!activity) { valid = false; }
+    if (!valid) return;
+
+    // Convert units
+    var weightKg = weight * 0.453592;
+    var heightCm = (feet * 12 + inches) * 2.54;
+
+    // BMR (Mifflin-St Jeor)
+    var bmr;
+    if (gender === 'male') {
+        bmr = (10 * weightKg) + (6.25 * heightCm) - (5 * age) + 5;
+    } else {
+        bmr = (10 * weightKg) + (6.25 * heightCm) - (5 * age) - 161;
+    }
+
+    // TDEE
+    var tdee = bmr * activity;
+
+    // Daily Target
+    var dailyTarget;
+    if (goal === 'lose') {
+        dailyTarget = tdee * 0.80;
+    } else if (goal === 'build') {
+        dailyTarget = tdee * 1.10;
+    } else {
+        dailyTarget = tdee;
+    }
+
+    // Macros
+    var proteinPerLb = (goal === 'maintain') ? 0.8 : 1.0;
+    var fatPerLb = (goal === 'lose') ? 0.35 : 0.3;
+
+    var proteinG = Math.round(weight * proteinPerLb);
+    var fatG = Math.round(weight * fatPerLb);
+    var proteinCals = proteinG * 4;
+    var fatCals = fatG * 9;
+    var carbsCals = Math.max(0, Math.round(dailyTarget) - proteinCals - fatCals);
+    var carbsG = Math.round(carbsCals / 4);
+    var totalCals = proteinCals + (carbsG * 4) + fatCals;
+
+    // Show results
+    document.getElementById('calcResultCals').textContent = totalCals;
+    document.getElementById('calcResultProtein').textContent = proteinG;
+    document.getElementById('calcResultCarbs').textContent = carbsG;
+    document.getElementById('calcResultFat').textContent = fatG;
+    document.getElementById('calcResults').style.display = 'block';
+
+    // Store for transfer
+    document.getElementById('calcResults').dataset.cals = totalCals;
+    document.getElementById('calcResults').dataset.protein = proteinG;
+    document.getElementById('calcResults').dataset.carbs = carbsG;
+    document.getElementById('calcResults').dataset.fat = fatG;
+    document.getElementById('calcResults').dataset.weight = weight;
+    document.getElementById('calcResults').dataset.activity = activity;
+
+    // Scroll results into view within modal
+    document.getElementById('calcResults').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+}
+
+function useCalculatedMacros() {
+    var results = document.getElementById('calcResults');
+    document.getElementById('macroCalInput').value = results.dataset.cals;
+    document.getElementById('macroProteinInput').value = results.dataset.protein;
+    document.getElementById('macroCarbsInput').value = results.dataset.carbs;
+    document.getElementById('macroFatInput').value = results.dataset.fat;
+    document.getElementById('macroWeightInput').value = results.dataset.weight;
+    document.getElementById('macroActivityInput').value = results.dataset.activity;
+
+    // Open the collapsible save form
+    var toggle = document.querySelector('#macroForm').closest('.collapsible-content').previousElementSibling;
+    if (!toggle.classList.contains('open')) {
+        toggle.classList.add('open');
+        toggle.nextElementSibling.classList.add('open');
+    }
+
+    closeCalcModal();
+}
+
 // ===== MODALS =====
 function openLeadModal() {
     var modal = document.getElementById('leadModal');
@@ -2727,7 +3098,7 @@ document.getElementById('leadModal').addEventListener('click', function(e) {
     if (e.target === this) { closeLeadModal(); }
 });
 document.addEventListener('keydown', function(e) {
-    if (e.key === 'Escape') { closeLeadModal(); closeCancelModal(); closeSubscribeModal(); closeBodyCompModal(); }
+    if (e.key === 'Escape') { closeLeadModal(); closeCancelModal(); closeSubscribeModal(); closeBodyCompModal(); closeCalcModal(); }
 });
 
 function openCancelModal() {
