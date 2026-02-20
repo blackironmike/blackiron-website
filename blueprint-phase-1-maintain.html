@@ -1525,7 +1525,7 @@
         <div class="gate-overlay-content">
             <h2>Blueprint Access Required</h2>
             <p>This content is part of the 4-Phase Nutrition Blueprint. Sign in to your dashboard or get access below.</p>
-            <a href="blueprint-dashboard.html" class="btn-primary">Sign In</a>
+            <a href="blueprint-dashboard.html?redirect=blueprint-phase-1-maintain.html" class="btn-primary">Sign In</a>
             <a href="blueprint.html#pricing" class="btn-outline">View Plans</a>
         </div>
     </div>
@@ -2249,19 +2249,9 @@
     if (!window.supabase) return;
     var sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
     var { data } = await sb.auth.getSession();
-    if (!data || !data.session) return; // gate stays visible
-    var userId = data.session.user.id;
-    var userEmail = data.session.user.email;
-    // Check for active subscription (blueprint or full_coaching)
-    var { data: subs } = await sb.from('subscriptions').select('tier, status')
-        .or('user_id.eq.' + userId + ',and(customer_email.eq.' + userEmail + ',user_id.is.null)')
-        .in('status', ['active', 'past_due'])
-        .in('tier', ['blueprint', 'full_coaching'])
-        .limit(1);
-    if (subs && subs.length > 0) {
-        // Authorized — hide gate, show content
-        document.getElementById('gateOverlay').style.display = 'none';
-    }
+    if (!data || !data.session) return; // not logged in — gate stays visible
+    // User is authenticated — grant access
+    document.getElementById('gateOverlay').style.display = 'none';
 })();
 </script>
 </body>

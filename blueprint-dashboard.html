@@ -2667,6 +2667,13 @@ async function handleAuth(e) {
             if (result.data.user) {
                 await claimSubscriptionByEmail(result.data.user.id, result.data.user.email);
             }
+            // Check for redirect param (from content page gate)
+            var params = new URLSearchParams(window.location.search);
+            var redirect = params.get('redirect');
+            if (redirect && redirect.startsWith('blueprint-')) {
+                window.location.href = redirect;
+                return;
+            }
             showDashboard(result.data.user);
         }
     } catch (err) {
@@ -2691,6 +2698,13 @@ async function checkSession() {
     if (!supabase) return;
     var { data } = await supabase.auth.getSession();
     if (data && data.session) {
+        // If redirected from a content page, send them back now that they're logged in
+        var params = new URLSearchParams(window.location.search);
+        var redirect = params.get('redirect');
+        if (redirect && redirect.startsWith('blueprint-')) {
+            window.location.href = redirect;
+            return;
+        }
         showDashboard(data.session.user);
     } else {
         // If redirected from Stripe with ?payment=success, prompt sign-in
@@ -2709,39 +2723,47 @@ var STRIPE_PORTAL_URL = 'STRIPE_CUSTOMER_PORTAL_URL';
 // ===== SUBSCRIPTION MANAGEMENT =====
 async function loadSubscription(userId, userEmail) {
     if (!supabase) return null;
-    // Query subscription by user_id first, fallback to email
-    var { data, error } = await supabase
-        .from('subscriptions')
-        .select('*')
-        .eq('user_id', userId)
-        .in('status', ['active', 'past_due'])
-        .order('created_at', { ascending: false })
-        .limit(1);
-
-    if ((!data || data.length === 0) && userEmail) {
-        // Fallback: check by email (pre-claim state)
-        var result = await supabase
+    try {
+        // Query subscription by user_id first, fallback to email
+        var { data, error } = await supabase
             .from('subscriptions')
             .select('*')
-            .eq('customer_email', userEmail)
-            .is('user_id', null)
+            .eq('user_id', userId)
             .in('status', ['active', 'past_due'])
             .order('created_at', { ascending: false })
             .limit(1);
-        data = result.data;
-    }
 
-    var sub = data && data.length > 0 ? data[0] : null;
-    renderSubStatus(sub);
-    return sub;
+        // If table doesn't exist yet or other error, fail silently
+        if (error) { renderSubStatus(null); return null; }
+
+        if ((!data || data.length === 0) && userEmail) {
+            // Fallback: check by email (pre-claim state)
+            var result = await supabase
+                .from('subscriptions')
+                .select('*')
+                .eq('customer_email', userEmail)
+                .is('user_id', null)
+                .in('status', ['active', 'past_due'])
+                .order('created_at', { ascending: false })
+                .limit(1);
+            data = result.data;
+        }
+
+        var sub = data && data.length > 0 ? data[0] : null;
+        renderSubStatus(sub);
+        return sub;
+    } catch (e) {
+        // Table may not exist yet — fail silently
+        renderSubStatus(null);
+        return null;
+    }
 }
 
 function renderSubStatus(sub) {
     var bar = document.getElementById('subStatusBar');
     if (!sub) {
-        bar.style.display = '';
-        bar.className = 'sub-no-plan';
-        bar.innerHTML = '<p>You don\'t have an active Blueprint subscription.</p><a href="blueprint.html#pricing">View Plans &rarr;</a>';
+        // No subscription found — keep bar hidden, don't show upsell
+        bar.style.display = 'none';
         return;
     }
     var tierLabels = { blueprint: 'Blueprint Self-Guided', full_coaching: 'Full Coaching', coaching_call: 'Coaching Call' };
@@ -2770,34 +2792,42 @@ function renderSubStatus(sub) {
 
 async function claimSubscriptionByEmail(userId, userEmail) {
     if (!supabase || !userEmail) return;
-    // Claim any unclaimed subscriptions matching this email
-    await supabase
-        .from('subscriptions')
-        .update({ user_id: userId })
-        .eq('customer_email', userEmail)
-        .is('user_id', null);
-    // Also claim coaching calls
-    await supabase
-        .from('coaching_calls')
-        .update({ user_id: userId })
-        .eq('customer_email', userEmail)
-        .is('user_id', null);
+    try {
+        // Claim any unclaimed subscriptions matching this email
+        await supabase
+            .from('subscriptions')
+            .update({ user_id: userId })
+            .eq('customer_email', userEmail)
+            .is('user_id', null);
+        // Also claim coaching calls
+        await supabase
+            .from('coaching_calls')
+            .update({ user_id: userId })
+            .eq('customer_email', userEmail)
+            .is('user_id', null);
+    } catch (e) {
+        // Tables may not exist yet — fail silently
+    }
 }
 
 async function loadCoachingCalls(userId, userEmail) {
     if (!supabase) return;
-    var { data } = await supabase
-        .from('coaching_calls')
-        .select('*')
-        .eq('user_id', userId)
-        .order('purchased_at', { ascending: false });
+    try {
+        var { data } = await supabase
+            .from('coaching_calls')
+            .select('*')
+            .eq('user_id', userId)
+            .order('purchased_at', { ascending: false });
 
-    // Also check URL param for fresh purchase
-    var params = new URLSearchParams(window.location.search);
-    var showBanner = params.get('coaching') === 'success';
+        // Also check URL param for fresh purchase
+        var params = new URLSearchParams(window.location.search);
+        var showBanner = params.get('coaching') === 'success';
 
-    if (showBanner || (data && data.some(function(c) { return c.status === 'purchased'; }))) {
-        document.getElementById('coachingCallBanner').style.display = '';
+        if (showBanner || (data && data.some(function(c) { return c.status === 'purchased'; }))) {
+            document.getElementById('coachingCallBanner').style.display = '';
+        }
+    } catch (e) {
+        // Table may not exist yet — fail silently
     }
 }
 
