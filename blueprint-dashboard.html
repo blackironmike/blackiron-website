@@ -27,17 +27,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" media="print" onload="this.media='all'">
     <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"></noscript>
     <style>@font-face{font-family:"Font Awesome 6 Brands";font-display:swap}@font-face{font-family:"Font Awesome 6 Free";font-display:swap}</style>
-    <!-- MemberSpace -->
-    <script>
-        var MemberSpace = window.MemberSpace || {"subdomain":"blackironathletics"};
-        (function(d){
-            var s = d.createElement("script");
-            s.src = "https://cdn.memberspace.com/scripts/widgets.js";
-            var e = d.getElementsByTagName("script")[0];
-            e.parentNode.insertBefore(s,e);
-        }(document));
-    </script>
-    <style>#ms-tab, .ms-tab { display: none !important; }</style>
     <!-- Supabase + Chart.js -->
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4"></script>
@@ -658,6 +647,129 @@
         .user-bar button:hover {
             border-color: var(--yellow);
             color: var(--yellow);
+        }
+
+        /* ===== SUBSCRIPTION STATUS CARD ===== */
+        .sub-status-bar {
+            padding: 1.5rem 4rem;
+            background: var(--black);
+            border-bottom: 1px solid var(--medium-gray);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .sub-status-info {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .sub-status-tier {
+            font-weight: 900;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--yellow);
+        }
+
+        .sub-status-detail {
+            font-size: 0.85rem;
+            color: var(--light-gray);
+            font-weight: 600;
+        }
+
+        .sub-status-actions {
+            display: flex;
+            gap: 0.75rem;
+            align-items: center;
+        }
+
+        .sub-status-actions a {
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            padding: 0.4rem 1rem;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .sub-manage-link {
+            color: var(--light-gray);
+            border: 1px solid var(--medium-gray);
+        }
+
+        .sub-manage-link:hover {
+            color: var(--yellow);
+            border-color: var(--yellow);
+        }
+
+        .sub-upgrade-link {
+            color: var(--black);
+            background: var(--yellow);
+            border: 1px solid var(--yellow);
+        }
+
+        .sub-upgrade-link:hover {
+            color: var(--yellow);
+            background: transparent;
+        }
+
+        .sub-no-plan {
+            padding: 2rem 4rem;
+            background: var(--dark-gray);
+            border-bottom: 1px solid var(--medium-gray);
+            text-align: center;
+        }
+
+        .sub-no-plan p {
+            color: var(--light-gray);
+            font-size: 0.95rem;
+            margin-bottom: 1rem;
+        }
+
+        .sub-no-plan a {
+            color: var(--yellow);
+            font-weight: 700;
+            text-decoration: underline;
+        }
+
+        /* ===== COACHING CALL BANNER ===== */
+        .coaching-call-banner {
+            padding: 1.5rem 4rem;
+            background: rgba(39, 174, 96, 0.1);
+            border-bottom: 1px solid #27AE60;
+            text-align: center;
+        }
+
+        .coaching-call-banner p {
+            color: var(--white);
+            font-size: 0.95rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .coaching-call-banner a {
+            color: #27AE60;
+            font-weight: 700;
+            text-decoration: underline;
+        }
+
+        @media (max-width: 768px) {
+            .sub-status-bar {
+                padding: 1rem 1.5rem;
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            .sub-no-plan {
+                padding: 1.5rem 1.5rem;
+            }
+            .coaching-call-banner {
+                padding: 1rem 1.5rem;
+            }
         }
 
         /* ===== PHASE BANNER ===== */
@@ -1750,7 +1862,7 @@
                 <li><a href="contact.html">Contact</a></li>
             </ul>
             <div class="nav-cta-group">
-                <a href="https://www.blackironathletics.com?msopen=/member/sign_in" class="login-btn">Member Login</a>
+                <a href="blueprint-dashboard.html" class="login-btn">My Dashboard</a>
                 <a href="#" onclick="openLeadModal(); return false;" class="cta-btn">Book Free Consultation</a>
             </div>
             <button class="hamburger" onclick="toggleMobileNav()" aria-label="Menu">
@@ -1778,7 +1890,7 @@
         <a href="blueprint.html" class="mobile-sub-link" onclick="closeMobileNav()">4-Phase Blueprint</a>
         <a href="contact.html" onclick="closeMobileNav()">Contact</a>
         <a href="#" class="mobile-cta" onclick="closeMobileNav(); openLeadModal(); return false;">Book Free Consultation</a>
-        <a href="https://www.blackironathletics.com?msopen=/member/sign_in" class="mobile-login" onclick="closeMobileNav()">Member Login</a>
+        <a href="blueprint-dashboard.html" class="mobile-login" onclick="closeMobileNav()">My Dashboard</a>
     </div>
 
     <!-- Hero Section (shown when NOT logged in) -->
@@ -1828,6 +1940,15 @@
         <div class="user-bar">
             <span class="user-bar-email"><i class="fa-solid fa-user"></i> <span id="userEmail"></span></span>
             <button onclick="handleLogout()"><i class="fa-solid fa-right-from-bracket"></i> Sign Out</button>
+        </div>
+
+        <!-- Subscription Status Bar (populated by JS) -->
+        <div id="subStatusBar" style="display: none;"></div>
+
+        <!-- Coaching Call Banner (shown after purchase) -->
+        <div id="coachingCallBanner" style="display: none;" class="coaching-call-banner">
+            <p><i class="fa-solid fa-check-circle" style="color: #27AE60;"></i> <strong>Coaching Call Purchased!</strong> Book your 30-minute session now.</p>
+            <a href="https://api.leadconnectorhq.com/widget/booking/COACHING_CALENDAR_ID" target="_blank">Schedule Your Call &rarr;</a>
         </div>
 
         <!-- Blueprint Sub-Nav -->
@@ -2542,6 +2663,10 @@ async function handleAuth(e) {
         } else if (isSignUp && result.data && !result.data.session) {
             showAuthError('Check your email to confirm your account, then sign in.');
         } else {
+            // On successful auth, claim any subscriptions tied to this email
+            if (result.data.user) {
+                await claimSubscriptionByEmail(result.data.user.id, result.data.user.email);
+            }
             showDashboard(result.data.user);
         }
     } catch (err) {
@@ -2567,6 +2692,112 @@ async function checkSession() {
     var { data } = await supabase.auth.getSession();
     if (data && data.session) {
         showDashboard(data.session.user);
+    } else {
+        // If redirected from Stripe with ?payment=success, prompt sign-in
+        var params = new URLSearchParams(window.location.search);
+        if (params.get('payment') === 'success') {
+            showAuthError('Payment successful! Sign in or create an account with the same email to access your Blueprint.');
+            document.getElementById('authError').style.color = '#27AE60';
+        }
+    }
+}
+
+// ===== STRIPE CUSTOMER PORTAL =====
+// TODO: Replace with your Stripe Customer Portal link
+var STRIPE_PORTAL_URL = 'STRIPE_CUSTOMER_PORTAL_URL';
+
+// ===== SUBSCRIPTION MANAGEMENT =====
+async function loadSubscription(userId, userEmail) {
+    if (!supabase) return null;
+    // Query subscription by user_id first, fallback to email
+    var { data, error } = await supabase
+        .from('subscriptions')
+        .select('*')
+        .eq('user_id', userId)
+        .in('status', ['active', 'past_due'])
+        .order('created_at', { ascending: false })
+        .limit(1);
+
+    if ((!data || data.length === 0) && userEmail) {
+        // Fallback: check by email (pre-claim state)
+        var result = await supabase
+            .from('subscriptions')
+            .select('*')
+            .eq('customer_email', userEmail)
+            .is('user_id', null)
+            .in('status', ['active', 'past_due'])
+            .order('created_at', { ascending: false })
+            .limit(1);
+        data = result.data;
+    }
+
+    var sub = data && data.length > 0 ? data[0] : null;
+    renderSubStatus(sub);
+    return sub;
+}
+
+function renderSubStatus(sub) {
+    var bar = document.getElementById('subStatusBar');
+    if (!sub) {
+        bar.style.display = '';
+        bar.className = 'sub-no-plan';
+        bar.innerHTML = '<p>You don\'t have an active Blueprint subscription.</p><a href="blueprint.html#pricing">View Plans &rarr;</a>';
+        return;
+    }
+    var tierLabels = { blueprint: 'Blueprint Self-Guided', full_coaching: 'Full Coaching', coaching_call: 'Coaching Call' };
+    var tierLabel = tierLabels[sub.tier] || sub.tier;
+    var renewalText = '';
+    if (sub.current_period_end) {
+        var d = new Date(sub.current_period_end);
+        renewalText = sub.cancel_at_period_end
+            ? 'Access ends ' + d.toLocaleDateString()
+            : 'Renews ' + d.toLocaleDateString();
+    }
+    var statusBadge = sub.status === 'past_due'
+        ? ' <span style="color: #ff4444; font-weight: 700;">PAST DUE</span>'
+        : '';
+    bar.style.display = '';
+    bar.className = 'sub-status-bar';
+    bar.innerHTML = '<div class="sub-status-info">'
+        + '<span class="sub-status-tier"><i class="fa-solid fa-crown"></i> ' + tierLabel + statusBadge + '</span>'
+        + (renewalText ? '<span class="sub-status-detail">' + renewalText + '</span>' : '')
+        + '</div>'
+        + '<div class="sub-status-actions">'
+        + '<a href="' + STRIPE_PORTAL_URL + '" target="_blank" class="sub-manage-link">Manage Billing</a>'
+        + (sub.tier === 'blueprint' ? '<a href="blueprint.html#pricing" class="sub-upgrade-link">Upgrade to Coaching</a>' : '')
+        + '</div>';
+}
+
+async function claimSubscriptionByEmail(userId, userEmail) {
+    if (!supabase || !userEmail) return;
+    // Claim any unclaimed subscriptions matching this email
+    await supabase
+        .from('subscriptions')
+        .update({ user_id: userId })
+        .eq('customer_email', userEmail)
+        .is('user_id', null);
+    // Also claim coaching calls
+    await supabase
+        .from('coaching_calls')
+        .update({ user_id: userId })
+        .eq('customer_email', userEmail)
+        .is('user_id', null);
+}
+
+async function loadCoachingCalls(userId, userEmail) {
+    if (!supabase) return;
+    var { data } = await supabase
+        .from('coaching_calls')
+        .select('*')
+        .eq('user_id', userId)
+        .order('purchased_at', { ascending: false });
+
+    // Also check URL param for fresh purchase
+    var params = new URLSearchParams(window.location.search);
+    var showBanner = params.get('coaching') === 'success';
+
+    if (showBanner || (data && data.some(function(c) { return c.status === 'purchased'; }))) {
+        document.getElementById('coachingCallBanner').style.display = '';
     }
 }
 
@@ -2583,6 +2814,8 @@ function hideDashboard() {
     document.getElementById('authHero').style.display = '';
     document.getElementById('authSection').style.display = '';
     document.getElementById('dashboardContainer').style.display = 'none';
+    document.getElementById('subStatusBar').style.display = 'none';
+    document.getElementById('coachingCallBanner').style.display = 'none';
 }
 
 async function initDashboard(user) {
@@ -2593,6 +2826,11 @@ async function initDashboard(user) {
     setWeightDateDefault();
     setBodyCompDateDefault();
     if (supabase && user) {
+        // Claim any unclaimed subscriptions first
+        await claimSubscriptionByEmail(user.id, user.email);
+        // Load subscription status
+        loadSubscription(user.id, user.email);
+        loadCoachingCalls(user.id, user.email);
         loadMacros(user.id, phase);
         loadWeightData(user.id, phase);
         loadBodyCompData(user.id);

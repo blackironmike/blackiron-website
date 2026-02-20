@@ -29,17 +29,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" media="print" onload="this.media='all'">
     <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"></noscript>
     <style>@font-face{font-family:"Font Awesome 6 Brands";font-display:swap}@font-face{font-family:"Font Awesome 6 Free";font-display:swap}</style>
-    <!-- MemberSpace -->
-    <script>
-        var MemberSpace = window.MemberSpace || {"subdomain":"blackironathletics"};
-        (function(d){
-            var s = d.createElement("script");
-            s.src = "https://cdn.memberspace.com/scripts/widgets.js";
-            var e = d.getElementsByTagName("script")[0];
-            e.parentNode.insertBefore(s,e);
-        }(document));
-    </script>
-    <style>#ms-tab, .ms-tab { display: none !important; }</style>
+    <!-- Supabase -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <style>
         /* Force full width - override GHL container */
         body, html {
@@ -510,13 +501,35 @@
         }
 
         /* ===== PRICING ===== */
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            align-items: start;
+        }
+
         .pricing-card {
-            max-width: 500px;
-            margin: 0 auto;
             background: var(--black);
-            border: 3px solid var(--yellow);
-            padding: 3.5rem 3rem;
+            border: 2px solid var(--medium-gray);
+            padding: 3rem 2.5rem;
             text-align: center;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .pricing-card:hover {
+            border-color: var(--yellow);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(255, 210, 2, 0.2);
+        }
+
+        .pricing-card.featured {
+            border: 3px solid var(--yellow);
+            transform: scale(1.03);
+        }
+
+        .pricing-card.featured:hover {
+            transform: scale(1.03) translateY(-5px);
         }
 
         .pricing-badge {
@@ -531,17 +544,31 @@
             margin-bottom: 2rem;
         }
 
+        .pricing-tier-name {
+            font-size: 1.3rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            margin-bottom: 1.5rem;
+        }
+
         .pricing-amount {
-            font-size: 4rem;
+            font-size: 3.5rem;
             font-weight: 900;
             color: var(--white);
             line-height: 1;
         }
 
         .pricing-period {
-            font-size: 1.2rem;
+            font-size: 1rem;
             color: var(--light-gray);
             font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .pricing-alt-price {
+            font-size: 0.85rem;
+            color: var(--yellow);
+            font-weight: 700;
             margin-bottom: 2rem;
         }
 
@@ -553,9 +580,9 @@
 
         .pricing-features li {
             color: var(--light-gray);
-            padding: 0.75rem 0;
+            padding: 0.6rem 0;
             border-bottom: 1px solid var(--medium-gray);
-            font-size: 0.95rem;
+            font-size: 0.9rem;
         }
 
         .pricing-features li i {
@@ -572,6 +599,11 @@
         }
 
         .btn-primary.btn-full {
+            width: 100%;
+            text-align: center;
+        }
+
+        .btn-outline.btn-full {
             width: 100%;
             text-align: center;
         }
@@ -881,6 +913,21 @@
                 white-space: normal;
             }
 
+            .pricing-grid {
+                grid-template-columns: 1fr;
+                max-width: 500px;
+                margin: 0 auto;
+            }
+
+            .pricing-card.featured {
+                transform: none;
+                order: -1;
+            }
+
+            .pricing-card.featured:hover {
+                transform: translateY(-5px);
+            }
+
             .pricing-card {
                 padding: 2.5rem 1.5rem;
             }
@@ -936,7 +983,7 @@
                 <li><a href="contact.html">Contact</a></li>
             </ul>
             <div class="nav-cta-group">
-                <a href="https://www.blackironathletics.com?msopen=/member/sign_in" class="login-btn">Member Login</a>
+                <a href="blueprint-dashboard.html" class="login-btn">My Dashboard</a>
                 <a href="#" onclick="openLeadModal(); return false;" class="cta-btn">Book Free Consultation</a>
             </div>
             <button class="hamburger" onclick="toggleMobileNav()" aria-label="Menu">
@@ -964,7 +1011,7 @@
         <a href="blueprint.html" class="mobile-sub-link" onclick="closeMobileNav()">4-Phase Blueprint</a>
         <a href="contact.html" onclick="closeMobileNav()">Contact</a>
         <a href="#" class="mobile-cta" onclick="closeMobileNav(); openLeadModal(); return false;">Book Free Consultation</a>
-        <a href="https://www.blackironathletics.com?msopen=/member/sign_in" class="mobile-login" onclick="closeMobileNav()">Member Login</a>
+        <a href="blueprint-dashboard.html" class="mobile-login" onclick="closeMobileNav()">My Dashboard</a>
     </div>
 
     <!-- Hero Section -->
@@ -976,8 +1023,8 @@
                 <h1>The 4-Phase Nutrition Blueprint</h1>
                 <p>A year-round system for how you look, feel, and perform. Stop dieting in circles. Start training your nutrition with the same intention you bring to the barbell.</p>
                 <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
-                    <a href="https://www.blackironathletics.com?msopen=/member/plans/8ald2adtff" class="btn-primary">Get the Blueprint &mdash; $99/year</a>
-                    <a href="blueprint-dashboard.html" class="btn-secondary">Your Blueprint</a>
+                    <a href="#pricing" class="btn-primary">See Pricing</a>
+                    <a href="blueprint-dashboard.html" class="btn-secondary">My Dashboard</a>
                 </div>
             </div>
         </div>
@@ -1157,25 +1204,63 @@
     <section id="pricing" class="section section-alt">
         <div class="section-container">
             <div class="section-header">
-                <div class="section-subtitle">Get Started</div>
-                <h2 class="section-title">Founding Member Pricing</h2>
+                <div class="section-subtitle">Choose Your Path</div>
+                <h2 class="section-title">Nutrition Coaching Tiers</h2>
+                <p class="section-description">Every tier is built around the same proven 4-Phase system. Choose the level of support that fits where you are.</p>
             </div>
 
-            <div class="pricing-card">
-                <div class="pricing-badge">Founding Member</div>
-                <div class="pricing-amount">$99</div>
-                <div class="pricing-period">per year</div>
-                <ul class="pricing-features">
-                    <li><i class="fa-solid fa-check"></i> 4 complete phase guides with week-by-week breakdowns</li>
-                    <li><i class="fa-solid fa-check"></i> Macro calculator integration for every phase</li>
-                    <li><i class="fa-solid fa-check"></i> Phase transition checklists</li>
-                    <li><i class="fa-solid fa-check"></i> Thorne supplement protocols by phase</li>
-                    <li><i class="fa-solid fa-check"></i> Hydration guide</li>
-                    <li><i class="fa-solid fa-check"></i> The Decade Roadmap (Years 1-10)</li>
-                    <li><i class="fa-solid fa-check"></i> All future updates included</li>
-                </ul>
-                <a href="https://www.blackironathletics.com?msopen=/member/plans/8ald2adtff" class="btn-primary btn-full">Get the Blueprint</a>
-                <p class="pricing-note">Price increases to $149 after the first 50 members.</p>
+            <div class="pricing-grid">
+                <!-- Tier 1: Blueprint Self-Guided -->
+                <div class="pricing-card">
+                    <div class="pricing-tier-name">Blueprint Self-Guided</div>
+                    <div class="pricing-amount">$99</div>
+                    <div class="pricing-period">per year</div>
+                    <div class="pricing-alt-price">&nbsp;</div>
+                    <ul class="pricing-features">
+                        <li><i class="fa-solid fa-check"></i> 4 complete phase guides</li>
+                        <li><i class="fa-solid fa-check"></i> Macro calculator integration</li>
+                        <li><i class="fa-solid fa-check"></i> Phase transition checklists</li>
+                        <li><i class="fa-solid fa-check"></i> Supplement protocols</li>
+                        <li><i class="fa-solid fa-check"></i> The Decade Roadmap</li>
+                        <li><i class="fa-solid fa-check"></i> Athlete Dashboard</li>
+                        <li><i class="fa-solid fa-check"></i> All future updates</li>
+                    </ul>
+                    <a href="STRIPE_PAYMENT_LINK_BLUEPRINT" class="btn-outline btn-full">Get the Blueprint</a>
+                </div>
+
+                <!-- Tier 2: Full Coaching (Featured) -->
+                <div class="pricing-card featured">
+                    <div class="pricing-badge">Most Popular</div>
+                    <div class="pricing-tier-name">Full Coaching</div>
+                    <div class="pricing-amount">$250</div>
+                    <div class="pricing-period">per month</div>
+                    <div class="pricing-alt-price">or $200/mo billed annually ($2,400/yr)</div>
+                    <ul class="pricing-features">
+                        <li><i class="fa-solid fa-check"></i> Everything in Blueprint</li>
+                        <li><i class="fa-solid fa-check"></i> Ongoing coach access</li>
+                        <li><i class="fa-solid fa-check"></i> Personalized macro adjustments</li>
+                        <li><i class="fa-solid fa-check"></i> Competition prep modifications</li>
+                        <li><i class="fa-solid fa-check"></i> Monthly check-ins</li>
+                        <li><i class="fa-solid fa-check"></i> Priority support</li>
+                    </ul>
+                    <a href="STRIPE_PAYMENT_LINK_FULL_COACHING_MONTHLY" class="btn-primary btn-full">Start Coaching</a>
+                    <p class="pricing-note"><a href="STRIPE_PAYMENT_LINK_FULL_COACHING_ANNUAL" style="color: var(--yellow); text-decoration: underline;">Save $600 with annual billing &rarr;</a></p>
+                </div>
+
+                <!-- Tier 3: Coaching Call -->
+                <div class="pricing-card">
+                    <div class="pricing-tier-name">Coaching Call</div>
+                    <div class="pricing-amount">$99</div>
+                    <div class="pricing-period">one-time</div>
+                    <div class="pricing-alt-price">Add-on for any tier</div>
+                    <ul class="pricing-features">
+                        <li><i class="fa-solid fa-check"></i> 30-minute 1-on-1 call</li>
+                        <li><i class="fa-solid fa-check"></i> Personalized macro review</li>
+                        <li><i class="fa-solid fa-check"></i> Phase strategy session</li>
+                        <li><i class="fa-solid fa-check"></i> Available anytime</li>
+                    </ul>
+                    <a href="STRIPE_PAYMENT_LINK_COACHING_CALL" class="btn-outline btn-full">Book a Call</a>
+                </div>
             </div>
         </div>
     </section>
@@ -1225,10 +1310,12 @@
     <!-- Final CTA Section -->
     <section class="cta-section">
         <div style="max-width: 100%; margin: 0 auto; padding: 0 2rem;">
-            <h2 class="cta-title">Phase 2: Cut Starts April 1</h2>
-            <p class="cta-subtitle">The cutting phase is the highest-motivation moment of the year. Don't start without a system.</p>
-            <a href="https://www.blackironathletics.com?msopen=/member/plans/8ald2adtff" class="btn-primary">Get the Blueprint &mdash; $99/year</a>
-            <p class="cta-note">Founding Member pricing. Limited spots.</p>
+            <h2 class="cta-title">Stop Guessing. Start Coaching.</h2>
+            <p class="cta-subtitle">Whether you run the system yourself or want a coach in your corner, the Blueprint has you covered.</p>
+            <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+                <a href="STRIPE_PAYMENT_LINK_FULL_COACHING_MONTHLY" class="btn-primary">Start Full Coaching &mdash; $250/mo</a>
+                <a href="#pricing" class="btn-outline">Compare All Tiers</a>
+            </div>
         </div>
     </section>
 
@@ -1305,15 +1392,42 @@
       "@context": "https://schema.org",
       "@type": "Product",
       "name": "The 4-Phase Nutrition Blueprint",
-      "description": "A year-round nutrition periodization system with 4 phases — Maintain, Cut, Maintain, Build. Includes phase guides, macro calculator integration, supplement protocols, and The Decade Roadmap.",
+      "description": "A year-round nutrition periodization system with 4 phases — Maintain, Cut, Maintain, Build. Includes phase guides, macro calculator integration, supplement protocols, and The Decade Roadmap. Available as self-guided or with full coaching.",
       "brand": { "@type": "Organization", "name": "Black Iron Athletics" },
-      "offers": {
-        "@type": "Offer",
-        "price": "99",
-        "priceCurrency": "USD",
-        "availability": "https://schema.org/InStock",
-        "url": "https://www.blackironathletics.com/blueprint.html"
-      }
+      "offers": [
+        {
+          "@type": "Offer",
+          "name": "Blueprint Self-Guided",
+          "price": "99",
+          "priceCurrency": "USD",
+          "availability": "https://schema.org/InStock",
+          "url": "https://www.blackironathletics.com/blueprint.html#pricing"
+        },
+        {
+          "@type": "Offer",
+          "name": "Full Coaching (Monthly)",
+          "price": "250",
+          "priceCurrency": "USD",
+          "availability": "https://schema.org/InStock",
+          "url": "https://www.blackironathletics.com/blueprint.html#pricing"
+        },
+        {
+          "@type": "Offer",
+          "name": "Full Coaching (Annual)",
+          "price": "2400",
+          "priceCurrency": "USD",
+          "availability": "https://schema.org/InStock",
+          "url": "https://www.blackironathletics.com/blueprint.html#pricing"
+        },
+        {
+          "@type": "Offer",
+          "name": "Coaching Call",
+          "price": "99",
+          "priceCurrency": "USD",
+          "availability": "https://schema.org/InStock",
+          "url": "https://www.blackironathletics.com/blueprint.html#pricing"
+        }
+      ]
     }
     </script>
     <script type="application/ld+json">

@@ -29,17 +29,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" media="print" onload="this.media='all'">
     <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"></noscript>
     <style>@font-face{font-family:"Font Awesome 6 Brands";font-display:swap}@font-face{font-family:"Font Awesome 6 Free";font-display:swap}</style>
-    <!-- MemberSpace -->
-    <script>
-        var MemberSpace = window.MemberSpace || {"subdomain":"blackironathletics"};
-        (function(d){
-            var s = d.createElement("script");
-            s.src = "https://cdn.memberspace.com/scripts/widgets.js";
-            var e = d.getElementsByTagName("script")[0];
-            e.parentNode.insertBefore(s,e);
-        }(document));
-    </script>
-    <style>#ms-tab, .ms-tab { display: none !important; }</style>
+    <!-- Supabase Auth -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <style>
         /* Force full width - override GHL container */
         body, html {
@@ -1353,6 +1344,48 @@
 
             .modal-container { max-width: calc(100% - 2rem); }
         }
+
+        /* ===== AUTH GATE ===== */
+        .gate-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--black);
+            z-index: 9998;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .gate-overlay-content h2 {
+            font-size: 2rem;
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+        }
+
+        .gate-overlay-content p {
+            color: var(--light-gray);
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            max-width: 500px;
+        }
+
+        .gate-overlay-content .btn-primary {
+            margin-right: 1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .gated-content {
+            display: none;
+        }
+
+        .gated-content.unlocked {
+            display: block;
+        }
     </style>
 </head>
 <body>
@@ -1392,7 +1425,7 @@
                 <li><a href="contact.html">Contact</a></li>
             </ul>
             <div class="nav-cta-group">
-                <a href="https://www.blackironathletics.com?msopen=/member/sign_in" class="login-btn">Member Login</a>
+                <a href="blueprint-dashboard.html" class="login-btn">My Dashboard</a>
                 <a href="#" onclick="openLeadModal(); return false;" class="cta-btn">Book Free Consultation</a>
             </div>
             <button class="hamburger" onclick="toggleMobileNav()" aria-label="Menu">
@@ -1420,7 +1453,17 @@
         <a href="blueprint.html" class="mobile-sub-link" onclick="closeMobileNav()">4-Phase Blueprint</a>
         <a href="contact.html" onclick="closeMobileNav()">Contact</a>
         <a href="#" class="mobile-cta" onclick="closeMobileNav(); openLeadModal(); return false;">Book Free Consultation</a>
-        <a href="https://www.blackironathletics.com?msopen=/member/sign_in" class="mobile-login" onclick="closeMobileNav()">Member Login</a>
+        <a href="blueprint-dashboard.html" class="mobile-login" onclick="closeMobileNav()">My Dashboard</a>
+    </div>
+
+    <!-- Auth Gate Overlay (shown when not authorized) -->
+    <div class="gate-overlay" id="gateOverlay">
+        <div class="gate-overlay-content">
+            <h2>Blueprint Access Required</h2>
+            <p>This content is part of the 4-Phase Nutrition Blueprint. Sign in to your dashboard or get access below.</p>
+            <a href="blueprint-dashboard.html" class="btn-primary">Sign In</a>
+            <a href="blueprint.html#pricing" class="btn-outline">View Plans</a>
+        </div>
     </div>
 
     <!-- Hero Section -->
@@ -1760,7 +1803,7 @@
         <div style="max-width: 100%; margin: 0 auto; padding: 0 2rem;">
             <h2 class="cta-title">Ready to Start?</h2>
             <p class="cta-subtitle">Get the full 4-Phase Nutrition Blueprint and take control of your nutrition year-round.</p>
-            <a href="https://www.blackironathletics.com?msopen=/member/plans/8ald2adtff" class="btn-primary">Get the Blueprint &mdash; $99/year</a>
+            <a href="blueprint.html#pricing" class="btn-primary">View Blueprint Plans</a>
             <p class="cta-note">Founding Member pricing. Limited spots.</p>
         </div>
     </section>
@@ -2162,5 +2205,28 @@
 
 <script src="https://link.msgsndr.com/js/form_embed.js" type="text/javascript" defer></script>
 <script src="https://widgets.leadconnectorhq.com/loader.js" data-resources-url="https://widgets.leadconnectorhq.com/chat-widget/loader.js" data-widget-id="6995d6d76e6009387f78d31e"></script>
+<script>
+// ===== BLUEPRINT AUTH GATE =====
+(async function() {
+    var SUPABASE_URL = 'https://hmwfpwcookrwgsbnutyc.supabase.co';
+    var SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imhtd2Zwd2Nvb2tyd2dzYm51dHljIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzE1NTUwMTcsImV4cCI6MjA4NzEzMTAxN30.CpX9hIshZqf68B10vPZXt7dHbSXE_aVqfmKuiWN_Lpw';
+    if (!window.supabase) return;
+    var sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+    var { data } = await sb.auth.getSession();
+    if (!data || !data.session) return; // gate stays visible
+    var userId = data.session.user.id;
+    var userEmail = data.session.user.email;
+    // Check for active subscription (blueprint or full_coaching)
+    var { data: subs } = await sb.from('subscriptions').select('tier, status')
+        .or('user_id.eq.' + userId + ',and(customer_email.eq.' + userEmail + ',user_id.is.null)')
+        .in('status', ['active', 'past_due'])
+        .in('tier', ['blueprint', 'full_coaching'])
+        .limit(1);
+    if (subs && subs.length > 0) {
+        // Authorized — hide gate, show content
+        document.getElementById('gateOverlay').style.display = 'none';
+    }
+})();
+</script>
 </body>
 </html>
