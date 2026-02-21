@@ -27,9 +27,10 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" media="print" onload="this.media='all'">
     <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"></noscript>
     <style>@font-face{font-family:"Font Awesome 6 Brands";font-display:swap}@font-face{font-family:"Font Awesome 6 Free";font-display:swap}</style>
-    <!-- Supabase + Chart.js -->
+    <!-- Supabase + Chart.js + PDF -->
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js" defer></script>
     <style>
         /* Force full width - override GHL container */
         body, html {
@@ -1875,6 +1876,310 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
+        /* ===== PHASE TRANSITION CARD ===== */
+        .transition-card {
+            background: var(--dark-gray);
+            border: 2px solid var(--medium-gray);
+            padding: 2.5rem;
+            margin-bottom: 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .transition-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--yellow);
+        }
+
+        .transition-card-badge {
+            display: inline-block;
+            background: var(--yellow);
+            color: var(--black);
+            font-size: 0.7rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            padding: 0.4rem 1rem;
+            margin-bottom: 1.25rem;
+        }
+
+        .transition-card h3 {
+            font-size: 1.3rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+        }
+
+        .transition-card p {
+            color: var(--light-gray);
+            line-height: 1.7;
+            margin-bottom: 1.5rem;
+        }
+
+        .transition-changes {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .transition-change-item {
+            background: var(--black);
+            padding: 1.25rem;
+            border: 1px solid var(--medium-gray);
+        }
+
+        .transition-change-label {
+            font-size: 0.7rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: var(--light-gray);
+            margin-bottom: 0.5rem;
+        }
+
+        .transition-change-value {
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: var(--white);
+        }
+
+        .transition-cta {
+            background: rgba(255, 210, 2, 0.08);
+            border: 1px solid rgba(255, 210, 2, 0.2);
+            padding: 1.25rem 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .transition-cta p {
+            color: var(--light-gray);
+            margin: 0;
+            font-size: 0.9rem;
+        }
+
+        .transition-cta .btn-primary {
+            white-space: nowrap;
+            padding: 0.8rem 1.5rem;
+            font-size: 0.8rem;
+        }
+
+        /* ===== WEEKLY CHECK-IN ===== */
+        .checkin-form-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .checkin-form-grid .form-group {
+            margin-bottom: 0;
+        }
+
+        .checkin-form-grid .form-group.full-width {
+            grid-column: 1 / -1;
+        }
+
+        .checkin-rating {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .checkin-rating label {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 44px;
+            height: 44px;
+            border: 2px solid var(--medium-gray);
+            cursor: pointer;
+            font-weight: 700;
+            font-size: 1rem;
+            color: var(--light-gray);
+            transition: all 0.2s ease;
+        }
+
+        .checkin-rating input { display: none; }
+
+        .checkin-rating input:checked + label {
+            border-color: var(--yellow);
+            background: var(--yellow);
+            color: var(--black);
+        }
+
+        .checkin-rating label:hover {
+            border-color: var(--yellow);
+            color: var(--yellow);
+        }
+
+        .checkin-history {
+            margin-top: 2rem;
+        }
+
+        .checkin-entry {
+            background: var(--black);
+            border: 1px solid var(--medium-gray);
+            padding: 1.25rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .checkin-entry-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.75rem;
+        }
+
+        .checkin-entry-date {
+            font-weight: 700;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .checkin-entry-phase {
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            padding: 0.25rem 0.75rem;
+            border: 1px solid;
+        }
+
+        .checkin-entry-stats {
+            display: flex;
+            gap: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .checkin-entry-stat {
+            font-size: 0.85rem;
+            color: var(--light-gray);
+        }
+
+        .checkin-entry-stat strong {
+            color: var(--white);
+        }
+
+        .checkin-entry-notes {
+            font-size: 0.85rem;
+            color: var(--light-gray);
+            font-style: italic;
+            margin-top: 0.5rem;
+            padding-top: 0.5rem;
+            border-top: 1px solid var(--medium-gray);
+        }
+
+        .coaching-upsell {
+            background: linear-gradient(135deg, rgba(255, 210, 2, 0.08) 0%, rgba(255, 210, 2, 0.02) 100%);
+            border: 1px solid rgba(255, 210, 2, 0.2);
+            padding: 2rem;
+            text-align: center;
+            margin-top: 2rem;
+        }
+
+        .coaching-upsell h4 {
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 0.75rem;
+        }
+
+        .coaching-upsell p {
+            color: var(--light-gray);
+            font-size: 0.9rem;
+            margin-bottom: 1.25rem;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .coaching-upsell .btn-primary {
+            padding: 0.8rem 2rem;
+            font-size: 0.8rem;
+        }
+
+        /* ===== DOWNLOADS GRID ===== */
+        .downloads-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .download-card {
+            background: var(--black);
+            border: 2px solid var(--medium-gray);
+            padding: 2rem 1.5rem;
+            text-align: center;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            color: var(--white);
+            display: block;
+        }
+
+        .download-card:hover {
+            border-color: var(--yellow);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(255, 210, 2, 0.15);
+        }
+
+        .download-card i {
+            font-size: 2rem;
+            color: var(--yellow);
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .download-card h4 {
+            font-size: 0.85rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 0.5rem;
+        }
+
+        .download-card p {
+            font-size: 0.8rem;
+            color: var(--light-gray);
+            line-height: 1.5;
+        }
+
+        .download-card.coming-soon {
+            opacity: 0.5;
+            pointer-events: none;
+        }
+
+        .download-card .coming-soon-badge {
+            display: inline-block;
+            background: var(--medium-gray);
+            color: var(--light-gray);
+            font-size: 0.6rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            padding: 0.2rem 0.6rem;
+            margin-top: 0.75rem;
+        }
+
+        /* ===== PDF GENERATION (hidden render area) ===== */
+        .pdf-render {
+            position: absolute;
+            left: -9999px;
+            top: -9999px;
+            width: 800px;
+            font-family: 'Montserrat', sans-serif;
+            background: #fff;
+            color: #000;
+        }
+
         /* ===== RESPONSIVE ===== */
         @media (max-width: 1024px) {
             .nav-container,
@@ -2084,6 +2389,28 @@
                 max-width: calc(100% - 2rem);
                 padding: 1.5rem;
             }
+
+            .transition-changes {
+                grid-template-columns: 1fr;
+            }
+
+            .transition-cta {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .checkin-form-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .checkin-entry-stats {
+                flex-wrap: wrap;
+                gap: 1rem;
+            }
+
+            .downloads-grid {
+                grid-template-columns: 1fr;
+            }
         }
 
         @media (max-width: 480px) {
@@ -2234,7 +2561,7 @@
 
         <!-- Section 1: Phase Status Banner -->
         <div class="phase-banner" id="phaseBanner">
-            <div class="phase-banner-label" id="phaseBannerLabel">PHASE 1: MINDFUL</div>
+            <div class="phase-banner-label" id="phaseBannerLabel">PHASE 1: BASELINE</div>
             <div class="phase-banner-dates" id="phaseBannerDates">January 1 to March 31</div>
             <div class="phase-banner-countdown" id="phaseBannerCountdown">90 days remaining</div>
             <div class="phase-progress-bar">
@@ -2255,13 +2582,32 @@
             </div>
         </div>
 
+        <!-- Phase Transition Card (shown ~14 days before phase end) -->
+        <section class="section" id="transitionSection" style="display: none;">
+            <div class="section-container">
+                <div class="transition-card">
+                    <div class="transition-card-badge"><i class="fa-solid fa-arrow-right-arrow-left"></i> Phase Transition Coming</div>
+                    <h3 id="transitionTitle">Preparing for Phase 2: Cut</h3>
+                    <p id="transitionDesc">Your current phase is wrapping up. Here's what changes when you move to the next phase.</p>
+                    <div class="transition-changes" id="transitionChanges"></div>
+                    <div class="transition-cta">
+                        <p><strong>This is the #1 moment athletes fall off track.</strong> A 30-minute coaching call can set your next 3 months up for success.</p>
+                        <a href="PLACEHOLDER_COACHING_BOOKING_URL" class="btn-primary" id="transitionCtaBtn">Book a Coaching Call</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <!-- Section 2: My Macros -->
         <section class="section">
             <div class="section-container">
                 <div class="dash-card">
                     <div class="dash-card-header">
                         <h3 class="dash-card-title"><i class="fa-solid fa-fire"></i> My Macros</h3>
-                        <button class="btn-outline btn-small" onclick="openCalcModal()">Recalculate</button>
+                        <div style="display: flex; gap: 0.75rem; align-items: center;">
+                            <button class="btn-outline btn-small" onclick="generatePhasePDF()" id="downloadPdfBtn" style="display: none;" title="Download Phase Plan PDF"><i class="fa-solid fa-file-pdf" style="margin-right: 0.4rem;"></i> Download PDF</button>
+                            <button class="btn-outline btn-small" onclick="openCalcModal()">Recalculate</button>
+                        </div>
                     </div>
                     <div id="macrosContent">
                         <div id="macrosPopulated" style="display: none;">
@@ -2474,7 +2820,124 @@
             </div>
         </section>
 
-        <!-- Section 7: Quick Links -->
+        <!-- Section 7: Weekly Check-In -->
+        <section class="section section-alt">
+            <div class="section-container">
+                <div class="dash-card" style="background: var(--black);">
+                    <div class="dash-card-header">
+                        <h3 class="dash-card-title"><i class="fa-solid fa-clipboard-question"></i> Weekly Check-In</h3>
+                    </div>
+                    <p style="color: var(--light-gray); margin-bottom: 1.5rem;">Take 2 minutes to reflect on your week. This data helps you (and your coach) spot trends and make better decisions.</p>
+                    <form class="dash-form" id="checkinForm" onsubmit="saveCheckin(event)">
+                        <div class="checkin-form-grid">
+                            <div class="form-group">
+                                <label for="checkinWeight">Average Weight This Week (lbs)</label>
+                                <input type="number" id="checkinWeight" step="0.1" placeholder="e.g. 185.5">
+                            </div>
+                            <div class="form-group">
+                                <label for="checkinEnergy">Energy Level</label>
+                                <select id="checkinEnergy" style="background: var(--black); color: var(--white); border: 2px solid var(--medium-gray); padding: 0.75rem; font-family: 'Montserrat', sans-serif; font-size: 0.9rem; width: 100%;">
+                                    <option value="">Select...</option>
+                                    <option value="5">High — felt great all week</option>
+                                    <option value="4">Good — mostly energized</option>
+                                    <option value="3">Average — some ups and downs</option>
+                                    <option value="2">Low — struggled with energy</option>
+                                    <option value="1">Very low — dragging all week</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>Nutrition Adherence</label>
+                                <div class="checkin-rating">
+                                    <input type="radio" name="adherence" id="adh1" value="1"><label for="adh1">1</label>
+                                    <input type="radio" name="adherence" id="adh2" value="2"><label for="adh2">2</label>
+                                    <input type="radio" name="adherence" id="adh3" value="3"><label for="adh3">3</label>
+                                    <input type="radio" name="adherence" id="adh4" value="4"><label for="adh4">4</label>
+                                    <input type="radio" name="adherence" id="adh5" value="5"><label for="adh5">5</label>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label>Training Adherence</label>
+                                <div class="checkin-rating">
+                                    <input type="radio" name="training" id="train1" value="1"><label for="train1">1</label>
+                                    <input type="radio" name="training" id="train2" value="2"><label for="train2">2</label>
+                                    <input type="radio" name="training" id="train3" value="3"><label for="train3">3</label>
+                                    <input type="radio" name="training" id="train4" value="4"><label for="train4">4</label>
+                                    <input type="radio" name="training" id="train5" value="5"><label for="train5">5</label>
+                                </div>
+                            </div>
+                            <div class="form-group full-width">
+                                <label for="checkinNotes">Notes / Wins / Struggles</label>
+                                <textarea id="checkinNotes" rows="3" placeholder="How did this week go? Any wins to celebrate or obstacles to plan for?" style="background: var(--black); color: var(--white); border: 2px solid var(--medium-gray); padding: 0.75rem; font-family: 'Montserrat', sans-serif; font-size: 0.9rem; width: 100%; resize: vertical;"></textarea>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn-primary btn-small">Submit Check-In</button>
+                        <div id="checkinSaveSuccess" class="form-success">Check-in saved!</div>
+                        <div id="checkinSaveError" class="form-error">Error saving check-in.</div>
+                    </form>
+                    <div class="checkin-history">
+                        <button class="collapsible-toggle" onclick="toggleCollapsible(this)">
+                            <i class="fa-solid fa-chevron-down"></i> Check-In History
+                        </button>
+                        <div class="collapsible-content">
+                            <div id="checkinHistoryList"></div>
+                            <div id="checkinEmpty" class="empty-state" style="padding: 2rem;">
+                                <p>No check-ins yet. Submit your first one above!</p>
+                            </div>
+                            <div id="checkinCoachingUpsell" class="coaching-upsell" style="display: none;">
+                                <h4><i class="fa-solid fa-chart-line" style="color: var(--yellow); margin-right: 0.5rem;"></i> See What a Coach Sees</h4>
+                                <p>You've built a solid check-in history. Athletes who work with a coach see 2x better adherence and faster results. Let a coach analyze your data and build a plan around it.</p>
+                                <a href="PLACEHOLDER_COACHING_BOOKING_URL" class="btn-primary">Book a Coaching Call — $99</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 8: Resources & Downloads -->
+        <section class="section">
+            <div class="section-container">
+                <div class="dash-card">
+                    <div class="dash-card-header">
+                        <h3 class="dash-card-title"><i class="fa-solid fa-download"></i> Resources &amp; Downloads</h3>
+                    </div>
+                    <p style="color: var(--light-gray); margin-bottom: 2rem;">Printable tools to keep you on track. Download, print, and pin to your fridge.</p>
+                    <div class="downloads-grid">
+                        <a href="#" onclick="generatePhasePDF(); return false;" class="download-card" id="downloadPdfCard">
+                            <i class="fa-solid fa-file-pdf"></i>
+                            <h4>My Phase Plan</h4>
+                            <p>Your custom macros, supplements, and phase checklist — generated from your dashboard data.</p>
+                        </a>
+                        <a href="#" class="download-card coming-soon">
+                            <i class="fa-solid fa-utensils"></i>
+                            <h4>Meal Templates</h4>
+                            <p>Sample meal structures for each phase at various calorie levels.</p>
+                            <span class="coming-soon-badge">Coming Soon</span>
+                        </a>
+                        <a href="#" class="download-card coming-soon">
+                            <i class="fa-solid fa-capsules"></i>
+                            <h4>Supplement Card</h4>
+                            <p>Quick-reference card with dosages for every phase. Gym bag friendly.</p>
+                            <span class="coming-soon-badge">Coming Soon</span>
+                        </a>
+                        <a href="#" class="download-card coming-soon">
+                            <i class="fa-solid fa-trophy"></i>
+                            <h4>Competition Prep</h4>
+                            <p>Modify your Blueprint around competition dates.</p>
+                            <span class="coming-soon-badge">Coming Soon</span>
+                        </a>
+                        <a href="#" class="download-card coming-soon">
+                            <i class="fa-solid fa-pen-to-square"></i>
+                            <h4>Quarterly Planner</h4>
+                            <p>Goal-setting worksheet for the start of each new phase.</p>
+                            <span class="coming-soon-badge">Coming Soon</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 9: Quick Links -->
         <section class="section section-alt">
             <div class="section-container">
                 <div class="section-header">
@@ -2505,6 +2968,9 @@
                 </div>
             </div>
         </section>
+
+        <!-- Hidden PDF render area -->
+        <div class="pdf-render" id="pdfRender"></div>
 
     </div><!-- end #dashboardContainer -->
 
@@ -3148,6 +3614,7 @@ async function initDashboard(user) {
     renderPhaseBanner(phase);
     renderQuickLinks(phase);
     renderChecklist(phase);
+    renderTransitionCard(phase);
     setWeightDateDefault();
     setBodyCompDateDefault();
     if (supabase && user) {
@@ -3161,6 +3628,7 @@ async function initDashboard(user) {
         loadBodyCompData(user.id);
         loadChecklistProgress(user.id, phase);
         loadYearOverYear(user.id);
+        loadCheckins(user.id);
     }
 }
 
@@ -3254,6 +3722,7 @@ async function loadMacros(userId, phase) {
             document.getElementById('macroFat').textContent = data.fat;
             document.getElementById('macrosPopulated').style.display = 'block';
             document.getElementById('macrosEmpty').style.display = 'none';
+            document.getElementById('downloadPdfBtn').style.display = '';
             renderMacroPieChart(data.protein, data.carbs, data.fat);
             // Pre-fill form
             document.getElementById('macroCalInput').value = data.calories;
@@ -3851,6 +4320,249 @@ function flashMessage(id) {
     var el = document.getElementById(id);
     el.style.display = 'block';
     setTimeout(function() { el.style.display = 'none'; }, 3000);
+}
+
+// ===== PHASE TRANSITION CARD =====
+function renderTransitionCard(phase) {
+    if (phase.remaining > 14) return; // only show within 14 days of phase end
+    var nextPhaseNum = phase.num === 4 ? 1 : phase.num + 1;
+    var nextYear = phase.num === 4 ? phase.year + 1 : phase.year;
+    var nextPhase = getPhaseInfo(new Date(nextYear, nextPhaseNum === 1 ? 0 : (nextPhaseNum - 1) * 3, 15));
+
+    var supplementChanges = {
+        1: { from: 'Foundation stack', to: 'STOP creatine, ADD Weight Mgmt Stack' },
+        2: { from: 'Cut protocol', to: 'Foundation stack only, RESTART creatine 5g' },
+        3: { from: 'Foundation stack', to: 'Creatine 10g, ADD Glutamine, STOP Weight Mgmt' },
+        4: { from: 'Build protocol', to: 'Foundation stack only, creatine 5g' }
+    };
+    var macroShifts = {
+        1: 'Caloric deficit — reduce below maintenance',
+        2: 'Back to maintenance — reverse diet slowly',
+        3: 'Caloric surplus — 300-500 cal above maintenance',
+        4: 'Maintenance — establish your new baseline'
+    };
+    var mindsetShifts = {
+        1: 'Discipline and consistency — embrace the grind',
+        2: 'Recovery and patience — let your body stabilize',
+        3: 'Fuel for growth — eat with purpose',
+        4: 'Reset and observe — find your new normal'
+    };
+
+    var changes = supplementChanges[phase.num];
+    document.getElementById('transitionTitle').textContent = 'Preparing for Phase ' + nextPhase.num + ': ' + nextPhase.name;
+    document.getElementById('transitionDesc').textContent = phase.remaining + ' days left in Phase ' + phase.num + ': ' + phase.name + '. Here\'s what changes next.';
+
+    var changesHtml = '';
+    changesHtml += '<div class="transition-change-item"><div class="transition-change-label">Macros Direction</div><div class="transition-change-value">' + macroShifts[phase.num] + '</div></div>';
+    changesHtml += '<div class="transition-change-item"><div class="transition-change-label">Supplement Changes</div><div class="transition-change-value">' + changes.to + '</div></div>';
+    changesHtml += '<div class="transition-change-item"><div class="transition-change-label">Mindset Shift</div><div class="transition-change-value">' + mindsetShifts[phase.num] + '</div></div>';
+    document.getElementById('transitionChanges').innerHTML = changesHtml;
+    document.getElementById('transitionSection').style.display = '';
+}
+
+// ===== WEEKLY CHECK-IN =====
+async function saveCheckin(e) {
+    e.preventDefault();
+    if (!supabase) return;
+    var { data: { user } } = await supabase.auth.getUser();
+    if (!user) return;
+    var phase = getPhaseInfo();
+    var adherence = document.querySelector('input[name="adherence"]:checked');
+    var training = document.querySelector('input[name="training"]:checked');
+
+    var payload = {
+        user_id: user.id,
+        phase: phase.num,
+        year: phase.year,
+        avg_weight: parseFloat(document.getElementById('checkinWeight').value) || null,
+        energy_level: parseInt(document.getElementById('checkinEnergy').value) || null,
+        nutrition_adherence: adherence ? parseInt(adherence.value) : null,
+        training_adherence: training ? parseInt(training.value) : null,
+        notes: document.getElementById('checkinNotes').value.trim() || null,
+        week_of: todayLocalString()
+    };
+
+    try {
+        var { error } = await supabase.from('weekly_checkins').insert(payload);
+        if (error) throw error;
+        flashMessage('checkinSaveSuccess');
+        document.getElementById('checkinForm').reset();
+        loadCheckins(user.id);
+    } catch (err) {
+        flashMessage('checkinSaveError');
+    }
+}
+
+async function loadCheckins(userId) {
+    try {
+        var { data, error } = await supabase.from('weekly_checkins').select('*')
+            .eq('user_id', userId).order('week_of', { ascending: false }).limit(12);
+        if (error || !data) return;
+
+        var list = document.getElementById('checkinHistoryList');
+        var empty = document.getElementById('checkinEmpty');
+        var upsell = document.getElementById('checkinCoachingUpsell');
+
+        if (data.length === 0) {
+            list.innerHTML = '';
+            empty.style.display = '';
+            return;
+        }
+
+        empty.style.display = 'none';
+
+        var phaseNames = { 1: 'Baseline', 2: 'Cut', 3: 'Maintain', 4: 'Build' };
+        var phaseColors = { 1: 'var(--phase-baseline)', 2: 'var(--phase-cut)', 3: 'var(--phase-maintain)', 4: 'var(--phase-build)' };
+        var energyLabels = { 5: 'High', 4: 'Good', 3: 'Average', 2: 'Low', 1: 'Very Low' };
+
+        var html = '';
+        data.forEach(function(entry) {
+            var date = new Date(entry.week_of + 'T12:00:00').toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+            var phaseColor = phaseColors[entry.phase] || 'var(--yellow)';
+            html += '<div class="checkin-entry">';
+            html += '<div class="checkin-entry-header">';
+            html += '<span class="checkin-entry-date">' + date + '</span>';
+            html += '<span class="checkin-entry-phase" style="color: ' + phaseColor + '; border-color: ' + phaseColor + ';">Phase ' + entry.phase + ': ' + (phaseNames[entry.phase] || '') + '</span>';
+            html += '</div>';
+            html += '<div class="checkin-entry-stats">';
+            if (entry.avg_weight) html += '<span class="checkin-entry-stat">Weight: <strong>' + entry.avg_weight + ' lbs</strong></span>';
+            if (entry.energy_level) html += '<span class="checkin-entry-stat">Energy: <strong>' + (energyLabels[entry.energy_level] || entry.energy_level) + '</strong></span>';
+            if (entry.nutrition_adherence) html += '<span class="checkin-entry-stat">Nutrition: <strong>' + entry.nutrition_adherence + '/5</strong></span>';
+            if (entry.training_adherence) html += '<span class="checkin-entry-stat">Training: <strong>' + entry.training_adherence + '/5</strong></span>';
+            html += '</div>';
+            if (entry.notes) html += '<div class="checkin-entry-notes">"' + entry.notes + '"</div>';
+            html += '</div>';
+        });
+
+        list.innerHTML = html;
+
+        // Show coaching upsell after 3+ check-ins
+        if (data.length >= 3) {
+            upsell.style.display = '';
+        }
+    } catch (e) { /* fail silently */ }
+}
+
+// ===== PDF GENERATOR =====
+function generatePhasePDF() {
+    var phase = getPhaseInfo();
+    var cals = document.getElementById('macroCals').textContent;
+    var protein = document.getElementById('macroProtein').textContent;
+    var carbs = document.getElementById('macroCarbs').textContent;
+    var fat = document.getElementById('macroFat').textContent;
+    var proteinPct = document.getElementById('macroProteinPct').textContent;
+    var carbsPct = document.getElementById('macroCarbsPct').textContent;
+    var fatPct = document.getElementById('macroFatPct').textContent;
+    var weightEl = document.getElementById('weightCurrent');
+    var currentWeight = weightEl ? weightEl.textContent : '--';
+
+    // Supplement protocols per phase
+    var supplements = {
+        1: [
+            { name: 'Whey Protein', dose: '1-2 servings/day', note: 'Post-workout or between meals' },
+            { name: 'Multivitamin', dose: 'As directed', note: 'With breakfast' },
+            { name: 'BCAAs', dose: '1-2 servings/day', note: 'During or after training' },
+            { name: 'Creatine', dose: '5g daily', note: 'Standard maintenance dose' }
+        ],
+        2: [
+            { name: 'Whey Protein', dose: '1-2 servings/day', note: 'Critical for muscle preservation' },
+            { name: 'Multivitamin', dose: 'As directed', note: 'Extra important during deficit' },
+            { name: 'BCAAs', dose: '1-2 servings/day', note: 'Support recovery in deficit' },
+            { name: 'Weight Mgmt Stack', dose: 'As directed', note: 'Metabolic support during cut' },
+            { name: 'Creatine', dose: 'STOP', note: 'Water retention masks scale progress' }
+        ],
+        3: [
+            { name: 'Whey Protein', dose: '1-2 servings/day', note: 'Post-workout or between meals' },
+            { name: 'Multivitamin', dose: 'As directed', note: 'With breakfast' },
+            { name: 'BCAAs', dose: '1-2 servings/day', note: 'During or after training' },
+            { name: 'Creatine', dose: '5g daily', note: 'Restart — standard maintenance dose' }
+        ],
+        4: [
+            { name: 'Whey Protein', dose: '1-2 servings/day', note: 'Support higher protein needs' },
+            { name: 'Multivitamin', dose: 'As directed', note: 'With breakfast' },
+            { name: 'BCAAs', dose: '1-2 servings/day', note: 'Recovery during high volume' },
+            { name: 'Creatine', dose: '10g daily', note: 'Double dose for building phase' },
+            { name: 'Glutamine', dose: '5g daily', note: 'Recovery and gut health' }
+        ]
+    };
+
+    // Phase tips
+    var tips = {
+        1: ['Focus on consistency over perfection', 'Track everything, even on bad days', 'Don\'t restrict — just observe and measure', 'Weigh yourself 3x per week minimum'],
+        2: ['Prioritize protein to preserve muscle', 'Stay hydrated — water helps manage hunger', 'Aim for 1-2 lbs/week max loss', 'Keep training intensity high'],
+        3: ['Don\'t increase calories dramatically', 'Use this phase to lock in habits at your new weight', 'Reverse diet slowly if needed', 'Enjoy the phase — you earned it'],
+        4: ['Surplus should be moderate: 300-500 cal above maintenance', 'Prioritize protein and carbs around training', 'Don\'t use "bulking" as an excuse for junk food', 'Some weight gain is expected — that\'s the point']
+    };
+
+    // Hydration target
+    var hydrationOz = currentWeight !== '--' ? Math.round(parseFloat(currentWeight) / 2) : '???';
+
+    // Build PDF HTML
+    var suppRows = '';
+    supplements[phase.num].forEach(function(s) {
+        var doseColor = s.dose === 'STOP' ? '#ff0003' : '#000';
+        suppRows += '<tr><td style="padding:8px 12px;border-bottom:1px solid #ddd;font-weight:700;">' + s.name + '</td><td style="padding:8px 12px;border-bottom:1px solid #ddd;color:' + doseColor + ';font-weight:700;">' + s.dose + '</td><td style="padding:8px 12px;border-bottom:1px solid #ddd;color:#666;">' + s.note + '</td></tr>';
+    });
+
+    var tipsList = '';
+    tips[phase.num].forEach(function(t) {
+        tipsList += '<li style="padding:4px 0;color:#333;">' + t + '</li>';
+    });
+
+    var pdfHtml = '<div style="padding:40px;font-family:Montserrat,Helvetica,Arial,sans-serif;color:#000;">'
+        // Header
+        + '<div style="display:flex;justify-content:space-between;align-items:center;border-bottom:4px solid ' + phase.colorHex + ';padding-bottom:16px;margin-bottom:24px;">'
+        + '<div><div style="font-size:28px;font-weight:900;text-transform:uppercase;letter-spacing:2px;">Phase ' + phase.num + ': ' + phase.name + '</div>'
+        + '<div style="font-size:14px;color:#666;margin-top:4px;">' + phase.startLabel + ' — ' + phase.endLabel + ', ' + phase.year + '</div></div>'
+        + '<div style="text-align:right;"><img src="images/logo.png" style="height:40px;filter:invert(1);" alt="Black Iron Athletics"><div style="font-size:10px;color:#999;margin-top:4px;">4-Phase Nutrition Blueprint</div></div>'
+        + '</div>'
+        // Macros
+        + '<div style="background:#f5f5f5;padding:20px;margin-bottom:24px;">'
+        + '<div style="font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:2px;color:#666;margin-bottom:12px;">Your Daily Targets</div>'
+        + '<div style="display:flex;justify-content:space-around;text-align:center;">'
+        + '<div><div style="font-size:32px;font-weight:900;color:' + phase.colorHex + ';">' + cals + '</div><div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:#666;">Calories</div></div>'
+        + '<div><div style="font-size:32px;font-weight:900;">' + protein + 'g</div><div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:#666;">Protein (' + proteinPct + ')</div></div>'
+        + '<div><div style="font-size:32px;font-weight:900;">' + carbs + 'g</div><div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:#666;">Carbs (' + carbsPct + ')</div></div>'
+        + '<div><div style="font-size:32px;font-weight:900;">' + fat + 'g</div><div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:#666;">Fat (' + fatPct + ')</div></div>'
+        + '</div></div>'
+        // Hydration
+        + '<div style="background:#e8f4f8;padding:16px 20px;margin-bottom:24px;display:flex;align-items:center;gap:16px;">'
+        + '<div style="font-size:24px;">💧</div>'
+        + '<div><div style="font-weight:700;font-size:14px;">Daily Hydration Target: ' + hydrationOz + ' oz</div><div style="font-size:12px;color:#666;">Half your bodyweight in ounces + 16-24 oz on training days</div></div>'
+        + '</div>'
+        // Supplements
+        + '<div style="margin-bottom:24px;">'
+        + '<div style="font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:2px;color:#666;margin-bottom:12px;">Supplement Protocol</div>'
+        + '<table style="width:100%;border-collapse:collapse;font-size:13px;">'
+        + '<tr style="background:#f5f5f5;"><th style="padding:8px 12px;text-align:left;font-size:11px;text-transform:uppercase;letter-spacing:1px;">Supplement</th><th style="padding:8px 12px;text-align:left;font-size:11px;text-transform:uppercase;letter-spacing:1px;">Dosage</th><th style="padding:8px 12px;text-align:left;font-size:11px;text-transform:uppercase;letter-spacing:1px;">Notes</th></tr>'
+        + suppRows
+        + '</table></div>'
+        // Phase Tips
+        + '<div style="margin-bottom:24px;">'
+        + '<div style="font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:2px;color:#666;margin-bottom:12px;">Phase ' + phase.num + ' Tips</div>'
+        + '<ul style="margin:0;padding-left:20px;font-size:13px;">' + tipsList + '</ul>'
+        + '</div>'
+        // Footer
+        + '<div style="border-top:2px solid #eee;padding-top:16px;margin-top:32px;display:flex;justify-content:space-between;align-items:center;">'
+        + '<div style="font-size:11px;color:#999;">The 4-Phase Nutrition Blueprint | Black Iron Athletics<br>blackironathletics.com</div>'
+        + '<div style="font-size:11px;color:' + phase.colorHex + ';font-weight:700;">Want this dialed in by a coach?<br>blackironathletics.com/blueprint</div>'
+        + '</div>'
+        + '</div>';
+
+    var container = document.getElementById('pdfRender');
+    container.innerHTML = pdfHtml;
+
+    var opt = {
+        margin: 0,
+        filename: 'BlackIron-Phase' + phase.num + '-' + phase.name + '-' + phase.year + '.pdf',
+        image: { type: 'jpeg', quality: 0.98 },
+        html2canvas: { scale: 2, useCORS: true },
+        jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' }
+    };
+
+    html2pdf().set(opt).from(container).save().then(function() {
+        container.innerHTML = '';
+    });
 }
 
 // ===== CALC MODAL =====
