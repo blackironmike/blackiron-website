@@ -2175,17 +2175,12 @@
             left: 0;
             top: 0;
             width: 800px;
-            z-index: -1;
-            opacity: 0;
+            height: 0;
+            overflow: hidden;
             pointer-events: none;
             font-family: 'Montserrat', Helvetica, Arial, sans-serif;
             background: #fff;
             color: #000;
-        }
-
-        .pdf-render.rendering {
-            opacity: 1;
-            z-index: 99999;
         }
 
         /* ===== RESPONSIVE ===== */
@@ -4558,22 +4553,32 @@ function generatePhasePDF() {
     var container = document.getElementById('pdfRender');
     container.innerHTML = pdfHtml;
 
-    // Brief delay to let the browser render the content before html2canvas captures it
+    // Make container visible for html2canvas (it cannot capture hidden/transparent elements)
+    container.style.height = 'auto';
+    container.style.overflow = 'visible';
+    container.style.zIndex = '99999';
+
     setTimeout(function() {
         var opt = {
             margin: [0.3, 0.3, 0.3, 0.3],
             filename: 'BlackIron-Phase' + phase.num + '-' + phase.name + '-' + phase.year + '.pdf',
             image: { type: 'jpeg', quality: 0.95 },
-            html2canvas: { scale: 2, useCORS: true, backgroundColor: '#ffffff', logging: false },
+            html2canvas: { scale: 2, useCORS: true, backgroundColor: '#ffffff', logging: false, scrollY: 0, windowWidth: 800 },
             jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' }
         };
 
         html2pdf().set(opt).from(container).save().then(function() {
             container.innerHTML = '';
+            container.style.height = '0';
+            container.style.overflow = 'hidden';
+            container.style.zIndex = '';
         }).catch(function() {
             container.innerHTML = '';
+            container.style.height = '0';
+            container.style.overflow = 'hidden';
+            container.style.zIndex = '';
         });
-    }, 300);
+    }, 500);
 }
 
 // ===== CALC MODAL =====
