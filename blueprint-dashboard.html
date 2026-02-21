@@ -422,6 +422,27 @@
             color: var(--black);
         }
 
+        .btn-secondary {
+            background: transparent;
+            color: var(--white);
+            padding: 1.2rem 3rem;
+            text-decoration: none;
+            font-weight: 900;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border: 2px solid var(--white);
+            border-radius: 0;
+            display: inline-block;
+            cursor: pointer;
+        }
+
+        .btn-secondary:hover {
+            background: var(--white);
+            color: var(--black);
+        }
+
         .btn-small {
             padding: 0.7rem 1.5rem;
             font-size: 0.85rem;
@@ -2641,8 +2662,8 @@
                         </div>
                     </div>
                     <div id="macroActions" style="display: none; margin-top: 1.5rem; gap: 0.75rem; align-items: center; flex-wrap: wrap;">
-                        <button class="btn-outline btn-small" onclick="generatePhasePDF()" id="downloadPdfBtn" title="Download Phase Plan PDF"><i class="fa-solid fa-file-pdf" style="margin-right: 0.4rem;"></i> Download PDF</button>
-                        <button class="btn-outline btn-small" onclick="openCalcModal()">Recalculate</button>
+                        <button class="btn-secondary btn-small" onclick="generatePhasePDF()" id="downloadPdfBtn" title="Download Phase Plan PDF"><i class="fa-solid fa-file-pdf" style="margin-right: 0.4rem;"></i> Download PDF</button>
+                        <button class="btn-secondary btn-small" onclick="openCalcModal()">Recalculate</button>
                     </div>
                     <button class="collapsible-toggle" onclick="toggleCollapsible(this)" style="margin-top: 1rem;">
                         <i class="fa-solid fa-floppy-disk"></i> Save My Macros
