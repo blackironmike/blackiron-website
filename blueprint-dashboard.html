@@ -2593,10 +2593,6 @@
                 <div class="dash-card">
                     <div class="dash-card-header">
                         <h3 class="dash-card-title"><i class="fa-solid fa-fire"></i> My Macros</h3>
-                        <div style="display: flex; gap: 0.75rem; align-items: center;">
-                            <button class="btn-outline btn-small" onclick="generatePhasePDF()" id="downloadPdfBtn" style="display: none;" title="Download Phase Plan PDF"><i class="fa-solid fa-file-pdf" style="margin-right: 0.4rem;"></i> Download PDF</button>
-                            <button class="btn-outline btn-small" onclick="openCalcModal()">Recalculate</button>
-                        </div>
                     </div>
                     <div id="macrosContent">
                         <div id="macrosPopulated" style="display: none;">
@@ -2644,8 +2640,12 @@
                             <button class="btn-primary btn-small" onclick="openCalcModal()">Calculate Your Macros</button>
                         </div>
                     </div>
-                    <button class="collapsible-toggle" onclick="toggleCollapsible(this)">
-                        <i class="fa-solid fa-chevron-down"></i> Save My Macros
+                    <div id="macroActions" style="display: none; margin-top: 1.5rem; gap: 0.75rem; align-items: center; flex-wrap: wrap;">
+                        <button class="btn-outline btn-small" onclick="generatePhasePDF()" id="downloadPdfBtn" title="Download Phase Plan PDF"><i class="fa-solid fa-file-pdf" style="margin-right: 0.4rem;"></i> Download PDF</button>
+                        <button class="btn-outline btn-small" onclick="openCalcModal()">Recalculate</button>
+                    </div>
+                    <button class="collapsible-toggle" onclick="toggleCollapsible(this)" style="margin-top: 1rem;">
+                        <i class="fa-solid fa-floppy-disk"></i> Save My Macros
                     </button>
                     <div class="collapsible-content">
                         <form class="dash-form" id="macroForm" onsubmit="saveMacros(event)">
@@ -3719,7 +3719,7 @@ async function loadMacros(userId, phase) {
             document.getElementById('macroFat').textContent = data.fat;
             document.getElementById('macrosPopulated').style.display = 'block';
             document.getElementById('macrosEmpty').style.display = 'none';
-            document.getElementById('downloadPdfBtn').style.display = '';
+            document.getElementById('macroActions').style.display = 'flex';
             renderMacroPieChart(data.protein, data.carbs, data.fat);
             // Pre-fill form
             document.getElementById('macroCalInput').value = data.calories;
