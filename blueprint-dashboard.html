@@ -30,7 +30,7 @@
     <!-- Supabase + Chart.js + PDF -->
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <style>
         /* Force full width - override GHL container */
         body, html {
@@ -4431,6 +4431,8 @@ async function loadCheckins(userId) {
 
 // ===== PDF GENERATOR (jsPDF — no html2canvas) =====
 function generatePhasePDF() {
+    try {
+    if (typeof jspdf === 'undefined') { alert('jsPDF library not loaded. Try refreshing the page.'); return; }
     var phase = getPhaseInfo();
     var cals = document.getElementById('macroCals').textContent;
     var protein = document.getElementById('macroProtein').textContent;
@@ -4638,6 +4640,7 @@ function generatePhasePDF() {
 
     // Save
     doc.save('BlackIron-Phase' + phase.num + '-' + phase.name + '-' + phase.year + '.pdf');
+    } catch (err) { alert('PDF Error: ' + err.message); console.error('PDF Error:', err); }
 }
 
 // ===== CALC MODAL =====
