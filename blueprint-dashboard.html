@@ -3158,6 +3158,70 @@
             .coach-drilldown-name { font-size: 1rem; }
             .client-card-stats { grid-template-columns: 1fr; }
         }
+
+        /* ===== ACCOUNT MODAL ===== */
+        .account-modal-body {
+            max-width: 500px;
+        }
+
+        .account-field-readonly {
+            width: 100%;
+            padding: 0.85rem 1rem;
+            background: var(--medium-gray);
+            border: 2px solid var(--medium-gray);
+            color: var(--light-gray);
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.95rem;
+            font-weight: 500;
+            cursor: not-allowed;
+        }
+
+        .account-role-badge {
+            display: inline-block;
+            padding: 0.35rem 1rem;
+            font-size: 0.75rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border: 2px solid var(--yellow);
+            color: var(--yellow);
+            background: transparent;
+        }
+
+        .account-section {
+            margin-bottom: 2rem;
+            padding-bottom: 2rem;
+            border-bottom: 1px solid var(--medium-gray);
+        }
+
+        .account-section:last-child {
+            margin-bottom: 0;
+            padding-bottom: 0;
+            border-bottom: none;
+        }
+
+        .account-section h4 {
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 1rem;
+            color: var(--yellow);
+        }
+
+        .account-btn-row {
+            display: flex;
+            gap: 0.75rem;
+            margin-top: 1rem;
+        }
+
+        .account-msg {
+            font-size: 0.85rem;
+            margin-top: 0.5rem;
+            display: none;
+        }
+
+        .account-msg.error { color: #ff4444; }
+        .account-msg.success { color: var(--phase-build); }
     </style>
 </head>
 <body>
@@ -3293,6 +3357,7 @@
                         </div>
                     </div>
                 </div>
+                <button onclick="openAccountModal()" title="Account Settings"><i class="fa-solid fa-gear"></i> Account</button>
                 <button onclick="handleLogout()"><i class="fa-solid fa-right-from-bracket"></i> Sign Out</button>
             </div>
         </div>
@@ -4244,6 +4309,59 @@
         </div>
     </div>
 
+    <!-- Account Settings Modal -->
+    <div class="modal-overlay" id="accountModal">
+        <div class="modal-container" style="max-width:550px;">
+            <button class="modal-close" onclick="closeAccountModal()">&times;</button>
+            <h3><i class="fa-solid fa-gear"></i> Account Settings</h3>
+            <div class="account-modal-body">
+
+                <!-- Profile Section -->
+                <div class="account-section">
+                    <h4>Profile</h4>
+                    <div class="dash-form">
+                        <div class="form-group">
+                            <label>Email</label>
+                            <div class="account-field-readonly" id="accountEmail"></div>
+                        </div>
+                        <div class="form-group">
+                            <label>Role</label>
+                            <div><span class="account-role-badge" id="accountRole"></span></div>
+                        </div>
+                        <div class="form-group">
+                            <label>Display Name</label>
+                            <input type="text" id="accountDisplayName" placeholder="Enter your display name">
+                        </div>
+                        <div class="account-btn-row">
+                            <button class="btn-primary" onclick="saveDisplayName()" style="padding:0.7rem 1.5rem;font-size:0.8rem;">Save Name</button>
+                        </div>
+                        <div class="account-msg" id="displayNameMsg"></div>
+                    </div>
+                </div>
+
+                <!-- Change Password Section -->
+                <div class="account-section">
+                    <h4>Change Password</h4>
+                    <div class="dash-form">
+                        <div class="form-group">
+                            <label>New Password</label>
+                            <input type="password" id="accountNewPassword" placeholder="Enter new password" style="width:100%;padding:0.85rem 1rem;background:var(--black);border:2px solid var(--medium-gray);color:var(--white);font-family:'Montserrat',sans-serif;font-size:0.95rem;font-weight:500;">
+                        </div>
+                        <div class="form-group">
+                            <label>Confirm Password</label>
+                            <input type="password" id="accountConfirmPassword" placeholder="Confirm new password" style="width:100%;padding:0.85rem 1rem;background:var(--black);border:2px solid var(--medium-gray);color:var(--white);font-family:'Montserrat',sans-serif;font-size:0.95rem;font-weight:500;">
+                        </div>
+                        <div class="account-btn-row">
+                            <button class="btn-primary" onclick="changePassword()" style="padding:0.7rem 1.5rem;font-size:0.8rem;">Update Password</button>
+                        </div>
+                        <div class="account-msg" id="passwordMsg"></div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
 <script>
 // ===== SUPABASE INIT =====
 // TODO: Replace with your Supabase project URL and anon key
@@ -4533,6 +4651,7 @@ async function loadCoachingCalls(userId, userEmail) {
 // ===== COACH STATE =====
 var currentView = 'athlete'; // 'athlete' or 'coach'
 var userRole = 'athlete';    // 'athlete', 'coach', or 'owner'
+var userDisplayName = '';     // cached from profiles.display_name
 var viewingAthleteId = null;  // set when coach drills into a client
 var currentUser = null;       // the authenticated user object
 
@@ -4576,7 +4695,10 @@ async function initDashboard(user) {
             if (profileData && profileData.role) {
                 userRole = profileData.role;
             }
-        } catch (e) { /* profiles table may not have role column yet */ }
+            if (profileData && profileData.display_name) {
+                userDisplayName = profileData.display_name;
+            }
+        } catch (e) { console.log('Role detection error:', e); }
 
         // Show coach toggle if coach or owner
         if (userRole === 'coach' || userRole === 'owner') {
@@ -6497,6 +6619,90 @@ async function dismissMacroChange() {
         }).eq('id', changeId);
     } catch (e) { /* fail silently */ }
 }
+
+// ===== ACCOUNT MODAL =====
+function openAccountModal() {
+    var modal = document.getElementById('accountModal');
+    document.getElementById('accountEmail').textContent = currentUser ? currentUser.email : '';
+    document.getElementById('accountRole').textContent = userRole;
+    document.getElementById('accountDisplayName').value = userDisplayName || '';
+    document.getElementById('accountNewPassword').value = '';
+    document.getElementById('accountConfirmPassword').value = '';
+    hideAccountMsg('displayNameMsg');
+    hideAccountMsg('passwordMsg');
+    modal.classList.add('active');
+}
+
+function closeAccountModal() {
+    document.getElementById('accountModal').classList.remove('active');
+}
+
+function hideAccountMsg(id) {
+    var el = document.getElementById(id);
+    el.style.display = 'none';
+    el.textContent = '';
+    el.className = 'account-msg';
+}
+
+function showAccountMsg(id, msg, type) {
+    var el = document.getElementById(id);
+    el.textContent = msg;
+    el.className = 'account-msg ' + type;
+    el.style.display = 'block';
+}
+
+async function saveDisplayName() {
+    var name = document.getElementById('accountDisplayName').value.trim();
+    if (!name) {
+        showAccountMsg('displayNameMsg', 'Please enter a display name.', 'error');
+        return;
+    }
+    if (!supabase || !currentUser) return;
+    try {
+        var { error } = await supabase.from('profiles')
+            .update({ display_name: name })
+            .eq('id', currentUser.id);
+        if (error) throw error;
+        userDisplayName = name;
+        showAccountMsg('displayNameMsg', 'Display name saved!', 'success');
+    } catch (e) {
+        console.log('Save display name error:', e);
+        showAccountMsg('displayNameMsg', 'Failed to save. Please try again.', 'error');
+    }
+}
+
+async function changePassword() {
+    var newPw = document.getElementById('accountNewPassword').value;
+    var confirmPw = document.getElementById('accountConfirmPassword').value;
+    if (!newPw || !confirmPw) {
+        showAccountMsg('passwordMsg', 'Please fill in both fields.', 'error');
+        return;
+    }
+    if (newPw.length < 6) {
+        showAccountMsg('passwordMsg', 'Password must be at least 6 characters.', 'error');
+        return;
+    }
+    if (newPw !== confirmPw) {
+        showAccountMsg('passwordMsg', 'Passwords do not match.', 'error');
+        return;
+    }
+    if (!supabase) return;
+    try {
+        var { error } = await supabase.auth.updateUser({ password: newPw });
+        if (error) throw error;
+        showAccountMsg('passwordMsg', 'Password updated successfully!', 'success');
+        document.getElementById('accountNewPassword').value = '';
+        document.getElementById('accountConfirmPassword').value = '';
+    } catch (e) {
+        console.log('Change password error:', e);
+        showAccountMsg('passwordMsg', e.message || 'Failed to update password.', 'error');
+    }
+}
+
+// Close account modal on click outside
+document.getElementById('accountModal').addEventListener('click', function(e) {
+    if (e.target === this) closeAccountModal();
+});
 
 // ===== INIT =====
 checkSession();
