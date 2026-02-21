@@ -1438,6 +1438,56 @@
         .yoy-phase-change.gain { color: var(--phase-build); }
         .yoy-phase-change.neutral { color: var(--phase-maintain); }
 
+        .yoy-ytd-summary {
+            border: 1px solid var(--medium-gray);
+            padding: 1.5rem;
+            background: var(--black);
+        }
+
+        .yoy-ytd-row {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            margin-bottom: 1.25rem;
+        }
+
+        .yoy-ytd-stat {
+            text-align: center;
+        }
+
+        .yoy-ytd-label {
+            font-size: 0.7rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: var(--light-gray);
+            margin-bottom: 0.4rem;
+        }
+
+        .yoy-ytd-value {
+            font-size: 1.5rem;
+            font-weight: 900;
+            color: var(--white);
+        }
+
+        .yoy-ytd-value.loss { color: var(--phase-cut); }
+        .yoy-ytd-value.gain { color: var(--phase-build); }
+        .yoy-ytd-value.neutral { color: var(--phase-maintain); }
+
+        .yoy-ytd-date {
+            font-size: 0.75rem;
+            color: var(--light-gray);
+            margin-top: 0.25rem;
+        }
+
+        .yoy-ytd-phase {
+            font-size: 0.85rem;
+            color: var(--light-gray);
+            text-align: center;
+            padding-top: 1.25rem;
+            border-top: 1px solid var(--medium-gray);
+        }
+
         /* ===== QUICK LINKS ===== */
         .quick-links-grid {
             display: grid;
@@ -3694,44 +3744,93 @@ async function loadChecklistProgress(userId, phase) {
 // ===== YEAR-OVER-YEAR =====
 async function loadYearOverYear(userId) {
     try {
+        var phaseNames = { 1: 'Mindful', 2: 'Cut', 3: 'Maintain', 4: 'Build' };
+        var phaseColors = { 1: 'var(--phase-mindful)', 2: 'var(--phase-cut)', 3: 'var(--phase-maintain)', 4: 'var(--phase-build)' };
+        var currentYear = new Date().getFullYear();
+
         var { data, error } = await supabase.from('phase_history').select('*')
             .eq('user_id', userId).order('year', { ascending: false }).order('phase', { ascending: true });
-        if (error || !data || data.length === 0) return;
 
-        var byYear = {};
-        data.forEach(function(row) {
-            if (!byYear[row.year]) byYear[row.year] = [];
-            byYear[row.year].push(row);
-        });
-
-        var phaseNames = { 1: 'Maintain', 2: 'Cut', 3: 'Maintain', 4: 'Build' };
-        var phaseColors = { 1: 'var(--phase-maintain)', 2: 'var(--phase-cut)', 3: 'var(--phase-maintain)', 4: 'var(--phase-build)' };
+        var hasPhaseData = !error && data && data.length > 0;
         var html = '';
-        var years = Object.keys(byYear).sort(function(a, b) { return b - a; });
 
-        years.forEach(function(year) {
-            var phases = byYear[year];
-            var badge = phases.length >= 4 ? ' <span class="yoy-badge">Year Complete</span>' : '';
-            html += '<div class="yoy-year">';
-            html += '<div class="yoy-year-label">' + year + badge + '</div>';
-            html += '<div class="yoy-phases">';
-            phases.forEach(function(p) {
-                var change = p.end_weight && p.start_weight ? (p.end_weight - p.start_weight).toFixed(1) : null;
-                var changeClass = change < 0 ? 'loss' : change > 0 ? 'gain' : 'neutral';
-                var changeText = change !== null ? ((change > 0 ? '+' : '') + change + ' lbs') : '--';
-                html += '<div class="yoy-phase-card">';
-                html += '<div class="yoy-phase-name" style="color: ' + phaseColors[p.phase] + ';">Phase ' + p.phase + ': ' + phaseNames[p.phase] + '</div>';
-                if (p.start_date && p.end_date) html += '<div class="yoy-phase-dates">' + p.start_date + ' to ' + p.end_date + '</div>';
-                if (p.start_weight) html += '<div class="yoy-phase-weight">' + p.start_weight + ' → ' + (p.end_weight || '--') + ' lbs</div>';
-                html += '<div class="yoy-phase-change ' + changeClass + '">' + changeText + '</div>';
-                html += '</div>';
+        if (hasPhaseData) {
+            var byYear = {};
+            data.forEach(function(row) {
+                if (!byYear[row.year]) byYear[row.year] = [];
+                byYear[row.year].push(row);
             });
-            html += '</div></div>';
-        });
 
-        document.getElementById('yoyPopulated').innerHTML = html;
-        document.getElementById('yoyPopulated').style.display = 'block';
-        document.getElementById('yoyEmpty').style.display = 'none';
+            var years = Object.keys(byYear).sort(function(a, b) { return b - a; });
+
+            years.forEach(function(year) {
+                var phases = byYear[year];
+                var isCurrentYear = parseInt(year) === currentYear;
+                var badge = '';
+                if (phases.length >= 4) {
+                    badge = ' <span class="yoy-badge">Year Complete</span>';
+                } else if (isCurrentYear) {
+                    badge = ' <span class="yoy-badge" style="background: var(--yellow); color: var(--black);">Year to Date</span>';
+                }
+                html += '<div class="yoy-year">';
+                html += '<div class="yoy-year-label">' + year + badge + '</div>';
+                html += '<div class="yoy-phases">';
+                phases.forEach(function(p) {
+                    var change = p.end_weight && p.start_weight ? (p.end_weight - p.start_weight).toFixed(1) : null;
+                    var changeClass = change < 0 ? 'loss' : change > 0 ? 'gain' : 'neutral';
+                    var changeText = change !== null ? ((change > 0 ? '+' : '') + change + ' lbs') : '--';
+                    var inProgress = isCurrentYear && !p.end_weight ? ' (In Progress)' : '';
+                    html += '<div class="yoy-phase-card">';
+                    html += '<div class="yoy-phase-name" style="color: ' + phaseColors[p.phase] + ';">Phase ' + p.phase + ': ' + phaseNames[p.phase] + inProgress + '</div>';
+                    if (p.start_date && p.end_date) html += '<div class="yoy-phase-dates">' + p.start_date + ' to ' + p.end_date + '</div>';
+                    else if (p.start_date) html += '<div class="yoy-phase-dates">Started ' + p.start_date + '</div>';
+                    if (p.start_weight) html += '<div class="yoy-phase-weight">' + p.start_weight + ' → ' + (p.end_weight || 'current') + ' lbs</div>';
+                    html += '<div class="yoy-phase-change ' + changeClass + '">' + changeText + '</div>';
+                    html += '</div>';
+                });
+                html += '</div></div>';
+            });
+        }
+
+        // Build YTD summary from weight logs if no phase data for current year
+        var hasCurrentYearPhases = hasPhaseData && data.some(function(r) { return r.year === currentYear; });
+        if (!hasCurrentYearPhases) {
+            var yearStart = currentYear + '-01-01';
+            var { data: logs, error: logErr } = await supabase.from('weight_logs').select('weight, logged_at')
+                .eq('user_id', userId).gte('logged_at', yearStart).order('logged_at', { ascending: true });
+
+            if (!logErr && logs && logs.length > 0) {
+                var firstLog = logs[0];
+                var lastLog = logs[logs.length - 1];
+                var startWt = parseFloat(firstLog.weight);
+                var currentWt = parseFloat(lastLog.weight);
+                var ytdChange = (currentWt - startWt).toFixed(1);
+                var changeClass = ytdChange < 0 ? 'loss' : ytdChange > 0 ? 'gain' : 'neutral';
+                var changeSign = ytdChange > 0 ? '+' : '';
+                var phase = getPhaseInfo();
+                var firstDate = new Date(firstLog.logged_at).toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+                var lastDate = new Date(lastLog.logged_at).toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+
+                var ytdHtml = '<div class="yoy-year">';
+                ytdHtml += '<div class="yoy-year-label">' + currentYear + ' <span class="yoy-badge" style="background: var(--yellow); color: var(--black);">Year to Date</span></div>';
+                ytdHtml += '<div class="yoy-ytd-summary">';
+                ytdHtml += '<div class="yoy-ytd-row">';
+                ytdHtml += '<div class="yoy-ytd-stat"><div class="yoy-ytd-label">Starting Weight</div><div class="yoy-ytd-value">' + startWt.toFixed(1) + '</div><div class="yoy-ytd-date">' + firstDate + '</div></div>';
+                ytdHtml += '<div class="yoy-ytd-stat"><div class="yoy-ytd-label">Current Weight</div><div class="yoy-ytd-value">' + currentWt.toFixed(1) + '</div><div class="yoy-ytd-date">' + lastDate + '</div></div>';
+                ytdHtml += '<div class="yoy-ytd-stat"><div class="yoy-ytd-label">YTD Change</div><div class="yoy-ytd-value ' + changeClass + '">' + changeSign + ytdChange + ' lbs</div><div class="yoy-ytd-date">' + logs.length + ' weigh-in' + (logs.length !== 1 ? 's' : '') + '</div></div>';
+                ytdHtml += '</div>';
+                ytdHtml += '<div class="yoy-ytd-phase">Currently in <strong style="color: ' + phase.color + ';">Phase ' + phase.num + ': ' + phase.name + '</strong></div>';
+                ytdHtml += '</div></div>';
+
+                html = ytdHtml + html;
+            }
+        }
+
+        if (html) {
+            document.getElementById('yoyPopulated').innerHTML = html;
+            document.getElementById('yoyPopulated').style.display = 'block';
+            document.getElementById('yoyEmpty').style.display = 'none';
+        }
     } catch (e) { /* fail silently */ }
 }
 
