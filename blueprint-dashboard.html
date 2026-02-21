@@ -4690,16 +4690,23 @@ async function initDashboard(user) {
     if (supabase && user) {
         // Detect coach/owner role
         try {
-            var { data: profileData } = await supabase
+            var { data: profileData, error: profileError } = await supabase
                 .from('profiles').select('role, display_name')
                 .eq('id', user.id).single();
-            if (profileData && profileData.role) {
-                userRole = profileData.role;
+            if (profileError) {
+                console.log('Role detection error:', profileError);
+            } else if (profileData) {
+                console.log('Profile data loaded:', profileData);
+                if (profileData.role) {
+                    userRole = profileData.role;
+                }
+                if (profileData.display_name) {
+                    userDisplayName = profileData.display_name;
+                }
+            } else {
+                console.log('No profile found for user:', user.id);
             }
-            if (profileData && profileData.display_name) {
-                userDisplayName = profileData.display_name;
-            }
-        } catch (e) { console.log('Role detection error:', e); }
+        } catch (e) { console.log('Role detection exception:', e); }
 
         // Show coach toggle if coach or owner
         if (userRole === 'coach' || userRole === 'owner') {
