@@ -3792,9 +3792,14 @@ async function loadYearOverYear(userId) {
             });
         }
 
-        // Build YTD summary from weight logs if no phase data for current year
+        // Build YTD summary for current year if no phase data exists for it
         var hasCurrentYearPhases = hasPhaseData && data.some(function(r) { return r.year === currentYear; });
         if (!hasCurrentYearPhases) {
+            var phase = getPhaseInfo();
+            var ytdHtml = '<div class="yoy-year">';
+            ytdHtml += '<div class="yoy-year-label">' + currentYear + ' <span class="yoy-badge" style="background: var(--yellow); color: var(--black);">Year to Date</span></div>';
+            ytdHtml += '<div class="yoy-ytd-summary">';
+
             var yearStart = currentYear + '-01-01';
             var { data: logs, error: logErr } = await supabase.from('weight_logs').select('weight, logged_at')
                 .eq('user_id', userId).gte('logged_at', yearStart).order('logged_at', { ascending: true });
@@ -3807,25 +3812,26 @@ async function loadYearOverYear(userId) {
                 var ytdChange = (currentWt - startWt).toFixed(1);
                 var changeClass = ytdChange < 0 ? 'loss' : ytdChange > 0 ? 'gain' : 'neutral';
                 var changeSign = ytdChange > 0 ? '+' : '';
-                var phase = getPhaseInfo();
                 var firstDate = new Date(firstLog.logged_at).toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
                 var lastDate = new Date(lastLog.logged_at).toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
 
-                var ytdHtml = '<div class="yoy-year">';
-                ytdHtml += '<div class="yoy-year-label">' + currentYear + ' <span class="yoy-badge" style="background: var(--yellow); color: var(--black);">Year to Date</span></div>';
-                ytdHtml += '<div class="yoy-ytd-summary">';
                 ytdHtml += '<div class="yoy-ytd-row">';
                 ytdHtml += '<div class="yoy-ytd-stat"><div class="yoy-ytd-label">Starting Weight</div><div class="yoy-ytd-value">' + startWt.toFixed(1) + '</div><div class="yoy-ytd-date">' + firstDate + '</div></div>';
                 ytdHtml += '<div class="yoy-ytd-stat"><div class="yoy-ytd-label">Current Weight</div><div class="yoy-ytd-value">' + currentWt.toFixed(1) + '</div><div class="yoy-ytd-date">' + lastDate + '</div></div>';
                 ytdHtml += '<div class="yoy-ytd-stat"><div class="yoy-ytd-label">YTD Change</div><div class="yoy-ytd-value ' + changeClass + '">' + changeSign + ytdChange + ' lbs</div><div class="yoy-ytd-date">' + logs.length + ' weigh-in' + (logs.length !== 1 ? 's' : '') + '</div></div>';
                 ytdHtml += '</div>';
-                ytdHtml += '<div class="yoy-ytd-phase">Currently in <strong style="color: ' + phase.color + ';">Phase ' + phase.num + ': ' + phase.name + '</strong></div>';
-                ytdHtml += '</div></div>';
-
-                html = ytdHtml + html;
+            } else {
+                ytdHtml += '<div class="yoy-ytd-row" style="grid-template-columns: 1fr;">';
+                ytdHtml += '<div class="yoy-ytd-stat"><div class="yoy-ytd-label" style="margin-bottom: 0.5rem;">No weigh-ins yet this year</div><div class="yoy-ytd-value" style="font-size: 1rem; color: var(--light-gray);">Log your first weigh-in in the Weight Tracker above to start tracking your progress.</div></div>';
+                ytdHtml += '</div>';
             }
+
+            ytdHtml += '<div class="yoy-ytd-phase">Currently in <strong style="color: ' + phase.color + ';">Phase ' + phase.num + ': ' + phase.name + '</strong></div>';
+            ytdHtml += '</div></div>';
+            html = ytdHtml + html;
         }
 
+        // Always show the section if we built any html
         if (html) {
             document.getElementById('yoyPopulated').innerHTML = html;
             document.getElementById('yoyPopulated').style.display = 'block';
