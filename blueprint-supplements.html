@@ -4,13 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hydration & Supplements | Fuel Your Performance | The 4-Phase Nutrition Blueprint | Black Iron Athletics</title>
-    <meta name="description" content="Phase-specific hydration guide and Thorne supplement protocols for the 4-Phase Nutrition Blueprint. Year-round foundation stack, cutting phase adjustments, and building phase adjustments.">
+    <meta name="description" content="Phase-specific hydration guide and Thorne supplement protocols for all 4 phases of the Nutrition Blueprint: Baseline, Cut, Maintain, and Build. Year-round foundation stack plus phase-specific adjustments.">
     <meta name="geo.region" content="US-TX">
     <meta name="geo.placename" content="Frisco">
     <link rel="canonical" href="https://www.blackironathletics.com/blueprint-supplements.html">
     <!-- Open Graph -->
     <meta property="og:title" content="Hydration & Supplements | The 4-Phase Nutrition Blueprint | Black Iron Athletics">
-    <meta property="og:description" content="Phase-specific hydration guide and Thorne supplement protocols for the 4-Phase Nutrition Blueprint. Year-round foundation stack, cutting phase adjustments, and building phase adjustments.">
+    <meta property="og:description" content="Phase-specific hydration guide and Thorne supplement protocols for all 4 phases of the Nutrition Blueprint: Baseline, Cut, Maintain, and Build. Year-round foundation stack plus phase-specific adjustments.">
     <meta property="og:url" content="https://www.blackironathletics.com/blueprint-supplements.html">
     <meta property="og:image" content="https://www.blackironathletics.com/images/social-share.png">
     <meta property="og:type" content="website">
@@ -18,7 +18,7 @@
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Hydration & Supplements | The 4-Phase Nutrition Blueprint | Black Iron Athletics">
-    <meta name="twitter:description" content="Phase-specific hydration guide and Thorne supplement protocols for the 4-Phase Nutrition Blueprint. Year-round foundation stack, cutting phase adjustments, and building phase adjustments.">
+    <meta name="twitter:description" content="Phase-specific hydration guide and Thorne supplement protocols for all 4 phases of the Nutrition Blueprint: Baseline, Cut, Maintain, and Build. Year-round foundation stack plus phase-specific adjustments.">
     <meta name="twitter:image" content="https://www.blackironathletics.com/images/social-share.png">
     <link rel="icon" type="image/png" href="images/anvil-favicon.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -631,7 +631,7 @@
         /* ===== PHASE ADJUSTMENT CARDS ===== */
         .adjustment-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            grid-template-columns: repeat(2, 1fr);
             gap: 2rem;
             margin-top: 3rem;
         }
@@ -649,6 +649,11 @@
 
         .adjustment-card:hover {
             transform: translateY(-5px);
+        }
+
+        .adjustment-card.baseline:hover {
+            border-color: var(--phase-baseline);
+            box-shadow: 0 10px 30px rgba(155, 89, 182, 0.2);
         }
 
         .adjustment-card.maintain:hover {
@@ -747,7 +752,7 @@
         /* ===== PHASE HYDRATION NOTES ===== */
         .phase-notes-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            grid-template-columns: repeat(2, 1fr);
             gap: 2rem;
             margin-top: 3rem;
         }
@@ -765,6 +770,15 @@
 
         .phase-note-card:hover {
             transform: translateY(-5px);
+        }
+
+        .phase-note-card.baseline {
+            border-top: 4px solid var(--phase-baseline);
+        }
+
+        .phase-note-card.baseline:hover {
+            border-color: var(--phase-baseline);
+            box-shadow: 0 10px 30px rgba(155, 89, 182, 0.15);
         }
 
         .phase-note-card.maintain {
@@ -1291,20 +1305,26 @@
             </div>
 
             <div class="phase-notes-grid">
-                <div class="phase-note-card maintain">
-                    <div class="phase-note-label" style="color: var(--phase-maintain);">During a Maintain</div>
-                    <h3>Building the Baseline</h3>
-                    <p>Maintenance phases are where you establish your hydration habits. Hit your baseline every day without fail. This is when you build the consistency that carries you through the harder phases. If you can nail your water intake when nothing feels urgent, you'll be dialed in when it matters most.</p>
+                <div class="phase-note-card baseline">
+                    <div class="phase-note-label" style="color: var(--phase-baseline);">Phase 1: Baseline (Jan-Mar)</div>
+                    <h3>Establishing Your Baseline</h3>
+                    <p>This is where you establish your hydration habits alongside your nutrition baseline. Hit your water target every day without fail. You're learning what your body needs at maintenance -- nail your water intake now and you'll be dialed in when the harder phases begin.</p>
                 </div>
 
                 <div class="phase-note-card cutting">
-                    <div class="phase-note-label" style="color: var(--phase-cut);">During a Cut</div>
+                    <div class="phase-note-label" style="color: var(--phase-cut);">Phase 2: Cut (Apr-Jun)</div>
                     <h3>Hunger, Performance &amp; Recovery</h3>
                     <p>Staying well-hydrated helps with hunger management, performance, and recovery. When calories are low, your body is working harder with fewer resources. Don't let water intake slip during the cutting phase -- it's one of the simplest tools you have to maintain energy and manage appetite.</p>
                 </div>
 
+                <div class="phase-note-card maintain">
+                    <div class="phase-note-label" style="color: var(--phase-maintain);">Phase 3: Maintain (Jul-Sep)</div>
+                    <h3>Rebuilding Consistency</h3>
+                    <p>You're back at maintenance calories after the cut. Use this phase to re-establish your hydration habits at your new body composition. The consistency you build here carries directly into the building phase. If you can nail your water intake when nothing feels urgent, you'll be ready for the work ahead.</p>
+                </div>
+
                 <div class="phase-note-card building">
-                    <div class="phase-note-label" style="color: var(--phase-build);">During a Build</div>
+                    <div class="phase-note-label" style="color: var(--phase-build);">Phase 4: Build (Oct-Dec)</div>
                     <h3>Water Retention &amp; Glycogen</h3>
                     <p>Higher carb intake means your body retains more water naturally. This is expected and healthy. Increased hydration supports the extra glycogen storage and helps with the higher training volume you'll be pushing during the building phase.</p>
                 </div>
@@ -1398,12 +1418,12 @@
             <div class="section-header">
                 <div class="section-subtitle">Phase-Specific Changes</div>
                 <h2 class="section-title">Supplement Adjustments</h2>
-                <p class="section-description">Your foundation stack stays the same year-round. Here's how each phase adjusts around it.</p>
+                <p class="section-description">Your foundation stack stays the same year-round. Here's how each of the four phases adjusts around it. Phases 1 and 3 both operate at maintenance calories from your calculator -- the protocol is the same.</p>
             </div>
 
             <div class="adjustment-grid">
-                <div class="adjustment-card maintain" style="border-top: 4px solid var(--phase-maintain);">
-                    <div class="adjustment-label" style="color: var(--phase-maintain);">Maintain Phases (Jan-Mar &amp; Jul-Sep)</div>
+                <div class="adjustment-card baseline" style="border-top: 4px solid var(--phase-baseline);">
+                    <div class="adjustment-label" style="color: var(--phase-baseline);">Phase 1: Baseline (Jan-Mar)</div>
                     <h3>Foundation Only</h3>
                     <ul class="adjustment-list">
                         <li><i class="fa-solid fa-circle-check continue"></i> <strong>FOLLOW</strong> the Year-Round Foundation Stack exactly as listed above -- no additions, no removals</li>
@@ -1413,7 +1433,7 @@
                 </div>
 
                 <div class="adjustment-card cutting" style="border-top: 4px solid var(--phase-cut);">
-                    <div class="adjustment-label" style="color: var(--phase-cut);">Cutting Phase (Apr-Jun)</div>
+                    <div class="adjustment-label" style="color: var(--phase-cut);">Phase 2: Cut (Apr-Jun)</div>
                     <h3>Cutting Adjustments</h3>
                     <ul class="adjustment-list">
                         <li><i class="fa-solid fa-circle-xmark stop"></i> <strong>STOP</strong> Creatine -- creatine causes water retention which can mask fat loss on the scale and make it harder to track progress</li>
@@ -1422,8 +1442,18 @@
                     </ul>
                 </div>
 
+                <div class="adjustment-card maintain" style="border-top: 4px solid var(--phase-maintain);">
+                    <div class="adjustment-label" style="color: var(--phase-maintain);">Phase 3: Maintain (Jul-Sep)</div>
+                    <h3>Foundation Only</h3>
+                    <ul class="adjustment-list">
+                        <li><i class="fa-solid fa-circle-check continue"></i> <strong>FOLLOW</strong> the Year-Round Foundation Stack exactly as listed above -- no additions, no removals</li>
+                        <li><i class="fa-solid fa-circle-check continue"></i> <strong>CONTINUE</strong> Creatine at <strong>5g daily</strong> -- standard maintenance dose to support strength and recovery</li>
+                        <li><i class="fa-solid fa-circle-check continue"></i> <strong>CONTINUE</strong> Whey Protein, Multivitamin, and BCAAs as directed</li>
+                    </ul>
+                </div>
+
                 <div class="adjustment-card building" style="border-top: 4px solid var(--phase-build);">
-                    <div class="adjustment-label" style="color: var(--phase-build);">Building Phase (Oct-Dec)</div>
+                    <div class="adjustment-label" style="color: var(--phase-build);">Phase 4: Build (Oct-Dec)</div>
                     <h3>Building Adjustments</h3>
                     <ul class="adjustment-list">
                         <li><i class="fa-solid fa-circle-xmark stop"></i> <strong>STOP</strong> Weight Management Stack -- no longer needed in a caloric surplus</li>
@@ -1523,7 +1553,7 @@
       "@context": "https://schema.org",
       "@type": "Article",
       "headline": "Hydration & Supplements - The 4-Phase Nutrition Blueprint",
-      "description": "Phase-specific hydration guide and Thorne supplement protocols for the 4-Phase Nutrition Blueprint. Year-round foundation stack, cutting phase adjustments, and building phase adjustments.",
+      "description": "Phase-specific hydration guide and Thorne supplement protocols for all 4 phases of the Nutrition Blueprint: Baseline, Cut, Maintain, and Build. Year-round foundation stack plus phase-specific adjustments.",
       "author": { "@type": "Organization", "name": "Black Iron Athletics" },
       "publisher": {
         "@type": "Organization",
