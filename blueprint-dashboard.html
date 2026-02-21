@@ -1093,6 +1093,24 @@
             -moz-appearance: textfield;
         }
 
+        .dash-form input[type="date"] {
+            color-scheme: dark;
+            -webkit-appearance: none;
+            appearance: none;
+            min-height: 48px;
+        }
+
+        .dash-form input[type="date"]::-webkit-calendar-picker-indicator {
+            filter: invert(1);
+            cursor: pointer;
+            padding: 4px;
+            opacity: 0.7;
+        }
+
+        .dash-form input[type="date"]::-webkit-calendar-picker-indicator:hover {
+            opacity: 1;
+        }
+
         .dash-form input:focus,
         .dash-form select:focus,
         .dash-form textarea:focus {
