@@ -2171,13 +2171,21 @@
 
         /* ===== PDF GENERATION (hidden render area) ===== */
         .pdf-render {
-            position: absolute;
-            left: -9999px;
-            top: -9999px;
+            position: fixed;
+            left: 0;
+            top: 0;
             width: 800px;
-            font-family: 'Montserrat', sans-serif;
+            z-index: -1;
+            opacity: 0;
+            pointer-events: none;
+            font-family: 'Montserrat', Helvetica, Arial, sans-serif;
             background: #fff;
             color: #000;
+        }
+
+        .pdf-render.rendering {
+            opacity: 1;
+            z-index: 99999;
         }
 
         /* ===== RESPONSIVE ===== */
@@ -4456,7 +4464,6 @@ function generatePhasePDF() {
     var weightEl = document.getElementById('weightCurrent');
     var currentWeight = weightEl ? weightEl.textContent : '--';
 
-    // Supplement protocols per phase
     var supplements = {
         1: [
             { name: 'Whey Protein', dose: '1-2 servings/day', note: 'Post-workout or between meals' },
@@ -4486,7 +4493,6 @@ function generatePhasePDF() {
         ]
     };
 
-    // Phase tips
     var tips = {
         1: ['Focus on consistency over perfection', 'Track everything, even on bad days', 'Don\'t restrict — just observe and measure', 'Weigh yourself 3x per week minimum'],
         2: ['Prioritize protein to preserve muscle', 'Stay hydrated — water helps manage hunger', 'Aim for 1-2 lbs/week max loss', 'Keep training intensity high'],
@@ -4494,10 +4500,9 @@ function generatePhasePDF() {
         4: ['Surplus should be moderate: 300-500 cal above maintenance', 'Prioritize protein and carbs around training', 'Don\'t use "bulking" as an excuse for junk food', 'Some weight gain is expected — that\'s the point']
     };
 
-    // Hydration target
     var hydrationOz = currentWeight !== '--' ? Math.round(parseFloat(currentWeight) / 2) : '???';
 
-    // Build PDF HTML
+    // Build supplement rows
     var suppRows = '';
     supplements[phase.num].forEach(function(s) {
         var doseColor = s.dose === 'STOP' ? '#ff0003' : '#000';
@@ -4509,27 +4514,28 @@ function generatePhasePDF() {
         tipsList += '<li style="padding:4px 0;color:#333;">' + t + '</li>';
     });
 
-    var pdfHtml = '<div style="padding:40px;font-family:Montserrat,Helvetica,Arial,sans-serif;color:#000;">'
+    // Use TABLE layout instead of flexbox — html2canvas renders tables reliably
+    var pdfHtml = '<div style="padding:40px;font-family:Montserrat,Helvetica,Arial,sans-serif;color:#000;background:#fff;">'
         // Header
-        + '<div style="display:flex;justify-content:space-between;align-items:center;border-bottom:4px solid ' + phase.colorHex + ';padding-bottom:16px;margin-bottom:24px;">'
-        + '<div><div style="font-size:28px;font-weight:900;text-transform:uppercase;letter-spacing:2px;">Phase ' + phase.num + ': ' + phase.name + '</div>'
-        + '<div style="font-size:14px;color:#666;margin-top:4px;">' + phase.startLabel + ' — ' + phase.endLabel + ', ' + phase.year + '</div></div>'
-        + '<div style="text-align:right;"><img src="images/logo.png" style="height:40px;filter:invert(1);" alt="Black Iron Athletics"><div style="font-size:10px;color:#999;margin-top:4px;">4-Phase Nutrition Blueprint</div></div>'
-        + '</div>'
+        + '<table style="width:100%;border-collapse:collapse;border-bottom:4px solid ' + phase.colorHex + ';margin-bottom:24px;"><tr>'
+        + '<td style="padding-bottom:16px;vertical-align:bottom;"><div style="font-size:28px;font-weight:900;text-transform:uppercase;letter-spacing:2px;">Phase ' + phase.num + ': ' + phase.name + '</div>'
+        + '<div style="font-size:14px;color:#666;margin-top:4px;">' + phase.startLabel + ' &mdash; ' + phase.endLabel + ', ' + phase.year + '</div></td>'
+        + '<td style="padding-bottom:16px;text-align:right;vertical-align:bottom;"><div style="font-size:16px;font-weight:900;letter-spacing:1px;">BLACK IRON ATHLETICS</div><div style="font-size:10px;color:#999;margin-top:4px;">4-Phase Nutrition Blueprint</div></td>'
+        + '</tr></table>'
         // Macros
         + '<div style="background:#f5f5f5;padding:20px;margin-bottom:24px;">'
-        + '<div style="font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:2px;color:#666;margin-bottom:12px;">Your Daily Targets</div>'
-        + '<div style="display:flex;justify-content:space-around;text-align:center;">'
-        + '<div><div style="font-size:32px;font-weight:900;color:' + phase.colorHex + ';">' + cals + '</div><div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:#666;">Calories</div></div>'
-        + '<div><div style="font-size:32px;font-weight:900;">' + protein + 'g</div><div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:#666;">Protein (' + proteinPct + ')</div></div>'
-        + '<div><div style="font-size:32px;font-weight:900;">' + carbs + 'g</div><div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:#666;">Carbs (' + carbsPct + ')</div></div>'
-        + '<div><div style="font-size:32px;font-weight:900;">' + fat + 'g</div><div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:#666;">Fat (' + fatPct + ')</div></div>'
-        + '</div></div>'
+        + '<div style="font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:2px;color:#666;margin-bottom:16px;">Your Daily Targets</div>'
+        + '<table style="width:100%;border-collapse:collapse;text-align:center;"><tr>'
+        + '<td style="width:25%;padding:8px;"><div style="font-size:32px;font-weight:900;color:' + phase.colorHex + ';">' + cals + '</div><div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:#666;margin-top:4px;">Calories</div></td>'
+        + '<td style="width:25%;padding:8px;"><div style="font-size:32px;font-weight:900;">' + protein + 'g</div><div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:#666;margin-top:4px;">Protein (' + proteinPct + ')</div></td>'
+        + '<td style="width:25%;padding:8px;"><div style="font-size:32px;font-weight:900;">' + carbs + 'g</div><div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:#666;margin-top:4px;">Carbs (' + carbsPct + ')</div></td>'
+        + '<td style="width:25%;padding:8px;"><div style="font-size:32px;font-weight:900;">' + fat + 'g</div><div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:#666;margin-top:4px;">Fat (' + fatPct + ')</div></td>'
+        + '</tr></table></div>'
         // Hydration
-        + '<div style="background:#e8f4f8;padding:16px 20px;margin-bottom:24px;display:flex;align-items:center;gap:16px;">'
-        + '<div style="font-size:24px;">💧</div>'
-        + '<div><div style="font-weight:700;font-size:14px;">Daily Hydration Target: ' + hydrationOz + ' oz</div><div style="font-size:12px;color:#666;">Half your bodyweight in ounces + 16-24 oz on training days</div></div>'
-        + '</div>'
+        + '<table style="width:100%;border-collapse:collapse;margin-bottom:24px;background:#e8f4f8;"><tr>'
+        + '<td style="padding:16px 20px;width:40px;font-size:24px;vertical-align:middle;">&#128167;</td>'
+        + '<td style="padding:16px 20px;"><div style="font-weight:700;font-size:14px;">Daily Hydration Target: ' + hydrationOz + ' oz</div><div style="font-size:12px;color:#666;margin-top:2px;">Half your bodyweight in ounces + 16-24 oz on training days</div></td>'
+        + '</tr></table>'
         // Supplements
         + '<div style="margin-bottom:24px;">'
         + '<div style="font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:2px;color:#666;margin-bottom:12px;">Supplement Protocol</div>'
@@ -4543,26 +4549,31 @@ function generatePhasePDF() {
         + '<ul style="margin:0;padding-left:20px;font-size:13px;">' + tipsList + '</ul>'
         + '</div>'
         // Footer
-        + '<div style="border-top:2px solid #eee;padding-top:16px;margin-top:32px;display:flex;justify-content:space-between;align-items:center;">'
-        + '<div style="font-size:11px;color:#999;">The 4-Phase Nutrition Blueprint | Black Iron Athletics<br>blackironathletics.com</div>'
-        + '<div style="font-size:11px;color:' + phase.colorHex + ';font-weight:700;">Want this dialed in by a coach?<br>blackironathletics.com/blueprint</div>'
-        + '</div>'
+        + '<table style="width:100%;border-collapse:collapse;border-top:2px solid #eee;margin-top:32px;"><tr>'
+        + '<td style="padding-top:16px;font-size:11px;color:#999;">The 4-Phase Nutrition Blueprint | Black Iron Athletics<br>blackironathletics.com</td>'
+        + '<td style="padding-top:16px;text-align:right;font-size:11px;color:' + phase.colorHex + ';font-weight:700;">Want this dialed in by a coach?<br>blackironathletics.com/blueprint</td>'
+        + '</tr></table>'
         + '</div>';
 
     var container = document.getElementById('pdfRender');
     container.innerHTML = pdfHtml;
 
-    var opt = {
-        margin: 0,
-        filename: 'BlackIron-Phase' + phase.num + '-' + phase.name + '-' + phase.year + '.pdf',
-        image: { type: 'jpeg', quality: 0.98 },
-        html2canvas: { scale: 2, useCORS: true },
-        jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' }
-    };
+    // Brief delay to let the browser render the content before html2canvas captures it
+    setTimeout(function() {
+        var opt = {
+            margin: [0.3, 0.3, 0.3, 0.3],
+            filename: 'BlackIron-Phase' + phase.num + '-' + phase.name + '-' + phase.year + '.pdf',
+            image: { type: 'jpeg', quality: 0.95 },
+            html2canvas: { scale: 2, useCORS: true, backgroundColor: '#ffffff', logging: false },
+            jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' }
+        };
 
-    html2pdf().set(opt).from(container).save().then(function() {
-        container.innerHTML = '';
-    });
+        html2pdf().set(opt).from(container).save().then(function() {
+            container.innerHTML = '';
+        }).catch(function() {
+            container.innerHTML = '';
+        });
+    }, 300);
 }
 
 // ===== CALC MODAL =====
