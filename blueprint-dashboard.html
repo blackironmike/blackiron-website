@@ -30,7 +30,7 @@
     <!-- Supabase + Chart.js + PDF -->
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js" defer></script>
     <style>
         /* Force full width - override GHL container */
         body, html {
@@ -4429,7 +4429,7 @@ async function loadCheckins(userId) {
     } catch (e) { /* fail silently */ }
 }
 
-// ===== PDF GENERATOR =====
+// ===== PDF GENERATOR (jsPDF — no html2canvas) =====
 function generatePhasePDF() {
     var phase = getPhaseInfo();
     var cals = document.getElementById('macroCals').textContent;
@@ -4441,6 +4441,7 @@ function generatePhasePDF() {
     var fatPct = document.getElementById('macroFatPct').textContent;
     var weightEl = document.getElementById('weightCurrent');
     var currentWeight = weightEl ? weightEl.textContent : '--';
+    var hydrationOz = currentWeight !== '--' ? Math.round(parseFloat(currentWeight) / 2) : '???';
 
     var supplements = {
         1: [
@@ -4460,7 +4461,7 @@ function generatePhasePDF() {
             { name: 'Whey Protein', dose: '1-2 servings/day', note: 'Post-workout or between meals' },
             { name: 'Multivitamin', dose: 'As directed', note: 'With breakfast' },
             { name: 'BCAAs', dose: '1-2 servings/day', note: 'During or after training' },
-            { name: 'Creatine', dose: '5g daily', note: 'Restart — standard maintenance dose' }
+            { name: 'Creatine', dose: '5g daily', note: 'Restart - standard maintenance dose' }
         ],
         4: [
             { name: 'Whey Protein', dose: '1-2 servings/day', note: 'Support higher protein needs' },
@@ -4472,92 +4473,171 @@ function generatePhasePDF() {
     };
 
     var tips = {
-        1: ['Focus on consistency over perfection', 'Track everything, even on bad days', 'Don\'t restrict — just observe and measure', 'Weigh yourself 3x per week minimum'],
-        2: ['Prioritize protein to preserve muscle', 'Stay hydrated — water helps manage hunger', 'Aim for 1-2 lbs/week max loss', 'Keep training intensity high'],
-        3: ['Don\'t increase calories dramatically', 'Use this phase to lock in habits at your new weight', 'Reverse diet slowly if needed', 'Enjoy the phase — you earned it'],
-        4: ['Surplus should be moderate: 300-500 cal above maintenance', 'Prioritize protein and carbs around training', 'Don\'t use "bulking" as an excuse for junk food', 'Some weight gain is expected — that\'s the point']
+        1: ['Focus on consistency over perfection', 'Track everything, even on bad days', 'Don\'t restrict - just observe and measure', 'Weigh yourself 3x per week minimum'],
+        2: ['Prioritize protein to preserve muscle', 'Stay hydrated - water helps manage hunger', 'Aim for 1-2 lbs/week max loss', 'Keep training intensity high'],
+        3: ['Don\'t increase calories dramatically', 'Use this phase to lock in habits at your new weight', 'Reverse diet slowly if needed', 'Enjoy the phase - you earned it'],
+        4: ['Surplus should be moderate: 300-500 cal above maintenance', 'Prioritize protein and carbs around training', 'Don\'t use bulking as an excuse for junk food', 'Some weight gain is expected - that\'s the point']
     };
 
-    var hydrationOz = currentWeight !== '--' ? Math.round(parseFloat(currentWeight) / 2) : '???';
+    // Parse phase color to RGB
+    var hex = phase.colorHex.replace('#', '');
+    var pR = parseInt(hex.substring(0,2), 16);
+    var pG = parseInt(hex.substring(2,4), 16);
+    var pB = parseInt(hex.substring(4,6), 16);
 
-    // Build supplement rows
-    var suppRows = '';
-    supplements[phase.num].forEach(function(s) {
-        var doseColor = s.dose === 'STOP' ? '#ff0003' : '#000';
-        suppRows += '<tr><td style="padding:8px 12px;border-bottom:1px solid #ddd;font-weight:700;">' + s.name + '</td><td style="padding:8px 12px;border-bottom:1px solid #ddd;color:' + doseColor + ';font-weight:700;">' + s.dose + '</td><td style="padding:8px 12px;border-bottom:1px solid #ddd;color:#666;">' + s.note + '</td></tr>';
+    var doc = new jspdf.jsPDF({ unit: 'pt', format: 'letter' });
+    var pw = 612; // page width in points
+    var mx = 40; // margin x
+    var cw = pw - mx * 2; // content width
+    var y = 40; // current y position
+
+    // Helper: draw filled rect
+    function drawRect(x, yy, w, h, r, g, b) {
+        doc.setFillColor(r, g, b);
+        doc.rect(x, yy, w, h, 'F');
+    }
+
+    // Helper: section label
+    function sectionLabel(text, yy) {
+        doc.setFont('helvetica', 'bold');
+        doc.setFontSize(8);
+        doc.setTextColor(120, 120, 120);
+        doc.text(text.toUpperCase(), mx, yy);
+        return yy + 16;
+    }
+
+    // ===== HEADER =====
+    doc.setFont('helvetica', 'bold');
+    doc.setFontSize(22);
+    doc.setTextColor(0, 0, 0);
+    doc.text('PHASE ' + phase.num + ': ' + phase.name.toUpperCase(), mx, y + 22);
+    doc.setFontSize(10);
+    doc.setTextColor(120, 120, 120);
+    doc.text(phase.startLabel + ' - ' + phase.endLabel + ', ' + phase.year, mx, y + 38);
+
+    // Right side - brand
+    doc.setFontSize(11);
+    doc.setTextColor(0, 0, 0);
+    doc.text('BLACK IRON ATHLETICS', pw - mx, y + 22, { align: 'right' });
+    doc.setFontSize(8);
+    doc.setTextColor(150, 150, 150);
+    doc.text('4-Phase Nutrition Blueprint', pw - mx, y + 35, { align: 'right' });
+
+    y += 48;
+    // Phase color line
+    drawRect(mx, y, cw, 4, pR, pG, pB);
+    y += 20;
+
+    // ===== MACROS BOX =====
+    y = sectionLabel('Your Daily Targets', y);
+    drawRect(mx, y, cw, 70, 245, 245, 245);
+
+    var colW = cw / 4;
+    var macroData = [
+        { val: cals, label: 'CALORIES', isPhaseColor: true },
+        { val: protein + 'g', label: 'PROTEIN (' + proteinPct + ')' },
+        { val: carbs + 'g', label: 'CARBS (' + carbsPct + ')' },
+        { val: fat + 'g', label: 'FAT (' + fatPct + ')' }
+    ];
+
+    macroData.forEach(function(m, i) {
+        var cx = mx + colW * i + colW / 2;
+        doc.setFont('helvetica', 'bold');
+        doc.setFontSize(24);
+        if (m.isPhaseColor) { doc.setTextColor(pR, pG, pB); } else { doc.setTextColor(0, 0, 0); }
+        doc.text(m.val, cx, y + 32, { align: 'center' });
+        doc.setFontSize(7);
+        doc.setTextColor(120, 120, 120);
+        doc.text(m.label, cx, y + 48, { align: 'center' });
     });
 
-    var tipsList = '';
-    tips[phase.num].forEach(function(t) {
-        tipsList += '<li style="padding:4px 0;color:#333;">' + t + '</li>';
+    y += 84;
+
+    // ===== HYDRATION =====
+    drawRect(mx, y, cw, 42, 218, 235, 245);
+    doc.setFont('helvetica', 'bold');
+    doc.setFontSize(11);
+    doc.setTextColor(0, 0, 0);
+    doc.text('Daily Hydration Target: ' + hydrationOz + ' oz', mx + 16, y + 18);
+    doc.setFont('helvetica', 'normal');
+    doc.setFontSize(9);
+    doc.setTextColor(100, 100, 100);
+    doc.text('Half your bodyweight in ounces + 16-24 oz on training days', mx + 16, y + 32);
+    y += 56;
+
+    // ===== SUPPLEMENTS TABLE =====
+    y = sectionLabel('Supplement Protocol', y);
+    var suppData = supplements[phase.num];
+    var tableColWidths = [cw * 0.28, cw * 0.25, cw * 0.47];
+
+    // Header row
+    drawRect(mx, y, cw, 20, 245, 245, 245);
+    doc.setFont('helvetica', 'bold');
+    doc.setFontSize(7);
+    doc.setTextColor(80, 80, 80);
+    doc.text('SUPPLEMENT', mx + 8, y + 13);
+    doc.text('DOSAGE', mx + tableColWidths[0] + 8, y + 13);
+    doc.text('NOTES', mx + tableColWidths[0] + tableColWidths[1] + 8, y + 13);
+    y += 20;
+
+    suppData.forEach(function(s) {
+        doc.setFont('helvetica', 'bold');
+        doc.setFontSize(9);
+        doc.setTextColor(0, 0, 0);
+        doc.text(s.name, mx + 8, y + 13);
+
+        if (s.dose === 'STOP') {
+            doc.setTextColor(255, 0, 3);
+        } else {
+            doc.setTextColor(0, 0, 0);
+        }
+        doc.text(s.dose, mx + tableColWidths[0] + 8, y + 13);
+
+        doc.setFont('helvetica', 'normal');
+        doc.setFontSize(8);
+        doc.setTextColor(100, 100, 100);
+        doc.text(s.note, mx + tableColWidths[0] + tableColWidths[1] + 8, y + 13);
+
+        y += 22;
+        // Row divider
+        doc.setDrawColor(220, 220, 220);
+        doc.line(mx, y, mx + cw, y);
     });
 
-    // Use TABLE layout instead of flexbox — html2canvas renders tables reliably
-    var pdfHtml = '<div style="padding:40px;font-family:Montserrat,Helvetica,Arial,sans-serif;color:#000;background:#fff;">'
-        // Header
-        + '<table style="width:100%;border-collapse:collapse;border-bottom:4px solid ' + phase.colorHex + ';margin-bottom:24px;"><tr>'
-        + '<td style="padding-bottom:16px;vertical-align:bottom;"><div style="font-size:28px;font-weight:900;text-transform:uppercase;letter-spacing:2px;">Phase ' + phase.num + ': ' + phase.name + '</div>'
-        + '<div style="font-size:14px;color:#666;margin-top:4px;">' + phase.startLabel + ' &mdash; ' + phase.endLabel + ', ' + phase.year + '</div></td>'
-        + '<td style="padding-bottom:16px;text-align:right;vertical-align:bottom;"><div style="font-size:16px;font-weight:900;letter-spacing:1px;">BLACK IRON ATHLETICS</div><div style="font-size:10px;color:#999;margin-top:4px;">4-Phase Nutrition Blueprint</div></td>'
-        + '</tr></table>'
-        // Macros
-        + '<div style="background:#f5f5f5;padding:20px;margin-bottom:24px;">'
-        + '<div style="font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:2px;color:#666;margin-bottom:16px;">Your Daily Targets</div>'
-        + '<table style="width:100%;border-collapse:collapse;text-align:center;"><tr>'
-        + '<td style="width:25%;padding:8px;"><div style="font-size:32px;font-weight:900;color:' + phase.colorHex + ';">' + cals + '</div><div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:#666;margin-top:4px;">Calories</div></td>'
-        + '<td style="width:25%;padding:8px;"><div style="font-size:32px;font-weight:900;">' + protein + 'g</div><div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:#666;margin-top:4px;">Protein (' + proteinPct + ')</div></td>'
-        + '<td style="width:25%;padding:8px;"><div style="font-size:32px;font-weight:900;">' + carbs + 'g</div><div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:#666;margin-top:4px;">Carbs (' + carbsPct + ')</div></td>'
-        + '<td style="width:25%;padding:8px;"><div style="font-size:32px;font-weight:900;">' + fat + 'g</div><div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:#666;margin-top:4px;">Fat (' + fatPct + ')</div></td>'
-        + '</tr></table></div>'
-        // Hydration
-        + '<table style="width:100%;border-collapse:collapse;margin-bottom:24px;background:#e8f4f8;"><tr>'
-        + '<td style="padding:16px 20px;width:40px;font-size:24px;vertical-align:middle;">&#128167;</td>'
-        + '<td style="padding:16px 20px;"><div style="font-weight:700;font-size:14px;">Daily Hydration Target: ' + hydrationOz + ' oz</div><div style="font-size:12px;color:#666;margin-top:2px;">Half your bodyweight in ounces + 16-24 oz on training days</div></td>'
-        + '</tr></table>'
-        // Supplements
-        + '<div style="margin-bottom:24px;">'
-        + '<div style="font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:2px;color:#666;margin-bottom:12px;">Supplement Protocol</div>'
-        + '<table style="width:100%;border-collapse:collapse;font-size:13px;">'
-        + '<tr style="background:#f5f5f5;"><th style="padding:8px 12px;text-align:left;font-size:11px;text-transform:uppercase;letter-spacing:1px;">Supplement</th><th style="padding:8px 12px;text-align:left;font-size:11px;text-transform:uppercase;letter-spacing:1px;">Dosage</th><th style="padding:8px 12px;text-align:left;font-size:11px;text-transform:uppercase;letter-spacing:1px;">Notes</th></tr>'
-        + suppRows
-        + '</table></div>'
-        // Phase Tips
-        + '<div style="margin-bottom:24px;">'
-        + '<div style="font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:2px;color:#666;margin-bottom:12px;">Phase ' + phase.num + ' Tips</div>'
-        + '<ul style="margin:0;padding-left:20px;font-size:13px;">' + tipsList + '</ul>'
-        + '</div>'
-        // Footer
-        + '<table style="width:100%;border-collapse:collapse;border-top:2px solid #eee;margin-top:32px;"><tr>'
-        + '<td style="padding-top:16px;font-size:11px;color:#999;">The 4-Phase Nutrition Blueprint | Black Iron Athletics<br>blackironathletics.com</td>'
-        + '<td style="padding-top:16px;text-align:right;font-size:11px;color:' + phase.colorHex + ';font-weight:700;">Want this dialed in by a coach?<br>blackironathletics.com/blueprint</td>'
-        + '</tr></table>'
-        + '</div>';
+    y += 16;
 
-    // Create a temporary element in the body, fully visible, for html2canvas
-    var temp = document.createElement('div');
-    temp.style.position = 'absolute';
-    temp.style.left = '0';
-    temp.style.top = window.scrollY + 'px';
-    temp.style.width = '800px';
-    temp.style.background = '#ffffff';
-    temp.style.zIndex = '99999';
-    temp.innerHTML = pdfHtml;
-    document.body.appendChild(temp);
+    // ===== PHASE TIPS =====
+    y = sectionLabel('Phase ' + phase.num + ' Tips', y);
+    var phaseTips = tips[phase.num];
+    doc.setFont('helvetica', 'normal');
+    doc.setFontSize(9);
+    doc.setTextColor(60, 60, 60);
 
-    setTimeout(function() {
-        html2pdf().set({
-            margin: [0.3, 0.3, 0.3, 0.3],
-            filename: 'BlackIron-Phase' + phase.num + '-' + phase.name + '-' + phase.year + '.pdf',
-            image: { type: 'jpeg', quality: 0.95 },
-            html2canvas: { scale: 2, backgroundColor: '#ffffff', logging: true, useCORS: true },
-            jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' }
-        }).from(temp).save().then(function() {
-            document.body.removeChild(temp);
-        }).catch(function(err) {
-            console.error('PDF generation error:', err);
-            document.body.removeChild(temp);
-        });
-    }, 500);
+    phaseTips.forEach(function(tip) {
+        drawRect(mx, y + 1, 5, 5, pR, pG, pB);
+        doc.text(tip, mx + 14, y + 7);
+        y += 16;
+    });
+
+    y += 16;
+
+    // ===== FOOTER =====
+    doc.setDrawColor(230, 230, 230);
+    doc.line(mx, y, mx + cw, y);
+    y += 16;
+
+    doc.setFont('helvetica', 'normal');
+    doc.setFontSize(8);
+    doc.setTextColor(150, 150, 150);
+    doc.text('The 4-Phase Nutrition Blueprint | Black Iron Athletics | blackironathletics.com', mx, y);
+
+    doc.setFont('helvetica', 'bold');
+    doc.setFontSize(8);
+    doc.setTextColor(pR, pG, pB);
+    doc.text('Want this dialed in by a coach? blackironathletics.com/blueprint', pw - mx, y, { align: 'right' });
+
+    // Save
+    doc.save('BlackIron-Phase' + phase.num + '-' + phase.name + '-' + phase.year + '.pdf');
 }
 
 // ===== CALC MODAL =====
