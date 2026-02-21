@@ -4431,8 +4431,7 @@ async function loadCheckins(userId) {
 
 // ===== PDF GENERATOR (jsPDF — no html2canvas) =====
 function generatePhasePDF() {
-    try {
-    if (typeof jspdf === 'undefined') { alert('jsPDF library not loaded. Try refreshing the page.'); return; }
+    if (typeof jspdf === 'undefined') return;
     var phase = getPhaseInfo();
     var cals = document.getElementById('macroCals').textContent;
     var protein = document.getElementById('macroProtein').textContent;
@@ -4640,7 +4639,6 @@ function generatePhasePDF() {
 
     // Save
     doc.save('BlackIron-Phase' + phase.num + '-' + phase.name + '-' + phase.year + '.pdf');
-    } catch (err) { alert('PDF Error: ' + err.message); console.error('PDF Error:', err); }
 }
 
 // ===== CALC MODAL =====
