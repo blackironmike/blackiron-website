@@ -2459,6 +2459,705 @@
                 grid-template-columns: repeat(2, 1fr);
             }
         }
+
+        /* ===== COACH VIEW TOGGLE ===== */
+        .coach-toggle-btn {
+            background: transparent;
+            border: 2px solid var(--yellow);
+            color: var(--yellow);
+            padding: 0.4rem 1rem;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.75rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-right: 0.5rem;
+        }
+
+        .coach-toggle-btn:hover,
+        .coach-toggle-btn.active {
+            background: var(--yellow);
+            color: var(--black);
+        }
+
+        .user-bar-left {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .user-bar-right {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        /* ===== NOTIFICATION BELL ===== */
+        .notification-bell {
+            position: relative;
+            background: transparent;
+            border: 1px solid var(--medium-gray);
+            color: var(--light-gray);
+            width: 36px;
+            height: 36px;
+            cursor: pointer;
+            font-size: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .notification-bell:hover {
+            border-color: var(--yellow);
+            color: var(--yellow);
+        }
+
+        .notification-badge {
+            position: absolute;
+            top: -4px;
+            right: -4px;
+            background: var(--phase-cut);
+            color: var(--white);
+            font-size: 0.6rem;
+            font-weight: 900;
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            line-height: 1;
+        }
+
+        .notification-panel {
+            display: none;
+            position: absolute;
+            top: 100%;
+            right: 0;
+            background: var(--dark-gray);
+            border: 2px solid var(--medium-gray);
+            width: 360px;
+            max-height: 400px;
+            overflow-y: auto;
+            z-index: 100;
+            margin-top: 0.5rem;
+        }
+
+        .notification-panel.active {
+            display: block;
+        }
+
+        .notification-panel-header {
+            padding: 1rem 1.25rem;
+            border-bottom: 1px solid var(--medium-gray);
+            font-size: 0.8rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .notification-panel-header a {
+            font-size: 0.7rem;
+            color: var(--yellow);
+            cursor: pointer;
+            text-decoration: none;
+            font-weight: 700;
+        }
+
+        .notification-item {
+            padding: 1rem 1.25rem;
+            border-bottom: 1px solid rgba(51, 51, 51, 0.5);
+            transition: background 0.2s ease;
+            cursor: pointer;
+        }
+
+        .notification-item:hover {
+            background: rgba(255, 210, 2, 0.05);
+        }
+
+        .notification-item.unread {
+            border-left: 3px solid var(--yellow);
+        }
+
+        .notification-item-title {
+            font-size: 0.85rem;
+            font-weight: 700;
+            margin-bottom: 0.25rem;
+        }
+
+        .notification-item-message {
+            font-size: 0.8rem;
+            color: var(--light-gray);
+            line-height: 1.5;
+        }
+
+        .notification-item-time {
+            font-size: 0.7rem;
+            color: var(--light-gray);
+            margin-top: 0.35rem;
+            opacity: 0.7;
+        }
+
+        .notification-empty {
+            padding: 2rem;
+            text-align: center;
+            color: var(--light-gray);
+            font-size: 0.85rem;
+        }
+
+        /* ===== MACRO CHANGE BANNER ===== */
+        .macro-change-banner {
+            background: rgba(255, 210, 2, 0.08);
+            border: 2px solid rgba(255, 210, 2, 0.3);
+            padding: 1.25rem 1.5rem;
+            margin-bottom: 1.5rem;
+            display: none;
+        }
+
+        .macro-change-banner.active {
+            display: block;
+        }
+
+        .macro-change-banner-header {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .macro-change-banner-header i {
+            color: var(--yellow);
+            font-size: 1.1rem;
+        }
+
+        .macro-change-banner-header span {
+            font-size: 0.9rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .macro-change-values {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 0.75rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .macro-change-item {
+            text-align: center;
+            padding: 0.5rem;
+            background: rgba(0, 0, 0, 0.3);
+        }
+
+        .macro-change-item .label {
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--light-gray);
+        }
+
+        .macro-change-item .values {
+            font-size: 0.85rem;
+            font-weight: 700;
+        }
+
+        .macro-change-item .values .old {
+            color: var(--light-gray);
+            text-decoration: line-through;
+            margin-right: 0.35rem;
+        }
+
+        .macro-change-item .values .new {
+            color: var(--yellow);
+        }
+
+        .macro-change-note {
+            font-size: 0.85rem;
+            color: var(--light-gray);
+            font-style: italic;
+            margin-bottom: 0.75rem;
+        }
+
+        .macro-change-dismiss {
+            background: transparent;
+            border: 1px solid var(--yellow);
+            color: var(--yellow);
+            padding: 0.4rem 1rem;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.7rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .macro-change-dismiss:hover {
+            background: var(--yellow);
+            color: var(--black);
+        }
+
+        /* ===== COACH VIEW CONTAINER ===== */
+        .coach-view-container {
+            display: none;
+        }
+
+        .coach-view-container.active {
+            display: block;
+        }
+
+        .coach-hero {
+            padding: 3rem 4rem;
+            background: var(--dark-gray);
+            border-bottom: 1px solid var(--medium-gray);
+        }
+
+        .coach-hero h2 {
+            font-size: 1.5rem;
+            text-transform: uppercase;
+            margin-bottom: 0.5rem;
+        }
+
+        .coach-hero p {
+            color: var(--light-gray);
+            font-size: 0.95rem;
+        }
+
+        .coach-stats-bar {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 0;
+            border-bottom: 1px solid var(--medium-gray);
+        }
+
+        .coach-stat {
+            padding: 1.25rem 2rem;
+            text-align: center;
+            border-right: 1px solid var(--medium-gray);
+        }
+
+        .coach-stat:last-child {
+            border-right: none;
+        }
+
+        .coach-stat-value {
+            font-size: 2rem;
+            font-weight: 900;
+            color: var(--yellow);
+        }
+
+        .coach-stat-label {
+            font-size: 0.7rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--light-gray);
+            margin-top: 0.25rem;
+        }
+
+        .coach-stat.attention .coach-stat-value {
+            color: var(--phase-cut);
+        }
+
+        .coach-actions-bar {
+            padding: 1.25rem 4rem;
+            background: var(--black);
+            border-bottom: 1px solid var(--medium-gray);
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .coach-actions-bar .btn-primary {
+            padding: 0.6rem 1.25rem;
+            font-size: 0.75rem;
+        }
+
+        /* ===== CLIENT CARD GRID ===== */
+        .client-card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+            padding: 2rem 4rem;
+        }
+
+        .client-card {
+            background: var(--dark-gray);
+            border: 2px solid var(--medium-gray);
+            padding: 1.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .client-card:hover {
+            border-color: var(--yellow);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(255, 210, 2, 0.15);
+        }
+
+        .client-card.needs-attention {
+            border-left: 4px solid var(--phase-cut);
+        }
+
+        .client-card-name {
+            font-size: 1.1rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            margin-bottom: 0.5rem;
+        }
+
+        .client-card-email {
+            font-size: 0.8rem;
+            color: var(--light-gray);
+            margin-bottom: 1rem;
+        }
+
+        .client-card-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 0.5rem;
+        }
+
+        .client-card-stat {
+            text-align: center;
+            padding: 0.5rem;
+            background: var(--black);
+        }
+
+        .client-card-stat .label {
+            font-size: 0.6rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: var(--light-gray);
+        }
+
+        .client-card-stat .value {
+            font-size: 1rem;
+            font-weight: 900;
+            color: var(--white);
+        }
+
+        .client-card-last-checkin {
+            font-size: 0.75rem;
+            color: var(--light-gray);
+            margin-top: 0.75rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .client-card-last-checkin i {
+            font-size: 0.65rem;
+        }
+
+        .client-card-last-checkin.stale {
+            color: var(--phase-cut);
+        }
+
+        .coach-empty-state {
+            text-align: center;
+            padding: 4rem 2rem;
+            color: var(--light-gray);
+        }
+
+        .coach-empty-state i {
+            font-size: 3rem;
+            color: var(--medium-gray);
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .coach-empty-state p {
+            margin-bottom: 1.5rem;
+            font-size: 1rem;
+        }
+
+        /* ===== COACH DRILL-DOWN ===== */
+        .coach-drilldown {
+            display: none;
+        }
+
+        .coach-drilldown.active {
+            display: block;
+        }
+
+        .coach-drilldown-header {
+            padding: 1.5rem 4rem;
+            background: var(--dark-gray);
+            border-bottom: 1px solid var(--medium-gray);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .coach-drilldown-back {
+            background: transparent;
+            border: 1px solid var(--medium-gray);
+            color: var(--light-gray);
+            padding: 0.5rem 1rem;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .coach-drilldown-back:hover {
+            border-color: var(--yellow);
+            color: var(--yellow);
+        }
+
+        .coach-drilldown-name {
+            font-size: 1.3rem;
+            font-weight: 900;
+            text-transform: uppercase;
+        }
+
+        .coach-drilldown-toolbar {
+            padding: 1rem 4rem;
+            background: var(--black);
+            border-bottom: 1px solid var(--medium-gray);
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .coach-action-btn {
+            background: transparent;
+            border: 1px solid var(--medium-gray);
+            color: var(--light-gray);
+            padding: 0.5rem 1rem;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.7rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .coach-action-btn:hover {
+            border-color: var(--yellow);
+            color: var(--yellow);
+        }
+
+        .coach-action-btn.danger:hover {
+            border-color: var(--phase-cut);
+            color: var(--phase-cut);
+        }
+
+        /* ===== COACH NOTES LIST ===== */
+        .coach-notes-section {
+            margin-top: 2rem;
+        }
+
+        .coach-note-entry {
+            padding: 1rem 0;
+            border-bottom: 1px solid var(--medium-gray);
+        }
+
+        .coach-note-entry:last-child {
+            border-bottom: none;
+        }
+
+        .coach-note-meta {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+            margin-bottom: 0.5rem;
+        }
+
+        .coach-note-date {
+            font-size: 0.75rem;
+            color: var(--light-gray);
+        }
+
+        .coach-note-category {
+            font-size: 0.65rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            padding: 0.2rem 0.5rem;
+            background: var(--medium-gray);
+            color: var(--light-gray);
+        }
+
+        .coach-note-text {
+            font-size: 0.9rem;
+            color: var(--white);
+            line-height: 1.6;
+        }
+
+        /* ===== MACRO CHANGE LOG ===== */
+        .macro-log-entry {
+            padding: 1rem 0;
+            border-bottom: 1px solid var(--medium-gray);
+        }
+
+        .macro-log-entry:last-child {
+            border-bottom: none;
+        }
+
+        .macro-log-date {
+            font-size: 0.75rem;
+            color: var(--light-gray);
+            margin-bottom: 0.5rem;
+        }
+
+        .macro-log-values {
+            display: flex;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+            font-size: 0.85rem;
+        }
+
+        .macro-log-values span {
+            color: var(--light-gray);
+        }
+
+        .macro-log-values strong {
+            color: var(--yellow);
+        }
+
+        .macro-log-note {
+            font-size: 0.8rem;
+            color: var(--light-gray);
+            font-style: italic;
+            margin-top: 0.35rem;
+        }
+
+        /* ===== CLAIM MODAL ===== */
+        .claim-athlete-list {
+            max-height: 400px;
+            overflow-y: auto;
+        }
+
+        .claim-athlete-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0.75rem 0;
+            border-bottom: 1px solid var(--medium-gray);
+        }
+
+        .claim-athlete-row:last-child {
+            border-bottom: none;
+        }
+
+        .claim-athlete-info {
+            flex: 1;
+        }
+
+        .claim-athlete-name {
+            font-size: 0.9rem;
+            font-weight: 700;
+        }
+
+        .claim-athlete-email {
+            font-size: 0.8rem;
+            color: var(--light-gray);
+        }
+
+        .claim-badge {
+            font-size: 0.65rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            padding: 0.25rem 0.75rem;
+        }
+
+        .claim-badge.yours {
+            background: var(--yellow);
+            color: var(--black);
+        }
+
+        .claim-badge.assigned {
+            background: var(--medium-gray);
+            color: var(--light-gray);
+        }
+
+        .claim-btn {
+            background: transparent;
+            border: 1px solid var(--yellow);
+            color: var(--yellow);
+            padding: 0.35rem 0.75rem;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.7rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .claim-btn:hover {
+            background: var(--yellow);
+            color: var(--black);
+        }
+
+        /* ===== COACH LOADING STATE ===== */
+        .coach-loading {
+            text-align: center;
+            padding: 3rem;
+            color: var(--light-gray);
+        }
+
+        .coach-loading i {
+            font-size: 2rem;
+            color: var(--yellow);
+            animation: spin 1s linear infinite;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        /* ===== COACH RESPONSIVE ===== */
+        @media (max-width: 1024px) {
+            .coach-hero { padding: 2rem; }
+            .coach-actions-bar { padding: 1rem 2rem; }
+            .client-card-grid { padding: 1.5rem 2rem; }
+            .coach-drilldown-header { padding: 1rem 2rem; }
+            .coach-drilldown-toolbar { padding: 0.75rem 2rem; }
+        }
+
+        @media (max-width: 768px) {
+            .coach-hero { padding: 1.5rem; }
+            .coach-stats-bar { grid-template-columns: 1fr; }
+            .coach-stat { border-right: none; border-bottom: 1px solid var(--medium-gray); padding: 0.75rem 1rem; }
+            .coach-stat:last-child { border-bottom: none; }
+            .coach-actions-bar { padding: 0.75rem 1.5rem; flex-wrap: wrap; }
+            .client-card-grid { padding: 1rem 1.5rem; grid-template-columns: 1fr; }
+            .coach-drilldown-header { padding: 1rem 1.5rem; }
+            .coach-drilldown-toolbar { padding: 0.75rem 1.5rem; gap: 0.5rem; }
+            .macro-change-values { grid-template-columns: repeat(2, 1fr); }
+            .notification-panel { width: 300px; right: -1rem; }
+        }
+
+        @media (max-width: 480px) {
+            .notification-panel { width: calc(100vw - 2rem); right: -3rem; }
+            .coach-drilldown-name { font-size: 1rem; }
+            .client-card-stats { grid-template-columns: 1fr; }
+        }
     </style>
 </head>
 <body>
@@ -2572,8 +3271,30 @@
 
         <!-- User Bar -->
         <div class="user-bar">
-            <span class="user-bar-email"><i class="fa-solid fa-user"></i> <span id="userEmail"></span></span>
-            <button onclick="handleLogout()"><i class="fa-solid fa-right-from-bracket"></i> Sign Out</button>
+            <div class="user-bar-left">
+                <span class="user-bar-email"><i class="fa-solid fa-user"></i> <span id="userEmail"></span></span>
+                <button id="coachToggleBtn" class="coach-toggle-btn" style="display:none;" onclick="toggleCoachView()">
+                    <i class="fa-solid fa-clipboard-user"></i> <span id="coachToggleLabel">Coach View</span>
+                </button>
+            </div>
+            <div class="user-bar-right">
+                <div style="position:relative;">
+                    <button class="notification-bell" id="notificationBell" onclick="toggleNotificationPanel()">
+                        <i class="fa-solid fa-bell"></i>
+                        <span class="notification-badge" id="notificationBadge" style="display:none;">0</span>
+                    </button>
+                    <div class="notification-panel" id="notificationPanel">
+                        <div class="notification-panel-header">
+                            <span>Notifications</span>
+                            <a onclick="markAllNotificationsRead()">Mark All Read</a>
+                        </div>
+                        <div id="notificationList">
+                            <div class="notification-empty">No notifications</div>
+                        </div>
+                    </div>
+                </div>
+                <button onclick="handleLogout()"><i class="fa-solid fa-right-from-bracket"></i> Sign Out</button>
+            </div>
         </div>
 
         <!-- Subscription Status Bar (populated by JS) -->
@@ -2644,6 +3365,16 @@
                         <button class="btn-secondary btn-small" onclick="openCalcModal()">Recalculate</button>
                     </div>
                     <div id="macrosContent">
+                        <!-- Coach Macro Change Banner (shown to athlete when coach updates macros) -->
+                        <div class="macro-change-banner" id="macroChangeBanner">
+                            <div class="macro-change-banner-header">
+                                <i class="fa-solid fa-user-pen"></i>
+                                <span>Coach Updated Your Macros</span>
+                            </div>
+                            <div class="macro-change-values" id="macroChangeValues"></div>
+                            <div class="macro-change-note" id="macroChangeNote" style="display:none;"></div>
+                            <button class="macro-change-dismiss" onclick="dismissMacroChange()">Got It</button>
+                        </div>
                         <div id="macrosPopulated" style="display: none;">
                             <!-- Calories Hero -->
                             <div class="macro-calories-hero">
@@ -3017,7 +3748,169 @@
             </div>
         </section>
 
+        <!-- ============================================ -->
+        <!-- COACH VIEW (hidden for athletes)             -->
+        <!-- ============================================ -->
+        <div class="coach-view-container" id="coachViewContainer">
+            <!-- Coach Hero -->
+            <div class="coach-hero">
+                <h2><i class="fa-solid fa-clipboard-user" style="color:var(--yellow);margin-right:0.75rem;"></i>Coach Dashboard</h2>
+                <p>Manage your athletes, review check-ins, and adjust nutrition plans.</p>
+            </div>
+
+            <!-- Coach Stats Bar -->
+            <div class="coach-stats-bar" id="coachStatsBar">
+                <div class="coach-stat">
+                    <div class="coach-stat-value" id="coachStatTotal">0</div>
+                    <div class="coach-stat-label">Total Athletes</div>
+                </div>
+                <div class="coach-stat">
+                    <div class="coach-stat-value" id="coachStatCheckedIn">0</div>
+                    <div class="coach-stat-label">Checked In This Week</div>
+                </div>
+                <div class="coach-stat attention">
+                    <div class="coach-stat-value" id="coachStatAttention">0</div>
+                    <div class="coach-stat-label">Need Attention</div>
+                </div>
+            </div>
+
+            <!-- Coach Actions -->
+            <div class="coach-actions-bar">
+                <button class="btn-primary btn-small" onclick="openClaimModal()"><i class="fa-solid fa-user-plus"></i> Claim Athlete</button>
+            </div>
+
+            <!-- Client Card Grid -->
+            <div class="client-card-grid" id="clientCardGrid">
+                <div class="coach-loading" id="coachLoading">
+                    <i class="fa-solid fa-spinner"></i>
+                    <p>Loading athletes...</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- ============================================ -->
+        <!-- COACH DRILL-DOWN (single athlete view)       -->
+        <!-- ============================================ -->
+        <div class="coach-drilldown" id="coachDrilldown">
+            <div class="coach-drilldown-header">
+                <button class="coach-drilldown-back" onclick="backToCoachList()"><i class="fa-solid fa-arrow-left"></i> Back to Athletes</button>
+                <span class="coach-drilldown-name" id="drilldownAthleteName">Athlete Name</span>
+            </div>
+            <div class="coach-drilldown-toolbar" id="drilldownToolbar">
+                <button class="coach-action-btn" onclick="openCoachMacroModal()"><i class="fa-solid fa-fire"></i> Adjust Macros</button>
+                <button class="coach-action-btn" onclick="coachLogWeight()"><i class="fa-solid fa-weight-scale"></i> Log Weight</button>
+                <button class="coach-action-btn" onclick="openBodyCompModal()"><i class="fa-solid fa-person-rays"></i> Log Body Comp</button>
+                <button class="coach-action-btn" onclick="openCoachNoteModal()"><i class="fa-solid fa-note-sticky"></i> Add Note</button>
+                <button class="coach-action-btn danger" onclick="releaseAthlete()"><i class="fa-solid fa-user-minus"></i> Release</button>
+            </div>
+
+            <!-- Coach Notes Section (shown in drill-down) -->
+            <section class="section">
+                <div class="section-container">
+                    <div class="dash-card">
+                        <div class="dash-card-header">
+                            <h3 class="dash-card-title"><i class="fa-solid fa-note-sticky"></i> Coach Notes</h3>
+                        </div>
+                        <div id="coachNotesContainer">
+                            <div class="empty-state" id="coachNotesEmpty">
+                                <i class="fa-solid fa-note-sticky"></i>
+                                <p>No notes yet. Add a note using the toolbar above.</p>
+                            </div>
+                            <div id="coachNotesList"></div>
+                        </div>
+                    </div>
+
+                    <!-- Macro Change Log -->
+                    <div class="dash-card" style="margin-top:2rem;">
+                        <div class="dash-card-header">
+                            <h3 class="dash-card-title"><i class="fa-solid fa-clock-rotate-left"></i> Macro Change History</h3>
+                        </div>
+                        <div id="macroChangeLogContainer">
+                            <div class="empty-state" id="macroLogEmpty">
+                                <i class="fa-solid fa-clock-rotate-left"></i>
+                                <p>No macro adjustments logged yet.</p>
+                            </div>
+                            <div id="macroChangeLogList"></div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
     </div><!-- end #dashboardContainer -->
+
+    <!-- ============================================ -->
+    <!-- COACH MODALS                                 -->
+    <!-- ============================================ -->
+
+    <!-- Claim Athlete Modal -->
+    <div class="modal-overlay" id="claimModal">
+        <div class="modal-container" style="max-width:550px;">
+            <button class="modal-close" onclick="closeClaimModal()">&times;</button>
+            <h3>Claim an Athlete</h3>
+            <p style="color:var(--light-gray);margin-bottom:1.5rem;font-size:0.9rem;">Select an athlete to add to your roster.</p>
+            <div class="claim-athlete-list" id="claimAthleteList">
+                <div class="coach-loading"><i class="fa-solid fa-spinner"></i><p>Loading athletes...</p></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Coach Note Modal -->
+    <div class="modal-overlay" id="coachNoteModal">
+        <div class="modal-container" style="max-width:550px;">
+            <button class="modal-close" onclick="closeCoachNoteModal()">&times;</button>
+            <h3>Add Coach Note</h3>
+            <form onsubmit="saveCoachNote(event)" class="dash-form">
+                <div class="form-group">
+                    <label>Category</label>
+                    <select id="coachNoteCategory">
+                        <option value="general">General</option>
+                        <option value="checkin_review">Check-in Review</option>
+                        <option value="macro_change">Macro Change</option>
+                        <option value="body_comp">Body Comp</option>
+                        <option value="phase_transition">Phase Transition</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Note</label>
+                    <textarea id="coachNoteText" rows="4" placeholder="Enter your private note..." required></textarea>
+                </div>
+                <button type="submit" class="btn-primary">Save Note</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Coach Macro Adjustment Modal -->
+    <div class="modal-overlay" id="coachMacroModal">
+        <div class="modal-container" style="max-width:600px;">
+            <button class="modal-close" onclick="closeCoachMacroModal()">&times;</button>
+            <h3>Adjust Athlete Macros</h3>
+            <p style="color:var(--light-gray);margin-bottom:1rem;font-size:0.9rem;">Current values shown. Enter new targets below.</p>
+            <div class="stats-row" style="margin-bottom:1.5rem;" id="coachMacroCurrentStats">
+                <div class="stat-card"><div class="stat-card-label">Current Cal</div><div class="stat-card-value" id="cmCurrentCal">--</div></div>
+                <div class="stat-card"><div class="stat-card-label">Protein</div><div class="stat-card-value" id="cmCurrentProtein">--</div></div>
+                <div class="stat-card"><div class="stat-card-label">Carbs</div><div class="stat-card-value" id="cmCurrentCarbs">--</div></div>
+                <div class="stat-card"><div class="stat-card-label">Fat</div><div class="stat-card-value" id="cmCurrentFat">--</div></div>
+            </div>
+            <form onsubmit="coachSaveMacros(event)" class="dash-form">
+                <div class="form-row">
+                    <div class="form-group"><label>Calories</label><input type="number" id="cmNewCal" required min="800" max="8000"></div>
+                    <div class="form-group"><label>Protein (g)</label><input type="number" id="cmNewProtein" required min="0" max="500"></div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group"><label>Carbs (g)</label><input type="number" id="cmNewCarbs" required min="0" max="1000"></div>
+                    <div class="form-group"><label>Fat (g)</label><input type="number" id="cmNewFat" required min="0" max="500"></div>
+                </div>
+                <div class="form-group">
+                    <label>Coach Note (optional)</label>
+                    <textarea id="cmCoachNote" rows="2" placeholder="Reason for adjustment..."></textarea>
+                </div>
+                <button type="submit" class="btn-primary">Update Macros</button>
+                <div class="form-success" id="cmSaveSuccess">Macros updated and athlete notified!</div>
+                <div class="form-error" id="cmSaveError">Error saving macros. Please try again.</div>
+            </form>
+        </div>
+    </div>
 
     <!-- Map Section -->
     <div class="map-section">
@@ -3637,6 +4530,17 @@ async function loadCoachingCalls(userId, userEmail) {
     }
 }
 
+// ===== COACH STATE =====
+var currentView = 'athlete'; // 'athlete' or 'coach'
+var userRole = 'athlete';    // 'athlete', 'coach', or 'owner'
+var viewingAthleteId = null;  // set when coach drills into a client
+var currentUser = null;       // the authenticated user object
+
+function getTargetUserId() {
+    if (currentView === 'coach' && viewingAthleteId) return viewingAthleteId;
+    return currentUser ? currentUser.id : null;
+}
+
 // ===== DASHBOARD STATE =====
 function showDashboard(user) {
     document.getElementById('authHero').style.display = 'none';
@@ -3655,6 +4559,7 @@ function hideDashboard() {
 }
 
 async function initDashboard(user) {
+    currentUser = user;
     var phase = getPhaseInfo();
     renderPhaseBanner(phase);
     renderQuickLinks(phase);
@@ -3663,6 +4568,21 @@ async function initDashboard(user) {
     setWeightDateDefault();
     setBodyCompDateDefault();
     if (supabase && user) {
+        // Detect coach/owner role
+        try {
+            var { data: profileData } = await supabase
+                .from('profiles').select('role, display_name')
+                .eq('id', user.id).single();
+            if (profileData && profileData.role) {
+                userRole = profileData.role;
+            }
+        } catch (e) { /* profiles table may not have role column yet */ }
+
+        // Show coach toggle if coach or owner
+        if (userRole === 'coach' || userRole === 'owner') {
+            document.getElementById('coachToggleBtn').style.display = '';
+        }
+
         // Claim any unclaimed subscriptions first
         await claimSubscriptionByEmail(user.id, user.email);
         // Load subscription status
@@ -3674,6 +4594,10 @@ async function initDashboard(user) {
         loadChecklistProgress(user.id, phase);
         loadYearOverYear(user.id);
         loadCheckins(user.id);
+        // Load notifications for all users
+        loadNotifications(user.id);
+        // Check for coach macro changes
+        checkMacroChanges(user.id, phase);
     }
 }
 
@@ -3784,10 +4708,10 @@ async function saveMacros(e) {
     e.preventDefault();
     if (!supabase) return;
     var phase = getPhaseInfo();
-    var { data: { user } } = await supabase.auth.getUser();
-    if (!user) return;
+    var targetId = getTargetUserId();
+    if (!targetId) return;
     var payload = {
-        user_id: user.id,
+        user_id: targetId,
         phase: phase.num,
         year: phase.year,
         calories: parseInt(document.getElementById('macroCalInput').value),
@@ -3801,7 +4725,7 @@ async function saveMacros(e) {
         var { error } = await supabase.from('saved_macros').upsert(payload, { onConflict: 'user_id,phase,year' });
         if (error) throw error;
         flashMessage('macroSaveSuccess');
-        loadMacros(user.id, phase);
+        loadMacros(targetId, phase);
     } catch (err) {
         flashMessage('macroSaveError');
     }
@@ -3822,10 +4746,10 @@ function setWeightDateDefault() {
 async function saveWeight(e) {
     e.preventDefault();
     if (!supabase) return;
-    var { data: { user } } = await supabase.auth.getUser();
-    if (!user) return;
+    var targetId = getTargetUserId();
+    if (!targetId) return;
     var payload = {
-        user_id: user.id,
+        user_id: targetId,
         weight: parseFloat(document.getElementById('weightInput').value),
         logged_date: document.getElementById('weightDate').value,
         notes: document.getElementById('weightNotes').value || null
@@ -3837,7 +4761,7 @@ async function saveWeight(e) {
         document.getElementById('weightInput').value = '';
         document.getElementById('weightNotes').value = '';
         setWeightDateDefault();
-        loadWeightData(user.id, getPhaseInfo());
+        loadWeightData(targetId, getPhaseInfo());
     } catch (err) {
         flashMessage('weightSaveError');
     }
@@ -4002,20 +4926,16 @@ async function saveWeightEdit(id) {
             notes: notesVal
         }).eq('id', id);
         if (error) throw error;
-        var { data: { user } } = await supabase.auth.getUser();
-        if (user) loadWeightData(user.id, getPhaseInfo());
+        var targetId = getTargetUserId();
+        if (targetId) loadWeightData(targetId, getPhaseInfo());
     } catch (err) {
         alert('Error saving edit. Please try again.');
     }
 }
 
 function cancelWeightEdit() {
-    // Reload the weight data to revert the row back to display mode
-    (async function() {
-        if (!supabase) return;
-        var { data: { user } } = await supabase.auth.getUser();
-        if (user) loadWeightData(user.id, getPhaseInfo());
-    })();
+    var targetId = getTargetUserId();
+    if (targetId) loadWeightData(targetId, getPhaseInfo());
 }
 
 async function deleteWeightEntry(id) {
@@ -4024,8 +4944,8 @@ async function deleteWeightEntry(id) {
     try {
         var { error } = await supabase.from('weight_log').delete().eq('id', id);
         if (error) throw error;
-        var { data: { user } } = await supabase.auth.getUser();
-        if (user) loadWeightData(user.id, getPhaseInfo());
+        var targetId = getTargetUserId();
+        if (targetId) loadWeightData(targetId, getPhaseInfo());
     } catch (err) {
         alert('Error deleting entry. Please try again.');
     }
@@ -4061,11 +4981,11 @@ function toggleBodyCompFields() {
 async function saveBodyComp(e) {
     e.preventDefault();
     if (!supabase) return;
-    var { data: { user } } = await supabase.auth.getUser();
-    if (!user) return;
+    var targetId = getTargetUserId();
+    if (!targetId) return;
     var source = document.getElementById('bodyCompSource').value;
     var payload = {
-        user_id: user.id,
+        user_id: targetId,
         source: source,
         logged_date: document.getElementById('bodyCompDate').value,
         body_fat_pct: parseFloat(document.getElementById('bcBodyFat').value) || null,
@@ -4086,7 +5006,7 @@ async function saveBodyComp(e) {
         if (error) throw error;
         flashMessage('bodyCompSaveSuccess');
         closeBodyCompModal();
-        loadBodyCompData(user.id);
+        loadBodyCompData(targetId);
     } catch (err) {
         flashMessage('bodyCompSaveError');
     }
@@ -4221,13 +5141,13 @@ async function toggleChecklistItem(el, key) {
     var isChecked = el.classList.toggle('checked');
     el.closest('.checklist-item').classList.toggle('checked', isChecked);
     if (!supabase) return;
-    var { data: { user } } = await supabase.auth.getUser();
-    if (!user) return;
+    var targetId = getTargetUserId();
+    if (!targetId) return;
     var phase = getPhaseInfo();
     try {
         if (isChecked) {
             await supabase.from('checklist_progress').upsert({
-                user_id: user.id,
+                user_id: targetId,
                 item_key: key,
                 phase: phase.num,
                 year: phase.year,
@@ -4235,7 +5155,7 @@ async function toggleChecklistItem(el, key) {
             }, { onConflict: 'user_id,item_key,phase,year' });
         } else {
             await supabase.from('checklist_progress').delete()
-                .eq('user_id', user.id).eq('item_key', key).eq('phase', phase.num).eq('year', phase.year);
+                .eq('user_id', targetId).eq('item_key', key).eq('phase', phase.num).eq('year', phase.year);
         }
     } catch (e) { /* fail silently */ }
 }
@@ -4409,14 +5329,14 @@ function renderTransitionCard(phase) {
 async function saveCheckin(e) {
     e.preventDefault();
     if (!supabase) return;
-    var { data: { user } } = await supabase.auth.getUser();
-    if (!user) return;
+    var targetId = getTargetUserId();
+    if (!targetId) return;
     var phase = getPhaseInfo();
     var adherence = document.querySelector('input[name="adherence"]:checked');
     var training = document.querySelector('input[name="training"]:checked');
 
     var payload = {
-        user_id: user.id,
+        user_id: targetId,
         phase: phase.num,
         year: phase.year,
         avg_weight: parseFloat(document.getElementById('checkinWeight').value) || null,
@@ -4432,7 +5352,7 @@ async function saveCheckin(e) {
         if (error) throw error;
         flashMessage('checkinSaveSuccess');
         document.getElementById('checkinForm').reset();
-        loadCheckins(user.id);
+        loadCheckins(targetId);
     } catch (err) {
         flashMessage('checkinSaveError');
     }
@@ -4892,6 +5812,690 @@ function closeMobileNav() {
     document.getElementById('mobileNav').classList.remove('active');
     document.querySelector('.hamburger').classList.remove('active');
     document.body.style.overflow = '';
+}
+
+// ===== COACH VIEW TOGGLE =====
+function toggleCoachView() {
+    if (currentView === 'athlete') {
+        showCoachView();
+    } else {
+        showAthleteView();
+    }
+}
+
+function showCoachView() {
+    currentView = 'coach';
+    viewingAthleteId = null;
+    document.getElementById('coachToggleLabel').textContent = 'My Dashboard';
+    document.getElementById('coachToggleBtn').classList.add('active');
+
+    // Hide athlete dashboard sections
+    var dashSections = document.querySelectorAll('#dashboardContainer > section, #dashboardContainer > .blueprint-subnav, #dashboardContainer > .phase-banner, #dashboardContainer > .dash-hero, #dashboardContainer > #subStatusBar, #dashboardContainer > #coachingCallBanner');
+    dashSections.forEach(function(el) { el.style.display = 'none'; });
+    // Also hide transition section
+    var transSection = document.getElementById('transitionSection');
+    if (transSection) transSection.style.display = 'none';
+
+    // Show coach view
+    document.getElementById('coachViewContainer').classList.add('active');
+    document.getElementById('coachDrilldown').classList.remove('active');
+    loadCoachView();
+}
+
+function showAthleteView() {
+    currentView = 'athlete';
+    viewingAthleteId = null;
+    document.getElementById('coachToggleLabel').textContent = 'Coach View';
+    document.getElementById('coachToggleBtn').classList.remove('active');
+
+    // Show athlete dashboard sections
+    var dashSections = document.querySelectorAll('#dashboardContainer > section, #dashboardContainer > .blueprint-subnav, #dashboardContainer > .dash-hero, #dashboardContainer > #subStatusBar, #dashboardContainer > #coachingCallBanner');
+    dashSections.forEach(function(el) { el.style.display = ''; });
+    // Re-render phase banner visibility
+    var phase = getPhaseInfo();
+    document.getElementById('phaseBanner').style.display = '';
+    renderTransitionCard(phase);
+
+    // Hide coach view
+    document.getElementById('coachViewContainer').classList.remove('active');
+    document.getElementById('coachDrilldown').classList.remove('active');
+
+    // Reload own data
+    if (currentUser) {
+        loadMacros(currentUser.id, phase);
+        loadWeightData(currentUser.id, phase);
+        loadBodyCompData(currentUser.id);
+        loadChecklistProgress(currentUser.id, phase);
+        loadCheckins(currentUser.id);
+    }
+}
+
+// ===== COACH VIEW — CLIENT LIST =====
+async function loadCoachView() {
+    if (!supabase || !currentUser) return;
+    var grid = document.getElementById('clientCardGrid');
+    grid.innerHTML = '<div class="coach-loading"><i class="fa-solid fa-spinner"></i><p>Loading athletes...</p></div>';
+
+    try {
+        // Get assigned athletes
+        var { data: assignments, error } = await supabase
+            .from('coach_athletes')
+            .select('athlete_id')
+            .eq('coach_id', currentUser.id);
+
+        if (error) throw error;
+
+        if (!assignments || assignments.length === 0) {
+            grid.innerHTML = '<div class="coach-empty-state" style="grid-column:1/-1;"><i class="fa-solid fa-users"></i><p>No athletes assigned yet.</p><button class="btn-primary btn-small" onclick="openClaimModal()"><i class="fa-solid fa-user-plus"></i> Claim Your First Athlete</button></div>';
+            document.getElementById('coachStatTotal').textContent = '0';
+            document.getElementById('coachStatCheckedIn').textContent = '0';
+            document.getElementById('coachStatAttention').textContent = '0';
+            return;
+        }
+
+        var athleteIds = assignments.map(function(a) { return a.athlete_id; });
+
+        // Fetch profiles for all assigned athletes
+        var { data: profiles } = await supabase
+            .from('profiles')
+            .select('id, email, display_name')
+            .in('id', athleteIds);
+
+        // Fetch latest weight for each athlete
+        var { data: weights } = await supabase
+            .from('weight_log')
+            .select('user_id, weight, logged_date')
+            .in('user_id', athleteIds)
+            .order('logged_date', { ascending: false });
+
+        // Fetch latest check-in for each
+        var { data: checkins } = await supabase
+            .from('weekly_checkins')
+            .select('user_id, week_of, avg_weight, energy_level')
+            .in('user_id', athleteIds)
+            .order('week_of', { ascending: false });
+
+        // Fetch current macros
+        var phase = getPhaseInfo();
+        var { data: macros } = await supabase
+            .from('saved_macros')
+            .select('user_id, calories, protein, carbs, fat')
+            .in('user_id', athleteIds)
+            .eq('phase', phase.num)
+            .eq('year', phase.year);
+
+        // Build lookup maps
+        var latestWeight = {};
+        var latestCheckin = {};
+        var athleteMacros = {};
+
+        if (weights) weights.forEach(function(w) {
+            if (!latestWeight[w.user_id]) latestWeight[w.user_id] = w;
+        });
+        if (checkins) checkins.forEach(function(c) {
+            if (!latestCheckin[c.user_id]) latestCheckin[c.user_id] = c;
+        });
+        if (macros) macros.forEach(function(m) {
+            athleteMacros[m.user_id] = m;
+        });
+
+        var totalAthletes = athleteIds.length;
+        var checkedInCount = 0;
+        var needAttention = 0;
+        var sevenDaysAgo = new Date();
+        sevenDaysAgo.setDate(sevenDaysAgo.getDate() - 7);
+        var sevenDaysAgoStr = sevenDaysAgo.toISOString().split('T')[0];
+
+        var html = '';
+        (profiles || []).forEach(function(p) {
+            var w = latestWeight[p.id];
+            var c = latestCheckin[p.id];
+            var m = athleteMacros[p.id];
+            var recentCheckin = c && c.week_of >= sevenDaysAgoStr;
+            if (recentCheckin) checkedInCount++;
+            var stale = !c || c.week_of < sevenDaysAgoStr;
+            if (stale) needAttention++;
+
+            var name = p.display_name || p.email.split('@')[0];
+            var weightVal = w ? w.weight.toFixed(1) : '--';
+            var calVal = m ? m.calories : '--';
+            var energyVal = c && c.energy_level ? c.energy_level + '/5' : '--';
+            var checkinDate = c ? new Date(c.week_of + 'T12:00:00').toLocaleDateString('en-US', { month: 'short', day: 'numeric' }) : 'Never';
+
+            html += '<div class="client-card' + (stale ? ' needs-attention' : '') + '" onclick="drillIntoClient(\'' + p.id + '\', \'' + name.replace(/'/g, "\\'") + '\')">';
+            html += '<div class="client-card-name">' + name + '</div>';
+            html += '<div class="client-card-email">' + p.email + '</div>';
+            html += '<div class="client-card-stats">';
+            html += '<div class="client-card-stat"><div class="label">Weight</div><div class="value">' + weightVal + '</div></div>';
+            html += '<div class="client-card-stat"><div class="label">Calories</div><div class="value">' + calVal + '</div></div>';
+            html += '<div class="client-card-stat"><div class="label">Energy</div><div class="value">' + energyVal + '</div></div>';
+            html += '</div>';
+            html += '<div class="client-card-last-checkin' + (stale ? ' stale' : '') + '"><i class="fa-solid fa-clock"></i> Last check-in: ' + checkinDate + '</div>';
+            html += '</div>';
+        });
+
+        grid.innerHTML = html;
+
+        document.getElementById('coachStatTotal').textContent = totalAthletes;
+        document.getElementById('coachStatCheckedIn').textContent = checkedInCount;
+        document.getElementById('coachStatAttention').textContent = needAttention;
+    } catch (e) {
+        grid.innerHTML = '<div class="coach-empty-state" style="grid-column:1/-1;"><i class="fa-solid fa-exclamation-triangle"></i><p>Error loading athletes. Please try again.</p></div>';
+    }
+}
+
+// ===== CLAIM & RELEASE ATHLETES =====
+function openClaimModal() {
+    document.getElementById('claimModal').classList.add('active');
+    document.body.style.overflow = 'hidden';
+    loadClaimList();
+}
+
+function closeClaimModal() {
+    document.getElementById('claimModal').classList.remove('active');
+    document.body.style.overflow = '';
+}
+
+document.getElementById('claimModal').addEventListener('click', function(e) {
+    if (e.target === this) closeClaimModal();
+});
+
+async function loadClaimList() {
+    if (!supabase || !currentUser) return;
+    var list = document.getElementById('claimAthleteList');
+    list.innerHTML = '<div class="coach-loading"><i class="fa-solid fa-spinner"></i><p>Loading...</p></div>';
+
+    try {
+        // Get all profiles that are athletes
+        var { data: athletes } = await supabase
+            .from('profiles')
+            .select('id, email, display_name, role')
+            .eq('role', 'athlete')
+            .order('email');
+
+        // Get all current assignments
+        var { data: assignments } = await supabase
+            .from('coach_athletes')
+            .select('coach_id, athlete_id');
+
+        var assignmentMap = {};
+        if (assignments) assignments.forEach(function(a) {
+            assignmentMap[a.athlete_id] = a.coach_id;
+        });
+
+        if (!athletes || athletes.length === 0) {
+            list.innerHTML = '<p style="text-align:center;color:var(--light-gray);padding:2rem;">No athletes found.</p>';
+            return;
+        }
+
+        var html = '';
+        athletes.forEach(function(a) {
+            var assignedTo = assignmentMap[a.athlete_id || a.id];
+            var isYours = assignedTo === currentUser.id;
+            var isAssigned = !!assignedTo;
+            var name = a.display_name || a.email.split('@')[0];
+
+            html += '<div class="claim-athlete-row">';
+            html += '<div class="claim-athlete-info"><div class="claim-athlete-name">' + name + '</div><div class="claim-athlete-email">' + a.email + '</div></div>';
+            if (isYours) {
+                html += '<span class="claim-badge yours">Your Client</span>';
+            } else if (isAssigned) {
+                html += '<span class="claim-badge assigned">Assigned</span>';
+            } else {
+                html += '<button class="claim-btn" onclick="claimAthlete(\'' + a.id + '\')">Claim</button>';
+            }
+            html += '</div>';
+        });
+
+        list.innerHTML = html;
+    } catch (e) {
+        list.innerHTML = '<p style="text-align:center;color:#ff4444;padding:2rem;">Error loading athletes.</p>';
+    }
+}
+
+async function claimAthlete(athleteId) {
+    if (!supabase || !currentUser) return;
+    try {
+        var { error } = await supabase.from('coach_athletes').insert({
+            coach_id: currentUser.id,
+            athlete_id: athleteId,
+            assigned_by: currentUser.id
+        });
+        if (error) throw error;
+        loadClaimList();
+        loadCoachView();
+    } catch (e) {
+        alert('Error claiming athlete. They may already be assigned.');
+    }
+}
+
+async function releaseAthlete() {
+    if (!viewingAthleteId) return;
+    if (!confirm('Release this athlete from your roster? You can re-claim them later.')) return;
+    if (!supabase || !currentUser) return;
+    try {
+        var { error } = await supabase.from('coach_athletes').delete()
+            .eq('coach_id', currentUser.id)
+            .eq('athlete_id', viewingAthleteId);
+        if (error) throw error;
+        backToCoachList();
+        loadCoachView();
+    } catch (e) {
+        alert('Error releasing athlete. Please try again.');
+    }
+}
+
+// ===== CLIENT DRILL-DOWN =====
+function drillIntoClient(clientId, clientName) {
+    viewingAthleteId = clientId;
+    document.getElementById('drilldownAthleteName').textContent = clientName;
+
+    // Hide client list, show drill-down
+    document.getElementById('coachViewContainer').classList.remove('active');
+    document.getElementById('coachDrilldown').classList.add('active');
+
+    // Show the athlete's dashboard sections for the drill-down
+    var dashSections = document.querySelectorAll('#dashboardContainer > section');
+    dashSections.forEach(function(el) { el.style.display = ''; });
+    document.getElementById('phaseBanner').style.display = '';
+
+    // Load client data using existing functions
+    var phase = getPhaseInfo();
+    loadMacros(clientId, phase);
+    loadWeightData(clientId, phase);
+    loadBodyCompData(clientId);
+    loadChecklistProgress(clientId, phase);
+    loadCheckins(clientId);
+    loadYearOverYear(clientId);
+    // Load coach-only data
+    loadCoachNotes(clientId);
+    loadMacroChangeLog(clientId);
+}
+
+function backToCoachList() {
+    viewingAthleteId = null;
+    document.getElementById('coachDrilldown').classList.remove('active');
+
+    // Hide athlete dashboard sections again
+    var dashSections = document.querySelectorAll('#dashboardContainer > section, #dashboardContainer > .blueprint-subnav, #dashboardContainer > .phase-banner, #dashboardContainer > .dash-hero');
+    dashSections.forEach(function(el) { el.style.display = 'none'; });
+
+    // Show coach view
+    document.getElementById('coachViewContainer').classList.add('active');
+    loadCoachView();
+}
+
+function coachLogWeight() {
+    // Scroll to weight section and open the form
+    var weightSection = document.getElementById('weightInput');
+    if (weightSection) {
+        weightSection.closest('.section').scrollIntoView({ behavior: 'smooth' });
+        // Open collapsible if closed
+        var toggle = weightSection.closest('.dash-card').querySelector('.collapsible-toggle');
+        var content = weightSection.closest('.dash-card').querySelector('.collapsible-content');
+        if (toggle && content && !content.classList.contains('open')) {
+            toggle.classList.add('open');
+            content.classList.add('open');
+        }
+    }
+}
+
+// ===== COACH NOTES =====
+function openCoachNoteModal() {
+    document.getElementById('coachNoteModal').classList.add('active');
+    document.body.style.overflow = 'hidden';
+    document.getElementById('coachNoteText').value = '';
+    document.getElementById('coachNoteCategory').value = 'general';
+}
+
+function closeCoachNoteModal() {
+    document.getElementById('coachNoteModal').classList.remove('active');
+    document.body.style.overflow = '';
+}
+
+document.getElementById('coachNoteModal').addEventListener('click', function(e) {
+    if (e.target === this) closeCoachNoteModal();
+});
+
+async function saveCoachNote(e) {
+    e.preventDefault();
+    if (!supabase || !currentUser || !viewingAthleteId) return;
+    var note = document.getElementById('coachNoteText').value.trim();
+    var category = document.getElementById('coachNoteCategory').value;
+    if (!note) return;
+
+    try {
+        var { error } = await supabase.from('coach_notes').insert({
+            coach_id: currentUser.id,
+            athlete_id: viewingAthleteId,
+            note: note,
+            category: category
+        });
+        if (error) throw error;
+        closeCoachNoteModal();
+        loadCoachNotes(viewingAthleteId);
+    } catch (e) {
+        alert('Error saving note. Please try again.');
+    }
+}
+
+async function loadCoachNotes(athleteId) {
+    if (!supabase) return;
+    var container = document.getElementById('coachNotesList');
+    var empty = document.getElementById('coachNotesEmpty');
+
+    try {
+        var { data, error } = await supabase.from('coach_notes').select('*')
+            .eq('athlete_id', athleteId)
+            .order('created_at', { ascending: false })
+            .limit(50);
+        if (error) throw error;
+
+        if (!data || data.length === 0) {
+            container.innerHTML = '';
+            empty.style.display = '';
+            return;
+        }
+
+        empty.style.display = 'none';
+        var categoryLabels = { general: 'General', checkin_review: 'Check-in Review', macro_change: 'Macro Change', body_comp: 'Body Comp', phase_transition: 'Phase Transition' };
+        var html = '';
+        data.forEach(function(n) {
+            var date = new Date(n.created_at).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric', hour: 'numeric', minute: '2-digit' });
+            html += '<div class="coach-note-entry">';
+            html += '<div class="coach-note-meta"><span class="coach-note-date">' + date + '</span><span class="coach-note-category">' + (categoryLabels[n.category] || n.category) + '</span></div>';
+            html += '<div class="coach-note-text">' + n.note.replace(/</g, '&lt;').replace(/>/g, '&gt;') + '</div>';
+            html += '</div>';
+        });
+        container.innerHTML = html;
+    } catch (e) {
+        container.innerHTML = '<p style="color:#ff4444;font-size:0.85rem;">Error loading notes.</p>';
+    }
+}
+
+// ===== COACH MACRO ADJUSTMENT =====
+function openCoachMacroModal() {
+    if (!viewingAthleteId) return;
+    var modal = document.getElementById('coachMacroModal');
+    modal.classList.add('active');
+    document.body.style.overflow = 'hidden';
+
+    // Pre-fill current values from the displayed macros
+    var curCal = document.getElementById('macroCals').textContent.replace(/,/g, '');
+    var curP = document.getElementById('macroProtein').textContent;
+    var curC = document.getElementById('macroCarbs').textContent;
+    var curF = document.getElementById('macroFat').textContent;
+
+    document.getElementById('cmCurrentCal').textContent = curCal !== '--' ? curCal : '--';
+    document.getElementById('cmCurrentProtein').textContent = curP !== '--' ? curP + 'g' : '--';
+    document.getElementById('cmCurrentCarbs').textContent = curC !== '--' ? curC + 'g' : '--';
+    document.getElementById('cmCurrentFat').textContent = curF !== '--' ? curF + 'g' : '--';
+
+    // Pre-fill new inputs with current values
+    if (curCal !== '--') document.getElementById('cmNewCal').value = curCal;
+    if (curP !== '--') document.getElementById('cmNewProtein').value = curP;
+    if (curC !== '--') document.getElementById('cmNewCarbs').value = curC;
+    if (curF !== '--') document.getElementById('cmNewFat').value = curF;
+
+    document.getElementById('cmCoachNote').value = '';
+    document.getElementById('cmSaveSuccess').style.display = 'none';
+    document.getElementById('cmSaveError').style.display = 'none';
+}
+
+function closeCoachMacroModal() {
+    document.getElementById('coachMacroModal').classList.remove('active');
+    document.body.style.overflow = '';
+}
+
+document.getElementById('coachMacroModal').addEventListener('click', function(e) {
+    if (e.target === this) closeCoachMacroModal();
+});
+
+async function coachSaveMacros(e) {
+    e.preventDefault();
+    if (!supabase || !currentUser || !viewingAthleteId) return;
+
+    var phase = getPhaseInfo();
+    var newCal = parseInt(document.getElementById('cmNewCal').value);
+    var newProtein = parseInt(document.getElementById('cmNewProtein').value);
+    var newCarbs = parseInt(document.getElementById('cmNewCarbs').value);
+    var newFat = parseInt(document.getElementById('cmNewFat').value);
+    var coachNote = document.getElementById('cmCoachNote').value.trim() || null;
+
+    // Get previous values for change log
+    var prevCal = null, prevProtein = null, prevCarbs = null, prevFat = null;
+    try {
+        var { data: prevData } = await supabase.from('saved_macros').select('calories, protein, carbs, fat')
+            .eq('user_id', viewingAthleteId).eq('phase', phase.num).eq('year', phase.year).single();
+        if (prevData) {
+            prevCal = prevData.calories;
+            prevProtein = prevData.protein;
+            prevCarbs = prevData.carbs;
+            prevFat = prevData.fat;
+        }
+    } catch (e) { /* no previous data */ }
+
+    try {
+        // 1. Upsert saved_macros
+        var { error: macroErr } = await supabase.from('saved_macros').upsert({
+            user_id: viewingAthleteId,
+            phase: phase.num,
+            year: phase.year,
+            calories: newCal,
+            protein: newProtein,
+            carbs: newCarbs,
+            fat: newFat
+        }, { onConflict: 'user_id,phase,year' });
+        if (macroErr) throw macroErr;
+
+        // 2. Insert macro change log
+        await supabase.from('macro_change_log').insert({
+            athlete_id: viewingAthleteId,
+            changed_by: currentUser.id,
+            phase: phase.num,
+            year: phase.year,
+            prev_calories: prevCal,
+            prev_protein: prevProtein,
+            prev_carbs: prevCarbs,
+            prev_fat: prevFat,
+            new_calories: newCal,
+            new_protein: newProtein,
+            new_carbs: newCarbs,
+            new_fat: newFat,
+            coach_note: coachNote
+        });
+
+        // 3. Insert notification for athlete
+        var msg = 'Calories: ' + newCal + ' | Protein: ' + newProtein + 'g | Carbs: ' + newCarbs + 'g | Fat: ' + newFat + 'g';
+        if (coachNote) msg += ' — "' + coachNote + '"';
+        await supabase.from('notifications').insert({
+            user_id: viewingAthleteId,
+            type: 'macro_update',
+            title: 'Coach Updated Your Macros',
+            message: msg
+        });
+
+        flashMessage('cmSaveSuccess');
+        loadMacros(viewingAthleteId, phase);
+        loadMacroChangeLog(viewingAthleteId);
+        setTimeout(function() { closeCoachMacroModal(); }, 1500);
+    } catch (err) {
+        flashMessage('cmSaveError');
+    }
+}
+
+async function loadMacroChangeLog(athleteId) {
+    if (!supabase) return;
+    var container = document.getElementById('macroChangeLogList');
+    var empty = document.getElementById('macroLogEmpty');
+
+    try {
+        var { data, error } = await supabase.from('macro_change_log').select('*')
+            .eq('athlete_id', athleteId)
+            .order('created_at', { ascending: false })
+            .limit(20);
+        if (error) throw error;
+
+        if (!data || data.length === 0) {
+            container.innerHTML = '';
+            empty.style.display = '';
+            return;
+        }
+
+        empty.style.display = 'none';
+        var html = '';
+        data.forEach(function(entry) {
+            var date = new Date(entry.created_at).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric', hour: 'numeric', minute: '2-digit' });
+            html += '<div class="macro-log-entry">';
+            html += '<div class="macro-log-date">' + date + '</div>';
+            html += '<div class="macro-log-values">';
+            html += '<span>Cal: <strong>' + entry.new_calories + '</strong></span>';
+            html += '<span>P: <strong>' + entry.new_protein + 'g</strong></span>';
+            html += '<span>C: <strong>' + entry.new_carbs + 'g</strong></span>';
+            html += '<span>F: <strong>' + entry.new_fat + 'g</strong></span>';
+            html += '</div>';
+            if (entry.coach_note) html += '<div class="macro-log-note">"' + entry.coach_note.replace(/</g, '&lt;').replace(/>/g, '&gt;') + '"</div>';
+            html += '</div>';
+        });
+        container.innerHTML = html;
+    } catch (e) {
+        container.innerHTML = '';
+    }
+}
+
+// ===== NOTIFICATIONS =====
+async function loadNotifications(userId) {
+    if (!supabase) return;
+    try {
+        var { data, error } = await supabase.from('notifications').select('*')
+            .eq('user_id', userId)
+            .order('created_at', { ascending: false })
+            .limit(20);
+        if (error) throw error;
+
+        var list = document.getElementById('notificationList');
+        var badge = document.getElementById('notificationBadge');
+        var unreadCount = 0;
+
+        if (!data || data.length === 0) {
+            list.innerHTML = '<div class="notification-empty">No notifications</div>';
+            badge.style.display = 'none';
+            return;
+        }
+
+        var html = '';
+        data.forEach(function(n) {
+            if (!n.read) unreadCount++;
+            var time = new Date(n.created_at).toLocaleDateString('en-US', { month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit' });
+            html += '<div class="notification-item' + (n.read ? '' : ' unread') + '" onclick="markNotificationRead(\'' + n.id + '\')">';
+            html += '<div class="notification-item-title">' + (n.title || '').replace(/</g, '&lt;') + '</div>';
+            html += '<div class="notification-item-message">' + (n.message || '').replace(/</g, '&lt;') + '</div>';
+            html += '<div class="notification-item-time">' + time + '</div>';
+            html += '</div>';
+        });
+        list.innerHTML = html;
+
+        if (unreadCount > 0) {
+            badge.textContent = unreadCount > 9 ? '9+' : unreadCount;
+            badge.style.display = 'flex';
+        } else {
+            badge.style.display = 'none';
+        }
+    } catch (e) {
+        // notifications table may not exist yet — fail silently
+    }
+}
+
+function toggleNotificationPanel() {
+    var panel = document.getElementById('notificationPanel');
+    panel.classList.toggle('active');
+}
+
+// Close notification panel when clicking outside
+document.addEventListener('click', function(e) {
+    var panel = document.getElementById('notificationPanel');
+    var bell = document.getElementById('notificationBell');
+    if (panel && bell && !panel.contains(e.target) && !bell.contains(e.target)) {
+        panel.classList.remove('active');
+    }
+});
+
+async function markNotificationRead(notifId) {
+    if (!supabase) return;
+    try {
+        await supabase.from('notifications').update({ read: true }).eq('id', notifId);
+        if (currentUser) loadNotifications(currentUser.id);
+    } catch (e) { /* fail silently */ }
+}
+
+async function markAllNotificationsRead() {
+    if (!supabase || !currentUser) return;
+    try {
+        await supabase.from('notifications').update({ read: true })
+            .eq('user_id', currentUser.id).eq('read', false);
+        loadNotifications(currentUser.id);
+    } catch (e) { /* fail silently */ }
+}
+
+// ===== MACRO CHANGE BANNER (athlete side) =====
+async function checkMacroChanges(userId, phase) {
+    if (!supabase) return;
+    try {
+        var { data, error } = await supabase.from('macro_change_log').select('*')
+            .eq('athlete_id', userId)
+            .eq('phase', phase.num)
+            .eq('year', phase.year)
+            .eq('seen_by_athlete', false)
+            .order('created_at', { ascending: false })
+            .limit(1);
+        if (error || !data || data.length === 0) return;
+
+        var change = data[0];
+        var banner = document.getElementById('macroChangeBanner');
+        var valuesEl = document.getElementById('macroChangeValues');
+        var noteEl = document.getElementById('macroChangeNote');
+
+        var html = '';
+        html += '<div class="macro-change-item"><div class="label">Calories</div><div class="values">';
+        if (change.prev_calories) html += '<span class="old">' + change.prev_calories + '</span>';
+        html += '<span class="new">' + change.new_calories + '</span></div></div>';
+        html += '<div class="macro-change-item"><div class="label">Protein</div><div class="values">';
+        if (change.prev_protein) html += '<span class="old">' + change.prev_protein + 'g</span>';
+        html += '<span class="new">' + change.new_protein + 'g</span></div></div>';
+        html += '<div class="macro-change-item"><div class="label">Carbs</div><div class="values">';
+        if (change.prev_carbs) html += '<span class="old">' + change.prev_carbs + 'g</span>';
+        html += '<span class="new">' + change.new_carbs + 'g</span></div></div>';
+        html += '<div class="macro-change-item"><div class="label">Fat</div><div class="values">';
+        if (change.prev_fat) html += '<span class="old">' + change.prev_fat + 'g</span>';
+        html += '<span class="new">' + change.new_fat + 'g</span></div></div>';
+
+        valuesEl.innerHTML = html;
+
+        if (change.coach_note) {
+            noteEl.textContent = '"' + change.coach_note + '"';
+            noteEl.style.display = '';
+        } else {
+            noteEl.style.display = 'none';
+        }
+
+        banner.classList.add('active');
+        // Store the change ID for dismissal
+        banner.dataset.changeId = change.id;
+    } catch (e) { /* fail silently */ }
+}
+
+async function dismissMacroChange() {
+    var banner = document.getElementById('macroChangeBanner');
+    var changeId = banner.dataset.changeId;
+    banner.classList.remove('active');
+
+    if (!supabase || !changeId) return;
+    try {
+        await supabase.from('macro_change_log').update({
+            seen_by_athlete: true,
+            seen_at: new Date().toISOString()
+        }).eq('id', changeId);
+    } catch (e) { /* fail silently */ }
 }
 
 // ===== INIT =====
