@@ -531,6 +531,100 @@
             margin-top: 0.25rem;
         }
 
+        /* ===== MACRO VISUAL DISPLAY ===== */
+        .macro-calories-hero {
+            text-align: center;
+            padding: 2rem 0 1.5rem;
+            border-bottom: 1px solid var(--medium-gray);
+            margin-bottom: 2rem;
+        }
+
+        .macro-calories-number {
+            font-size: clamp(3.5rem, 8vw, 5rem);
+            font-weight: 900;
+            color: var(--yellow);
+            line-height: 1;
+            letter-spacing: -2px;
+        }
+
+        .macro-calories-label {
+            font-size: 0.8rem;
+            font-weight: 700;
+            color: var(--light-gray);
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            margin-top: 0.5rem;
+        }
+
+        .macro-visual-row {
+            display: flex;
+            align-items: center;
+            gap: 3rem;
+        }
+
+        .macro-chart-wrap {
+            width: 220px;
+            height: 220px;
+            flex-shrink: 0;
+            position: relative;
+        }
+
+        .macro-legend {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .macro-legend-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem 1.25rem;
+            background: var(--black);
+            border: 1px solid var(--medium-gray);
+            transition: border-color 0.3s ease;
+        }
+
+        .macro-legend-item:hover {
+            border-color: var(--yellow);
+        }
+
+        .macro-legend-dot {
+            width: 14px;
+            height: 14px;
+            flex-shrink: 0;
+        }
+
+        .macro-legend-detail {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .macro-legend-name {
+            font-size: 0.85rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--light-gray);
+            width: 70px;
+        }
+
+        .macro-legend-value {
+            font-size: 1.4rem;
+            font-weight: 900;
+            color: var(--white);
+        }
+
+        .macro-legend-pct {
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: var(--light-gray);
+            margin-left: auto;
+        }
+
         /* ===== AUTH CONTAINER ===== */
         .auth-container {
             max-width: 480px;
@@ -1836,6 +1930,29 @@
                 padding: 1.5rem;
             }
 
+            .macro-visual-row {
+                flex-direction: column;
+                gap: 2rem;
+            }
+
+            .macro-chart-wrap {
+                width: 180px;
+                height: 180px;
+                margin: 0 auto;
+            }
+
+            .macro-legend {
+                width: 100%;
+            }
+
+            .macro-legend-detail {
+                flex-wrap: wrap;
+            }
+
+            .macro-legend-name {
+                width: 60px;
+            }
+
             .form-row {
                 flex-direction: column;
             }
@@ -1942,7 +2059,6 @@
                 <li class="has-submenu">
                     <a href="blueprint.html">Nutrition</a>
                     <ul class="submenu">
-                        <li><a href="macro-calculator.html">Macro Calculator</a></li>
                         <li><a href="blueprint.html">4-Phase Blueprint</a></li>
                     </ul>
                 </li>
@@ -1973,7 +2089,6 @@
         <a href="media.html" onclick="closeMobileNav()">Media</a>
         <a href="blog/" onclick="closeMobileNav()">Blog</a>
         <a href="blueprint.html" onclick="closeMobileNav()">Nutrition</a>
-        <a href="macro-calculator.html" class="mobile-sub-link" onclick="closeMobileNav()">Macro Calculator</a>
         <a href="blueprint.html" class="mobile-sub-link" onclick="closeMobileNav()">4-Phase Blueprint</a>
         <a href="contact.html" onclick="closeMobileNav()">Contact</a>
         <a href="#" class="mobile-cta" onclick="closeMobileNav(); openLeadModal(); return false;">Book Free Consultation</a>
@@ -2082,26 +2197,41 @@
                     </div>
                     <div id="macrosContent">
                         <div id="macrosPopulated" style="display: none;">
-                            <div class="stats-row" id="macroCards">
-                                <div class="stat-card highlighted">
-                                    <div class="stat-card-label">Calories</div>
-                                    <div class="stat-card-value" id="macroCals">--</div>
-                                    <div class="stat-card-unit">per day</div>
+                            <!-- Calories Hero -->
+                            <div class="macro-calories-hero">
+                                <div class="macro-calories-number" id="macroCals">--</div>
+                                <div class="macro-calories-label">CALORIES / DAY</div>
+                            </div>
+                            <!-- Pie Chart + Legend Layout -->
+                            <div class="macro-visual-row">
+                                <div class="macro-chart-wrap">
+                                    <canvas id="macroPieChart"></canvas>
                                 </div>
-                                <div class="stat-card" style="border-top: 4px solid var(--yellow);">
-                                    <div class="stat-card-label">Protein</div>
-                                    <div class="stat-card-value" id="macroProtein">--</div>
-                                    <div class="stat-card-unit">grams</div>
-                                </div>
-                                <div class="stat-card" style="border-top: 4px solid #4CAF50;">
-                                    <div class="stat-card-label">Carbs</div>
-                                    <div class="stat-card-value" id="macroCarbs">--</div>
-                                    <div class="stat-card-unit">grams</div>
-                                </div>
-                                <div class="stat-card" style="border-top: 4px solid #2196F3;">
-                                    <div class="stat-card-label">Fat</div>
-                                    <div class="stat-card-value" id="macroFat">--</div>
-                                    <div class="stat-card-unit">grams</div>
+                                <div class="macro-legend">
+                                    <div class="macro-legend-item">
+                                        <span class="macro-legend-dot" style="background: var(--yellow);"></span>
+                                        <div class="macro-legend-detail">
+                                            <div class="macro-legend-name">Protein</div>
+                                            <div class="macro-legend-value"><span id="macroProtein">--</span>g</div>
+                                            <div class="macro-legend-pct" id="macroProteinPct">--%</div>
+                                        </div>
+                                    </div>
+                                    <div class="macro-legend-item">
+                                        <span class="macro-legend-dot" style="background: #4CAF50;"></span>
+                                        <div class="macro-legend-detail">
+                                            <div class="macro-legend-name">Carbs</div>
+                                            <div class="macro-legend-value"><span id="macroCarbs">--</span>g</div>
+                                            <div class="macro-legend-pct" id="macroCarbsPct">--%</div>
+                                        </div>
+                                    </div>
+                                    <div class="macro-legend-item">
+                                        <span class="macro-legend-dot" style="background: #2196F3;"></span>
+                                        <div class="macro-legend-detail">
+                                            <div class="macro-legend-name">Fat</div>
+                                            <div class="macro-legend-value"><span id="macroFat">--</span>g</div>
+                                            <div class="macro-legend-pct" id="macroFatPct">--%</div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -2289,7 +2419,7 @@
                         <h3 id="quickLinkPhaseTitle">Go to Phase 1 Guide</h3>
                         <p>Read the full guide for your current phase.</p>
                     </a>
-                    <a href="macro-calculator.html" class="feature-card">
+                    <a href="#" onclick="openCalcModal(); return false;" class="feature-card">
                         <div class="feature-icon"><i class="fa-solid fa-calculator"></i></div>
                         <h3>Macro Calculator</h3>
                         <p>Calculate or recalculate your daily targets.</p>
@@ -2336,7 +2466,6 @@
                     <li><a href="index.html">Home</a></li>
                     <li><a href="schedule.html">Class Schedule</a></li>
                     <li><a href="faq.html">FAQ</a></li>
-                    <li><a href="macro-calculator.html">Macro Calculator</a></li>
                     <li><a href="#" onclick="openSubscribeModal(); return false;">Subscribe</a></li>
                     <li><a href="#" onclick="openCancelModal(); return false;">Cancel Membership</a></li>
                     <li><a href="privacy-policy.html">Terms & Privacy Policy</a></li>
@@ -2986,17 +3115,78 @@ function renderQuickLinks(phase) {
 }
 
 // ===== MACROS =====
+var macroPieChart = null;
+
+function renderMacroPieChart(protein, carbs, fat) {
+    var proteinCals = protein * 4;
+    var carbsCals = carbs * 4;
+    var fatCals = fat * 9;
+    var totalCals = proteinCals + carbsCals + fatCals;
+
+    var proteinPct = totalCals > 0 ? Math.round((proteinCals / totalCals) * 100) : 0;
+    var carbsPct = totalCals > 0 ? Math.round((carbsCals / totalCals) * 100) : 0;
+    var fatPct = totalCals > 0 ? 100 - proteinPct - carbsPct : 0;
+
+    document.getElementById('macroProteinPct').textContent = proteinPct + '%';
+    document.getElementById('macroCarbsPct').textContent = carbsPct + '%';
+    document.getElementById('macroFatPct').textContent = fatPct + '%';
+
+    var ctx = document.getElementById('macroPieChart');
+    if (!ctx) return;
+    if (macroPieChart) macroPieChart.destroy();
+
+    macroPieChart = new Chart(ctx, {
+        type: 'doughnut',
+        data: {
+            labels: ['Protein', 'Carbs', 'Fat'],
+            datasets: [{
+                data: [proteinCals, carbsCals, fatCals],
+                backgroundColor: ['#FFD202', '#4CAF50', '#2196F3'],
+                borderWidth: 0,
+                hoverOffset: 6
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: true,
+            cutout: '65%',
+            plugins: {
+                legend: { display: false },
+                tooltip: {
+                    backgroundColor: '#1a1a1a',
+                    titleFont: { family: 'Montserrat', weight: '700' },
+                    bodyFont: { family: 'Montserrat', weight: '500' },
+                    padding: 12,
+                    callbacks: {
+                        label: function(ctx) {
+                            var label = ctx.label;
+                            var val = ctx.raw;
+                            var pct = totalCals > 0 ? Math.round((val / totalCals) * 100) : 0;
+                            return label + ': ' + val + ' cal (' + pct + '%)';
+                        }
+                    }
+                }
+            },
+            animation: {
+                animateRotate: true,
+                duration: 800
+            }
+        }
+    });
+}
+
 async function loadMacros(userId, phase) {
     try {
         var { data, error } = await supabase.from('saved_macros').select('*')
             .eq('user_id', userId).eq('phase', phase.num).eq('year', phase.year).single();
         if (data && !error) {
-            document.getElementById('macroCals').textContent = data.calories;
+            document.getElementById('macroCals').textContent = data.calories.toLocaleString();
             document.getElementById('macroProtein').textContent = data.protein;
             document.getElementById('macroCarbs').textContent = data.carbs;
             document.getElementById('macroFat').textContent = data.fat;
             document.getElementById('macrosPopulated').style.display = 'block';
             document.getElementById('macrosEmpty').style.display = 'none';
+            renderMacroPieChart(data.protein, data.carbs, data.fat);
             // Pre-fill form
             document.getElementById('macroCalInput').value = data.calories;
             document.getElementById('macroProteinInput').value = data.protein;
