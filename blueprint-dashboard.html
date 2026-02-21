@@ -509,7 +509,7 @@
         .stat-card {
             background: var(--black);
             border: 2px solid var(--medium-gray);
-            padding: 2rem 1.5rem;
+            padding: 1.25rem 1rem;
             text-align: center;
         }
 
@@ -527,16 +527,16 @@
         }
 
         .stat-card-label {
-            font-size: 0.8rem;
+            font-size: 0.7rem;
             font-weight: 700;
             text-transform: uppercase;
-            letter-spacing: 1.5px;
+            letter-spacing: 1px;
             color: var(--light-gray);
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.25rem;
         }
 
         .stat-card-value {
-            font-size: 2.5rem;
+            font-size: 2rem;
             font-weight: 900;
             color: var(--white);
             line-height: 1.2;
@@ -547,10 +547,10 @@
         }
 
         .stat-card-unit {
-            font-size: 0.85rem;
+            font-size: 0.75rem;
             color: var(--light-gray);
             font-weight: 600;
-            margin-top: 0.25rem;
+            margin-top: 0.15rem;
         }
 
         /* ===== MACRO VISUAL DISPLAY ===== */
@@ -1004,7 +1004,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 2rem;
+            margin-bottom: 1.25rem;
         }
 
         .dash-card-title {
@@ -1085,7 +1085,7 @@
         }
 
         .dash-form .form-group {
-            margin-bottom: 1.5rem;
+            margin-bottom: 1rem;
         }
 
         .dash-form label {
@@ -1197,9 +1197,9 @@
 
         /* ===== WEIGHT CHART ===== */
         .weight-chart-container {
-            margin-top: 2rem;
+            margin-top: 1rem;
             position: relative;
-            height: 350px;
+            height: 300px;
         }
 
         /* ===== WEIGHT HISTORY ===== */
@@ -1309,29 +1309,29 @@
         /* ===== BODY COMP ===== */
         .body-comp-summary {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-            gap: 1rem;
-            margin-top: 1.5rem;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 0.5rem;
+            margin-top: 1rem;
         }
 
         .body-comp-item {
             background: var(--black);
             border: 1px solid var(--medium-gray);
-            padding: 1.25rem;
+            padding: 0.75rem;
             text-align: center;
         }
 
         .body-comp-item .label {
-            font-size: 0.7rem;
+            font-size: 0.65rem;
             font-weight: 700;
             text-transform: uppercase;
             letter-spacing: 1px;
             color: var(--light-gray);
-            margin-bottom: 0.25rem;
+            margin-bottom: 0.15rem;
         }
 
         .body-comp-item .value {
-            font-size: 1.5rem;
+            font-size: 1.2rem;
             font-weight: 900;
         }
 
@@ -2293,11 +2293,24 @@
             }
 
             .stats-row-3 {
-                grid-template-columns: 1fr;
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+            .stat-card {
+                padding: 0.75rem 0.5rem;
             }
 
             .stat-card-value {
-                font-size: 2rem;
+                font-size: 1.5rem;
+            }
+
+            .stat-card-label {
+                font-size: 0.6rem;
+                letter-spacing: 0.5px;
+            }
+
+            .stat-card-unit {
+                font-size: 0.65rem;
             }
 
             .user-bar {
@@ -2342,11 +2355,20 @@
             }
 
             .weight-chart-container {
-                height: 250px;
+                height: 220px;
             }
 
             .body-comp-summary {
                 grid-template-columns: repeat(2, 1fr);
+                gap: 0.4rem;
+            }
+
+            .body-comp-item {
+                padding: 0.5rem;
+            }
+
+            .body-comp-item .value {
+                font-size: 1rem;
             }
 
             .yoy-phases {
@@ -2426,11 +2448,15 @@
 
         @media (max-width: 480px) {
             .stats-row {
-                grid-template-columns: 1fr;
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .stats-row-3 {
+                grid-template-columns: repeat(3, 1fr);
             }
 
             .body-comp-summary {
-                grid-template-columns: 1fr;
+                grid-template-columns: repeat(2, 1fr);
             }
         }
     </style>
@@ -2724,7 +2750,7 @@
                     <div class="dash-card-header">
                         <h3 class="dash-card-title"><i class="fa-solid fa-weight-scale"></i> Weight Tracker</h3>
                     </div>
-                    <form class="dash-form" id="weightForm" onsubmit="saveWeight(event)" style="margin-bottom: 2rem;">
+                    <form class="dash-form" id="weightForm" onsubmit="saveWeight(event)" style="margin-bottom: 1rem;">
                         <div class="form-row">
                             <div class="form-group">
                                 <label for="weightInput">Weight (lbs)</label>
@@ -2786,7 +2812,7 @@
                     <div id="bodyCompContent">
                         <div id="bodyCompPopulated" style="display: none;">
                             <div class="body-comp-summary" id="bodyCompSummary"></div>
-                            <div class="weight-chart-container" style="margin-top: 2rem;">
+                            <div class="weight-chart-container" style="margin-top: 1rem;">
                                 <canvas id="bodyCompChart"></canvas>
                             </div>
                         </div>
