@@ -735,7 +735,7 @@
             background: var(--dark-gray);
             border-bottom: 1px solid var(--medium-gray);
             padding: 0.75rem 4rem;
-            padding-top: calc(0.75rem + 120px);
+            padding-top: 0.75rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -3334,35 +3334,6 @@
     <!-- ============================================ -->
     <div id="dashboardContainer" style="display: none;">
 
-        <!-- User Bar -->
-        <div class="user-bar">
-            <div class="user-bar-left">
-                <span class="user-bar-email"><i class="fa-solid fa-user"></i> <span id="userEmail"></span></span>
-                <button id="coachToggleBtn" class="coach-toggle-btn" style="display:none;" onclick="toggleCoachView()">
-                    <i class="fa-solid fa-clipboard-user"></i> <span id="coachToggleLabel">Coach View</span>
-                </button>
-            </div>
-            <div class="user-bar-right">
-                <div style="position:relative;">
-                    <button class="notification-bell" id="notificationBell" onclick="toggleNotificationPanel()">
-                        <i class="fa-solid fa-bell"></i>
-                        <span class="notification-badge" id="notificationBadge" style="display:none;">0</span>
-                    </button>
-                    <div class="notification-panel" id="notificationPanel">
-                        <div class="notification-panel-header">
-                            <span>Notifications</span>
-                            <a onclick="markAllNotificationsRead()">Mark All Read</a>
-                        </div>
-                        <div id="notificationList">
-                            <div class="notification-empty">No notifications</div>
-                        </div>
-                    </div>
-                </div>
-                <button onclick="openAccountModal()" title="Account Settings"><i class="fa-solid fa-gear"></i> Account</button>
-                <button onclick="handleLogout()"><i class="fa-solid fa-right-from-bracket"></i> Sign Out</button>
-            </div>
-        </div>
-
         <!-- Subscription Status Bar (populated by JS) -->
         <div id="subStatusBar" style="display: none;"></div>
 
@@ -3403,6 +3374,35 @@
                 <a href="blueprint-phase-4-build.html">Phase 4: Build</a>
                 <a href="blueprint-supplements.html">Supplements</a>
                 <a href="blueprint-decade.html">Decade Roadmap</a>
+            </div>
+        </div>
+
+        <!-- User Bar -->
+        <div class="user-bar">
+            <div class="user-bar-left">
+                <span class="user-bar-email"><i class="fa-solid fa-user"></i> <span id="userEmail"></span></span>
+                <button id="coachToggleBtn" class="coach-toggle-btn" style="display:none;" onclick="toggleCoachView()">
+                    <i class="fa-solid fa-clipboard-user"></i> <span id="coachToggleLabel">Coach View</span>
+                </button>
+            </div>
+            <div class="user-bar-right">
+                <div style="position:relative;">
+                    <button class="notification-bell" id="notificationBell" onclick="toggleNotificationPanel()">
+                        <i class="fa-solid fa-bell"></i>
+                        <span class="notification-badge" id="notificationBadge" style="display:none;">0</span>
+                    </button>
+                    <div class="notification-panel" id="notificationPanel">
+                        <div class="notification-panel-header">
+                            <span>Notifications</span>
+                            <a onclick="markAllNotificationsRead()">Mark All Read</a>
+                        </div>
+                        <div id="notificationList">
+                            <div class="notification-empty">No notifications</div>
+                        </div>
+                    </div>
+                </div>
+                <button onclick="openAccountModal()" title="Account Settings"><i class="fa-solid fa-gear"></i> Account</button>
+                <button onclick="handleLogout()"><i class="fa-solid fa-right-from-bracket"></i> Sign Out</button>
             </div>
         </div>
 
