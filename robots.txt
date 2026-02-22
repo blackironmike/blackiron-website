@@ -1,6 +1,6 @@
 User-agent: *
 Allow: /
-Disallow: /blueprint-admin.html
-Disallow: /blueprint-dashboard.html
+Disallow: /blueprint-admin
+Disallow: /blueprint-dashboard
 
 Sitemap: https://www.blackironathletics.com/sitemap.xml
