@@ -1763,6 +1763,28 @@
             display: block;
         }
 
+        /* ===== TOAST NOTIFICATION ===== */
+        .toast-notification {
+            position: fixed;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%) translateY(20px);
+            background: var(--yellow);
+            color: var(--black);
+            padding: 0.75rem 2rem;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            font-size: 0.9rem;
+            z-index: 99999;
+            opacity: 0;
+            transition: opacity 0.3s ease, transform 0.3s ease;
+        }
+
+        .toast-notification.show {
+            opacity: 1;
+            transform: translateX(-50%) translateY(0);
+        }
+
         /* ===== CALC MODAL FORM ===== */
         .calc-gender-options,
         .calc-goal-options {
@@ -2964,6 +2986,73 @@
             color: var(--phase-cut);
         }
 
+        /* ===== COACH SUMMARY GRID ===== */
+        .coach-summary-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+        }
+
+        .coach-summary-card {
+            background: var(--dark-gray);
+            border: 2px solid var(--medium-gray);
+            padding: 1.5rem;
+        }
+
+        .coach-summary-card-title {
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--yellow);
+            margin-bottom: 1.25rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .coach-summary-stat {
+            margin-bottom: 0.75rem;
+        }
+
+        .coach-summary-stat-label {
+            display: block;
+            font-size: 0.65rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--light-gray);
+            margin-bottom: 0.15rem;
+        }
+
+        .coach-summary-stat-value {
+            display: inline;
+            font-size: 1.3rem;
+            font-weight: 900;
+            color: var(--white);
+        }
+
+        .coach-summary-stat-hero {
+            font-size: 2rem;
+            color: var(--yellow);
+        }
+
+        .coach-summary-stat-unit {
+            font-size: 0.75rem;
+            color: var(--light-gray);
+            font-weight: 600;
+            margin-left: 0.15rem;
+        }
+
+        .coach-summary-stat-notes {
+            display: block;
+            font-size: 0.8rem;
+            color: var(--light-gray);
+            font-weight: 500;
+            line-height: 1.4;
+            margin-top: 0.25rem;
+        }
+
         /* ===== COACH NOTES LIST ===== */
         .coach-notes-section {
             margin-top: 2rem;
@@ -3152,6 +3241,7 @@
             .coach-drilldown-toolbar { padding: 0.75rem 1.5rem; gap: 0.5rem; }
             .macro-change-values { grid-template-columns: repeat(2, 1fr); }
             .notification-panel { width: 300px; right: -1rem; }
+            .coach-summary-grid { grid-template-columns: 1fr; }
         }
 
         @media (max-width: 480px) {
@@ -3533,38 +3623,14 @@
             </div>
         </section>
 
-        <!-- Section 3: Weight Tracker -->
+        <!-- Section 3: My Progress (merged Weight Tracker + Body Composition) -->
         <section class="section section-alt">
             <div class="section-container">
                 <div class="dash-card" style="background: var(--black);">
                     <div class="dash-card-header">
-                        <h3 class="dash-card-title"><i class="fa-solid fa-weight-scale"></i> Weight Tracker</h3>
+                        <h3 class="dash-card-title"><i class="fa-solid fa-chart-line"></i> My Progress</h3>
                     </div>
-                    <form class="dash-form" id="weightForm" onsubmit="saveWeight(event)" style="margin-bottom: 1rem;">
-                        <div class="form-row">
-                            <div class="form-group">
-                                <label for="weightInput">Weight (lbs)</label>
-                                <input type="number" id="weightInput" required min="50" max="700" step="0.1" placeholder="e.g. 185.4">
-                            </div>
-                            <div class="form-group">
-                                <label for="weightDate">Date</label>
-                                <input type="date" id="weightDate">
-                            </div>
-                            <div class="form-group">
-                                <label for="weightNotes">Notes (optional)</label>
-                                <input type="text" id="weightNotes" placeholder="e.g. Post-vacation">
-                            </div>
-                        </div>
-                        <button type="submit" class="btn-primary btn-small">Log Weight</button>
-                        <div id="weightSaveSuccess" class="form-success">Weight logged!</div>
-                        <div id="weightSaveError" class="form-error">Error logging weight.</div>
-                    </form>
-                    <div class="stats-row stats-row-3" id="weightSummary">
-                        <div class="stat-card">
-                            <div class="stat-card-label">Start Weight</div>
-                            <div class="stat-card-value" id="weightStart">--</div>
-                            <div class="stat-card-unit">lbs</div>
-                        </div>
+                    <div class="stats-row" id="progressSummary">
                         <div class="stat-card">
                             <div class="stat-card-label">Current Weight</div>
                             <div class="stat-card-value" id="weightCurrent">--</div>
@@ -3575,9 +3641,45 @@
                             <div class="stat-card-value" id="weightChange">--</div>
                             <div class="stat-card-unit">lbs</div>
                         </div>
+                        <div class="stat-card">
+                            <div class="stat-card-label">Body Fat</div>
+                            <div class="stat-card-value" id="progressBodyFat">--</div>
+                            <div class="stat-card-unit">%</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-card-label">Skeletal Muscle</div>
+                            <div class="stat-card-value" id="progressSMM">--</div>
+                            <div class="stat-card-unit">lbs</div>
+                        </div>
                     </div>
                     <div class="weight-chart-container">
                         <canvas id="weightChart"></canvas>
+                    </div>
+                    <div class="progress-actions" style="display: flex; gap: 1rem; margin: 1.5rem 0;">
+                        <button class="btn-primary btn-small" onclick="toggleProgressWeightForm()"><i class="fa-solid fa-weight-scale"></i> Log Weight</button>
+                        <button class="btn-outline btn-small" onclick="openBodyCompModal()"><i class="fa-solid fa-person-rays"></i> Log Body Comp</button>
+                    </div>
+                    <div id="progressWeightForm" style="display: none; margin-bottom: 1rem;">
+                        <form class="dash-form" id="weightForm" onsubmit="saveWeight(event)">
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="weightInput">Weight (lbs)</label>
+                                    <input type="number" id="weightInput" required min="50" max="700" step="0.1" placeholder="e.g. 185.4">
+                                </div>
+                                <div class="form-group">
+                                    <label for="weightDate">Date</label>
+                                    <input type="date" id="weightDate">
+                                </div>
+                                <div class="form-group">
+                                    <label for="weightNotes">Notes (optional)</label>
+                                    <input type="text" id="weightNotes" placeholder="e.g. Post-vacation">
+                                </div>
+                            </div>
+                            <button type="submit" class="btn-primary btn-small">Save</button>
+                            <button type="button" class="btn-outline btn-small" onclick="toggleProgressWeightForm()" style="margin-left: 0.5rem;">Cancel</button>
+                            <div id="weightSaveSuccess" class="form-success">Weight logged!</div>
+                            <div id="weightSaveError" class="form-error">Error logging weight.</div>
+                        </form>
                     </div>
                     <div class="weight-history">
                         <button class="collapsible-toggle" onclick="toggleCollapsible(this)">
@@ -3587,62 +3689,26 @@
                             <div class="weight-history-list" id="weightHistoryList"></div>
                         </div>
                     </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Section 4: Body Composition -->
-        <section class="section">
-            <div class="section-container">
-                <div class="dash-card">
-                    <div class="dash-card-header">
-                        <h3 class="dash-card-title"><i class="fa-solid fa-person-rays"></i> Body Composition</h3>
-                        <button class="btn-outline btn-small" onclick="openBodyCompModal()">Log Body Comp</button>
-                    </div>
-                    <div id="bodyCompContent">
+                    <!-- Hidden body comp elements for data loading (chart moved here) -->
+                    <div id="bodyCompContent" style="display: none;">
                         <div id="bodyCompPopulated" style="display: none;">
                             <div class="body-comp-summary" id="bodyCompSummary"></div>
-                            <div class="weight-chart-container" style="margin-top: 1rem;">
-                                <canvas id="bodyCompChart"></canvas>
-                            </div>
                         </div>
-                        <div id="bodyCompEmpty" class="empty-state">
-                            <i class="fa-solid fa-chart-line"></i>
-                            <p>No body composition data logged yet.</p>
-                            <button class="btn-primary btn-small" onclick="openBodyCompModal()">Log Your First Entry</button>
-                        </div>
+                        <div id="bodyCompEmpty"></div>
                     </div>
                 </div>
             </div>
         </section>
 
         <!-- Section 5: Phase Transition Checklist -->
-        <section class="section section-alt">
+        <section class="section">
             <div class="section-container">
-                <div class="dash-card" style="background: var(--black);">
+                <div class="dash-card">
                     <div class="dash-card-header">
                         <h3 class="dash-card-title"><i class="fa-solid fa-clipboard-check"></i> <span id="checklistTitle">Phase Transition Checklist</span></h3>
                     </div>
                     <p style="color: var(--light-gray); margin-bottom: 1.5rem;" id="checklistSubtitle">Complete these before moving to the next phase.</p>
                     <div class="checklist-interactive" id="checklistContainer"></div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Section 6: Year-over-Year Summary -->
-        <section class="section">
-            <div class="section-container">
-                <div class="dash-card">
-                    <div class="dash-card-header">
-                        <h3 class="dash-card-title"><i class="fa-solid fa-chart-column"></i> Year-over-Year Summary</h3>
-                    </div>
-                    <div id="yoyContent">
-                        <div id="yoyPopulated" class="yoy-timeline" style="display: none;"></div>
-                        <div id="yoyEmpty" class="empty-state">
-                            <i class="fa-solid fa-calendar-days"></i>
-                            <p>Your year-over-year data will appear here as you complete phases.</p>
-                        </div>
-                    </div>
                 </div>
             </div>
         </section>
@@ -3655,53 +3721,8 @@
                         <h3 class="dash-card-title"><i class="fa-solid fa-clipboard-question"></i> Weekly Check-In</h3>
                     </div>
                     <p style="color: var(--light-gray); margin-bottom: 1.5rem;">Take 2 minutes to reflect on your week. This data helps you (and your coach) spot trends and make better decisions.</p>
-                    <form class="dash-form" id="checkinForm" onsubmit="saveCheckin(event)">
-                        <div class="checkin-form-grid">
-                            <div class="form-group">
-                                <label for="checkinWeight">Average Weight This Week (lbs)</label>
-                                <input type="number" id="checkinWeight" step="0.1" placeholder="e.g. 185.5">
-                            </div>
-                            <div class="form-group">
-                                <label for="checkinEnergy">Energy Level</label>
-                                <select id="checkinEnergy" style="background: var(--black); color: var(--white); border: 2px solid var(--medium-gray); padding: 0.75rem; font-family: 'Montserrat', sans-serif; font-size: 0.9rem; width: 100%;">
-                                    <option value="">Select...</option>
-                                    <option value="5">High — felt great all week</option>
-                                    <option value="4">Good — mostly energized</option>
-                                    <option value="3">Average — some ups and downs</option>
-                                    <option value="2">Low — struggled with energy</option>
-                                    <option value="1">Very low — dragging all week</option>
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label>Nutrition Adherence</label>
-                                <div class="checkin-rating">
-                                    <input type="radio" name="adherence" id="adh1" value="1"><label for="adh1">1</label>
-                                    <input type="radio" name="adherence" id="adh2" value="2"><label for="adh2">2</label>
-                                    <input type="radio" name="adherence" id="adh3" value="3"><label for="adh3">3</label>
-                                    <input type="radio" name="adherence" id="adh4" value="4"><label for="adh4">4</label>
-                                    <input type="radio" name="adherence" id="adh5" value="5"><label for="adh5">5</label>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label>Training Adherence</label>
-                                <div class="checkin-rating">
-                                    <input type="radio" name="training" id="train1" value="1"><label for="train1">1</label>
-                                    <input type="radio" name="training" id="train2" value="2"><label for="train2">2</label>
-                                    <input type="radio" name="training" id="train3" value="3"><label for="train3">3</label>
-                                    <input type="radio" name="training" id="train4" value="4"><label for="train4">4</label>
-                                    <input type="radio" name="training" id="train5" value="5"><label for="train5">5</label>
-                                </div>
-                            </div>
-                            <div class="form-group full-width">
-                                <label for="checkinNotes">Notes / Wins / Struggles</label>
-                                <textarea id="checkinNotes" rows="3" placeholder="How did this week go? Any wins to celebrate or obstacles to plan for?" style="background: var(--black); color: var(--white); border: 2px solid var(--medium-gray); padding: 0.75rem; font-family: 'Montserrat', sans-serif; font-size: 0.9rem; width: 100%; resize: vertical;"></textarea>
-                            </div>
-                        </div>
-                        <button type="submit" class="btn-primary btn-small">Submit Check-In</button>
-                        <div id="checkinSaveSuccess" class="form-success">Check-in saved!</div>
-                        <div id="checkinSaveError" class="form-error">Error saving check-in.</div>
-                    </form>
-                    <div class="checkin-history">
+                    <button class="btn-primary btn-small" onclick="openCheckinModal()"><i class="fa-solid fa-pen-to-square"></i> Submit Weekly Check-In</button>
+                    <div class="checkin-history" style="margin-top: 1.5rem;">
                         <button class="collapsible-toggle" onclick="toggleCollapsible(this)">
                             <i class="fa-solid fa-chevron-down"></i> Check-In History
                         </button>
@@ -3861,6 +3882,99 @@
                 <button class="coach-action-btn" onclick="openBodyCompModal()"><i class="fa-solid fa-person-rays"></i> Log Body Comp</button>
                 <button class="coach-action-btn" onclick="openCoachNoteModal()"><i class="fa-solid fa-note-sticky"></i> Add Note</button>
                 <button class="coach-action-btn danger" onclick="releaseAthlete()"><i class="fa-solid fa-user-minus"></i> Release</button>
+            </div>
+
+            <!-- 3-Card Athlete Summary -->
+            <div class="section-container" style="padding-top: 2rem;">
+                <div class="coach-summary-grid">
+                    <!-- Card 1: Current Macros -->
+                    <div class="coach-summary-card">
+                        <h4 class="coach-summary-card-title"><i class="fa-solid fa-fire"></i> Current Macros</h4>
+                        <div id="drillMacros">
+                            <div class="coach-summary-stat" style="margin-bottom: 1rem;">
+                                <span class="coach-summary-stat-label">Calories</span>
+                                <span class="coach-summary-stat-value coach-summary-stat-hero" id="drillMacroCals">--</span>
+                            </div>
+                            <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.75rem;">
+                                <div class="coach-summary-stat">
+                                    <span class="coach-summary-stat-label">Protein</span>
+                                    <span class="coach-summary-stat-value" id="drillMacroProtein">--</span>
+                                    <span class="coach-summary-stat-unit">g</span>
+                                </div>
+                                <div class="coach-summary-stat">
+                                    <span class="coach-summary-stat-label">Carbs</span>
+                                    <span class="coach-summary-stat-value" id="drillMacroCarbs">--</span>
+                                    <span class="coach-summary-stat-unit">g</span>
+                                </div>
+                                <div class="coach-summary-stat">
+                                    <span class="coach-summary-stat-label">Fat</span>
+                                    <span class="coach-summary-stat-value" id="drillMacroFat">--</span>
+                                    <span class="coach-summary-stat-unit">g</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Card 2: Key Metrics -->
+                    <div class="coach-summary-card">
+                        <h4 class="coach-summary-card-title"><i class="fa-solid fa-chart-simple"></i> Key Metrics</h4>
+                        <div id="drillMetrics">
+                            <div class="coach-summary-stat">
+                                <span class="coach-summary-stat-label">Current Weight</span>
+                                <span class="coach-summary-stat-value" id="drillWeight">--</span>
+                                <span class="coach-summary-stat-unit">lbs</span>
+                            </div>
+                            <div class="coach-summary-stat">
+                                <span class="coach-summary-stat-label">Body Fat</span>
+                                <span class="coach-summary-stat-value" id="drillBodyFat">--</span>
+                                <span class="coach-summary-stat-unit">%</span>
+                            </div>
+                            <div class="coach-summary-stat">
+                                <span class="coach-summary-stat-label">Skeletal Muscle</span>
+                                <span class="coach-summary-stat-value" id="drillSMM">--</span>
+                                <span class="coach-summary-stat-unit">lbs</span>
+                            </div>
+                            <div class="coach-summary-stat">
+                                <span class="coach-summary-stat-label">Weight Change</span>
+                                <span class="coach-summary-stat-value" id="drillWeightChange">--</span>
+                                <span class="coach-summary-stat-unit">lbs</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Card 3: Latest Check-In -->
+                    <div class="coach-summary-card">
+                        <h4 class="coach-summary-card-title"><i class="fa-solid fa-clipboard-question"></i> Latest Check-In</h4>
+                        <div id="drillCheckin">
+                            <div class="coach-summary-stat">
+                                <span class="coach-summary-stat-label">Date</span>
+                                <span class="coach-summary-stat-value" id="drillCheckinDate">--</span>
+                            </div>
+                            <div class="coach-summary-stat">
+                                <span class="coach-summary-stat-label">Avg Weight</span>
+                                <span class="coach-summary-stat-value" id="drillCheckinWeight">--</span>
+                            </div>
+                            <div class="coach-summary-stat">
+                                <span class="coach-summary-stat-label">Energy</span>
+                                <span class="coach-summary-stat-value" id="drillCheckinEnergy">--</span>
+                            </div>
+                            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem;">
+                                <div class="coach-summary-stat">
+                                    <span class="coach-summary-stat-label">Nutrition</span>
+                                    <span class="coach-summary-stat-value" id="drillCheckinNutrition">--</span>
+                                </div>
+                                <div class="coach-summary-stat">
+                                    <span class="coach-summary-stat-label">Training</span>
+                                    <span class="coach-summary-stat-value" id="drillCheckinTraining">--</span>
+                                </div>
+                            </div>
+                            <div class="coach-summary-stat" id="drillCheckinNotesWrap" style="display: none;">
+                                <span class="coach-summary-stat-label">Notes</span>
+                                <span class="coach-summary-stat-notes" id="drillCheckinNotes"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
 
             <!-- Coach Notes Section (shown in drill-down) -->
@@ -4119,6 +4233,61 @@
                 <button type="submit" class="btn-primary btn-small" style="margin-top: 1rem;">Save Body Comp</button>
                 <div id="bodyCompSaveSuccess" class="form-success">Body comp saved!</div>
                 <div id="bodyCompSaveError" class="form-error">Error saving body comp.</div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Weekly Check-In Modal -->
+    <div class="modal-overlay" id="checkinModal">
+        <div class="modal-container" style="max-width: 600px;">
+            <button class="modal-close" onclick="closeCheckinModal()">&times;</button>
+            <h3>Weekly Check-In</h3>
+            <p style="color: var(--light-gray); margin-bottom: 1.5rem; font-size: 0.9rem;">Take 2 minutes to reflect on your week.</p>
+            <form class="dash-form" id="checkinForm" onsubmit="saveCheckin(event)">
+                <div class="checkin-form-grid">
+                    <div class="form-group">
+                        <label for="checkinWeight">Average Weight This Week (lbs)</label>
+                        <input type="number" id="checkinWeight" step="0.1" placeholder="e.g. 185.5">
+                    </div>
+                    <div class="form-group">
+                        <label for="checkinEnergy">Energy Level</label>
+                        <select id="checkinEnergy" style="background: var(--black); color: var(--white); border: 2px solid var(--medium-gray); padding: 0.75rem; font-family: 'Montserrat', sans-serif; font-size: 0.9rem; width: 100%;">
+                            <option value="">Select...</option>
+                            <option value="5">High — felt great all week</option>
+                            <option value="4">Good — mostly energized</option>
+                            <option value="3">Average — some ups and downs</option>
+                            <option value="2">Low — struggled with energy</option>
+                            <option value="1">Very low — dragging all week</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Nutrition Adherence</label>
+                        <div class="checkin-rating">
+                            <input type="radio" name="adherence" id="adh1" value="1"><label for="adh1">1</label>
+                            <input type="radio" name="adherence" id="adh2" value="2"><label for="adh2">2</label>
+                            <input type="radio" name="adherence" id="adh3" value="3"><label for="adh3">3</label>
+                            <input type="radio" name="adherence" id="adh4" value="4"><label for="adh4">4</label>
+                            <input type="radio" name="adherence" id="adh5" value="5"><label for="adh5">5</label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Training Adherence</label>
+                        <div class="checkin-rating">
+                            <input type="radio" name="training" id="train1" value="1"><label for="train1">1</label>
+                            <input type="radio" name="training" id="train2" value="2"><label for="train2">2</label>
+                            <input type="radio" name="training" id="train3" value="3"><label for="train3">3</label>
+                            <input type="radio" name="training" id="train4" value="4"><label for="train4">4</label>
+                            <input type="radio" name="training" id="train5" value="5"><label for="train5">5</label>
+                        </div>
+                    </div>
+                    <div class="form-group full-width">
+                        <label for="checkinNotes">Notes / Wins / Struggles</label>
+                        <textarea id="checkinNotes" rows="3" placeholder="How did this week go? Any wins to celebrate or obstacles to plan for?" style="background: var(--black); color: var(--white); border: 2px solid var(--medium-gray); padding: 0.75rem; font-family: 'Montserrat', sans-serif; font-size: 0.9rem; width: 100%; resize: vertical;"></textarea>
+                    </div>
+                </div>
+                <button type="submit" class="btn-primary btn-small">Submit Check-In</button>
+                <div id="checkinSaveSuccess" class="form-success">Check-in saved!</div>
+                <div id="checkinSaveError" class="form-error">Error saving check-in.</div>
             </form>
         </div>
     </div>
@@ -4720,7 +4889,7 @@ async function initDashboard(user) {
         loadWeightData(user.id, phase);
         loadBodyCompData(user.id);
         loadChecklistProgress(user.id, phase);
-        loadYearOverYear(user.id);
+        // loadYearOverYear(user.id); // Removed — YOY section hidden
         loadCheckins(user.id);
         // Load notifications for all users
         loadNotifications(user.id);
@@ -4871,6 +5040,11 @@ function setWeightDateDefault() {
     document.getElementById('weightDate').value = todayLocalString();
 }
 
+function toggleProgressWeightForm() {
+    var form = document.getElementById('progressWeightForm');
+    if (form) form.style.display = form.style.display === 'none' ? '' : 'none';
+}
+
 async function saveWeight(e) {
     e.preventDefault();
     if (!supabase) return;
@@ -4910,7 +5084,6 @@ async function loadWeightData(userId, phase) {
             var startW = phaseData[0].weight;
             var currentW = phaseData[phaseData.length - 1].weight;
             var change = (currentW - startW).toFixed(1);
-            document.getElementById('weightStart').textContent = startW.toFixed(1);
             document.getElementById('weightCurrent').textContent = currentW.toFixed(1);
             document.getElementById('weightChange').textContent = (change > 0 ? '+' : '') + change;
             var changeEl = document.getElementById('weightChange');
@@ -5148,6 +5321,17 @@ async function loadBodyCompData(userId) {
 
         // Show latest entry summary
         var latest = data[data.length - 1];
+
+        // Update My Progress stats row
+        if (latest.body_fat_pct) {
+            var bfEl = document.getElementById('progressBodyFat');
+            if (bfEl) bfEl.textContent = latest.body_fat_pct;
+        }
+        if (latest.skeletal_muscle_mass) {
+            var smmEl = document.getElementById('progressSMM');
+            if (smmEl) smmEl.textContent = latest.skeletal_muscle_mass;
+        }
+
         var summaryHtml = '';
         if (latest.body_fat_pct) summaryHtml += '<div class="body-comp-item"><div class="label">Body Fat</div><div class="value">' + latest.body_fat_pct + '%</div></div>';
         if (latest.skeletal_muscle_mass) summaryHtml += '<div class="body-comp-item"><div class="label">Skeletal Muscle</div><div class="value">' + latest.skeletal_muscle_mass + ' lbs</div></div>';
@@ -5171,7 +5355,9 @@ async function loadBodyCompData(userId) {
 }
 
 function renderBodyCompChart(data) {
-    var ctx = document.getElementById('bodyCompChart').getContext('2d');
+    var el = document.getElementById('bodyCompChart');
+    if (!el) return;
+    var ctx = el.getContext('2d');
     if (bodyCompChart) bodyCompChart.destroy();
 
     var labels = data.map(function(d) { return d.logged_date; });
@@ -5415,6 +5601,18 @@ function flashMessage(id) {
     setTimeout(function() { el.style.display = 'none'; }, 3000);
 }
 
+function showToast(message) {
+    var toast = document.createElement('div');
+    toast.className = 'toast-notification';
+    toast.textContent = message;
+    document.body.appendChild(toast);
+    requestAnimationFrame(function() { toast.classList.add('show'); });
+    setTimeout(function() {
+        toast.classList.remove('show');
+        setTimeout(function() { toast.remove(); }, 300);
+    }, 3000);
+}
+
 // ===== PHASE TRANSITION CARD =====
 function renderTransitionCard(phase) {
     if (phase.remaining > 14) return; // only show within 14 days of phase end
@@ -5454,6 +5652,14 @@ function renderTransitionCard(phase) {
 }
 
 // ===== WEEKLY CHECK-IN =====
+function openCheckinModal() {
+    document.getElementById('checkinModal').classList.add('active');
+}
+
+function closeCheckinModal() {
+    document.getElementById('checkinModal').classList.remove('active');
+}
+
 async function saveCheckin(e) {
     e.preventDefault();
     if (!supabase) return;
@@ -5478,8 +5684,9 @@ async function saveCheckin(e) {
     try {
         var { error } = await supabase.from('weekly_checkins').insert(payload);
         if (error) throw error;
-        flashMessage('checkinSaveSuccess');
         document.getElementById('checkinForm').reset();
+        closeCheckinModal();
+        showToast('Check-in saved!');
         loadCheckins(targetId);
     } catch (err) {
         flashMessage('checkinSaveError');
@@ -6214,28 +6421,84 @@ async function releaseAthlete() {
 }
 
 // ===== CLIENT DRILL-DOWN =====
-function drillIntoClient(clientId, clientName) {
+async function drillIntoClient(clientId, clientName) {
     viewingAthleteId = clientId;
     document.getElementById('drilldownAthleteName').textContent = clientName;
 
-    // Hide client list, show drill-down
+    // Hide client list, show drill-down (no dashboard sections shown)
     document.getElementById('coachViewContainer').classList.remove('active');
     document.getElementById('coachDrilldown').classList.add('active');
 
-    // Show the athlete's dashboard sections for the drill-down
-    var dashSections = document.querySelectorAll('#dashboardContainer > section');
-    dashSections.forEach(function(el) { el.style.display = ''; });
-    document.getElementById('phaseBanner').style.display = '';
+    // Reset summary cards
+    ['drillMacroCals','drillMacroProtein','drillMacroCarbs','drillMacroFat',
+     'drillWeight','drillBodyFat','drillSMM','drillWeightChange',
+     'drillCheckinDate','drillCheckinWeight','drillCheckinEnergy',
+     'drillCheckinNutrition','drillCheckinTraining'].forEach(function(id) {
+        var el = document.getElementById(id);
+        if (el) el.textContent = '--';
+    });
+    document.getElementById('drillCheckinNotesWrap').style.display = 'none';
+    document.getElementById('drillCheckinNotes').textContent = '';
 
-    // Load client data using existing functions
-    var phase = getPhaseInfo();
-    loadMacros(clientId, phase);
-    loadWeightData(clientId, phase);
-    loadBodyCompData(clientId);
-    loadChecklistProgress(clientId, phase);
-    loadCheckins(clientId);
-    loadYearOverYear(clientId);
-    // Load coach-only data
+    // Parallel fetch all summary data + coach data
+    try {
+        var results = await Promise.all([
+            supabase.from('saved_macros').select('*').eq('user_id', clientId).order('created_at', { ascending: false }).limit(1),
+            supabase.from('weight_log').select('*').eq('user_id', clientId).order('logged_date', { ascending: false }).limit(1),
+            supabase.from('body_composition').select('*').eq('user_id', clientId).order('logged_date', { ascending: false }).limit(1),
+            supabase.from('weekly_checkins').select('*').eq('user_id', clientId).order('week_of', { ascending: false }).limit(1),
+            supabase.from('weight_log').select('*').eq('user_id', clientId).order('logged_date', { ascending: true }).limit(1)
+        ]);
+
+        // Card 1: Current Macros
+        var macros = results[0].data && results[0].data[0];
+        if (macros) {
+            document.getElementById('drillMacroCals').textContent = macros.calories || '--';
+            document.getElementById('drillMacroProtein').textContent = macros.protein || '--';
+            document.getElementById('drillMacroCarbs').textContent = macros.carbs || '--';
+            document.getElementById('drillMacroFat').textContent = macros.fat || '--';
+        }
+
+        // Card 2: Key Metrics
+        var latestWeight = results[1].data && results[1].data[0];
+        var latestBody = results[2].data && results[2].data[0];
+        var firstWeight = results[4].data && results[4].data[0];
+
+        if (latestWeight) {
+            document.getElementById('drillWeight').textContent = latestWeight.weight ? latestWeight.weight.toFixed(1) : '--';
+        }
+        if (latestBody) {
+            if (latestBody.body_fat_pct) document.getElementById('drillBodyFat').textContent = latestBody.body_fat_pct;
+            if (latestBody.skeletal_muscle_mass) document.getElementById('drillSMM').textContent = latestBody.skeletal_muscle_mass;
+        }
+        if (latestWeight && firstWeight) {
+            var change = (latestWeight.weight - firstWeight.weight).toFixed(1);
+            var changeEl = document.getElementById('drillWeightChange');
+            changeEl.textContent = (change > 0 ? '+' : '') + change;
+            if (change < 0) changeEl.style.color = 'var(--phase-cut)';
+            else if (change > 0) changeEl.style.color = 'var(--phase-build)';
+            else changeEl.style.color = 'var(--phase-maintain)';
+        }
+
+        // Card 3: Latest Check-In
+        var checkin = results[3].data && results[3].data[0];
+        if (checkin) {
+            var energyLabels = { 5: 'High', 4: 'Good', 3: 'Average', 2: 'Low', 1: 'Very Low' };
+            document.getElementById('drillCheckinDate').textContent = checkin.week_of ? new Date(checkin.week_of + 'T12:00:00').toLocaleDateString('en-US', { month: 'short', day: 'numeric' }) : '--';
+            document.getElementById('drillCheckinWeight').textContent = checkin.avg_weight ? checkin.avg_weight + ' lbs' : '--';
+            document.getElementById('drillCheckinEnergy').textContent = checkin.energy_level ? (energyLabels[checkin.energy_level] || checkin.energy_level) : '--';
+            document.getElementById('drillCheckinNutrition').textContent = checkin.nutrition_adherence ? checkin.nutrition_adherence + '/5' : '--';
+            document.getElementById('drillCheckinTraining').textContent = checkin.training_adherence ? checkin.training_adherence + '/5' : '--';
+            if (checkin.notes) {
+                document.getElementById('drillCheckinNotes').textContent = checkin.notes.length > 120 ? checkin.notes.substring(0, 120) + '...' : checkin.notes;
+                document.getElementById('drillCheckinNotesWrap').style.display = '';
+            }
+        }
+    } catch (e) {
+        console.log('Drilldown fetch error:', e);
+    }
+
+    // Load coach-only sections
     loadCoachNotes(clientId);
     loadMacroChangeLog(clientId);
 }
@@ -6244,27 +6507,29 @@ function backToCoachList() {
     viewingAthleteId = null;
     document.getElementById('coachDrilldown').classList.remove('active');
 
-    // Hide athlete dashboard sections again
-    var dashSections = document.querySelectorAll('#dashboardContainer > section, #dashboardContainer > .blueprint-subnav, #dashboardContainer > .phase-banner, #dashboardContainer > .dash-hero');
-    dashSections.forEach(function(el) { el.style.display = 'none'; });
-
     // Show coach view
     document.getElementById('coachViewContainer').classList.add('active');
     loadCoachView();
 }
 
-function coachLogWeight() {
-    // Scroll to weight section and open the form
-    var weightSection = document.getElementById('weightInput');
-    if (weightSection) {
-        weightSection.closest('.section').scrollIntoView({ behavior: 'smooth' });
-        // Open collapsible if closed
-        var toggle = weightSection.closest('.dash-card').querySelector('.collapsible-toggle');
-        var content = weightSection.closest('.dash-card').querySelector('.collapsible-content');
-        if (toggle && content && !content.classList.contains('open')) {
-            toggle.classList.add('open');
-            content.classList.add('open');
-        }
+async function coachLogWeight() {
+    var weight = prompt('Enter weight (lbs):');
+    if (!weight || isNaN(parseFloat(weight))) return;
+    var targetId = viewingAthleteId;
+    if (!targetId || !supabase) return;
+    try {
+        var { error } = await supabase.from('weight_log').insert({
+            user_id: targetId,
+            weight: parseFloat(weight),
+            logged_date: todayLocalString()
+        });
+        if (error) throw error;
+        showToast('Weight logged: ' + parseFloat(weight).toFixed(1) + ' lbs');
+        // Refresh drilldown metrics
+        var latestName = document.getElementById('drilldownAthleteName').textContent;
+        drillIntoClient(targetId, latestName);
+    } catch (e) {
+        alert('Error logging weight.');
     }
 }
 
