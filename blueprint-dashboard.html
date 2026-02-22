@@ -4,19 +4,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Dashboard | 4-Phase Nutrition Blueprint | Black Iron Athletics</title>
-    <meta name="description" content="Your personal Athlete Dashboard Ã¢â‚¬â€ track macros, weight, body composition, and phase progress through the 4-Phase Nutrition Blueprint.">
+    <meta name="description" content="Your personal Athlete Dashboard — track macros, weight, body composition, and phase progress through the 4-Phase Nutrition Blueprint.">
     <meta name="geo.region" content="US-TX">
     <meta name="geo.placename" content="Frisco">
     <link rel="canonical" href="https://www.blackironathletics.com/blueprint-dashboard.html">
     <meta property="og:title" content="My Dashboard | 4-Phase Nutrition Blueprint | Black Iron Athletics">
-    <meta property="og:description" content="Your personal Athlete Dashboard Ã¢â‚¬â€ track macros, weight, body composition, and phase progress.">
+    <meta property="og:description" content="Your personal Athlete Dashboard — track macros, weight, body composition, and phase progress.">
     <meta property="og:url" content="https://www.blackironathletics.com/blueprint-dashboard.html">
     <meta property="og:image" content="https://www.blackironathletics.com/images/social-share.png">
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="Black Iron Athletics">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="My Dashboard | 4-Phase Nutrition Blueprint | Black Iron Athletics">
-    <meta name="twitter:description" content="Your personal Athlete Dashboard Ã¢â‚¬â€ track macros, weight, body composition, and phase progress.">
+    <meta name="twitter:description" content="Your personal Athlete Dashboard — track macros, weight, body composition, and phase progress.">
     <meta name="twitter:image" content="https://www.blackironathletics.com/images/social-share.png">
     <link rel="icon" type="image/png" href="images/anvil-favicon.png">
     <meta name="theme-color" content="#000000">
@@ -721,14 +721,14 @@
             text-align: right;
         }
 
-        /* Heat-map colors: positive scale (1=bad Ã¢â€ â€™ 5=good) */
+        /* Heat-map colors: positive scale (1=bad → 5=good) */
         .checkin-heat-1 { background: #c0392b; color: #fff; }
         .checkin-heat-2 { background: #e67e22; color: #fff; }
         .checkin-heat-3 { background: #f1c40f; color: #000; }
         .checkin-heat-4 { background: #2ecc71; color: #000; }
         .checkin-heat-5 { background: #27ae60; color: #fff; }
 
-        /* Inverted scale for stress (1=good Ã¢â€ â€™ 5=bad) */
+        /* Inverted scale for stress (1=good → 5=bad) */
         .checkin-heat-inv-1 { background: #27ae60; color: #fff; }
         .checkin-heat-inv-2 { background: #2ecc71; color: #000; }
         .checkin-heat-inv-3 { background: #f1c40f; color: #000; }
@@ -3756,7 +3756,7 @@
                                 <div id="checkinCoachingUpsell" class="coaching-upsell" style="display: none;">
                                     <h4><i class="fa-solid fa-chart-line" style="color: var(--yellow); margin-right: 0.5rem;"></i> See What a Coach Sees</h4>
                                     <p>You've built a solid check-in history. Athletes who work with a coach see 2x better adherence and faster results. Let a coach analyze your data and build a plan around it.</p>
-                                    <a href="PLACEHOLDER_COACHING_BOOKING_URL" class="btn-primary">Book a Coaching Call Ã¢â‚¬â€ $99</a>
+                                    <a href="PLACEHOLDER_COACHING_BOOKING_URL" class="btn-primary">Book a Coaching Call — $99</a>
                                 </div>
                             </div>
                         </div>
@@ -3842,7 +3842,7 @@
                         <a href="#" onclick="generatePhasePDF(); return false;" class="download-card" id="downloadPdfCard">
                             <i class="fa-solid fa-file-pdf"></i>
                             <h4>My Phase Plan</h4>
-                            <p>Your custom macros, supplements, and phase checklist Ã¢â‚¬â€ generated from your dashboard data.</p>
+                            <p>Your custom macros, supplements, and phase checklist — generated from your dashboard data.</p>
                         </a>
                         <a href="Phase1-Baseline-Meal-Template.pdf" target="_blank" class="download-card" style="border-top: 3px solid var(--phase-baseline);">
                             <i class="fa-solid fa-utensils"></i>
@@ -4240,7 +4240,7 @@
         <div class="modal-container">
             <button class="modal-close" onclick="closeProgressModal()">&times;</button>
             <h3>Log Progress</h3>
-            <p style="color: var(--light-gray); margin-bottom: 1.5rem; font-size: 0.9rem;">Fill in what you have Ã¢â‚¬â€ all fields are optional.</p>
+            <p style="color: var(--light-gray); margin-bottom: 1.5rem; font-size: 0.9rem;">Fill in what you have — all fields are optional.</p>
             <form class="dash-form" id="progressForm" onsubmit="saveProgress(event)">
                 <div class="form-row">
                     <div class="form-group">
@@ -4627,16 +4627,16 @@ function getPhaseInfo(date) {
 function getNextTransition(phaseNum) {
     var transitions = {
         1: {
-            label: 'Phase 1: Baseline Ã¢â€ â€™ Phase 2: Cut',
+            label: 'Phase 1: Baseline → Phase 2: Cut',
             items: [
-                { key: '1to2_stable', text: 'Weight has been stable (Ã‚Â±2-3 lbs) for 2-3 weeks' },
+                { key: '1to2_stable', text: 'Weight has been stable (±2-3 lbs) for 2-3 weeks' },
                 { key: '1to2_tracking', text: 'Been consistently tracking for 4+ weeks' },
                 { key: '1to2_recalc', text: 'Recalculated macros with goal set to "Lose Fat"' },
                 { key: '1to2_ready', text: 'Mentally prepared for a 12-week caloric deficit' }
             ]
         },
         2: {
-            label: 'Phase 2 Ã¢â€ â€™ Phase 3 (Maintain)',
+            label: 'Phase 2 → Phase 3 (Maintain)',
             items: [
                 { key: '2to3_complete', text: 'Completed the full 12-week cut phase' },
                 { key: '2to3_recalc', text: 'Recalculated macros with goal set to "Maintain"' },
@@ -4645,16 +4645,16 @@ function getNextTransition(phaseNum) {
             ]
         },
         3: {
-            label: 'Phase 3 Ã¢â€ â€™ Phase 4 (Build)',
+            label: 'Phase 3 → Phase 4 (Build)',
             items: [
-                { key: '3to4_stable', text: 'Weight has been stable (Ã‚Â±2-3 lbs) for 3-4 weeks' },
+                { key: '3to4_stable', text: 'Weight has been stable (±2-3 lbs) for 3-4 weeks' },
                 { key: '3to4_energy', text: 'Energy and performance are back to baseline' },
                 { key: '3to4_recalc', text: 'Recalculated macros with goal set to "Build Muscle"' },
                 { key: '3to4_expect', text: 'Understand that body weight will increase during this phase' }
             ]
         },
         4: {
-            label: 'Phase 4: Build Ã¢â€ â€™ Phase 1: Baseline',
+            label: 'Phase 4: Build → Phase 1: Baseline',
             items: [
                 { key: '4to1_complete', text: 'Completed the full 12-week build phase' },
                 { key: '4to1_recalc', text: 'Recalculated macros with goal set to "Maintain"' },
@@ -4788,7 +4788,7 @@ async function loadSubscription(userId, userEmail) {
         renderSubStatus(sub);
         return sub;
     } catch (e) {
-        // Table may not exist yet Ã¢â‚¬â€ fail silently
+        // Table may not exist yet — fail silently
         renderSubStatus(null);
         return null;
     }
@@ -4797,7 +4797,7 @@ async function loadSubscription(userId, userEmail) {
 function renderSubStatus(sub) {
     var bar = document.getElementById('subStatusBar');
     if (!sub) {
-        // No subscription found Ã¢â‚¬â€ keep bar hidden, don't show upsell
+        // No subscription found — keep bar hidden, don't show upsell
         bar.style.display = 'none';
         return;
     }
@@ -4841,7 +4841,7 @@ async function claimSubscriptionByEmail(userId, userEmail) {
             .eq('customer_email', userEmail)
             .is('user_id', null);
     } catch (e) {
-        // Tables may not exist yet Ã¢â‚¬â€ fail silently
+        // Tables may not exist yet — fail silently
     }
 }
 
@@ -4862,7 +4862,7 @@ async function loadCoachingCalls(userId, userEmail) {
             document.getElementById('coachingCallBanner').style.display = '';
         }
     } catch (e) {
-        // Table may not exist yet Ã¢â‚¬â€ fail silently
+        // Table may not exist yet — fail silently
     }
 }
 
@@ -4942,7 +4942,7 @@ async function initDashboard(user) {
         loadWeightData(user.id, phase);
         loadBodyCompData(user.id, phase);
         loadChecklistProgress(user.id, phase);
-        // loadYearOverYear(user.id); // Removed Ã¢â‚¬â€ YOY section hidden
+        // loadYearOverYear(user.id); // Removed — YOY section hidden
         loadCheckins(user.id);
         // Load notifications for all users
         loadNotifications(user.id);
@@ -5206,7 +5206,7 @@ function renderProgressChart(weightData, bodyCompData) {
     });
 
     var datasets = [];
-    // Weight Ã¢â‚¬â€ Purple, left Y axis
+    // Weight — Purple, left Y axis
     if (Object.keys(weightMap).length > 0) {
         datasets.push({
             label: 'Weight (lbs)',
@@ -5221,7 +5221,7 @@ function renderProgressChart(weightData, bodyCompData) {
             spanGaps: true
         });
     }
-    // SMM Ã¢â‚¬â€ Green, left Y axis
+    // SMM — Green, left Y axis
     if (Object.keys(smmMap).length > 0) {
         datasets.push({
             label: 'Skeletal Muscle (lbs)',
@@ -5236,7 +5236,7 @@ function renderProgressChart(weightData, bodyCompData) {
             spanGaps: true
         });
     }
-    // Body Fat % Ã¢â‚¬â€ Red, right Y axis
+    // Body Fat % — Red, right Y axis
     if (Object.keys(bfMap).length > 0) {
         datasets.push({
             label: 'Body Fat %',
@@ -5344,7 +5344,7 @@ function renderWeightHistory(entries) {
         html += '<div class="weight-history-row" id="wh-row-' + entry.id + '">'
             + '<span class="weight-history-date">' + entry.logged_date + '</span>'
             + '<span class="weight-history-weight">' + entry.weight.toFixed(1) + ' lbs</span>'
-            + '<span class="weight-history-notes">' + (entry.notes || 'Ã¢â‚¬â€') + '</span>'
+            + '<span class="weight-history-notes">' + (entry.notes || '—') + '</span>'
             + '<span class="weight-history-actions">'
             + '<button onclick="editWeightEntry(\'' + entry.id + '\', \'' + entry.logged_date + '\', ' + entry.weight + ', \'' + (entry.notes || '').replace(/'/g, "\\'") + '\')" title="Edit"><i class="fa-solid fa-pen"></i></button>'
             + '<button class="delete-btn" onclick="deleteWeightEntry(\'' + entry.id + '\')" title="Delete"><i class="fa-solid fa-trash"></i></button>'
@@ -5578,7 +5578,7 @@ async function loadYearOverYear(userId) {
                     html += '<div class="yoy-phase-name" style="color: ' + phaseColors[p.phase] + ';">Phase ' + p.phase + ': ' + phaseNames[p.phase] + inProgress + '</div>';
                     if (p.start_date && p.end_date) html += '<div class="yoy-phase-dates">' + p.start_date + ' to ' + p.end_date + '</div>';
                     else if (p.start_date) html += '<div class="yoy-phase-dates">Started ' + p.start_date + '</div>';
-                    if (p.start_weight) html += '<div class="yoy-phase-weight">' + p.start_weight + ' Ã¢â€ â€™ ' + (p.end_weight || 'current') + ' lbs</div>';
+                    if (p.start_weight) html += '<div class="yoy-phase-weight">' + p.start_weight + ' → ' + (p.end_weight || 'current') + ' lbs</div>';
                     html += '<div class="yoy-phase-change ' + changeClass + '">' + changeText + '</div>';
                     html += '</div>';
                 });
@@ -5673,16 +5673,16 @@ function renderTransitionCard(phase) {
         4: { from: 'Build protocol', to: 'Foundation stack only, creatine 5g' }
     };
     var macroShifts = {
-        1: 'Caloric deficit Ã¢â‚¬â€ reduce below maintenance',
-        2: 'Back to maintenance Ã¢â‚¬â€ reverse diet slowly',
-        3: 'Caloric surplus Ã¢â‚¬â€ 300-500 cal above maintenance',
-        4: 'Maintenance Ã¢â‚¬â€ establish your new baseline'
+        1: 'Caloric deficit — reduce below maintenance',
+        2: 'Back to maintenance — reverse diet slowly',
+        3: 'Caloric surplus — 300-500 cal above maintenance',
+        4: 'Maintenance — establish your new baseline'
     };
     var mindsetShifts = {
-        1: 'Discipline and consistency Ã¢â‚¬â€ embrace the grind',
-        2: 'Recovery and patience Ã¢â‚¬â€ let your body stabilize',
-        3: 'Fuel for growth Ã¢â‚¬â€ eat with purpose',
-        4: 'Reset and observe Ã¢â‚¬â€ find your new normal'
+        1: 'Discipline and consistency — embrace the grind',
+        2: 'Recovery and patience — let your body stabilize',
+        3: 'Fuel for growth — eat with purpose',
+        4: 'Reset and observe — find your new normal'
     };
 
     var changes = supplementChanges[phase.num];
@@ -5765,7 +5765,7 @@ function renderCheckinTrendGrid(checkins) {
         return;
     }
 
-    // Take last 6 weeks, sorted oldest Ã¢â€ â€™ newest for left-to-right display
+    // Take last 6 weeks, sorted oldest → newest for left-to-right display
     var weeks = checkins.slice(0, 6).reverse();
 
     // Build header row with week dates
@@ -5815,7 +5815,7 @@ function renderCheckinTrendGrid(checkins) {
                 var cls = m[2](val);
                 cells += '<td class="' + cls + '">' + val + m[3] + '</td>';
             } else {
-                cells += '<td>Ã¢â‚¬â€</td>';
+                cells += '<td>—</td>';
             }
         });
         rows += '<tr>' + cells + '</tr>';
@@ -5824,7 +5824,7 @@ function renderCheckinTrendGrid(checkins) {
     container.innerHTML = '<div class="checkin-trend-grid">' +
         '<table><thead><tr>' + headerCells + '</tr></thead>' +
         '<tbody>' + rows + '</tbody></table>' +
-        '<div class="trend-footer">Last ' + weeks.length + ' week' + (weeks.length !== 1 ? 's' : '') + ' Ã¢â‚¬â€ green = on track</div>' +
+        '<div class="trend-footer">Last ' + weeks.length + ' week' + (weeks.length !== 1 ? 's' : '') + ' — green = on track</div>' +
         '</div>';
 }
 
@@ -5879,7 +5879,7 @@ async function loadCheckins(userId) {
     } catch (e) { /* fail silently */ }
 }
 
-// ===== PDF GENERATOR (jsPDF Ã¢â‚¬â€ no html2canvas) =====
+// ===== PDF GENERATOR (jsPDF — no html2canvas) =====
 function generatePhasePDF() {
     if (typeof jspdf === 'undefined') return;
     var phase = getPhaseInfo();
@@ -6338,7 +6338,7 @@ function showAthleteView() {
     }
 }
 
-// ===== COACH VIEW Ã¢â‚¬â€ CLIENT LIST =====
+// ===== COACH VIEW — CLIENT LIST =====
 async function loadCoachView() {
     if (!supabase || !currentUser) return;
     var grid = document.getElementById('clientCardGrid');
@@ -6813,7 +6813,7 @@ async function coachSaveMacros(e) {
 
         // 3. Insert notification for athlete
         var msg = 'Calories: ' + newCal + ' | Protein: ' + newProtein + 'g | Carbs: ' + newCarbs + 'g | Fat: ' + newFat + 'g';
-        if (coachNote) msg += ' Ã¢â‚¬â€ "' + coachNote + '"';
+        if (coachNote) msg += ' — "' + coachNote + '"';
         await supabase.from('notifications').insert({
             user_id: viewingAthleteId,
             type: 'macro_update',
@@ -6908,7 +6908,7 @@ async function loadNotifications(userId) {
             badge.style.display = 'none';
         }
     } catch (e) {
-        // notifications table may not exist yet Ã¢â‚¬â€ fail silently
+        // notifications table may not exist yet — fail silently
     }
 }
 
