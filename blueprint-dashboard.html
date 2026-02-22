@@ -553,6 +553,13 @@
             margin-top: 0.15rem;
         }
 
+        .stat-card-change {
+            font-size: 0.85rem;
+            font-weight: 700;
+            margin-top: 0.25rem;
+            min-height: 1.2em;
+        }
+
         /* ===== MACRO VISUAL DISPLAY ===== */
         .macro-calories-hero {
             text-align: center;
@@ -3630,56 +3637,31 @@
                     <div class="dash-card-header">
                         <h3 class="dash-card-title"><i class="fa-solid fa-chart-line"></i> My Progress</h3>
                     </div>
-                    <div class="stats-row" id="progressSummary">
+                    <div class="stats-row stats-row-3" id="progressSummary">
                         <div class="stat-card">
-                            <div class="stat-card-label">Current Weight</div>
+                            <div class="stat-card-label">Weight</div>
                             <div class="stat-card-value" id="weightCurrent">--</div>
                             <div class="stat-card-unit">lbs</div>
-                        </div>
-                        <div class="stat-card">
-                            <div class="stat-card-label">Change</div>
-                            <div class="stat-card-value" id="weightChange">--</div>
-                            <div class="stat-card-unit">lbs</div>
+                            <div class="stat-card-change" id="weightChange"></div>
                         </div>
                         <div class="stat-card">
                             <div class="stat-card-label">Body Fat</div>
                             <div class="stat-card-value" id="progressBodyFat">--</div>
                             <div class="stat-card-unit">%</div>
+                            <div class="stat-card-change" id="progressBodyFatChange"></div>
                         </div>
                         <div class="stat-card">
                             <div class="stat-card-label">Skeletal Muscle</div>
                             <div class="stat-card-value" id="progressSMM">--</div>
                             <div class="stat-card-unit">lbs</div>
+                            <div class="stat-card-change" id="progressSMMChange"></div>
                         </div>
                     </div>
                     <div class="weight-chart-container">
                         <canvas id="weightChart"></canvas>
                     </div>
                     <div class="progress-actions" style="display: flex; gap: 1rem; margin: 1.5rem 0;">
-                        <button class="btn-primary btn-small" onclick="toggleProgressWeightForm()"><i class="fa-solid fa-weight-scale"></i> Log Weight</button>
-                        <button class="btn-outline btn-small" onclick="openBodyCompModal()"><i class="fa-solid fa-person-rays"></i> Log Body Comp</button>
-                    </div>
-                    <div id="progressWeightForm" style="display: none; margin-bottom: 1rem;">
-                        <form class="dash-form" id="weightForm" onsubmit="saveWeight(event)">
-                            <div class="form-row">
-                                <div class="form-group">
-                                    <label for="weightInput">Weight (lbs)</label>
-                                    <input type="number" id="weightInput" required min="50" max="700" step="0.1" placeholder="e.g. 185.4">
-                                </div>
-                                <div class="form-group">
-                                    <label for="weightDate">Date</label>
-                                    <input type="date" id="weightDate">
-                                </div>
-                                <div class="form-group">
-                                    <label for="weightNotes">Notes (optional)</label>
-                                    <input type="text" id="weightNotes" placeholder="e.g. Post-vacation">
-                                </div>
-                            </div>
-                            <button type="submit" class="btn-primary btn-small">Save</button>
-                            <button type="button" class="btn-outline btn-small" onclick="toggleProgressWeightForm()" style="margin-left: 0.5rem;">Cancel</button>
-                            <div id="weightSaveSuccess" class="form-success">Weight logged!</div>
-                            <div id="weightSaveError" class="form-error">Error logging weight.</div>
-                        </form>
+                        <button class="btn-primary btn-small" onclick="openProgressModal()"><i class="fa-solid fa-chart-line"></i> Log Progress</button>
                     </div>
                     <div class="weight-history">
                         <button class="collapsible-toggle" onclick="toggleCollapsible(this)">
@@ -3878,8 +3860,7 @@
             </div>
             <div class="coach-drilldown-toolbar" id="drilldownToolbar">
                 <button class="coach-action-btn" onclick="openCoachMacroModal()"><i class="fa-solid fa-fire"></i> Adjust Macros</button>
-                <button class="coach-action-btn" onclick="coachLogWeight()"><i class="fa-solid fa-weight-scale"></i> Log Weight</button>
-                <button class="coach-action-btn" onclick="openBodyCompModal()"><i class="fa-solid fa-person-rays"></i> Log Body Comp</button>
+                <button class="coach-action-btn" onclick="openProgressModal()"><i class="fa-solid fa-chart-line"></i> Log Progress</button>
                 <button class="coach-action-btn" onclick="openCoachNoteModal()"><i class="fa-solid fa-note-sticky"></i> Add Note</button>
                 <button class="coach-action-btn danger" onclick="releaseAthlete()"><i class="fa-solid fa-user-minus"></i> Release</button>
             </div>
@@ -4147,92 +4128,40 @@
         </div>
     </footer>
 
-    <!-- Body Comp Modal -->
-    <div class="modal-overlay" id="bodyCompModal">
+    <!-- Log Progress Modal -->
+    <div class="modal-overlay" id="progressModal">
         <div class="modal-container">
-            <button class="modal-close" onclick="closeBodyCompModal()">&times;</button>
-            <h3>Log Body Composition</h3>
-            <form class="dash-form" id="bodyCompForm" onsubmit="saveBodyComp(event)">
-                <div class="form-group">
-                    <label for="bodyCompSource">Source</label>
-                    <select id="bodyCompSource" onchange="toggleBodyCompFields()">
-                        <option value="inbody">InBody Scan</option>
-                        <option value="dexa">DEXA Scan</option>
-                        <option value="manual">Manual Measurements</option>
-                        <option value="other">Other</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label for="bodyCompDate">Date</label>
-                    <input type="date" id="bodyCompDate">
-                </div>
-                <!-- InBody/DEXA Fields -->
-                <div id="scanFields">
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label for="bcBodyFat">Body Fat %</label>
-                            <input type="number" id="bcBodyFat" step="0.1" min="1" max="60" placeholder="e.g. 18.5">
-                        </div>
-                        <div class="form-group">
-                            <label for="bcSMM">Skeletal Muscle Mass (lbs)</label>
-                            <input type="number" id="bcSMM" step="0.1" min="10" max="300" placeholder="e.g. 85.2">
-                        </div>
-                    </div>
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label for="bcLBM">Lean Body Mass (lbs)</label>
-                            <input type="number" id="bcLBM" step="0.1" min="30" max="400" placeholder="e.g. 155">
-                        </div>
-                        <div class="form-group">
-                            <label for="bcFatMass">Body Fat Mass (lbs)</label>
-                            <input type="number" id="bcFatMass" step="0.1" min="0" max="300" placeholder="e.g. 30.5">
-                        </div>
-                    </div>
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label for="bcTBW">Total Body Water (lbs)</label>
-                            <input type="number" id="bcTBW" step="0.1" min="10" max="300" placeholder="e.g. 100">
-                        </div>
-                        <div class="form-group">
-                            <label for="bcInBodyScore">InBody Score</label>
-                            <input type="number" id="bcInBodyScore" min="0" max="100" placeholder="e.g. 78">
-                        </div>
+            <button class="modal-close" onclick="closeProgressModal()">&times;</button>
+            <h3>Log Progress</h3>
+            <p style="color: var(--light-gray); margin-bottom: 1.5rem; font-size: 0.9rem;">Fill in what you have — all fields are optional.</p>
+            <form class="dash-form" id="progressForm" onsubmit="saveProgress(event)">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="progressWeight">Weight (lbs)</label>
+                        <input type="number" id="progressWeight" step="0.1" min="50" max="700" placeholder="e.g. 185.4">
                     </div>
                     <div class="form-group">
-                        <label for="bcBMR">BMR (kcal)</label>
-                        <input type="number" id="bcBMR" min="500" max="5000" placeholder="e.g. 1750">
+                        <label for="progressBF">Body Fat %</label>
+                        <input type="number" id="progressBF" step="0.1" min="1" max="60" placeholder="e.g. 18.5">
                     </div>
                 </div>
-                <!-- Manual Fields -->
-                <div id="manualFields" style="display: none;">
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label for="bcWaist">Waist (in)</label>
-                            <input type="number" id="bcWaist" step="0.1" min="15" max="70" placeholder="e.g. 33.5">
-                        </div>
-                        <div class="form-group">
-                            <label for="bcHip">Hip (in)</label>
-                            <input type="number" id="bcHip" step="0.1" min="20" max="80" placeholder="e.g. 38">
-                        </div>
-                    </div>
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label for="bcChest">Chest (in)</label>
-                            <input type="number" id="bcChest" step="0.1" min="20" max="70" placeholder="e.g. 42">
-                        </div>
-                        <div class="form-group">
-                            <label for="bcArm">Arm (in)</label>
-                            <input type="number" id="bcArm" step="0.1" min="5" max="30" placeholder="e.g. 15.5">
-                        </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="progressSMMInput">Skeletal Muscle Mass (lbs)</label>
+                        <input type="number" id="progressSMMInput" step="0.1" min="10" max="300" placeholder="e.g. 85.2">
                     </div>
                     <div class="form-group">
-                        <label for="bcThigh">Thigh (in)</label>
-                        <input type="number" id="bcThigh" step="0.1" min="10" max="45" placeholder="e.g. 24">
+                        <label for="progressDate">Date</label>
+                        <input type="date" id="progressDate">
                     </div>
                 </div>
-                <button type="submit" class="btn-primary btn-small" style="margin-top: 1rem;">Save Body Comp</button>
-                <div id="bodyCompSaveSuccess" class="form-success">Body comp saved!</div>
-                <div id="bodyCompSaveError" class="form-error">Error saving body comp.</div>
+                <div class="form-group">
+                    <label for="progressNotes">Notes (optional)</label>
+                    <input type="text" id="progressNotes" placeholder="e.g. Post-vacation, InBody scan">
+                </div>
+                <button type="submit" class="btn-primary btn-small" style="margin-top: 1rem;">Save Progress</button>
+                <div id="progressSaveSuccess" class="form-success">Progress logged!</div>
+                <div id="progressSaveError" class="form-error">Error saving progress.</div>
             </form>
         </div>
     </div>
@@ -4847,8 +4776,6 @@ async function initDashboard(user) {
     renderQuickLinks(phase);
     renderChecklist(phase);
     renderTransitionCard(phase);
-    setWeightDateDefault();
-    setBodyCompDateDefault();
     if (supabase && user) {
         // Detect coach/owner role
         try {
@@ -4887,7 +4814,7 @@ async function initDashboard(user) {
         loadCoachingCalls(user.id, user.email);
         loadMacros(user.id, phase);
         loadWeightData(user.id, phase);
-        loadBodyCompData(user.id);
+        loadBodyCompData(user.id, phase);
         loadChecklistProgress(user.id, phase);
         // loadYearOverYear(user.id); // Removed — YOY section hidden
         loadCheckins(user.id);
@@ -5030,42 +4957,74 @@ async function saveMacros(e) {
 
 // ===== WEIGHT TRACKER =====
 var weightChart = null;
+var weightDataCache = null;
+var bodyCompDataCache = null;
 
 function todayLocalString() {
     var d = new Date();
     return d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0');
 }
 
-function setWeightDateDefault() {
-    document.getElementById('weightDate').value = todayLocalString();
+function openProgressModal() {
+    document.getElementById('progressDate').value = todayLocalString();
+    document.getElementById('progressModal').classList.add('active');
+    document.body.style.overflow = 'hidden';
 }
 
-function toggleProgressWeightForm() {
-    var form = document.getElementById('progressWeightForm');
-    if (form) form.style.display = form.style.display === 'none' ? '' : 'none';
+function closeProgressModal() {
+    document.getElementById('progressModal').classList.remove('active');
+    document.body.style.overflow = '';
 }
 
-async function saveWeight(e) {
+document.getElementById('progressModal').addEventListener('click', function(e) {
+    if (e.target === this) closeProgressModal();
+});
+
+async function saveProgress(e) {
     e.preventDefault();
     if (!supabase) return;
     var targetId = getTargetUserId();
     if (!targetId) return;
-    var payload = {
-        user_id: targetId,
-        weight: parseFloat(document.getElementById('weightInput').value),
-        logged_date: document.getElementById('weightDate').value,
-        notes: document.getElementById('weightNotes').value || null
-    };
+
+    var weight = parseFloat(document.getElementById('progressWeight').value);
+    var bf = parseFloat(document.getElementById('progressBF').value);
+    var smm = parseFloat(document.getElementById('progressSMMInput').value);
+    var logDate = document.getElementById('progressDate').value;
+    var notes = document.getElementById('progressNotes').value || null;
+
+    if (isNaN(weight) && isNaN(bf) && isNaN(smm)) {
+        flashMessage('progressSaveError');
+        return;
+    }
+
+    var phase = getPhaseInfo();
     try {
-        var { error } = await supabase.from('weight_log').insert(payload);
-        if (error) throw error;
-        flashMessage('weightSaveSuccess');
-        document.getElementById('weightInput').value = '';
-        document.getElementById('weightNotes').value = '';
-        setWeightDateDefault();
-        loadWeightData(targetId, getPhaseInfo());
+        if (!isNaN(weight)) {
+            var { error: wErr } = await supabase.from('weight_log').insert({
+                user_id: targetId,
+                weight: weight,
+                logged_date: logDate,
+                notes: notes
+            });
+            if (wErr) throw wErr;
+        }
+        if (!isNaN(bf) || !isNaN(smm)) {
+            var { error: bcErr } = await supabase.from('body_composition').insert({
+                user_id: targetId,
+                source: 'other',
+                logged_date: logDate,
+                body_fat_pct: isNaN(bf) ? null : bf,
+                skeletal_muscle_mass: isNaN(smm) ? null : smm
+            });
+            if (bcErr) throw bcErr;
+        }
+        flashMessage('progressSaveSuccess');
+        closeProgressModal();
+        document.getElementById('progressForm').reset();
+        loadWeightData(targetId, phase);
+        loadBodyCompData(targetId, phase);
     } catch (err) {
-        flashMessage('weightSaveError');
+        flashMessage('progressSaveError');
     }
 }
 
@@ -5074,6 +5033,8 @@ async function loadWeightData(userId, phase) {
         var { data, error } = await supabase.from('weight_log').select('*')
             .eq('user_id', userId).order('logged_date', { ascending: true });
         if (error || !data || data.length === 0) return;
+
+        weightDataCache = data;
 
         // Filter for current phase period
         var phaseStart = phase.startDate.toISOString().split('T')[0];
@@ -5085,24 +5046,87 @@ async function loadWeightData(userId, phase) {
             var currentW = phaseData[phaseData.length - 1].weight;
             var change = (currentW - startW).toFixed(1);
             document.getElementById('weightCurrent').textContent = currentW.toFixed(1);
-            document.getElementById('weightChange').textContent = (change > 0 ? '+' : '') + change;
             var changeEl = document.getElementById('weightChange');
+            changeEl.textContent = (change > 0 ? '+' : '') + change + ' lbs';
             if (change < 0) changeEl.style.color = 'var(--phase-cut)';
             else if (change > 0) changeEl.style.color = 'var(--phase-build)';
             else changeEl.style.color = 'var(--phase-maintain)';
         }
 
-        renderWeightChart(data);
+        renderProgressChart(weightDataCache, bodyCompDataCache);
         renderWeightHistory(phaseData);
     } catch (e) { /* fail silently */ }
 }
 
-function renderWeightChart(data) {
+function renderProgressChart(weightData, bodyCompData) {
     var ctx = document.getElementById('weightChart').getContext('2d');
     if (weightChart) weightChart.destroy();
 
-    var labels = data.map(function(d) { return d.logged_date; });
-    var weights = data.map(function(d) { return d.weight; });
+    // Merge all dates from both sources
+    var dateSet = {};
+    if (weightData) weightData.forEach(function(d) { dateSet[d.logged_date] = true; });
+    if (bodyCompData) bodyCompData.forEach(function(d) { dateSet[d.logged_date] = true; });
+    var allDates = Object.keys(dateSet).sort();
+    if (allDates.length === 0) return;
+
+    // Build lookup maps
+    var weightMap = {};
+    if (weightData) weightData.forEach(function(d) { weightMap[d.logged_date] = d.weight; });
+    var bfMap = {};
+    var smmMap = {};
+    if (bodyCompData) bodyCompData.forEach(function(d) {
+        if (d.body_fat_pct) bfMap[d.logged_date] = d.body_fat_pct;
+        if (d.skeletal_muscle_mass) smmMap[d.logged_date] = d.skeletal_muscle_mass;
+    });
+
+    var datasets = [];
+    // Weight — Purple, left Y axis
+    if (Object.keys(weightMap).length > 0) {
+        datasets.push({
+            label: 'Weight (lbs)',
+            data: allDates.map(function(d) { return weightMap[d] || null; }),
+            borderColor: '#9b59b6',
+            backgroundColor: 'rgba(155, 89, 182, 0.1)',
+            borderWidth: 2,
+            pointRadius: 4,
+            pointBackgroundColor: '#9b59b6',
+            yAxisID: 'y',
+            tension: 0.3,
+            spanGaps: true
+        });
+    }
+    // SMM — Green, left Y axis
+    if (Object.keys(smmMap).length > 0) {
+        datasets.push({
+            label: 'Skeletal Muscle (lbs)',
+            data: allDates.map(function(d) { return smmMap[d] || null; }),
+            borderColor: '#27AE60',
+            backgroundColor: 'rgba(39, 174, 96, 0.1)',
+            borderWidth: 2,
+            pointRadius: 4,
+            pointBackgroundColor: '#27AE60',
+            yAxisID: 'y',
+            tension: 0.3,
+            spanGaps: true
+        });
+    }
+    // Body Fat % — Red, right Y axis
+    if (Object.keys(bfMap).length > 0) {
+        datasets.push({
+            label: 'Body Fat %',
+            data: allDates.map(function(d) { return bfMap[d] || null; }),
+            borderColor: '#ff0003',
+            backgroundColor: 'rgba(255, 0, 3, 0.1)',
+            borderWidth: 2,
+            pointRadius: 4,
+            pointBackgroundColor: '#ff0003',
+            yAxisID: 'y1',
+            tension: 0.3,
+            spanGaps: true
+        });
+    }
+
+    if (datasets.length === 0) return;
 
     // Phase background bands plugin
     var phaseBandsPlugin = {
@@ -5112,8 +5136,8 @@ function renderWeightChart(data) {
             var yScale = chart.scales.y;
             var ctx2 = chart.ctx;
             if (!xScale || !yScale) return;
-            var year = new Date(data[0].logged_date).getFullYear();
-            var endYear = new Date(data[data.length - 1].logged_date).getFullYear();
+            var year = new Date(allDates[0]).getFullYear();
+            var endYear = new Date(allDates[allDates.length - 1]).getFullYear();
             for (var y = year; y <= endYear; y++) {
                 var quarters = [
                     { start: y+'-01-01', end: y+'-03-31', color: 'rgba(46,134,193,0.08)' },
@@ -5132,27 +5156,18 @@ function renderWeightChart(data) {
         }
     };
 
+    var hasRightAxis = Object.keys(bfMap).length > 0;
+
     weightChart = new Chart(ctx, {
         type: 'line',
-        data: {
-            labels: labels,
-            datasets: [{
-                label: 'Weight (lbs)',
-                data: weights,
-                borderColor: '#FFD202',
-                backgroundColor: 'rgba(255, 210, 2, 0.1)',
-                borderWidth: 2,
-                pointRadius: 4,
-                pointBackgroundColor: '#FFD202',
-                fill: true,
-                tension: 0.3
-            }]
-        },
+        data: { labels: allDates, datasets: datasets },
         options: {
             responsive: true,
             maintainAspectRatio: false,
             plugins: {
-                legend: { display: false },
+                legend: {
+                    labels: { color: '#ccc', font: { family: 'Montserrat', weight: '600' } }
+                },
                 tooltip: {
                     backgroundColor: '#1a1a1a',
                     titleColor: '#fff',
@@ -5169,8 +5184,19 @@ function renderWeightChart(data) {
                     grid: { color: 'rgba(51,51,51,0.5)' }
                 },
                 y: {
+                    type: 'linear',
+                    position: 'left',
+                    title: { display: true, text: 'lbs', color: '#ccc', font: { family: 'Montserrat', weight: '700' } },
                     ticks: { color: '#ccc', font: { family: 'Montserrat', size: 11 } },
                     grid: { color: 'rgba(51,51,51,0.5)' }
+                },
+                y1: {
+                    type: 'linear',
+                    position: 'right',
+                    display: hasRightAxis,
+                    title: { display: true, text: 'Body Fat %', color: '#ff0003', font: { family: 'Montserrat', weight: '700' } },
+                    ticks: { color: '#ff0003', font: { family: 'Montserrat', size: 11 } },
+                    grid: { drawOnChartArea: false }
                 }
             }
         },
@@ -5253,71 +5279,18 @@ async function deleteWeightEntry(id) {
 }
 
 // ===== BODY COMPOSITION =====
-var bodyCompChart = null;
 
-function setBodyCompDateDefault() {
-    document.getElementById('bodyCompDate').value = todayLocalString();
-}
+// openBodyCompModal / closeBodyCompModal kept as aliases for backward compat
+function openBodyCompModal() { openProgressModal(); }
+function closeBodyCompModal() { closeProgressModal(); }
 
-function openBodyCompModal() {
-    document.getElementById('bodyCompModal').classList.add('active');
-    document.body.style.overflow = 'hidden';
-}
-
-function closeBodyCompModal() {
-    document.getElementById('bodyCompModal').classList.remove('active');
-    document.body.style.overflow = '';
-}
-
-document.getElementById('bodyCompModal').addEventListener('click', function(e) {
-    if (e.target === this) closeBodyCompModal();
-});
-
-function toggleBodyCompFields() {
-    var source = document.getElementById('bodyCompSource').value;
-    document.getElementById('scanFields').style.display = (source === 'manual') ? 'none' : 'block';
-    document.getElementById('manualFields').style.display = (source === 'manual') ? 'block' : 'none';
-}
-
-async function saveBodyComp(e) {
-    e.preventDefault();
-    if (!supabase) return;
-    var targetId = getTargetUserId();
-    if (!targetId) return;
-    var source = document.getElementById('bodyCompSource').value;
-    var payload = {
-        user_id: targetId,
-        source: source,
-        logged_date: document.getElementById('bodyCompDate').value,
-        body_fat_pct: parseFloat(document.getElementById('bcBodyFat').value) || null,
-        skeletal_muscle_mass: parseFloat(document.getElementById('bcSMM').value) || null,
-        lean_body_mass: parseFloat(document.getElementById('bcLBM').value) || null,
-        body_fat_mass: parseFloat(document.getElementById('bcFatMass').value) || null,
-        total_body_water: parseFloat(document.getElementById('bcTBW').value) || null,
-        inbody_score: parseInt(document.getElementById('bcInBodyScore').value) || null,
-        bmr: parseInt(document.getElementById('bcBMR').value) || null,
-        waist: parseFloat(document.getElementById('bcWaist').value) || null,
-        hip: parseFloat(document.getElementById('bcHip').value) || null,
-        chest: parseFloat(document.getElementById('bcChest').value) || null,
-        arm: parseFloat(document.getElementById('bcArm').value) || null,
-        thigh: parseFloat(document.getElementById('bcThigh').value) || null
-    };
-    try {
-        var { error } = await supabase.from('body_composition').insert(payload);
-        if (error) throw error;
-        flashMessage('bodyCompSaveSuccess');
-        closeBodyCompModal();
-        loadBodyCompData(targetId);
-    } catch (err) {
-        flashMessage('bodyCompSaveError');
-    }
-}
-
-async function loadBodyCompData(userId) {
+async function loadBodyCompData(userId, phase) {
     try {
         var { data, error } = await supabase.from('body_composition').select('*')
             .eq('user_id', userId).order('logged_date', { ascending: true });
         if (error || !data || data.length === 0) return;
+
+        bodyCompDataCache = data;
 
         // Show latest entry summary
         var latest = data[data.length - 1];
@@ -5330,6 +5303,36 @@ async function loadBodyCompData(userId) {
         if (latest.skeletal_muscle_mass) {
             var smmEl = document.getElementById('progressSMM');
             if (smmEl) smmEl.textContent = latest.skeletal_muscle_mass;
+        }
+
+        // Compute BF% and SMM change within current phase
+        if (phase) {
+            var phaseStart = phase.startDate.toISOString().split('T')[0];
+            var phaseEnd = phase.endDate.toISOString().split('T')[0];
+            var phaseBC = data.filter(function(d) { return d.logged_date >= phaseStart && d.logged_date <= phaseEnd; });
+
+            if (phaseBC.length >= 2) {
+                // BF% change
+                var bfEntries = phaseBC.filter(function(d) { return d.body_fat_pct; });
+                if (bfEntries.length >= 2) {
+                    var bfChange = (bfEntries[bfEntries.length - 1].body_fat_pct - bfEntries[0].body_fat_pct).toFixed(1);
+                    var bfChangeEl = document.getElementById('progressBodyFatChange');
+                    if (bfChangeEl) {
+                        bfChangeEl.textContent = (bfChange > 0 ? '+' : '') + bfChange + '%';
+                        bfChangeEl.style.color = bfChange < 0 ? 'var(--phase-build)' : bfChange > 0 ? 'var(--phase-cut)' : 'var(--phase-maintain)';
+                    }
+                }
+                // SMM change
+                var smmEntries = phaseBC.filter(function(d) { return d.skeletal_muscle_mass; });
+                if (smmEntries.length >= 2) {
+                    var smmChange = (smmEntries[smmEntries.length - 1].skeletal_muscle_mass - smmEntries[0].skeletal_muscle_mass).toFixed(1);
+                    var smmChangeEl = document.getElementById('progressSMMChange');
+                    if (smmChangeEl) {
+                        smmChangeEl.textContent = (smmChange > 0 ? '+' : '') + smmChange + ' lbs';
+                        smmChangeEl.style.color = smmChange > 0 ? 'var(--phase-build)' : smmChange < 0 ? 'var(--phase-cut)' : 'var(--phase-maintain)';
+                    }
+                }
+            }
         }
 
         var summaryHtml = '';
@@ -5348,93 +5351,10 @@ async function loadBodyCompData(userId) {
             document.getElementById('bodyCompEmpty').style.display = 'none';
         }
 
-        // Render chart if we have body fat and/or SMM data across time
-        var chartData = data.filter(function(d) { return d.body_fat_pct || d.skeletal_muscle_mass; });
-        if (chartData.length >= 2) renderBodyCompChart(chartData);
+        renderProgressChart(weightDataCache, bodyCompDataCache);
     } catch (e) { /* fail silently */ }
 }
 
-function renderBodyCompChart(data) {
-    var el = document.getElementById('bodyCompChart');
-    if (!el) return;
-    var ctx = el.getContext('2d');
-    if (bodyCompChart) bodyCompChart.destroy();
-
-    var labels = data.map(function(d) { return d.logged_date; });
-    var bfData = data.map(function(d) { return d.body_fat_pct; });
-    var smmData = data.map(function(d) { return d.skeletal_muscle_mass; });
-
-    var datasets = [];
-    if (bfData.some(function(v) { return v !== null; })) {
-        datasets.push({
-            label: 'Body Fat %',
-            data: bfData,
-            borderColor: '#ff0003',
-            backgroundColor: 'rgba(255,0,3,0.1)',
-            borderWidth: 2,
-            pointRadius: 4,
-            pointBackgroundColor: '#ff0003',
-            yAxisID: 'y',
-            tension: 0.3
-        });
-    }
-    if (smmData.some(function(v) { return v !== null; })) {
-        datasets.push({
-            label: 'Skeletal Muscle (lbs)',
-            data: smmData,
-            borderColor: '#27AE60',
-            backgroundColor: 'rgba(39,174,96,0.1)',
-            borderWidth: 2,
-            pointRadius: 4,
-            pointBackgroundColor: '#27AE60',
-            yAxisID: 'y1',
-            tension: 0.3
-        });
-    }
-
-    bodyCompChart = new Chart(ctx, {
-        type: 'line',
-        data: { labels: labels, datasets: datasets },
-        options: {
-            responsive: true,
-            maintainAspectRatio: false,
-            plugins: {
-                legend: {
-                    labels: { color: '#ccc', font: { family: 'Montserrat', weight: '600' } }
-                },
-                tooltip: {
-                    backgroundColor: '#1a1a1a',
-                    titleColor: '#fff',
-                    bodyColor: '#ccc',
-                    borderColor: '#333',
-                    borderWidth: 1,
-                    titleFont: { family: 'Montserrat', weight: '700' },
-                    bodyFont: { family: 'Montserrat' }
-                }
-            },
-            scales: {
-                x: {
-                    ticks: { color: '#ccc', font: { family: 'Montserrat', size: 11 }, maxTicksLimit: 10 },
-                    grid: { color: 'rgba(51,51,51,0.5)' }
-                },
-                y: {
-                    type: 'linear',
-                    position: 'left',
-                    title: { display: true, text: 'Body Fat %', color: '#ff0003', font: { family: 'Montserrat', weight: '700' } },
-                    ticks: { color: '#ff0003', font: { family: 'Montserrat', size: 11 } },
-                    grid: { color: 'rgba(51,51,51,0.5)' }
-                },
-                y1: {
-                    type: 'linear',
-                    position: 'right',
-                    title: { display: true, text: 'Muscle Mass (lbs)', color: '#27AE60', font: { family: 'Montserrat', weight: '700' } },
-                    ticks: { color: '#27AE60', font: { family: 'Montserrat', size: 11 } },
-                    grid: { drawOnChartArea: false }
-                }
-            }
-        }
-    });
-}
 
 // ===== CHECKLIST =====
 function renderChecklist(phase) {
@@ -6075,9 +5995,6 @@ function useCalculatedMacros() {
     document.getElementById('macroWeightInput').value = results.dataset.weight;
     document.getElementById('macroActivityInput').value = results.dataset.activity;
 
-    // Auto-fill weight tracker
-    document.getElementById('weightInput').value = results.dataset.weight;
-
     // Open the collapsible save form
     var toggle = document.querySelector('#macroForm').closest('.collapsible-content').previousElementSibling;
     if (!toggle.classList.contains('open')) {
@@ -6199,7 +6116,7 @@ function showAthleteView() {
     if (currentUser) {
         loadMacros(currentUser.id, phase);
         loadWeightData(currentUser.id, phase);
-        loadBodyCompData(currentUser.id);
+        loadBodyCompData(currentUser.id, phase);
         loadChecklistProgress(currentUser.id, phase);
         loadCheckins(currentUser.id);
     }
@@ -6512,26 +6429,6 @@ function backToCoachList() {
     loadCoachView();
 }
 
-async function coachLogWeight() {
-    var weight = prompt('Enter weight (lbs):');
-    if (!weight || isNaN(parseFloat(weight))) return;
-    var targetId = viewingAthleteId;
-    if (!targetId || !supabase) return;
-    try {
-        var { error } = await supabase.from('weight_log').insert({
-            user_id: targetId,
-            weight: parseFloat(weight),
-            logged_date: todayLocalString()
-        });
-        if (error) throw error;
-        showToast('Weight logged: ' + parseFloat(weight).toFixed(1) + ' lbs');
-        // Refresh drilldown metrics
-        var latestName = document.getElementById('drilldownAthleteName').textContent;
-        drillIntoClient(targetId, latestName);
-    } catch (e) {
-        alert('Error logging weight.');
-    }
-}
 
 // ===== COACH NOTES =====
 function openCoachNoteModal() {
