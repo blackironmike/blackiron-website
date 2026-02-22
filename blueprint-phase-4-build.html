@@ -1499,9 +1499,49 @@
         .gated-content.unlocked {
             display: block;
         }
+
+        /* Skip Navigation */
+        .skip-link {
+            position: absolute;
+            top: -100%;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--yellow);
+            color: var(--black);
+            padding: 0.75rem 1.5rem;
+            font-weight: 700;
+            z-index: 10000;
+            text-decoration: none;
+            transition: top 0.2s;
+        }
+        .skip-link:focus {
+            top: 10px;
+        }
+
+        /* Focus Visible Styles */
+        a:focus-visible,
+        button:focus-visible,
+        input:focus-visible,
+        select:focus-visible,
+        textarea:focus-visible,
+        [tabindex]:focus-visible {
+            outline: 2px solid var(--yellow);
+            outline-offset: 2px;
+        }
+
+        /* Keyboard Nav for Submenus */
+        .nav-links > li:focus-within .submenu,
+        .has-submenu.submenu-open .submenu {
+            display: block;
+        }
+        .has-submenu:focus-within > a::after {
+            border-top-color: var(--yellow);
+            transform: translateY(2px);
+        }
     </style>
 </head>
 <body>
+    <a href="#main-content" class="skip-link">Skip to main content</a>
     <nav>
         <div class="nav-container">
             <div class="logo">
@@ -1558,6 +1598,8 @@
         <a href="#" class="mobile-cta" onclick="closeMobileNav(); openLeadModal(); return false;">Book Free Consultation</a>
         <a href="blueprint-dashboard" class="mobile-login" onclick="closeMobileNav()">My Dashboard</a>
     </div>
+
+    <main id="main-content">
 
     <!-- Auth Gate Overlay (shown when not authorized) -->
     <div class="gate-overlay" id="gateOverlay">
@@ -1945,6 +1987,9 @@
     </div>
 
     <!-- Footer -->
+
+    </main>
+
     <footer>
         <div class="footer-container">
             <div class="footer-section">
@@ -2345,6 +2390,77 @@
     if (!data || !data.session) return; // not logged in — gate stays visible
     // User is authenticated — grant access
     document.getElementById('gateOverlay').style.display = 'none';
+})();
+</script>
+<script>
+// ===== ACCESSIBILITY: KEYBOARD NAV & FOCUS TRAP =====
+(function() {
+    // --- Keyboard Navigation for Submenus ---
+    document.querySelectorAll('.has-submenu').forEach(function(item) {
+        var link = item.querySelector('a');
+        var sub = item.querySelector('.submenu');
+        if (!link || !sub) return;
+        link.setAttribute('aria-haspopup', 'true');
+        link.setAttribute('aria-expanded', 'false');
+        function openSub() { item.classList.add('submenu-open'); link.setAttribute('aria-expanded', 'true'); }
+        function closeSub() { item.classList.remove('submenu-open'); link.setAttribute('aria-expanded', 'false'); }
+        link.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                if (link.getAttribute('aria-expanded') === 'true') { closeSub(); }
+                else { openSub(); var f = sub.querySelector('a'); if (f) f.focus(); }
+            }
+            if (e.key === 'ArrowDown') { e.preventDefault(); openSub(); var f = sub.querySelector('a'); if (f) f.focus(); }
+        });
+        sub.addEventListener('keydown', function(e) {
+            var links = sub.querySelectorAll('a');
+            var idx = Array.prototype.indexOf.call(links, document.activeElement);
+            if (e.key === 'Escape') { closeSub(); link.focus(); }
+            if (e.key === 'ArrowDown' && idx < links.length - 1) { e.preventDefault(); links[idx + 1].focus(); }
+            if (e.key === 'ArrowUp') { e.preventDefault(); if (idx > 0) links[idx - 1].focus(); else { closeSub(); link.focus(); } }
+        });
+        item.addEventListener('focusout', function() {
+            setTimeout(function() { if (!item.contains(document.activeElement)) closeSub(); }, 0);
+        });
+    });
+
+    // --- Hamburger aria-expanded ---
+    var hamburger = document.querySelector('.hamburger');
+    if (hamburger) {
+        hamburger.setAttribute('aria-expanded', 'false');
+        var mn = document.getElementById('mobileNav');
+        if (mn) new MutationObserver(function() {
+            hamburger.setAttribute('aria-expanded', mn.classList.contains('active') ? 'true' : 'false');
+        }).observe(mn, { attributes: true, attributeFilter: ['class'] });
+    }
+
+    // --- Modal Focus Trapping ---
+    var prevFocus = null;
+    function trapFocus(modal) {
+        prevFocus = document.activeElement;
+        var els = modal.querySelectorAll('button, a[href], iframe, input, select, textarea, [tabindex]:not([tabindex="-1"])');
+        if (!els.length) return;
+        var first = els[0], last = els[els.length - 1];
+        modal._focusTrap = function(e) {
+            if (e.key !== 'Tab') return;
+            if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+            else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+        };
+        modal.addEventListener('keydown', modal._focusTrap);
+        first.focus();
+    }
+    function releaseFocus(modal) {
+        if (modal._focusTrap) { modal.removeEventListener('keydown', modal._focusTrap); delete modal._focusTrap; }
+        if (prevFocus) { prevFocus.focus(); prevFocus = null; }
+    }
+    document.querySelectorAll('.modal-overlay').forEach(function(modal) {
+        modal.setAttribute('role', 'dialog');
+        modal.setAttribute('aria-modal', 'true');
+        new MutationObserver(function() {
+            if (modal.classList.contains('active')) trapFocus(modal);
+            else releaseFocus(modal);
+        }).observe(modal, { attributes: true, attributeFilter: ['class'] });
+    });
 })();
 </script>
 </body>
