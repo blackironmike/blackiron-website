@@ -1756,7 +1756,7 @@
 </script>
 
 <script src="https://link.msgsndr.com/js/form_embed.js" type="text/javascript" defer></script>
-<script src="https://widgets.leadconnectorhq.com/loader.js" data-resources-url="https://widgets.leadconnectorhq.com/chat-widget/loader.js" data-widget-id="6995d6d76e6009387f78d31e"></script>
+<script src="https://widgets.leadconnectorhq.com/loader.js" data-resources-url="https://widgets.leadconnectorhq.com/chat-widget/loader.js" data-widget-id="6995d6d76e6009387f78d31e" defer></script>
 <script>
 // ===== BLUEPRINT AUTH GATE =====
 (async function() {
@@ -1765,8 +1765,8 @@
     if (!window.supabase) return;
     var sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
     var { data } = await sb.auth.getSession();
-    if (!data || !data.session) return; // not logged in â€” gate stays visible
-    // User is authenticated â€” grant access
+    if (!data || !data.session) return; // not logged in Ã¢â‚¬â€ gate stays visible
+    // User is authenticated Ã¢â‚¬â€ grant access
     document.getElementById('gateOverlay').style.display = 'none';
 })();
 </script>
