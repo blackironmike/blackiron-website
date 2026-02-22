@@ -374,7 +374,7 @@
             background: var(--black);
             border-bottom: 1px solid var(--medium-gray);
             display: grid;
-            grid-template-columns: repeat(4, 1fr);
+            grid-template-columns: repeat(5, 1fr);
             gap: 1rem;
         }
 
@@ -546,6 +546,25 @@
         .role-select:disabled {
             opacity: 0.4;
             cursor: not-allowed;
+        }
+
+        /* ===== COACH SELECT ===== */
+        .coach-select {
+            background: var(--dark-gray);
+            border: 1px solid var(--medium-gray);
+            color: var(--white);
+            padding: 0.35rem 0.6rem;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.8rem;
+            font-weight: 600;
+            cursor: pointer;
+            outline: none;
+            transition: border-color 0.3s ease;
+            max-width: 160px;
+        }
+
+        .coach-select:focus {
+            border-color: var(--yellow);
         }
 
         /* ===== ACCESS DENIED ===== */
@@ -874,7 +893,7 @@
 
         @media (max-width: 480px) {
             .admin-stats-bar {
-                grid-template-columns: 1fr 1fr;
+                grid-template-columns: repeat(3, 1fr);
             }
 
             .modal-container {
@@ -916,12 +935,6 @@
                 </li>
                 <li><a href="media.html">Media</a></li>
                 <li><a href="blog/">Blog</a></li>
-                <li class="has-submenu">
-                    <a href="blueprint.html">Nutrition</a>
-                    <ul class="submenu">
-                        <li><a href="blueprint.html">4-Phase Blueprint</a></li>
-                    </ul>
-                </li>
                 <li><a href="contact.html">Contact</a></li>
             </ul>
             <div class="nav-cta-group">
@@ -948,8 +961,6 @@
         <a href="getting-started.html#faqs" class="mobile-sub-link" onclick="closeMobileNav()">FAQs</a>
         <a href="media.html" onclick="closeMobileNav()">Media</a>
         <a href="blog/" onclick="closeMobileNav()">Blog</a>
-        <a href="blueprint.html" onclick="closeMobileNav()">Nutrition</a>
-        <a href="blueprint.html" class="mobile-sub-link" onclick="closeMobileNav()">4-Phase Blueprint</a>
         <a href="contact.html" onclick="closeMobileNav()">Contact</a>
         <a href="#" class="mobile-cta" onclick="closeMobileNav(); openLeadModal(); return false;">Book Free Consultation</a>
         <a href="blueprint-dashboard.html" class="mobile-login" onclick="closeMobileNav()">My Dashboard</a>
@@ -1008,6 +1019,10 @@
                 <div class="admin-stat-value" id="statOwners">0</div>
                 <div class="admin-stat-label">Owners</div>
             </div>
+            <div class="admin-stat">
+                <div class="admin-stat-value" id="statUnassigned">0</div>
+                <div class="admin-stat-label">Unassigned</div>
+            </div>
         </div>
 
         <!-- Toolbar -->
@@ -1029,6 +1044,7 @@
                         <th onclick="sortTable('display_name')">Name <span class="sort-icon" id="sort-display_name"><i class="fa-solid fa-sort"></i></span></th>
                         <th onclick="sortTable('email')">Email <span class="sort-icon" id="sort-email"><i class="fa-solid fa-sort"></i></span></th>
                         <th onclick="sortTable('role')">Role <span class="sort-icon" id="sort-role"><i class="fa-solid fa-sort"></i></span></th>
+                        <th onclick="sortTable('assigned_coach')">Assigned Coach <span class="sort-icon" id="sort-assigned_coach"><i class="fa-solid fa-sort"></i></span></th>
                         <th onclick="sortTable('created_at')">Joined <span class="sort-icon" id="sort-created_at"><i class="fa-solid fa-sort"></i></span></th>
                     </tr>
                 </thead>
@@ -1041,11 +1057,11 @@
     <!-- Confirmation Modal -->
     <div class="modal-overlay" id="confirmModal">
         <div class="modal-container">
-            <h3><i class="fa-solid fa-shield-halved" style="color: var(--yellow); margin-right: 0.5rem;"></i> Confirm Role Change</h3>
+            <h3 id="confirmTitle"><i class="fa-solid fa-shield-halved" style="color: var(--yellow); margin-right: 0.5rem;"></i> Confirm Change</h3>
             <p id="confirmMessage"></p>
             <div class="modal-actions">
                 <button class="btn-cancel" onclick="closeConfirmModal()">Cancel</button>
-                <button class="btn-confirm" onclick="confirmRoleChange()">Confirm</button>
+                <button class="btn-confirm" onclick="confirmPendingChange()">Confirm</button>
             </div>
         </div>
     </div>
@@ -1112,9 +1128,11 @@ var supabase = window.supabase ? window.supabase.createClient(SUPABASE_URL, SUPA
 var currentUser = null;
 var allUsers = [];
 var filteredUsers = [];
+var allAssignments = []; // { coach_id, athlete_id }
+var allCoaches = []; // profiles where role = 'coach' or 'owner'
 var sortField = 'created_at';
 var sortAsc = false;
-var pendingChange = null; // { id, newRole, email }
+var pendingChange = null; // { type: 'role'|'coach', ... }
 
 // ===== MOBILE NAV =====
 function toggleMobileNav() {
@@ -1167,18 +1185,31 @@ async function checkSession() {
 // ===== LOAD ALL USERS =====
 async function loadAllUsers() {
     try {
-        var { data, error } = await supabase
-            .from('profiles')
-            .select('id, email, display_name, role, created_at')
-            .order('created_at', { ascending: false });
+        var [usersRes, assignmentsRes] = await Promise.all([
+            supabase
+                .from('profiles')
+                .select('id, email, display_name, role, created_at')
+                .order('created_at', { ascending: false }),
+            supabase
+                .from('coach_athletes')
+                .select('coach_id, athlete_id')
+        ]);
 
-        if (error) {
-            console.error('Error loading users:', error);
-            showToast('Failed to load users: ' + error.message, true);
+        if (usersRes.error) {
+            console.error('Error loading users:', usersRes.error);
+            showToast('Failed to load users: ' + usersRes.error.message, true);
             return;
         }
 
-        allUsers = data || [];
+        allUsers = usersRes.data || [];
+        allAssignments = assignmentsRes.data || [];
+
+        // Build coaches list from profiles (coaches + owners)
+        allCoaches = allUsers.filter(function(u) {
+            var r = u.role || 'athlete';
+            return r === 'coach' || r === 'owner';
+        });
+
         filteredUsers = allUsers.slice();
         updateStats();
         applySortAndRender();
@@ -1191,10 +1222,20 @@ async function loadAllUsers() {
 // ===== UPDATE STATS =====
 function updateStats() {
     var total = allUsers.length;
-    var athletes = 0, coaches = 0, owners = 0;
+    var athletes = 0, coaches = 0, owners = 0, unassigned = 0;
     for (var i = 0; i < allUsers.length; i++) {
         var r = allUsers[i].role || 'athlete';
-        if (r === 'athlete') athletes++;
+        if (r === 'athlete') {
+            athletes++;
+            var hasCoach = false;
+            for (var j = 0; j < allAssignments.length; j++) {
+                if (allAssignments[j].athlete_id === allUsers[i].id) {
+                    hasCoach = true;
+                    break;
+                }
+            }
+            if (!hasCoach) unassigned++;
+        }
         else if (r === 'coach') coaches++;
         else if (r === 'owner') owners++;
     }
@@ -1202,6 +1243,7 @@ function updateStats() {
     document.getElementById('statAthletes').textContent = athletes;
     document.getElementById('statCoaches').textContent = coaches;
     document.getElementById('statOwners').textContent = owners;
+    document.getElementById('statUnassigned').textContent = unassigned;
 }
 
 // ===== FILTER =====
@@ -1259,6 +1301,11 @@ function applySortAndRender() {
         } else if (sortField === 'role') {
             valA = (a.role || 'athlete').toLowerCase();
             valB = (b.role || 'athlete').toLowerCase();
+        } else if (sortField === 'assigned_coach') {
+            var coachIdA = getAssignedCoachId(a.id);
+            var coachIdB = getAssignedCoachId(b.id);
+            valA = coachIdA ? getCoachName(coachIdA).toLowerCase() : '';
+            valB = coachIdB ? getCoachName(coachIdB).toLowerCase() : '';
         } else if (sortField === 'created_at') {
             valA = a.created_at || '';
             valB = b.created_at || '';
@@ -1275,12 +1322,32 @@ function applySortAndRender() {
     renderTable();
 }
 
+// ===== HELPER: get assigned coach id for an athlete =====
+function getAssignedCoachId(athleteId) {
+    for (var i = 0; i < allAssignments.length; i++) {
+        if (allAssignments[i].athlete_id === athleteId) {
+            return allAssignments[i].coach_id;
+        }
+    }
+    return null;
+}
+
+// ===== HELPER: get coach name by id =====
+function getCoachName(coachId) {
+    for (var i = 0; i < allCoaches.length; i++) {
+        if (allCoaches[i].id === coachId) {
+            return allCoaches[i].display_name || allCoaches[i].email || '—';
+        }
+    }
+    return '—';
+}
+
 // ===== RENDER TABLE =====
 function renderTable() {
     var tbody = document.getElementById('userTableBody');
 
     if (filteredUsers.length === 0) {
-        tbody.innerHTML = '<tr><td colspan="4" class="no-results">No users found</td></tr>';
+        tbody.innerHTML = '<tr><td colspan="5" class="no-results">No users found</td></tr>';
         return;
     }
 
@@ -1303,6 +1370,24 @@ function renderTable() {
         html += '<option value="owner"' + (role === 'owner' ? ' selected' : '') + '>Owner</option>';
         html += '</select>';
         html += '</td>';
+
+        // Assigned Coach column
+        html += '<td>';
+        if (role === 'athlete') {
+            var assignedCoachId = getAssignedCoachId(u.id);
+            html += '<select class="coach-select" onchange="changeCoach(\'' + escapeAttr(u.id) + '\', this.value, \'' + escapeAttr(email) + '\')">';
+            html += '<option value=""' + (!assignedCoachId ? ' selected' : '') + '>Unassigned</option>';
+            for (var c = 0; c < allCoaches.length; c++) {
+                var coach = allCoaches[c];
+                var coachName = coach.display_name || coach.email || '—';
+                html += '<option value="' + escapeAttr(coach.id) + '"' + (assignedCoachId === coach.id ? ' selected' : '') + '>' + escapeHtml(coachName) + '</option>';
+            }
+            html += '</select>';
+        } else {
+            html += '<span style="color: #666;">—</span>';
+        }
+        html += '</td>';
+
         html += '<td>' + escapeHtml(joined) + '</td>';
         html += '</tr>';
     }
@@ -1335,50 +1420,146 @@ function changeRole(id, newRole, email) {
     // If same role, revert select and do nothing
     if (currentRole === newRole) return;
 
-    pendingChange = { id: id, newRole: newRole, email: email, oldRole: currentRole };
+    pendingChange = { type: 'role', id: id, newRole: newRole, email: email, oldRole: currentRole };
 
+    document.getElementById('confirmTitle').innerHTML = '<i class="fa-solid fa-shield-halved" style="color: var(--yellow); margin-right: 0.5rem;"></i> Confirm Role Change';
     var msg = 'Change <span class="modal-email">' + escapeHtml(email) + '</span> from <span class="modal-role">' + escapeHtml(currentRole) + '</span> to <span class="modal-role">' + escapeHtml(newRole) + '</span>?';
     document.getElementById('confirmMessage').innerHTML = msg;
     document.getElementById('confirmModal').classList.add('active');
+}
+
+// ===== CHANGE COACH (opens modal) =====
+function changeCoach(athleteId, newCoachId, athleteEmail) {
+    var currentCoachId = getAssignedCoachId(athleteId);
+
+    // If same assignment, do nothing
+    if ((!newCoachId && !currentCoachId) || (newCoachId === currentCoachId)) return;
+
+    var coachName = newCoachId ? getCoachName(newCoachId) : null;
+
+    pendingChange = { type: 'coach', athleteId: athleteId, newCoachId: newCoachId || null, email: athleteEmail, coachName: coachName };
+
+    document.getElementById('confirmTitle').innerHTML = '<i class="fa-solid fa-user-group" style="color: var(--yellow); margin-right: 0.5rem;"></i> Confirm Coach Assignment';
+
+    var msg;
+    if (newCoachId) {
+        msg = 'Assign <span class="modal-email">' + escapeHtml(athleteEmail) + '</span> to <span class="modal-role">' + escapeHtml(coachName) + '</span>?';
+    } else {
+        msg = 'Remove coach assignment for <span class="modal-email">' + escapeHtml(athleteEmail) + '</span>?';
+    }
+    document.getElementById('confirmMessage').innerHTML = msg;
+    document.getElementById('confirmModal').classList.add('active');
+}
+
+// ===== CONFIRM PENDING CHANGE (dispatches to role or coach) =====
+function confirmPendingChange() {
+    if (!pendingChange) return;
+    if (pendingChange.type === 'role') {
+        confirmRoleChange();
+    } else if (pendingChange.type === 'coach') {
+        confirmCoachChange();
+    }
 }
 
 // ===== CONFIRM ROLE CHANGE =====
 async function confirmRoleChange() {
     if (!pendingChange) return;
 
-    closeConfirmModal();
+    var change = pendingChange;
+    pendingChange = null;
+    document.getElementById('confirmModal').classList.remove('active');
 
     try {
         var { error } = await supabase
             .from('profiles')
-            .update({ role: pendingChange.newRole })
-            .eq('id', pendingChange.id);
+            .update({ role: change.newRole })
+            .eq('id', change.id);
 
         if (error) {
             showToast('Failed to update role: ' + error.message, true);
-            // Revert the select in the table
             renderTable();
             return;
         }
 
         // Update local data
         for (var i = 0; i < allUsers.length; i++) {
-            if (allUsers[i].id === pendingChange.id) {
-                allUsers[i].role = pendingChange.newRole;
+            if (allUsers[i].id === change.id) {
+                allUsers[i].role = change.newRole;
                 break;
             }
         }
 
+        // Rebuild coaches list
+        allCoaches = allUsers.filter(function(u) {
+            var r = u.role || 'athlete';
+            return r === 'coach' || r === 'owner';
+        });
+
         updateStats();
         filterUsers();
-        showToast('Role updated: ' + pendingChange.email + ' is now ' + pendingChange.newRole, false);
+        showToast('Role updated: ' + change.email + ' is now ' + change.newRole, false);
     } catch (e) {
         console.error('Role change exception:', e);
         showToast('Failed to update role', true);
         renderTable();
     }
+}
 
+// ===== CONFIRM COACH CHANGE =====
+async function confirmCoachChange() {
+    if (!pendingChange) return;
+
+    var change = pendingChange;
     pendingChange = null;
+    document.getElementById('confirmModal').classList.remove('active');
+
+    try {
+        // Delete existing assignment for this athlete
+        var { error: delError } = await supabase
+            .from('coach_athletes')
+            .delete()
+            .eq('athlete_id', change.athleteId);
+
+        if (delError) {
+            showToast('Failed to update coach: ' + delError.message, true);
+            renderTable();
+            return;
+        }
+
+        // Remove from local assignments
+        allAssignments = allAssignments.filter(function(a) {
+            return a.athlete_id !== change.athleteId;
+        });
+
+        // If assigning a new coach (not unassigning), insert
+        if (change.newCoachId) {
+            var { error: insError } = await supabase
+                .from('coach_athletes')
+                .insert({ coach_id: change.newCoachId, athlete_id: change.athleteId });
+
+            if (insError) {
+                showToast('Failed to assign coach: ' + insError.message, true);
+                renderTable();
+                return;
+            }
+
+            // Add to local assignments
+            allAssignments.push({ coach_id: change.newCoachId, athlete_id: change.athleteId });
+        }
+
+        updateStats();
+        renderTable();
+
+        if (change.newCoachId) {
+            showToast(change.email + ' assigned to ' + change.coachName, false);
+        } else {
+            showToast('Coach removed for ' + change.email, false);
+        }
+    } catch (e) {
+        console.error('Coach change exception:', e);
+        showToast('Failed to update coach assignment', true);
+        renderTable();
+    }
 }
 
 // ===== CLOSE MODAL (revert select if cancelled) =====
@@ -1387,9 +1568,9 @@ function closeConfirmModal() {
 
     // If pending change exists and we're cancelling, revert the dropdown
     if (pendingChange) {
+        pendingChange = null;
         // Re-render to revert dropdowns to their actual values
         renderTable();
-        pendingChange = null;
     }
 }
 
