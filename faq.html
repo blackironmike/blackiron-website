@@ -569,6 +569,45 @@
             font-size: 0.9rem;
         }
 
+        /* ===== SCROLL REVEAL ===== */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.7s ease, transform 0.7s ease;
+        }
+
+        .reveal.revealed {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .reveal-scale {
+            opacity: 0;
+            transform: scale(0.9);
+            transition: opacity 0.7s ease, transform 0.7s ease;
+        }
+
+        .reveal-scale.revealed {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        .reveal-stagger > .reveal {
+            transition-delay: calc(var(--reveal-index, 0) * 0.1s);
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .reveal,
+            .reveal-scale {
+                opacity: 1;
+                transform: none;
+                transition: none;
+            }
+            .reveal-stagger > .reveal {
+                transition-delay: 0s;
+            }
+        }
+
         @media (max-width: 1024px) {
             .nav-container,
             .hero-container,
@@ -842,29 +881,29 @@
     <!-- Getting Started FAQs -->
     <section id="getting-started" class="section">
         <div class="section-container">
-            <div class="category-header">
+            <div class="category-header reveal">
                 <div class="category-icon"><i class="fa-solid fa-flag"></i></div>
                 <h2 class="category-title">Getting Started</h2>
                 <div class="category-divider"></div>
             </div>
-            <div class="faq-grid">
-                <div class="faq-card">
+            <div class="faq-grid reveal-stagger">
+                <div class="faq-card reveal">
                     <h3>Is Black Iron Athletics beginner-friendly?</h3>
                     <p>Yes, all fitness levels are welcome. Our coaches scale every workout to your ability so you can train safely and effectively from day one.</p>
                 </div>
-                <div class="faq-card">
+                <div class="faq-card reveal">
                     <h3>Do I need to be in shape before I start?</h3>
                     <p>No. We meet you where you are. Many of our members started with zero fitness experience. You just have to be willing to show up.</p>
                 </div>
-                <div class="faq-card">
+                <div class="faq-card reveal">
                     <h3>What's the first step to joining?</h3>
                     <p>Book a free consultation. We'll talk about your goals, give you a tour, and recommend the best program for you.</p>
                 </div>
-                <div class="faq-card">
+                <div class="faq-card reveal">
                     <h3>What if I'm working through an old injury — can you modify?</h3>
                     <p>Absolutely. Our coaches are experienced at working around injuries and limitations. Every movement can be modified or substituted so you can train safely while you recover.</p>
                 </div>
-                <div class="faq-card">
+                <div class="faq-card reveal">
                     <h3>What should I wear to my first class?</h3>
                     <p>Athletic clothes and shoes you can move in. Cross-training shoes work best. We provide everything else.</p>
                 </div>
@@ -875,29 +914,29 @@
     <!-- Classes & Training FAQs -->
     <section id="classes" class="section section-alt">
         <div class="section-container">
-            <div class="category-header">
+            <div class="category-header reveal">
                 <div class="category-icon"><i class="fa-solid fa-dumbbell"></i></div>
                 <h2 class="category-title">Classes & Training</h2>
                 <div class="category-divider"></div>
             </div>
-            <div class="faq-grid">
-                <div class="faq-card" style="background: var(--black);">
+            <div class="faq-grid reveal-stagger">
+                <div class="faq-card reveal" style="background: var(--black);">
                     <h3>What types of classes do you offer?</h3>
                     <p>We offer Strength & Conditioning, Olympic Weightlifting, and HYROX classes. We also offer personal training and nutrition coaching.</p>
                 </div>
-                <div class="faq-card" style="background: var(--black);">
+                <div class="faq-card reveal" style="background: var(--black);">
                     <h3>How long are classes?</h3>
                     <p>About 60 minutes including warm-up, skill/strength work, conditioning, and cool-down.</p>
                 </div>
-                <div class="faq-card" style="background: var(--black);">
+                <div class="faq-card reveal" style="background: var(--black);">
                     <h3>How many people are in each class?</h3>
                     <p>We keep class sizes small so coaches can give everyone personal attention and ensure safe, effective training.</p>
                 </div>
-                <div class="faq-card" style="background: var(--black);">
+                <div class="faq-card reveal" style="background: var(--black);">
                     <h3>What if I can't do a certain movement?</h3>
                     <p>Every movement has a modification. Our coaches will scale exercises to your ability level -- no one gets left behind.</p>
                 </div>
-                <div class="faq-card" style="background: var(--black);">
+                <div class="faq-card reveal" style="background: var(--black);">
                     <h3>How often should I work out?</h3>
                     <p>We recommend 3-5 times per week depending on your goals, but you can start with whatever frequency fits your schedule.</p>
                 </div>
@@ -908,29 +947,29 @@
     <!-- Membership & Pricing FAQs -->
     <section id="membership" class="section">
         <div class="section-container">
-            <div class="category-header">
+            <div class="category-header reveal">
                 <div class="category-icon"><i class="fa-solid fa-id-card"></i></div>
                 <h2 class="category-title">Membership & Pricing</h2>
                 <div class="category-divider"></div>
             </div>
-            <div class="faq-grid">
-                <div class="faq-card">
+            <div class="faq-grid reveal-stagger">
+                <div class="faq-card reveal">
                     <h3>What membership options do you offer?</h3>
                     <p>Standard (3x/week), Unlimited + Open Gym, Personal Training, and Open Gym Only. Visit our <a href="getting-started.html#membership" style="color: var(--yellow); text-decoration: none; font-weight: 700;">Getting Started page</a> for details.</p>
                 </div>
-                <div class="faq-card">
+                <div class="faq-card reveal">
                     <h3>Do you offer a day pass so I can try it out?</h3>
                     <p>Yes! For $25 you can try any class you'd like before joining. If you sign up, we'll credit that towards your first month!</p>
                 </div>
-                <div class="faq-card">
+                <div class="faq-card reveal">
                     <h3>What's your cancellation policy?</h3>
                     <p>We require 30 days written notice to cancel your membership. You can submit your cancellation request <a href="#" onclick="openCancelModal(); return false;" style="color: var(--yellow); text-decoration: none; font-weight: 700;">here</a>.</p>
                 </div>
-                <div class="faq-card">
+                <div class="faq-card reveal">
                     <h3>What's included in my membership?</h3>
                     <p>Depends on your plan. All memberships include expert coaching, structured programming, community events, and monthly body composition scans.</p>
                 </div>
-                <div class="faq-card">
+                <div class="faq-card reveal">
                     <h3>Do you offer military or first responder discounts?</h3>
                     <p>Yes! As a veteran-owned gym, we proudly support those who serve. Ask us about our military and first responder pricing.</p>
                 </div>

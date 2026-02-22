@@ -305,6 +305,45 @@
             font-size: 0.9rem;
         }
 
+        /* ===== SCROLL REVEAL ===== */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.7s ease, transform 0.7s ease;
+        }
+
+        .reveal.revealed {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .reveal-scale {
+            opacity: 0;
+            transform: scale(0.9);
+            transition: opacity 0.7s ease, transform 0.7s ease;
+        }
+
+        .reveal-scale.revealed {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        .reveal-stagger > .reveal {
+            transition-delay: calc(var(--reveal-index, 0) * 0.1s);
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .reveal,
+            .reveal-scale {
+                opacity: 1;
+                transform: none;
+                transition: none;
+            }
+            .reveal-stagger > .reveal {
+                transition-delay: 0s;
+            }
+        }
+
         @media (max-width: 1024px) {
             .nav-container,
             .booking-container,
@@ -516,11 +555,13 @@
     <!-- Booking Section -->
     <section class="booking-section">
         <div class="booking-container">
-            <div class="booking-subtitle">Take the First Step</div>
-            <h1 class="booking-title">Book Your Free Consultation</h1>
-            <p class="booking-description">No pressure, no sales pitch. Just an honest conversation about your goals and how we can help you get there. Pick a time that works for you.</p>
+            <div class="reveal">
+                <div class="booking-subtitle">Take the First Step</div>
+                <h1 class="booking-title">Book Your Free Consultation</h1>
+                <p class="booking-description">No pressure, no sales pitch. Just an honest conversation about your goals and how we can help you get there. Pick a time that works for you.</p>
+            </div>
 
-            <div class="booking-embed">
+            <div class="booking-embed reveal">
                 <iframe src="https://api.leadconnectorhq.com/widget/booking/aOyy4UPbwziVvHz35TCU" style="width: 100%; border: none; overflow: hidden;" scrolling="no" id="aOyy4UPbwziVvHz35TCU_1771041740943" title="Book a free consultation"></iframe>
                 <script src="https://link.msgsndr.com/js/form_embed.js" type="text/javascript" defer></script>
             </div>
@@ -760,5 +801,31 @@
 </script>
 
 <script src="https://widgets.leadconnectorhq.com/loader.js" data-resources-url="https://widgets.leadconnectorhq.com/chat-widget/loader.js" data-widget-id="6995d6d76e6009387f78d31e"></script>
+
+<script>
+// ===== SCROLL REVEAL =====
+(function() {
+    var staggerParents = document.querySelectorAll('.reveal-stagger');
+    staggerParents.forEach(function(parent) {
+        var children = parent.querySelectorAll('.reveal');
+        children.forEach(function(child, i) {
+            child.style.setProperty('--reveal-index', i);
+        });
+    });
+
+    var observer = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('revealed');
+                observer.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.15, rootMargin: '-50px' });
+
+    document.querySelectorAll('.reveal, .reveal-scale').forEach(function(el) {
+        observer.observe(el);
+    });
+})();
+</script>
 </body>
 </html>

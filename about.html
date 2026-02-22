@@ -677,6 +677,45 @@
             font-size: 0.9rem;
         }
 
+        /* ===== SCROLL REVEAL ===== */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.7s ease, transform 0.7s ease;
+        }
+
+        .reveal.revealed {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .reveal-scale {
+            opacity: 0;
+            transform: scale(0.9);
+            transition: opacity 0.7s ease, transform 0.7s ease;
+        }
+
+        .reveal-scale.revealed {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        .reveal-stagger > .reveal {
+            transition-delay: calc(var(--reveal-index, 0) * 0.1s);
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .reveal,
+            .reveal-scale {
+                opacity: 1;
+                transform: none;
+                transition: none;
+            }
+            .reveal-stagger > .reveal {
+                transition-delay: 0s;
+            }
+        }
+
         @media (max-width: 1024px) {
             .nav-container,
             .hero-container,
@@ -993,40 +1032,40 @@
     <!-- Mission Section -->
     <section id="mission" class="section">
         <div class="section-container">
-            <div class="section-header">
+            <div class="section-header reveal">
                 <div class="section-subtitle">Our Mission</div>
                 <h2 class="section-title">Why We Exist</h2>
             </div>
 
-            <div class="content-block">
+            <div class="content-block reveal">
                 <p>Black Iron Athletics was founded in 2013 with a simple belief: movement is medicine. As a veteran-owned business, we built this gym on the principles of discipline, integrity, and service. We believe in hard work, accountability, and showing up for each other every single day.</p>
                 <p>Over 12+ years, we've helped over 3,000 people transform their lives -- from complete beginners to experienced athletes chasing new PRs. We meet people where they are and help them become who they're meant to be. Getting fit isn't about quick fixes. It's about building a body that serves you for life.</p>
             </div>
 
-            <div class="section-header" style="margin-top: 5rem;">
+            <div class="section-header reveal" style="margin-top: 5rem;">
                 <h2 class="section-title">What We Believe</h2>
             </div>
 
-            <div class="beliefs-grid">
-                <div class="belief-card">
+            <div class="beliefs-grid reveal-stagger">
+                <div class="belief-card reveal">
                     <div class="belief-icon"><i class="fa-solid fa-shield-halved"></i></div>
                     <h4>Quality of Life Over Ego</h4>
                     <p>It's about building real strength and creating a body that serves you well for decades. When you feel strong and capable, confidence follows naturally.</p>
                 </div>
 
-                <div class="belief-card">
+                <div class="belief-card reveal">
                     <div class="belief-icon"><i class="fa-solid fa-people-group"></i></div>
                     <h4>Community & Accountability</h4>
                     <p>You don't have to figure this out on your own. Our coaches and your fellow athletes are here to support you, push you, and celebrate every win along the way.</p>
                 </div>
 
-                <div class="belief-card">
+                <div class="belief-card reveal">
                     <div class="belief-icon"><i class="fa-solid fa-brain"></i></div>
                     <h4>Mental Health Matters</h4>
                     <p>We know the mental battle can be harder than the physical one. That's why we've built a community that supports the whole person, not just the workout.</p>
                 </div>
 
-                <div class="belief-card">
+                <div class="belief-card reveal">
                     <div class="belief-icon"><i class="fa-solid fa-apple-whole"></i></div>
                     <h4>Nutrition Is the Foundation</h4>
                     <p>You can't out-train a bad diet. Nutrition is the most important piece of the puzzle — it fuels your performance, your recovery, and your results. We help you build habits that last.</p>
@@ -1038,13 +1077,13 @@
     <!-- Team Section -->
     <section id="team" class="section section-alt">
         <div class="section-container">
-            <div class="section-header">
+            <div class="section-header reveal">
                 <div class="section-subtitle">Our Team</div>
                 <h2 class="section-title">Meet the Coaches</h2>
                 <p style="font-size: 1.2rem; color: var(--light-gray); max-width: 800px; margin: 1rem auto 0;">Expert trainers with 12+ years of experience guiding every rep, every set, every milestone.</p>
             </div>
 
-            <div class="carousel-wrapper">
+            <div class="carousel-wrapper reveal">
                 <button class="carousel-arrow carousel-prev" aria-label="Previous coach"><i class="fa-solid fa-chevron-left"></i></button>
                 <div class="team-carousel" id="teamCarousel">
                     <a href="mike-manning.html" class="team-card" style="text-decoration: none; color: inherit;">
@@ -1115,13 +1154,13 @@
     <!-- What We Offer Section -->
     <section id="programs" class="section">
         <div class="section-container">
-            <div class="section-header">
+            <div class="section-header reveal">
                 <div class="section-subtitle">What We Offer</div>
                 <h2 class="section-title">Everything You Need to Succeed</h2>
             </div>
 
-            <div class="programs-grid">
-                <div class="program-card">
+            <div class="programs-grid reveal-stagger">
+                <div class="program-card reveal">
                     <img src="https://images.leadconnectorhq.com/image/f_webp/q_80/r_1200/u_https://assets.cdn.filesafe.space/snIUpSaFzz5WsavMB3QA/media/6859d48d4fe1870c2e37d104.png" alt="Group Training" class="program-image" loading="lazy">
                     <div class="program-content">
                         <h3 class="program-title">Group Training</h3>
@@ -1130,7 +1169,7 @@
                     </div>
                 </div>
 
-                <div class="program-card">
+                <div class="program-card reveal">
                     <img src="images/barbell-overhead.webp" alt="Personal Training" class="program-image" loading="lazy">
                     <div class="program-content">
                         <h3 class="program-title">Personal Training</h3>
@@ -1139,7 +1178,7 @@
                     </div>
                 </div>
 
-                <div class="program-card">
+                <div class="program-card reveal">
                     <img src="images/member-blessed.webp" alt="Nutrition Coaching" class="program-image" loading="lazy">
                     <div class="program-content">
                         <h3 class="program-title">Nutrition Coaching</h3>
@@ -1148,7 +1187,7 @@
                     </div>
                 </div>
 
-                <div class="program-card">
+                <div class="program-card reveal">
                     <img src="images/barbell-curl.webp" alt="Open Gym" class="program-image" loading="lazy">
                     <div class="program-content">
                         <h3 class="program-title">24/7 Open Gym</h3>
@@ -1162,7 +1201,7 @@
 
     <!-- CTA Section -->
     <section class="cta-section">
-        <div style="max-width: 100%; margin: 0 auto; padding: 0 2rem;">
+        <div class="reveal-scale" style="max-width: 100%; margin: 0 auto; padding: 0 2rem;">
             <h2 class="cta-title">Ready to Get Started?</h2>
             <p class="cta-subtitle">Join the Black Iron family and become the athlete you're meant to be.</p>
             <a href="#" onclick="openLeadModal(); return false;" class="btn-primary">Book Free Consultation</a>
@@ -1540,5 +1579,31 @@
 
 <script src="https://link.msgsndr.com/js/form_embed.js" type="text/javascript" defer></script>
 <script src="https://widgets.leadconnectorhq.com/loader.js" data-resources-url="https://widgets.leadconnectorhq.com/chat-widget/loader.js" data-widget-id="6995d6d76e6009387f78d31e"></script>
+
+<script>
+// ===== SCROLL REVEAL =====
+(function() {
+    var staggerParents = document.querySelectorAll('.reveal-stagger');
+    staggerParents.forEach(function(parent) {
+        var children = parent.querySelectorAll('.reveal');
+        children.forEach(function(child, i) {
+            child.style.setProperty('--reveal-index', i);
+        });
+    });
+
+    var observer = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('revealed');
+                observer.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.15, rootMargin: '-50px' });
+
+    document.querySelectorAll('.reveal, .reveal-scale').forEach(function(el) {
+        observer.observe(el);
+    });
+})();
+</script>
 </body>
 </html>

@@ -705,6 +705,45 @@
             font-size: 0.9rem;
         }
 
+        /* ===== SCROLL REVEAL ===== */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.7s ease, transform 0.7s ease;
+        }
+
+        .reveal.revealed {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .reveal-scale {
+            opacity: 0;
+            transform: scale(0.9);
+            transition: opacity 0.7s ease, transform 0.7s ease;
+        }
+
+        .reveal-scale.revealed {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        .reveal-stagger > .reveal {
+            transition-delay: calc(var(--reveal-index, 0) * 0.1s);
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .reveal,
+            .reveal-scale {
+                opacity: 1;
+                transform: none;
+                transition: none;
+            }
+            .reveal-stagger > .reveal {
+                transition-delay: 0s;
+            }
+        }
+
         @media (max-width: 1024px) {
             .nav-container,
             .hero-container,
@@ -993,7 +1032,7 @@
     <!-- ========== GROUP CLASSES ========== -->
     <section id="group-classes" class="section">
         <div class="section-container">
-            <div class="section-header">
+            <div class="section-header reveal">
                 <div class="section-subtitle">Coach-Led Classes</div>
                 <h2 class="section-title">Group Classes</h2>
             </div>
@@ -1003,18 +1042,18 @@
             </div>
 
             <!-- Class Type Highlight Cards -->
-            <div class="class-types-grid">
-                <div class="class-type-card type-sc">
+            <div class="class-types-grid reveal-stagger">
+                <div class="class-type-card type-sc reveal">
                     <div class="class-type-icon"><i class="fa-solid fa-weight-hanging"></i></div>
                     <h3>Strength &amp; Conditioning</h3>
                     <p>Our mainstay program. Built from over a decade of CrossFit coaching experience with a modern approach. Each 60-minute session includes functional strength work, HIIT-style metabolic conditioning (metcons), and skill development. Think AMRAPs, EMOMs, and workout-of-the-day style programming -- all with smarter structure and expert coaching.</p>
                 </div>
-                <div class="class-type-card type-weightlifting">
+                <div class="class-type-card type-weightlifting reveal">
                     <div class="class-type-icon"><i class="fa-solid fa-dumbbell"></i></div>
                     <h3>Weightlifting</h3>
                     <p>Olympic weightlifting focused on improving your lifts and maximizing your potential with a barbell. Whether you're learning the clean &amp; jerk for the first time or chasing a new PR, this class is built for progress.</p>
                 </div>
-                <div class="class-type-card type-hyrox">
+                <div class="class-type-card type-hyrox reveal">
                     <div class="class-type-icon"><i class="fa-solid fa-person-running"></i></div>
                     <h3>Hyrox</h3>
                     <p>Focused on getting you race day ready. A blend of running and functional fitness stations designed to prepare you for Hyrox competition or just push your endurance to the next level.</p>
@@ -1022,7 +1061,7 @@
             </div>
 
             <!-- Philosophy Callout -->
-            <div class="callout-block">
+            <div class="callout-block reveal">
                 <p>"All movement is good movement. We offer different classes because people have different passions — but the mission never changes: sweat together, grow together, and enjoy the process."</p>
             </div>
 
@@ -1036,7 +1075,7 @@
     <!-- ========== PERSONAL TRAINING ========== -->
     <section id="personal-training" class="section section-alt">
         <div class="section-container">
-            <div class="section-header">
+            <div class="section-header reveal">
                 <div class="section-subtitle">1-on-1 Coaching</div>
                 <h2 class="section-title">Personal Training</h2>
             </div>
@@ -1045,20 +1084,20 @@
                 <p>Personal training at Black Iron Athletics is dedicated 1-on-1 time with a certified coach who designs everything around YOU. Every session, every rep, every program detail is built specifically for your body, your goals, and your timeline. Your programs are customized, progressive, and data-driven so you always know where you stand and exactly what comes next.</p>
             </div>
 
-            <div class="feature-grid">
-                <div class="feature-card-centered type-pt" style="background: var(--black);">
+            <div class="feature-grid reveal-stagger">
+                <div class="feature-card-centered type-pt reveal" style="background: var(--black);">
                     <div class="feature-icon"><i class="fa-solid fa-clipboard-list"></i></div>
                     <h3>Custom Programming</h3>
                     <p>Every program is built specifically for your goals -- no cookie-cutter templates.</p>
                 </div>
 
-                <div class="feature-card-centered type-pt" style="background: var(--black);">
+                <div class="feature-card-centered type-pt reveal" style="background: var(--black);">
                     <div class="feature-icon"><i class="fa-solid fa-user-shield"></i></div>
                     <h3>1-on-1 Coaching</h3>
                     <p>Undivided attention every session, focused entirely on you.</p>
                 </div>
 
-                <div class="feature-card-centered type-pt" style="background: var(--black);">
+                <div class="feature-card-centered type-pt reveal" style="background: var(--black);">
                     <div class="feature-icon"><i class="fa-solid fa-bullseye"></i></div>
                     <h3>Form &amp; Technique</h3>
                     <p>Detailed movement correction so you move better and lift safer.</p>
@@ -1074,7 +1113,7 @@
     <!-- ========== NUTRITION COACHING ========== -->
     <section id="nutrition-coaching" class="section">
         <div class="section-container">
-            <div class="section-header">
+            <div class="section-header reveal">
                 <div class="section-subtitle">Fuel Your Results</div>
                 <h2 class="section-title">Nutrition Coaching</h2>
             </div>
@@ -1083,20 +1122,20 @@
                 <p>Nutrition coaching at Black Iron Athletics is a sustainable, personalized approach to fueling your body the right way. You'll work 1-on-1 with a dedicated coach who builds a nutrition strategy designed specifically for you -- whether that means tracking macros, intuitive eating, or something in between. No guilt, no gimmicks, just a clear plan and real results that last.</p>
             </div>
 
-            <div class="feature-grid">
-                <div class="feature-card-centered type-nutrition">
+            <div class="feature-grid reveal-stagger">
+                <div class="feature-card-centered type-nutrition reveal">
                     <div class="feature-icon"><i class="fa-solid fa-apple-whole"></i></div>
                     <h3>Personalized Meal Planning</h3>
                     <p>Custom nutrition plans built around your lifestyle and food preferences.</p>
                 </div>
 
-                <div class="feature-card-centered type-nutrition">
+                <div class="feature-card-centered type-nutrition reveal">
                     <div class="feature-icon"><i class="fa-solid fa-clipboard-list"></i></div>
                     <h3>1-on-1 Coaching</h3>
                     <p>Regular check-ins to review progress, make adjustments, and keep you on track.</p>
                 </div>
 
-                <div class="feature-card-centered type-nutrition">
+                <div class="feature-card-centered type-nutrition reveal">
                     <div class="feature-icon"><i class="fa-solid fa-seedling"></i></div>
                     <h3>Habit-Based Approach</h3>
                     <p>Sustainable habits that stick -- not crash diets that burn out.</p>
@@ -1113,7 +1152,7 @@
     <!-- ========== 24/7 OPEN GYM ========== -->
     <section id="open-gym" class="section section-alt">
         <div class="section-container">
-            <div class="section-header">
+            <div class="section-header reveal">
                 <div class="section-subtitle">Train on Your Schedule</div>
                 <h2 class="section-title">24/7 Open Gym</h2>
             </div>
@@ -1122,18 +1161,18 @@
                 <p>Open Gym gives you access to the Black Iron Athletics facility between classes and after hours — 24 hours a day, 7 days a week. It's the ultimate flexibility for athletes who want to train on their own schedule. Entry is simple and secure with key fob access, and the facility is climate-controlled and well-maintained. You can also follow our structured programming at your own pace.</p>
             </div>
 
-            <div class="class-types-grid">
-                <div class="class-type-card" style="background: var(--black);">
+            <div class="class-types-grid reveal-stagger">
+                <div class="class-type-card reveal" style="background: var(--black);">
                     <div class="class-type-icon"><i class="fa-solid fa-clock"></i></div>
                     <h3>24/7 Access</h3>
                     <p>Train between classes and after hours — the gym is always open for you.</p>
                 </div>
-                <div class="class-type-card" style="background: var(--black);">
+                <div class="class-type-card reveal" style="background: var(--black);">
                     <div class="class-type-icon"><i class="fa-solid fa-dumbbell"></i></div>
                     <h3>Full Equipment Access</h3>
                     <p>Barbells, dumbbells, rigs, cardio machines, and more.</p>
                 </div>
-                <div class="class-type-card" style="background: var(--black);">
+                <div class="class-type-card reveal" style="background: var(--black);">
                     <div class="class-type-icon"><i class="fa-solid fa-clipboard-list"></i></div>
                     <h3>Access to Programming</h3>
                     <p>Follow expert-designed workouts at your own pace.</p>
@@ -1148,7 +1187,7 @@
 
     <!-- ========== FINAL CTA ========== -->
     <section class="cta-section">
-        <div style="max-width: 100%; margin: 0 auto; padding: 0 2rem;">
+        <div class="reveal-scale" style="max-width: 100%; margin: 0 auto; padding: 0 2rem;">
             <h2 class="cta-title">Ready to Get Started?</h2>
             <p class="cta-subtitle">Book your free consultation and find the program that fits your goals.</p>
             <a href="#" onclick="openLeadModal(); return false;" class="btn-primary">Book Free Consultation</a>
@@ -1486,5 +1525,31 @@
 
 <script src="https://link.msgsndr.com/js/form_embed.js" type="text/javascript" defer></script>
 <script src="https://widgets.leadconnectorhq.com/loader.js" data-resources-url="https://widgets.leadconnectorhq.com/chat-widget/loader.js" data-widget-id="6995d6d76e6009387f78d31e"></script>
+
+<script>
+// ===== SCROLL REVEAL =====
+(function() {
+    var staggerParents = document.querySelectorAll('.reveal-stagger');
+    staggerParents.forEach(function(parent) {
+        var children = parent.querySelectorAll('.reveal');
+        children.forEach(function(child, i) {
+            child.style.setProperty('--reveal-index', i);
+        });
+    });
+
+    var observer = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('revealed');
+                observer.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.15, rootMargin: '-50px' });
+
+    document.querySelectorAll('.reveal, .reveal-scale').forEach(function(el) {
+        observer.observe(el);
+    });
+})();
+</script>
 </body>
 </html>

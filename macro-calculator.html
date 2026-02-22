@@ -1047,6 +1047,45 @@
             color: var(--yellow);
         }
 
+        /* ===== SCROLL REVEAL ===== */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.7s ease, transform 0.7s ease;
+        }
+
+        .reveal.revealed {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .reveal-scale {
+            opacity: 0;
+            transform: scale(0.9);
+            transition: opacity 0.7s ease, transform 0.7s ease;
+        }
+
+        .reveal-scale.revealed {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        .reveal-stagger > .reveal {
+            transition-delay: calc(var(--reveal-index, 0) * 0.1s);
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .reveal,
+            .reveal-scale {
+                opacity: 1;
+                transform: none;
+                transition: none;
+            }
+            .reveal-stagger > .reveal {
+                transition-delay: 0s;
+            }
+        }
+
         /* ===== RESPONSIVE ===== */
         @media (max-width: 1024px) {
             .nav-container,
@@ -1229,7 +1268,7 @@
     <!-- Intro Section -->
     <section class="section">
         <div class="section-container">
-            <div class="section-header">
+            <div class="section-header reveal">
                 <div class="section-subtitle">Fuel Your Goals</div>
                 <h2 class="section-title">Know Your Numbers</h2>
                 <p class="section-description">Your body burns a specific number of calories each day just to function — your Total Daily Energy Expenditure (TDEE). Understanding your TDEE and how to split those calories across protein, carbs, and fat is the foundation of any nutrition plan. Whether you want to lose fat, build muscle, or maintain your current physique, it all starts with knowing your numbers.</p>
@@ -1240,7 +1279,7 @@
     <!-- Calculator Form Section -->
     <section id="calculator" class="section section-alt">
         <div class="section-container">
-            <div class="section-header">
+            <div class="section-header reveal">
                 <div class="section-subtitle">Step 1</div>
                 <h2 class="section-title">Enter Your Details</h2>
             </div>
@@ -1406,26 +1445,26 @@
     <!-- Why Nutrition Matters Section -->
     <section id="why-nutrition" class="section">
         <div class="section-container">
-            <div class="section-header">
+            <div class="section-header reveal">
                 <div class="section-subtitle">Train Hard, Eat Smart</div>
                 <h2 class="section-title">Why Nutrition Matters</h2>
                 <p class="section-description">You can't out-train a bad diet. Dialing in your nutrition amplifies every hour you spend in the gym.</p>
             </div>
 
-            <div class="features-grid">
-                <div class="feature-card">
+            <div class="features-grid reveal-stagger">
+                <div class="feature-card reveal">
                     <div class="feature-icon"><i class="fa-solid fa-bolt"></i></div>
                     <h3>Fuel Performance</h3>
                     <p>The right macros give you the energy to push harder in every workout. Carbs fuel intensity, protein drives recovery, and fats keep your hormones balanced.</p>
                 </div>
 
-                <div class="feature-card">
+                <div class="feature-card reveal">
                     <div class="feature-icon"><i class="fa-solid fa-chart-line"></i></div>
                     <h3>Accelerate Results</h3>
                     <p>Whether you're cutting fat or building muscle, nutrition is the accelerator. Training tells your body what to do — food gives it the resources to do it.</p>
                 </div>
 
-                <div class="feature-card">
+                <div class="feature-card reveal">
                     <div class="feature-icon"><i class="fa-solid fa-heart-pulse"></i></div>
                     <h3>Build Sustainable Habits</h3>
                     <p>Crash diets don't work. Understanding your macros gives you a flexible framework you can stick with for life — no restrictions, no guesswork.</p>
@@ -1436,7 +1475,7 @@
 
     <!-- Blueprint CTA Section -->
     <section class="section section-alt">
-        <div class="section-container">
+        <div class="section-container reveal-scale">
             <div class="section-header">
                 <div class="section-subtitle">Take It Further</div>
                 <h2 class="section-title">Know When to Use Your Numbers</h2>
@@ -1452,14 +1491,14 @@
     <!-- Thorne Supplements Section -->
     <section class="section">
         <div class="section-container">
-            <div class="section-header">
+            <div class="section-header reveal">
                 <div class="section-subtitle">Trusted Supplements</div>
                 <h2 class="section-title">Fuel Your Results</h2>
                 <p class="section-description">We partner with Thorne because they set the standard for quality. Every product is NSF Certified for Sport and trusted by over 100 professional sports teams. If you are serious about your training, your supplements should be too.</p>
             </div>
 
-            <div class="features-grid">
-                <div class="feature-card">
+            <div class="features-grid reveal-stagger">
+                <div class="feature-card reveal">
                     <img src="images/creatine-bcaa.png" alt="Thorne Creatine + BCAAs" style="width: 100%; max-width: 250px; height: auto; margin-bottom: 1.5rem;" loading="lazy">
                     <h3>Creatine + BCAAs</h3>
                     <p>5g creatine plus 5g BCAAs in a 2:1:1 ratio. Peach mango flavor built for strength, endurance, and faster recovery between training sessions.</p>
@@ -1468,7 +1507,7 @@
                     </div>
                 </div>
 
-                <div class="feature-card">
+                <div class="feature-card reveal">
                     <img src="images/protein.png" alt="Thorne Whey Protein" style="width: 100%; max-width: 250px; height: auto; margin-bottom: 1.5rem;" loading="lazy">
                     <h3>Whey Protein</h3>
                     <p>NSF Certified for Sport whey protein to support muscle recovery and growth. The clean protein source your training demands.</p>
@@ -1477,7 +1516,7 @@
                     </div>
                 </div>
 
-                <div class="feature-card">
+                <div class="feature-card reveal">
                     <img src="images/foundational-stack.png" alt="Thorne Foundational Stack" style="width: 100%; max-width: 250px; height: auto; margin-bottom: 1.5rem;" loading="lazy">
                     <h3>Foundational Stack</h3>
                     <p>Everything you need in one bundle. A complete supplement stack to cover your daily nutritional bases and support overall performance.</p>
@@ -1497,39 +1536,39 @@
     <!-- FAQ Section -->
     <section id="faqs" class="section">
         <div class="section-container">
-            <div class="section-header">
+            <div class="section-header reveal">
                 <div class="section-subtitle">Questions?</div>
                 <h2 class="section-title">Nutrition FAQs</h2>
                 <p class="section-description">Common questions about TDEE, macros, and nutrition coaching</p>
             </div>
 
-            <div class="faq-container">
-                <div class="faq-item">
+            <div class="faq-container reveal-stagger">
+                <div class="faq-item reveal">
                     <h3 class="faq-question">What is TDEE?</h3>
                     <p class="faq-answer">TDEE stands for Total Daily Energy Expenditure. It's the total number of calories your body burns in a day, including your basal metabolic rate (BMR), physical activity, and the energy used to digest food. Knowing your TDEE is essential for setting calorie targets.</p>
                 </div>
 
-                <div class="faq-item">
+                <div class="faq-item reveal">
                     <h3 class="faq-question">What are macros?</h3>
                     <p class="faq-answer">Macros — short for macronutrients — are the three main nutrients your body needs in large amounts: protein, carbohydrates, and fat. Each plays a different role in performance, recovery, and body composition. Tracking macros helps you eat the right amount of each.</p>
                 </div>
 
-                <div class="faq-item">
+                <div class="faq-item reveal">
                     <h3 class="faq-question">How accurate is this calculator?</h3>
                     <p class="faq-answer">This calculator uses the Mifflin-St Jeor equation, one of the most validated formulas for estimating metabolic rate. It's a great starting point, but individual factors like genetics, muscle mass, and metabolic adaptation can affect your actual needs. For precise numbers, an InBody scan provides exact body composition data.</p>
                 </div>
 
-                <div class="faq-item">
+                <div class="faq-item reveal">
                     <h3 class="faq-question">Should I track macros or just calories?</h3>
                     <p class="faq-answer">Calories determine whether you gain or lose weight, but macros determine what you gain or lose. Tracking macros ensures you're getting enough protein to build and preserve muscle, enough carbs to fuel your training, and enough fat for hormonal health.</p>
                 </div>
 
-                <div class="faq-item">
+                <div class="faq-item reveal">
                     <h3 class="faq-question">How do I know my exact body composition?</h3>
                     <p class="faq-answer">We use the InBody 270 body composition scanner at Black Iron Athletics. It measures your lean muscle mass, body fat percentage, water balance, and more in about 60 seconds. Every consultation includes a free InBody scan so we can build your plan on real data — not guesswork.</p>
                 </div>
 
-                <div class="faq-item">
+                <div class="faq-item reveal">
                     <h3 class="faq-question">Do you offer nutrition coaching?</h3>
                     <p class="faq-answer">Yes. We offer personalized nutrition coaching that includes an InBody body composition scan, custom macro targets, meal planning guidance, and ongoing check-ins. Book a free consultation to learn more about how we can help you reach your goals faster.</p>
                 </div>
@@ -1539,7 +1578,7 @@
 
     <!-- Subscribe CTA Section -->
     <section class="cta-section">
-        <div style="max-width: 100%; margin: 0 auto; padding: 0 2rem;">
+        <div style="max-width: 100%; margin: 0 auto; padding: 0 2rem;" class="reveal-scale">
             <h2 class="cta-title">Get Training & Nutrition Tips</h2>
             <p class="cta-subtitle">Subscribe for weekly tips on training, nutrition, and supplements — straight from the coaches at Black Iron Athletics.</p>
             <a href="#" onclick="openSubscribeModal(); return false;" class="btn-primary"><i class="fa-solid fa-envelope" style="margin-right: 0.5rem;"></i> Subscribe</a>
@@ -1548,7 +1587,7 @@
 
     <!-- Final CTA Section -->
     <section class="section">
-        <div style="max-width: 100%; margin: 0 auto; padding: 0 4rem; text-align: center;">
+        <div style="max-width: 100%; margin: 0 auto; padding: 0 4rem; text-align: center;" class="reveal-scale">
             <h2 class="section-title">Ready to Dial In Your Nutrition?</h2>
             <p class="section-description" style="margin-bottom: 3rem;">Book a free consultation and get a personalized nutrition plan built on real data.</p>
             <a href="#" onclick="openLeadModal(); return false;" class="btn-primary">Book Free Consultation</a>
@@ -2030,5 +2069,31 @@
 
 <script src="https://link.msgsndr.com/js/form_embed.js" type="text/javascript" defer></script>
 <script src="https://widgets.leadconnectorhq.com/loader.js" data-resources-url="https://widgets.leadconnectorhq.com/chat-widget/loader.js" data-widget-id="6995d6d76e6009387f78d31e"></script>
+
+<script>
+// ===== SCROLL REVEAL =====
+(function() {
+    var staggerParents = document.querySelectorAll('.reveal-stagger');
+    staggerParents.forEach(function(parent) {
+        var children = parent.querySelectorAll('.reveal');
+        children.forEach(function(child, i) {
+            child.style.setProperty('--reveal-index', i);
+        });
+    });
+
+    var observer = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('revealed');
+                observer.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.15, rootMargin: '-50px' });
+
+    document.querySelectorAll('.reveal, .reveal-scale').forEach(function(el) {
+        observer.observe(el);
+    });
+})();
+</script>
 </body>
 </html>

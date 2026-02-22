@@ -343,6 +343,45 @@
         .mobile-nav-overlay .mobile-cta { margin-top: 1.5rem; background: var(--yellow); color: var(--black); padding: 1rem 2.5rem; font-size: 1rem; font-weight: 900; text-transform: uppercase; letter-spacing: 1px; border: 2px solid var(--yellow); transition: all 0.3s ease; }
         .mobile-nav-overlay .mobile-cta:hover { background: transparent; color: var(--yellow); }
 
+        /* ===== SCROLL REVEAL ===== */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.7s ease, transform 0.7s ease;
+        }
+
+        .reveal.revealed {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .reveal-scale {
+            opacity: 0;
+            transform: scale(0.9);
+            transition: opacity 0.7s ease, transform 0.7s ease;
+        }
+
+        .reveal-scale.revealed {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        .reveal-stagger > .reveal {
+            transition-delay: calc(var(--reveal-index, 0) * 0.1s);
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .reveal,
+            .reveal-scale {
+                opacity: 1;
+                transform: none;
+                transition: none;
+            }
+            .reveal-stagger > .reveal {
+                transition-delay: 0s;
+            }
+        }
+
         @media (max-width: 1024px) {
             .nav-container, .article-hero-container, .footer-container { padding-left: 2rem; padding-right: 2rem; }
             .article-content { padding: 4rem 2rem; }
@@ -438,7 +477,7 @@
     <div class="article-content">
 
         <!-- Photo + Intro Row -->
-        <div class="bio-intro">
+        <div class="bio-intro reveal">
             <img src="images/owner-headcoach-mike.webp" alt="Mike Manning" class="bio-photo" loading="lazy">
             <div class="bio-facts">
                 <h2>At a Glance</h2>
@@ -462,7 +501,7 @@
         </div>
 
         <!-- Full Bio -->
-        <div class="article-body">
+        <div class="article-body reveal">
             <p>Mike Manning is a U.S. Marine Corps veteran, coach, and the owner of Black Iron Athletics in Frisco, TX. A wrestler and powerlifter in high school, Mike began personal training as a teenager and continued coaching through two combat tours overseas. He has been coaching professionally since 2012 and holds certifications including USA Weightlifting Level 1, CrossFit Level 2, Certified Personal Trainer, and CrossFit Gymnastics.</p>
 
             <p>After a decade running Black Iron as a CrossFit affiliate, Mike stepped away from the brand to sharpen the gym's mission — helping everyday people find their identity as athletes through movement, nutrition, and community.</p>
@@ -471,21 +510,21 @@
 
             <p>When he's not coaching or programming workouts, he's home with his wife and two sons.</p>
 
-            <h2>Certifications</h2>
-            <div class="certifications-grid">
-                <div class="cert-item">
+            <h2 class="reveal">Certifications</h2>
+            <div class="certifications-grid reveal-stagger">
+                <div class="cert-item reveal">
                     <i class="fa-solid fa-certificate"></i>
                     <span>USA Weightlifting Level 1</span>
                 </div>
-                <div class="cert-item">
+                <div class="cert-item reveal">
                     <i class="fa-solid fa-certificate"></i>
                     <span>CrossFit Level 2</span>
                 </div>
-                <div class="cert-item">
+                <div class="cert-item reveal">
                     <i class="fa-solid fa-certificate"></i>
                     <span>Certified Personal Trainer</span>
                 </div>
-                <div class="cert-item">
+                <div class="cert-item reveal">
                     <i class="fa-solid fa-certificate"></i>
                     <span>CrossFit Gymnastics</span>
                 </div>
@@ -493,14 +532,14 @@
         </div>
 
         <!-- CTA Box -->
-        <div class="article-cta-box">
+        <div class="article-cta-box reveal">
             <h3>Train with Mike</h3>
             <p>Book your free consultation and find out what Black Iron Athletics can do for you.</p>
             <a href="#" onclick="openLeadModal(); return false;" class="btn-primary">Book Free Consultation</a>
         </div>
 
         <!-- Subscribe CTA Box -->
-        <div class="article-cta-box" style="margin-top: 2rem; border-left-color: var(--white);">
+        <div class="article-cta-box reveal" style="margin-top: 2rem; border-left-color: var(--white);">
             <h3>Get Tips from the Coaches</h3>
             <p>Subscribe for weekly training, nutrition, and supplement tips from the coaches at Black Iron Athletics.</p>
             <a href="#" onclick="openSubscribeModal(); return false;" class="btn-primary"><i class="fa-solid fa-envelope" style="margin-right: 0.5rem;"></i> Subscribe</a>
@@ -764,5 +803,31 @@
 
 <script src="https://link.msgsndr.com/js/form_embed.js" type="text/javascript" defer></script>
 <script src="https://widgets.leadconnectorhq.com/loader.js" data-resources-url="https://widgets.leadconnectorhq.com/chat-widget/loader.js" data-widget-id="6995d6d76e6009387f78d31e"></script>
+
+<script>
+// ===== SCROLL REVEAL =====
+(function() {
+    var staggerParents = document.querySelectorAll('.reveal-stagger');
+    staggerParents.forEach(function(parent) {
+        var children = parent.querySelectorAll('.reveal');
+        children.forEach(function(child, i) {
+            child.style.setProperty('--reveal-index', i);
+        });
+    });
+
+    var observer = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('revealed');
+                observer.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.15, rootMargin: '-50px' });
+
+    document.querySelectorAll('.reveal, .reveal-scale').forEach(function(el) {
+        observer.observe(el);
+    });
+})();
+</script>
 </body>
 </html>

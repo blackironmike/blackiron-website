@@ -763,6 +763,45 @@
             font-size: 0.9rem;
         }
 
+        /* ===== SCROLL REVEAL ===== */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.7s ease, transform 0.7s ease;
+        }
+
+        .reveal.revealed {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .reveal-scale {
+            opacity: 0;
+            transform: scale(0.9);
+            transition: opacity 0.7s ease, transform 0.7s ease;
+        }
+
+        .reveal-scale.revealed {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        .reveal-stagger > .reveal {
+            transition-delay: calc(var(--reveal-index, 0) * 0.1s);
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .reveal,
+            .reveal-scale {
+                opacity: 1;
+                transform: none;
+                transition: none;
+            }
+            .reveal-stagger > .reveal {
+                transition-delay: 0s;
+            }
+        }
+
         @media (max-width: 1024px) {
             .nav-container,
             .hero-container,
@@ -1047,8 +1086,8 @@
 
     <!-- Schedule Section -->
     <section id="schedule" class="section">
-        <div class="section-container">
-            <div class="section-header">
+        <div class="section-container reveal">
+            <div class="section-header reveal">
                 <div class="section-subtitle">Plan Your Week</div>
                 <h2 class="section-title">Class Schedule</h2>
                 <p class="section-description">All classes are coach-led, 60 minutes, and scalable for every fitness level.</p>
@@ -1332,26 +1371,26 @@
     <!-- Class Types Section -->
     <section id="class-types" class="section section-alt">
         <div class="section-container">
-            <div class="section-header">
+            <div class="section-header reveal">
                 <div class="section-subtitle">What We Offer</div>
                 <h2 class="section-title">Our Class Types</h2>
                 <p class="section-description">Every class is coach-led and designed to meet you where you are</p>
             </div>
 
-            <div class="class-types-grid">
-                <div class="class-type-card type-sc">
+            <div class="class-types-grid reveal-stagger">
+                <div class="class-type-card type-sc reveal">
                     <div class="class-type-icon"><i class="fa-solid fa-weight-hanging"></i></div>
                     <h3>Strength &amp; Conditioning</h3>
                     <p>Our mainstay program. Built from CrossFit roots with a modern approach -- more structure, more predictable results, less wear and tear on the body. Combines functional strength, conditioning, and skill work in a coached 60-minute session.</p>
                 </div>
 
-                <div class="class-type-card type-weightlifting">
+                <div class="class-type-card type-weightlifting reveal">
                     <div class="class-type-icon"><i class="fa-solid fa-dumbbell"></i></div>
                     <h3>Weightlifting</h3>
                     <p>Olympic weightlifting focused on improving your lifts and maximizing your potential with a barbell. Whether you're learning the clean &amp; jerk for the first time or chasing a new PR, this class is built for progress.</p>
                 </div>
 
-                <div class="class-type-card type-hyrox">
+                <div class="class-type-card type-hyrox reveal">
                     <div class="class-type-icon"><i class="fa-solid fa-person-running"></i></div>
                     <h3>Hyrox</h3>
                     <p>Focused on getting you race day ready. A blend of running and functional fitness stations designed to prepare you for Hyrox competition or just push your endurance to the next level.</p>
@@ -1362,7 +1401,7 @@
 
     <!-- CTA Section -->
     <section class="cta-section">
-        <div style="max-width: 100%; margin: 0 auto; padding: 0 2rem;">
+        <div style="max-width: 100%; margin: 0 auto; padding: 0 2rem;" class="reveal-scale">
             <h2 class="cta-title">Ready to Join a Class?</h2>
             <p class="cta-subtitle">Book your free consultation and experience a group training session.</p>
             <a href="#" onclick="openLeadModal(); return false;" class="btn-primary">Book Free Consultation</a>
@@ -1681,5 +1720,30 @@
 
 <script src="https://link.msgsndr.com/js/form_embed.js" type="text/javascript" defer></script>
 <script src="https://widgets.leadconnectorhq.com/loader.js" data-resources-url="https://widgets.leadconnectorhq.com/chat-widget/loader.js" data-widget-id="6995d6d76e6009387f78d31e"></script>
+<script>
+// ===== SCROLL REVEAL =====
+(function() {
+    var staggerParents = document.querySelectorAll('.reveal-stagger');
+    staggerParents.forEach(function(parent) {
+        var children = parent.querySelectorAll('.reveal');
+        children.forEach(function(child, i) {
+            child.style.setProperty('--reveal-index', i);
+        });
+    });
+
+    var observer = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('revealed');
+                observer.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.15, rootMargin: '-50px' });
+
+    document.querySelectorAll('.reveal, .reveal-scale').forEach(function(el) {
+        observer.observe(el);
+    });
+})();
+</script>
 </body>
 </html>

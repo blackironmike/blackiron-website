@@ -626,6 +626,45 @@
             color: var(--yellow);
         }
 
+        /* ===== SCROLL REVEAL ===== */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.7s ease, transform 0.7s ease;
+        }
+
+        .reveal.revealed {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .reveal-scale {
+            opacity: 0;
+            transform: scale(0.9);
+            transition: opacity 0.7s ease, transform 0.7s ease;
+        }
+
+        .reveal-scale.revealed {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        .reveal-stagger > .reveal {
+            transition-delay: calc(var(--reveal-index, 0) * 0.1s);
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .reveal,
+            .reveal-scale {
+                opacity: 1;
+                transform: none;
+                transition: none;
+            }
+            .reveal-stagger > .reveal {
+                transition-delay: 0s;
+            }
+        }
+
         @media (max-width: 1024px) {
             .nav-container,
             .hero-container,
@@ -747,9 +786,9 @@
                 <button class="blog-filter-btn" data-category="Nutrition">Nutrition</button>
                 <button class="blog-filter-btn" data-category="Lifestyle">Lifestyle</button>
             </div>
-            <div class="blog-grid">
+            <div class="blog-grid reveal-stagger">
                 <!-- Blog Card: Creatine -->
-                <div class="blog-card">
+                <div class="blog-card reveal">
                     <img src="../images/back-squat.webp" alt="Why Creatine Is the Most Important Supplement" class="blog-card-image" loading="lazy">
                     <div class="blog-card-content">
                         <span class="blog-category">Nutrition</span>
@@ -763,7 +802,7 @@
                 </div>
 
                 <!-- Blog Card: CrossFit Alternative -->
-                <div class="blog-card">
+                <div class="blog-card reveal">
                     <img src="../images/members-laughing.webp" alt="CrossFit Alternative in Frisco TX - Black Iron Athletics" class="blog-card-image" loading="lazy" style="object-position: center 25%">
                     <div class="blog-card-content">
                         <span class="blog-category">Training</span>
@@ -777,7 +816,7 @@
                 </div>
 
                 <!-- Blog Card: Olympic Weightlifting -->
-                <div class="blog-card">
+                <div class="blog-card reveal">
                     <img src="../images/snatch-action.webp" alt="Olympic Weightlifting Classes in Frisco TX" class="blog-card-image" loading="lazy" style="object-position: center 60%">
                     <div class="blog-card-content">
                         <span class="blog-category">Training</span>
@@ -791,7 +830,7 @@
                 </div>
 
                 <!-- Blog Card: HYROX Training -->
-                <div class="blog-card">
+                <div class="blog-card reveal">
                     <img src="../images/outdoor-run.webp" alt="HYROX Training in Frisco TX" class="blog-card-image" loading="lazy" style="object-position: center 30%">
                     <div class="blog-card-content">
                         <span class="blog-category">Training</span>
@@ -805,7 +844,7 @@
                 </div>
 
                 <!-- Blog Card 1 -->
-                <div class="blog-card">
+                <div class="blog-card reveal">
                     <img src="../images/group-warmup.webp" alt="How to Find the Best Gym in Frisco TX" class="blog-card-image" loading="lazy">
                     <div class="blog-card-content">
                         <span class="blog-category">Training</span>
@@ -819,7 +858,7 @@
                 </div>
 
                 <!-- Blog Card 2 -->
-                <div class="blog-card">
+                <div class="blog-card reveal">
                     <img src="../images/back-squat.webp" alt="Strength Training for Beginners" class="blog-card-image" loading="lazy">
                     <div class="blog-card-content">
                         <span class="blog-category">Training</span>
@@ -833,7 +872,7 @@
                 </div>
 
                 <!-- Blog Card 3 -->
-                <div class="blog-card">
+                <div class="blog-card reveal">
                     <img src="../images/coach-briefing.webp" alt="Group Fitness vs Personal Training" class="blog-card-image" loading="lazy">
                     <div class="blog-card-content">
                         <span class="blog-category">Fitness</span>
@@ -847,7 +886,7 @@
                 </div>
 
                 <!-- Blog Card 4 -->
-                <div class="blog-card">
+                <div class="blog-card reveal">
                     <img src="../images/coach-smiling.webp" alt="How to Get Back Into Working Out" class="blog-card-image" loading="lazy">
                     <div class="blog-card-content">
                         <span class="blog-category">Lifestyle</span>
@@ -869,7 +908,7 @@
 
     <!-- Subscribe CTA Section -->
     <section class="social-cta">
-        <div class="social-cta-container">
+        <div class="social-cta-container reveal-scale">
             <h2>Never Miss a Post</h2>
             <p style="color: var(--light-gray); font-size: 1.2rem; margin-bottom: 2rem;">Subscribe for weekly training tips, nutrition advice, and exclusive content from the coaches at Black Iron Athletics.</p>
             <a href="#" onclick="openSubscribeModal(); return false;" style="background: var(--yellow); color: var(--black); padding: 1.2rem 3rem; text-decoration: none; font-weight: 900; font-size: 1rem; text-transform: uppercase; letter-spacing: 1px; border: 2px solid var(--yellow); display: inline-block; transition: all 0.3s ease;" onmouseover="this.style.background='transparent';this.style.color='var(--yellow)'" onmouseout="this.style.background='var(--yellow)';this.style.color='var(--black)'"><i class="fa-solid fa-envelope" style="margin-right: 0.5rem;"></i> Subscribe</a>

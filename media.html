@@ -540,6 +540,45 @@
             font-size: 0.9rem;
         }
 
+        /* ===== SCROLL REVEAL ===== */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.7s ease, transform 0.7s ease;
+        }
+
+        .reveal.revealed {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .reveal-scale {
+            opacity: 0;
+            transform: scale(0.9);
+            transition: opacity 0.7s ease, transform 0.7s ease;
+        }
+
+        .reveal-scale.revealed {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        .reveal-stagger > .reveal {
+            transition-delay: calc(var(--reveal-index, 0) * 0.1s);
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .reveal,
+            .reveal-scale {
+                opacity: 1;
+                transform: none;
+                transition: none;
+            }
+            .reveal-stagger > .reveal {
+                transition-delay: 0s;
+            }
+        }
+
         @media (max-width: 1024px) {
             .nav-container,
             .hero-container,
@@ -815,13 +854,13 @@
     <!-- Photo Gallery Section -->
     <section id="gallery" class="section">
         <div class="section-container">
-            <div class="section-header">
+            <div class="section-header reveal">
                 <div class="section-subtitle">The Gym</div>
                 <h2 class="section-title">Inside Black Iron</h2>
                 <p class="section-description">Where everyday people become everyday athletes</p>
             </div>
 
-            <div class="gallery-carousel-wrapper">
+            <div class="gallery-carousel-wrapper reveal">
                 <button class="carousel-arrow gallery-prev" aria-label="Previous photos"><i class="fa-solid fa-chevron-left"></i></button>
                 <div class="gallery-carousel" id="galleryCarousel">
                     <div class="gallery-item"><img src="images/members-laughing.webp" alt="Members celebrating together" loading="lazy"></div>
@@ -848,20 +887,20 @@
     <!-- YouTube Section -->
     <section id="youtube" class="section section-alt">
         <div class="section-container">
-            <div class="section-header">
+            <div class="section-header reveal">
                 <div class="section-subtitle">Watch</div>
                 <h2 class="section-title">Our YouTube Channel</h2>
                 <p class="section-description">Training tips, member stories, and a look inside Black Iron Athletics</p>
             </div>
 
-            <div class="youtube-grid">
-                <div class="youtube-video">
+            <div class="youtube-grid reveal-stagger">
+                <div class="youtube-video reveal">
                     <iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/orPYVQKohc0?si=f2NHLl8dvfT48_92" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen loading="lazy"></iframe>
                 </div>
-                <div class="youtube-video">
+                <div class="youtube-video reveal">
                     <iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/b11pcYndl6I?si=9B-L4G1ejWjt2gft" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen loading="lazy"></iframe>
                 </div>
-                <div class="youtube-video">
+                <div class="youtube-video reveal">
                     <iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/r03sbSFQ3D8?si=rStrzSOLyze2AFuA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen loading="lazy"></iframe>
                 </div>
             </div>
@@ -874,7 +913,7 @@
 
     <!-- CTA Section -->
     <section class="cta-section">
-        <div style="max-width: 100%; margin: 0 auto; padding: 0 2rem;">
+        <div class="reveal-scale" style="max-width: 100%; margin: 0 auto; padding: 0 2rem;">
             <h2 class="cta-title">Ready to Be Part of This?</h2>
             <p class="cta-subtitle">Join the Black Iron family and become the athlete you're meant to be.</p>
             <a href="#" onclick="openLeadModal(); return false;" class="btn-primary">Book Free Consultation</a>
@@ -1270,5 +1309,30 @@
 
 <script src="https://link.msgsndr.com/js/form_embed.js" type="text/javascript" defer></script>
 <script src="https://widgets.leadconnectorhq.com/loader.js" data-resources-url="https://widgets.leadconnectorhq.com/chat-widget/loader.js" data-widget-id="6995d6d76e6009387f78d31e"></script>
+<script>
+// ===== SCROLL REVEAL =====
+(function() {
+    var staggerParents = document.querySelectorAll('.reveal-stagger');
+    staggerParents.forEach(function(parent) {
+        var children = parent.querySelectorAll('.reveal');
+        children.forEach(function(child, i) {
+            child.style.setProperty('--reveal-index', i);
+        });
+    });
+
+    var observer = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('revealed');
+                observer.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.15, rootMargin: '-50px' });
+
+    document.querySelectorAll('.reveal, .reveal-scale').forEach(function(el) {
+        observer.observe(el);
+    });
+})();
+</script>
 </body>
 </html>
