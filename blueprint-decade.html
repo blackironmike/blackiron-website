@@ -763,6 +763,335 @@
             color: var(--black);
         }
 
+        /* ===== CYCLE GRID ===== */
+        .cycle-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        .cycle-card {
+            padding: 2rem;
+            border: 2px solid var(--medium-gray);
+            background: var(--black);
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .cycle-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .cycle-card--baseline { border-top: 4px solid var(--phase-baseline); }
+        .cycle-card--cut { border-top: 4px solid var(--phase-cut); }
+        .cycle-card--maintain { border-top: 4px solid var(--phase-maintain); }
+        .cycle-card--build { border-top: 4px solid var(--phase-build); }
+
+        .cycle-card--baseline:hover { border-color: var(--phase-baseline); }
+        .cycle-card--cut:hover { border-color: var(--phase-cut); }
+        .cycle-card--maintain:hover { border-color: var(--phase-maintain); }
+        .cycle-card--build:hover { border-color: var(--phase-build); }
+
+        .cycle-card i {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .cycle-card--baseline i { color: var(--phase-baseline); }
+        .cycle-card--cut i { color: var(--phase-cut); }
+        .cycle-card--maintain i { color: var(--phase-maintain); }
+        .cycle-card--build i { color: var(--phase-build); }
+
+        .cycle-card h3 {
+            font-size: 1.2rem;
+            text-transform: uppercase;
+            margin-bottom: 0.25rem;
+        }
+
+        .cycle-card .cycle-months {
+            font-size: 0.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 1rem;
+        }
+
+        .cycle-card--baseline .cycle-months { color: var(--phase-baseline); }
+        .cycle-card--cut .cycle-months { color: var(--phase-cut); }
+        .cycle-card--maintain .cycle-months { color: var(--phase-maintain); }
+        .cycle-card--build .cycle-months { color: var(--phase-build); }
+
+        .cycle-card p {
+            color: var(--light-gray);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        .cycle-contrast {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .cycle-contrast-card {
+            padding: 2rem;
+            border: 2px solid var(--medium-gray);
+            background: var(--black);
+            text-align: center;
+        }
+
+        .cycle-contrast-card--bad {
+            background: rgba(255, 0, 3, 0.05);
+            border-color: rgba(255, 0, 3, 0.3);
+        }
+
+        .cycle-contrast-card--good {
+            background: rgba(255, 210, 2, 0.05);
+            border-color: rgba(255, 210, 2, 0.3);
+        }
+
+        .cycle-contrast-card h3 {
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            margin-bottom: 0.5rem;
+        }
+
+        .cycle-contrast-card--bad h3 { color: var(--phase-cut); }
+        .cycle-contrast-card--good h3 { color: var(--yellow); }
+
+        .cycle-contrast-card .contrast-arrow {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+
+        .cycle-contrast-card--bad .contrast-arrow { color: var(--phase-cut); }
+        .cycle-contrast-card--good .contrast-arrow { color: var(--yellow); }
+
+        .cycle-contrast-card p {
+            color: var(--light-gray);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        /* ===== YEAR 1 JOURNEY ===== */
+        .year-journey {
+            max-width: 700px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+        }
+
+        .journey-card {
+            position: relative;
+            padding: 2.5rem;
+            border: 2px solid var(--medium-gray);
+            background: var(--dark-gray);
+            transition: all 0.3s ease;
+        }
+
+        .journey-card:hover {
+            border-color: var(--yellow);
+            box-shadow: 0 10px 30px rgba(255, 210, 2, 0.1);
+        }
+
+        .journey-phase-badge {
+            display: inline-block;
+            font-size: 0.75rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            padding: 0.3rem 0.75rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .journey-phase-badge--baseline { background: var(--phase-baseline); color: var(--white); }
+        .journey-phase-badge--cut { background: var(--phase-cut); color: var(--white); }
+        .journey-phase-badge--maintain { background: var(--phase-maintain); color: var(--white); }
+        .journey-phase-badge--build { background: var(--phase-build); color: var(--white); }
+
+        .journey-card .journey-months {
+            font-size: 0.8rem;
+            font-weight: 700;
+            color: var(--light-gray);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 0.75rem;
+        }
+
+        .journey-card h3 {
+            font-size: 1.3rem;
+            text-transform: uppercase;
+            margin-bottom: 0.75rem;
+        }
+
+        .journey-card p {
+            color: var(--light-gray);
+            font-size: 0.95rem;
+            line-height: 1.7;
+            margin-bottom: 1rem;
+        }
+
+        .journey-feel {
+            padding: 1rem;
+            background: rgba(255, 210, 2, 0.05);
+            border-left: 3px solid var(--yellow);
+        }
+
+        .journey-feel strong {
+            color: var(--yellow);
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .journey-feel p {
+            margin-bottom: 0;
+            font-size: 0.9rem;
+        }
+
+        .journey-arrow {
+            text-align: center;
+            padding: 0.75rem 0;
+            color: var(--yellow);
+            font-size: 1.5rem;
+        }
+
+        .journey-loop {
+            text-align: center;
+            margin-top: 2rem;
+            color: var(--yellow);
+            font-weight: 700;
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .journey-loop i {
+            font-size: 1.5rem;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        /* ===== PHASE BADGES (TIMELINE) ===== */
+        .phase-badges {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .phase-badge {
+            font-size: 0.7rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            padding: 0.2rem 0.6rem;
+        }
+
+        .phase-badge--baseline { background: var(--phase-baseline); color: var(--white); }
+        .phase-badge--cut { background: var(--phase-cut); color: var(--white); }
+        .phase-badge--maintain { background: var(--phase-maintain); color: var(--white); }
+        .phase-badge--build { background: var(--phase-build); color: var(--white); }
+
+        .what-youll-feel {
+            padding: 1rem;
+            background: rgba(255, 210, 2, 0.05);
+            border-left: 3px solid var(--yellow);
+            margin-top: 1rem;
+        }
+
+        .what-youll-feel strong {
+            color: var(--yellow);
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .what-youll-feel p {
+            margin-bottom: 0;
+            font-size: 0.9rem;
+        }
+
+        /* ===== INTERSTITIAL ===== */
+        .interstitial {
+            text-align: center;
+            padding: 8rem 4rem;
+        }
+
+        .interstitial-accent {
+            width: 60px;
+            height: 3px;
+            background: var(--yellow);
+            margin: 0 auto 2rem;
+        }
+
+        .interstitial h2 {
+            font-size: clamp(2rem, 4vw, 3.5rem);
+            text-transform: uppercase;
+            line-height: 1.2;
+            margin-bottom: 1.5rem;
+        }
+
+        .interstitial p {
+            color: var(--light-gray);
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin: 0 auto 2rem;
+        }
+
+        .interstitial-accent-bottom {
+            width: 60px;
+            height: 3px;
+            background: var(--yellow);
+            margin: 0 auto;
+        }
+
+        /* ===== SCROLL REVEAL ===== */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.7s ease, transform 0.7s ease;
+        }
+
+        .reveal.revealed {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .reveal-scale {
+            opacity: 0;
+            transform: scale(0.9);
+            transition: opacity 0.7s ease, transform 0.7s ease;
+        }
+
+        .reveal-scale.revealed {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        .reveal-stagger > .reveal {
+            transition-delay: calc(var(--reveal-index, 0) * 0.1s);
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .reveal,
+            .reveal-scale {
+                opacity: 1;
+                transform: none;
+                transition: none;
+            }
+            .reveal-stagger > .reveal {
+                transition-delay: 0s;
+            }
+        }
+
         /* ===== RESPONSIVE ===== */
         @media (max-width: 1024px) {
             .nav-container,
@@ -781,6 +1110,14 @@
             .subnav-container {
                 padding-left: 2rem;
                 padding-right: 2rem;
+            }
+
+            .cycle-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .interstitial {
+                padding: 6rem 2rem;
             }
         }
 
@@ -864,6 +1201,22 @@
             .subnav-container {
                 padding-left: 1.5rem;
                 padding-right: 1.5rem;
+            }
+
+            .cycle-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .cycle-contrast {
+                grid-template-columns: 1fr;
+            }
+
+            .journey-card {
+                padding: 1.5rem;
+            }
+
+            .interstitial {
+                padding: 4rem 1.5rem;
             }
 
             .modal-container { max-width: calc(100% - 2rem); }
@@ -986,8 +1339,8 @@
         <div class="hero-container">
             <div class="hero-content">
                 <div class="hero-subtitle">The Long Game</div>
-                <h1>The Decade Roadmap</h1>
-                <p>This isn't about quick results. It's about building the kind of person who gets results, year after year, for the rest of their life.</p>
+                <h1>You Are the Variable That Changes Everything</h1>
+                <p>Not a 12-week fix. Not a fad. A decade-long system that turns you into the kind of person who gets results year after year -- for life.</p>
             </div>
         </div>
     </section>
@@ -1008,14 +1361,133 @@
     <!-- Intro Section -->
     <section class="section">
         <div class="section-container">
-            <div class="section-header">
+            <div class="section-header reveal">
                 <div class="section-subtitle">The Big Picture</div>
                 <h2 class="section-title">This is Not a 12-Week Program</h2>
             </div>
 
-            <div class="content-block">
+            <div class="content-block reveal">
                 <p>The 4-Phase Blueprint is designed to be repeated every year. Each cycle builds on the last. The first year you're learning the system. By year three, it's second nature. By year five, you're your own best nutritionist.</p>
                 <p>This is what separates people who look good for a photoshoot from people who look good for a lifetime. The 4-Phase Blueprint isn't about quick results. It's about building the kind of person who gets results, year after year, for the rest of their life.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why We Cycle -->
+    <section class="section section-alt">
+        <div class="section-container">
+            <div class="section-header reveal">
+                <div class="section-subtitle">The Science</div>
+                <h2 class="section-title">Why We Cycle</h2>
+                <p class="section-description">Your metabolism adapts. If you diet forever, your body fights back -- slowing your metabolism, spiking hunger hormones, and burning muscle for fuel. Periodized nutrition keeps your metabolism healthy by cycling through strategic phases.</p>
+            </div>
+
+            <div class="cycle-grid reveal-stagger">
+                <div class="cycle-card cycle-card--baseline reveal">
+                    <i class="fa-solid fa-scale-balanced"></i>
+                    <h3>Baseline</h3>
+                    <div class="cycle-months">Months 1-3</div>
+                    <p>Establish your true maintenance calories. Reset hunger signals, stabilize hormones, and build the habits that make everything else work.</p>
+                </div>
+                <div class="cycle-card cycle-card--cut reveal">
+                    <i class="fa-solid fa-fire"></i>
+                    <h3>Cut</h3>
+                    <div class="cycle-months">Months 4-6</div>
+                    <p>Strategic calorie deficit to shed body fat while preserving the muscle you've built. Time-limited so your metabolism doesn't adapt.</p>
+                </div>
+                <div class="cycle-card cycle-card--maintain reveal">
+                    <i class="fa-solid fa-shield-halved"></i>
+                    <h3>Maintain</h3>
+                    <div class="cycle-months">Months 7-9</div>
+                    <p>Lock in your new body composition. Let hormones recover, metabolic rate normalize, and your body accept this as the new baseline.</p>
+                </div>
+                <div class="cycle-card cycle-card--build reveal">
+                    <i class="fa-solid fa-dumbbell"></i>
+                    <h3>Build</h3>
+                    <div class="cycle-months">Months 10-12</div>
+                    <p>Controlled surplus to add lean muscle. More muscle means higher metabolism, which means your next cut is even more effective.</p>
+                </div>
+            </div>
+
+            <div class="cycle-contrast reveal">
+                <div class="cycle-contrast-card cycle-contrast-card--bad">
+                    <span class="contrast-arrow"><i class="fa-solid fa-arrow-trend-down"></i></span>
+                    <h3>Chronic Dieting</h3>
+                    <p>Endless restriction. Metabolism slows. Muscle wastes. Hormones crash. You lose the same 10 lbs every January and gain back 15 by summer.</p>
+                </div>
+                <div class="cycle-contrast-card cycle-contrast-card--good">
+                    <span class="contrast-arrow"><i class="fa-solid fa-arrow-trend-up"></i></span>
+                    <h3>4-Phase Cycling</h3>
+                    <p>Strategic phases. Metabolism stays healthy. Muscle grows. Each year you start from a better place than the last. Progress compounds.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Your Year 1 Journey -->
+    <section class="section">
+        <div class="section-container">
+            <div class="section-header reveal">
+                <div class="section-subtitle">One Year, Four Phases</div>
+                <h2 class="section-title">Your Year 1 Journey</h2>
+                <p class="section-description">Here's what one complete cycle looks like -- from day one to day 365. Each phase has a purpose, and each phase sets up the next.</p>
+            </div>
+
+            <div class="year-journey">
+                <div class="journey-card reveal">
+                    <span class="journey-phase-badge journey-phase-badge--baseline">Phase 1</span>
+                    <div class="journey-months">Months 1-3</div>
+                    <h3>Baseline</h3>
+                    <p>You'll learn your true maintenance calories by eating at a level where your weight stays stable. This is where you build the tracking habit and let your body settle into consistent fueling.</p>
+                    <div class="journey-feel">
+                        <strong>You'll feel:</strong>
+                        <p>Calmer around food. Less guessing. For the first time, you'll understand exactly what your body needs -- no more winging it.</p>
+                    </div>
+                </div>
+
+                <div class="journey-arrow"><i class="fa-solid fa-arrow-down"></i></div>
+
+                <div class="journey-card reveal">
+                    <span class="journey-phase-badge journey-phase-badge--cut">Phase 2</span>
+                    <div class="journey-months">Months 4-6</div>
+                    <h3>Cut</h3>
+                    <p>A controlled calorie deficit designed to shed body fat while protecting muscle. You'll learn how your body responds to a deficit and how to manage hunger, energy, and training during a cut.</p>
+                    <div class="journey-feel">
+                        <strong>You'll feel:</strong>
+                        <p>Clothes fitting differently. Energy might dip in week 3-4, then normalize. By month 6, you'll see the person you've been building staring back in the mirror.</p>
+                    </div>
+                </div>
+
+                <div class="journey-arrow"><i class="fa-solid fa-arrow-down"></i></div>
+
+                <div class="journey-card reveal">
+                    <span class="journey-phase-badge journey-phase-badge--maintain">Phase 3</span>
+                    <div class="journey-months">Months 7-9</div>
+                    <h3>Maintain</h3>
+                    <p>You've earned your new body composition -- now you lock it in. Calories come back up to maintenance so your hormones normalize and your metabolism accepts this as the new set point.</p>
+                    <div class="journey-feel">
+                        <strong>You'll feel:</strong>
+                        <p>Relief. More food, more energy, and the confidence that you can hold this weight without white-knuckling it. This is where sustainability is built.</p>
+                    </div>
+                </div>
+
+                <div class="journey-arrow"><i class="fa-solid fa-arrow-down"></i></div>
+
+                <div class="journey-card reveal">
+                    <span class="journey-phase-badge journey-phase-badge--build">Phase 4</span>
+                    <div class="journey-months">Months 10-12</div>
+                    <h3>Build</h3>
+                    <p>A controlled surplus to add lean muscle. More muscle means a higher resting metabolism, which makes every future cut more effective. This is the phase most people skip -- and it's the one that changes everything.</p>
+                    <div class="journey-feel">
+                        <strong>You'll feel:</strong>
+                        <p>Stronger than you've ever been. Workouts hit different when you're fueled. The scale goes up, but so do your lifts, your energy, and your capacity.</p>
+                    </div>
+                </div>
+
+                <div class="journey-loop reveal">
+                    <i class="fa-solid fa-rotate"></i>
+                    Repeat. Each cycle builds on the last.
+                </div>
             </div>
         </div>
     </section>
@@ -1023,96 +1495,143 @@
     <!-- Year Progression Timeline -->
     <section class="section section-alt">
         <div class="section-container">
-            <div class="section-header">
+            <div class="section-header reveal">
                 <div class="section-subtitle">Years 1-10</div>
-                <h2 class="section-title">Your Progression</h2>
+                <h2 class="section-title">Your Story, One Chapter at a Time</h2>
                 <p class="section-description">Here's what the journey looks like over a decade of intentional training and nutrition.</p>
             </div>
 
             <div class="timeline">
-                <div class="timeline-item">
-                    <div class="timeline-label">Year 1</div>
+                <div class="timeline-item reveal">
+                    <div class="timeline-label">Year 1 — Chapter One</div>
                     <h3>Learn the System</h3>
+                    <div class="phase-badges">
+                        <span class="phase-badge phase-badge--baseline">Baseline</span>
+                        <span class="phase-badge phase-badge--cut">Cut</span>
+                        <span class="phase-badge phase-badge--maintain">Maintain</span>
+                        <span class="phase-badge phase-badge--build">Build</span>
+                    </div>
                     <p>This is your foundation year. You're learning to track macros, understanding how your body responds to each phase, and building the habits that will carry you forward. Don't expect perfection. Expect progress.</p>
                     <div class="success-metric">
                         <i class="fa-solid fa-bullseye"></i>
                         <p><strong>Success Metric:</strong> You completed all four phases and tracked consistently for at least 80% of the year.</p>
                     </div>
+                    <div class="what-youll-feel">
+                        <strong>What You'll Feel:</strong>
+                        <p>Awkward at first -- like learning a new language. By month 6, the fog lifts. By month 12, you'll wonder how you ever ate without a plan.</p>
+                    </div>
                 </div>
 
-                <div class="timeline-item">
-                    <div class="timeline-label">Year 2</div>
+                <div class="timeline-item reveal">
+                    <div class="timeline-label">Year 2 — Chapter Two</div>
                     <h3>Refine &amp; Optimize</h3>
+                    <div class="phase-badges">
+                        <span class="phase-badge phase-badge--baseline">Baseline</span>
+                        <span class="phase-badge phase-badge--cut">Cut</span>
+                        <span class="phase-badge phase-badge--maintain">Maintain</span>
+                        <span class="phase-badge phase-badge--build">Build</span>
+                    </div>
                     <p>You now have a full year of data. You know how your body responds to cuts. You know which weeks are hardest. You know your maintenance calories by feel. This year, you start fine-tuning: adjusting activity levels, dialing in protein timing, learning how sleep and stress affect your progress.</p>
                     <div class="success-metric">
                         <i class="fa-solid fa-bullseye"></i>
                         <p><strong>Success Metric:</strong> Your cut is more efficient than Year 1. You lose more fat and retain more muscle.</p>
                     </div>
+                    <div class="what-youll-feel">
+                        <strong>What You'll Feel:</strong>
+                        <p>Confident. You've done this before. The anxiety is gone. Now it's about precision -- and people around you are starting to notice.</p>
+                    </div>
                 </div>
 
-                <div class="timeline-item">
-                    <div class="timeline-label">Years 3-4</div>
+                <div class="timeline-item reveal">
+                    <div class="timeline-label">Years 3-4 — Chapter Three</div>
                     <h3>Auto-Regulation</h3>
+                    <div class="phase-badges">
+                        <span class="phase-badge phase-badge--cut">Cut</span>
+                        <span class="phase-badge phase-badge--maintain">Maintain</span>
+                        <span class="phase-badge phase-badge--build">Build</span>
+                    </div>
                     <p>By now, you understand your body well enough to make adjustments on the fly. You know when to push and when to back off. You may find that your cuts get shorter because your builds are cleaner, or that your maintenance phases feel effortless. The system becomes second nature.</p>
                     <div class="success-metric">
                         <i class="fa-solid fa-bullseye"></i>
                         <p><strong>Success Metric:</strong> You can estimate your macros for most meals without looking them up. Your body composition improves year over year.</p>
                     </div>
+                    <div class="what-youll-feel">
+                        <strong>What You'll Feel:</strong>
+                        <p>Like you've unlocked a cheat code. Nutrition isn't something you "do" anymore -- it's just how you operate. The system runs itself.</p>
+                    </div>
                 </div>
 
-                <div class="timeline-item">
-                    <div class="timeline-label">Years 5-10</div>
+                <div class="timeline-item reveal">
+                    <div class="timeline-label">Years 5-10 — Chapter Four</div>
                     <h3>Mastery</h3>
+                    <div class="phase-badges">
+                        <span class="phase-badge phase-badge--maintain">Maintain</span>
+                        <span class="phase-badge phase-badge--build">Build</span>
+                    </div>
                     <p>You are now your own best nutritionist. The phases are automatic. Your relationship with food is healthy and informed. You're stronger, leaner, and more capable than when you started -- not because of one dramatic transformation, but because of years of consistent, intelligent work.</p>
                     <div class="success-metric">
                         <i class="fa-solid fa-bullseye"></i>
                         <p><strong>Success Metric:</strong> You're in the best shape of your life and it feels sustainable, not like a sacrifice.</p>
+                    </div>
+                    <div class="what-youll-feel">
+                        <strong>What You'll Feel:</strong>
+                        <p>Unstoppable. Not because nothing can stop you, but because you've built something permanent. You're the person who figured it out -- for life.</p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Troubleshooting & FAQs -->
+    <!-- Motivational Interstitial -->
     <section class="section">
+        <div class="interstitial reveal-scale">
+            <div class="interstitial-accent"></div>
+            <h2>It's Not About Being Perfect. It's About Having a Plan.</h2>
+            <p>Follow the protocol. Trust the phases. Let time do what time does.</p>
+            <div class="interstitial-accent-bottom"></div>
+        </div>
+    </section>
+
+    <!-- Troubleshooting & FAQs -->
+    <section class="section section-alt">
         <div class="section-container">
-            <div class="section-header">
+            <div class="section-header reveal">
                 <div class="section-subtitle">Common Questions</div>
                 <h2 class="section-title">Troubleshooting &amp; FAQs</h2>
             </div>
 
-            <div class="faq-container">
-                <div class="faq-item">
+            <div class="faq-container reveal-stagger">
+                <div class="faq-item reveal">
                     <h3 class="faq-question">"My weight isn't changing during maintenance."</h3>
                     <p class="faq-answer">Good. That's the point. Maintenance means your weight stays roughly the same. If you're within a 2-3 lb range week to week, you're exactly where you should be. This phase is about stability and building habits, not chasing scale movement.</p>
                 </div>
 
-                <div class="faq-item">
+                <div class="faq-item reveal">
                     <h3 class="faq-question">"I'm not losing weight during my cut."</h3>
                     <p class="faq-answer">First, are you actually tracking everything? Most stalls come from underreporting intake -- cooking oils, sauces, drinks, and "just a bite" add up fast. If your tracking is tight and the scale hasn't moved in 2+ weeks, rerun the calculator. You may need to adjust your activity level input down.</p>
                 </div>
 
-                <div class="faq-item">
+                <div class="faq-item reveal">
                     <h3 class="faq-question">"I gained weight fast when I started the build."</h3>
                     <p class="faq-answer">The first 3-5 lbs are almost entirely water and glycogen from increased carbs. This is expected, healthy, and not fat. Your muscles are refueling. After the initial jump, weight gain should slow to 0.5-1 lb per week.</p>
                 </div>
 
-                <div class="faq-item">
+                <div class="faq-item reveal">
                     <h3 class="faq-question">"Can I skip the build?"</h3>
                     <p class="faq-answer">You can, but you shouldn't. Extended cutting without a building phase leads to metabolic adaptation, muscle loss, and diminishing returns. The building phase is what gives your next cut something to reveal. If you skip it, you're cutting down to the same body every year.</p>
                 </div>
 
-                <div class="faq-item">
+                <div class="faq-item reveal">
                     <h3 class="faq-question">"What if I miss a few days?"</h3>
                     <p class="faq-answer">Get back on plan. No guilt, no making up for it, no extra cardio. One bad week in a 12-week phase is noise, not a trend. The system is resilient. You don't need to be perfect. You need to be consistent over months and years.</p>
                 </div>
 
-                <div class="faq-item">
+                <div class="faq-item reveal">
                     <h3 class="faq-question">"Do I need to track macros forever?"</h3>
                     <p class="faq-answer">Not forever, but probably longer than you think. Most people need 2-3 years of consistent tracking before they can intuitively eat at their targets. The Decade Roadmap covers this progression. Think of tracking like training wheels -- you'll know when you're ready to take them off.</p>
                 </div>
 
-                <div class="faq-item">
+                <div class="faq-item reveal">
                     <h3 class="faq-question">"What if I have a medical condition?"</h3>
                     <p class="faq-answer">This Blueprint provides general nutrition guidance based on established macronutrient principles. It is not medical advice. If you have diabetes, thyroid conditions, eating disorders, food allergies, or any other medical concern, consult your doctor or a registered dietitian before starting any nutrition program. The macro calculator and phase guidelines can work alongside medical guidance, but your healthcare provider should always come first.</p>
                 </div>
@@ -1475,6 +1994,31 @@
 
 <script src="https://link.msgsndr.com/js/form_embed.js" type="text/javascript" defer></script>
 <script src="https://widgets.leadconnectorhq.com/loader.js" data-resources-url="https://widgets.leadconnectorhq.com/chat-widget/loader.js" data-widget-id="6995d6d76e6009387f78d31e"></script>
+<script>
+// ===== SCROLL REVEAL =====
+(function() {
+    var staggerParents = document.querySelectorAll('.reveal-stagger');
+    staggerParents.forEach(function(parent) {
+        var children = parent.querySelectorAll('.reveal');
+        children.forEach(function(child, i) {
+            child.style.setProperty('--reveal-index', i);
+        });
+    });
+
+    var observer = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('revealed');
+                observer.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.15, rootMargin: '-50px' });
+
+    document.querySelectorAll('.reveal, .reveal-scale').forEach(function(el) {
+        observer.observe(el);
+    });
+})();
+</script>
 <script>
 // ===== BLUEPRINT AUTH GATE =====
 (async function() {
