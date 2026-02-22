@@ -3386,6 +3386,7 @@
                 </button>
             </div>
             <div class="user-bar-right">
+                <button id="adminLinkBtn" style="display:none;" onclick="window.location.href='blueprint-admin.html'"><i class="fa-solid fa-shield-halved"></i> Admin</button>
                 <div style="position:relative;">
                     <button class="notification-bell" id="notificationBell" onclick="toggleNotificationPanel()">
                         <i class="fa-solid fa-bell"></i>
@@ -4711,6 +4712,11 @@ async function initDashboard(user) {
         // Show coach toggle if coach or owner
         if (userRole === 'coach' || userRole === 'owner') {
             document.getElementById('coachToggleBtn').style.display = '';
+        }
+
+        // Show admin link if owner
+        if (userRole === 'owner') {
+            document.getElementById('adminLinkBtn').style.display = '';
         }
 
         // Claim any unclaimed subscriptions first

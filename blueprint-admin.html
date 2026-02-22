@@ -1,0 +1,1446 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel | Black Iron Athletics</title>
+    <meta name="robots" content="noindex, nofollow">
+    <link rel="icon" type="image/png" href="images/anvil-favicon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;900&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;900&display=swap" rel="stylesheet"></noscript>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"></noscript>
+    <style>@font-face{font-family:"Font Awesome 6 Brands";font-display:swap}@font-face{font-family:"Font Awesome 6 Free";font-display:swap}</style>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <style>
+        /* Force full width - override GHL container */
+        body, html {
+            width: 100% !important;
+            max-width: 100% !important;
+            margin: 0 !important;
+            padding: 0 !important;
+        }
+
+        .container, .hl_page-preview--content {
+            padding: 0 !important;
+            margin: 0 !important;
+            max-width: 100% !important;
+            width: 100% !important;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --black: #000000;
+            --dark-gray: #1a1a1a;
+            --medium-gray: #333333;
+            --light-gray: #cccccc;
+            --white: #ffffff;
+            --yellow: #FFD202;
+            --phase-baseline: #9b59b6;
+            --phase-maintain: #2E86C1;
+            --phase-cut: #ff0003;
+            --phase-build: #27AE60;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 500;
+            background: var(--black);
+            color: var(--white);
+            overflow-x: hidden;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            margin: 0;
+            padding: 0;
+            scroll-behavior: smooth;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 900;
+            line-height: 1.2;
+        }
+
+        /* ===== NAV ===== */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 1.5rem 0;
+            background: var(--black);
+            z-index: 1000;
+            border-bottom: 1px solid var(--medium-gray);
+        }
+
+        .nav-container {
+            max-width: 100%;
+            margin: 0;
+            padding: 0 4rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo { height: 50px; }
+        .logo a { display: block; height: 100%; }
+        .logo img { height: 100%; width: auto; }
+
+        .nav-links {
+            display: flex;
+            gap: 3rem;
+            list-style: none;
+            align-items: center;
+        }
+
+        .nav-links > li { position: relative; }
+
+        .nav-links a {
+            color: var(--white);
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 900;
+            transition: color 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .nav-links > li > a:hover { color: var(--yellow); }
+
+        .submenu {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: rgba(26, 26, 26, 0.95);
+            backdrop-filter: blur(10px);
+            min-width: 240px;
+            padding: 0.5rem 0;
+            border: 1px solid var(--medium-gray);
+            list-style: none;
+        }
+
+        .submenu li { padding: 0; }
+
+        .submenu a {
+            display: block;
+            padding: 1rem 1.5rem;
+            font-size: 0.85rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            transition: all 0.3s ease;
+        }
+
+        .submenu a:hover {
+            background: rgba(255, 210, 2, 0.1);
+            color: var(--yellow);
+            padding-left: 2rem;
+        }
+
+        .nav-links > li:hover .submenu { display: block; }
+
+        .has-submenu > a::after {
+            content: '';
+            display: inline-block;
+            width: 0;
+            height: 0;
+            margin-left: 0.5rem;
+            border-left: 4px solid transparent;
+            border-right: 4px solid transparent;
+            border-top: 5px solid var(--white);
+            transition: all 0.3s ease;
+        }
+
+        .has-submenu:hover > a::after {
+            border-top-color: var(--yellow);
+            transform: translateY(2px);
+        }
+
+        .nav-cta-group {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .cta-btn {
+            background: var(--yellow);
+            color: var(--black);
+            padding: 0.9rem 1.5rem;
+            border-radius: 0;
+            text-decoration: none;
+            font-weight: 900;
+            font-size: 0.85rem;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            border: 2px solid var(--yellow);
+            white-space: nowrap;
+        }
+
+        .cta-btn:hover {
+            background: var(--black);
+            color: var(--yellow);
+        }
+
+        .login-btn {
+            color: var(--yellow);
+            padding: 0.9rem 1.5rem;
+            border-radius: 0;
+            text-decoration: none;
+            font-weight: 900;
+            font-size: 0.85rem;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            border: 2px solid var(--yellow);
+            white-space: nowrap;
+            background: transparent;
+        }
+
+        .login-btn:hover {
+            background: var(--yellow);
+            color: var(--black);
+        }
+
+        /* ===== HAMBURGER / MOBILE NAV ===== */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            gap: 5px;
+            width: 30px;
+            height: 30px;
+            cursor: pointer;
+            background: none;
+            border: none;
+            padding: 0;
+            z-index: 1002;
+        }
+
+        .hamburger span {
+            display: block;
+            width: 30px;
+            height: 3px;
+            background: var(--white);
+            transition: all 0.3s ease;
+        }
+
+        .hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(6px, 6px); }
+        .hamburger.active span:nth-child(2) { opacity: 0; }
+        .hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(6px, -6px); }
+
+        .mobile-nav-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.97);
+            z-index: 1001;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 0;
+        }
+
+        .mobile-nav-overlay.active { display: flex; }
+
+        .mobile-nav-overlay a {
+            color: var(--white);
+            text-decoration: none;
+            font-size: 1.2rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            padding: 1rem 2rem;
+            transition: color 0.3s ease;
+            text-align: center;
+        }
+
+        .mobile-nav-overlay .mobile-sub-link { font-size: 0.9rem; color: var(--light-gray); padding: 0.5rem 2rem; font-weight: 700; letter-spacing: 0.5px; }
+        .mobile-nav-overlay .mobile-sub-link:hover { color: var(--yellow); }
+        .mobile-nav-overlay a:hover { color: var(--yellow); }
+
+        .mobile-nav-overlay .mobile-cta {
+            margin-top: 1.5rem;
+            background: var(--yellow);
+            color: var(--black);
+            padding: 1rem 2.5rem;
+            font-size: 1rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border: 2px solid var(--yellow);
+            transition: all 0.3s ease;
+        }
+
+        .mobile-nav-overlay .mobile-cta:hover {
+            background: transparent;
+            color: var(--yellow);
+        }
+
+        /* ===== ADMIN HERO ===== */
+        .admin-hero {
+            padding-top: 100px;
+            padding-bottom: 2rem;
+            background: var(--dark-gray);
+            border-bottom: 1px solid var(--medium-gray);
+        }
+
+        .admin-hero-container {
+            max-width: 100%;
+            padding: 2rem 4rem;
+        }
+
+        .admin-hero h1 {
+            font-size: 2rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .admin-hero h1 i {
+            color: var(--yellow);
+            margin-right: 0.75rem;
+        }
+
+        /* ===== USER BAR ===== */
+        .user-bar {
+            background: var(--dark-gray);
+            border-bottom: 1px solid var(--medium-gray);
+            padding: 0.75rem 4rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .user-bar-email {
+            color: var(--light-gray);
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        .user-bar-email i {
+            color: var(--yellow);
+            margin-right: 0.5rem;
+        }
+
+        .user-bar button {
+            background: transparent;
+            border: 1px solid var(--medium-gray);
+            color: var(--light-gray);
+            padding: 0.4rem 1rem;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .user-bar button:hover {
+            border-color: var(--yellow);
+            color: var(--yellow);
+        }
+
+        .user-bar-left {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .user-bar-right {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        /* ===== ADMIN STATS BAR ===== */
+        .admin-stats-bar {
+            padding: 1.5rem 4rem;
+            background: var(--black);
+            border-bottom: 1px solid var(--medium-gray);
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1rem;
+        }
+
+        .admin-stat {
+            background: var(--dark-gray);
+            border: 1px solid var(--medium-gray);
+            padding: 1.25rem 1.5rem;
+            text-align: center;
+        }
+
+        .admin-stat-value {
+            font-size: 2rem;
+            font-weight: 900;
+            color: var(--yellow);
+            line-height: 1;
+            margin-bottom: 0.25rem;
+        }
+
+        .admin-stat-label {
+            font-size: 0.7rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--light-gray);
+        }
+
+        /* ===== ADMIN TOOLBAR ===== */
+        .admin-toolbar {
+            padding: 1rem 4rem;
+            background: var(--black);
+            border-bottom: 1px solid var(--medium-gray);
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        .admin-toolbar input[type="text"] {
+            flex: 1;
+            max-width: 400px;
+            background: var(--dark-gray);
+            border: 1px solid var(--medium-gray);
+            color: var(--white);
+            padding: 0.6rem 1rem;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.85rem;
+            font-weight: 500;
+            outline: none;
+            transition: border-color 0.3s ease;
+        }
+
+        .admin-toolbar input[type="text"]:focus {
+            border-color: var(--yellow);
+        }
+
+        .admin-toolbar input[type="text"]::placeholder {
+            color: #666;
+        }
+
+        .admin-toolbar select {
+            background: var(--dark-gray);
+            border: 1px solid var(--medium-gray);
+            color: var(--white);
+            padding: 0.6rem 1rem;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.85rem;
+            font-weight: 500;
+            cursor: pointer;
+            outline: none;
+            transition: border-color 0.3s ease;
+        }
+
+        .admin-toolbar select:focus {
+            border-color: var(--yellow);
+        }
+
+        /* ===== ADMIN TABLE ===== */
+        .admin-table-wrap {
+            padding: 0 4rem 4rem;
+            overflow-x: auto;
+        }
+
+        .admin-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1rem;
+        }
+
+        .admin-table th {
+            background: var(--dark-gray);
+            color: var(--yellow);
+            font-size: 0.75rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            padding: 1rem 1.25rem;
+            text-align: left;
+            border-bottom: 2px solid var(--medium-gray);
+            cursor: pointer;
+            user-select: none;
+            white-space: nowrap;
+            transition: color 0.3s ease;
+        }
+
+        .admin-table th:hover {
+            color: var(--white);
+        }
+
+        .admin-table th .sort-icon {
+            margin-left: 0.5rem;
+            font-size: 0.65rem;
+            opacity: 0.4;
+        }
+
+        .admin-table th .sort-icon.active {
+            opacity: 1;
+        }
+
+        .admin-table td {
+            padding: 0.85rem 1.25rem;
+            border-bottom: 1px solid var(--medium-gray);
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: var(--light-gray);
+            white-space: nowrap;
+        }
+
+        .admin-table tbody tr:hover {
+            background: rgba(255, 210, 2, 0.03);
+        }
+
+        .admin-table .user-name {
+            color: var(--white);
+            font-weight: 700;
+        }
+
+        .admin-table .user-email {
+            color: var(--light-gray);
+        }
+
+        .admin-table .self-row {
+            background: rgba(255, 210, 2, 0.05);
+        }
+
+        .admin-table .no-results {
+            text-align: center;
+            padding: 3rem 1rem;
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        /* ===== ROLE SELECT ===== */
+        .role-select {
+            background: var(--dark-gray);
+            border: 1px solid var(--medium-gray);
+            color: var(--white);
+            padding: 0.35rem 0.6rem;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.8rem;
+            font-weight: 600;
+            cursor: pointer;
+            outline: none;
+            transition: border-color 0.3s ease;
+        }
+
+        .role-select:focus {
+            border-color: var(--yellow);
+        }
+
+        .role-select:disabled {
+            opacity: 0.4;
+            cursor: not-allowed;
+        }
+
+        /* ===== ACCESS DENIED ===== */
+        .access-denied {
+            padding-top: 100px;
+            min-height: 60vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+
+        .access-denied i {
+            font-size: 4rem;
+            color: var(--phase-cut);
+            margin-bottom: 1.5rem;
+        }
+
+        .access-denied h2 {
+            font-size: 1.5rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .access-denied p {
+            color: var(--light-gray);
+            margin-bottom: 2rem;
+        }
+
+        .access-denied a {
+            color: var(--yellow);
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            border: 1px solid var(--yellow);
+            padding: 0.6rem 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .access-denied a:hover {
+            background: var(--yellow);
+            color: var(--black);
+        }
+
+        /* ===== LOADING STATE ===== */
+        .admin-loading {
+            padding-top: 100px;
+            min-height: 60vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+
+        .admin-loading i {
+            font-size: 2rem;
+            color: var(--yellow);
+            margin-bottom: 1rem;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        .admin-loading p {
+            color: var(--light-gray);
+            font-size: 0.9rem;
+        }
+
+        /* ===== CONFIRMATION MODAL ===== */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.85);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-overlay.active {
+            display: flex;
+        }
+
+        .modal-container {
+            background: var(--dark-gray);
+            border: 1px solid var(--medium-gray);
+            padding: 2.5rem;
+            max-width: 480px;
+            width: 90%;
+            position: relative;
+        }
+
+        .modal-container h3 {
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .modal-container p {
+            color: var(--light-gray);
+            font-size: 0.9rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        .modal-container .modal-email {
+            color: var(--yellow);
+            font-weight: 700;
+        }
+
+        .modal-container .modal-role {
+            color: var(--white);
+            font-weight: 700;
+            text-transform: capitalize;
+        }
+
+        .modal-actions {
+            display: flex;
+            gap: 0.75rem;
+            justify-content: flex-end;
+        }
+
+        .modal-actions button {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            padding: 0.6rem 1.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: none;
+        }
+
+        .btn-cancel {
+            background: transparent;
+            border: 1px solid var(--medium-gray) !important;
+            color: var(--light-gray);
+        }
+
+        .btn-cancel:hover {
+            border-color: var(--white) !important;
+            color: var(--white);
+        }
+
+        .btn-confirm {
+            background: var(--yellow);
+            color: var(--black);
+        }
+
+        .btn-confirm:hover {
+            background: var(--white);
+        }
+
+        /* ===== TOAST ===== */
+        .admin-toast {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            background: var(--dark-gray);
+            border: 1px solid var(--phase-build);
+            color: var(--white);
+            padding: 1rem 1.5rem;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.85rem;
+            font-weight: 600;
+            z-index: 3000;
+            transform: translateY(100px);
+            opacity: 0;
+            transition: all 0.3s ease;
+            max-width: 400px;
+        }
+
+        .admin-toast.visible {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .admin-toast.error {
+            border-color: var(--phase-cut);
+        }
+
+        .admin-toast i {
+            margin-right: 0.5rem;
+        }
+
+        /* ===== FOOTER ===== */
+        footer {
+            padding: 4rem 0 2rem;
+            background: var(--black);
+            border-top: 1px solid var(--medium-gray);
+            width: 100%;
+        }
+
+        .footer-container {
+            max-width: 100%;
+            margin: 0;
+            padding: 0 4rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 4rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-section h3 {
+            font-weight: 900;
+            margin-bottom: 1.5rem;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+        }
+
+        .footer-section ul { list-style: none; }
+        .footer-section ul li { margin-bottom: 0.75rem; }
+
+        .footer-section a {
+            color: var(--light-gray);
+            text-decoration: none;
+            transition: color 0.3s ease;
+            font-weight: 500;
+        }
+
+        .footer-section a:hover { color: var(--yellow); }
+
+        .footer-logo {
+            height: 60px;
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid var(--medium-gray);
+            color: var(--light-gray);
+            font-size: 0.9rem;
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 1024px) {
+            .nav-container { padding: 0 2rem; }
+            .admin-hero-container { padding: 2rem; }
+            .user-bar { padding-left: 2rem; padding-right: 2rem; }
+            .admin-stats-bar { padding-left: 2rem; padding-right: 2rem; }
+            .admin-toolbar { padding-left: 2rem; padding-right: 2rem; }
+            .admin-table-wrap { padding-left: 2rem; padding-right: 2rem; }
+            .footer-container { padding-left: 2rem; padding-right: 2rem; }
+        }
+
+        @media (max-width: 768px) {
+            .hamburger { display: flex !important; }
+            .nav-links { display: none !important; }
+            .nav-cta-group .login-btn { display: none; }
+
+            .nav-container {
+                padding: 0 1.5rem;
+                flex-wrap: wrap;
+            }
+
+            .nav-cta-group {
+                order: 3;
+                width: 100%;
+            }
+
+            .cta-btn {
+                order: 3;
+                width: 100%;
+                text-align: center;
+                margin-top: 0.75rem;
+                padding: 0.7rem 1rem;
+                font-size: 0.8rem;
+            }
+
+            .admin-hero { padding-top: 130px; }
+            .admin-hero-container { padding: 2rem 1.5rem; }
+            .admin-hero h1 { font-size: 1.5rem; }
+
+            .user-bar {
+                padding: 0.75rem 1.5rem;
+                flex-wrap: wrap;
+                gap: 0.5rem;
+            }
+
+            .admin-stats-bar {
+                padding: 1rem 1.5rem;
+                grid-template-columns: repeat(2, 1fr);
+                gap: 0.75rem;
+            }
+
+            .admin-stat { padding: 1rem; }
+            .admin-stat-value { font-size: 1.5rem; }
+
+            .admin-toolbar {
+                padding: 1rem 1.5rem;
+                flex-wrap: wrap;
+            }
+
+            .admin-toolbar input[type="text"] {
+                max-width: 100%;
+                width: 100%;
+            }
+
+            .admin-table-wrap {
+                padding: 0 1.5rem 3rem;
+            }
+
+            .admin-table th,
+            .admin-table td {
+                padding: 0.7rem 0.75rem;
+                font-size: 0.75rem;
+            }
+
+            .footer-container {
+                padding: 0 1.5rem;
+                gap: 2rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .admin-stats-bar {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .modal-container {
+                padding: 1.5rem;
+            }
+
+            .admin-toast {
+                left: 1rem;
+                right: 1rem;
+                max-width: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="nav-container">
+            <div class="logo">
+                <a href="index.html">
+                    <img src="images/logo.png" alt="Black Iron Athletics">
+                </a>
+            </div>
+            <ul class="nav-links">
+                <li class="has-submenu">
+                    <a href="about.html">About Us</a>
+                    <ul class="submenu">
+                        <li><a href="about.html#mission">Our Mission</a></li>
+                        <li><a href="about.html#team">Meet the Team</a></li>
+                        <li><a href="programs.html">Programs</a></li>
+                        <li><a href="schedule.html">Class Schedule</a></li>
+                    </ul>
+                </li>
+                <li class="has-submenu">
+                    <a href="getting-started.html">Getting Started</a>
+                    <ul class="submenu">
+                        <li><a href="getting-started.html#membership">Membership Options</a></li>
+                        <li><a href="getting-started.html#faqs">FAQs</a></li>
+                    </ul>
+                </li>
+                <li><a href="media.html">Media</a></li>
+                <li><a href="blog/">Blog</a></li>
+                <li class="has-submenu">
+                    <a href="blueprint.html">Nutrition</a>
+                    <ul class="submenu">
+                        <li><a href="blueprint.html">4-Phase Blueprint</a></li>
+                    </ul>
+                </li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+            <div class="nav-cta-group">
+                <a href="blueprint-dashboard.html" class="login-btn">My Dashboard</a>
+                <a href="#" onclick="openLeadModal(); return false;" class="cta-btn">Book Free Consultation</a>
+            </div>
+            <button class="hamburger" onclick="toggleMobileNav()" aria-label="Menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <div class="mobile-nav-overlay" id="mobileNav">
+        <a href="index.html" onclick="closeMobileNav()">Home</a>
+        <a href="about.html" onclick="closeMobileNav()">About Us</a>
+        <a href="about.html#mission" class="mobile-sub-link" onclick="closeMobileNav()">Our Mission</a>
+        <a href="about.html#team" class="mobile-sub-link" onclick="closeMobileNav()">Meet the Team</a>
+        <a href="programs.html" class="mobile-sub-link" onclick="closeMobileNav()">Programs</a>
+        <a href="schedule.html" class="mobile-sub-link" onclick="closeMobileNav()">Class Schedule</a>
+        <a href="getting-started.html" onclick="closeMobileNav()">Getting Started</a>
+        <a href="getting-started.html#membership" class="mobile-sub-link" onclick="closeMobileNav()">Membership Options</a>
+        <a href="getting-started.html#faqs" class="mobile-sub-link" onclick="closeMobileNav()">FAQs</a>
+        <a href="media.html" onclick="closeMobileNav()">Media</a>
+        <a href="blog/" onclick="closeMobileNav()">Blog</a>
+        <a href="blueprint.html" onclick="closeMobileNav()">Nutrition</a>
+        <a href="blueprint.html" class="mobile-sub-link" onclick="closeMobileNav()">4-Phase Blueprint</a>
+        <a href="contact.html" onclick="closeMobileNav()">Contact</a>
+        <a href="#" class="mobile-cta" onclick="closeMobileNav(); openLeadModal(); return false;">Book Free Consultation</a>
+        <a href="blueprint-dashboard.html" class="mobile-login" onclick="closeMobileNav()">My Dashboard</a>
+    </div>
+
+    <!-- Loading State -->
+    <div id="adminLoading" class="admin-loading">
+        <i class="fa-solid fa-spinner"></i>
+        <p>Verifying access...</p>
+    </div>
+
+    <!-- Access Denied State -->
+    <div id="accessDenied" class="access-denied" style="display: none;">
+        <i class="fa-solid fa-ban"></i>
+        <h2>Access Denied</h2>
+        <p>You do not have permission to view this page.</p>
+        <a href="blueprint-dashboard.html"><i class="fa-solid fa-arrow-left"></i> Back to Dashboard</a>
+    </div>
+
+    <!-- Admin Panel (shown only for owners) -->
+    <div id="adminPanel" style="display: none;">
+
+        <!-- Admin Hero -->
+        <section class="admin-hero">
+            <div class="admin-hero-container">
+                <h1><i class="fa-solid fa-shield-halved"></i> Admin Panel</h1>
+            </div>
+        </section>
+
+        <!-- User Bar -->
+        <div class="user-bar">
+            <div class="user-bar-left">
+                <span class="user-bar-email"><i class="fa-solid fa-user"></i> <span id="userEmail"></span></span>
+            </div>
+            <div class="user-bar-right">
+                <button onclick="window.location.href='blueprint-dashboard.html'"><i class="fa-solid fa-arrow-left"></i> Dashboard</button>
+                <button onclick="handleLogout()"><i class="fa-solid fa-right-from-bracket"></i> Sign Out</button>
+            </div>
+        </div>
+
+        <!-- Stats Bar -->
+        <div class="admin-stats-bar">
+            <div class="admin-stat">
+                <div class="admin-stat-value" id="statTotal">0</div>
+                <div class="admin-stat-label">Total Users</div>
+            </div>
+            <div class="admin-stat">
+                <div class="admin-stat-value" id="statAthletes">0</div>
+                <div class="admin-stat-label">Athletes</div>
+            </div>
+            <div class="admin-stat">
+                <div class="admin-stat-value" id="statCoaches">0</div>
+                <div class="admin-stat-label">Coaches</div>
+            </div>
+            <div class="admin-stat">
+                <div class="admin-stat-value" id="statOwners">0</div>
+                <div class="admin-stat-label">Owners</div>
+            </div>
+        </div>
+
+        <!-- Toolbar -->
+        <div class="admin-toolbar">
+            <input type="text" id="searchInput" placeholder="Search by name or email..." oninput="filterUsers()">
+            <select id="roleFilter" onchange="filterUsers()">
+                <option value="all">All Roles</option>
+                <option value="athlete">Athletes</option>
+                <option value="coach">Coaches</option>
+                <option value="owner">Owners</option>
+            </select>
+        </div>
+
+        <!-- User Table -->
+        <div class="admin-table-wrap">
+            <table class="admin-table">
+                <thead>
+                    <tr>
+                        <th onclick="sortTable('display_name')">Name <span class="sort-icon" id="sort-display_name"><i class="fa-solid fa-sort"></i></span></th>
+                        <th onclick="sortTable('email')">Email <span class="sort-icon" id="sort-email"><i class="fa-solid fa-sort"></i></span></th>
+                        <th onclick="sortTable('role')">Role <span class="sort-icon" id="sort-role"><i class="fa-solid fa-sort"></i></span></th>
+                        <th onclick="sortTable('created_at')">Joined <span class="sort-icon" id="sort-created_at"><i class="fa-solid fa-sort"></i></span></th>
+                    </tr>
+                </thead>
+                <tbody id="userTableBody">
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Confirmation Modal -->
+    <div class="modal-overlay" id="confirmModal">
+        <div class="modal-container">
+            <h3><i class="fa-solid fa-shield-halved" style="color: var(--yellow); margin-right: 0.5rem;"></i> Confirm Role Change</h3>
+            <p id="confirmMessage"></p>
+            <div class="modal-actions">
+                <button class="btn-cancel" onclick="closeConfirmModal()">Cancel</button>
+                <button class="btn-confirm" onclick="confirmRoleChange()">Confirm</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast -->
+    <div class="admin-toast" id="adminToast"></div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-section">
+                <a href="index.html">
+                    <img src="images/logo.png" alt="Black Iron Athletics" class="footer-logo" loading="lazy">
+                </a>
+                <p style="color: var(--light-gray); margin-bottom: 1rem;">Forging everyday people into everyday athletes through strength, community, and purpose.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="schedule.html">Class Schedule</a></li>
+                    <li><a href="faq.html">FAQ</a></li>
+                    <li><a href="privacy-policy.html">Terms & Privacy Policy</a></li>
+                    <li><a href="privacy-policy.html#sms-terms">SMS Terms</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Contact</h3>
+                <p style="color: var(--light-gray); margin-bottom: 1rem;">
+                    279 Main St #122<br>
+                    Frisco, TX 75036
+                </p>
+                <p style="margin-bottom: 1.5rem;">
+                    <a href="tel:(972)785-7036" style="color: var(--yellow); font-weight: 700;">(972) 785-7036</a>
+                </p>
+            </div>
+            <div class="footer-section">
+                <h3>Hours</h3>
+                <p style="color: var(--light-gray); margin-bottom: 1rem;">
+                    Check our class calendar for an up to date schedule.
+                </p>
+                <p style="color: var(--yellow); font-weight: 700;">
+                    Open Gym: 24/7
+                </p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div style="margin-bottom: 1.5rem; display: flex; justify-content: center; gap: 1.5rem; font-size: 1.5rem;">
+                <a href="https://www.instagram.com/blackiron_athletics/" target="_blank" style="color: var(--light-gray); transition: color 0.3s ease;" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                <a href="https://www.youtube.com/channel/UCF1XjUXEs81OWY70chem6vA" target="_blank" style="color: var(--light-gray); transition: color 0.3s ease;" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+                <a href="https://www.facebook.com/BlackIronAthletics/" target="_blank" style="color: var(--light-gray); transition: color 0.3s ease;" aria-label="Facebook"><i class="fa-brands fa-facebook"></i></a>
+            </div>
+            <p>&copy; 2026 Black Iron Athletics. All rights reserved.</p>
+        </div>
+    </footer>
+
+<script>
+// ===== SUPABASE INIT =====
+var SUPABASE_URL = 'https://hmwfpwcookrwgsbnutyc.supabase.co';
+var SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imhtd2Zwd2Nvb2tyd2dzYm51dHljIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzE1NTUwMTcsImV4cCI6MjA4NzEzMTAxN30.CpX9hIshZqf68B10vPZXt7dHbSXE_aVqfmKuiWN_Lpw';
+var supabase = window.supabase ? window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY) : null;
+
+// ===== STATE =====
+var currentUser = null;
+var allUsers = [];
+var filteredUsers = [];
+var sortField = 'created_at';
+var sortAsc = false;
+var pendingChange = null; // { id, newRole, email }
+
+// ===== MOBILE NAV =====
+function toggleMobileNav() {
+    document.getElementById('mobileNav').classList.toggle('active');
+    document.querySelector('.hamburger').classList.toggle('active');
+}
+
+function closeMobileNav() {
+    document.getElementById('mobileNav').classList.remove('active');
+    document.querySelector('.hamburger').classList.remove('active');
+}
+
+// ===== AUTH + ROLE GATE =====
+async function checkSession() {
+    if (!supabase) {
+        window.location.href = 'blueprint-dashboard.html';
+        return;
+    }
+
+    var { data } = await supabase.auth.getSession();
+    if (!data || !data.session) {
+        window.location.href = 'blueprint-dashboard.html';
+        return;
+    }
+
+    currentUser = data.session.user;
+
+    // Verify owner role via RPC (avoids RLS recursion)
+    try {
+        var { data: role, error } = await supabase.rpc('get_my_role');
+        if (error || role !== 'owner') {
+            document.getElementById('adminLoading').style.display = 'none';
+            document.getElementById('accessDenied').style.display = 'flex';
+            return;
+        }
+    } catch (e) {
+        document.getElementById('adminLoading').style.display = 'none';
+        document.getElementById('accessDenied').style.display = 'flex';
+        return;
+    }
+
+    // Owner confirmed — show admin panel
+    document.getElementById('adminLoading').style.display = 'none';
+    document.getElementById('adminPanel').style.display = 'block';
+    document.getElementById('userEmail').textContent = currentUser.email;
+
+    loadAllUsers();
+}
+
+// ===== LOAD ALL USERS =====
+async function loadAllUsers() {
+    try {
+        var { data, error } = await supabase
+            .from('profiles')
+            .select('id, email, display_name, role, created_at')
+            .order('created_at', { ascending: false });
+
+        if (error) {
+            console.error('Error loading users:', error);
+            showToast('Failed to load users: ' + error.message, true);
+            return;
+        }
+
+        allUsers = data || [];
+        filteredUsers = allUsers.slice();
+        updateStats();
+        applySortAndRender();
+    } catch (e) {
+        console.error('Exception loading users:', e);
+        showToast('Failed to load users', true);
+    }
+}
+
+// ===== UPDATE STATS =====
+function updateStats() {
+    var total = allUsers.length;
+    var athletes = 0, coaches = 0, owners = 0;
+    for (var i = 0; i < allUsers.length; i++) {
+        var r = allUsers[i].role || 'athlete';
+        if (r === 'athlete') athletes++;
+        else if (r === 'coach') coaches++;
+        else if (r === 'owner') owners++;
+    }
+    document.getElementById('statTotal').textContent = total;
+    document.getElementById('statAthletes').textContent = athletes;
+    document.getElementById('statCoaches').textContent = coaches;
+    document.getElementById('statOwners').textContent = owners;
+}
+
+// ===== FILTER =====
+function filterUsers() {
+    var search = document.getElementById('searchInput').value.toLowerCase().trim();
+    var roleFilter = document.getElementById('roleFilter').value;
+
+    filteredUsers = allUsers.filter(function(u) {
+        var matchRole = (roleFilter === 'all') || ((u.role || 'athlete') === roleFilter);
+        if (!matchRole) return false;
+        if (!search) return true;
+        var name = (u.display_name || '').toLowerCase();
+        var email = (u.email || '').toLowerCase();
+        return name.indexOf(search) !== -1 || email.indexOf(search) !== -1;
+    });
+
+    applySortAndRender();
+}
+
+// ===== SORT =====
+function sortTable(field) {
+    if (sortField === field) {
+        sortAsc = !sortAsc;
+    } else {
+        sortField = field;
+        sortAsc = true;
+    }
+    applySortAndRender();
+}
+
+function applySortAndRender() {
+    // Update sort icons
+    var icons = document.querySelectorAll('.sort-icon');
+    for (var i = 0; i < icons.length; i++) {
+        icons[i].classList.remove('active');
+        icons[i].innerHTML = '<i class="fa-solid fa-sort"></i>';
+    }
+    var activeIcon = document.getElementById('sort-' + sortField);
+    if (activeIcon) {
+        activeIcon.classList.add('active');
+        activeIcon.innerHTML = sortAsc
+            ? '<i class="fa-solid fa-sort-up"></i>'
+            : '<i class="fa-solid fa-sort-down"></i>';
+    }
+
+    // Sort
+    filteredUsers.sort(function(a, b) {
+        var valA, valB;
+        if (sortField === 'display_name') {
+            valA = (a.display_name || '').toLowerCase();
+            valB = (b.display_name || '').toLowerCase();
+        } else if (sortField === 'email') {
+            valA = (a.email || '').toLowerCase();
+            valB = (b.email || '').toLowerCase();
+        } else if (sortField === 'role') {
+            valA = (a.role || 'athlete').toLowerCase();
+            valB = (b.role || 'athlete').toLowerCase();
+        } else if (sortField === 'created_at') {
+            valA = a.created_at || '';
+            valB = b.created_at || '';
+        } else {
+            valA = '';
+            valB = '';
+        }
+
+        if (valA < valB) return sortAsc ? -1 : 1;
+        if (valA > valB) return sortAsc ? 1 : -1;
+        return 0;
+    });
+
+    renderTable();
+}
+
+// ===== RENDER TABLE =====
+function renderTable() {
+    var tbody = document.getElementById('userTableBody');
+
+    if (filteredUsers.length === 0) {
+        tbody.innerHTML = '<tr><td colspan="4" class="no-results">No users found</td></tr>';
+        return;
+    }
+
+    var html = '';
+    for (var i = 0; i < filteredUsers.length; i++) {
+        var u = filteredUsers[i];
+        var isSelf = currentUser && u.id === currentUser.id;
+        var role = u.role || 'athlete';
+        var name = u.display_name || '—';
+        var email = u.email || '—';
+        var joined = u.created_at ? formatDate(u.created_at) : '—';
+
+        html += '<tr' + (isSelf ? ' class="self-row"' : '') + '>';
+        html += '<td class="user-name">' + escapeHtml(name) + (isSelf ? ' <span style="color: var(--yellow); font-size: 0.7rem;">(You)</span>' : '') + '</td>';
+        html += '<td class="user-email">' + escapeHtml(email) + '</td>';
+        html += '<td>';
+        html += '<select class="role-select" onchange="changeRole(\'' + escapeAttr(u.id) + '\', this.value, \'' + escapeAttr(email) + '\')"' + (isSelf ? ' disabled title="Cannot change your own role"' : '') + '>';
+        html += '<option value="athlete"' + (role === 'athlete' ? ' selected' : '') + '>Athlete</option>';
+        html += '<option value="coach"' + (role === 'coach' ? ' selected' : '') + '>Coach</option>';
+        html += '<option value="owner"' + (role === 'owner' ? ' selected' : '') + '>Owner</option>';
+        html += '</select>';
+        html += '</td>';
+        html += '<td>' + escapeHtml(joined) + '</td>';
+        html += '</tr>';
+    }
+
+    tbody.innerHTML = html;
+}
+
+// ===== FORMAT DATE =====
+function formatDate(dateStr) {
+    try {
+        var d = new Date(dateStr);
+        var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+        return months[d.getMonth()] + ' ' + d.getDate() + ', ' + d.getFullYear();
+    } catch (e) {
+        return dateStr;
+    }
+}
+
+// ===== CHANGE ROLE (opens modal) =====
+function changeRole(id, newRole, email) {
+    // Find current role from allUsers
+    var user = null;
+    for (var i = 0; i < allUsers.length; i++) {
+        if (allUsers[i].id === id) { user = allUsers[i]; break; }
+    }
+
+    if (!user) return;
+    var currentRole = user.role || 'athlete';
+
+    // If same role, revert select and do nothing
+    if (currentRole === newRole) return;
+
+    pendingChange = { id: id, newRole: newRole, email: email, oldRole: currentRole };
+
+    var msg = 'Change <span class="modal-email">' + escapeHtml(email) + '</span> from <span class="modal-role">' + escapeHtml(currentRole) + '</span> to <span class="modal-role">' + escapeHtml(newRole) + '</span>?';
+    document.getElementById('confirmMessage').innerHTML = msg;
+    document.getElementById('confirmModal').classList.add('active');
+}
+
+// ===== CONFIRM ROLE CHANGE =====
+async function confirmRoleChange() {
+    if (!pendingChange) return;
+
+    closeConfirmModal();
+
+    try {
+        var { error } = await supabase
+            .from('profiles')
+            .update({ role: pendingChange.newRole })
+            .eq('id', pendingChange.id);
+
+        if (error) {
+            showToast('Failed to update role: ' + error.message, true);
+            // Revert the select in the table
+            renderTable();
+            return;
+        }
+
+        // Update local data
+        for (var i = 0; i < allUsers.length; i++) {
+            if (allUsers[i].id === pendingChange.id) {
+                allUsers[i].role = pendingChange.newRole;
+                break;
+            }
+        }
+
+        updateStats();
+        filterUsers();
+        showToast('Role updated: ' + pendingChange.email + ' is now ' + pendingChange.newRole, false);
+    } catch (e) {
+        console.error('Role change exception:', e);
+        showToast('Failed to update role', true);
+        renderTable();
+    }
+
+    pendingChange = null;
+}
+
+// ===== CLOSE MODAL (revert select if cancelled) =====
+function closeConfirmModal() {
+    document.getElementById('confirmModal').classList.remove('active');
+
+    // If pending change exists and we're cancelling, revert the dropdown
+    if (pendingChange) {
+        // Re-render to revert dropdowns to their actual values
+        renderTable();
+        pendingChange = null;
+    }
+}
+
+// ===== TOAST =====
+function showToast(msg, isError) {
+    var toast = document.getElementById('adminToast');
+    var icon = isError ? '<i class="fa-solid fa-circle-xmark" style="color: var(--phase-cut);"></i>' : '<i class="fa-solid fa-circle-check" style="color: var(--phase-build);"></i>';
+    toast.innerHTML = icon + ' ' + escapeHtml(msg);
+    toast.className = 'admin-toast' + (isError ? ' error' : '');
+
+    // Trigger reflow then add visible class
+    void toast.offsetWidth;
+    toast.classList.add('visible');
+
+    setTimeout(function() {
+        toast.classList.remove('visible');
+    }, 4000);
+}
+
+// ===== XSS PREVENTION =====
+function escapeHtml(str) {
+    if (!str) return '';
+    return String(str)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#39;');
+}
+
+function escapeAttr(str) {
+    if (!str) return '';
+    return String(str)
+        .replace(/\\/g, '\\\\')
+        .replace(/'/g, "\\'")
+        .replace(/"/g, '\\"');
+}
+
+// ===== LOGOUT =====
+async function handleLogout() {
+    if (supabase) { await supabase.auth.signOut(); }
+    window.location.href = 'blueprint-dashboard.html';
+}
+
+// ===== LEAD MODAL PLACEHOLDER =====
+function openLeadModal() {
+    // Placeholder — same as other pages
+}
+
+// ===== INIT =====
+checkSession();
+</script>
+</body>
+</html>
