@@ -3932,13 +3932,19 @@
                                 <span class="coach-summary-stat-label">Date</span>
                                 <span class="coach-summary-stat-value" id="drillCheckinDate">--</span>
                             </div>
-                            <div class="coach-summary-stat">
-                                <span class="coach-summary-stat-label">Avg Weight</span>
-                                <span class="coach-summary-stat-value" id="drillCheckinWeight">--</span>
-                            </div>
-                            <div class="coach-summary-stat">
-                                <span class="coach-summary-stat-label">Energy</span>
-                                <span class="coach-summary-stat-value" id="drillCheckinEnergy">--</span>
+                            <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.5rem;">
+                                <div class="coach-summary-stat">
+                                    <span class="coach-summary-stat-label">Energy</span>
+                                    <span class="coach-summary-stat-value" id="drillCheckinEnergy">--</span>
+                                </div>
+                                <div class="coach-summary-stat">
+                                    <span class="coach-summary-stat-label">Sleep</span>
+                                    <span class="coach-summary-stat-value" id="drillCheckinSleep">--</span>
+                                </div>
+                                <div class="coach-summary-stat">
+                                    <span class="coach-summary-stat-label">Stress</span>
+                                    <span class="coach-summary-stat-value" id="drillCheckinStress">--</span>
+                                </div>
                             </div>
                             <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem;">
                                 <div class="coach-summary-stat">
@@ -4176,19 +4182,38 @@
             <form class="dash-form" id="checkinForm" onsubmit="saveCheckin(event)">
                 <div class="checkin-form-grid">
                     <div class="form-group">
-                        <label for="checkinWeight">Average Weight This Week (lbs)</label>
-                        <input type="number" id="checkinWeight" step="0.1" placeholder="e.g. 185.5">
+                        <label>Energy Level</label>
+                        <div class="checkin-rating">
+                            <input type="radio" name="energy" id="energy1" value="1"><label for="energy1">1</label>
+                            <input type="radio" name="energy" id="energy2" value="2"><label for="energy2">2</label>
+                            <input type="radio" name="energy" id="energy3" value="3"><label for="energy3">3</label>
+                            <input type="radio" name="energy" id="energy4" value="4"><label for="energy4">4</label>
+                            <input type="radio" name="energy" id="energy5" value="5"><label for="energy5">5</label>
+                        </div>
                     </div>
                     <div class="form-group">
-                        <label for="checkinEnergy">Energy Level</label>
-                        <select id="checkinEnergy" style="background: var(--black); color: var(--white); border: 2px solid var(--medium-gray); padding: 0.75rem; font-family: 'Montserrat', sans-serif; font-size: 0.9rem; width: 100%;">
+                        <label for="checkinSleep">Avg Sleep (hours)</label>
+                        <select id="checkinSleep" style="background: var(--black); color: var(--white); border: 2px solid var(--medium-gray); padding: 0.75rem; font-family: 'Montserrat', sans-serif; font-size: 0.9rem; width: 100%;">
                             <option value="">Select...</option>
-                            <option value="5">High — felt great all week</option>
-                            <option value="4">Good — mostly energized</option>
-                            <option value="3">Average — some ups and downs</option>
-                            <option value="2">Low — struggled with energy</option>
-                            <option value="1">Very low — dragging all week</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                            <option value="7">7</option>
+                            <option value="8">8+</option>
                         </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Stress Level</label>
+                        <div class="checkin-rating">
+                            <input type="radio" name="stress" id="stress1" value="1"><label for="stress1">1</label>
+                            <input type="radio" name="stress" id="stress2" value="2"><label for="stress2">2</label>
+                            <input type="radio" name="stress" id="stress3" value="3"><label for="stress3">3</label>
+                            <input type="radio" name="stress" id="stress4" value="4"><label for="stress4">4</label>
+                            <input type="radio" name="stress" id="stress5" value="5"><label for="stress5">5</label>
+                        </div>
                     </div>
                     <div class="form-group">
                         <label>Nutrition Adherence</label>
@@ -5587,6 +5612,8 @@ async function saveCheckin(e) {
     var targetId = getTargetUserId();
     if (!targetId) return;
     var phase = getPhaseInfo();
+    var energy = document.querySelector('input[name="energy"]:checked');
+    var stress = document.querySelector('input[name="stress"]:checked');
     var adherence = document.querySelector('input[name="adherence"]:checked');
     var training = document.querySelector('input[name="training"]:checked');
 
@@ -5594,8 +5621,9 @@ async function saveCheckin(e) {
         user_id: targetId,
         phase: phase.num,
         year: phase.year,
-        avg_weight: parseFloat(document.getElementById('checkinWeight').value) || null,
-        energy_level: parseInt(document.getElementById('checkinEnergy').value) || null,
+        energy_level: energy ? parseInt(energy.value) : null,
+        avg_sleep: parseInt(document.getElementById('checkinSleep').value) || null,
+        stress_level: stress ? parseInt(stress.value) : null,
         nutrition_adherence: adherence ? parseInt(adherence.value) : null,
         training_adherence: training ? parseInt(training.value) : null,
         notes: document.getElementById('checkinNotes').value.trim() || null,
@@ -5609,6 +5637,21 @@ async function saveCheckin(e) {
         closeCheckinModal();
         showToast('Check-in saved!');
         loadCheckins(targetId);
+
+        // Notify coach
+        try {
+            var { data: assignment } = await supabase.from('coach_athletes')
+                .select('coach_id').eq('athlete_id', targetId).limit(1).single();
+            if (assignment && assignment.coach_id) {
+                var athleteName = userDisplayName || (currentUser ? currentUser.email.split('@')[0] : 'Athlete');
+                await supabase.from('notifications').insert({
+                    user_id: assignment.coach_id,
+                    type: 'checkin',
+                    title: athleteName + ' submitted a check-in',
+                    message: 'Energy: ' + (energy ? energy.value : '--') + '/5 | Stress: ' + (stress ? stress.value : '--') + '/5 | Nutrition: ' + (adherence ? adherence.value : '--') + '/5 | Training: ' + (training ? training.value : '--') + '/5'
+                });
+            }
+        } catch (notifErr) { /* notification failure is non-blocking */ }
     } catch (err) {
         flashMessage('checkinSaveError');
     }
@@ -5634,8 +5677,6 @@ async function loadCheckins(userId) {
 
         var phaseNames = { 1: 'Baseline', 2: 'Cut', 3: 'Maintain', 4: 'Build' };
         var phaseColors = { 1: 'var(--phase-baseline)', 2: 'var(--phase-cut)', 3: 'var(--phase-maintain)', 4: 'var(--phase-build)' };
-        var energyLabels = { 5: 'High', 4: 'Good', 3: 'Average', 2: 'Low', 1: 'Very Low' };
-
         var html = '';
         data.forEach(function(entry) {
             var date = new Date(entry.week_of + 'T12:00:00').toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
@@ -5646,8 +5687,9 @@ async function loadCheckins(userId) {
             html += '<span class="checkin-entry-phase" style="color: ' + phaseColor + '; border-color: ' + phaseColor + ';">Phase ' + entry.phase + ': ' + (phaseNames[entry.phase] || '') + '</span>';
             html += '</div>';
             html += '<div class="checkin-entry-stats">';
-            if (entry.avg_weight) html += '<span class="checkin-entry-stat">Weight: <strong>' + entry.avg_weight + ' lbs</strong></span>';
-            if (entry.energy_level) html += '<span class="checkin-entry-stat">Energy: <strong>' + (energyLabels[entry.energy_level] || entry.energy_level) + '</strong></span>';
+            if (entry.energy_level) html += '<span class="checkin-entry-stat">Energy: <strong>' + entry.energy_level + '/5</strong></span>';
+            if (entry.avg_sleep) html += '<span class="checkin-entry-stat">Sleep: <strong>' + entry.avg_sleep + (entry.avg_sleep >= 8 ? '+' : '') + ' hrs</strong></span>';
+            if (entry.stress_level) html += '<span class="checkin-entry-stat">Stress: <strong>' + entry.stress_level + '/5</strong></span>';
             if (entry.nutrition_adherence) html += '<span class="checkin-entry-stat">Nutrition: <strong>' + entry.nutrition_adherence + '/5</strong></span>';
             if (entry.training_adherence) html += '<span class="checkin-entry-stat">Training: <strong>' + entry.training_adherence + '/5</strong></span>';
             html += '</div>';
@@ -6164,7 +6206,7 @@ async function loadCoachView() {
         // Fetch latest check-in for each
         var { data: checkins } = await supabase
             .from('weekly_checkins')
-            .select('user_id, week_of, avg_weight, energy_level')
+            .select('user_id, week_of, energy_level, avg_sleep, stress_level')
             .in('user_id', athleteIds)
             .order('week_of', { ascending: false });
 
@@ -6350,7 +6392,7 @@ async function drillIntoClient(clientId, clientName) {
     // Reset summary cards
     ['drillMacroCals','drillMacroProtein','drillMacroCarbs','drillMacroFat',
      'drillWeight','drillBodyFat','drillSMM','drillWeightChange',
-     'drillCheckinDate','drillCheckinWeight','drillCheckinEnergy',
+     'drillCheckinDate','drillCheckinEnergy','drillCheckinSleep','drillCheckinStress',
      'drillCheckinNutrition','drillCheckinTraining'].forEach(function(id) {
         var el = document.getElementById(id);
         if (el) el.textContent = '--';
@@ -6401,10 +6443,10 @@ async function drillIntoClient(clientId, clientName) {
         // Card 3: Latest Check-In
         var checkin = results[3].data && results[3].data[0];
         if (checkin) {
-            var energyLabels = { 5: 'High', 4: 'Good', 3: 'Average', 2: 'Low', 1: 'Very Low' };
             document.getElementById('drillCheckinDate').textContent = checkin.week_of ? new Date(checkin.week_of + 'T12:00:00').toLocaleDateString('en-US', { month: 'short', day: 'numeric' }) : '--';
-            document.getElementById('drillCheckinWeight').textContent = checkin.avg_weight ? checkin.avg_weight + ' lbs' : '--';
-            document.getElementById('drillCheckinEnergy').textContent = checkin.energy_level ? (energyLabels[checkin.energy_level] || checkin.energy_level) : '--';
+            document.getElementById('drillCheckinEnergy').textContent = checkin.energy_level ? checkin.energy_level + '/5' : '--';
+            document.getElementById('drillCheckinSleep').textContent = checkin.avg_sleep ? checkin.avg_sleep + (checkin.avg_sleep >= 8 ? '+ hrs' : ' hrs') : '--';
+            document.getElementById('drillCheckinStress').textContent = checkin.stress_level ? checkin.stress_level + '/5' : '--';
             document.getElementById('drillCheckinNutrition').textContent = checkin.nutrition_adherence ? checkin.nutrition_adherence + '/5' : '--';
             document.getElementById('drillCheckinTraining').textContent = checkin.training_adherence ? checkin.training_adherence + '/5' : '--';
             if (checkin.notes) {
