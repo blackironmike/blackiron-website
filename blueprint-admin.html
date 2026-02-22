@@ -6,6 +6,8 @@
     <title>Admin Panel | Black Iron Athletics</title>
     <meta name="robots" content="noindex, nofollow">
     <link rel="icon" type="image/png" href="images/anvil-favicon.png">
+    <meta name="theme-color" content="#000000">
+    <link rel="apple-touch-icon" href="images/anvil-favicon.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;900&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
@@ -1174,7 +1176,7 @@ async function checkSession() {
         return;
     }
 
-    // Owner confirmed — show admin panel
+    // Owner confirmed â€” show admin panel
     document.getElementById('adminLoading').style.display = 'none';
     document.getElementById('adminPanel').style.display = 'block';
     document.getElementById('userEmail').textContent = currentUser.email;
@@ -1336,10 +1338,10 @@ function getAssignedCoachId(athleteId) {
 function getCoachName(coachId) {
     for (var i = 0; i < allCoaches.length; i++) {
         if (allCoaches[i].id === coachId) {
-            return allCoaches[i].display_name || allCoaches[i].email || '—';
+            return allCoaches[i].display_name || allCoaches[i].email || 'â€”';
         }
     }
-    return '—';
+    return 'â€”';
 }
 
 // ===== RENDER TABLE =====
@@ -1356,9 +1358,9 @@ function renderTable() {
         var u = filteredUsers[i];
         var isSelf = currentUser && u.id === currentUser.id;
         var role = u.role || 'athlete';
-        var name = u.display_name || '—';
-        var email = u.email || '—';
-        var joined = u.created_at ? formatDate(u.created_at) : '—';
+        var name = u.display_name || 'â€”';
+        var email = u.email || 'â€”';
+        var joined = u.created_at ? formatDate(u.created_at) : 'â€”';
 
         html += '<tr' + (isSelf ? ' class="self-row"' : '') + '>';
         html += '<td class="user-name">' + escapeHtml(name) + (isSelf ? ' <span style="color: var(--yellow); font-size: 0.7rem;">(You)</span>' : '') + '</td>';
@@ -1379,12 +1381,12 @@ function renderTable() {
             html += '<option value=""' + (!assignedCoachId ? ' selected' : '') + '>Unassigned</option>';
             for (var c = 0; c < allCoaches.length; c++) {
                 var coach = allCoaches[c];
-                var coachName = coach.display_name || coach.email || '—';
+                var coachName = coach.display_name || coach.email || 'â€”';
                 html += '<option value="' + escapeAttr(coach.id) + '"' + (assignedCoachId === coach.id ? ' selected' : '') + '>' + escapeHtml(coachName) + '</option>';
             }
             html += '</select>';
         } else {
-            html += '<span style="color: #666;">—</span>';
+            html += '<span style="color: #666;">â€”</span>';
         }
         html += '</td>';
 
@@ -1617,7 +1619,7 @@ async function handleLogout() {
 
 // ===== LEAD MODAL PLACEHOLDER =====
 function openLeadModal() {
-    // Placeholder — same as other pages
+    // Placeholder â€” same as other pages
 }
 
 // ===== INIT =====

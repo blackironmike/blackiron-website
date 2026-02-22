@@ -21,6 +21,8 @@
     <meta name="twitter:description" content="The Decade Roadmap: a Year 1 through Year 10 progression framework that turns the 4-Phase Nutrition Blueprint from a one-time plan into a lifelong system. Plus troubleshooting and FAQs.">
     <meta name="twitter:image" content="https://www.blackironathletics.com/images/social-share.png">
     <link rel="icon" type="image/png" href="images/anvil-favicon.png">
+    <meta name="theme-color" content="#000000">
+    <link rel="apple-touch-icon" href="images/anvil-favicon.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;900&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
@@ -1503,7 +1505,7 @@
 
             <div class="timeline">
                 <div class="timeline-item reveal">
-                    <div class="timeline-label">Year 1 — Chapter One</div>
+                    <div class="timeline-label">Year 1 â€” Chapter One</div>
                     <h3>Learn the System</h3>
                     <div class="phase-badges">
                         <span class="phase-badge phase-badge--baseline">Baseline</span>
@@ -1523,7 +1525,7 @@
                 </div>
 
                 <div class="timeline-item reveal">
-                    <div class="timeline-label">Year 2 — Chapter Two</div>
+                    <div class="timeline-label">Year 2 â€” Chapter Two</div>
                     <h3>Refine &amp; Optimize</h3>
                     <div class="phase-badges">
                         <span class="phase-badge phase-badge--baseline">Baseline</span>
@@ -1543,7 +1545,7 @@
                 </div>
 
                 <div class="timeline-item reveal">
-                    <div class="timeline-label">Years 3-4 — Chapter Three</div>
+                    <div class="timeline-label">Years 3-4 â€” Chapter Three</div>
                     <h3>Auto-Regulation</h3>
                     <div class="phase-badges">
                         <span class="phase-badge phase-badge--cut">Cut</span>
@@ -1562,7 +1564,7 @@
                 </div>
 
                 <div class="timeline-item reveal">
-                    <div class="timeline-label">Years 5-10 — Chapter Four</div>
+                    <div class="timeline-label">Years 5-10 â€” Chapter Four</div>
                     <h3>Mastery</h3>
                     <div class="phase-badges">
                         <span class="phase-badge phase-badge--maintain">Maintain</span>
@@ -1753,7 +1755,7 @@
           "name": "I'm not losing weight during my cut.",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "First, are you actually tracking everything? Most stalls come from underreporting intake — cooking oils, sauces, drinks, and 'just a bite' add up fast. If your tracking is tight and the scale hasn't moved in 2+ weeks, rerun the calculator. You may need to adjust your activity level input down."
+            "text": "First, are you actually tracking everything? Most stalls come from underreporting intake â€” cooking oils, sauces, drinks, and 'just a bite' add up fast. If your tracking is tight and the scale hasn't moved in 2+ weeks, rerun the calculator. You may need to adjust your activity level input down."
           }
         },
         {
@@ -1785,7 +1787,7 @@
           "name": "Do I need to track macros forever?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Not forever, but probably longer than you think. Most people need 2-3 years of consistent tracking before they can intuitively eat at their targets. Think of tracking like training wheels — you'll know when you're ready to take them off."
+            "text": "Not forever, but probably longer than you think. Most people need 2-3 years of consistent tracking before they can intuitively eat at their targets. Think of tracking like training wheels â€” you'll know when you're ready to take them off."
           }
         },
         {
@@ -2027,8 +2029,8 @@
     if (!window.supabase) return;
     var sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
     var { data } = await sb.auth.getSession();
-    if (!data || !data.session) return; // not logged in — gate stays visible
-    // User is authenticated — grant access
+    if (!data || !data.session) return; // not logged in â€” gate stays visible
+    // User is authenticated â€” grant access
     document.getElementById('gateOverlay').style.display = 'none';
 })();
 </script>

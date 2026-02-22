@@ -21,6 +21,8 @@
     <meta name="twitter:description" content="Why most nutrition plans fail and how yearly nutrition periodization fixes the cycle. Learn the science behind the 4-Phase Nutrition Blueprint from Black Iron Athletics.">
     <meta name="twitter:image" content="https://www.blackironathletics.com/images/social-share.png">
     <link rel="icon" type="image/png" href="images/anvil-favicon.png">
+    <meta name="theme-color" content="#000000">
+    <link rel="apple-touch-icon" href="images/anvil-favicon.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;900&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
@@ -1058,7 +1060,7 @@
       "@context": "https://schema.org",
       "@type": "Product",
       "name": "The 4-Phase Nutrition Blueprint",
-      "description": "A year-round nutrition periodization system with 4 phases — Baseline, Cut, Maintain, Build. Includes phase guides, macro calculator integration, supplement protocols, and The Decade Roadmap.",
+      "description": "A year-round nutrition periodization system with 4 phases â€” Baseline, Cut, Maintain, Build. Includes phase guides, macro calculator integration, supplement protocols, and The Decade Roadmap.",
       "brand": { "@type": "Organization", "name": "Black Iron Athletics" },
       "offers": {
         "@type": "Offer",
@@ -1073,7 +1075,7 @@
     {
       "@context": "https://schema.org",
       "@type": "WebPage",
-      "name": "The Philosophy — Why Yearly Nutrition Periodization Works",
+      "name": "The Philosophy â€” Why Yearly Nutrition Periodization Works",
       "description": "Why most nutrition plans fail and how yearly nutrition periodization fixes the cycle. Learn the science behind the 4-Phase Nutrition Blueprint from Black Iron Athletics.",
       "url": "https://www.blackironathletics.com/blueprint-philosophy.html",
       "isPartOf": {
@@ -1291,8 +1293,8 @@
     if (!window.supabase) return;
     var sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
     var { data } = await sb.auth.getSession();
-    if (!data || !data.session) return; // not logged in — gate stays visible
-    // User is authenticated — grant access
+    if (!data || !data.session) return; // not logged in â€” gate stays visible
+    // User is authenticated â€” grant access
     document.getElementById('gateOverlay').style.display = 'none';
 })();
 </script>
