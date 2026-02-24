@@ -83,7 +83,7 @@
 
         #booking,
         #included {
-            scroll-margin-top: 80px;
+            scroll-margin-top: 120px;
         }
 
         /* All headings use Montserrat Black */
@@ -169,10 +169,144 @@
             color: var(--yellow);
         }
 
+        /* ===== URGENCY BANNER ===== */
+        .urgency-banner {
+            background: var(--yellow);
+            color: var(--black);
+            text-align: center;
+            padding: 0.75rem 2rem;
+            font-weight: 700;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1001;
+        }
+
+        .urgency-banner .urgency-dot {
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            background: #ff4444;
+            border-radius: 50%;
+            margin-right: 0.5rem;
+            animation: pulse-dot 1.5s ease-in-out infinite;
+            vertical-align: middle;
+        }
+
+        @keyframes pulse-dot {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.5; transform: scale(1.3); }
+        }
+
+        .urgency-banner a {
+            color: var(--black);
+            text-decoration: underline;
+            font-weight: 900;
+            margin-left: 0.5rem;
+        }
+
+        .urgency-banner a:hover {
+            text-decoration: none;
+        }
+
+        /* Shift nav down to make room for banner */
+        nav {
+            top: 38px;
+        }
+
+        /* ===== URGENCY BADGE (near CTAs) ===== */
+        .urgency-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: var(--yellow);
+            margin-top: 1rem;
+        }
+
+        .urgency-badge .urgency-dot {
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            background: #ff4444;
+            border-radius: 50%;
+            animation: pulse-dot 1.5s ease-in-out infinite;
+        }
+
+        /* ===== FAILURE VS SUCCESS BLOCK ===== */
+        .urgency-contrast {
+            background: var(--black);
+            padding: 5rem 0;
+            border-top: 3px solid var(--yellow);
+        }
+
+        .urgency-contrast-container {
+            max-width: 100%;
+            margin: 0;
+            padding: 0 4rem;
+        }
+
+        .urgency-contrast-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .urgency-contrast-card {
+            padding: 3rem 2rem;
+            text-align: center;
+        }
+
+        .urgency-contrast-card.failure {
+            background: var(--dark-gray);
+            border: 2px solid var(--medium-gray);
+        }
+
+        .urgency-contrast-card.success {
+            background: var(--dark-gray);
+            border: 2px solid var(--yellow);
+        }
+
+        .urgency-contrast-card h3 {
+            font-size: 1.3rem;
+            text-transform: uppercase;
+            margin-bottom: 1.5rem;
+            letter-spacing: 1px;
+        }
+
+        .urgency-contrast-card.failure h3 {
+            color: var(--light-gray);
+        }
+
+        .urgency-contrast-card.success h3 {
+            color: var(--yellow);
+        }
+
+        .urgency-contrast-card p {
+            color: var(--light-gray);
+            line-height: 1.8;
+            font-size: 1.05rem;
+        }
+
+        .urgency-contrast-card.success p {
+            color: var(--white);
+        }
+
+        .urgency-contrast-cta {
+            text-align: center;
+            margin-top: 3rem;
+        }
+
         /* Hero Section */
         .hero {
             margin-top: 0;
-            padding-top: 80px;
+            padding-top: 118px;
             min-height: 100vh;
             display: flex;
             align-items: center;
@@ -900,6 +1034,11 @@
             .guide-grid {
                 gap: 3rem;
             }
+
+            .urgency-contrast-container {
+                padding-left: 2rem;
+                padding-right: 2rem;
+            }
         }
 
         /* ===== RESPONSIVE: 768px ===== */
@@ -1061,6 +1200,30 @@
                 padding: 0 1.5rem;
                 gap: 2rem;
             }
+
+            /* Urgency banner responsive */
+            .urgency-banner {
+                font-size: 0.75rem;
+                padding: 0.6rem 1rem;
+                letter-spacing: 0.5px;
+            }
+
+            .urgency-contrast-container {
+                padding: 0 1.5rem;
+            }
+
+            .urgency-contrast-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .urgency-contrast-card {
+                padding: 2rem 1.5rem;
+            }
+
+            .urgency-contrast {
+                padding: 4rem 0;
+            }
         }
 
         /* Skip Navigation */
@@ -1096,6 +1259,13 @@
 <body>
     <a href="#main-content" class="skip-link">Skip to main content</a>
 
+    <!-- Urgency Banner -->
+    <div class="urgency-banner">
+        <span class="urgency-dot"></span>
+        Spring slots are filling fast — only a few consultation times left this week.
+        <a href="#booking">Book now</a>
+    </div>
+
     <!-- Minimal Header: Logo + Phone -->
     <nav>
         <div class="nav-container">
@@ -1126,6 +1296,7 @@
                     <a href="#booking" class="btn-primary">Book Your Free Consultation</a>
                     <a href="#included" class="btn-secondary">See What's Included</a>
                 </div>
+                <div class="urgency-badge"><span class="urgency-dot"></span> Limited spots available this week</div>
                 <div class="trust-badges">Veteran-Owned | 13+ Years | 5-Star Reviews</div>
             </div>
         </div>
@@ -1162,7 +1333,7 @@
                 <h2 class="section-title">What Happens If Nothing Changes?</h2>
             </div>
 
-            <p class="stakes-intro reveal">You keep saying Monday. But Monday comes and goes. The clothes fit tighter, the energy drops, and the frustration builds. You know you need something different.</p>
+            <p class="stakes-intro reveal">Tomorrow is always tomorrow. You keep saying Monday — but Monday comes and goes. The clothes fit tighter, the energy drops, and the frustration builds. The only difference between you and someone who's already in shape? They stopped waiting.</p>
 
             <div class="problem-grid reveal-stagger">
                 <div class="problem-card reveal">
@@ -1380,6 +1551,26 @@
         </div>
     </section>
 
+    <!-- ===== URGENCY: FAILURE vs SUCCESS ===== -->
+    <section class="urgency-contrast">
+        <div class="urgency-contrast-container">
+            <div class="urgency-contrast-grid reveal">
+                <div class="urgency-contrast-card failure">
+                    <h3><i class="fa-solid fa-arrow-rotate-left" style="margin-right: 0.5rem;"></i> If You Wait</h3>
+                    <p>Another month goes by. Same routine. Same frustration. The clothes still don't fit. The energy never comes back. Tomorrow turns into next week, next month, next year.</p>
+                </div>
+                <div class="urgency-contrast-card success">
+                    <h3><i class="fa-solid fa-arrow-right" style="margin-right: 0.5rem;"></i> If You Start Today</h3>
+                    <p>30 days from now, you'll already feel different. Stronger. More confident. More energy. You'll wonder why you didn't do this sooner — and you'll be glad you finally did.</p>
+                </div>
+            </div>
+            <div class="urgency-contrast-cta reveal">
+                <a href="#booking" class="btn-primary">Book Your Free Consultation</a>
+                <div class="urgency-badge" style="justify-content: center;"><span class="urgency-dot"></span> Limited spots available this week</div>
+            </div>
+        </div>
+    </section>
+
     <!-- ===== 10. BOOKING ===== -->
     <section id="booking" class="booking-section" style="background: var(--dark-gray);">
         <div class="booking-container">
@@ -1387,6 +1578,7 @@
                 <div class="booking-subtitle">Take the First Step</div>
                 <h2 class="booking-title">Book Your Free Consultation</h2>
                 <p class="booking-description">Pick a time that works. No credit card required.</p>
+                <div class="urgency-badge" style="justify-content: center;"><span class="urgency-dot"></span> Limited spots available — spring is our busiest season</div>
             </div>
 
             <div class="booking-embed reveal">
