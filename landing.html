@@ -83,7 +83,7 @@
 
         #booking,
         #included {
-            scroll-margin-top: 128px;
+            scroll-margin-top: 120px;
         }
 
         /* All headings use Montserrat Black */
@@ -101,7 +101,7 @@
             padding: 1.5rem 0;
             background: var(--black);
             z-index: 1000;
-            border-bottom: 1px solid var(--medium-gray);
+            border-bottom: none;
         }
 
         .nav-container {
@@ -180,9 +180,9 @@
             text-transform: uppercase;
             letter-spacing: 1px;
             position: fixed;
-            top: 0;
+            top: 80px;
             width: 100%;
-            z-index: 1001;
+            z-index: 999;
         }
 
         .urgency-banner .urgency-dot {
@@ -201,21 +201,7 @@
             50% { opacity: 0.5; transform: scale(1.3); }
         }
 
-        .urgency-banner a {
-            color: var(--black);
-            text-decoration: underline;
-            font-weight: 900;
-            margin-left: 0.5rem;
-        }
-
-        .urgency-banner a:hover {
-            text-decoration: none;
-        }
-
-        /* Shift nav down to make room for banner + buffer */
-        nav {
-            top: 46px;
-        }
+        /* Nav stays at top, banner sits below it */
 
         /* ===== URGENCY BADGE (near CTAs) ===== */
         .urgency-badge {
@@ -306,7 +292,7 @@
         /* Hero Section */
         .hero {
             margin-top: 0;
-            padding-top: 126px;
+            padding-top: 120px;
             min-height: 100vh;
             display: flex;
             align-items: center;
@@ -1203,9 +1189,10 @@
 
             /* Urgency banner responsive */
             .urgency-banner {
-                font-size: 0.75rem;
-                padding: 0.6rem 1rem;
+                font-size: 0.7rem;
+                padding: 0.5rem 1rem;
                 letter-spacing: 0.5px;
+                top: 68px;
             }
 
             .urgency-contrast-container {
@@ -1259,14 +1246,7 @@
 <body>
     <a href="#main-content" class="skip-link">Skip to main content</a>
 
-    <!-- Urgency Banner -->
-    <div class="urgency-banner">
-        <span class="urgency-dot"></span>
-        Spring slots are filling fast — only a few consultation times left this week.
-        <a href="#booking">Book now</a>
-    </div>
-
-    <!-- Minimal Header: Logo + Phone -->
+    <!-- Minimal Header -->
     <nav>
         <div class="nav-container">
             <div class="logo">
@@ -1275,10 +1255,16 @@
                 </a>
             </div>
             <div class="nav-right">
-                <a href="#booking" class="nav-cta">Book</a>
+                <a href="#booking" class="nav-cta">Book Today</a>
             </div>
         </div>
     </nav>
+
+    <!-- Urgency Banner (below header, above hero) -->
+    <div class="urgency-banner">
+        <span class="urgency-dot"></span>
+        Spring slots are filling fast — only a few consultation times left this week.
+    </div>
 
     <main id="main-content">
 
