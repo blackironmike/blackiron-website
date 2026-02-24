@@ -81,7 +81,8 @@
             scroll-behavior: smooth;
         }
 
-        #booking {
+        #booking,
+        #included {
             scroll-margin-top: 80px;
         }
 
@@ -140,6 +141,32 @@
 
         .nav-phone:hover {
             color: var(--white);
+        }
+
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .nav-cta {
+            background: var(--yellow);
+            color: var(--black);
+            padding: 0.8rem 1.5rem;
+            text-decoration: none;
+            font-weight: 900;
+            font-size: 0.85rem;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            border: 2px solid var(--yellow);
+            border-radius: 0;
+            white-space: nowrap;
+        }
+
+        .nav-cta:hover {
+            background: var(--black);
+            color: var(--yellow);
         }
 
         /* Hero Section */
@@ -220,6 +247,26 @@
             color: var(--yellow);
         }
 
+        .btn-secondary {
+            background: transparent;
+            color: var(--white);
+            padding: 1.2rem 3rem;
+            text-decoration: none;
+            font-weight: 900;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border: 2px solid var(--white);
+            border-radius: 0;
+            display: inline-block;
+        }
+
+        .btn-secondary:hover {
+            background: var(--white);
+            color: var(--black);
+        }
+
         .trust-badges {
             font-size: 0.85rem;
             font-weight: 700;
@@ -229,47 +276,47 @@
             margin-top: 2rem;
         }
 
-        /* Stats Bar */
-        .stats-bar {
-            background: var(--yellow);
-            padding: 3rem 0;
-            width: 100%;
+        /* ===== 2. VALUE STACK ===== */
+        .value-stack {
+            background: var(--black);
+            padding: 5rem 0;
+            border-top: 3px solid var(--yellow);
         }
 
-        .stats-container {
+        .value-stack-container {
             max-width: 100%;
             margin: 0;
             padding: 0 4rem;
+        }
+
+        .value-stack-grid {
             display: grid;
-            grid-template-columns: repeat(4, 1fr);
+            grid-template-columns: repeat(3, 1fr);
             gap: 3rem;
         }
 
-        .stat-item {
+        .value-stack-item {
             text-align: center;
+            padding: 2rem 1.5rem;
         }
 
-        .stat-number {
+        .value-stack-icon {
+            font-size: 2.5rem;
+            color: var(--yellow);
+            margin-bottom: 1.5rem;
+        }
+
+        .value-stack-item h3 {
             font-weight: 900;
-            font-size: 3.5rem;
-            color: var(--black);
-            line-height: 1;
-            margin-bottom: 0.5rem;
-        }
-
-        .stat-label {
-            font-size: 0.9rem;
-            font-weight: 700;
-            color: var(--black);
+            font-size: 1.3rem;
             text-transform: uppercase;
-            letter-spacing: 1px;
+            margin-bottom: 0.75rem;
         }
 
-        .stat-google-stars {
-            font-size: 2rem;
-            line-height: 1;
-            margin-bottom: 0.25rem;
-            letter-spacing: 2px;
+        .value-stack-item p {
+            color: var(--light-gray);
+            font-size: 1rem;
+            line-height: 1.6;
         }
 
         /* Section Styles */
@@ -318,12 +365,20 @@
             font-weight: 500;
         }
 
-        /* Pain Points Section */
+        /* ===== 3. STAKES ===== */
+        .stakes-intro {
+            max-width: 800px;
+            margin: 0 auto 3rem;
+            text-align: center;
+            font-size: 1.2rem;
+            color: var(--light-gray);
+            line-height: 1.9;
+        }
+
         .problem-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
             gap: 2rem;
-            margin-top: 3rem;
         }
 
         .problem-card {
@@ -363,10 +418,10 @@
             font-size: 1rem;
         }
 
-        /* Solution Section */
+        /* ===== 4. VALUE PROPOSITION ===== */
         .solution-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
             gap: 2rem;
             margin-top: 3rem;
         }
@@ -403,9 +458,154 @@
             line-height: 1.8;
         }
 
-        /* Testimonial Section */
-        .testimonial-feature {
+        /* ===== 5. GUIDE ===== */
+        .guide-section {
+            padding: 6rem 0;
             background: var(--dark-gray);
+        }
+
+        .guide-container {
+            max-width: 100%;
+            margin: 0;
+            padding: 0 4rem;
+        }
+
+        .guide-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .guide-empathy h2 {
+            font-weight: 900;
+            font-size: clamp(2rem, 4vw, 3rem);
+            text-transform: uppercase;
+            margin-bottom: 1.5rem;
+        }
+
+        .guide-empathy p {
+            color: var(--light-gray);
+            font-size: 1.15rem;
+            line-height: 1.9;
+            margin-bottom: 1.5rem;
+        }
+
+        .guide-empathy .guide-name {
+            font-weight: 900;
+            color: var(--yellow);
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .authority-badges {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+        }
+
+        .authority-badge {
+            text-align: center;
+            padding: 2rem 1rem;
+            border: 2px solid var(--medium-gray);
+            transition: all 0.3s ease;
+        }
+
+        .authority-badge:hover {
+            border-color: var(--yellow);
+        }
+
+        .authority-badge .badge-number {
+            font-weight: 900;
+            font-size: 2.5rem;
+            color: var(--yellow);
+            line-height: 1;
+            margin-bottom: 0.5rem;
+        }
+
+        .authority-badge .badge-label {
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: var(--light-gray);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* ===== 6. THE PLAN ===== */
+        .steps-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .step-card {
+            background: var(--dark-gray);
+            padding: 3rem 2rem;
+            border: 2px solid var(--medium-gray);
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+
+        .step-card:hover {
+            border-color: var(--yellow);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(255, 210, 2, 0.2);
+        }
+
+        .step-number {
+            background: var(--yellow);
+            color: var(--black);
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            font-weight: 900;
+            margin: 0 auto 1.5rem;
+        }
+
+        .step-card h3 {
+            font-weight: 900;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .step-card p {
+            color: var(--light-gray);
+            line-height: 1.8;
+        }
+
+        /* ===== 7. EXPLANATORY PARAGRAPH ===== */
+        .explainer-section {
+            padding: 5rem 0;
+            background: var(--dark-gray);
+        }
+
+        .explainer-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 4rem;
+            text-align: center;
+        }
+
+        .explainer-container p {
+            font-size: clamp(1.3rem, 2.5vw, 1.6rem);
+            line-height: 1.8;
+            color: var(--white);
+            font-weight: 500;
+        }
+
+        .explainer-container p strong {
+            color: var(--yellow);
+            font-weight: 900;
+        }
+
+        /* ===== 8. TESTIMONIALS ===== */
+        .testimonial-feature {
+            background: var(--black);
             padding: 6rem 0;
         }
 
@@ -473,7 +673,7 @@
             font-size: 0.9rem;
         }
 
-        /* What's Included Section */
+        /* ===== 9. WHAT'S INCLUDED + FAQ ===== */
         .checklist-container {
             max-width: 700px;
             margin: 3rem auto 0;
@@ -508,7 +708,41 @@
             color: var(--white);
         }
 
-        /* Booking Section */
+        .faq-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+            margin: 4rem auto 0;
+        }
+
+        .faq-item {
+            background: var(--dark-gray);
+            padding: 2rem;
+            border: 2px solid var(--medium-gray);
+            transition: all 0.3s ease;
+        }
+
+        .faq-item:hover {
+            border-color: var(--yellow);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(255, 210, 2, 0.2);
+        }
+
+        .faq-question {
+            font-weight: 900;
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+            color: var(--yellow);
+            line-height: 1.3;
+        }
+
+        .faq-answer {
+            color: var(--light-gray);
+            line-height: 1.7;
+            font-size: 0.95rem;
+        }
+
+        /* ===== 10. BOOKING ===== */
         .booking-section {
             padding: 6rem 0;
             background: var(--black);
@@ -555,7 +789,7 @@
             min-height: 600px;
         }
 
-        /* Simplified Footer */
+        /* Footer */
         footer {
             padding: 4rem 0 2rem;
             background: var(--black);
@@ -644,30 +878,31 @@
             }
         }
 
+        /* ===== RESPONSIVE: 1024px ===== */
         @media (max-width: 1024px) {
             .nav-container,
             .hero-container,
             .section-container,
             .testimonial-content,
-            .footer-container {
+            .footer-container,
+            .guide-container,
+            .value-stack-container {
                 padding-left: 2rem;
                 padding-right: 2rem;
             }
 
-            .stats-bar {
-                padding: 3rem 2rem;
-            }
-
-            .stats-container {
-                padding: 0 2rem;
-            }
-
-            .booking-container {
+            .booking-container,
+            .explainer-container {
                 padding-left: 2rem;
                 padding-right: 2rem;
+            }
+
+            .guide-grid {
+                gap: 3rem;
             }
         }
 
+        /* ===== RESPONSIVE: 768px ===== */
         @media (max-width: 768px) {
             .nav-container {
                 padding: 0 1.5rem;
@@ -695,11 +930,21 @@
                 margin-bottom: 2rem;
             }
 
+            .nav-right {
+                gap: 1rem;
+            }
+
+            .nav-cta {
+                padding: 0.6rem 1rem;
+                font-size: 0.75rem;
+            }
+
             .hero-buttons {
                 flex-direction: column;
             }
 
-            .hero-buttons .btn-primary {
+            .hero-buttons .btn-primary,
+            .hero-buttons .btn-secondary {
                 text-align: center;
                 width: 100%;
             }
@@ -710,22 +955,28 @@
                 white-space: normal;
             }
 
-            .stats-container {
+            /* Value Stack responsive */
+            .value-stack {
+                padding: 3rem 0;
+            }
+
+            .value-stack-container {
                 padding: 0 1.5rem;
-                grid-template-columns: repeat(2, 1fr);
-                gap: 1.5rem;
             }
 
-            .stat-number {
-                font-size: 2rem;
+            .value-stack-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
             }
 
-            .stat-label {
-                font-size: 0.75rem;
+            .value-stack-item {
+                padding: 1.5rem 1rem;
             }
 
+            /* Section responsive */
             .section-container,
-            .testimonial-content {
+            .testimonial-content,
+            .guide-container {
                 padding: 0 1.5rem;
             }
 
@@ -738,15 +989,15 @@
             }
 
             .problem-grid,
-            .solution-grid {
+            .solution-grid,
+            .steps-grid,
+            .faq-container {
                 grid-template-columns: 1fr;
             }
 
-            .problem-card {
-                padding: 1.5rem;
-            }
-
-            .solution-card {
+            .problem-card,
+            .solution-card,
+            .step-card {
                 padding: 1.5rem;
             }
 
@@ -754,10 +1005,36 @@
                 padding: 4rem 0;
             }
 
+            /* Guide responsive */
+            .guide-section {
+                padding: 4rem 0;
+            }
+
+            .guide-grid {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+
+            .authority-badges {
+                max-width: 400px;
+                margin: 0 auto;
+            }
+
+            /* Explainer responsive */
+            .explainer-section {
+                padding: 3rem 0;
+            }
+
+            .explainer-container {
+                padding: 0 1.5rem;
+            }
+
+            /* Testimonials responsive */
             .testimonial-feature {
                 padding: 4rem 0;
             }
 
+            /* Booking responsive */
             .booking-section {
                 padding: 4rem 0;
             }
@@ -779,6 +1056,7 @@
                 min-height: 400px;
             }
 
+            /* Footer responsive */
             .footer-container {
                 padding: 0 1.5rem;
                 gap: 2rem;
@@ -826,80 +1104,86 @@
                     <img src="images/logo.png" alt="Black Iron Athletics">
                 </a>
             </div>
-            <a href="tel:(972)785-7036" class="nav-phone">
-                <i class="fa-solid fa-phone"></i> (972) 785-7036
-            </a>
+            <div class="nav-right">
+                <a href="tel:(972)785-7036" class="nav-phone">
+                    <i class="fa-solid fa-phone"></i> (972) 785-7036
+                </a>
+                <a href="#booking" class="nav-cta">Book Now</a>
+            </div>
         </div>
     </nav>
 
     <main id="main-content">
 
-    <!-- Hero Section -->
+    <!-- ===== 1. HERO ===== -->
     <section class="hero">
         <img src="images/coach-smiling.webp" alt="Coach at Black Iron Athletics" class="hero-bg" fetchpriority="high">
         <div class="hero-container">
             <div class="hero-content">
                 <h1>Too Busy to Be Out of Shape</h1>
-                <p>Get structured coaching, proven programming, and real accountability — designed for busy professionals who refuse to settle.</p>
+                <p>Walk in. Get coached. See results. It's that simple — built for Frisco professionals who don't have time to waste.</p>
                 <div class="hero-buttons">
                     <a href="#booking" class="btn-primary">Book Your Free Consultation</a>
+                    <a href="#included" class="btn-secondary">See What's Included</a>
                 </div>
                 <div class="trust-badges">Veteran-Owned | 13+ Years | 5-Star Reviews</div>
             </div>
         </div>
     </section>
 
-    <!-- Stats Bar -->
-    <div class="stats-bar reveal">
-        <div class="stats-container">
-            <div class="stat-item">
-                <div class="stat-number">13+</div>
-                <div class="stat-label">Years Strong</div>
-            </div>
-            <div class="stat-item">
-                <div class="stat-number">3000+</div>
-                <div class="stat-label">Lives Changed</div>
-            </div>
-            <div class="stat-item">
-                <div class="stat-number">5.0</div>
-                <div class="stat-google-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-                <div class="stat-label">Google Reviews</div>
-            </div>
-            <div class="stat-item">
-                <div class="stat-number"><i class="fa-solid fa-shield-halved" style="font-size: 2.5rem;"></i></div>
-                <div class="stat-label">Veteran Owned</div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Pain Points Section: "Is This You?" -->
-    <section class="section section-alt">
-        <div class="section-container">
-            <div class="section-header reveal">
-                <div class="section-subtitle">Sound Familiar?</div>
-                <h2 class="section-title">Is This You?</h2>
-            </div>
-
-            <div class="problem-grid reveal-stagger">
-                <div class="problem-card reveal">
-                    <h3><span class="problem-icon"><i class="fa-solid fa-clock"></i></span> No Time for Guesswork</h3>
-                    <p>You're busy juggling work, family, and everything in between. You need efficient, coached workouts that deliver results — not hours wasted figuring it out on your own.</p>
+    <!-- ===== 2. VALUE STACK ===== -->
+    <section class="value-stack reveal">
+        <div class="value-stack-container">
+            <div class="value-stack-grid">
+                <div class="value-stack-item">
+                    <div class="value-stack-icon"><i class="fa-solid fa-user-shield"></i></div>
+                    <h3>Get Expert Coaching</h3>
+                    <p>Every session is led by a certified coach who knows your name and your goals.</p>
                 </div>
-
-                <div class="problem-card reveal">
-                    <h3><span class="problem-icon"><i class="fa-solid fa-arrows-rotate"></i></span> Tired of Zero Progress</h3>
-                    <p>You've tried big box gyms with no structure, no accountability, and no results. You keep showing up but nothing changes because nobody's guiding you.</p>
+                <div class="value-stack-item">
+                    <div class="value-stack-icon"><i class="fa-solid fa-clipboard-list"></i></div>
+                    <h3>Follow a Proven Plan</h3>
+                    <p>Structured programming that delivers results — no guesswork required.</p>
                 </div>
-
-                <div class="problem-card reveal">
-                    <h3><span class="problem-icon"><i class="fa-solid fa-ban"></i></span> Done with Gimmicks</h3>
-                    <p>You want expert coaching and a proven plan, not fitness fads or apps that collect dust. You're ready for something that actually works — long term.</p>
+                <div class="value-stack-item">
+                    <div class="value-stack-icon"><i class="fa-solid fa-users"></i></div>
+                    <h3>Stay Accountable</h3>
+                    <p>A community that knows your name and won't let you quit.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Solution Section: "Here's How We Help" -->
+    <!-- ===== 3. STAKES ===== -->
+    <section class="section section-alt">
+        <div class="section-container">
+            <div class="section-header reveal">
+                <div class="section-subtitle">The Cost of Waiting</div>
+                <h2 class="section-title">What Happens If Nothing Changes?</h2>
+            </div>
+
+            <p class="stakes-intro reveal">You keep saying Monday. But Monday comes and goes. The clothes fit tighter, the energy drops, and the frustration builds. You know you need something different.</p>
+
+            <div class="problem-grid reveal-stagger">
+                <div class="problem-card reveal">
+                    <h3><span class="problem-icon"><i class="fa-solid fa-clock"></i></span> Losing Time</h3>
+                    <p>Every week without a plan is another week wasted. That time doesn't come back.</p>
+                </div>
+
+                <div class="problem-card reveal">
+                    <h3><span class="problem-icon"><i class="fa-solid fa-person-falling"></i></span> Losing Confidence</h3>
+                    <p>The longer you wait, the harder it feels to start. That gap grows wider every day.</p>
+                </div>
+
+                <div class="problem-card reveal">
+                    <h3><span class="problem-icon"><i class="fa-solid fa-battery-quarter"></i></span> Losing Energy</h3>
+                    <p>Your body doesn't get better by default. Without structure and coaching, it gets worse.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== 4. VALUE PROPOSITION ===== -->
     <section class="section">
         <div class="section-container">
             <div class="section-header reveal">
@@ -911,43 +1195,100 @@
                 <div class="solution-card reveal">
                     <div class="solution-icon"><i class="fa-solid fa-user-shield"></i></div>
                     <h3>Expert Coaching Every Session</h3>
-                    <p>Every class is led by an experienced coach who guides, corrects, and pushes you. You're never left to figure it out alone.</p>
+                    <p>Every class is led by an experienced coach who guides, corrects, and pushes you. Whether you're brand new or coming back after years off, we meet you where you are and help you get where you want to be.</p>
                 </div>
 
                 <div class="solution-card reveal">
                     <div class="solution-icon"><i class="fa-solid fa-clipboard-list"></i></div>
-                    <h3>Structured Programming</h3>
-                    <p>Our programming is designed with purpose — building strength, conditioning, and mobility progressively so you see real results.</p>
+                    <h3>Programming That Works</h3>
+                    <p>Our programming builds strength, conditioning, and mobility progressively — so you see real results, not random workouts. Multiple class times plus 24/7 open gym means it fits your schedule, not the other way around.</p>
                 </div>
 
                 <div class="solution-card reveal">
                     <div class="solution-icon"><i class="fa-solid fa-handshake"></i></div>
-                    <h3>Built-In Accountability</h3>
-                    <p>Your coaches and community know your name and notice when you're not there. That kind of accountability changes everything.</p>
-                </div>
-
-                <div class="solution-card reveal">
-                    <div class="solution-icon"><i class="fa-solid fa-calendar-check"></i></div>
-                    <h3>Flexible Schedule</h3>
-                    <p>Multiple class times throughout the day plus 24/7 open gym access. Fit your training around your life, not the other way around.</p>
-                </div>
-
-                <div class="solution-card reveal">
-                    <div class="solution-icon"><i class="fa-solid fa-heart"></i></div>
-                    <h3>Beginner-Friendly</h3>
-                    <p>Every workout is scaled to your ability. Whether you're brand new or coming back after years off, we meet you where you are.</p>
-                </div>
-
-                <div class="solution-card reveal">
-                    <div class="solution-icon"><i class="fa-solid fa-users"></i></div>
-                    <h3>Real Community</h3>
-                    <p>This isn't a faceless gym. It's a family of everyday people who push each other to be better — inside and outside the gym.</p>
+                    <h3>A Community That Has Your Back</h3>
+                    <p>This isn't a faceless gym. Your coaches and community know your name and notice when you're not there. That kind of accountability and support changes everything — inside and outside the gym.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Testimonial Section -->
+    <!-- ===== 5. GUIDE (Empathy + Authority) ===== -->
+    <section class="guide-section">
+        <div class="guide-container">
+            <div class="guide-grid reveal">
+                <div class="guide-empathy">
+                    <div class="section-subtitle">Your Guide</div>
+                    <h2>We've Been Where You Are</h2>
+                    <p>Busy, skeptical, wondering if this time will be different. We get it — we built Black Iron for people exactly like you.</p>
+                    <p>For 13+ years, we've helped thousands of people in Frisco walk through our doors unsure and walk out transformed. Expert coaching. Real accountability. A community that won't let you fail.</p>
+                    <div class="guide-name">— Mike Manning, Owner &amp; Army Veteran</div>
+                </div>
+
+                <div class="authority-badges">
+                    <div class="authority-badge">
+                        <div class="badge-number">13+</div>
+                        <div class="badge-label">Years Strong</div>
+                    </div>
+                    <div class="authority-badge">
+                        <div class="badge-number">3000+</div>
+                        <div class="badge-label">Lives Changed</div>
+                    </div>
+                    <div class="authority-badge">
+                        <div class="badge-number">5.0 &#9733;</div>
+                        <div class="badge-label">Google Reviews</div>
+                    </div>
+                    <div class="authority-badge">
+                        <div class="badge-number"><i class="fa-solid fa-shield-halved"></i></div>
+                        <div class="badge-label">Veteran-Owned</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== 6. THE PLAN ===== -->
+    <section class="section">
+        <div class="section-container">
+            <div class="section-header reveal">
+                <div class="section-subtitle">It's Simple</div>
+                <h2 class="section-title">Your Path to Results</h2>
+            </div>
+
+            <div class="steps-grid reveal-stagger">
+                <div class="step-card reveal">
+                    <div class="step-number">1</div>
+                    <h3>Book a Free Consultation</h3>
+                    <p>Pick a time, show up, and meet your coach. No commitment, no pressure — just an honest conversation about your goals.</p>
+                </div>
+
+                <div class="step-card reveal">
+                    <div class="step-number">2</div>
+                    <h3>Get Your Custom Plan</h3>
+                    <p>We'll build a program around your goals, schedule, and fitness level. You'll know exactly what to do from day one.</p>
+                </div>
+
+                <div class="step-card reveal">
+                    <div class="step-number">3</div>
+                    <h3>Start Getting Results</h3>
+                    <p>Show up, follow the plan, and watch your life change. We'll be with you every step of the way.</p>
+                </div>
+            </div>
+
+            <div style="text-align: center; margin-top: 3rem;" class="reveal">
+                <a href="#booking" class="btn-primary">Book Your Free Consultation</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== 7. EXPLANATORY PARAGRAPH ===== -->
+    <section class="explainer-section">
+        <div class="explainer-container reveal">
+            <p><strong>Black Iron Athletics</strong> helps busy professionals in Frisco get strong, stay consistent, and feel like themselves again — through expert coaching, proven programming, and a community that won't let you quit.</p>
+        </div>
+    </section>
+
+    <!-- ===== 8. TESTIMONIALS ===== -->
     <section class="testimonial-feature">
         <div class="testimonial-content">
             <h2 class="reveal">What Our Members Say</h2>
@@ -974,8 +1315,8 @@
         </div>
     </section>
 
-    <!-- What's Included Section -->
-    <section class="section">
+    <!-- ===== 9. WHAT'S INCLUDED + FAQ ===== -->
+    <section id="included" class="section section-alt">
         <div class="section-container">
             <div class="section-header reveal">
                 <div class="section-subtitle">No Strings Attached</div>
@@ -1006,13 +1347,40 @@
                 </div>
             </div>
 
+            <!-- FAQ Section -->
+            <div style="margin-top: 5rem;">
+                <h3 style="text-align: center; font-size: clamp(1.8rem, 4vw, 2.5rem); text-transform: uppercase; margin-bottom: 2rem;" class="reveal">Common Questions</h3>
+
+                <div class="faq-container reveal-stagger">
+                    <div class="faq-item reveal">
+                        <h3 class="faq-question">What if I'm completely out of shape?</h3>
+                        <p class="faq-answer">We scale everything. Every workout is adjusted to your fitness level, so you start where you are — not where someone else thinks you should be. Most of our members started exactly where you are now.</p>
+                    </div>
+
+                    <div class="faq-item reveal">
+                        <h3 class="faq-question">How much does a membership cost?</h3>
+                        <p class="faq-answer">We have options for every budget, from unlimited classes to open gym access. Your consultation is completely free — come in, see the facility, and we'll walk you through everything.</p>
+                    </div>
+
+                    <div class="faq-item reveal">
+                        <h3 class="faq-question">What if I can't commit to a schedule?</h3>
+                        <p class="faq-answer">We offer multiple class times throughout the day plus 24/7 open gym access. Whether you're an early bird or a night owl, you'll find a time that works for your life.</p>
+                    </div>
+
+                    <div class="faq-item reveal">
+                        <h3 class="faq-question">Is this like CrossFit?</h3>
+                        <p class="faq-answer">We offer similar group training and functional fitness, but we're independently owned with our own programming. No affiliation — just proven coaching, great community, and results that speak for themselves.</p>
+                    </div>
+                </div>
+            </div>
+
             <div style="text-align: center; margin-top: 3rem;" class="reveal">
                 <a href="#booking" class="btn-primary">Book Your Free Consultation</a>
             </div>
         </div>
     </section>
 
-    <!-- Booking Section -->
+    <!-- ===== 10. BOOKING ===== -->
     <section id="booking" class="booking-section" style="background: var(--dark-gray);">
         <div class="booking-container">
             <div class="reveal">
@@ -1030,7 +1398,7 @@
 
     </main>
 
-    <!-- Simplified Footer -->
+    <!-- Footer -->
     <footer>
         <div class="footer-container">
             <div class="footer-section">
