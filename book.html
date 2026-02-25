@@ -1006,14 +1006,7 @@
 
     // --- Slot Click Handler ---
     function onSlotClick(isoStr) {
-        var d = new Date(isoStr);
-        var dateParam = toDateStr(d);
-        var iframe = document.getElementById(BOOKING_IFRAME_ID);
-        if (iframe) {
-            var baseSrc = iframe.src.split('?')[0];
-            iframe.src = baseSrc + '?date=' + dateParam;
-        }
-        var embed = iframe ? iframe.closest('.booking-embed') : document.querySelector('.booking-embed');
+        var embed = document.querySelector('.booking-embed');
         if (embed) {
             embed.scrollIntoView({ behavior: 'smooth', block: 'start' });
         }
