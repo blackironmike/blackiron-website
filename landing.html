@@ -900,10 +900,22 @@
         }
 
         .booking-embed {
-            background: var(--dark-gray);
-            border: 2px solid var(--medium-gray);
-            padding: 2rem;
+            background: var(--black);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            padding: 1.5rem;
             min-height: 600px;
+            position: relative;
+        }
+
+        .booking-embed::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background: var(--yellow);
         }
 
         .booking-embed iframe {
@@ -1278,7 +1290,7 @@
             }
 
             .booking-embed {
-                padding: 1rem;
+                padding: 0.75rem;
                 min-height: 400px;
             }
 
