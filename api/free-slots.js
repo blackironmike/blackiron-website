@@ -57,13 +57,14 @@ export default async function handler(req, res) {
     const response = await fetch(ghlUrl, {
       headers: {
         'Authorization': `Bearer ${apiKey}`,
-        'Version': '2021-04-15',
+        'Version': '2021-07-28',
         'Accept': 'application/json'
       }
     });
 
     if (!response.ok) {
-      console.error(`GHL API error: ${response.status} ${response.statusText}`);
+      const errBody = await response.text();
+      console.error(`GHL API error: ${response.status} ${response.statusText} - ${errBody}`);
       return res.status(502).json({ error: 'Failed to fetch availability' });
     }
 
