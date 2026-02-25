@@ -934,40 +934,40 @@
         }
         .slot-card {
             background: #222;
-            border: 2px solid #555;
-            border-left: 4px solid var(--yellow);
-            padding: 1.25rem 1.75rem;
+            border: 1px solid #444;
+            border-left: 3px solid var(--yellow);
+            padding: 0.75rem 1.25rem;
             cursor: pointer;
             transition: all 0.3s ease;
             text-align: center;
-            min-width: 170px;
-            flex: 1;
-            max-width: 230px;
+            min-width: 140px;
+            flex: 0 1 auto;
+            max-width: 180px;
         }
         .slot-card:hover, .slot-card:focus-visible {
             border-color: var(--yellow);
-            border-left: 4px solid var(--yellow);
+            border-left: 3px solid var(--yellow);
             background: rgba(255, 210, 2, 0.08);
-            transform: translateY(-3px);
-            box-shadow: 0 6px 20px rgba(255, 210, 2, 0.2);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(255, 210, 2, 0.15);
         }
         .slot-card-day {
             font-weight: 700;
-            font-size: 0.9rem;
-            color: var(--white);
+            font-size: 0.75rem;
+            color: var(--light-gray);
             text-transform: uppercase;
             letter-spacing: 1px;
-            margin-bottom: 0.25rem;
+            margin-bottom: 0.15rem;
         }
         .slot-card-date {
-            font-weight: 900;
-            font-size: 1.1rem;
+            font-weight: 700;
+            font-size: 0.85rem;
             color: var(--white);
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.3rem;
         }
         .slot-card-time {
             font-weight: 900;
-            font-size: 1.2rem;
+            font-size: 1rem;
             color: var(--yellow);
         }
 
@@ -987,10 +987,10 @@
             margin-bottom: 0.5rem;
         }
         .skeleton-card {
-            height: 90px;
-            min-width: 170px;
-            flex: 1;
-            max-width: 230px;
+            height: 70px;
+            min-width: 140px;
+            flex: 0 1 auto;
+            max-width: 180px;
         }
 
         /* --- Widget Error/Empty States --- */
