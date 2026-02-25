@@ -260,8 +260,8 @@
             text-align: center;
         }
 
-        /* --- Next 3 Slots Widget --- */
-        .next-slots {
+        /* --- Next Available Times Widget --- */
+        .next-slots-widget {
             margin-bottom: 2rem;
         }
         .next-slots-list {
@@ -306,145 +306,6 @@
             font-size: 1.1rem;
             color: var(--yellow);
         }
-        .see-more-btn {
-            background: transparent;
-            color: var(--yellow);
-            border: 2px solid var(--yellow);
-            padding: 0.7rem 2rem;
-            font-family: 'Montserrat', sans-serif;
-            font-weight: 700;
-            font-size: 0.85rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            display: block;
-            margin: 0 auto;
-        }
-        .see-more-btn:hover {
-            background: var(--yellow);
-            color: var(--black);
-        }
-
-        /* --- Week View Widget --- */
-        .week-view-wrapper {
-            max-width: 1100px;
-            margin: 0 auto 2rem;
-            padding: 0 1.5rem;
-        }
-        .week-nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 1rem;
-        }
-        .week-nav-btn {
-            background: transparent;
-            color: var(--white);
-            border: 2px solid var(--medium-gray);
-            padding: 0.5rem 1rem;
-            font-family: 'Montserrat', sans-serif;
-            font-weight: 700;
-            font-size: 0.8rem;
-            text-transform: uppercase;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-        .week-nav-btn:hover:not(:disabled) {
-            border-color: var(--yellow);
-            color: var(--yellow);
-        }
-        .week-nav-btn:disabled {
-            opacity: 0.3;
-            cursor: not-allowed;
-        }
-        .week-nav-label {
-            font-weight: 700;
-            font-size: 1rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-        .week-grid {
-            display: grid;
-            grid-template-columns: repeat(7, 1fr);
-            gap: 0;
-            border: 2px solid var(--medium-gray);
-        }
-        .week-day-col {
-            border-right: 1px solid var(--medium-gray);
-            min-height: 200px;
-        }
-        .week-day-col:last-child {
-            border-right: none;
-        }
-        .week-day-header {
-            background: var(--dark-gray);
-            padding: 0.75rem 0.5rem;
-            text-align: center;
-            border-bottom: 1px solid var(--medium-gray);
-            font-weight: 700;
-            font-size: 0.75rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-        .week-day-header-name {
-            color: var(--light-gray);
-            font-size: 0.7rem;
-        }
-        .week-day-header-date {
-            font-size: 0.9rem;
-            margin-top: 0.2rem;
-        }
-        .week-day-col.today .week-day-header {
-            background: rgba(255, 210, 2, 0.15);
-            border-bottom-color: var(--yellow);
-        }
-        .week-day-col.today .week-day-header-date {
-            color: var(--yellow);
-        }
-        .week-day-slots {
-            padding: 0.5rem;
-            max-height: 280px;
-            overflow-y: auto;
-            display: flex;
-            flex-direction: column;
-            gap: 0.4rem;
-        }
-        .week-day-slots::-webkit-scrollbar {
-            width: 4px;
-        }
-        .week-day-slots::-webkit-scrollbar-track {
-            background: var(--dark-gray);
-        }
-        .week-day-slots::-webkit-scrollbar-thumb {
-            background: var(--medium-gray);
-        }
-        .week-slot-btn {
-            background: var(--dark-gray);
-            border: 1px solid var(--medium-gray);
-            color: var(--white);
-            padding: 0.4rem 0.25rem;
-            font-family: 'Montserrat', sans-serif;
-            font-weight: 600;
-            font-size: 0.75rem;
-            cursor: pointer;
-            transition: all 0.2s ease;
-            text-align: center;
-            width: 100%;
-        }
-        .week-slot-btn:hover, .week-slot-btn:focus-visible {
-            background: rgba(255, 210, 2, 0.15);
-            border-color: var(--yellow);
-            color: var(--yellow);
-        }
-        .week-no-slots {
-            color: var(--medium-gray);
-            font-size: 0.7rem;
-            text-align: center;
-            padding: 1rem 0.25rem;
-            font-weight: 500;
-        }
-
         /* --- Skeleton Loading --- */
         @keyframes shimmer {
             0% { background-position: -200% 0; }
@@ -466,11 +327,6 @@
             flex: 1;
             max-width: 220px;
         }
-        .skeleton-week-slot {
-            height: 28px;
-            margin-bottom: 0.4rem;
-        }
-
         /* --- Widget Error/Empty States --- */
         .widget-error, .widget-empty {
             text-align: center;
@@ -497,14 +353,6 @@
         }
 
         @media (max-width: 768px) {
-            .week-view-wrapper {
-                padding: 0;
-                overflow-x: auto;
-                -webkit-overflow-scrolling: touch;
-            }
-            .week-grid {
-                min-width: 700px;
-            }
             .next-slots-list {
                 flex-direction: column;
                 align-items: stretch;
@@ -870,39 +718,16 @@
                 <p class="booking-description">No pressure, no sales pitch. Just an honest conversation about your goals and how we can help you get there. Pick a time that works for you.</p>
             </div>
 
-            <!-- Next 3 Slots Widget -->
-            <div class="next-slots reveal" id="nextSlotsWidget">
+            <!-- Next Available Times Widget -->
+            <div class="next-slots-widget reveal">
                 <div class="slots-widget-heading">Next Available Times</div>
-                <div class="next-slots-list" id="nextSlotsList">
+                <div class="next-slots-list">
                     <div class="skeleton skeleton-card"></div>
                     <div class="skeleton skeleton-card"></div>
                     <div class="skeleton skeleton-card"></div>
                 </div>
-                <button class="see-more-btn" id="seeMoreBtn" style="display:none;">See More Times</button>
             </div>
-        </div>
 
-        <!-- Week View Widget (full-width) -->
-        <div class="week-view-wrapper reveal" id="weekViewWidget">
-            <div class="slots-widget-heading">Weekly Availability</div>
-            <div class="week-nav">
-                <button class="week-nav-btn" id="weekPrev" disabled>&larr; Prev</button>
-                <span class="week-nav-label" id="weekLabel"></span>
-                <button class="week-nav-btn" id="weekNext">Next &rarr;</button>
-            </div>
-            <div class="week-grid" id="weekGrid">
-                <!-- 7 skeleton columns -->
-                <div class="week-day-col"><div class="week-day-header"><div class="skeleton" style="height:14px;width:60%;margin:0 auto 4px;"></div><div class="skeleton" style="height:18px;width:40%;margin:0 auto;"></div></div><div class="week-day-slots"><div class="skeleton skeleton-week-slot"></div><div class="skeleton skeleton-week-slot"></div><div class="skeleton skeleton-week-slot"></div></div></div>
-                <div class="week-day-col"><div class="week-day-header"><div class="skeleton" style="height:14px;width:60%;margin:0 auto 4px;"></div><div class="skeleton" style="height:18px;width:40%;margin:0 auto;"></div></div><div class="week-day-slots"><div class="skeleton skeleton-week-slot"></div><div class="skeleton skeleton-week-slot"></div><div class="skeleton skeleton-week-slot"></div></div></div>
-                <div class="week-day-col"><div class="week-day-header"><div class="skeleton" style="height:14px;width:60%;margin:0 auto 4px;"></div><div class="skeleton" style="height:18px;width:40%;margin:0 auto;"></div></div><div class="week-day-slots"><div class="skeleton skeleton-week-slot"></div><div class="skeleton skeleton-week-slot"></div><div class="skeleton skeleton-week-slot"></div></div></div>
-                <div class="week-day-col"><div class="week-day-header"><div class="skeleton" style="height:14px;width:60%;margin:0 auto 4px;"></div><div class="skeleton" style="height:18px;width:40%;margin:0 auto;"></div></div><div class="week-day-slots"><div class="skeleton skeleton-week-slot"></div><div class="skeleton skeleton-week-slot"></div><div class="skeleton skeleton-week-slot"></div></div></div>
-                <div class="week-day-col"><div class="week-day-header"><div class="skeleton" style="height:14px;width:60%;margin:0 auto 4px;"></div><div class="skeleton" style="height:18px;width:40%;margin:0 auto;"></div></div><div class="week-day-slots"><div class="skeleton skeleton-week-slot"></div><div class="skeleton skeleton-week-slot"></div><div class="skeleton skeleton-week-slot"></div></div></div>
-                <div class="week-day-col"><div class="week-day-header"><div class="skeleton" style="height:14px;width:60%;margin:0 auto 4px;"></div><div class="skeleton" style="height:18px;width:40%;margin:0 auto;"></div></div><div class="week-day-slots"><div class="skeleton skeleton-week-slot"></div><div class="skeleton skeleton-week-slot"></div><div class="skeleton skeleton-week-slot"></div></div></div>
-                <div class="week-day-col"><div class="week-day-header"><div class="skeleton" style="height:14px;width:60%;margin:0 auto 4px;"></div><div class="skeleton" style="height:18px;width:40%;margin:0 auto;"></div></div><div class="week-day-slots"><div class="skeleton skeleton-week-slot"></div><div class="skeleton skeleton-week-slot"></div><div class="skeleton skeleton-week-slot"></div></div></div>
-            </div>
-        </div>
-
-        <div class="booking-container">
             <div class="booking-embed reveal">
                 <iframe src="https://api.leadconnectorhq.com/widget/booking/aOyy4UPbwziVvHz35TCU" style="width: 100%; border: none; overflow: hidden;" scrolling="no" id="aOyy4UPbwziVvHz35TCU_1771041740943" title="Book a free consultation"></iframe>
                 <script src="https://link.msgsndr.com/js/form_embed.js" type="text/javascript" defer></script>
@@ -918,12 +743,10 @@
 // ===== BOOKING WIDGETS =====
 (function() {
     var API_URL = '/api/free-slots';
-    var BOOKING_IFRAME_ID = 'aOyy4UPbwziVvHz35TCU_1771041740943';
     var cache = {};
     var DAY_NAMES = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
     var MONTH_NAMES = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
 
-    // --- Helpers ---
     function toDateStr(d) {
         var y = d.getFullYear();
         var m = String(d.getMonth() + 1).padStart(2, '0');
@@ -940,27 +763,12 @@
         return h + ':' + String(m).padStart(2, '0') + ' ' + ampm + ' CT';
     }
 
-    function formatShortDate(isoStr) {
-        var d = new Date(isoStr);
-        return DAY_NAMES[d.getDay()] + ', ' + MONTH_NAMES[d.getMonth()] + ' ' + d.getDate();
-    }
-
-    function getSunday(d) {
-        var day = d.getDay();
-        var diff = d.getDate() - day;
-        var sun = new Date(d);
-        sun.setDate(diff);
-        sun.setHours(0, 0, 0, 0);
-        return sun;
-    }
-
     function addDays(d, n) {
         var r = new Date(d);
         r.setDate(r.getDate() + n);
         return r;
     }
 
-    // --- Fetch with cache ---
     function fetchSlots(startDate, endDate, cb) {
         var key = startDate + '_' + endDate;
         if (cache[key]) { return cb(null, cache[key]); }
@@ -977,14 +785,11 @@
             .catch(function(err) { cb(err, null); });
     }
 
-    // Parse GHL response into flat sorted array of slot objects
     function parseSlots(data) {
         var slots = [];
         if (!data || typeof data !== 'object') return slots;
-        // GHL returns { "YYYY-MM-DD": { slots: [...] } } or similar
         var source = data;
         if (data && typeof data === 'object' && !Array.isArray(data)) {
-            // Try common GHL response shapes
             if (data.slots) source = data.slots;
             else if (data.data) source = data.data;
         }
@@ -1004,207 +809,62 @@
         return slots;
     }
 
-    // --- Slot Click Handler ---
-    function onSlotClick(isoStr) {
+    function onSlotClick() {
         var embed = document.querySelector('.booking-embed');
         if (embed) {
             embed.scrollIntoView({ behavior: 'smooth', block: 'start' });
         }
     }
 
-    // =====================
-    // NEXT 3 SLOTS WIDGET
-    // =====================
-    var nextSlotsShown = 0;
-    var allNextSlots = [];
-    var nextFetchEnd = 14; // days ahead
-
-    function renderNextSlots() {
-        var list = document.getElementById('nextSlotsList');
-        var btn = document.getElementById('seeMoreBtn');
-        if (!list) return;
-        list.innerHTML = '';
-        var end = Math.min(nextSlotsShown, allNextSlots.length);
-        if (end === 0) {
-            list.innerHTML = '<div class="widget-empty">No upcoming slots found. Check back soon!</div>';
-            btn.style.display = 'none';
-            return;
-        }
-        for (var i = 0; i < end; i++) {
-            var s = allNextSlots[i];
-            var card = document.createElement('button');
-            card.className = 'slot-card';
-            card.setAttribute('aria-label', 'Book ' + formatShortDate(s.iso) + ' at ' + formatTime(s.iso));
-            card.innerHTML = '<div class="slot-card-day">' + DAY_NAMES[s.time.getDay()] + '</div>' +
-                '<div class="slot-card-date">' + MONTH_NAMES[s.time.getMonth()] + ' ' + s.time.getDate() + '</div>' +
-                '<div class="slot-card-time">' + formatTime(s.iso) + '</div>';
-            card.addEventListener('click', (function(iso) { return function() { onSlotClick(iso); }; })(s.iso));
-            list.appendChild(card);
-        }
-        if (nextSlotsShown < allNextSlots.length) {
-            btn.style.display = '';
-            btn.textContent = 'See More Times';
-        } else {
-            btn.style.display = 'none';
-        }
+    function renderAllWidgets(slots) {
+        var widgets = document.querySelectorAll('.next-slots-widget');
+        var top3 = slots.slice(0, 3);
+        widgets.forEach(function(widget) {
+            var list = widget.querySelector('.next-slots-list');
+            if (!list) return;
+            list.innerHTML = '';
+            if (top3.length === 0) {
+                list.innerHTML = '<div class="widget-empty">No upcoming slots found. Check back soon!</div>';
+                return;
+            }
+            top3.forEach(function(s) {
+                var card = document.createElement('button');
+                card.className = 'slot-card';
+                card.setAttribute('aria-label', 'Book ' + DAY_NAMES[s.time.getDay()] + ' ' + MONTH_NAMES[s.time.getMonth()] + ' ' + s.time.getDate() + ' at ' + formatTime(s.iso));
+                card.innerHTML = '<div class="slot-card-day">' + DAY_NAMES[s.time.getDay()] + '</div>' +
+                    '<div class="slot-card-date">' + MONTH_NAMES[s.time.getMonth()] + ' ' + s.time.getDate() + '</div>' +
+                    '<div class="slot-card-time">' + formatTime(s.iso) + '</div>';
+                card.addEventListener('click', onSlotClick);
+                list.appendChild(card);
+            });
+        });
     }
 
-    function loadNextSlots() {
+    function showError() {
+        var widgets = document.querySelectorAll('.next-slots-widget');
+        widgets.forEach(function(widget) {
+            var list = widget.querySelector('.next-slots-list');
+            if (list) {
+                list.innerHTML = '<div class="widget-error">Unable to load availability.<br><button class="widget-retry-btn" onclick="window.__retrySlots()">Retry</button></div>';
+            }
+        });
+    }
+
+    function loadSlots() {
         var today = new Date();
         var start = toDateStr(today);
-        var end = toDateStr(addDays(today, nextFetchEnd));
-        var list = document.getElementById('nextSlotsList');
-        // Show skeleton
-        list.innerHTML = '<div class="skeleton skeleton-card"></div><div class="skeleton skeleton-card"></div><div class="skeleton skeleton-card"></div>';
+        var end = toDateStr(addDays(today, 14));
         fetchSlots(start, end, function(err, data) {
-            if (err) {
-                list.innerHTML = '<div class="widget-error">Unable to load availability.<br><button class="widget-retry-btn" onclick="window.__retryNextSlots()">Retry</button></div>';
-                return;
-            }
-            allNextSlots = parseSlots(data);
-            // Filter out past slots
+            if (err) { showError(); return; }
+            var allSlots = parseSlots(data);
             var now = new Date();
-            allNextSlots = allNextSlots.filter(function(s) { return s.time > now; });
-            nextSlotsShown = Math.min(3, allNextSlots.length);
-            renderNextSlots();
+            allSlots = allSlots.filter(function(s) { return s.time > now; });
+            renderAllWidgets(allSlots);
         });
     }
 
-    window.__retryNextSlots = loadNextSlots;
-
-    var seeMoreBtn = document.getElementById('seeMoreBtn');
-    if (seeMoreBtn) {
-        seeMoreBtn.addEventListener('click', function() {
-            nextSlotsShown = Math.min(nextSlotsShown + 3, allNextSlots.length);
-            renderNextSlots();
-            // If we've shown all loaded slots and there might be more, fetch next window
-            if (nextSlotsShown >= allNextSlots.length && nextFetchEnd < 31) {
-                nextFetchEnd = 31;
-                var today = new Date();
-                var start = toDateStr(addDays(today, 14));
-                var end = toDateStr(addDays(today, 31));
-                fetchSlots(start, end, function(err, data) {
-                    if (!err) {
-                        var moreSlots = parseSlots(data);
-                        var now = new Date();
-                        moreSlots = moreSlots.filter(function(s) { return s.time > now; });
-                        allNextSlots = allNextSlots.concat(moreSlots);
-                        renderNextSlots();
-                    }
-                });
-            }
-        });
-    }
-
-    // =====================
-    // WEEK VIEW WIDGET
-    // =====================
-    var currentWeekStart = getSunday(new Date());
-    var maxWeeksAhead = 4;
-    var thisWeekStart = getSunday(new Date());
-
-    function renderWeekView() {
-        var grid = document.getElementById('weekGrid');
-        var label = document.getElementById('weekLabel');
-        var prevBtn = document.getElementById('weekPrev');
-        var nextBtn = document.getElementById('weekNext');
-        if (!grid) return;
-
-        var weekEnd = addDays(currentWeekStart, 6);
-        label.textContent = MONTH_NAMES[currentWeekStart.getMonth()] + ' ' + currentWeekStart.getDate() + ' - ' +
-            MONTH_NAMES[weekEnd.getMonth()] + ' ' + weekEnd.getDate();
-
-        // Nav buttons
-        prevBtn.disabled = currentWeekStart <= thisWeekStart;
-        var maxStart = addDays(thisWeekStart, maxWeeksAhead * 7);
-        nextBtn.disabled = currentWeekStart >= maxStart;
-
-        // Show skeleton
-        var skeletonHtml = '';
-        for (var i = 0; i < 7; i++) {
-            skeletonHtml += '<div class="week-day-col"><div class="week-day-header"><div class="skeleton" style="height:14px;width:60%;margin:0 auto 4px;"></div><div class="skeleton" style="height:18px;width:40%;margin:0 auto;"></div></div><div class="week-day-slots"><div class="skeleton skeleton-week-slot"></div><div class="skeleton skeleton-week-slot"></div><div class="skeleton skeleton-week-slot"></div></div></div>';
-        }
-        grid.innerHTML = skeletonHtml;
-
-        var start = toDateStr(currentWeekStart);
-        var end = toDateStr(addDays(currentWeekStart, 6));
-        fetchSlots(start, end, function(err, data) {
-            if (err) {
-                grid.innerHTML = '<div style="grid-column:1/-1;" class="widget-error">Unable to load availability.<br><button class="widget-retry-btn" onclick="window.__retryWeekView()">Retry</button></div>';
-                return;
-            }
-            var slots = parseSlots(data);
-            var today = new Date();
-            var todayStr = toDateStr(today);
-            // Group by date
-            var grouped = {};
-            for (var j = 0; j < 7; j++) {
-                var dayDate = addDays(currentWeekStart, j);
-                grouped[toDateStr(dayDate)] = [];
-            }
-            slots.forEach(function(s) {
-                var key = toDateStr(s.time);
-                if (grouped[key]) {
-                    // Filter past slots for today
-                    if (key === todayStr && s.time <= today) return;
-                    grouped[key].push(s);
-                }
-            });
-            grid.innerHTML = '';
-            for (var k = 0; k < 7; k++) {
-                var dDate = addDays(currentWeekStart, k);
-                var dKey = toDateStr(dDate);
-                var isToday = dKey === todayStr;
-                var col = document.createElement('div');
-                col.className = 'week-day-col' + (isToday ? ' today' : '');
-                var header = '<div class="week-day-header"><div class="week-day-header-name">' +
-                    DAY_NAMES[dDate.getDay()] + '</div><div class="week-day-header-date">' +
-                    (dDate.getMonth() + 1) + '/' + dDate.getDate() + '</div></div>';
-                col.innerHTML = header;
-                var slotsDiv = document.createElement('div');
-                slotsDiv.className = 'week-day-slots';
-                var daySlots = grouped[dKey];
-                if (daySlots.length === 0) {
-                    slotsDiv.innerHTML = '<div class="week-no-slots">No slots</div>';
-                } else {
-                    daySlots.forEach(function(s) {
-                        var btn = document.createElement('button');
-                        btn.className = 'week-slot-btn';
-                        btn.textContent = formatTime(s.iso).replace(' CT', '');
-                        btn.setAttribute('aria-label', 'Book ' + formatShortDate(s.iso) + ' at ' + formatTime(s.iso));
-                        btn.addEventListener('click', (function(iso) { return function() { onSlotClick(iso); }; })(s.iso));
-                        slotsDiv.appendChild(btn);
-                    });
-                }
-                col.appendChild(slotsDiv);
-                grid.appendChild(col);
-            }
-        });
-    }
-
-    window.__retryWeekView = renderWeekView;
-
-    var weekPrev = document.getElementById('weekPrev');
-    var weekNext = document.getElementById('weekNext');
-    if (weekPrev) {
-        weekPrev.addEventListener('click', function() {
-            currentWeekStart = addDays(currentWeekStart, -7);
-            if (currentWeekStart < thisWeekStart) currentWeekStart = thisWeekStart;
-            renderWeekView();
-        });
-    }
-    if (weekNext) {
-        weekNext.addEventListener('click', function() {
-            var maxStart = addDays(thisWeekStart, maxWeeksAhead * 7);
-            currentWeekStart = addDays(currentWeekStart, 7);
-            if (currentWeekStart > maxStart) currentWeekStart = maxStart;
-            renderWeekView();
-        });
-    }
-
-    // --- Init ---
-    loadNextSlots();
-    renderWeekView();
+    window.__retrySlots = loadSlots;
+    loadSlots();
 })();
 </script>
 
