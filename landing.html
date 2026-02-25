@@ -397,6 +397,65 @@
             margin-top: 2rem;
         }
 
+        /* ===== VIDEO SECTION ===== */
+        .video-section {
+            background: var(--black);
+            padding: 4rem 0;
+        }
+
+        .video-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 4rem;
+        }
+
+        .video-wrapper {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            border: 2px solid var(--medium-gray);
+        }
+
+        .video-wrapper iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+
+        /* ===== HERO TESTIMONIAL ===== */
+        .hero-testimonial {
+            background: var(--dark-gray);
+            padding: 2.5rem 2rem;
+            text-align: center;
+            border-bottom: 3px solid var(--yellow);
+        }
+
+        .hero-testimonial .testimonial-stars {
+            color: var(--yellow);
+            font-size: 1.3rem;
+            margin-bottom: 0.75rem;
+            letter-spacing: 2px;
+        }
+
+        .hero-testimonial blockquote {
+            font-size: 1.15rem;
+            font-style: italic;
+            color: var(--white);
+            line-height: 1.7;
+            max-width: 700px;
+            margin: 0 auto 0.75rem;
+        }
+
+        .hero-testimonial .testimonial-author {
+            font-weight: 700;
+            color: var(--yellow);
+            font-size: 0.9rem;
+        }
+
         /* ===== 2. VALUE STACK ===== */
         .value-stack {
             background: var(--black);
@@ -1192,9 +1251,55 @@
             }
 
             .btn-primary {
-                padding: 0.8rem 1.5rem;
-                font-size: 0.8rem;
+                padding: 1rem 1.5rem;
+                font-size: 0.9rem;
                 white-space: normal;
+                min-height: 48px;
+                width: 100%;
+                text-align: center;
+            }
+
+            .btn-secondary {
+                padding: 1rem 1.5rem;
+                font-size: 0.9rem;
+                min-height: 48px;
+                width: 100%;
+                text-align: center;
+            }
+
+            .nav-cta {
+                min-height: 44px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+
+            /* Video section responsive */
+            .video-container {
+                padding: 0 1.5rem;
+            }
+
+            .video-section {
+                padding: 3rem 0;
+            }
+
+            /* Hero testimonial responsive */
+            .hero-testimonial {
+                padding: 2rem 1.5rem;
+            }
+
+            .hero-testimonial blockquote {
+                font-size: 1rem;
+            }
+
+            /* Guide image responsive */
+            .guide-empathy img {
+                max-width: 100% !important;
+            }
+
+            /* Ensure minimum readable text size */
+            body {
+                font-size: 16px;
             }
 
             /* Value Stack responsive */
@@ -1383,7 +1488,7 @@
                 </a>
             </div>
             <div class="nav-right">
-                <a href="#booking" class="nav-cta">Book Today</a>
+                <a href="#booking" class="nav-cta">Book Your Free Consultation</a>
             </div>
         </div>
     </nav>
@@ -1391,7 +1496,7 @@
     <!-- Urgency Banner (below header, above hero) -->
     <div class="urgency-banner">
         <span class="urgency-dot"></span>
-        Spring slots are filling fast — only a few consultation times left this week.
+        Only 4 consultation spots left this week
     </div>
 
     <main id="main-content">
@@ -1402,15 +1507,23 @@
         <div class="hero-container">
             <div class="hero-content">
                 <h1>Too Busy to Be Out of Shape</h1>
-                <p>Walk in. Get coached. See results. One hour for you — no distractions, no excuses. Serving Frisco, Little Elm, and The Colony.</p>
+                <p>Finally feel strong, confident, and in control of your health — with expert coaching built around your busy schedule. Serving Frisco, Little Elm, and The Colony.</p>
                 <div class="hero-buttons">
-                    <a href="#booking" class="btn-primary">Book Free Consultation</a>
+                    <a href="#booking" class="btn-primary">Book Your Free Consultation</a>
                 </div>
-                <div class="urgency-badge"><span class="urgency-dot"></span> Limited spots available this week</div>
+                <div class="urgency-badge" style="color: var(--white); justify-content: center;"><span class="urgency-dot"></span> Limited spots available this week</div>
                 <div class="trust-badges">Veteran-Owned | 13+ Years | 5-Star Reviews</div>
             </div>
         </div>
     </section>
+
+    <!-- ===== HERO TESTIMONIAL ===== -->
+    <!-- FLAG: Replace with a real member testimonial that includes a SPECIFIC, MEASURABLE result (lbs lost, energy gained, etc.) -->
+    <div class="hero-testimonial reveal">
+        <div class="testimonial-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <blockquote>"I've lost 30 lbs, I have more energy than I've had in years, and I actually look forward to working out. I wish I started sooner."</blockquote>
+        <div class="testimonial-author">— [Member Name]</div>
+    </div>
 
     <!-- ===== 2. VALUE STACK ===== -->
     <section class="value-stack reveal">
@@ -1431,6 +1544,15 @@
                     <h3>Stay Accountable</h3>
                     <p>A community that knows your name and won't let you quit.</p>
                 </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== VIDEO: Welcome from Mike ===== -->
+    <section class="video-section">
+        <div class="video-container reveal">
+            <div class="video-wrapper">
+                <iframe src="https://www.youtube-nocookie.com/embed/_K3v989BH_w?rel=0" title="Welcome to Black Iron Athletics" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
             </div>
         </div>
     </section>
@@ -1514,10 +1636,12 @@
         <div class="guide-container">
             <div class="guide-grid reveal">
                 <div class="guide-empathy">
+                    <img src="images/owner-headcoach-mike.webp" alt="Mike Manning, Owner & Marine Veteran" style="width: 100%; max-width: 360px; margin-bottom: 1.5rem; display: block;">
                     <div class="section-subtitle">Your Guide</div>
                     <h2>We've Been Where You Are</h2>
-                    <p>Busy, skeptical, wondering if this time will be different. We get it — we built Black Iron for people exactly like you.</p>
-                    <p>For 13+ years, we've helped thousands of people in Frisco walk through our doors unsure and walk out transformed. Expert coaching. Real accountability. A community that won't let you fail.</p>
+                    <p>Busy, skeptical, wondering if this time will be different. We get it — we've coached thousands of people who walked in feeling exactly like that.</p>
+                    <p>And we watched them become the strongest, most confident version of themselves.</p>
+                    <p>For 13+ years, Black Iron has been the place where busy people in Frisco stop guessing and start seeing real results. Expert coaching. Real accountability. A community that won't let you fail.</p>
                     <div class="guide-name">— Mike Manning, Owner &amp; Marine Veteran</div>
                 </div>
 
@@ -1572,8 +1696,8 @@
             </div>
 
             <div style="text-align: center; margin-top: 3rem;" class="reveal">
-                <a href="#booking" class="btn-primary">Book Free Consultation</a>
-                <div class="urgency-badge" style="justify-content: center;"><span class="urgency-dot"></span> Limited spots available this week</div>
+                <a href="#booking" class="btn-primary">Book Your Free Consultation</a>
+                <div class="urgency-badge" style="justify-content: center;"><span class="urgency-dot"></span> Only a few spots left — book yours now</div>
             </div>
 
             <div class="next-slots-widget reveal" style="margin-top: 2rem;">
@@ -1631,6 +1755,12 @@
                 <p class="section-description">Come see what we're about. Zero pressure, zero obligation.</p>
             </div>
 
+            <div class="video-container reveal" style="margin-bottom: 3rem;">
+                <div class="video-wrapper">
+                    <iframe src="https://www.youtube-nocookie.com/embed/h05mIMqElvs?rel=0" title="What Black Iron Athletics Is About" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+                </div>
+            </div>
+
             <div class="checklist-container reveal">
                 <div class="checklist-item">
                     <div class="checklist-icon"><i class="fa-solid fa-circle-check"></i></div>
@@ -1682,8 +1812,8 @@
             </div>
 
             <div style="text-align: center; margin-top: 3rem;" class="reveal">
-                <a href="#booking" class="btn-primary">Book Free Consultation</a>
-                <div class="urgency-badge" style="justify-content: center;"><span class="urgency-dot"></span> Limited spots available this week</div>
+                <a href="#booking" class="btn-primary">Book Your Free Consultation</a>
+                <div class="urgency-badge" style="justify-content: center;"><span class="urgency-dot"></span> Only a few spots left — book yours now</div>
             </div>
 
             <div class="next-slots-widget reveal" style="margin-top: 2rem;">
@@ -1712,8 +1842,8 @@
                 </div>
             </div>
             <div class="urgency-contrast-cta reveal">
-                <a href="#booking" class="btn-primary">Book Free Consultation</a>
-                <div class="urgency-badge" style="justify-content: center;"><span class="urgency-dot"></span> Limited spots available this week</div>
+                <a href="#booking" class="btn-primary">Book Your Free Consultation</a>
+                <div class="urgency-badge" style="justify-content: center;"><span class="urgency-dot"></span> Only a few spots left — book yours now</div>
             </div>
         </div>
     </section>
@@ -1723,9 +1853,9 @@
         <div class="booking-container">
             <div class="reveal">
                 <div class="booking-subtitle">Take the First Step</div>
-                <h2 class="booking-title">Book Free Consultation</h2>
+                <h2 class="booking-title">Book Your Free Consultation</h2>
                 <p class="booking-description">Pick a time that works. No credit card required.</p>
-                <div class="urgency-badge" style="justify-content: center; margin-bottom: 2rem;"><span class="urgency-dot"></span> Limited spots available — spring is our busiest season</div>
+                <div class="urgency-badge" style="justify-content: center; margin-bottom: 2rem;"><span class="urgency-dot"></span> Only a few spots left — book yours now</div>
             </div>
 
             <!-- Next Available Times Widget -->
