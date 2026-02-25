@@ -641,21 +641,29 @@
 
         /* ===== 5. GUIDE ===== */
         .guide-section {
-            padding: 6rem 0;
+            padding: 5rem 0;
             background: var(--dark-gray);
         }
 
         .guide-container {
-            max-width: 100%;
-            margin: 0;
+            max-width: 1000px;
+            margin: 0 auto;
             padding: 0 4rem;
         }
 
         .guide-grid {
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-            align-items: center;
+            grid-template-columns: 250px 1fr;
+            gap: 3rem;
+            align-items: start;
+        }
+
+        .guide-photo {
+            width: 250px;
+            height: 250px;
+            object-fit: cover;
+            object-position: center top;
+            border: 2px solid var(--medium-gray);
         }
 
         .guide-empathy h2 {
@@ -1355,12 +1363,24 @@
 
             /* Guide responsive */
             .guide-section {
-                padding: 4rem 0;
+                padding: 3rem 0;
             }
 
             .guide-grid {
                 grid-template-columns: 1fr;
-                gap: 3rem;
+                gap: 2rem;
+                text-align: center;
+            }
+
+            .guide-photo {
+                width: 180px;
+                height: 180px;
+                margin: 0 auto;
+                display: block;
+            }
+
+            .guide-empathy h2 {
+                font-size: clamp(1.5rem, 4vw, 2rem);
             }
 
             .authority-badges {
@@ -1640,32 +1660,33 @@
     <section class="guide-section">
         <div class="guide-container">
             <div class="guide-grid reveal">
+                <div>
+                    <img src="images/owner-headcoach-mike.webp" alt="Mike Manning, Owner & Marine Veteran" class="guide-photo">
+                </div>
                 <div class="guide-empathy">
-                    <img src="images/owner-headcoach-mike.webp" alt="Mike Manning, Owner & Marine Veteran" style="width: 100%; max-width: 360px; margin-bottom: 1.5rem; display: block;">
                     <div class="section-subtitle">Your Guide</div>
                     <h2>We've Been Where You Are</h2>
                     <p>Busy, skeptical, wondering if this time will be different. We get it — we've coached thousands of people who walked in feeling exactly like that.</p>
                     <p>And we watched them become the strongest, most confident version of themselves.</p>
                     <p>For 13+ years, Black Iron has been the place where busy people in Frisco stop guessing and start seeing real results. Expert coaching. Real accountability. A community that won't let you fail.</p>
                     <div class="guide-name">— Mike Manning, Owner &amp; Marine Veteran</div>
-                </div>
-
-                <div class="authority-badges">
-                    <div class="authority-badge">
-                        <div class="badge-number">13+</div>
-                        <div class="badge-label">Years Strong</div>
-                    </div>
-                    <div class="authority-badge">
-                        <div class="badge-number">3000+</div>
-                        <div class="badge-label">Lives Changed</div>
-                    </div>
-                    <div class="authority-badge">
-                        <div class="badge-number">5.0 &#9733;</div>
-                        <div class="badge-label">Google Reviews</div>
-                    </div>
-                    <div class="authority-badge">
-                        <div class="badge-number"><i class="fa-solid fa-shield-halved"></i></div>
-                        <div class="badge-label">Veteran-Owned</div>
+                    <div class="authority-badges" style="margin-top: 2rem;">
+                        <div class="authority-badge">
+                            <div class="badge-number">13+</div>
+                            <div class="badge-label">Years Strong</div>
+                        </div>
+                        <div class="authority-badge">
+                            <div class="badge-number">3000+</div>
+                            <div class="badge-label">Lives Changed</div>
+                        </div>
+                        <div class="authority-badge">
+                            <div class="badge-number">5.0 &#9733;</div>
+                            <div class="badge-label">Google Reviews</div>
+                        </div>
+                        <div class="authority-badge">
+                            <div class="badge-number"><i class="fa-solid fa-shield-halved"></i></div>
+                            <div class="badge-label">Veteran-Owned</div>
+                        </div>
                     </div>
                 </div>
             </div>
