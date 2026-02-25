@@ -12,6 +12,14 @@
       ],
       "destination": "https://www.blackironathletics.com/:path",
       "permanent": true
-    }
+    },
+    { "source": "/why-creatine-is-important", "destination": "/blog/why-creatine-is-important", "permanent": true },
+    { "source": "/crossfit-alternative-frisco-tx", "destination": "/blog/crossfit-alternative-frisco-tx", "permanent": true },
+    { "source": "/olympic-weightlifting-frisco-tx", "destination": "/blog/olympic-weightlifting-frisco-tx", "permanent": true },
+    { "source": "/hyrox-training-frisco-tx", "destination": "/blog/hyrox-training-frisco-tx", "permanent": true },
+    { "source": "/best-gym-frisco-tx", "destination": "/blog/best-gym-frisco-tx", "permanent": true },
+    { "source": "/strength-training-for-beginners", "destination": "/blog/strength-training-for-beginners", "permanent": true },
+    { "source": "/group-fitness-vs-personal-training", "destination": "/blog/group-fitness-vs-personal-training", "permanent": true },
+    { "source": "/getting-back-into-working-out", "destination": "/blog/getting-back-into-working-out", "permanent": true }
   ]
 }
