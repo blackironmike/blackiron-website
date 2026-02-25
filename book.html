@@ -251,12 +251,12 @@
 
         /* ===== BOOKING WIDGETS ===== */
         .slots-widget-heading {
-            font-size: 0.85rem;
+            font-size: 0.9rem;
             font-weight: 700;
             color: var(--yellow);
             text-transform: uppercase;
             letter-spacing: 2px;
-            margin-bottom: 1rem;
+            margin-bottom: 1.25rem;
             text-align: center;
         }
 
@@ -272,38 +272,41 @@
             margin-bottom: 1rem;
         }
         .slot-card {
-            background: var(--dark-gray);
-            border: 2px solid var(--medium-gray);
-            padding: 1rem 1.5rem;
+            background: #222;
+            border: 2px solid #555;
+            border-left: 4px solid var(--yellow);
+            padding: 1.25rem 1.75rem;
             cursor: pointer;
             transition: all 0.3s ease;
             text-align: center;
-            min-width: 160px;
+            min-width: 170px;
             flex: 1;
-            max-width: 220px;
+            max-width: 230px;
         }
         .slot-card:hover, .slot-card:focus-visible {
             border-color: var(--yellow);
-            background: rgba(255, 210, 2, 0.1);
+            border-left: 4px solid var(--yellow);
+            background: rgba(255, 210, 2, 0.08);
             transform: translateY(-3px);
-            box-shadow: 0 6px 20px rgba(255, 210, 2, 0.15);
+            box-shadow: 0 6px 20px rgba(255, 210, 2, 0.2);
         }
         .slot-card-day {
             font-weight: 700;
-            font-size: 0.85rem;
-            color: var(--light-gray);
+            font-size: 0.9rem;
+            color: var(--white);
             text-transform: uppercase;
             letter-spacing: 1px;
             margin-bottom: 0.25rem;
         }
         .slot-card-date {
             font-weight: 900;
-            font-size: 1rem;
+            font-size: 1.1rem;
+            color: var(--white);
             margin-bottom: 0.5rem;
         }
         .slot-card-time {
-            font-weight: 700;
-            font-size: 1.1rem;
+            font-weight: 900;
+            font-size: 1.2rem;
             color: var(--yellow);
         }
         /* --- Skeleton Loading --- */
@@ -322,10 +325,10 @@
             margin-bottom: 0.5rem;
         }
         .skeleton-card {
-            height: 80px;
-            min-width: 160px;
+            height: 90px;
+            min-width: 170px;
             flex: 1;
-            max-width: 220px;
+            max-width: 230px;
         }
         /* --- Widget Error/Empty States --- */
         .widget-error, .widget-empty {
