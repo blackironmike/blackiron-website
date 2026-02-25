@@ -51,7 +51,10 @@ export default async function handler(req, res) {
   }
 
   const calendarId = 'aOyy4UPbwziVvHz35TCU';
-  const ghlUrl = `https://services.leadconnectorhq.com/calendars/${calendarId}/free-slots?startDate=${startDate}&endDate=${endDate}&timezone=America/Chicago`;
+  // GHL API expects epoch milliseconds for startDate/endDate
+  const startMs = start.getTime();
+  const endMs = end.getTime();
+  const ghlUrl = `https://services.leadconnectorhq.com/calendars/${calendarId}/free-slots?startDate=${startMs}&endDate=${endMs}&timezone=America/Chicago`;
 
   try {
     const response = await fetch(ghlUrl, {
