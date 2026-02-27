@@ -1007,48 +1007,50 @@
             }
         }
 
-        /* ===== PHASE BANNER ===== */
-        .phase-banner {
-            padding: 2.5rem 4rem;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
+        /* ===== PHASE CARD ===== */
+        .phase-card {
+            background: var(--dark-gray);
+            border: 2px solid var(--medium-gray);
+            padding: 2.5rem;
+            border-left: 5px solid #9b59b6;
         }
-
-        .phase-banner-label {
-            font-size: 1.1rem;
+        .phase-card .dash-card-title {
+            font-size: 1.3rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--white);
+            margin-bottom: 1.25rem;
+        }
+        .phase-card .phase-banner-label {
+            font-size: 1.5rem;
             font-weight: 900;
             text-transform: uppercase;
             letter-spacing: 2px;
             margin-bottom: 0.75rem;
         }
-
-        .phase-banner-dates {
+        .phase-card .phase-banner-dates {
             font-size: 0.95rem;
             font-weight: 600;
+            color: var(--light-gray);
             margin-bottom: 1.25rem;
-            opacity: 0.9;
         }
-
-        .phase-banner-countdown {
+        .phase-card .phase-banner-countdown {
             font-size: 0.85rem;
             font-weight: 700;
             text-transform: uppercase;
             letter-spacing: 1px;
+            color: var(--light-gray);
             margin-bottom: 0.75rem;
         }
-
-        .phase-progress-bar {
-            max-width: 500px;
-            margin: 0 auto;
+        .phase-card .phase-progress-bar {
+            width: 100%;
             height: 8px;
-            background: rgba(0, 0, 0, 0.3);
+            background: var(--medium-gray);
             overflow: hidden;
         }
-
-        .phase-progress-fill {
+        .phase-card .phase-progress-fill {
             height: 100%;
-            background: rgba(255, 255, 255, 0.9);
             transition: width 0.6s ease;
         }
 
@@ -3592,16 +3594,6 @@
             </div>
         </section>
 
-        <!-- Section 1: Phase Status Banner -->
-        <div class="phase-banner" id="phaseBanner">
-            <div class="phase-banner-label" id="phaseBannerLabel">PHASE 1: BASELINE</div>
-            <div class="phase-banner-dates" id="phaseBannerDates">January 1 to March 31</div>
-            <div class="phase-banner-countdown" id="phaseBannerCountdown">90 days remaining</div>
-            <div class="phase-progress-bar">
-                <div class="phase-progress-fill" id="phaseProgressFill" style="width: 0%"></div>
-            </div>
-        </div>
-
         <!-- FuelPath Sub-Nav -->
         <div class="fuelpath-subnav">
             <div class="fuelpath-subnav-container">
@@ -3661,11 +3653,21 @@
             </div>
         </section>
 
-        <!-- Section 2: My Macros + Weekly Check-In -->
+        <!-- Section 2: Phase Status + My Macros + Weekly Check-In -->
         <section class="section">
             <div class="section-container">
                 <div class="macros-checkin-row">
-                    <!-- LEFT: My Macros (compact) -->
+                    <!-- LEFT: Phase Status -->
+                    <div class="phase-card" id="phaseBanner">
+                        <h3 class="dash-card-title"><i class="fa-solid fa-calendar-check" style="color: var(--yellow); margin-right: 0.75rem;"></i> Current Phase</h3>
+                        <div class="phase-banner-label" id="phaseBannerLabel">PHASE 1: BASELINE</div>
+                        <div class="phase-banner-dates" id="phaseBannerDates">January 1 to March 31</div>
+                        <div class="phase-banner-countdown" id="phaseBannerCountdown">90 days remaining</div>
+                        <div class="phase-progress-bar">
+                            <div class="phase-progress-fill" id="phaseProgressFill" style="width: 0%"></div>
+                        </div>
+                    </div>
+                    <!-- RIGHT: My Macros (compact) -->
                     <div class="dash-card macros-compact">
                         <div class="dash-card-header">
                             <h3 class="dash-card-title"><i class="fa-solid fa-fire"></i> My Macros</h3>
@@ -3778,28 +3780,28 @@
                             </form>
                         </div>
                     </div>
-                    <!-- RIGHT: Weekly Check-In + Trend Grid -->
-                    <div class="dash-card" style="background: var(--dark-gray);">
-                        <div class="dash-card-header">
-                            <h3 class="dash-card-title"><i class="fa-solid fa-clipboard-question"></i> Weekly Check-In</h3>
-                        </div>
-                        <p style="color: var(--light-gray); margin-bottom: 1.5rem;">Take 2 minutes to reflect on your week. This data helps you (and your coach) spot trends and make better decisions.</p>
-                        <button class="btn-primary btn-small" onclick="openCheckinModal()"><i class="fa-solid fa-pen-to-square"></i> Submit Weekly Check-In</button>
-                        <div id="checkinTrendGrid"></div>
-                        <div class="checkin-history" style="margin-top: 1.5rem;">
-                            <button class="collapsible-toggle" onclick="toggleCollapsible(this)">
-                                <i class="fa-solid fa-chevron-down"></i> Check-In History
-                            </button>
-                            <div class="collapsible-content">
-                                <div id="checkinHistoryList"></div>
-                                <div id="checkinEmpty" class="empty-state" style="padding: 2rem;">
-                                    <p>No check-ins yet. Submit your first one above!</p>
-                                </div>
-                                <div id="checkinCoachingUpsell" class="coaching-upsell" style="display: none;">
-                                    <h4><i class="fa-solid fa-chart-line" style="color: var(--yellow); margin-right: 0.5rem;"></i> See What a Coach Sees</h4>
-                                    <p>You've built a solid check-in history. Athletes who work with a coach see 2x better adherence and faster results. Let a coach analyze your data and build a plan around it.</p>
-                                    <a href="PLACEHOLDER_COACHING_BOOKING_URL" class="btn-primary">Book a Coaching Call — $99</a>
-                                </div>
+                </div>
+                <!-- Full-width Weekly Check-In -->
+                <div class="dash-card" style="background: var(--dark-gray); margin-top: 2rem;">
+                    <div class="dash-card-header">
+                        <h3 class="dash-card-title"><i class="fa-solid fa-clipboard-question"></i> Weekly Check-In</h3>
+                    </div>
+                    <p style="color: var(--light-gray); margin-bottom: 1.5rem;">Take 2 minutes to reflect on your week. This data helps you (and your coach) spot trends and make better decisions.</p>
+                    <button class="btn-primary btn-small" onclick="openCheckinModal()"><i class="fa-solid fa-pen-to-square"></i> Submit Weekly Check-In</button>
+                    <div id="checkinTrendGrid"></div>
+                    <div class="checkin-history" style="margin-top: 1.5rem;">
+                        <button class="collapsible-toggle" onclick="toggleCollapsible(this)">
+                            <i class="fa-solid fa-chevron-down"></i> Check-In History
+                        </button>
+                        <div class="collapsible-content">
+                            <div id="checkinHistoryList"></div>
+                            <div id="checkinEmpty" class="empty-state" style="padding: 2rem;">
+                                <p>No check-ins yet. Submit your first one above!</p>
+                            </div>
+                            <div id="checkinCoachingUpsell" class="coaching-upsell" style="display: none;">
+                                <h4><i class="fa-solid fa-chart-line" style="color: var(--yellow); margin-right: 0.5rem;"></i> See What a Coach Sees</h4>
+                                <p>You've built a solid check-in history. Athletes who work with a coach see 2x better adherence and faster results. Let a coach analyze your data and build a plan around it.</p>
+                                <a href="PLACEHOLDER_COACHING_BOOKING_URL" class="btn-primary">Book a Coaching Call — $99</a>
                             </div>
                         </div>
                     </div>
@@ -4994,11 +4996,12 @@ async function initDashboard(user) {
 // ===== PHASE BANNER =====
 function renderPhaseBanner(phase) {
     var banner = document.getElementById('phaseBanner');
-    banner.style.background = phase.colorHex;
-    banner.style.color = phase.num === 4 ? '#000' : '#fff';
+    banner.style.borderLeftColor = phase.colorHex;
+    document.getElementById('phaseBannerLabel').style.color = phase.colorHex;
     document.getElementById('phaseBannerLabel').textContent = 'PHASE ' + phase.num + ': ' + phase.name.toUpperCase();
     document.getElementById('phaseBannerDates').textContent = phase.startLabel + ' to ' + phase.endLabel;
     document.getElementById('phaseBannerCountdown').textContent = phase.remaining + ' days remaining';
+    document.getElementById('phaseProgressFill').style.background = phase.colorHex;
     document.getElementById('phaseProgressFill').style.width = phase.progress + '%';
 }
 
