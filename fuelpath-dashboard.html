@@ -745,6 +745,28 @@
             .macros-checkin-row {
                 grid-template-columns: 1fr;
             }
+            .phase-weeks-track {
+                gap: 2px;
+            }
+            .phase-week-segment {
+                height: 24px;
+            }
+            .phase-week-segment .week-label {
+                display: none;
+            }
+            .phase-days-in {
+                font-size: 2rem;
+            }
+            .phase-pct-complete {
+                font-size: 2rem;
+            }
+            .phase-timeline-stats {
+                gap: 1.5rem;
+            }
+            .phase-timeline-header {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
         }
 
         @media (max-width: 480px) {
@@ -1007,69 +1029,117 @@
             }
         }
 
-        /* ===== PHASE CARD ===== */
-        .phase-card {
+        /* ===== PHASE TIMELINE HERO ===== */
+        .phase-timeline-hero {
             background: var(--dark-gray);
             border: 2px solid var(--medium-gray);
             padding: 2.5rem;
-            border-left: 5px solid #9b59b6;
+            margin-bottom: 2rem;
+            border-top: 4px solid #9b59b6;
         }
-        .phase-card .dash-card-title {
-            font-size: 1.3rem;
-            font-weight: 900;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            color: var(--white);
-            margin-bottom: 1.25rem;
+        .phase-timeline-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 0.25rem;
         }
-        .phase-card .phase-banner-label {
+        .phase-timeline-label {
             font-size: 1.5rem;
             font-weight: 900;
             text-transform: uppercase;
             letter-spacing: 2px;
-            margin-bottom: 0.75rem;
         }
-        .phase-card .phase-banner-dates {
-            font-size: 0.95rem;
-            font-weight: 600;
-            color: var(--light-gray);
-            margin-bottom: 1.25rem;
-        }
-        .phase-card .phase-banner-countdown {
-            font-size: 0.85rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            color: var(--light-gray);
-            margin-bottom: 0.75rem;
-        }
-        .phase-card .phase-progress-bar {
-            width: 100%;
-            height: 8px;
-            background: var(--medium-gray);
-            overflow: hidden;
-        }
-        .phase-card .phase-progress-fill {
-            height: 100%;
-            transition: width 0.6s ease;
-        }
-        .phase-card .phase-checklist-section {
-            margin-top: 1.75rem;
-            padding-top: 1.5rem;
-            border-top: 1px solid var(--medium-gray);
-        }
-        .phase-card .phase-checklist-title {
-            font-size: 0.95rem;
+        .phase-timeline-week {
+            font-size: 1.1rem;
             font-weight: 800;
             text-transform: uppercase;
             letter-spacing: 1px;
-            color: var(--yellow);
-            margin-bottom: 0.5rem;
+            color: var(--white);
+            background: rgba(255,255,255,0.08);
+            padding: 0.4rem 1rem;
+            border: 1px solid rgba(255,255,255,0.15);
         }
-        .phase-card .phase-checklist-subtitle {
-            font-size: 0.85rem;
+        .phase-timeline-dates {
+            font-size: 0.95rem;
+            font-weight: 600;
             color: var(--light-gray);
-            margin-bottom: 1rem;
+            margin-bottom: 2rem;
+        }
+        .phase-weeks-track {
+            display: grid;
+            grid-template-columns: repeat(13, 1fr);
+            gap: 4px;
+            margin-bottom: 2rem;
+        }
+        .phase-week-segment {
+            height: 32px;
+            background: var(--medium-gray);
+            position: relative;
+            transition: background 0.3s ease;
+        }
+        .phase-week-segment.completed {
+            /* background set dynamically to phase color */
+        }
+        .phase-week-segment.current {
+            /* background set dynamically, plus glow */
+            box-shadow: 0 0 12px rgba(255,255,255,0.3);
+            animation: weekPulse 2s ease-in-out infinite;
+        }
+        .phase-week-segment .week-label {
+            position: absolute;
+            bottom: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 0.65rem;
+            font-weight: 700;
+            color: var(--light-gray);
+            white-space: nowrap;
+        }
+        @keyframes weekPulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+        .phase-timeline-stats {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 2.5rem;
+            text-align: center;
+        }
+        .phase-days-in {
+            font-size: 2.5rem;
+            font-weight: 900;
+            letter-spacing: 2px;
+        }
+        .phase-days-in span {
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--light-gray);
+            letter-spacing: 1px;
+            margin-left: 0.5rem;
+        }
+        .phase-stat-divider {
+            width: 1px;
+            height: 3rem;
+            background: var(--medium-gray);
+        }
+        .phase-pct-complete {
+            font-size: 2.5rem;
+            font-weight: 900;
+            letter-spacing: 2px;
+        }
+        .phase-pct-complete span {
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--light-gray);
+            letter-spacing: 1px;
+            margin-left: 0.5rem;
+        }
+        .phase-motivation {
+            font-size: 1rem;
+            color: var(--light-gray);
+            font-style: italic;
+            margin-top: 0.5rem;
         }
 
         /* ===== DASHBOARD HERO ===== */
@@ -3674,21 +3744,31 @@
         <!-- Section 2: Phase Status + My Macros + Weekly Check-In -->
         <section class="section">
             <div class="section-container">
+                <!-- Phase Timeline Hero (full width) -->
+                <div class="phase-timeline-hero" id="phaseBanner">
+                    <div class="phase-timeline-header">
+                        <div class="phase-timeline-label" id="phaseBannerLabel">PHASE 1: BASELINE</div>
+                        <div class="phase-timeline-week" id="phaseWeekBadge">WEEK 1 OF 13</div>
+                    </div>
+                    <div class="phase-timeline-dates" id="phaseBannerDates">January 1 — March 31</div>
+                    <div class="phase-weeks-track" id="phaseWeeksTrack">
+                        <!-- 13 week segments rendered by JS -->
+                    </div>
+                    <div class="phase-timeline-stats">
+                        <div class="phase-days-in" id="phaseDaysIn">0 <span>DAYS IN</span></div>
+                        <div class="phase-stat-divider"></div>
+                        <div class="phase-pct-complete" id="phasePctComplete">0% <span>COMPLETE</span></div>
+                    </div>
+                    <div class="phase-motivation" id="phaseMotivation" style="text-align:center; margin-top:0.5rem;">Let's build a strong foundation.</div>
+                </div>
                 <div class="macros-checkin-row">
-                    <!-- LEFT: Phase Status -->
-                    <div class="phase-card" id="phaseBanner">
-                        <h3 class="dash-card-title"><i class="fa-solid fa-calendar-check" style="color: var(--yellow); margin-right: 0.75rem;"></i> Current Phase</h3>
-                        <div class="phase-banner-label" id="phaseBannerLabel">PHASE 1: BASELINE</div>
-                        <div class="phase-banner-dates" id="phaseBannerDates">January 1 to March 31</div>
-                        <div class="phase-banner-countdown" id="phaseBannerCountdown">90 days remaining</div>
-                        <div class="phase-progress-bar">
-                            <div class="phase-progress-fill" id="phaseProgressFill" style="width: 0%"></div>
+                    <!-- LEFT: Phase Checklist -->
+                    <div class="dash-card">
+                        <div class="dash-card-header">
+                            <h3 class="dash-card-title"><i class="fa-solid fa-clipboard-check" style="color: var(--yellow); margin-right: 0.75rem;"></i> <span id="checklistTitle">Phase Transition Checklist</span></h3>
                         </div>
-                        <div class="phase-checklist-section">
-                            <h4 class="phase-checklist-title" id="checklistTitle">Phase Transition Checklist</h4>
-                            <p class="phase-checklist-subtitle" id="checklistSubtitle">Complete these before moving to the next phase.</p>
-                            <div class="checklist-interactive" id="checklistContainer"></div>
-                        </div>
+                        <p style="color: var(--light-gray); margin-bottom: 1rem;" id="checklistSubtitle">Complete these before moving to the next phase.</p>
+                        <div class="checklist-interactive" id="checklistContainer"></div>
                     </div>
                     <!-- RIGHT: My Macros (compact) -->
                     <div class="dash-card macros-compact">
@@ -5006,14 +5086,123 @@ async function initDashboard(user) {
 
 // ===== PHASE BANNER =====
 function renderPhaseBanner(phase) {
-    var banner = document.getElementById('phaseBanner');
-    banner.style.borderLeftColor = phase.colorHex;
-    document.getElementById('phaseBannerLabel').style.color = phase.colorHex;
-    document.getElementById('phaseBannerLabel').textContent = 'PHASE ' + phase.num + ': ' + phase.name.toUpperCase();
-    document.getElementById('phaseBannerDates').textContent = phase.startLabel + ' to ' + phase.endLabel;
-    document.getElementById('phaseBannerCountdown').textContent = phase.remaining + ' days remaining';
-    document.getElementById('phaseProgressFill').style.background = phase.colorHex;
-    document.getElementById('phaseProgressFill').style.width = phase.progress + '%';
+    var hero = document.getElementById('phaseBanner');
+    hero.style.borderTopColor = phase.colorHex;
+
+    // Phase label
+    var label = document.getElementById('phaseBannerLabel');
+    label.textContent = 'PHASE ' + phase.num + ': ' + phase.name.toUpperCase();
+    label.style.color = phase.colorHex;
+
+    // Dates
+    document.getElementById('phaseBannerDates').textContent = phase.startLabel + ' \u2014 ' + phase.endLabel;
+
+    // Calculate elapsed days and current week
+    var elapsed = phase.totalDays - phase.remaining;
+    var currentWeek = Math.min(13, Math.max(1, Math.ceil(elapsed / 7)));
+
+    // Week badge
+    document.getElementById('phaseWeekBadge').textContent = 'WEEK ' + currentWeek + ' OF 13';
+    document.getElementById('phaseWeekBadge').style.borderColor = phase.colorHex;
+
+    // Render week segments
+    var track = document.getElementById('phaseWeeksTrack');
+    var html = '';
+    for (var w = 1; w <= 13; w++) {
+        var cls = 'phase-week-segment';
+        var style = '';
+        if (w < currentWeek) {
+            cls += ' completed';
+            style = 'background:' + phase.colorHex + ';';
+        } else if (w === currentWeek) {
+            cls += ' current';
+            style = 'background:' + phase.colorHex + '; box-shadow: 0 0 12px ' + phase.colorHex + '40;';
+        }
+        html += '<div class="' + cls + '" style="' + style + '">';
+        html += '<span class="week-label">' + w + '</span>';
+        html += '</div>';
+    }
+    track.innerHTML = html;
+
+    // Days in (positive framing)
+    var daysIn = document.getElementById('phaseDaysIn');
+    daysIn.innerHTML = elapsed + ' <span>DAYS IN</span>';
+    daysIn.style.color = phase.colorHex;
+
+    // Percentage complete
+    var pctComplete = document.getElementById('phasePctComplete');
+    pctComplete.innerHTML = phase.progress + '% <span>COMPLETE</span>';
+    pctComplete.style.color = phase.colorHex;
+
+    // Motivational message
+    document.getElementById('phaseMotivation').textContent = getWeeklyMotivation(phase.num, currentWeek);
+}
+
+function getWeeklyMotivation(phaseNum, week) {
+    var messages = {
+        1: [
+            "Every journey starts with a single step. You've taken yours.",
+            "Building the habit is the hardest part \u2014 you're doing it.",
+            "Three weeks of consistency. That's not luck, that's discipline.",
+            "You're almost a month in. This is becoming who you are.",
+            "Halfway through baseline. Your data is telling a story.",
+            "Six weeks of tracking. Most people quit by now \u2014 you didn't.",
+            "The halfway mark. You're proving this isn't a phase, it's a lifestyle.",
+            "Two months of commitment. Your future self is grateful.",
+            "Week 9 \u2014 you've built a foundation others only talk about.",
+            "Double digits coming. Your consistency is your superpower.",
+            "The home stretch. You've earned every bit of progress.",
+            "Almost there. You've built habits that will carry you forward.",
+            "Final week of baseline. You're ready for what's next."
+        ],
+        2: [
+            "Day one of the cut. Trust the process you've already proven.",
+            "Deficits are uncomfortable. Showing up anyway is what matters.",
+            "Three weeks of discipline. The mirror hasn't caught up yet \u2014 trust the data.",
+            "One month into the cut. Your body is adapting.",
+            "Halfway to a transformed physique. Keep pushing.",
+            "Six weeks in. The changes are starting to show.",
+            "Past the midpoint. This is where most people give up. Not you.",
+            "Two months of cutting. You're doing what's hard because it's worth it.",
+            "Nine weeks. You can see the finish line.",
+            "Ten weeks of grinding. Almost there.",
+            "The final push. Every rep, every meal matters now.",
+            "One more week. You've earned everything coming your way.",
+            "Final week. Stand tall \u2014 you did what most never will."
+        ],
+        3: [
+            "Time to let your body recover. You've earned this.",
+            "Maintenance isn't a break \u2014 it's strategic.",
+            "Settling into your new normal. This is sustainable strength.",
+            "A full month of maintenance. Your metabolism is thanking you.",
+            "Halfway through. Your body is recalibrating.",
+            "Six weeks stable. That's real mastery.",
+            "Past the midpoint. Steady hands build lasting results.",
+            "Two months maintaining. Most people can't do this \u2014 you can.",
+            "Nine weeks of discipline without the drama. That's maturity.",
+            "Holding steady. This patience will pay dividends.",
+            "The foundation for your next phase is being built right now.",
+            "Almost ready for the next chapter.",
+            "Final week of maintenance. You're recharged and ready."
+        ],
+        4: [
+            "Time to build. Fuel the machine.",
+            "Two weeks in. Your body is primed to grow.",
+            "Three weeks of surplus. Trust the process.",
+            "A month of building. Strength is coming.",
+            "Halfway through the build. More fuel, more power.",
+            "Six weeks of growth. The gym is starting to notice.",
+            "Past the midpoint. Every plate added is a win.",
+            "Two months of building. You're not the same person who started.",
+            "Nine weeks of gains. Keep stacking.",
+            "Ten weeks strong. You're in rare territory.",
+            "The final stretch. Push for those last PRs.",
+            "Almost done building. What a transformation.",
+            "Final week. Look how far you've come this year."
+        ]
+    };
+    var idx = Math.min(week, 13) - 1;
+    return messages[phaseNum] ? messages[phaseNum][idx] : "Keep going. You're doing great.";
 }
 
 // ===== QUICK LINKS =====
