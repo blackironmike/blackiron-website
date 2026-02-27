@@ -1,6 +1,6 @@
 User-agent: *
 Allow: /
-Disallow: /blueprint-admin
-Disallow: /blueprint-dashboard
+Disallow: /fuelpath-admin
+Disallow: /fuelpath-dashboard
 
 Sitemap: https://www.blackironathletics.com/sitemap.xml

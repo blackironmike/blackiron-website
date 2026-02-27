@@ -20,6 +20,18 @@
     { "source": "/best-gym-frisco-tx", "destination": "/blog/best-gym-frisco-tx", "permanent": true },
     { "source": "/strength-training-for-beginners", "destination": "/blog/strength-training-for-beginners", "permanent": true },
     { "source": "/group-fitness-vs-personal-training", "destination": "/blog/group-fitness-vs-personal-training", "permanent": true },
-    { "source": "/getting-back-into-working-out", "destination": "/blog/getting-back-into-working-out", "permanent": true }
+    { "source": "/getting-back-into-working-out", "destination": "/blog/getting-back-into-working-out", "permanent": true },
+    { "source": "/blueprint", "destination": "/fuelpath", "permanent": true },
+    { "source": "/blueprint-philosophy", "destination": "/fuelpath-philosophy", "permanent": true },
+    { "source": "/blueprint-how-to-use", "destination": "/fuelpath-how-to-use", "permanent": true },
+    { "source": "/blueprint-calendar", "destination": "/fuelpath-calendar", "permanent": true },
+    { "source": "/blueprint-phase-1-maintain", "destination": "/fuelpath-phase-1-maintain", "permanent": true },
+    { "source": "/blueprint-phase-2-cut", "destination": "/fuelpath-phase-2-cut", "permanent": true },
+    { "source": "/blueprint-phase-3-maintain", "destination": "/fuelpath-phase-3-maintain", "permanent": true },
+    { "source": "/blueprint-phase-4-build", "destination": "/fuelpath-phase-4-build", "permanent": true },
+    { "source": "/blueprint-supplements", "destination": "/fuelpath-supplements", "permanent": true },
+    { "source": "/blueprint-decade", "destination": "/fuelpath-decade", "permanent": true },
+    { "source": "/blueprint-dashboard", "destination": "/fuelpath-dashboard", "permanent": true },
+    { "source": "/blueprint-admin", "destination": "/fuelpath-admin", "permanent": true }
   ]
 }

@@ -3,26 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Decade Roadmap | The Long Game | The 4-Phase Nutrition Blueprint | Black Iron Athletics</title>
-    <meta name="description" content="The Decade Roadmap: a Year 1 through Year 10 progression framework that turns the 4-Phase Nutrition Blueprint from a one-time plan into a lifelong system. Plus troubleshooting and FAQs.">
+    <title>FuelPath: The 4-Phase Metabolic System | Year-Round Nutrition System | Black Iron Athletics</title>
+    <meta name="description" content="FuelPath is a year-round nutrition periodization system with 4 phases — Baseline, Cut, Maintain, Build. Find your fuel path for life instead of chasing unsustainable 12-week plans. Powered by the Black Iron Macro Calculator. Founding member pricing: $99/year.">
     <meta name="geo.region" content="US-TX">
     <meta name="geo.placename" content="Frisco">
-    <link rel="canonical" href="https://www.blackironathletics.com/blueprint-decade">
+    <link rel="canonical" href="https://www.blackironathletics.com/fuelpath">
     <!-- Open Graph -->
-    <meta property="og:title" content="The Decade Roadmap | The 4-Phase Nutrition Blueprint | Black Iron Athletics">
-    <meta property="og:description" content="The Decade Roadmap: a Year 1 through Year 10 progression framework that turns the 4-Phase Nutrition Blueprint from a one-time plan into a lifelong system. Plus troubleshooting and FAQs.">
-    <meta property="og:url" content="https://www.blackironathletics.com/blueprint-decade">
+    <meta property="og:title" content="FuelPath: The 4-Phase Metabolic System | Year-Round Nutrition System | Black Iron Athletics">
+    <meta property="og:description" content="FuelPath is a year-round nutrition periodization system with 4 phases — Baseline, Cut, Maintain, Build. Find your fuel path for life instead of chasing unsustainable 12-week plans. Powered by the Black Iron Macro Calculator. Founding member pricing: $99/year.">
+    <meta property="og:url" content="https://www.blackironathletics.com/fuelpath">
     <meta property="og:image" content="https://www.blackironathletics.com/images/social-share.png">
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="Black Iron Athletics">
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="The Decade Roadmap | The 4-Phase Nutrition Blueprint | Black Iron Athletics">
-    <meta name="twitter:description" content="The Decade Roadmap: a Year 1 through Year 10 progression framework that turns the 4-Phase Nutrition Blueprint from a one-time plan into a lifelong system. Plus troubleshooting and FAQs.">
+    <meta name="twitter:title" content="FuelPath: The 4-Phase Metabolic System | Year-Round Nutrition System | Black Iron Athletics">
+    <meta name="twitter:description" content="FuelPath is a year-round nutrition periodization system with 4 phases — Baseline, Cut, Maintain, Build. Find your fuel path for life instead of chasing unsustainable 12-week plans. Powered by the Black Iron Macro Calculator. Founding member pricing: $99/year.">
     <meta name="twitter:image" content="https://www.blackironathletics.com/images/social-share.png">
     <link rel="icon" type="image/png" href="images/anvil-favicon.png">
     <meta name="theme-color" content="#000000">
     <link rel="apple-touch-icon" href="images/anvil-favicon.png">
+    <link rel="preload" as="image" href="images/hero-fuelpath-how-to-use.webp">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;900&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
@@ -30,7 +31,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" media="print" onload="this.media='all'">
     <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"></noscript>
     <style>@font-face{font-family:"Font Awesome 6 Brands";font-display:swap}@font-face{font-family:"Font Awesome 6 Free";font-display:swap}</style>
-    <!-- Supabase Auth -->
+    <!-- Supabase -->
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <style>
         /* Force full width - override GHL container */
@@ -82,6 +83,12 @@
             margin: 0;
             padding: 0;
             scroll-behavior: smooth;
+        }
+
+        #pricing,
+        #faqs,
+        #solution {
+            scroll-margin-top: 100px;
         }
 
         h1, h2, h3, h4, h5, h6 {
@@ -290,50 +297,6 @@
             max-width: 600px;
         }
 
-        /* ===== PREMIUM SUB-NAV ===== */
-        .blueprint-subnav {
-            background: var(--dark-gray);
-            border-bottom: 1px solid var(--medium-gray);
-            overflow-x: auto;
-            -webkit-overflow-scrolling: touch;
-            white-space: nowrap;
-        }
-
-        .blueprint-subnav::-webkit-scrollbar {
-            height: 0;
-            display: none;
-        }
-
-        .subnav-container {
-            max-width: 100%;
-            margin: 0;
-            padding: 0 4rem;
-            display: flex;
-            gap: 0;
-        }
-
-        .subnav-link {
-            color: var(--light-gray);
-            text-decoration: none;
-            font-size: 0.8rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            padding: 1rem 1.5rem;
-            transition: all 0.3s ease;
-            border-bottom: 2px solid transparent;
-            white-space: nowrap;
-        }
-
-        .subnav-link:hover {
-            color: var(--yellow);
-        }
-
-        .subnav-link.active {
-            color: var(--yellow);
-            border-bottom: 2px solid var(--yellow);
-        }
-
         /* ===== SECTIONS ===== */
         .section {
             padding: 6rem 0;
@@ -419,129 +382,237 @@
             color: var(--black);
         }
 
-        /* ===== CONTENT BLOCKS ===== */
-        .content-block {
-            max-width: 800px;
-            margin: 0 auto;
+        .btn-secondary {
+            background: transparent;
+            color: var(--white);
+            padding: 1.2rem 3rem;
+            text-decoration: none;
+            font-weight: 900;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border: 2px solid var(--white);
+            border-radius: 0;
+            display: inline-block;
+            cursor: pointer;
         }
 
-        .content-block p {
-            color: var(--light-gray);
-            line-height: 1.8;
-            font-size: 1.05rem;
-            margin-bottom: 1.5rem;
+        .btn-secondary:hover {
+            background: var(--white);
+            color: var(--black);
         }
 
-        /* ===== TIMELINE ===== */
-        .timeline {
-            max-width: 800px;
-            margin: 0 auto;
-            position: relative;
-            padding-left: 3rem;
+        /* ===== FEATURE CARDS ===== */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 4rem;
         }
 
-        .timeline::before {
-            content: '';
-            position: absolute;
-            left: 0;
-            top: 0;
-            bottom: 0;
-            width: 3px;
-            background: linear-gradient(to bottom, var(--yellow), var(--phase-build));
-        }
-
-        .timeline-item {
-            position: relative;
-            margin-bottom: 3rem;
-            padding: 2.5rem;
+        .feature-card {
             background: var(--dark-gray);
+            padding: 3rem 2rem;
             border: 2px solid var(--medium-gray);
+            text-align: center;
             transition: all 0.3s ease;
         }
 
-        .section-alt .timeline-item {
+        .section-alt .feature-card {
             background: var(--black);
         }
 
-        .timeline-item:hover {
+        .feature-card:hover {
             border-color: var(--yellow);
-            transform: translateX(5px);
-            box-shadow: 0 10px 30px rgba(255, 210, 2, 0.15);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(255, 210, 2, 0.2);
         }
 
-        .timeline-item::before {
-            content: '';
-            position: absolute;
-            left: -2.35rem;
-            top: 2.5rem;
-            width: 16px;
-            height: 16px;
-            background: var(--yellow);
-            border: 3px solid var(--black);
+        .feature-icon {
+            font-size: 2.5rem;
+            color: var(--yellow);
+            margin-bottom: 1.5rem;
         }
 
-        .section-alt .timeline-item::before {
-            border-color: var(--dark-gray);
+        .feature-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
         }
 
-        .timeline-item:last-child {
-            margin-bottom: 0;
+        .feature-card p {
+            color: var(--light-gray);
+            line-height: 1.8;
         }
 
-        .timeline-label {
+        /* ===== PHASE CARDS ===== */
+        .phase-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+            margin-top: 4rem;
+        }
+
+        .phase-card {
+            background: var(--dark-gray);
+            border: 2px solid var(--medium-gray);
+            padding: 2.5rem 2rem;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .phase-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(255, 210, 2, 0.1);
+        }
+
+        .phase-label {
             font-size: 0.8rem;
             font-weight: 700;
-            color: var(--yellow);
             text-transform: uppercase;
             letter-spacing: 1.5px;
             margin-bottom: 0.75rem;
         }
 
-        .timeline-item h3 {
-            font-size: 1.4rem;
-            margin-bottom: 1rem;
+        .phase-name {
+            font-size: 1.5rem;
+            font-weight: 900;
             text-transform: uppercase;
+            margin-bottom: 0.5rem;
         }
 
-        .timeline-item p {
+        .phase-dates {
+            font-size: 0.9rem;
+            color: var(--light-gray);
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+        }
+
+        .phase-description {
             color: var(--light-gray);
             line-height: 1.8;
             font-size: 0.95rem;
-            margin-bottom: 1rem;
+            margin-bottom: 1.5rem;
         }
 
-        .timeline-item p:last-child {
-            margin-bottom: 0;
-        }
-
-        .success-metric {
-            display: flex;
-            align-items: flex-start;
-            gap: 0.75rem;
-            padding: 1rem;
-            background: rgba(255, 210, 2, 0.05);
-            border-left: 3px solid var(--yellow);
-            margin-top: 1rem;
-        }
-
-        .success-metric i {
+        .phase-setting {
+            font-size: 0.85rem;
+            font-weight: 700;
             color: var(--yellow);
-            margin-top: 0.2rem;
-            flex-shrink: 0;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
 
-        .success-metric p {
+        /* ===== PRICING ===== */
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            align-items: start;
+        }
+
+        .pricing-card {
+            background: var(--black);
+            border: 2px solid var(--medium-gray);
+            padding: 3rem 2.5rem;
+            text-align: center;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .pricing-card:hover {
+            border-color: var(--yellow);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(255, 210, 2, 0.2);
+        }
+
+        .pricing-card.featured {
+            border: 3px solid var(--yellow);
+            transform: scale(1.03);
+        }
+
+        .pricing-card.featured:hover {
+            transform: scale(1.03) translateY(-5px);
+        }
+
+        .pricing-badge {
+            display: inline-block;
+            background: var(--yellow);
+            color: var(--black);
+            font-weight: 900;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            padding: 0.5rem 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .pricing-tier-name {
+            font-size: 1.3rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            margin-bottom: 1.5rem;
+        }
+
+        .pricing-amount {
+            font-size: 3.5rem;
+            font-weight: 900;
+            color: var(--white);
+            line-height: 1;
+        }
+
+        .pricing-period {
+            font-size: 1rem;
             color: var(--light-gray);
-            font-size: 0.9rem;
-            line-height: 1.6;
-            margin-bottom: 0;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
         }
 
-        .success-metric strong {
+        .pricing-alt-price {
+            font-size: 0.85rem;
             color: var(--yellow);
+            font-weight: 700;
+            margin-bottom: 2rem;
         }
 
-        /* ===== FAQ SECTION ===== */
+        .pricing-features {
+            list-style: none;
+            text-align: left;
+            margin-bottom: 2.5rem;
+        }
+
+        .pricing-features li {
+            color: var(--light-gray);
+            padding: 0.6rem 0;
+            border-bottom: 1px solid var(--medium-gray);
+            font-size: 0.9rem;
+        }
+
+        .pricing-features li i {
+            color: var(--yellow);
+            margin-right: 0.75rem;
+            width: 20px;
+            text-align: center;
+        }
+
+        .pricing-note {
+            font-size: 0.85rem;
+            color: var(--light-gray);
+            margin-top: 1.5rem;
+        }
+
+        .btn-primary.btn-full {
+            width: 100%;
+            text-align: center;
+        }
+
+        .btn-outline.btn-full {
+            width: 100%;
+            text-align: center;
+        }
+
+        /* ===== FAQs ===== */
         .faq-container {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
@@ -554,10 +625,6 @@
             padding: 2rem;
             border: 2px solid var(--medium-gray);
             transition: all 0.3s ease;
-        }
-
-        .section-alt .faq-item {
-            background: var(--black);
         }
 
         .faq-item:hover {
@@ -776,7 +843,7 @@
         .cycle-card {
             padding: 2rem;
             border: 2px solid var(--medium-gray);
-            background: var(--black);
+            background: var(--dark-gray);
             text-align: center;
             transition: all 0.3s ease;
         }
@@ -843,7 +910,7 @@
         .cycle-contrast-card {
             padding: 2rem;
             border: 2px solid var(--medium-gray);
-            background: var(--black);
+            background: var(--dark-gray);
             text-align: center;
         }
 
@@ -894,7 +961,7 @@
             position: relative;
             padding: 2.5rem;
             border: 2px solid var(--medium-gray);
-            background: var(--dark-gray);
+            background: var(--black);
             transition: all 0.3s ease;
         }
 
@@ -981,46 +1048,6 @@
             margin-bottom: 0.5rem;
         }
 
-        /* ===== PHASE BADGES (TIMELINE) ===== */
-        .phase-badges {
-            display: flex;
-            gap: 0.5rem;
-            margin-bottom: 1rem;
-            flex-wrap: wrap;
-        }
-
-        .phase-badge {
-            font-size: 0.7rem;
-            font-weight: 900;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            padding: 0.2rem 0.6rem;
-        }
-
-        .phase-badge--baseline { background: var(--phase-baseline); color: var(--white); }
-        .phase-badge--cut { background: var(--phase-cut); color: var(--white); }
-        .phase-badge--maintain { background: var(--phase-maintain); color: var(--white); }
-        .phase-badge--build { background: var(--phase-build); color: var(--white); }
-
-        .what-youll-feel {
-            padding: 1rem;
-            background: rgba(255, 210, 2, 0.05);
-            border-left: 3px solid var(--yellow);
-            margin-top: 1rem;
-        }
-
-        .what-youll-feel strong {
-            color: var(--yellow);
-            font-size: 0.85rem;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-
-        .what-youll-feel p {
-            margin-bottom: 0;
-            font-size: 0.9rem;
-        }
-
         /* ===== INTERSTITIAL ===== */
         .interstitial {
             text-align: center;
@@ -1053,6 +1080,12 @@
             height: 3px;
             background: var(--yellow);
             margin: 0 auto;
+        }
+
+        /* ===== SECTION CTA HELPER ===== */
+        .section-cta {
+            text-align: center;
+            margin-top: 3rem;
         }
 
         /* ===== SCROLL REVEAL ===== */
@@ -1109,11 +1142,6 @@
                 padding-right: 2rem;
             }
 
-            .subnav-container {
-                padding-left: 2rem;
-                padding-right: 2rem;
-            }
-
             .cycle-grid {
                 grid-template-columns: repeat(2, 1fr);
             }
@@ -1160,22 +1188,13 @@
             .section-header { margin-bottom: 2rem; }
             .section { padding: 4rem 0; }
 
+            .features-grid,
             .faq-container {
                 grid-template-columns: 1fr;
             }
 
-            .timeline {
-                padding-left: 2rem;
-            }
-
-            .timeline-item {
-                padding: 1.5rem;
-            }
-
-            .timeline-item::before {
-                left: -1.85rem;
-                width: 12px;
-                height: 12px;
+            .phase-grid {
+                grid-template-columns: 1fr 1fr;
             }
 
             .cta-section { padding: 4rem 1.5rem; }
@@ -1194,15 +1213,39 @@
                 white-space: normal;
             }
 
+            .btn-secondary {
+                padding: 0.8rem 1.5rem;
+                font-size: 0.8rem;
+                white-space: normal;
+            }
+
             .btn-outline {
                 padding: 0.8rem 1.5rem;
                 font-size: 0.8rem;
                 white-space: normal;
             }
 
-            .subnav-container {
-                padding-left: 1.5rem;
-                padding-right: 1.5rem;
+            .pricing-grid {
+                grid-template-columns: 1fr;
+                max-width: 500px;
+                margin: 0 auto;
+            }
+
+            .pricing-card.featured {
+                transform: none;
+                order: -1;
+            }
+
+            .pricing-card.featured:hover {
+                transform: translateY(-5px);
+            }
+
+            .pricing-card {
+                padding: 2.5rem 1.5rem;
+            }
+
+            .pricing-amount {
+                font-size: 3rem;
             }
 
             .cycle-grid {
@@ -1224,46 +1267,10 @@
             .modal-container { max-width: calc(100% - 2rem); }
         }
 
-        /* ===== AUTH GATE ===== */
-        .gate-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: var(--black);
-            z-index: 9998;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            padding: 2rem;
-        }
-
-        .gate-overlay-content h2 {
-            font-size: 2rem;
-            text-transform: uppercase;
-            margin-bottom: 1rem;
-        }
-
-        .gate-overlay-content p {
-            color: var(--light-gray);
-            font-size: 1.1rem;
-            margin-bottom: 2rem;
-            max-width: 500px;
-        }
-
-        .gate-overlay-content .btn-primary {
-            margin-right: 1rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .gated-content {
-            display: none;
-        }
-
-        .gated-content.unlocked {
-            display: block;
+        @media (max-width: 480px) {
+            .phase-grid {
+                grid-template-columns: 1fr;
+            }
         }
 
         /* Skip Navigation */
@@ -1337,7 +1344,7 @@
                 <li><a href="contact">Contact</a></li>
             </ul>
             <div class="nav-cta-group">
-                <a href="blueprint-dashboard" class="login-btn">My Dashboard</a>
+                <a href="fuelpath-dashboard" class="login-btn">My Dashboard</a>
                 <a href="#" onclick="openLeadModal(); return false;" class="cta-btn">Book Free Consultation</a>
             </div>
             <button class="hamburger" onclick="toggleMobileNav()" aria-label="Menu">
@@ -1362,68 +1369,101 @@
         <a href="blog/" onclick="closeMobileNav()">Blog</a>
         <a href="contact" onclick="closeMobileNav()">Contact</a>
         <a href="#" class="mobile-cta" onclick="closeMobileNav(); openLeadModal(); return false;">Book Free Consultation</a>
-        <a href="blueprint-dashboard" class="mobile-login" onclick="closeMobileNav()">My Dashboard</a>
+        <a href="fuelpath-dashboard" class="mobile-login" onclick="closeMobileNav()">My Dashboard</a>
     </div>
 
     <main id="main-content">
 
-    <!-- Auth Gate Overlay (shown when not authorized) -->
-    <div class="gate-overlay" id="gateOverlay">
-        <div class="gate-overlay-content">
-            <h2>Blueprint Access Required</h2>
-            <p>This content is part of the 4-Phase Nutrition Blueprint. Sign in to your dashboard or get access below.</p>
-            <a href="blueprint-dashboard?redirect=blueprint-decade" class="btn-primary">Sign In</a>
-            <a href="blueprint#pricing" class="btn-outline">View Plans</a>
-        </div>
-    </div>
-
     <!-- Hero Section -->
     <section class="hero">
-        <img src="images/hero-blueprint-decade.webp" alt="The long game of nutrition" class="hero-bg" fetchpriority="high">
+        <img src="images/hero-fuelpath-how-to-use.webp" alt="Healthy nutrition and fitness" class="hero-bg" fetchpriority="high">
         <div class="hero-container">
             <div class="hero-content">
-                <div class="hero-subtitle">The Long Game</div>
-                <h1>You Are the Variable That Changes Everything</h1>
-                <p>Not a 12-week fix. Not a fad. A decade-long system that turns you into the kind of person who gets results year after year -- for life.</p>
+                <div class="hero-subtitle">Year-Round Nutrition System</div>
+                <h1>Stop Dieting in Circles. Start Building for Life.</h1>
+                <p>FuelPath is a year-round system that aligns your eating with intentional seasons — so your metabolism stays healthy, your progress compounds, and your results are permanent.</p>
+                <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+                    <a href="#pricing" class="btn-primary">Start FuelPath</a>
+                    <a href="#solution" class="btn-outline">See How It Works</a>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- Premium Sub-Navigation -->
-    <div class="blueprint-subnav">
-        <div class="subnav-container">
-            <a href="blueprint-dashboard" class="subnav-link">My Dashboard</a>
-            <a href="blueprint-phase-1-maintain" class="subnav-link">Phase 1: Baseline</a>
-            <a href="blueprint-phase-2-cut" class="subnav-link">Phase 2: Cut</a>
-            <a href="blueprint-phase-3-maintain" class="subnav-link">Phase 3: Maintain</a>
-            <a href="blueprint-phase-4-build" class="subnav-link">Phase 4: Build</a>
-            <a href="blueprint-supplements" class="subnav-link">Supplements</a>
-            <a href="blueprint-decade" class="subnav-link active">Decade Roadmap</a>
-        </div>
-    </div>
-
-    <!-- Intro Section -->
+    <!-- The Problem Section -->
     <section class="section">
         <div class="section-container">
             <div class="section-header reveal">
-                <div class="section-subtitle">The Big Picture</div>
-                <h2 class="section-title">This is Not a 12-Week Program</h2>
+                <div class="section-subtitle">The Problem</div>
+                <h2 class="section-title">Why Most Nutrition Plans Fail</h2>
+                <p class="section-description">Most people either diet hard for 8-12 weeks and fall off completely, or eat the same way year-round and wonder why they're stuck. Both approaches ignore a fundamental truth — your body needs different things at different times.</p>
             </div>
 
-            <div class="content-block reveal">
-                <p>The 4-Phase Blueprint is designed to be repeated every year. Each cycle builds on the last. The first year you're learning the system. By year three, it's second nature. By year five, you're your own best nutritionist.</p>
-                <p>This is what separates people who look good for a photoshoot from people who look good for a lifetime. The 4-Phase Blueprint isn't about quick results. It's about building the kind of person who gets results, year after year, for the rest of their life.</p>
+            <div class="features-grid reveal-stagger">
+                <div class="feature-card reveal">
+                    <div class="feature-icon"><i class="fa-solid fa-repeat"></i></div>
+                    <h3>The Yo-Yo Cycle</h3>
+                    <p>You cut hard, lose weight, bounce back, repeat. Each cycle gets harder as your metabolism adapts to chronic restriction. The approach is broken, not your willpower.</p>
+                </div>
+
+                <div class="feature-card reveal">
+                    <div class="feature-icon"><i class="fa-solid fa-calendar-xmark"></i></div>
+                    <h3>No Off-Season</h3>
+                    <p>You eat the same way every day of the year and expect different results. Without intentional phases, your body has no reason to change.</p>
+                </div>
+
+                <div class="feature-card reveal">
+                    <div class="feature-icon"><i class="fa-solid fa-brain"></i></div>
+                    <h3>Willpower Over System</h3>
+                    <p>You rely on motivation instead of structure. When life gets busy, the plan falls apart. A system runs whether you feel like it or not.</p>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- Why We Cycle -->
-    <section class="section section-alt">
+    <!-- The Solution Section -->
+    <section id="solution" class="section section-alt">
+        <div class="section-container">
+            <div class="section-header reveal">
+                <div class="section-subtitle">The Solution</div>
+                <h2 class="section-title">Nutrition Periodization</h2>
+                <p class="section-description">Just like smart training programs cycle through different intensities, your nutrition should too. FuelPath aligns your eating with intentional seasons — so your metabolism stays healthy, you make real progress, and you build a sustainable lifestyle.</p>
+            </div>
+
+            <div class="features-grid reveal-stagger">
+                <div class="feature-card reveal">
+                    <div class="feature-icon"><i class="fa-solid fa-arrows-rotate"></i></div>
+                    <h3>Healthy Metabolism</h3>
+                    <p>By limiting your cut to 3 months and following it with maintenance and building phases, you keep your metabolism responsive and avoid the diet damage that comes from chronic restriction.</p>
+                </div>
+
+                <div class="feature-card reveal">
+                    <div class="feature-icon"><i class="fa-solid fa-bullseye"></i></div>
+                    <h3>Focused Progress</h3>
+                    <p>Building muscle requires a surplus. Losing fat requires a deficit. Dedicated phases let you focus your body's resources on one goal at a time instead of spinning your wheels.</p>
+                </div>
+
+                <div class="feature-card reveal">
+                    <div class="feature-icon"><i class="fa-solid fa-infinity"></i></div>
+                    <h3>Sustainable For Life</h3>
+                    <p>Knowing your cut has an end date makes it manageable. Knowing a building phase is coming gives you something to look forward to. This isn't a diet — it's a system you can run for decades.</p>
+                </div>
+            </div>
+
+            <div class="section-cta reveal">
+                <p style="color: var(--light-gray); margin-bottom: 1rem;">Ready to see the system?</p>
+                <a href="#pricing" class="btn-outline">See Pricing</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why We Cycle Section -->
+    <section class="section">
         <div class="section-container">
             <div class="section-header reveal">
                 <div class="section-subtitle">The Science</div>
                 <h2 class="section-title">Why We Cycle</h2>
-                <p class="section-description">Your metabolism adapts. If you diet forever, your body fights back -- slowing your metabolism, spiking hunger hormones, and burning muscle for fuel. Periodized nutrition keeps your metabolism healthy by cycling through strategic phases.</p>
+                <p class="section-description">Your metabolism adapts. If you diet forever, your body fights back — slowing your metabolism, spiking hunger hormones, and burning muscle for fuel. Periodized nutrition keeps your metabolism healthy by cycling through strategic phases.</p>
             </div>
 
             <div class="cycle-grid reveal-stagger">
@@ -1468,13 +1508,74 @@
         </div>
     </section>
 
-    <!-- Your Year 1 Journey -->
+    <!-- Interstitial -->
+    <section class="section section-alt">
+        <div class="interstitial reveal-scale">
+            <div class="interstitial-accent"></div>
+            <h2>It's Not About Being Perfect. It's About Having a Plan.</h2>
+            <p>FuelPath IS the plan. Stop guessing. Start building.</p>
+            <a href="#pricing" class="btn-primary" style="margin-bottom: 2rem;">Get FuelPath</a>
+            <div class="interstitial-accent-bottom"></div>
+        </div>
+    </section>
+
+    <!-- The 4-Phase Calendar Section -->
     <section class="section">
+        <div class="section-container">
+            <div class="section-header reveal">
+                <div class="section-subtitle">The System</div>
+                <h2 class="section-title">Your Year, Mapped Out</h2>
+                <p class="section-description">Four intentional phases. Twelve months of purpose. Every phase sets up the next.</p>
+            </div>
+
+            <div class="phase-grid reveal-stagger">
+                <div class="phase-card reveal" style="border-top: 4px solid #9b59b6;">
+                    <div class="phase-label" style="color: #9b59b6;">PHASE 1</div>
+                    <h3 class="phase-name">Baseline</h3>
+                    <div class="phase-dates">Jan 1 – Mar 31</div>
+                    <p class="phase-description">Reset and stabilize after the holidays. Rebuild consistency, lock in tracking habits, and prepare your body for the work ahead.</p>
+                    <div class="phase-setting">Calculator Setting: "Maintain"</div>
+                </div>
+
+                <div class="phase-card reveal" style="border-top: 4px solid #ff0003;">
+                    <div class="phase-label" style="color: #ff0003;">PHASE 2</div>
+                    <h3 class="phase-name">Cut</h3>
+                    <div class="phase-dates">Apr 1 – Jun 30</div>
+                    <p class="phase-description">Reduce body fat while preserving muscle. Enter summer looking and feeling your best with a strategic, time-bound deficit.</p>
+                    <div class="phase-setting">Calculator Setting: "Lose Fat"</div>
+                </div>
+
+                <div class="phase-card reveal" style="border-top: 4px solid #2E86C1;">
+                    <div class="phase-label" style="color: #2E86C1;">PHASE 3</div>
+                    <h3 class="phase-name">Maintain</h3>
+                    <div class="phase-dates">Jul 1 – Sep 30</div>
+                    <p class="phase-description">Lock in your new body composition. Reverse diet back to maintenance, recover your metabolism, and enjoy summer at your leanest.</p>
+                    <div class="phase-setting">Calculator Setting: "Maintain"</div>
+                </div>
+
+                <div class="phase-card reveal" style="border-top: 4px solid #27AE60;">
+                    <div class="phase-label" style="color: #27AE60;">PHASE 4</div>
+                    <h3 class="phase-name">Build</h3>
+                    <div class="phase-dates">Oct 1 – Dec 31</div>
+                    <p class="phase-description">Invest in next year's results. Fuel muscle growth in a controlled surplus. Holiday meals work for you, not against you.</p>
+                    <div class="phase-setting">Calculator Setting: "Build Muscle"</div>
+                </div>
+            </div>
+
+            <div class="section-cta reveal">
+                <p style="color: var(--light-gray); margin-bottom: 1rem;">This is your year.</p>
+                <a href="#pricing" class="btn-primary">Get Started</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Year 1 Journey Section -->
+    <section class="section section-alt">
         <div class="section-container">
             <div class="section-header reveal">
                 <div class="section-subtitle">One Year, Four Phases</div>
                 <h2 class="section-title">Your Year 1 Journey</h2>
-                <p class="section-description">Here's what one complete cycle looks like -- from day one to day 365. Each phase has a purpose, and each phase sets up the next.</p>
+                <p class="section-description">Here's what one complete cycle looks like — from day one to day 365. Each phase has a purpose, and each phase sets up the next.</p>
             </div>
 
             <div class="year-journey">
@@ -1485,7 +1586,7 @@
                     <p>You'll learn your true maintenance calories by eating at a level where your weight stays stable. This is where you build the tracking habit and let your body settle into consistent fueling.</p>
                     <div class="journey-feel">
                         <strong>You'll feel:</strong>
-                        <p>Calmer around food. Less guessing. For the first time, you'll understand exactly what your body needs -- no more winging it.</p>
+                        <p>Calmer around food. Less guessing. For the first time, you'll understand exactly what your body needs — no more winging it.</p>
                     </div>
                 </div>
 
@@ -1508,7 +1609,7 @@
                     <span class="journey-phase-badge journey-phase-badge--maintain">Phase 3</span>
                     <div class="journey-months">Months 7-9</div>
                     <h3>Maintain</h3>
-                    <p>You've earned your new body composition -- now you lock it in. Calories come back up to maintenance so your hormones normalize and your metabolism accepts this as the new set point.</p>
+                    <p>You've earned your new body composition — now you lock it in. Calories come back up to maintenance so your hormones normalize and your metabolism accepts this as the new set point.</p>
                     <div class="journey-feel">
                         <strong>You'll feel:</strong>
                         <p>Relief. More food, more energy, and the confidence that you can hold this weight without white-knuckling it. This is where sustainability is built.</p>
@@ -1521,7 +1622,7 @@
                     <span class="journey-phase-badge journey-phase-badge--build">Phase 4</span>
                     <div class="journey-months">Months 10-12</div>
                     <h3>Build</h3>
-                    <p>A controlled surplus to add lean muscle. More muscle means a higher resting metabolism, which makes every future cut more effective. This is the phase most people skip -- and it's the one that changes everything.</p>
+                    <p>A controlled surplus to add lean muscle. More muscle means a higher resting metabolism, which makes every future cut more effective. This is the phase most people skip — and it's the one that changes everything.</p>
                     <div class="journey-feel">
                         <strong>You'll feel:</strong>
                         <p>Stronger than you've ever been. Workouts hit different when you're fueled. The scale goes up, but so do your lifts, your energy, and your capacity.</p>
@@ -1536,148 +1637,162 @@
         </div>
     </section>
 
-    <!-- Year Progression Timeline -->
-    <section class="section section-alt">
-        <div class="section-container">
-            <div class="section-header reveal">
-                <div class="section-subtitle">Years 1-10</div>
-                <h2 class="section-title">Your Story, One Chapter at a Time</h2>
-                <p class="section-description">Here's what the journey looks like over a decade of intentional training and nutrition.</p>
-            </div>
-
-            <div class="timeline">
-                <div class="timeline-item reveal">
-                    <div class="timeline-label">Year 1 — Chapter One</div>
-                    <h3>Learn the System</h3>
-                    <div class="phase-badges">
-                        <span class="phase-badge phase-badge--baseline">Baseline</span>
-                        <span class="phase-badge phase-badge--cut">Cut</span>
-                        <span class="phase-badge phase-badge--maintain">Maintain</span>
-                        <span class="phase-badge phase-badge--build">Build</span>
-                    </div>
-                    <p>This is your foundation year. You're learning to track macros, understanding how your body responds to each phase, and building the habits that will carry you forward. Don't expect perfection. Expect progress.</p>
-                    <div class="success-metric">
-                        <i class="fa-solid fa-bullseye"></i>
-                        <p><strong>Success Metric:</strong> You completed all four phases and tracked consistently for at least 80% of the year.</p>
-                    </div>
-                    <div class="what-youll-feel">
-                        <strong>What You'll Feel:</strong>
-                        <p>Awkward at first -- like learning a new language. By month 6, the fog lifts. By month 12, you'll wonder how you ever ate without a plan.</p>
-                    </div>
-                </div>
-
-                <div class="timeline-item reveal">
-                    <div class="timeline-label">Year 2 — Chapter Two</div>
-                    <h3>Refine &amp; Optimize</h3>
-                    <div class="phase-badges">
-                        <span class="phase-badge phase-badge--baseline">Baseline</span>
-                        <span class="phase-badge phase-badge--cut">Cut</span>
-                        <span class="phase-badge phase-badge--maintain">Maintain</span>
-                        <span class="phase-badge phase-badge--build">Build</span>
-                    </div>
-                    <p>You now have a full year of data. You know how your body responds to cuts. You know which weeks are hardest. You know your maintenance calories by feel. This year, you start fine-tuning: adjusting activity levels, dialing in protein timing, learning how sleep and stress affect your progress.</p>
-                    <div class="success-metric">
-                        <i class="fa-solid fa-bullseye"></i>
-                        <p><strong>Success Metric:</strong> Your cut is more efficient than Year 1. You lose more fat and retain more muscle.</p>
-                    </div>
-                    <div class="what-youll-feel">
-                        <strong>What You'll Feel:</strong>
-                        <p>Confident. You've done this before. The anxiety is gone. Now it's about precision -- and people around you are starting to notice.</p>
-                    </div>
-                </div>
-
-                <div class="timeline-item reveal">
-                    <div class="timeline-label">Years 3-4 — Chapter Three</div>
-                    <h3>Auto-Regulation</h3>
-                    <div class="phase-badges">
-                        <span class="phase-badge phase-badge--cut">Cut</span>
-                        <span class="phase-badge phase-badge--maintain">Maintain</span>
-                        <span class="phase-badge phase-badge--build">Build</span>
-                    </div>
-                    <p>By now, you understand your body well enough to make adjustments on the fly. You know when to push and when to back off. You may find that your cuts get shorter because your builds are cleaner, or that your maintenance phases feel effortless. The system becomes second nature.</p>
-                    <div class="success-metric">
-                        <i class="fa-solid fa-bullseye"></i>
-                        <p><strong>Success Metric:</strong> You can estimate your macros for most meals without looking them up. Your body composition improves year over year.</p>
-                    </div>
-                    <div class="what-youll-feel">
-                        <strong>What You'll Feel:</strong>
-                        <p>Like you've unlocked a cheat code. Nutrition isn't something you "do" anymore -- it's just how you operate. The system runs itself.</p>
-                    </div>
-                </div>
-
-                <div class="timeline-item reveal">
-                    <div class="timeline-label">Years 5-10 — Chapter Four</div>
-                    <h3>Mastery</h3>
-                    <div class="phase-badges">
-                        <span class="phase-badge phase-badge--maintain">Maintain</span>
-                        <span class="phase-badge phase-badge--build">Build</span>
-                    </div>
-                    <p>You are now your own best nutritionist. The phases are automatic. Your relationship with food is healthy and informed. You're stronger, leaner, and more capable than when you started -- not because of one dramatic transformation, but because of years of consistent, intelligent work.</p>
-                    <div class="success-metric">
-                        <i class="fa-solid fa-bullseye"></i>
-                        <p><strong>Success Metric:</strong> You're in the best shape of your life and it feels sustainable, not like a sacrifice.</p>
-                    </div>
-                    <div class="what-youll-feel">
-                        <strong>What You'll Feel:</strong>
-                        <p>Unstoppable. Not because nothing can stop you, but because you've built something permanent. You're the person who figured it out -- for life.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Motivational Interstitial -->
+    <!-- What You Get Section -->
     <section class="section">
-        <div class="interstitial reveal-scale">
-            <div class="interstitial-accent"></div>
-            <h2>It's Not About Being Perfect. It's About Having a Plan.</h2>
-            <p>Follow the protocol. Trust the phases. Let time do what time does.</p>
-            <div class="interstitial-accent-bottom"></div>
+        <div class="section-container">
+            <div class="section-header reveal">
+                <div class="section-subtitle">What's Inside</div>
+                <h2 class="section-title">Everything You Need</h2>
+                <p class="section-description">FuelPath gives you the complete system — not just what to eat, but when, why, and how to transition between phases.</p>
+            </div>
+
+            <div class="features-grid reveal-stagger">
+                <div class="feature-card reveal">
+                    <div class="feature-icon"><i class="fa-solid fa-map"></i></div>
+                    <h3>4 Complete Phase Guides</h3>
+                    <p>Detailed breakdowns for Baseline, Cut, Maintain, and Build — with week-by-week expectations, transition checklists, and the rules that make each phase work.</p>
+                </div>
+
+                <div class="feature-card reveal">
+                    <div class="feature-icon"><i class="fa-solid fa-calculator"></i></div>
+                    <h3>Macro Calculator Integration</h3>
+                    <p>Your existing macro calculator generates your exact numbers for every phase. Run it 3 times and you have your entire year mapped out.</p>
+                </div>
+
+                <div class="feature-card reveal">
+                    <div class="feature-icon"><i class="fa-solid fa-flask"></i></div>
+                    <h3>Supplement Protocols</h3>
+                    <p>Phase-specific Thorne supplement stacks — what to take, when, and why. NSF Certified for Sport products with direct links.</p>
+                </div>
+
+                <div class="feature-card reveal">
+                    <div class="feature-icon"><i class="fa-solid fa-droplet"></i></div>
+                    <h3>Hydration Guide</h3>
+                    <p>Baseline hydration targets, training-day adjustments, electrolyte guidance, and phase-specific considerations.</p>
+                </div>
+
+                <div class="feature-card reveal">
+                    <div class="feature-icon"><i class="fa-solid fa-road"></i></div>
+                    <h3>The Decade Roadmap</h3>
+                    <p>A Year 1 through Year 10 progression framework that turns this from a one-time plan into a lifelong system.</p>
+                </div>
+
+                <div class="feature-card reveal">
+                    <div class="feature-icon"><i class="fa-solid fa-clipboard-check"></i></div>
+                    <h3>Phase Transition Checklists</h3>
+                    <p>Step-by-step checklists at every transition point so you never have to guess when or how to switch phases.</p>
+                </div>
+            </div>
+
+            <div class="section-cta reveal">
+                <p style="color: var(--light-gray); margin-bottom: 1rem;">Everything you need. Nothing you don't.</p>
+                <a href="#pricing" class="btn-primary">See Pricing</a>
+            </div>
         </div>
     </section>
 
-    <!-- Troubleshooting & FAQs -->
-    <section class="section section-alt">
+    <!-- Pricing Section -->
+    <section id="pricing" class="section section-alt">
         <div class="section-container">
             <div class="section-header reveal">
-                <div class="section-subtitle">Common Questions</div>
-                <h2 class="section-title">Troubleshooting &amp; FAQs</h2>
+                <div class="section-subtitle">Choose Your Path</div>
+                <h2 class="section-title">Nutrition Coaching Tiers</h2>
+                <p class="section-description">Every tier is built around the same proven 4-Phase system. Choose the level of support that fits where you are.</p>
+            </div>
+
+            <div class="pricing-grid reveal-stagger">
+                <!-- Tier 1: FuelPath Self-Guided -->
+                <div class="pricing-card reveal">
+                    <div class="pricing-tier-name">FuelPath Self-Guided</div>
+                    <div class="pricing-amount">$99</div>
+                    <div class="pricing-period">per year</div>
+                    <div class="pricing-alt-price">&nbsp;</div>
+                    <ul class="pricing-features">
+                        <li><i class="fa-solid fa-check"></i> 4 complete phase guides</li>
+                        <li><i class="fa-solid fa-check"></i> Macro calculator integration</li>
+                        <li><i class="fa-solid fa-check"></i> Phase transition checklists</li>
+                        <li><i class="fa-solid fa-check"></i> Supplement protocols</li>
+                        <li><i class="fa-solid fa-check"></i> The Decade Roadmap</li>
+                        <li><i class="fa-solid fa-check"></i> Athlete Dashboard</li>
+                        <li><i class="fa-solid fa-check"></i> All future updates</li>
+                    </ul>
+                    <a href="STRIPE_PAYMENT_LINK_BLUEPRINT" class="btn-outline btn-full">Get FuelPath</a>
+                </div>
+
+                <!-- Tier 2: Full Coaching (Featured) -->
+                <div class="pricing-card featured reveal">
+                    <div class="pricing-badge">Most Popular</div>
+                    <div class="pricing-tier-name">Full Coaching</div>
+                    <div class="pricing-amount">$250</div>
+                    <div class="pricing-period">per month</div>
+                    <div class="pricing-alt-price">or $200/mo billed annually ($2,400/yr)</div>
+                    <ul class="pricing-features">
+                        <li><i class="fa-solid fa-check"></i> Everything in FuelPath</li>
+                        <li><i class="fa-solid fa-check"></i> Ongoing coach access</li>
+                        <li><i class="fa-solid fa-check"></i> Personalized macro adjustments</li>
+                        <li><i class="fa-solid fa-check"></i> Competition prep modifications</li>
+                        <li><i class="fa-solid fa-check"></i> Monthly check-ins</li>
+                        <li><i class="fa-solid fa-check"></i> Priority support</li>
+                    </ul>
+                    <a href="STRIPE_PAYMENT_LINK_FULL_COACHING_MONTHLY" class="btn-primary btn-full">Start Coaching</a>
+                    <p class="pricing-note"><a href="STRIPE_PAYMENT_LINK_FULL_COACHING_ANNUAL" style="color: var(--yellow); text-decoration: underline;">Save $600 with annual billing &rarr;</a></p>
+                </div>
+
+                <!-- Tier 3: Coaching Call -->
+                <div class="pricing-card reveal">
+                    <div class="pricing-tier-name">Coaching Call</div>
+                    <div class="pricing-amount">$99</div>
+                    <div class="pricing-period">one-time</div>
+                    <div class="pricing-alt-price">Add-on for any tier</div>
+                    <ul class="pricing-features">
+                        <li><i class="fa-solid fa-check"></i> 30-minute 1-on-1 call</li>
+                        <li><i class="fa-solid fa-check"></i> Personalized macro review</li>
+                        <li><i class="fa-solid fa-check"></i> Phase strategy session</li>
+                        <li><i class="fa-solid fa-check"></i> Available anytime</li>
+                    </ul>
+                    <a href="STRIPE_PAYMENT_LINK_COACHING_CALL" class="btn-outline btn-full">Book a Call</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section id="faqs" class="section">
+        <div class="section-container">
+            <div class="section-header reveal">
+                <div class="section-subtitle">Questions?</div>
+                <h2 class="section-title">FuelPath FAQs</h2>
             </div>
 
             <div class="faq-container reveal-stagger">
                 <div class="faq-item reveal">
-                    <h3 class="faq-question">"My weight isn't changing during maintenance."</h3>
-                    <p class="faq-answer">Good. That's the point. Maintenance means your weight stays roughly the same. If you're within a 2-3 lb range week to week, you're exactly where you should be. This phase is about stability and building habits, not chasing scale movement.</p>
+                    <h3 class="faq-question">Do I need to be a Black Iron Athletics member?</h3>
+                    <p class="faq-answer">No. FuelPath works for anyone, anywhere. It's built around the free Black Iron Macro Calculator, which is available online to everyone. If you're a local BIA member, you'll get even more value from InBody scans and in-person coaching, but the system works independently.</p>
                 </div>
 
                 <div class="faq-item reveal">
-                    <h3 class="faq-question">"I'm not losing weight during my cut."</h3>
-                    <p class="faq-answer">First, are you actually tracking everything? Most stalls come from underreporting intake -- cooking oils, sauces, drinks, and "just a bite" add up fast. If your tracking is tight and the scale hasn't moved in 2+ weeks, rerun the calculator. You may need to adjust your activity level input down.</p>
+                    <h3 class="faq-question">Do I need to track macros?</h3>
+                    <p class="faq-answer">We strongly recommend it, especially in Year 1. Tracking gives you the data to make each phase work. Most people need 2-3 years of consistent tracking before they can intuitively eat at their targets. The Decade Roadmap covers this progression.</p>
                 </div>
 
                 <div class="faq-item reveal">
-                    <h3 class="faq-question">"I gained weight fast when I started the build."</h3>
-                    <p class="faq-answer">The first 3-5 lbs are almost entirely water and glycogen from increased carbs. This is expected, healthy, and not fat. Your muscles are refueling. After the initial jump, weight gain should slow to 0.5-1 lb per week.</p>
+                    <h3 class="faq-question">What if I'm starting mid-year?</h3>
+                    <p class="faq-answer">Jump into whatever phase aligns with the current calendar quarter. The system is designed as an annual cycle — you'll get the full experience your first January.</p>
                 </div>
 
                 <div class="faq-item reveal">
-                    <h3 class="faq-question">"Can I skip the build?"</h3>
-                    <p class="faq-answer">You can, but you shouldn't. Extended cutting without a building phase leads to metabolic adaptation, muscle loss, and diminishing returns. The building phase is what gives your next cut something to reveal. If you skip it, you're cutting down to the same body every year.</p>
+                    <h3 class="faq-question">Is this a meal plan?</h3>
+                    <p class="faq-answer">No. FuelPath gives you macro targets and a structured framework for each phase. You choose what to eat. This is about flexibility and sustainability, not rigid meal plans that fall apart after two weeks.</p>
                 </div>
 
                 <div class="faq-item reveal">
-                    <h3 class="faq-question">"What if I miss a few days?"</h3>
-                    <p class="faq-answer">Get back on plan. No guilt, no making up for it, no extra cardio. One bad week in a 12-week phase is noise, not a trend. The system is resilient. You don't need to be perfect. You need to be consistent over months and years.</p>
+                    <h3 class="faq-question">What if I have a medical condition?</h3>
+                    <p class="faq-answer">FuelPath provides general nutrition guidance. It is not medical advice. If you have diabetes, thyroid conditions, eating disorders, or any other medical concern, consult your doctor before starting any nutrition program.</p>
                 </div>
 
                 <div class="faq-item reveal">
-                    <h3 class="faq-question">"Do I need to track macros forever?"</h3>
-                    <p class="faq-answer">Not forever, but probably longer than you think. Most people need 2-3 years of consistent tracking before they can intuitively eat at their targets. The Decade Roadmap covers this progression. Think of tracking like training wheels -- you'll know when you're ready to take them off.</p>
-                </div>
-
-                <div class="faq-item reveal">
-                    <h3 class="faq-question">"What if I have a medical condition?"</h3>
-                    <p class="faq-answer">This Blueprint provides general nutrition guidance based on established macronutrient principles. It is not medical advice. If you have diabetes, thyroid conditions, eating disorders, food allergies, or any other medical concern, consult your doctor or a registered dietitian before starting any nutrition program. The macro calculator and phase guidelines can work alongside medical guidance, but your healthcare provider should always come first.</p>
+                    <h3 class="faq-question">Can I cancel anytime?</h3>
+                    <p class="faq-answer">Yes. Your subscription renews annually. You can cancel anytime before renewal and keep access through the end of your paid year.</p>
                 </div>
             </div>
         </div>
@@ -1686,9 +1801,12 @@
     <!-- Final CTA Section -->
     <section class="cta-section">
         <div style="max-width: 100%; margin: 0 auto; padding: 0 2rem;">
-            <h2 class="cta-title">Questions? We're Here to Help.</h2>
-            <p class="cta-subtitle">Book a free consultation with our coaching team. Whether you're starting Year 1 or fine-tuning Year 5, we'll help you get the most out of the Blueprint.</p>
-            <a href="#" onclick="openLeadModal(); return false;" class="btn-primary">Book Free Consultation</a>
+            <h2 class="cta-title">Your Next Year Starts Today.</h2>
+            <p class="cta-subtitle">Whether you run the system yourself or want a coach in your corner, FuelPath gives you every tool to transform — for life.</p>
+            <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+                <a href="STRIPE_PAYMENT_LINK_FULL_COACHING_MONTHLY" class="btn-primary">Start Full Coaching &mdash; $250/mo</a>
+                <a href="STRIPE_PAYMENT_LINK_BLUEPRINT" class="btn-outline">Get Self-Guided &mdash; $99/yr</a>
+            </div>
         </div>
     </section>
 
@@ -1765,21 +1883,44 @@
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
-      "@type": "Article",
-      "headline": "The Decade Roadmap - The 4-Phase Nutrition Blueprint",
-      "description": "A Year 1 through Year 10 progression framework that turns the 4-Phase Nutrition Blueprint from a one-time plan into a lifelong system. Includes troubleshooting and frequently asked questions.",
-      "author": { "@type": "Organization", "name": "Black Iron Athletics" },
-      "publisher": {
-        "@type": "Organization",
-        "name": "Black Iron Athletics",
-        "url": "https://www.blackironathletics.com"
-      },
-      "mainEntityOfPage": "https://www.blackironathletics.com/blueprint-decade",
-      "isPartOf": {
-        "@type": "Product",
-        "name": "The 4-Phase Nutrition Blueprint",
-        "url": "https://www.blackironathletics.com/blueprint"
-      }
+      "@type": "Product",
+      "name": "FuelPath: The 4-Phase Metabolic System",
+      "description": "FuelPath is a year-round nutrition periodization system with 4 phases — Baseline, Cut, Maintain, Build. Includes phase guides, macro calculator integration, supplement protocols, and The Decade Roadmap. Available as self-guided or with full coaching.",
+      "brand": { "@type": "Organization", "name": "Black Iron Athletics" },
+      "offers": [
+        {
+          "@type": "Offer",
+          "name": "FuelPath Self-Guided",
+          "price": "99",
+          "priceCurrency": "USD",
+          "availability": "https://schema.org/InStock",
+          "url": "https://www.blackironathletics.com/fuelpath#pricing"
+        },
+        {
+          "@type": "Offer",
+          "name": "Full Coaching (Monthly)",
+          "price": "250",
+          "priceCurrency": "USD",
+          "availability": "https://schema.org/InStock",
+          "url": "https://www.blackironathletics.com/fuelpath#pricing"
+        },
+        {
+          "@type": "Offer",
+          "name": "Full Coaching (Annual)",
+          "price": "2400",
+          "priceCurrency": "USD",
+          "availability": "https://schema.org/InStock",
+          "url": "https://www.blackironathletics.com/fuelpath#pricing"
+        },
+        {
+          "@type": "Offer",
+          "name": "Coaching Call",
+          "price": "99",
+          "priceCurrency": "USD",
+          "availability": "https://schema.org/InStock",
+          "url": "https://www.blackironathletics.com/fuelpath#pricing"
+        }
+      ]
     }
     </script>
     <script type="application/ld+json">
@@ -1789,50 +1930,34 @@
       "mainEntity": [
         {
           "@type": "Question",
-          "name": "My weight isn't changing during maintenance.",
+          "name": "Do I need to be a Black Iron Athletics member?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Good. That's the point. Maintenance means your weight stays roughly the same. If you're within a 2-3 lb range week to week, you're exactly where you should be."
+            "text": "No. FuelPath works for anyone, anywhere. It's built around the free Black Iron Macro Calculator, which is available online to everyone. If you're a local BIA member, you'll get even more value from InBody scans and in-person coaching, but the system works independently."
           }
         },
         {
           "@type": "Question",
-          "name": "I'm not losing weight during my cut.",
+          "name": "Do I need to track macros?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "First, are you actually tracking everything? Most stalls come from underreporting intake — cooking oils, sauces, drinks, and 'just a bite' add up fast. If your tracking is tight and the scale hasn't moved in 2+ weeks, rerun the calculator. You may need to adjust your activity level input down."
+            "text": "We strongly recommend it, especially in Year 1. Tracking gives you the data to make each phase work. Most people need 2-3 years of consistent tracking before they can intuitively eat at their targets. The Decade Roadmap covers this progression."
           }
         },
         {
           "@type": "Question",
-          "name": "I gained weight fast when I started the build.",
+          "name": "What if I'm starting mid-year?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "The first 3-5 lbs are almost entirely water and glycogen from increased carbs. This is expected, healthy, and not fat. Your muscles are refueling. After the initial jump, weight gain should slow to 0.5-1 lb per week."
+            "text": "Jump into whatever phase aligns with the current calendar quarter. The system is designed as an annual cycle — you'll get the full experience your first January."
           }
         },
         {
           "@type": "Question",
-          "name": "Can I skip the build?",
+          "name": "Is this a meal plan?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "You can, but you shouldn't. Extended cutting without a building phase leads to metabolic adaptation, muscle loss, and diminishing returns. The building phase is what gives your next cut something to reveal. If you skip it, you're cutting down to the same body every year."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "What if I miss a few days?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Get back on plan. No guilt, no making up for it, no extra cardio. One bad week in a 12-week phase is noise, not a trend. The system is resilient. You don't need to be perfect. You need to be consistent over months and years."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "Do I need to track macros forever?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Not forever, but probably longer than you think. Most people need 2-3 years of consistent tracking before they can intuitively eat at their targets. Think of tracking like training wheels — you'll know when you're ready to take them off."
+            "text": "No. FuelPath gives you macro targets and a structured framework for each phase. You choose what to eat. This is about flexibility and sustainability, not rigid meal plans that fall apart after two weeks."
           }
         },
         {
@@ -1840,7 +1965,15 @@
           "name": "What if I have a medical condition?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "This Blueprint provides general nutrition guidance based on established macronutrient principles. It is not medical advice. If you have diabetes, thyroid conditions, eating disorders, food allergies, or any other medical concern, consult your doctor or a registered dietitian before starting any nutrition program."
+            "text": "FuelPath provides general nutrition guidance. It is not medical advice. If you have diabetes, thyroid conditions, eating disorders, or any other medical concern, consult your doctor before starting any nutrition program."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can I cancel anytime?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. Your subscription renews annually. You can cancel anytime before renewal and keep access through the end of your paid year."
           }
         }
       ]
@@ -2067,19 +2200,6 @@
 })();
 </script>
 <script>
-// ===== BLUEPRINT AUTH GATE =====
-(async function() {
-    var SUPABASE_URL = 'https://hmwfpwcookrwgsbnutyc.supabase.co';
-    var SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imhtd2Zwd2Nvb2tyd2dzYm51dHljIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzE1NTUwMTcsImV4cCI6MjA4NzEzMTAxN30.CpX9hIshZqf68B10vPZXt7dHbSXE_aVqfmKuiWN_Lpw';
-    if (!window.supabase) return;
-    var sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
-    var { data } = await sb.auth.getSession();
-    if (!data || !data.session) return; // not logged in — gate stays visible
-    // User is authenticated — grant access
-    document.getElementById('gateOverlay').style.display = 'none';
-})();
-</script>
-<script>
 // ===== ACCESSIBILITY: KEYBOARD NAV & FOCUS TRAP =====
 (function() {
     // --- Keyboard Navigation for Submenus ---
@@ -2166,14 +2286,8 @@
           {
             "@type": "ListItem",
             "position": 2,
-            "name": "Blueprint",
-            "item": "https://www.blackironathletics.com/blueprint.html"
-          },
-          {
-            "@type": "ListItem",
-            "position": 3,
-            "name": "The Decade Roadmap",
-            "item": "https://www.blackironathletics.com/blueprint-decade.html"
+            "name": "FuelPath",
+            "item": "https://www.blackironathletics.com/fuelpath.html"
           }
       ]
     }

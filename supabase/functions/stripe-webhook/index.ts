@@ -69,7 +69,7 @@ async function handleCheckoutCompleted(session: Stripe.Checkout.Session) {
       status: "purchased",
     });
   } else {
-    // Subscription purchase (blueprint or full_coaching)
+    // Subscription purchase (fuelpath or full_coaching)
     const stripeSubscriptionId = session.subscription as string;
 
     let currentPeriodEnd: string | null = null;

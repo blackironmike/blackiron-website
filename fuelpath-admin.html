@@ -980,7 +980,7 @@
                 <li><a href="contact">Contact</a></li>
             </ul>
             <div class="nav-cta-group">
-                <a href="blueprint-dashboard" class="login-btn">My Dashboard</a>
+                <a href="fuelpath-dashboard" class="login-btn">My Dashboard</a>
                 <a href="#" onclick="openLeadModal(); return false;" class="cta-btn">Book Free Consultation</a>
             </div>
             <button class="hamburger" onclick="toggleMobileNav()" aria-label="Menu">
@@ -1005,7 +1005,7 @@
         <a href="blog/" onclick="closeMobileNav()">Blog</a>
         <a href="contact" onclick="closeMobileNav()">Contact</a>
         <a href="#" class="mobile-cta" onclick="closeMobileNav(); openLeadModal(); return false;">Book Free Consultation</a>
-        <a href="blueprint-dashboard" class="mobile-login" onclick="closeMobileNav()">My Dashboard</a>
+        <a href="fuelpath-dashboard" class="mobile-login" onclick="closeMobileNav()">My Dashboard</a>
     </div>
 
     <main id="main-content">
@@ -1021,7 +1021,7 @@
         <i class="fa-solid fa-ban"></i>
         <h2>Access Denied</h2>
         <p>You do not have permission to view this page.</p>
-        <a href="blueprint-dashboard"><i class="fa-solid fa-arrow-left"></i> Back to Dashboard</a>
+        <a href="fuelpath-dashboard"><i class="fa-solid fa-arrow-left"></i> Back to Dashboard</a>
     </div>
 
     <!-- Admin Panel (shown only for owners) -->
@@ -1040,7 +1040,7 @@
                 <span class="user-bar-email"><i class="fa-solid fa-user"></i> <span id="userEmail"></span></span>
             </div>
             <div class="user-bar-right">
-                <button onclick="window.location.href='blueprint-dashboard'"><i class="fa-solid fa-arrow-left"></i> Dashboard</button>
+                <button onclick="window.location.href='fuelpath-dashboard'"><i class="fa-solid fa-arrow-left"></i> Dashboard</button>
                 <button onclick="handleLogout()"><i class="fa-solid fa-right-from-bracket"></i> Sign Out</button>
             </div>
         </div>
@@ -1195,13 +1195,13 @@ function closeMobileNav() {
 // ===== AUTH + ROLE GATE =====
 async function checkSession() {
     if (!supabase) {
-        window.location.href = 'blueprint-dashboard';
+        window.location.href = 'fuelpath-dashboard';
         return;
     }
 
     var { data } = await supabase.auth.getSession();
     if (!data || !data.session) {
-        window.location.href = 'blueprint-dashboard';
+        window.location.href = 'fuelpath-dashboard';
         return;
     }
 
@@ -1659,7 +1659,7 @@ function escapeAttr(str) {
 // ===== LOGOUT =====
 async function handleLogout() {
     if (supabase) { await supabase.auth.signOut(); }
-    window.location.href = 'blueprint-dashboard';
+    window.location.href = 'fuelpath-dashboard';
 }
 
 // ===== LEAD MODAL PLACEHOLDER =====

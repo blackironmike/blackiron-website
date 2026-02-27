@@ -3,22 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Phase 4: Build | October – December | The 4-Phase Nutrition Blueprint | Black Iron Athletics</title>
-    <meta name="description" content="Phase 4 of the 4-Phase Nutrition Blueprint: the Building Phase (October-December). Invest in next year's results with a controlled caloric surplus designed to fuel muscle growth and strength gains.">
+    <title>Phase 2: Cut (April - June) | FuelPath: The 4-Phase Metabolic System | Black Iron Athletics</title>
+    <meta name="description" content="Phase 2 of FuelPath: The 4-Phase Metabolic System — the Cutting Phase. 12 weeks of strategic fat loss while preserving muscle. April through June. Powered by the Black Iron Macro Calculator.">
     <meta name="geo.region" content="US-TX">
     <meta name="geo.placename" content="Frisco">
-    <link rel="canonical" href="https://www.blackironathletics.com/blueprint-phase-4-build">
+    <link rel="canonical" href="https://www.blackironathletics.com/fuelpath-phase-2-cut">
     <!-- Open Graph -->
-    <meta property="og:title" content="Phase 4: Build | The 4-Phase Nutrition Blueprint | Black Iron Athletics">
-    <meta property="og:description" content="Phase 4 of the 4-Phase Nutrition Blueprint: the Building Phase (October-December). Invest in next year's results with a controlled caloric surplus designed to fuel muscle growth and strength gains.">
-    <meta property="og:url" content="https://www.blackironathletics.com/blueprint-phase-4-build">
+    <meta property="og:title" content="Phase 2: Cut | FuelPath: The 4-Phase Metabolic System | Black Iron Athletics">
+    <meta property="og:description" content="Phase 2 of FuelPath: The 4-Phase Metabolic System — the Cutting Phase. 12 weeks of strategic fat loss while preserving muscle. April through June.">
+    <meta property="og:url" content="https://www.blackironathletics.com/fuelpath-phase-2-cut">
     <meta property="og:image" content="https://www.blackironathletics.com/images/social-share.png">
-    <meta property="og:type" content="website">
+    <meta property="og:type" content="article">
     <meta property="og:site_name" content="Black Iron Athletics">
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Phase 4: Build | The 4-Phase Nutrition Blueprint | Black Iron Athletics">
-    <meta name="twitter:description" content="Phase 4 of the 4-Phase Nutrition Blueprint: the Building Phase (October-December). Invest in next year's results with a controlled caloric surplus designed to fuel muscle growth and strength gains.">
+    <meta name="twitter:title" content="Phase 2: Cut | FuelPath: The 4-Phase Metabolic System | Black Iron Athletics">
+    <meta name="twitter:description" content="Phase 2 of FuelPath: The 4-Phase Metabolic System — the Cutting Phase. 12 weeks of strategic fat loss while preserving muscle. April through June.">
     <meta name="twitter:image" content="https://www.blackironathletics.com/images/social-share.png">
     <link rel="icon" type="image/png" href="images/anvil-favicon.png">
     <meta name="theme-color" content="#000000">
@@ -235,7 +235,7 @@
         .hero {
             margin-top: 0;
             padding-top: 80px;
-            min-height: 60vh;
+            min-height: 50vh;
             display: flex;
             align-items: center;
             position: relative;
@@ -267,7 +267,7 @@
         .hero-subtitle {
             font-size: 0.9rem;
             font-weight: 700;
-            color: var(--phase-build);
+            color: var(--phase-cut);
             text-transform: uppercase;
             letter-spacing: 2px;
             margin-bottom: 1.5rem;
@@ -290,8 +290,8 @@
             max-width: 600px;
         }
 
-        /* ===== PREMIUM SUB-NAV ===== */
-        .blueprint-subnav {
+        /* ===== BLUEPRINT SUB-NAV ===== */
+        .fuelpath-subnav {
             background: var(--dark-gray);
             border-bottom: 1px solid var(--medium-gray);
             overflow-x: auto;
@@ -299,9 +299,16 @@
             white-space: nowrap;
         }
 
-        .blueprint-subnav::-webkit-scrollbar {
-            height: 0;
-            display: none;
+        .fuelpath-subnav::-webkit-scrollbar {
+            height: 3px;
+        }
+
+        .fuelpath-subnav::-webkit-scrollbar-track {
+            background: var(--dark-gray);
+        }
+
+        .fuelpath-subnav::-webkit-scrollbar-thumb {
+            background: var(--medium-gray);
         }
 
         .subnav-container {
@@ -313,13 +320,14 @@
         }
 
         .subnav-link {
+            display: inline-block;
+            padding: 1rem 1.5rem;
             color: var(--light-gray);
             text-decoration: none;
             font-size: 0.8rem;
             font-weight: 700;
             text-transform: uppercase;
             letter-spacing: 0.5px;
-            padding: 1rem 1.5rem;
             transition: all 0.3s ease;
             border-bottom: 2px solid transparent;
             white-space: nowrap;
@@ -357,6 +365,15 @@
         .section-subtitle {
             font-size: 0.85rem;
             font-weight: 700;
+            color: var(--phase-cut);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 1rem;
+        }
+
+        .section-subtitle-yellow {
+            font-size: 0.85rem;
+            font-weight: 700;
             color: var(--yellow);
             text-transform: uppercase;
             letter-spacing: 2px;
@@ -375,6 +392,22 @@
             color: var(--light-gray);
             max-width: 800px;
             margin: 0 auto;
+        }
+
+        .content-block {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .content-block p {
+            color: var(--light-gray);
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+        }
+
+        .content-block p strong {
+            color: var(--white);
         }
 
         .btn-primary {
@@ -419,188 +452,6 @@
             color: var(--black);
         }
 
-        /* ===== FEATURE CARDS ===== */
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-top: 4rem;
-        }
-
-        .feature-card {
-            background: var(--dark-gray);
-            padding: 3rem 2rem;
-            border: 2px solid var(--medium-gray);
-            text-align: center;
-            transition: all 0.3s ease;
-        }
-
-        .section-alt .feature-card {
-            background: var(--black);
-        }
-
-        .feature-card:hover {
-            border-color: var(--yellow);
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(255, 210, 2, 0.2);
-        }
-
-        .feature-icon {
-            font-size: 2.5rem;
-            color: var(--yellow);
-            margin-bottom: 1.5rem;
-        }
-
-        .feature-card h3 {
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-            text-transform: uppercase;
-        }
-
-        .feature-card p {
-            color: var(--light-gray);
-            line-height: 1.8;
-        }
-
-        /* ===== CONTENT BLOCKS ===== */
-        .content-block {
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .content-block h3 {
-            font-size: 1.3rem;
-            margin-bottom: 1rem;
-            text-transform: uppercase;
-            color: var(--white);
-        }
-
-        .content-block p {
-            color: var(--light-gray);
-            line-height: 1.8;
-            font-size: 1.05rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .content-block ul {
-            list-style: none;
-            margin-bottom: 2rem;
-        }
-
-        .content-block ul li {
-            color: var(--light-gray);
-            padding: 0.5rem 0;
-            padding-left: 1.5rem;
-            position: relative;
-            line-height: 1.7;
-        }
-
-        .content-block ul li::before {
-            content: '';
-            position: absolute;
-            left: 0;
-            top: 0.85rem;
-            width: 8px;
-            height: 8px;
-            background: var(--phase-build);
-        }
-
-        /* ===== TIME CARDS ===== */
-        .time-cards {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
-        }
-
-        .time-card {
-            background: var(--dark-gray);
-            border: 2px solid var(--medium-gray);
-            padding: 2.5rem 2rem;
-            transition: all 0.3s ease;
-        }
-
-        .section-alt .time-card {
-            background: var(--black);
-        }
-
-        .time-card:hover {
-            border-color: var(--phase-build);
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(39, 174, 96, 0.2);
-        }
-
-        .time-card-label {
-            font-size: 0.8rem;
-            font-weight: 700;
-            color: var(--phase-build);
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
-            margin-bottom: 1rem;
-        }
-
-        .time-card h3 {
-            font-size: 1.3rem;
-            margin-bottom: 1rem;
-            text-transform: uppercase;
-        }
-
-        .time-card p {
-            color: var(--light-gray);
-            line-height: 1.8;
-            font-size: 0.95rem;
-        }
-
-        /* ===== RULE CARDS ===== */
-        .rules-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
-        }
-
-        .rule-card {
-            background: var(--dark-gray);
-            border: 2px solid var(--medium-gray);
-            padding: 2.5rem 2rem;
-            transition: all 0.3s ease;
-        }
-
-        .section-alt .rule-card {
-            background: var(--black);
-        }
-
-        .rule-card:hover {
-            border-color: var(--phase-build);
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(39, 174, 96, 0.2);
-        }
-
-        .rule-number {
-            display: inline-block;
-            background: var(--phase-build);
-            color: var(--black);
-            font-weight: 900;
-            font-size: 0.85rem;
-            width: 32px;
-            height: 32px;
-            line-height: 32px;
-            text-align: center;
-            margin-bottom: 1.25rem;
-        }
-
-        .rule-card h3 {
-            font-size: 1.2rem;
-            margin-bottom: 1rem;
-            text-transform: uppercase;
-        }
-
-        .rule-card p {
-            color: var(--light-gray);
-            line-height: 1.8;
-            font-size: 0.95rem;
-        }
-
         /* ===== NUMBERS CARD ===== */
         .numbers-grid {
             display: grid;
@@ -616,7 +467,7 @@
             background: var(--dark-gray);
             padding: 2.5rem 2rem;
             border: 2px solid var(--medium-gray);
-            border-top: 4px solid var(--phase-build);
+            border-top: 4px solid var(--phase-cut);
             transition: all 0.3s ease;
         }
 
@@ -625,16 +476,16 @@
         }
 
         .number-card:hover {
-            border-color: var(--phase-build);
+            border-color: var(--phase-cut);
             transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(39, 174, 96, 0.15);
+            box-shadow: 0 10px 30px rgba(255, 0, 3, 0.15);
         }
 
         .number-card h3 {
             font-size: 1.1rem;
             margin-bottom: 0.75rem;
             text-transform: uppercase;
-            color: var(--phase-build);
+            color: var(--phase-cut);
         }
 
         .number-card p {
@@ -643,10 +494,125 @@
             font-size: 0.95rem;
         }
 
+        /* ===== TIMELINE CARDS ===== */
+        .timeline-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-top: 3rem;
+            max-width: 1000px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .timeline-card {
+            background: var(--dark-gray);
+            padding: 2.5rem 2rem;
+            border: 2px solid var(--medium-gray);
+            border-top: 4px solid var(--phase-cut);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .section-alt .timeline-card {
+            background: var(--black);
+        }
+
+        .timeline-card:hover {
+            border-color: var(--phase-cut);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(255, 0, 3, 0.15);
+        }
+
+        .timeline-label {
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: var(--phase-cut);
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-bottom: 0.75rem;
+        }
+
+        .timeline-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+        }
+
+        .timeline-card p {
+            color: var(--light-gray);
+            line-height: 1.8;
+            font-size: 0.95rem;
+        }
+
+        /* ===== RULE CARDS ===== */
+        .rules-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            margin-top: 3rem;
+            max-width: 1000px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .rule-card {
+            background: var(--dark-gray);
+            padding: 2.5rem 2rem;
+            border: 2px solid var(--medium-gray);
+            border-left: 4px solid var(--phase-cut);
+            transition: all 0.3s ease;
+        }
+
+        .section-alt .rule-card {
+            background: var(--black);
+        }
+
+        .rule-card:hover {
+            border-color: var(--phase-cut);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(255, 0, 3, 0.15);
+        }
+
+        .rule-number {
+            font-size: 2rem;
+            font-weight: 900;
+            color: var(--phase-cut);
+            line-height: 1;
+            margin-bottom: 1rem;
+        }
+
+        .rule-card h3 {
+            font-size: 1.1rem;
+            margin-bottom: 0.75rem;
+            text-transform: uppercase;
+        }
+
+        .rule-card p {
+            color: var(--light-gray);
+            line-height: 1.8;
+            font-size: 0.95rem;
+        }
+
         /* ===== CHECKLIST ===== */
-        .checklist {
+        .checklist-container {
             max-width: 700px;
             margin: 3rem auto 0;
+            background: var(--dark-gray);
+            border: 2px solid var(--medium-gray);
+            border-top: 4px solid var(--phase-cut);
+            padding: 3rem;
+        }
+
+        .section-alt .checklist-container {
+            background: var(--black);
+        }
+
+        .checklist-container h3 {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            text-transform: uppercase;
+            text-align: center;
         }
 
         .checklist-item {
@@ -662,16 +628,16 @@
         }
 
         .checklist-icon {
-            color: var(--phase-build);
+            color: var(--phase-cut);
             font-size: 1.2rem;
-            margin-top: 0.2rem;
             flex-shrink: 0;
+            margin-top: 0.2rem;
         }
 
-        .checklist-text {
+        .checklist-item p {
             color: var(--light-gray);
-            line-height: 1.7;
-            font-size: 1rem;
+            font-size: 0.95rem;
+            line-height: 1.6;
         }
 
         /* ===== EMBEDDED CALCULATOR ===== */
@@ -1100,23 +1066,23 @@
         }
 
         .phase-link-card.prev {
-            border-top-color: var(--phase-maintain);
-        }
-
-        .phase-link-card.prev:hover {
-            border-color: var(--phase-maintain);
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(46, 134, 193, 0.15);
-        }
-
-        .phase-link-card.next {
             border-top-color: var(--phase-baseline);
         }
 
-        .phase-link-card.next:hover {
+        .phase-link-card.prev:hover {
             border-color: var(--phase-baseline);
             transform: translateY(-5px);
             box-shadow: 0 10px 30px rgba(155, 89, 182, 0.15);
+        }
+
+        .phase-link-card.next {
+            border-top-color: var(--phase-maintain);
+        }
+
+        .phase-link-card.next:hover {
+            border-color: var(--phase-maintain);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(46, 134, 193, 0.15);
         }
 
         .phase-link-label {
@@ -1148,32 +1114,11 @@
         }
 
         .phase-link-card.prev .phase-link-arrow {
-            color: var(--phase-maintain);
-        }
-
-        .phase-link-card.next .phase-link-arrow {
             color: var(--phase-baseline);
         }
 
-        /* ===== CTA SECTION ===== */
-        .cta-section {
-            background: var(--dark-gray);
-            padding: 8rem 4rem;
-            text-align: center;
-            width: 100%;
-        }
-
-        .cta-title {
-            font-weight: 900;
-            font-size: clamp(2.5rem, 5vw, 4.5rem);
-            margin-bottom: 1.5rem;
-            text-transform: uppercase;
-        }
-
-        .cta-subtitle {
-            font-size: 1.2rem;
-            color: var(--light-gray);
-            margin-bottom: 3rem;
+        .phase-link-card.next .phase-link-arrow {
+            color: var(--phase-maintain);
         }
 
         /* ===== MAP ===== */
@@ -1343,11 +1288,6 @@
                 padding-right: 2rem;
             }
 
-            .cta-section {
-                padding-left: 2rem;
-                padding-right: 2rem;
-            }
-
             .subnav-container {
                 padding-left: 2rem;
                 padding-right: 2rem;
@@ -1391,8 +1331,10 @@
             .section-header { margin-bottom: 2rem; }
             .section { padding: 4rem 0; }
 
-            .features-grid,
-            .time-cards,
+            .timeline-grid {
+                grid-template-columns: 1fr;
+            }
+
             .rules-grid {
                 grid-template-columns: 1fr;
             }
@@ -1401,8 +1343,10 @@
                 grid-template-columns: 1fr;
             }
 
-            .cta-section { padding: 4rem 1.5rem; }
-            .cta-title { font-size: clamp(1.8rem, 5vw, 2.5rem); }
+            .subnav-container {
+                padding-left: 1.5rem;
+                padding-right: 1.5rem;
+            }
 
             .map-section iframe { height: 250px; }
 
@@ -1411,21 +1355,11 @@
                 gap: 2rem;
             }
 
-            .btn-primary {
-                padding: 0.8rem 1.5rem;
-                font-size: 0.8rem;
-                white-space: normal;
-            }
-
+            .btn-primary,
             .btn-outline {
                 padding: 0.8rem 1.5rem;
                 font-size: 0.8rem;
                 white-space: normal;
-            }
-
-            .subnav-container {
-                padding-left: 1.5rem;
-                padding-right: 1.5rem;
             }
 
             .results-container {
@@ -1455,7 +1389,18 @@
                 flex-direction: column;
             }
 
+            .checklist-container {
+                padding: 2rem 1.5rem;
+            }
+
             .modal-container { max-width: calc(100% - 2rem); }
+        }
+
+        @media (max-width: 480px) {
+            .subnav-link {
+                padding: 0.75rem 1rem;
+                font-size: 0.7rem;
+            }
         }
 
         /* ===== AUTH GATE ===== */
@@ -1571,7 +1516,7 @@
                 <li><a href="contact">Contact</a></li>
             </ul>
             <div class="nav-cta-group">
-                <a href="blueprint-dashboard" class="login-btn">My Dashboard</a>
+                <a href="fuelpath-dashboard" class="login-btn">My Dashboard</a>
                 <a href="#" onclick="openLeadModal(); return false;" class="cta-btn">Book Free Consultation</a>
             </div>
             <button class="hamburger" onclick="toggleMobileNav()" aria-label="Menu">
@@ -1596,7 +1541,7 @@
         <a href="blog/" onclick="closeMobileNav()">Blog</a>
         <a href="contact" onclick="closeMobileNav()">Contact</a>
         <a href="#" class="mobile-cta" onclick="closeMobileNav(); openLeadModal(); return false;">Book Free Consultation</a>
-        <a href="blueprint-dashboard" class="mobile-login" onclick="closeMobileNav()">My Dashboard</a>
+        <a href="fuelpath-dashboard" class="mobile-login" onclick="closeMobileNav()">My Dashboard</a>
     </div>
 
     <main id="main-content">
@@ -1604,74 +1549,73 @@
     <!-- Auth Gate Overlay (shown when not authorized) -->
     <div class="gate-overlay" id="gateOverlay">
         <div class="gate-overlay-content">
-            <h2>Blueprint Access Required</h2>
-            <p>This content is part of the 4-Phase Nutrition Blueprint. Sign in to your dashboard or get access below.</p>
-            <a href="blueprint-dashboard?redirect=blueprint-phase-4-build" class="btn-primary">Sign In</a>
-            <a href="blueprint#pricing" class="btn-outline">View Plans</a>
+            <h2>FuelPath Access Required</h2>
+            <p>This content is part of FuelPath: The 4-Phase Metabolic System. Sign in to your dashboard or get access below.</p>
+            <a href="fuelpath-dashboard?redirect=fuelpath-phase-2-cut" class="btn-primary">Sign In</a>
+            <a href="fuelpath#pricing" class="btn-outline">View Plans</a>
         </div>
     </div>
 
     <!-- Hero Section -->
     <section class="hero">
-        <img src="images/hero-blueprint-phase4-build.webp" alt="Building phase nutrition" class="hero-bg" fetchpriority="high">
+        <img src="images/hero-fuelpath-phase2-cut.webp" alt="Cutting phase nutrition and training" class="hero-bg" fetchpriority="high">
         <div class="hero-container">
             <div class="hero-content">
-                <div class="hero-subtitle">Phase 4 &bull; October &ndash; December</div>
-                <h1>Phase 4: The Build</h1>
-                <p>Invest in next year's results. A controlled caloric surplus designed to fuel muscle growth and strength gains. The muscle you add here is what next year's cut will reveal.</p>
+                <div class="hero-subtitle">Phase 2 &bull; April &ndash; June</div>
+                <h1>Phase 2: The Cut</h1>
+                <p>Reduce body fat while preserving lean muscle. Enter summer looking and feeling your best with a strategic, time-bound deficit.</p>
             </div>
         </div>
     </section>
 
-    <!-- Premium Sub-Navigation -->
-    <div class="blueprint-subnav">
+    <!-- FuelPath Sub-Navigation -->
+    <div class="fuelpath-subnav" data-ms-content="members">
         <div class="subnav-container">
-            <a href="blueprint-dashboard" class="subnav-link">My Dashboard</a>
-            <a href="blueprint-phase-1-maintain" class="subnav-link">Phase 1: Baseline</a>
-            <a href="blueprint-phase-2-cut" class="subnav-link">Phase 2: Cut</a>
-            <a href="blueprint-phase-3-maintain" class="subnav-link">Phase 3: Maintain</a>
-            <a href="blueprint-phase-4-build" class="subnav-link active">Phase 4: Build</a>
-            <a href="blueprint-supplements" class="subnav-link">Supplements</a>
-            <a href="blueprint-decade" class="subnav-link">Decade Roadmap</a>
+            <a href="fuelpath-dashboard" class="subnav-link">My Dashboard</a>
+            <a href="fuelpath-phase-1-maintain" class="subnav-link">Phase 1: Baseline</a>
+            <a href="fuelpath-phase-2-cut" class="subnav-link active">Phase 2: Cut</a>
+            <a href="fuelpath-phase-3-maintain" class="subnav-link">Phase 3: Maintain</a>
+            <a href="fuelpath-phase-4-build" class="subnav-link">Phase 4: Build</a>
+            <a href="fuelpath-supplements" class="subnav-link">Supplements</a>
+            <a href="fuelpath-decade" class="subnav-link">Decade Roadmap</a>
         </div>
     </div>
 
     <!-- The Purpose Section -->
-    <section class="section">
+    <section class="section" data-ms-content="members">
         <div class="section-container">
             <div class="section-header">
-                <div class="section-subtitle" style="color: var(--phase-build);">Building Phase</div>
-                <h2 class="section-title">The Purpose</h2>
-                <p class="section-description">This is where you invest in next year's results. The building phase is a controlled caloric surplus designed to fuel muscle growth and strength gains.</p>
+                <div class="section-subtitle">The Purpose</div>
+                <h2 class="section-title">Reveal What's Underneath</h2>
             </div>
-
             <div class="content-block">
-                <p>The muscle you add here is what next year's cut will reveal. Without a building phase, you're just cutting down to the same body year after year.</p>
-                <p>A controlled surplus means you're eating above maintenance, but not recklessly. The goal is lean muscle gain, not just weight gain. Every pound of muscle you add increases your basal metabolic rate, which means your maintenance calories go up over time -- you get to eat more and stay leaner. That's the long game.</p>
+                <p>This is the phase where you reveal what's underneath. The goal is simple: <strong>reduce body fat while preserving as much lean muscle as possible.</strong> You're in a caloric deficit, which means your body is burning more energy than you're giving it. That difference comes from stored body fat.</p>
+                <p><strong>Three months is the sweet spot for a productive cut.</strong> It's long enough to make significant visible progress, but short enough that your metabolism doesn't fully adapt and stall out.</p>
+                <p>This is not a crash diet. You're eating strategically, not starving. You spent Phase 1 building the tracking habits and consistency that make this phase work. Now it's time to put them to use.</p>
             </div>
         </div>
     </section>
 
     <!-- Your Numbers Section -->
-    <section class="section section-alt">
+    <section class="section section-alt" data-ms-content="members">
         <div class="section-container">
             <div class="section-header">
                 <div class="section-subtitle">Your Numbers</div>
-                <h2 class="section-title">Set Your Calculator to "Build Muscle"</h2>
-                <p class="section-description">Rerun the Black Iron Macro Calculator with your current weight. Set the goal to "Build Muscle."</p>
+                <h2 class="section-title">Recalculate on April 1</h2>
+                <p class="section-description">Rerun the Black Iron Macro Calculator with your current weight as of April 1. Set the goal to "Lose Fat."</p>
             </div>
             <div class="numbers-grid">
                 <div class="number-card">
                     <h3>Calories</h3>
-                    <p>Your daily target will be above your TDEE. The calculator sets a moderate surplus &mdash; enough to support muscle growth without excessive fat gain.</p>
+                    <p>Your daily target will be below your TDEE. The calculator sets an appropriate deficit &mdash; aggressive enough to see results, moderate enough to sustain for 12 weeks.</p>
                 </div>
                 <div class="number-card">
                     <h3>Protein</h3>
-                    <p>Stays high &mdash; you need amino acids to build new tissue. <strong style="color: var(--white);">Do not compromise on this number.</strong></p>
+                    <p>This stays high &mdash; possibly higher than maintenance. Protein is your muscle insurance policy during a deficit. <strong style="color: var(--white);">Do not compromise on this number.</strong></p>
                 </div>
                 <div class="number-card">
                     <h3>Carbs &amp; Fat</h3>
-                    <p>Carbs are higher than any other phase &mdash; they fuel intense training and drive the insulin response that supports muscle growth. Fat stays moderate for hormonal health.</p>
+                    <p>Both will be lower than maintenance. Prioritize carbs around your training sessions for energy and performance. These flex around your protein and calorie targets.</p>
                 </div>
             </div>
             <div style="text-align: center; margin-top: 3rem;">
@@ -1686,7 +1630,7 @@
             <div class="section-header">
                 <div class="section-subtitle">Run Your Numbers</div>
                 <h2 class="section-title">Macro Calculator</h2>
-                <p class="section-description">Enter your current stats below. Your goal is pre-set to &ldquo;Build Muscle&rdquo; for the building phase.</p>
+                <p class="section-description">Enter your current stats below. Your goal is pre-set to &ldquo;Lose Fat&rdquo; for the cutting phase.</p>
             </div>
 
             <div class="calc-form-wrapper">
@@ -1752,11 +1696,11 @@
                                 <label for="maintain"><i class="fa-solid fa-scale-balanced" style="margin-right: 0.5rem;"></i> Maintain</label>
                             </div>
                             <div class="goal-option">
-                                <input type="radio" id="lose" name="goal" value="lose">
+                                <input type="radio" id="lose" name="goal" value="lose" checked>
                                 <label for="lose"><i class="fa-solid fa-fire" style="margin-right: 0.5rem;"></i> Lose Fat</label>
                             </div>
                             <div class="goal-option">
-                                <input type="radio" id="build" name="goal" value="build" checked>
+                                <input type="radio" id="build" name="goal" value="build">
                                 <label for="build"><i class="fa-solid fa-dumbbell" style="margin-right: 0.5rem;"></i> Build Muscle</label>
                             </div>
                         </div>
@@ -1831,143 +1775,117 @@
     </section>
 
     <!-- What to Expect Section -->
-    <section class="section">
+    <section class="section" data-ms-content="members">
         <div class="section-container">
             <div class="section-header">
-                <div class="section-subtitle" style="color: var(--phase-build);">Week by Week</div>
-                <h2 class="section-title">What to Expect</h2>
+                <div class="section-subtitle">What to Expect</div>
+                <h2 class="section-title">12 Weeks, Three Stages</h2>
+                <p class="section-description">Your cut won't feel the same from start to finish. Here's what each stage looks like so nothing catches you off guard.</p>
             </div>
-
-            <div class="time-cards">
-                <div class="time-card">
-                    <div class="time-card-label">Weeks 1-2</div>
-                    <h3>Immediate Weight Up</h3>
-                    <p>Weight will go up immediately -- mostly water and glycogen from increased carbs. This is not fat. Your muscles will feel fuller and your training will feel noticeably better within the first week.</p>
+            <div class="timeline-grid">
+                <div class="timeline-card">
+                    <div class="timeline-label">Weeks 1&ndash;2</div>
+                    <h3>The Quick Drop</h3>
+                    <p>You'll likely see a quick initial drop of 3&ndash;5 lbs, largely from water and glycogen as carbs decrease. This feels great but it's not all fat. Don't expect this rate to continue.</p>
                 </div>
-
-                <div class="time-card">
-                    <div class="time-card-label">Weeks 3-8</div>
-                    <h3>Steady Gains</h3>
-                    <p>Steady weight gain. For natural lifters, aim for 0.5-1 lb per week for men, 0.25-0.5 lb per week for women. If you're gaining faster, you're likely adding unnecessary fat. Slow and controlled wins.</p>
+                <div class="timeline-card">
+                    <div class="timeline-label">Weeks 3&ndash;8</div>
+                    <h3>Real Fat Loss</h3>
+                    <p>This is where real fat loss happens. Expect 0.5&ndash;1.5 lbs per week on average. Some weeks the scale won't move. Trust the process. If you're hitting your macros, you're losing fat. Water retention, sleep, stress, and hormonal cycles all affect the scale.</p>
                 </div>
-
-                <div class="time-card">
-                    <div class="time-card-label">Weeks 9-12</div>
-                    <h3>The Holidays</h3>
-                    <p>Thanksgiving, Christmas, New Year's -- you're in a surplus. Enjoy the meals. Eat with your family. The structure of being in a building phase gives you permission to eat well without the guilt spiral that hits most people in December.</p>
+                <div class="timeline-card">
+                    <div class="timeline-label">Weeks 9&ndash;12</div>
+                    <h3>The Grind</h3>
+                    <p>You'll be leaner, but energy and motivation may dip. This is normal metabolic adaptation. Hunger increases, recovery slows slightly. Push through &mdash; this is why we cap the cut at 12 weeks.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Building Phase Rules Section -->
-    <section class="section section-alt">
+    <!-- Cutting Phase Rules Section -->
+    <section class="section section-alt" data-ms-content="members">
         <div class="section-container">
             <div class="section-header">
-                <div class="section-subtitle" style="color: var(--phase-build);">Stay Disciplined</div>
-                <h2 class="section-title">Building Phase Rules</h2>
+                <div class="section-subtitle">The Rules</div>
+                <h2 class="section-title">Cutting Phase Rules</h2>
+                <p class="section-description">Four non-negotiable principles that keep your cut productive and sustainable.</p>
             </div>
-
             <div class="rules-grid">
                 <div class="rule-card">
-                    <div class="rule-number">1</div>
-                    <h3>Don't Dirty Bulk</h3>
-                    <p>A surplus doesn't mean eating everything in sight. Stay within your macro targets. The goal is 2-3 lbs of lean muscle per month, not 10 lbs of fat.</p>
+                    <div class="rule-number">01</div>
+                    <h3>Never Cut Protein</h3>
+                    <p>If you're over on calories, the adjustment comes from carbs or fat &mdash; never protein. Protein preserves muscle, drives recovery, and keeps you full. It's the last thing you touch.</p>
                 </div>
-
                 <div class="rule-card">
-                    <div class="rule-number">2</div>
-                    <h3>Train Hard</h3>
-                    <p>A surplus without intense training is just overeating. The extra calories only become muscle if you give your body a reason to build it. Push your training volume and intensity.</p>
+                    <div class="rule-number">02</div>
+                    <h3>No Compensatory Cardio</h3>
+                    <p>Don't add extra cardio to "make up" for a bad eating day. Just get back on plan tomorrow. Compensatory behaviors lead to a bad relationship with food and exercise.</p>
                 </div>
-
                 <div class="rule-card">
-                    <div class="rule-number">3</div>
-                    <h3>Expect Some Fat Gain</h3>
-                    <p>Even the cleanest bulk adds a small amount of body fat. This is normal and expected. That's what next year's cut is for.</p>
+                    <div class="rule-number">03</div>
+                    <h3>One Off Day Won't Ruin It</h3>
+                    <p>One off day doesn't ruin a cut. One off week might slow it down. Zoom out and look at weekly averages, not individual days. Consistency over months beats perfection in moments.</p>
                 </div>
-
                 <div class="rule-card">
-                    <div class="rule-number">4</div>
-                    <h3>Don't Panic at the Scale</h3>
-                    <p>You will weigh more at the end of December than you did on October 1. That's the plan. Trust the system and focus on strength and performance gains.</p>
+                    <div class="rule-number">04</div>
+                    <h3>Sleep Is Non-Negotiable</h3>
+                    <p>Sleep matters more during a cut than any other phase. Your body is doing extra work on fewer resources. 7&ndash;9 hours is not optional &mdash; it's a performance requirement.</p>
                 </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Year-End Wrap Section -->
-    <section class="section">
-        <div class="section-container">
-            <div class="section-header">
-                <div class="section-subtitle" style="color: var(--phase-build);">Finish Strong</div>
-                <h2 class="section-title">Year-End Wrap</h2>
-            </div>
-
-            <div class="content-block">
-                <p>As December closes out, it's time to assess your progress and set the stage for next year. This is your annual checkpoint -- the moment you compare where you are to where you started.</p>
-                <ul>
-                    <li>Take your end-of-year measurements: weight, waist, hips, chest, arms, and legs</li>
-                    <li>Take progress photos in the same lighting and poses as your January photos</li>
-                    <li>Compare year-over-year data: Are you stronger? More muscular? Is your maintenance calorie level higher than last year?</li>
-                    <li>Note what worked and what you'd adjust for next year's cycle</li>
-                </ul>
-                <p>This data is invaluable. Year 2 of the Blueprint builds on everything you learned in Year 1. The more data you collect, the more precise your approach becomes.</p>
             </div>
         </div>
     </section>
 
     <!-- Phase Transition Checklist Section -->
-    <section class="section section-alt">
+    <section class="section" data-ms-content="members">
         <div class="section-container">
             <div class="section-header">
-                <div class="section-subtitle" style="color: var(--phase-build);">Before January 1</div>
+                <div class="section-subtitle">Before You Move On</div>
                 <h2 class="section-title">Phase Transition Checklist</h2>
-                <p class="section-description">Before returning to Phase 1 (Baseline) on January 1, confirm the following:</p>
+                <p class="section-description">Before moving to Phase 3 (Maintain) on July 1, confirm the following.</p>
             </div>
-
-            <div class="checklist">
+            <div class="checklist-container">
+                <h3>Ready for Phase 3?</h3>
                 <div class="checklist-item">
                     <div class="checklist-icon"><i class="fa-regular fa-square-check"></i></div>
-                    <div class="checklist-text">You've completed the full 12-week build</div>
+                    <p>You've completed the full 12-week cut. Do not extend it &mdash; longer cuts tank your metabolism and lead to diminishing returns.</p>
                 </div>
                 <div class="checklist-item">
                     <div class="checklist-icon"><i class="fa-regular fa-square-check"></i></div>
-                    <div class="checklist-text">You've recalculated your macros with your new (higher) weight, goal set to "Maintain"</div>
+                    <p>You've recalculated your macros with your current weight, goal set to "Maintain."</p>
                 </div>
                 <div class="checklist-item">
                     <div class="checklist-icon"><i class="fa-regular fa-square-check"></i></div>
-                    <div class="checklist-text">You understand that maintenance after a build will feel like less food -- this is normal</div>
+                    <p>You understand that the transition back to maintenance calories is gradual, not instant. You'll reverse diet over 2&ndash;3 weeks.</p>
                 </div>
                 <div class="checklist-item">
                     <div class="checklist-icon"><i class="fa-regular fa-square-check"></i></div>
-                    <div class="checklist-text">You've taken progress photos and measurements to compare year over year</div>
+                    <p>You've taken progress photos and measurements to compare with your starting point.</p>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- What's Next -->
-    <section class="section">
+    <section class="section section-alt" data-ms-content="members">
         <div class="section-container">
             <div class="section-header">
                 <div class="section-subtitle">Continue Your Journey</div>
                 <h2 class="section-title">What's Next</h2>
             </div>
             <div class="phase-links">
-                <a href="blueprint-phase-3-maintain" class="phase-link-card prev">
+                <a href="fuelpath-phase-1-maintain" class="phase-link-card prev">
                     <div class="phase-link-arrow"><i class="fa-solid fa-arrow-left"></i></div>
                     <div class="phase-link-content">
                         <div class="phase-link-label">Previous Phase</div>
-                        <div class="phase-link-name" style="color: var(--phase-maintain);">Phase 3: Maintain</div>
-                        <div class="phase-link-dates">July &ndash; September</div>
-                    </div>
-                </a>
-                <a href="blueprint-phase-1-maintain" class="phase-link-card next">
-                    <div class="phase-link-content">
-                        <div class="phase-link-label">Start Year 2</div>
                         <div class="phase-link-name" style="color: var(--phase-baseline);">Phase 1: Baseline</div>
                         <div class="phase-link-dates">January &ndash; March</div>
+                    </div>
+                </a>
+                <a href="fuelpath-phase-3-maintain" class="phase-link-card next">
+                    <div class="phase-link-content">
+                        <div class="phase-link-label">Next Phase</div>
+                        <div class="phase-link-name" style="color: var(--phase-maintain);">Phase 3: Maintain</div>
+                        <div class="phase-link-dates">July &ndash; September</div>
                     </div>
                     <div class="phase-link-arrow"><i class="fa-solid fa-arrow-right"></i></div>
                 </a>
@@ -2049,20 +1967,20 @@
     {
       "@context": "https://schema.org",
       "@type": "Article",
-      "headline": "Phase 4: Build - The 4-Phase Nutrition Blueprint",
-      "description": "The Building Phase (October-December): Invest in next year's results with a controlled caloric surplus designed to fuel muscle growth and strength gains.",
+      "headline": "Phase 2: Cut - FuelPath: The 4-Phase Metabolic System",
+      "description": "Phase 2 of FuelPath: The 4-Phase Metabolic System — 12 weeks of strategic fat loss while preserving muscle. April through June.",
       "author": { "@type": "Organization", "name": "Black Iron Athletics" },
       "publisher": {
         "@type": "Organization",
         "name": "Black Iron Athletics",
         "url": "https://www.blackironathletics.com"
       },
-      "mainEntityOfPage": "https://www.blackironathletics.com/blueprint-phase-4-build",
       "isPartOf": {
         "@type": "Product",
-        "name": "The 4-Phase Nutrition Blueprint",
-        "url": "https://www.blackironathletics.com/blueprint"
-      }
+        "name": "FuelPath: The 4-Phase Metabolic System",
+        "url": "https://www.blackironathletics.com/fuelpath"
+      },
+      "mainEntityOfPage": "https://www.blackironathletics.com/fuelpath-phase-2-cut"
     }
     </script>
 
@@ -2479,14 +2397,14 @@
           {
             "@type": "ListItem",
             "position": 2,
-            "name": "Blueprint",
-            "item": "https://www.blackironathletics.com/blueprint.html"
+            "name": "FuelPath",
+            "item": "https://www.blackironathletics.com/fuelpath.html"
           },
           {
             "@type": "ListItem",
             "position": 3,
-            "name": "Phase 4: Build",
-            "item": "https://www.blackironathletics.com/blueprint-phase-4-build.html"
+            "name": "Phase 2: Cut",
+            "item": "https://www.blackironathletics.com/fuelpath-phase-2-cut.html"
           }
       ]
     }
