@@ -1354,33 +1354,142 @@
             color: var(--light-gray);
         }
 
-        /* ===== RESPONSIVE ===== */
+        /* ===== RESPONSIVE: TABLET ===== */
         @media (max-width: 768px) {
             .nav-links, .nav-cta-group { display: none; }
             .hamburger { display: block; }
             .nav-container { padding: 0 1.5rem; }
             .hero-container { padding: 3rem 1.5rem; }
+            .hero { min-height: 30vh; }
             .section-container { padding: 0 1.5rem; }
-            .user-bar { padding: 0.75rem 1.5rem; flex-direction: column; align-items: flex-start; }
+
+            /* User bar stacks */
+            .user-bar { padding: 0.75rem 1.5rem; flex-direction: column; align-items: flex-start; gap: 0.75rem; }
             .user-bar-right { flex-wrap: wrap; }
+
+            /* Date nav */
             .tracker-date-nav { padding: 1rem 1.5rem; }
+
+            /* Macro section */
             .tracker-macro-section { padding: 1.5rem 1.5rem; }
             .tracker-macro-bars { grid-template-columns: 1fr; gap: 1rem; }
+            .tracker-macro-bar { text-align: left; display: grid; grid-template-columns: 1fr; gap: 0.35rem; }
+            .tracker-macro-bar-label { margin-bottom: 0; }
+            .tracker-macro-bar-values { font-size: 1.1rem; }
+
+            /* Food section */
             .tracker-food-section { padding: 0 1.5rem 2rem; }
             .tracker-recent-section { padding: 0 1.5rem 2rem; }
             .tracker-add-bar { flex-direction: column; }
-            .tracker-add-bar button { width: 100%; }
-            .food-item { flex-wrap: wrap; }
-            .food-item-macros { gap: 0.5rem; font-size: 0.7rem; }
+            .tracker-add-bar button { width: 100%; padding: 1rem 2rem; font-size: 0.9rem; }
+
+            /* Food items — stack macros below name */
+            .food-item { flex-wrap: wrap; padding: 0.85rem 1rem; }
+            .food-item-info { width: 100%; flex: none; }
+            .food-item-macros { width: 100%; justify-content: flex-start; gap: 0.75rem; font-size: 0.75rem; margin-top: 0.25rem; }
+            .food-item-actions { position: absolute; right: 1rem; top: 50%; transform: translateY(-50%); }
+            .food-item { position: relative; padding-right: 2.5rem; }
+
+            /* Bigger tap targets for delete buttons */
+            .food-item-actions button { padding: 0.5rem; font-size: 1rem; min-width: 36px; min-height: 36px; display: flex; align-items: center; justify-content: center; }
+
+            /* Meal group headers — bigger tap target */
+            .meal-group-header { padding: 1rem; }
+
+            /* Food log modal */
             .food-log-form-row { grid-template-columns: 1fr; }
             .food-log-preview { grid-template-columns: repeat(2, 1fr); }
             .food-log-meal-selector { gap: 0.35rem; }
-            .food-log-meal-option { padding: 0.5rem 0.5rem; font-size: 0.7rem; }
-            .fuelpath-subnav-container { padding: 0 1.5rem; }
+            .food-log-meal-option { padding: 0.65rem 0.5rem; font-size: 0.7rem; min-height: 44px; display: flex; align-items: center; justify-content: center; }
+
+            /* Food search results */
+            .food-search-result { flex-wrap: wrap; padding: 0.85rem; gap: 0.5rem; }
+            .food-search-result-macros { width: 100%; font-size: 0.75rem; }
+            .food-search-result-source { position: absolute; top: 0.5rem; right: 0.5rem; }
+            .food-search-result { position: relative; padding-right: 4rem; }
+            .food-search-results { max-height: 60vh; }
+
+            /* Scanner */
+            .scanner-viewport { height: 250px; }
+
+            /* Recent food chips — bigger tap targets */
+            .recent-food-chip { padding: 0.6rem 1rem; font-size: 0.8rem; min-height: 40px; display: inline-flex; align-items: center; }
+
+            /* Subnav scrollable */
+            .fuelpath-subnav-container { padding: 0 1rem; }
+            .fuelpath-subnav a { padding: 0.85rem 1rem; font-size: 0.75rem; }
+
+            /* Modal */
+            .modal-overlay { padding: 0.75rem; align-items: flex-start; padding-top: 2rem; }
+            .modal-container { padding: 1.5rem; max-height: 90vh; overflow-y: auto; }
+
+            /* Footer */
             .footer-container { padding: 0 1.5rem; }
             .footer-bottom { margin: 0 1.5rem; }
-            .modal-overlay { padding: 1rem; }
-            .modal-container { padding: 1.5rem; }
+        }
+
+        /* ===== RESPONSIVE: SMALL PHONE ===== */
+        @media (max-width: 420px) {
+            .nav-container { padding: 0 1rem; }
+            .hero-container { padding: 2rem 1rem; }
+            .hero-content h1 { font-size: 2rem; }
+            .hero-content p { font-size: 1rem; }
+
+            .user-bar { padding: 0.75rem 1rem; }
+            .user-bar-email { font-size: 0.8rem; }
+            .user-bar-right button { font-size: 0.7rem; padding: 0.35rem 0.6rem; }
+
+            .tracker-date-nav { padding: 0.75rem 1rem; gap: 0.5rem; }
+            .tracker-date-label { font-size: 0.95rem; min-width: 160px; }
+
+            /* Calories hero smaller */
+            .tracker-calories-consumed { font-size: 2.8rem; }
+            .tracker-calories-target { font-size: 1.1rem; }
+
+            .tracker-macro-section { padding: 1rem; }
+            .tracker-food-section { padding: 0 1rem 1.5rem; }
+            .tracker-recent-section { padding: 0 1rem 1.5rem; }
+
+            /* Meal groups tighter */
+            .meal-group-header { padding: 0.85rem; }
+            .meal-group-name { font-size: 0.8rem; }
+            .meal-group-cals { font-size: 0.75rem; }
+            .food-item { padding: 0.75rem 0.85rem; padding-right: 2.25rem; }
+            .food-item-name { font-size: 0.85rem; }
+            .food-item-serving { font-size: 0.7rem; }
+            .food-item-macros { font-size: 0.7rem; gap: 0.5rem; }
+
+            /* Streak */
+            .tracker-streak-value { font-size: 1.1rem; }
+
+            /* Add bar */
+            .tracker-add-bar button { padding: 0.85rem 1.5rem; }
+
+            /* Modal full-width on small screens */
+            .modal-overlay { padding: 0; align-items: flex-end; }
+            .modal-container { max-height: 95vh; overflow-y: auto; border: none; border-top: 2px solid var(--medium-gray); animation: modalSlideUp 0.3s ease-out; }
+            @keyframes modalSlideUp {
+                from { opacity: 0; transform: translateY(100px); }
+                to { opacity: 1; transform: translateY(0); }
+            }
+
+            /* Food search input bigger for thumbs */
+            .food-search-input { padding: 1rem 1rem 1rem 2.75rem; font-size: 1rem; }
+
+            /* Meal selector 2x2 grid on tiny screens */
+            .food-log-meal-selector { display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem; }
+            .food-log-meal-option { min-height: 48px; font-size: 0.75rem; }
+
+            /* Scanner bigger viewport for scanning */
+            .scanner-viewport { height: 280px; }
+
+            /* Footer tighter */
+            .footer-container { padding: 0 1rem; gap: 2rem; }
+            .footer-bottom { margin: 0 1rem; }
+
+            /* Subnav */
+            .fuelpath-subnav-container { padding: 0 0.75rem; }
+            .fuelpath-subnav a { padding: 0.75rem 0.75rem; font-size: 0.7rem; }
         }
     </style>
 </head>
