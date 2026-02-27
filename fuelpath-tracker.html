@@ -1,0 +1,2838 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Food Tracker | FuelPath: The 4-Phase Metabolic System | Black Iron Athletics</title>
+    <meta name="description" content="Track your daily food intake, hit your macro targets, build streaks, and scan barcodes with the FuelPath Food Tracker.">
+    <meta name="geo.region" content="US-TX">
+    <meta name="geo.placename" content="Frisco">
+    <link rel="canonical" href="https://www.blackironathletics.com/fuelpath-tracker">
+    <meta property="og:title" content="Food Tracker | FuelPath | Black Iron Athletics">
+    <meta property="og:description" content="Track your daily food intake, hit your macro targets, and build streaks.">
+    <meta property="og:url" content="https://www.blackironathletics.com/fuelpath-tracker">
+    <meta property="og:image" content="https://www.blackironathletics.com/images/social-share.png">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Black Iron Athletics">
+    <meta name="twitter:card" content="summary_large_image">
+    <link rel="icon" type="image/png" href="images/anvil-favicon.png">
+    <meta name="theme-color" content="#000000">
+    <link rel="apple-touch-icon" href="images/anvil-favicon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;900&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;900&display=swap" rel="stylesheet"></noscript>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"></noscript>
+    <style>@font-face{font-family:"Font Awesome 6 Brands";font-display:swap}@font-face{font-family:"Font Awesome 6 Free";font-display:swap}</style>
+    <!-- Supabase -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <!-- Quagga2 for barcode scanning -->
+    <script src="https://cdn.jsdelivr.net/npm/@ericblade/quagga2@1/dist/quagga.min.js"></script>
+    <style>
+        /* Force full width - override GHL container */
+        body, html {
+            width: 100% !important;
+            max-width: 100% !important;
+            margin: 0 !important;
+            padding: 0 !important;
+        }
+
+        .container, .hl_page-preview--content {
+            padding: 0 !important;
+            margin: 0 !important;
+            max-width: 100% !important;
+            width: 100% !important;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --black: #000000;
+            --dark-gray: #1a1a1a;
+            --medium-gray: #333333;
+            --light-gray: #cccccc;
+            --white: #ffffff;
+            --yellow: #FFD202;
+            --phase-baseline: #9b59b6;
+            --phase-maintain: #2E86C1;
+            --phase-cut: #ff0003;
+            --phase-build: #27AE60;
+            --green: #27AE60;
+            --orange: #f39c12;
+            --red: #e74c3c;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 500;
+            background: var(--black);
+            color: var(--white);
+            overflow-x: hidden;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            margin: 0;
+            padding: 0;
+            scroll-behavior: smooth;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 900;
+            line-height: 1.2;
+        }
+
+        /* ===== NAV ===== */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 1.5rem 0;
+            background: var(--black);
+            z-index: 1000;
+            border-bottom: 1px solid var(--medium-gray);
+        }
+
+        .nav-container {
+            max-width: 100%;
+            margin: 0;
+            padding: 0 4rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo { height: 50px; }
+        .logo a { display: block; height: 100%; }
+        .logo img { height: 100%; width: auto; }
+
+        .nav-links {
+            display: flex;
+            gap: 3rem;
+            list-style: none;
+            align-items: center;
+        }
+
+        .nav-links > li { position: relative; }
+
+        .nav-links a {
+            color: var(--white);
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 900;
+            transition: color 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .nav-links > li > a:hover { color: var(--yellow); }
+
+        .submenu {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: rgba(26, 26, 26, 0.95);
+            backdrop-filter: blur(10px);
+            min-width: 240px;
+            padding: 0.5rem 0;
+            border: 1px solid var(--medium-gray);
+            list-style: none;
+        }
+
+        .submenu li { padding: 0; }
+
+        .submenu a {
+            display: block;
+            padding: 1rem 1.5rem;
+            font-size: 0.85rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            transition: all 0.3s ease;
+        }
+
+        .submenu a:hover {
+            background: rgba(255, 210, 2, 0.1);
+            color: var(--yellow);
+            padding-left: 2rem;
+        }
+
+        .nav-links > li:hover .submenu { display: block; }
+
+        .has-submenu > a::after {
+            content: '';
+            display: inline-block;
+            width: 0;
+            height: 0;
+            margin-left: 0.5rem;
+            border-left: 4px solid transparent;
+            border-right: 4px solid transparent;
+            border-top: 5px solid var(--white);
+            transition: all 0.3s ease;
+        }
+
+        .has-submenu:hover > a::after {
+            border-top-color: var(--yellow);
+            transform: translateY(2px);
+        }
+
+        .nav-cta-group {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .cta-btn {
+            background: var(--yellow);
+            color: var(--black);
+            padding: 0.9rem 1.5rem;
+            border-radius: 0;
+            text-decoration: none;
+            font-weight: 900;
+            font-size: 0.85rem;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            border: 2px solid var(--yellow);
+            white-space: nowrap;
+        }
+
+        .cta-btn:hover {
+            background: var(--black);
+            color: var(--yellow);
+        }
+
+        .login-btn {
+            color: var(--yellow);
+            padding: 0.9rem 1.5rem;
+            border-radius: 0;
+            text-decoration: none;
+            font-weight: 900;
+            font-size: 0.85rem;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            border: 2px solid var(--yellow);
+            white-space: nowrap;
+            background: transparent;
+        }
+
+        .login-btn:hover {
+            background: var(--yellow);
+            color: var(--black);
+        }
+
+        /* ===== HAMBURGER ===== */
+        .hamburger {
+            display: none;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            padding: 0.5rem;
+            z-index: 1001;
+        }
+
+        .hamburger span {
+            display: block;
+            width: 28px;
+            height: 3px;
+            background: var(--white);
+            margin: 5px 0;
+            transition: all 0.3s ease;
+        }
+
+        .hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(6px, 6px); }
+        .hamburger.active span:nth-child(2) { opacity: 0; }
+        .hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(6px, -6px); }
+
+        .mobile-nav-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.97);
+            z-index: 999;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 1.5rem;
+        }
+
+        .mobile-nav-overlay.active { display: flex; }
+
+        .mobile-nav-overlay a {
+            color: var(--white);
+            text-decoration: none;
+            font-size: 1.2rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: color 0.3s ease;
+        }
+
+        .mobile-nav-overlay a:hover { color: var(--yellow); }
+        .mobile-nav-overlay .mobile-sub-link { font-size: 0.9rem; font-weight: 600; color: var(--light-gray); }
+        .mobile-nav-overlay .mobile-cta { color: var(--yellow); border: 2px solid var(--yellow); padding: 0.75rem 2rem; margin-top: 1rem; }
+        .mobile-nav-overlay .mobile-login { color: var(--yellow); font-size: 1rem; }
+
+        /* ===== HERO ===== */
+        .hero {
+            margin-top: 0;
+            padding-top: 80px;
+            min-height: 40vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            background: var(--black);
+        }
+
+        .hero-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.5;
+            z-index: 0;
+        }
+
+        .hero-container {
+            max-width: 100%;
+            width: 100%;
+            margin: 0;
+            padding: 4rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-content { max-width: 800px; }
+
+        .hero-subtitle {
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: var(--yellow);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero-content h1 {
+            font-weight: 900;
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            line-height: 1.1;
+            margin-bottom: 2rem;
+            text-transform: uppercase;
+        }
+
+        .hero-content p {
+            font-size: 1.3rem;
+            color: var(--light-gray);
+            margin-bottom: 3rem;
+            font-weight: 500;
+            line-height: 1.6;
+            max-width: 600px;
+        }
+
+        /* ===== AUTH ===== */
+        .auth-container {
+            max-width: 400px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .auth-container h2 {
+            font-size: 2rem;
+            text-transform: uppercase;
+            margin-bottom: 0.5rem;
+        }
+
+        .auth-subtitle {
+            color: var(--light-gray);
+            margin-bottom: 2rem;
+        }
+
+        .auth-error {
+            background: rgba(231, 76, 60, 0.2);
+            border: 1px solid var(--red);
+            color: var(--red);
+            padding: 0.75rem 1rem;
+            margin-bottom: 1.5rem;
+            font-size: 0.85rem;
+            font-weight: 600;
+            display: none;
+        }
+
+        .form-group {
+            margin-bottom: 1.25rem;
+            text-align: left;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 0.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--light-gray);
+            margin-bottom: 0.5rem;
+        }
+
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 0.9rem 1rem;
+            background: var(--black);
+            border: 2px solid var(--medium-gray);
+            color: var(--white);
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: var(--yellow);
+        }
+
+        .auth-toggle {
+            margin-top: 1.5rem;
+            color: var(--light-gray);
+            font-size: 0.85rem;
+        }
+
+        .auth-toggle a {
+            color: var(--yellow);
+            cursor: pointer;
+            font-weight: 700;
+        }
+
+        /* ===== SECTIONS ===== */
+        .section {
+            padding: 6rem 0;
+            background: var(--black);
+            width: 100%;
+        }
+
+        .section-alt { background: var(--dark-gray); }
+
+        .section-container {
+            max-width: 100%;
+            margin: 0;
+            padding: 0 4rem;
+        }
+
+        /* ===== BUTTONS ===== */
+        .btn-primary {
+            background: var(--yellow);
+            color: var(--black);
+            padding: 1.2rem 3rem;
+            text-decoration: none;
+            font-weight: 900;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border: 2px solid var(--yellow);
+            border-radius: 0;
+            display: inline-block;
+            cursor: pointer;
+        }
+
+        .btn-primary:hover {
+            background: var(--black);
+            color: var(--yellow);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--yellow);
+            padding: 1.2rem 3rem;
+            text-decoration: none;
+            font-weight: 900;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border: 2px solid var(--yellow);
+            border-radius: 0;
+            display: inline-block;
+            cursor: pointer;
+        }
+
+        .btn-outline:hover {
+            background: var(--yellow);
+            color: var(--black);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--white);
+            padding: 1.2rem 3rem;
+            text-decoration: none;
+            font-weight: 900;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border: 2px solid var(--white);
+            border-radius: 0;
+            display: inline-block;
+            cursor: pointer;
+        }
+
+        .btn-secondary:hover {
+            background: var(--white);
+            color: var(--black);
+        }
+
+        .btn-small {
+            padding: 0.7rem 1.5rem;
+            font-size: 0.85rem;
+        }
+
+        /* ===== FUELPATH SUBNAV ===== */
+        .fuelpath-subnav {
+            background: var(--dark-gray);
+            border-bottom: 1px solid var(--medium-gray);
+            width: 100%;
+            position: relative;
+            z-index: 10;
+        }
+
+        .fuelpath-subnav-container {
+            max-width: 100%;
+            margin: 0;
+            padding: 0 4rem;
+            display: flex;
+            align-items: center;
+            gap: 0;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: none;
+        }
+
+        .fuelpath-subnav-container::-webkit-scrollbar { display: none; }
+
+        .fuelpath-subnav a {
+            color: var(--light-gray);
+            text-decoration: none;
+            font-size: 0.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            padding: 1rem 1.25rem;
+            white-space: nowrap;
+            transition: all 0.3s ease;
+            border-bottom: 2px solid transparent;
+            display: block;
+        }
+
+        .fuelpath-subnav a:hover { color: var(--yellow); }
+        .fuelpath-subnav a.active { color: var(--yellow); border-bottom: 2px solid var(--yellow); }
+
+        /* ===== USER BAR ===== */
+        .user-bar {
+            background: var(--dark-gray);
+            border-bottom: 1px solid var(--medium-gray);
+            padding: 0.75rem 4rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .user-bar-left {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .user-bar-email {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--light-gray);
+        }
+
+        .user-bar-email i { color: var(--yellow); margin-right: 0.25rem; }
+
+        .user-bar-right {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .user-bar-right button {
+            background: transparent;
+            border: 1px solid var(--medium-gray);
+            color: var(--light-gray);
+            padding: 0.4rem 0.75rem;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.75rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+        }
+
+        .user-bar-right button:hover {
+            border-color: var(--yellow);
+            color: var(--yellow);
+        }
+
+        /* ===== DATE NAV ===== */
+        .tracker-date-nav {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            padding: 1.25rem 4rem;
+            background: var(--dark-gray);
+            border-bottom: 1px solid var(--medium-gray);
+        }
+
+        .tracker-date-nav button {
+            background: transparent;
+            border: 2px solid var(--medium-gray);
+            color: var(--white);
+            width: 40px;
+            height: 40px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .tracker-date-nav button:hover {
+            border-color: var(--yellow);
+            color: var(--yellow);
+        }
+
+        .tracker-date-label {
+            font-size: 1.1rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            cursor: pointer;
+            min-width: 200px;
+            text-align: center;
+            position: relative;
+        }
+
+        .tracker-date-label:hover { color: var(--yellow); }
+
+        .tracker-date-label input[type="date"] {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            cursor: pointer;
+        }
+
+        /* ===== MACRO PROGRESS SECTION ===== */
+        .tracker-macro-section {
+            padding: 2rem 4rem;
+            background: var(--black);
+        }
+
+        .tracker-calories-hero {
+            text-align: center;
+            padding: 1.5rem 0;
+            margin-bottom: 1.5rem;
+        }
+
+        .tracker-calories-consumed {
+            font-size: clamp(3rem, 7vw, 4.5rem);
+            font-weight: 900;
+            line-height: 1;
+            letter-spacing: -2px;
+        }
+
+        .tracker-calories-target {
+            font-size: clamp(1.2rem, 3vw, 1.8rem);
+            font-weight: 700;
+            color: var(--light-gray);
+            margin-top: 0.25rem;
+        }
+
+        .tracker-calories-label {
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: var(--light-gray);
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            margin-top: 0.5rem;
+        }
+
+        .tracker-macro-bars {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .tracker-macro-bar {
+            text-align: center;
+        }
+
+        .tracker-macro-bar-label {
+            font-size: 0.7rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: var(--light-gray);
+            margin-bottom: 0.5rem;
+        }
+
+        .tracker-macro-bar-values {
+            font-size: 1.3rem;
+            font-weight: 900;
+            margin-bottom: 0.5rem;
+        }
+
+        .tracker-macro-bar-values span {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--light-gray);
+        }
+
+        .tracker-bar-track {
+            width: 100%;
+            height: 12px;
+            background: var(--medium-gray);
+            position: relative;
+            overflow: visible;
+        }
+
+        .tracker-bar-fill {
+            height: 100%;
+            transition: width 0.5s ease, background 0.3s ease;
+            max-width: 100%;
+        }
+
+        .tracker-bar-tolerance-low,
+        .tracker-bar-tolerance-high {
+            position: absolute;
+            top: -3px;
+            width: 2px;
+            height: 18px;
+            background: var(--white);
+            opacity: 0.4;
+        }
+
+        /* ===== STREAK ===== */
+        .tracker-streak {
+            text-align: center;
+            padding: 1rem 0;
+            border-top: 1px solid var(--medium-gray);
+        }
+
+        .tracker-streak-value {
+            font-size: 1.3rem;
+            font-weight: 900;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .tracker-streak-value .streak-fire {
+            color: var(--orange);
+            font-size: 1.4rem;
+        }
+
+        .tracker-streak-value .streak-fire.on-fire {
+            animation: fireGlow 1.5s ease-in-out infinite;
+        }
+
+        @keyframes fireGlow {
+            0%, 100% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.2); opacity: 0.8; }
+        }
+
+        .tracker-streak-best {
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: var(--light-gray);
+            margin-top: 0.25rem;
+        }
+
+        /* ===== FOOD LOG SECTION ===== */
+        .tracker-food-section {
+            padding: 0 4rem 2rem;
+            background: var(--black);
+        }
+
+        .tracker-add-bar {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            justify-content: center;
+        }
+
+        .tracker-add-bar button {
+            padding: 0.8rem 2rem;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 900;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border-radius: 0;
+        }
+
+        .tracker-add-btn {
+            background: var(--yellow);
+            color: var(--black);
+            border: 2px solid var(--yellow);
+        }
+
+        .tracker-add-btn:hover {
+            background: var(--black);
+            color: var(--yellow);
+        }
+
+        .tracker-scan-btn {
+            background: transparent;
+            color: var(--yellow);
+            border: 2px solid var(--yellow);
+        }
+
+        .tracker-scan-btn:hover {
+            background: var(--yellow);
+            color: var(--black);
+        }
+
+        /* ===== MEAL GROUPS ===== */
+        .meal-group {
+            margin-bottom: 1.5rem;
+            border: 1px solid var(--medium-gray);
+            background: var(--dark-gray);
+        }
+
+        .meal-group-header {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 1rem 1.25rem;
+            border-bottom: 1px solid var(--medium-gray);
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .meal-group-header:hover { background: rgba(255, 255, 255, 0.03); }
+
+        .meal-group-icon {
+            font-size: 1.1rem;
+            color: var(--yellow);
+            width: 24px;
+            text-align: center;
+        }
+
+        .meal-group-name {
+            font-size: 0.85rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            flex: 1;
+        }
+
+        .meal-group-cals {
+            font-size: 0.8rem;
+            font-weight: 700;
+            color: var(--light-gray);
+        }
+
+        .meal-group-items {
+            padding: 0;
+        }
+
+        .food-item {
+            display: flex;
+            align-items: center;
+            padding: 0.75rem 1.25rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            gap: 1rem;
+            transition: background 0.2s ease;
+        }
+
+        .food-item:hover { background: rgba(255, 255, 255, 0.03); }
+
+        .food-item:last-child { border-bottom: none; }
+
+        .food-item-info {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .food-item-name {
+            font-size: 0.9rem;
+            font-weight: 700;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .food-item-serving {
+            font-size: 0.75rem;
+            color: var(--light-gray);
+            font-weight: 500;
+        }
+
+        .food-item-macros {
+            display: flex;
+            gap: 1rem;
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: var(--light-gray);
+            white-space: nowrap;
+        }
+
+        .food-item-macros span {
+            min-width: 40px;
+            text-align: right;
+        }
+
+        .food-item-actions {
+            display: flex;
+            gap: 0.25rem;
+        }
+
+        .food-item-actions button {
+            background: transparent;
+            border: none;
+            color: var(--medium-gray);
+            cursor: pointer;
+            padding: 0.3rem;
+            font-size: 0.8rem;
+            transition: color 0.3s ease;
+        }
+
+        .food-item-actions button:hover { color: var(--yellow); }
+        .food-item-actions button.delete-btn:hover { color: var(--red); }
+
+        .meal-group-empty {
+            padding: 1rem 1.25rem;
+            color: var(--medium-gray);
+            font-size: 0.8rem;
+            font-style: italic;
+            font-weight: 500;
+        }
+
+        /* ===== RECENT FOODS ===== */
+        .tracker-recent-section {
+            padding: 0 4rem 3rem;
+            background: var(--black);
+        }
+
+        .tracker-recent-header {
+            font-size: 0.85rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--light-gray);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .recent-food-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .recent-food-chip {
+            background: var(--dark-gray);
+            border: 1px solid var(--medium-gray);
+            color: var(--white);
+            padding: 0.5rem 1rem;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.8rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .recent-food-chip:hover {
+            border-color: var(--yellow);
+            color: var(--yellow);
+        }
+
+        /* ===== MODAL ===== */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 9999;
+            overflow-y: auto;
+            padding: 2rem;
+        }
+
+        .modal-overlay.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-container {
+            background: #1a1a1a;
+            border: 2px solid var(--medium-gray);
+            max-width: 700px;
+            width: 100%;
+            position: relative;
+            margin: auto;
+            animation: modalSlideIn 0.3s ease-out;
+            padding: 2.5rem;
+        }
+
+        @keyframes modalSlideIn {
+            from { opacity: 0; transform: translateY(-50px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 0.5rem;
+            right: 0.5rem;
+            background: transparent;
+            border: none;
+            color: var(--light-gray);
+            font-size: 2rem;
+            cursor: pointer;
+            line-height: 1;
+            padding: 0.5rem;
+            transition: color 0.3s ease;
+            font-weight: 300;
+            z-index: 10000;
+        }
+
+        .modal-close:hover { color: var(--yellow); }
+
+        .modal-container h3 {
+            font-size: 1.3rem;
+            text-transform: uppercase;
+            margin-bottom: 1.5rem;
+        }
+
+        /* ===== FOOD SEARCH MODAL ===== */
+        .food-search-input-wrap {
+            position: relative;
+            margin-bottom: 1rem;
+        }
+
+        .food-search-input-wrap i {
+            position: absolute;
+            left: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--medium-gray);
+        }
+
+        .food-search-input {
+            width: 100%;
+            padding: 0.9rem 1rem 0.9rem 2.75rem;
+            background: var(--black);
+            border: 2px solid var(--medium-gray);
+            color: var(--white);
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: border-color 0.3s ease;
+        }
+
+        .food-search-input:focus {
+            outline: none;
+            border-color: var(--yellow);
+        }
+
+        .food-search-status {
+            font-size: 0.8rem;
+            color: var(--light-gray);
+            margin-bottom: 1rem;
+            min-height: 1.2em;
+        }
+
+        .food-search-results {
+            max-height: 400px;
+            overflow-y: auto;
+        }
+
+        .food-search-result {
+            display: flex;
+            align-items: center;
+            padding: 0.75rem 1rem;
+            border: 1px solid var(--medium-gray);
+            margin-bottom: 0.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            gap: 1rem;
+        }
+
+        .food-search-result:hover {
+            border-color: var(--yellow);
+            background: rgba(255, 210, 2, 0.05);
+        }
+
+        .food-search-result-info { flex: 1; min-width: 0; }
+
+        .food-search-result-name {
+            font-size: 0.9rem;
+            font-weight: 700;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .food-search-result-brand {
+            font-size: 0.75rem;
+            color: var(--light-gray);
+            font-weight: 500;
+        }
+
+        .food-search-result-macros {
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: var(--light-gray);
+            white-space: nowrap;
+        }
+
+        .food-search-result-source {
+            font-size: 0.6rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            padding: 0.15rem 0.5rem;
+            border: 1px solid var(--medium-gray);
+            color: var(--light-gray);
+            white-space: nowrap;
+        }
+
+        .food-search-manual {
+            text-align: center;
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px solid var(--medium-gray);
+        }
+
+        .food-search-manual a {
+            color: var(--yellow);
+            font-weight: 700;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        .food-search-manual a:hover { text-decoration: underline; }
+
+        /* ===== FOOD LOG MODAL ===== */
+        .food-log-modal-name {
+            font-size: 1.1rem;
+            font-weight: 900;
+            margin-bottom: 0.25rem;
+        }
+
+        .food-log-modal-brand {
+            font-size: 0.85rem;
+            color: var(--light-gray);
+            margin-bottom: 1.5rem;
+        }
+
+        .food-log-form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin-bottom: 1.25rem;
+        }
+
+        .food-log-meal-selector {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .food-log-meal-option {
+            background: var(--black);
+            border: 2px solid var(--medium-gray);
+            color: var(--light-gray);
+            padding: 0.6rem 1rem;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            flex: 1;
+            text-align: center;
+            min-width: 80px;
+        }
+
+        .food-log-meal-option:hover,
+        .food-log-meal-option.active {
+            border-color: var(--yellow);
+            color: var(--yellow);
+        }
+
+        .food-log-preview {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 0.75rem;
+            background: var(--black);
+            border: 1px solid var(--medium-gray);
+            padding: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .food-log-preview-stat {
+            text-align: center;
+        }
+
+        .food-log-preview-label {
+            font-size: 0.65rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--light-gray);
+        }
+
+        .food-log-preview-value {
+            font-size: 1.3rem;
+            font-weight: 900;
+        }
+
+        /* ===== SCANNER MODAL ===== */
+        .scanner-viewport {
+            width: 100%;
+            height: 300px;
+            background: var(--black);
+            position: relative;
+            overflow: hidden;
+            margin-bottom: 1rem;
+            border: 2px solid var(--medium-gray);
+        }
+
+        .scanner-viewport video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .scanner-line {
+            position: absolute;
+            top: 50%;
+            left: 5%;
+            right: 5%;
+            height: 2px;
+            background: var(--yellow);
+            box-shadow: 0 0 8px var(--yellow);
+            animation: scanLineMove 2s ease-in-out infinite;
+        }
+
+        @keyframes scanLineMove {
+            0%, 100% { top: 30%; }
+            50% { top: 70%; }
+        }
+
+        .scanner-status {
+            text-align: center;
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--light-gray);
+            margin-bottom: 1rem;
+        }
+
+        .scanner-fallback {
+            text-align: center;
+            margin-top: 1rem;
+        }
+
+        .scanner-fallback a {
+            color: var(--yellow);
+            font-weight: 700;
+            font-size: 0.85rem;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        /* ===== TOAST ===== */
+        .toast-notification {
+            position: fixed;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%) translateY(20px);
+            background: var(--yellow);
+            color: var(--black);
+            padding: 0.75rem 2rem;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            font-size: 0.9rem;
+            z-index: 99999;
+            opacity: 0;
+            transition: opacity 0.3s ease, transform 0.3s ease;
+        }
+
+        .toast-notification.show {
+            opacity: 1;
+            transform: translateX(-50%) translateY(0);
+        }
+
+        /* ===== FOOTER ===== */
+        footer {
+            background: var(--dark-gray);
+            padding: 4rem 0 2rem;
+            border-top: 3px solid var(--yellow);
+        }
+
+        .footer-container {
+            max-width: 100%;
+            margin: 0;
+            padding: 0 4rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-logo { height: 50px; margin-bottom: 1rem; }
+
+        .footer-section h3 {
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--yellow);
+            margin-bottom: 1rem;
+        }
+
+        .footer-section ul { list-style: none; }
+
+        .footer-section li {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-section a {
+            color: var(--light-gray);
+            text-decoration: none;
+            font-size: 0.85rem;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section a:hover { color: var(--yellow); }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid var(--medium-gray);
+            margin: 0 4rem;
+            font-size: 0.8rem;
+            color: var(--light-gray);
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 768px) {
+            .nav-links, .nav-cta-group { display: none; }
+            .hamburger { display: block; }
+            .nav-container { padding: 0 1.5rem; }
+            .hero-container { padding: 3rem 1.5rem; }
+            .section-container { padding: 0 1.5rem; }
+            .user-bar { padding: 0.75rem 1.5rem; flex-direction: column; align-items: flex-start; }
+            .user-bar-right { flex-wrap: wrap; }
+            .tracker-date-nav { padding: 1rem 1.5rem; }
+            .tracker-macro-section { padding: 1.5rem 1.5rem; }
+            .tracker-macro-bars { grid-template-columns: 1fr; gap: 1rem; }
+            .tracker-food-section { padding: 0 1.5rem 2rem; }
+            .tracker-recent-section { padding: 0 1.5rem 2rem; }
+            .tracker-add-bar { flex-direction: column; }
+            .tracker-add-bar button { width: 100%; }
+            .food-item { flex-wrap: wrap; }
+            .food-item-macros { gap: 0.5rem; font-size: 0.7rem; }
+            .food-log-form-row { grid-template-columns: 1fr; }
+            .food-log-preview { grid-template-columns: repeat(2, 1fr); }
+            .food-log-meal-selector { gap: 0.35rem; }
+            .food-log-meal-option { padding: 0.5rem 0.5rem; font-size: 0.7rem; }
+            .fuelpath-subnav-container { padding: 0 1.5rem; }
+            .footer-container { padding: 0 1.5rem; }
+            .footer-bottom { margin: 0 1.5rem; }
+            .modal-overlay { padding: 1rem; }
+            .modal-container { padding: 1.5rem; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- ===== NAV ===== -->
+<nav>
+    <div class="nav-container">
+        <div class="logo">
+            <a href="/">
+                <img src="images/logo.png" alt="Black Iron Athletics">
+            </a>
+        </div>
+        <ul class="nav-links">
+            <li class="has-submenu">
+                <a href="about">About Us</a>
+                <ul class="submenu">
+                    <li><a href="about#mission">Our Mission</a></li>
+                    <li><a href="about#team">Meet the Team</a></li>
+                    <li><a href="programs">Programs</a></li>
+                    <li><a href="schedule">Class Schedule</a></li>
+                </ul>
+            </li>
+            <li class="has-submenu">
+                <a href="getting-started">Getting Started</a>
+                <ul class="submenu">
+                    <li><a href="getting-started#membership">Membership Options</a></li>
+                    <li><a href="getting-started#faqs">FAQs</a></li>
+                </ul>
+            </li>
+            <li><a href="media">Media</a></li>
+            <li><a href="blog/">Blog</a></li>
+            <li><a href="contact">Contact</a></li>
+        </ul>
+        <div class="nav-cta-group">
+            <a href="fuelpath-dashboard" class="login-btn">My Dashboard</a>
+            <a href="#" onclick="openLeadModal(); return false;" class="cta-btn">Book Free Consultation</a>
+        </div>
+        <button class="hamburger" onclick="toggleMobileNav()" aria-label="Menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+    </div>
+</nav>
+
+<!-- Mobile Nav Overlay -->
+<div class="mobile-nav-overlay" id="mobileNav">
+    <a href="/" onclick="closeMobileNav()">Home</a>
+    <a href="about" onclick="closeMobileNav()">About Us</a>
+    <a href="about#mission" class="mobile-sub-link" onclick="closeMobileNav()">Our Mission</a>
+    <a href="about#team" class="mobile-sub-link" onclick="closeMobileNav()">Meet the Team</a>
+    <a href="programs" class="mobile-sub-link" onclick="closeMobileNav()">Programs</a>
+    <a href="schedule" class="mobile-sub-link" onclick="closeMobileNav()">Class Schedule</a>
+    <a href="getting-started" onclick="closeMobileNav()">Getting Started</a>
+    <a href="getting-started#membership" class="mobile-sub-link" onclick="closeMobileNav()">Membership Options</a>
+    <a href="getting-started#faqs" class="mobile-sub-link" onclick="closeMobileNav()">FAQs</a>
+    <a href="media" onclick="closeMobileNav()">Media</a>
+    <a href="blog/" onclick="closeMobileNav()">Blog</a>
+    <a href="contact" onclick="closeMobileNav()">Contact</a>
+    <a href="#" class="mobile-cta" onclick="closeMobileNav(); openLeadModal(); return false;">Book Free Consultation</a>
+    <a href="fuelpath-dashboard" class="mobile-login" onclick="closeMobileNav()">My Dashboard</a>
+</div>
+
+<main>
+
+    <!-- Auth Hero (shown when logged out) -->
+    <section class="hero" id="authHero">
+        <img src="images/hero-fuelpath-how-to-use.webp" alt="Food Tracker" class="hero-bg" fetchpriority="high">
+        <div class="hero-container">
+            <div class="hero-content">
+                <div class="hero-subtitle">FuelPath Food Tracker</div>
+                <h1>Track Every Bite</h1>
+                <p>Log your meals, hit your macro targets, and build consistency streaks. Sign in to start tracking.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Auth Section (shown when NOT logged in) -->
+    <section class="section section-alt" id="authSection">
+        <div class="section-container">
+            <div class="auth-container">
+                <h2 id="authTitle">Sign In</h2>
+                <p class="auth-subtitle" id="authSubtitle">Access your food tracker</p>
+                <div id="authError" class="auth-error"></div>
+                <form id="authForm" onsubmit="handleAuth(event)">
+                    <div class="form-group">
+                        <label for="authEmail">Email</label>
+                        <input type="email" id="authEmail" required placeholder="you@example.com">
+                    </div>
+                    <div class="form-group">
+                        <label for="authPassword">Password</label>
+                        <input type="password" id="authPassword" required placeholder="Your password" minlength="6">
+                    </div>
+                    <button type="submit" class="btn-primary" id="authSubmitBtn" style="width:100%;">Sign In</button>
+                </form>
+                <div class="auth-toggle">
+                    <span id="authToggleText">Don't have an account?</span>
+                    <a onclick="toggleAuthMode()"> <span id="authToggleLink">Sign Up</span></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================ -->
+    <!-- TRACKER (shown when logged in)              -->
+    <!-- ============================================ -->
+    <div id="trackerContainer" style="display: none;">
+
+        <!-- FuelPath Subnav -->
+        <div class="fuelpath-subnav">
+            <div class="fuelpath-subnav-container">
+                <a href="fuelpath-dashboard">My Dashboard</a>
+                <a href="fuelpath-tracker" class="active">Food Tracker</a>
+                <a href="fuelpath-phase-1-maintain">Phase 1: Baseline</a>
+                <a href="fuelpath-phase-2-cut">Phase 2: Cut</a>
+                <a href="fuelpath-phase-3-maintain">Phase 3: Maintain</a>
+                <a href="fuelpath-phase-4-build">Phase 4: Build</a>
+                <a href="fuelpath-supplements">Supplements</a>
+                <a href="fuelpath-decade">Decade Roadmap</a>
+            </div>
+        </div>
+
+        <!-- User Bar -->
+        <div class="user-bar">
+            <div class="user-bar-left">
+                <span class="user-bar-email"><i class="fa-solid fa-user"></i> <span id="userEmail"></span></span>
+            </div>
+            <div class="user-bar-right">
+                <button onclick="window.location.href='fuelpath-dashboard'"><i class="fa-solid fa-gauge-high"></i> Dashboard</button>
+                <button onclick="handleLogout()"><i class="fa-solid fa-right-from-bracket"></i> Sign Out</button>
+            </div>
+        </div>
+
+        <!-- Date Navigation -->
+        <div class="tracker-date-nav">
+            <button onclick="changeDate(-1)" title="Previous day"><i class="fa-solid fa-chevron-left"></i></button>
+            <div class="tracker-date-label" id="trackerDateLabel">
+                Today, Feb 27
+                <input type="date" id="trackerDatePicker" onchange="jumpToDate(this.value)">
+            </div>
+            <button onclick="changeDate(1)" title="Next day"><i class="fa-solid fa-chevron-right"></i></button>
+        </div>
+
+        <!-- Macro Progress -->
+        <div class="tracker-macro-section">
+            <div class="tracker-calories-hero">
+                <div class="tracker-calories-consumed" id="trackerCalConsumed">0</div>
+                <div class="tracker-calories-target">/ <span id="trackerCalTarget">--</span> cal</div>
+                <div class="tracker-calories-label">Calories</div>
+            </div>
+
+            <div class="tracker-macro-bars">
+                <div class="tracker-macro-bar">
+                    <div class="tracker-macro-bar-label">Protein</div>
+                    <div class="tracker-macro-bar-values"><span id="trackerProteinConsumed">0</span>g <span>/ <span id="trackerProteinTarget">--</span>g</span></div>
+                    <div class="tracker-bar-track">
+                        <div class="tracker-bar-fill" id="trackerProteinBar" style="width:0%; background: var(--green);"></div>
+                        <div class="tracker-bar-tolerance-low" id="trackerProteinTolLow" style="display:none;"></div>
+                        <div class="tracker-bar-tolerance-high" id="trackerProteinTolHigh" style="display:none;"></div>
+                    </div>
+                </div>
+                <div class="tracker-macro-bar">
+                    <div class="tracker-macro-bar-label">Carbs</div>
+                    <div class="tracker-macro-bar-values"><span id="trackerCarbsConsumed">0</span>g <span>/ <span id="trackerCarbsTarget">--</span>g</span></div>
+                    <div class="tracker-bar-track">
+                        <div class="tracker-bar-fill" id="trackerCarbsBar" style="width:0%; background: var(--green);"></div>
+                        <div class="tracker-bar-tolerance-low" id="trackerCarbsTolLow" style="display:none;"></div>
+                        <div class="tracker-bar-tolerance-high" id="trackerCarbsTolHigh" style="display:none;"></div>
+                    </div>
+                </div>
+                <div class="tracker-macro-bar">
+                    <div class="tracker-macro-bar-label">Fat</div>
+                    <div class="tracker-macro-bar-values"><span id="trackerFatConsumed">0</span>g <span>/ <span id="trackerFatTarget">--</span>g</span></div>
+                    <div class="tracker-bar-track">
+                        <div class="tracker-bar-fill" id="trackerFatBar" style="width:0%; background: var(--green);"></div>
+                        <div class="tracker-bar-tolerance-low" id="trackerFatTolLow" style="display:none;"></div>
+                        <div class="tracker-bar-tolerance-high" id="trackerFatTolHigh" style="display:none;"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Streak -->
+            <div class="tracker-streak">
+                <div class="tracker-streak-value">
+                    <i class="fa-solid fa-fire streak-fire" id="streakFireIcon"></i>
+                    <span id="streakValue">0</span> Day Streak
+                </div>
+                <div class="tracker-streak-best">Best: <span id="streakBest">0</span> days</div>
+            </div>
+        </div>
+
+        <!-- Food Log -->
+        <div class="tracker-food-section">
+            <div class="tracker-add-bar">
+                <button class="tracker-add-btn" onclick="openFoodSearchModal()"><i class="fa-solid fa-plus"></i> Add Food</button>
+                <button class="tracker-scan-btn" onclick="openScannerModal()"><i class="fa-solid fa-barcode"></i> Scan Barcode</button>
+            </div>
+
+            <!-- Breakfast -->
+            <div class="meal-group" id="mealGroupBreakfast">
+                <div class="meal-group-header">
+                    <div class="meal-group-icon"><i class="fa-solid fa-sun"></i></div>
+                    <div class="meal-group-name">Breakfast</div>
+                    <div class="meal-group-cals" id="mealCalsBreakfast">0 cal</div>
+                </div>
+                <div class="meal-group-items" id="mealItemsBreakfast">
+                    <div class="meal-group-empty">No foods logged</div>
+                </div>
+            </div>
+
+            <!-- Lunch -->
+            <div class="meal-group" id="mealGroupLunch">
+                <div class="meal-group-header">
+                    <div class="meal-group-icon"><i class="fa-solid fa-cloud-sun"></i></div>
+                    <div class="meal-group-name">Lunch</div>
+                    <div class="meal-group-cals" id="mealCalsLunch">0 cal</div>
+                </div>
+                <div class="meal-group-items" id="mealItemsLunch">
+                    <div class="meal-group-empty">No foods logged</div>
+                </div>
+            </div>
+
+            <!-- Dinner -->
+            <div class="meal-group" id="mealGroupDinner">
+                <div class="meal-group-header">
+                    <div class="meal-group-icon"><i class="fa-solid fa-moon"></i></div>
+                    <div class="meal-group-name">Dinner</div>
+                    <div class="meal-group-cals" id="mealCalsDinner">0 cal</div>
+                </div>
+                <div class="meal-group-items" id="mealItemsDinner">
+                    <div class="meal-group-empty">No foods logged</div>
+                </div>
+            </div>
+
+            <!-- Snack -->
+            <div class="meal-group" id="mealGroupSnack">
+                <div class="meal-group-header">
+                    <div class="meal-group-icon"><i class="fa-solid fa-cookie"></i></div>
+                    <div class="meal-group-name">Snack</div>
+                    <div class="meal-group-cals" id="mealCalsSnack">0 cal</div>
+                </div>
+                <div class="meal-group-items" id="mealItemsSnack">
+                    <div class="meal-group-empty">No foods logged</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Recent Foods -->
+        <div class="tracker-recent-section">
+            <div class="tracker-recent-header"><i class="fa-solid fa-clock-rotate-left"></i> Recent Foods</div>
+            <div class="recent-food-list" id="recentFoodList">
+                <span style="color: var(--medium-gray); font-size: 0.8rem; font-style: italic;">No recent foods yet</span>
+            </div>
+        </div>
+
+    </div><!-- /trackerContainer -->
+
+</main>
+
+<!-- ===== FOOTER ===== -->
+<footer>
+    <div class="footer-container">
+        <div class="footer-section">
+            <a href="/">
+                <img src="images/logo.png" alt="Black Iron Athletics" class="footer-logo" loading="lazy">
+            </a>
+            <p style="color: var(--light-gray); margin-bottom: 1rem;">Forging everyday people into everyday athletes through strength, community, and purpose.</p>
+        </div>
+        <div class="footer-section">
+            <h3>Quick Links</h3>
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="schedule">Class Schedule</a></li>
+                <li><a href="faq">FAQ</a></li>
+                <li><a href="privacy-policy">Terms & Privacy Policy</a></li>
+                <li><a href="privacy-policy#sms-terms">SMS Terms</a></li>
+            </ul>
+        </div>
+        <div class="footer-section">
+            <h3>Contact</h3>
+            <p style="color: var(--light-gray); margin-bottom: 1rem;">
+                279 Main St #122<br>
+                Frisco, TX 75036
+            </p>
+            <p style="margin-bottom: 1.5rem;">
+                <a href="tel:(972)785-7036" style="color: var(--yellow); font-weight: 700;">(972) 785-7036</a>
+            </p>
+        </div>
+        <div class="footer-section">
+            <h3>Hours</h3>
+            <p style="color: var(--light-gray); margin-bottom: 1rem;">
+                Check our class calendar for an up to date schedule.
+            </p>
+            <p style="color: var(--yellow); font-weight: 700;">
+                Open Gym: 24/7
+            </p>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <div style="margin-bottom: 1.5rem; display: flex; justify-content: center; gap: 1.5rem; font-size: 1.5rem;">
+            <a href="https://www.instagram.com/blackiron_athletics/" target="_blank" rel="noopener" style="color: var(--light-gray); transition: color 0.3s ease;" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+            <a href="https://www.youtube.com/channel/UCF1XjUXEs81OWY70chem6vA" target="_blank" rel="noopener" style="color: var(--light-gray); transition: color 0.3s ease;" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+            <a href="https://www.facebook.com/BlackIronAthletics/" target="_blank" rel="noopener" style="color: var(--light-gray); transition: color 0.3s ease;" aria-label="Facebook"><i class="fa-brands fa-facebook"></i></a>
+        </div>
+        <p>&copy; 2026 Black Iron Athletics. All rights reserved.</p>
+    </div>
+</footer>
+
+<!-- ========================================= -->
+<!-- MODALS                                    -->
+<!-- ========================================= -->
+
+<!-- Food Search Modal -->
+<div class="modal-overlay" id="foodSearchModal">
+    <div class="modal-container">
+        <button class="modal-close" onclick="closeFoodSearchModal()">&times;</button>
+        <h3><i class="fa-solid fa-magnifying-glass" style="color: var(--yellow); margin-right: 0.5rem;"></i> Search Food</h3>
+        <div class="food-search-input-wrap">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <input type="text" class="food-search-input" id="foodSearchInput" placeholder="e.g. chicken breast, banana, rice..." autocomplete="off">
+        </div>
+        <div class="food-search-status" id="foodSearchStatus"></div>
+        <div class="food-search-results" id="foodSearchResults"></div>
+        <div class="food-search-manual">
+            <a onclick="openManualEntryModal()"><i class="fa-solid fa-pen"></i> Enter Manually</a>
+        </div>
+    </div>
+</div>
+
+<!-- Food Log Modal (after selecting a food) -->
+<div class="modal-overlay" id="foodLogModal">
+    <div class="modal-container">
+        <button class="modal-close" onclick="closeFoodLogModal()">&times;</button>
+        <h3><i class="fa-solid fa-utensils" style="color: var(--yellow); margin-right: 0.5rem;"></i> Log Food</h3>
+        <div class="food-log-modal-name" id="logFoodName">Food Name</div>
+        <div class="food-log-modal-brand" id="logFoodBrand"></div>
+        <div class="food-log-form-row">
+            <div class="form-group">
+                <label for="logServingSize">Serving Size</label>
+                <input type="number" id="logServingSize" min="0.1" step="0.1" value="100" oninput="updateLogPreview()">
+            </div>
+            <div class="form-group">
+                <label for="logServingUnit">Unit</label>
+                <select id="logServingUnit" onchange="updateLogPreview()">
+                    <option value="g">grams (g)</option>
+                    <option value="oz">ounces (oz)</option>
+                    <option value="serving">serving</option>
+                    <option value="cup">cup</option>
+                    <option value="tbsp">tablespoon</option>
+                    <option value="piece">piece</option>
+                </select>
+            </div>
+        </div>
+        <label style="display:block; font-size:0.8rem; font-weight:700; text-transform:uppercase; letter-spacing:1px; color:var(--light-gray); margin-bottom:0.5rem;">Meal</label>
+        <div class="food-log-meal-selector" id="logMealSelector">
+            <button class="food-log-meal-option" data-meal="breakfast" onclick="selectMeal('breakfast')"><i class="fa-solid fa-sun"></i> Breakfast</button>
+            <button class="food-log-meal-option" data-meal="lunch" onclick="selectMeal('lunch')"><i class="fa-solid fa-cloud-sun"></i> Lunch</button>
+            <button class="food-log-meal-option" data-meal="dinner" onclick="selectMeal('dinner')"><i class="fa-solid fa-moon"></i> Dinner</button>
+            <button class="food-log-meal-option" data-meal="snack" onclick="selectMeal('snack')"><i class="fa-solid fa-cookie"></i> Snack</button>
+        </div>
+        <div class="food-log-preview" id="logPreview">
+            <div class="food-log-preview-stat">
+                <div class="food-log-preview-label">Calories</div>
+                <div class="food-log-preview-value" id="logPreviewCal">0</div>
+            </div>
+            <div class="food-log-preview-stat">
+                <div class="food-log-preview-label">Protein</div>
+                <div class="food-log-preview-value" id="logPreviewProtein">0g</div>
+            </div>
+            <div class="food-log-preview-stat">
+                <div class="food-log-preview-label">Carbs</div>
+                <div class="food-log-preview-value" id="logPreviewCarbs">0g</div>
+            </div>
+            <div class="food-log-preview-stat">
+                <div class="food-log-preview-label">Fat</div>
+                <div class="food-log-preview-value" id="logPreviewFat">0g</div>
+            </div>
+        </div>
+        <button class="btn-primary" style="width:100%;" onclick="saveFoodLog()">Log Food</button>
+    </div>
+</div>
+
+<!-- Manual Entry Modal -->
+<div class="modal-overlay" id="manualEntryModal">
+    <div class="modal-container">
+        <button class="modal-close" onclick="closeManualEntryModal()">&times;</button>
+        <h3><i class="fa-solid fa-pen" style="color: var(--yellow); margin-right: 0.5rem;"></i> Manual Entry</h3>
+        <div class="form-group">
+            <label for="manualFoodName">Food Name</label>
+            <input type="text" id="manualFoodName" placeholder="e.g. Homemade Trail Mix">
+        </div>
+        <div class="food-log-form-row">
+            <div class="form-group">
+                <label for="manualServingSize">Serving Size</label>
+                <input type="number" id="manualServingSize" min="0.1" step="0.1" value="1">
+            </div>
+            <div class="form-group">
+                <label for="manualServingUnit">Unit</label>
+                <select id="manualServingUnit">
+                    <option value="serving">serving</option>
+                    <option value="g">grams (g)</option>
+                    <option value="oz">ounces (oz)</option>
+                    <option value="cup">cup</option>
+                    <option value="tbsp">tablespoon</option>
+                    <option value="piece">piece</option>
+                </select>
+            </div>
+        </div>
+        <div class="food-log-form-row">
+            <div class="form-group">
+                <label for="manualCalories">Calories</label>
+                <input type="number" id="manualCalories" min="0" step="1" value="0">
+            </div>
+            <div class="form-group">
+                <label for="manualProtein">Protein (g)</label>
+                <input type="number" id="manualProtein" min="0" step="0.1" value="0">
+            </div>
+        </div>
+        <div class="food-log-form-row">
+            <div class="form-group">
+                <label for="manualCarbs">Carbs (g)</label>
+                <input type="number" id="manualCarbs" min="0" step="0.1" value="0">
+            </div>
+            <div class="form-group">
+                <label for="manualFat">Fat (g)</label>
+                <input type="number" id="manualFat" min="0" step="0.1" value="0">
+            </div>
+        </div>
+        <label style="display:block; font-size:0.8rem; font-weight:700; text-transform:uppercase; letter-spacing:1px; color:var(--light-gray); margin-bottom:0.5rem;">Meal</label>
+        <div class="food-log-meal-selector" id="manualMealSelector">
+            <button class="food-log-meal-option" data-meal="breakfast" onclick="selectManualMeal('breakfast')"><i class="fa-solid fa-sun"></i> Breakfast</button>
+            <button class="food-log-meal-option" data-meal="lunch" onclick="selectManualMeal('lunch')"><i class="fa-solid fa-cloud-sun"></i> Lunch</button>
+            <button class="food-log-meal-option" data-meal="dinner" onclick="selectManualMeal('dinner')"><i class="fa-solid fa-moon"></i> Dinner</button>
+            <button class="food-log-meal-option" data-meal="snack" onclick="selectManualMeal('snack')"><i class="fa-solid fa-cookie"></i> Snack</button>
+        </div>
+        <button class="btn-primary" style="width:100%;" onclick="saveManualEntry()">Log Food</button>
+    </div>
+</div>
+
+<!-- Barcode Scanner Modal -->
+<div class="modal-overlay" id="scannerModal">
+    <div class="modal-container">
+        <button class="modal-close" onclick="closeScannerModal()">&times;</button>
+        <h3><i class="fa-solid fa-barcode" style="color: var(--yellow); margin-right: 0.5rem;"></i> Scan Barcode</h3>
+        <div class="scanner-viewport" id="scannerViewport">
+            <div class="scanner-line"></div>
+        </div>
+        <div class="scanner-status" id="scannerStatus">Point your camera at a barcode</div>
+        <div class="scanner-fallback">
+            <a onclick="closeScannerModal(); openFoodSearchModal();">Search by name instead</a>
+        </div>
+    </div>
+</div>
+
+<!-- ========================================= -->
+<!-- JAVASCRIPT                                -->
+<!-- ========================================= -->
+<script>
+// ===== CONFIG =====
+var SUPABASE_URL = 'https://hmwfpwcookrwgsbnutyc.supabase.co';
+var SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imhtd2Zwd2Nvb2tyd2dzYm51dHljIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzE1NTUwMTcsImV4cCI6MjA4NzEzMTAxN30.CpX9hIshZqf68B10vPZXt7dHbSXE_aVqfmKuiWN_Lpw';
+var supabase = window.supabase ? window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY) : null;
+
+// USDA FoodData Central API Key — get yours free at https://fdc.nal.usda.gov/api-key-signup/
+var USDA_API_KEY = 'flHs9ewIb4bafJ3TuCHkQCnV5JPeZRPh055My6RP';
+
+// ===== STATE =====
+var currentUser = null;
+var trackerDate = new Date();
+var macroTargets = { calories: 0, protein: 0, carbs: 0, fat: 0 };
+var tolerancePct = 10;
+var selectedFood = null;
+var selectedMeal = null;
+var manualSelectedMeal = null;
+var foodSearchTimeout = null;
+var currentStreak = 0;
+var longestStreak = 0;
+
+// ===== PHASE INFO (same as dashboard) =====
+function getPhaseInfo(date) {
+    var d = date || new Date();
+    var month = d.getMonth();
+    var year = d.getFullYear();
+    var phases = [
+        { num: 1, name: 'Baseline', startMonth: 0, endMonth: 2 },
+        { num: 2, name: 'Cut', startMonth: 3, endMonth: 5 },
+        { num: 3, name: 'Maintain', startMonth: 6, endMonth: 8 },
+        { num: 4, name: 'Build', startMonth: 9, endMonth: 11 }
+    ];
+    var phase = phases[Math.floor(month / 3)];
+    return { num: phase.num, name: phase.name, year: year };
+}
+
+// ===== AUTH FLOW =====
+var isSignUp = false;
+
+function toggleAuthMode() {
+    isSignUp = !isSignUp;
+    document.getElementById('authTitle').textContent = isSignUp ? 'Create Account' : 'Sign In';
+    document.getElementById('authSubtitle').textContent = isSignUp ? 'Start tracking your nutrition' : 'Access your food tracker';
+    document.getElementById('authSubmitBtn').textContent = isSignUp ? 'Create Account' : 'Sign In';
+    document.getElementById('authToggleText').textContent = isSignUp ? 'Already have an account?' : "Don't have an account?";
+    document.getElementById('authToggleLink').textContent = isSignUp ? 'Sign In' : 'Sign Up';
+    document.getElementById('authError').style.display = 'none';
+}
+
+async function handleAuth(e) {
+    e.preventDefault();
+    if (!supabase) { showAuthError('System not configured yet. Please check back soon.'); return; }
+    var email = document.getElementById('authEmail').value;
+    var password = document.getElementById('authPassword').value;
+    document.getElementById('authSubmitBtn').textContent = isSignUp ? 'Creating...' : 'Signing in...';
+    document.getElementById('authSubmitBtn').disabled = true;
+    try {
+        var result;
+        if (isSignUp) {
+            result = await supabase.auth.signUp({ email: email, password: password });
+        } else {
+            result = await supabase.auth.signInWithPassword({ email: email, password: password });
+        }
+        if (result.error) {
+            showAuthError(result.error.message);
+        } else if (isSignUp && result.data && !result.data.session) {
+            showAuthError('Check your email to confirm your account, then sign in.');
+        } else {
+            showTracker(result.data.user);
+        }
+    } catch (err) {
+        showAuthError('Something went wrong. Please try again.');
+    }
+    document.getElementById('authSubmitBtn').textContent = isSignUp ? 'Create Account' : 'Sign In';
+    document.getElementById('authSubmitBtn').disabled = false;
+}
+
+function showAuthError(msg) {
+    var el = document.getElementById('authError');
+    el.textContent = msg;
+    el.style.display = 'block';
+}
+
+async function handleLogout() {
+    if (supabase) { await supabase.auth.signOut(); }
+    hideTracker();
+}
+
+function showTracker(user) {
+    document.getElementById('authHero').style.display = 'none';
+    document.getElementById('authSection').style.display = 'none';
+    document.getElementById('trackerContainer').style.display = 'block';
+    document.getElementById('userEmail').textContent = user.email;
+    initTracker(user);
+}
+
+function hideTracker() {
+    document.getElementById('authHero').style.display = '';
+    document.getElementById('authSection').style.display = '';
+    document.getElementById('trackerContainer').style.display = 'none';
+}
+
+async function checkSession() {
+    if (!supabase) return;
+    var { data } = await supabase.auth.getSession();
+    if (data && data.session) {
+        showTracker(data.session.user);
+    }
+}
+
+// ===== MOBILE NAV =====
+function toggleMobileNav() {
+    document.getElementById('mobileNav').classList.toggle('active');
+    document.querySelector('.hamburger').classList.toggle('active');
+    document.body.style.overflow = document.getElementById('mobileNav').classList.contains('active') ? 'hidden' : '';
+}
+function closeMobileNav() {
+    document.getElementById('mobileNav').classList.remove('active');
+    document.querySelector('.hamburger').classList.remove('active');
+    document.body.style.overflow = '';
+}
+
+// ===== TOAST =====
+function showToast(message) {
+    var toast = document.createElement('div');
+    toast.className = 'toast-notification';
+    toast.textContent = message;
+    document.body.appendChild(toast);
+    requestAnimationFrame(function() { toast.classList.add('show'); });
+    setTimeout(function() {
+        toast.classList.remove('show');
+        setTimeout(function() { toast.remove(); }, 300);
+    }, 3000);
+}
+
+// ===== INIT TRACKER =====
+async function initTracker(user) {
+    currentUser = user;
+    trackerDate = new Date();
+    updateDateLabel();
+
+    if (!supabase || !user) return;
+
+    // Load targets, tolerance, food log, streak in parallel
+    var phase = getPhaseInfo();
+    await Promise.all([
+        loadMacroTargets(user.id, phase),
+        loadTolerance(user.id, phase),
+        loadFoodLog(user.id, formatDate(trackerDate)),
+        loadStreak(user.id),
+        loadRecentFoods(user.id)
+    ]);
+    renderMacroProgress();
+}
+
+// ===== DATE NAVIGATION =====
+function formatDate(d) {
+    var y = d.getFullYear();
+    var m = String(d.getMonth() + 1).padStart(2, '0');
+    var day = String(d.getDate()).padStart(2, '0');
+    return y + '-' + m + '-' + day;
+}
+
+function updateDateLabel() {
+    var today = new Date();
+    var isToday = formatDate(trackerDate) === formatDate(today);
+    var yesterday = new Date(today);
+    yesterday.setDate(yesterday.getDate() - 1);
+    var isYesterday = formatDate(trackerDate) === formatDate(yesterday);
+
+    var label = '';
+    if (isToday) label = 'Today, ';
+    else if (isYesterday) label = 'Yesterday, ';
+    label += trackerDate.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+    document.getElementById('trackerDateLabel').childNodes[0].textContent = label + ' ';
+    document.getElementById('trackerDatePicker').value = formatDate(trackerDate);
+}
+
+function changeDate(delta) {
+    trackerDate.setDate(trackerDate.getDate() + delta);
+    updateDateLabel();
+    if (currentUser) {
+        loadFoodLog(currentUser.id, formatDate(trackerDate));
+    }
+}
+
+function jumpToDate(dateStr) {
+    if (!dateStr) return;
+    var parts = dateStr.split('-');
+    trackerDate = new Date(parseInt(parts[0]), parseInt(parts[1]) - 1, parseInt(parts[2]));
+    updateDateLabel();
+    if (currentUser) {
+        loadFoodLog(currentUser.id, formatDate(trackerDate));
+    }
+}
+
+// ===== LOAD MACRO TARGETS =====
+async function loadMacroTargets(userId, phase) {
+    try {
+        var { data, error } = await supabase.from('saved_macros').select('calories, protein, carbs, fat')
+            .eq('user_id', userId).eq('phase', phase.num).eq('year', phase.year).single();
+        if (data && !error) {
+            macroTargets = { calories: data.calories, protein: data.protein, carbs: data.carbs, fat: data.fat };
+        } else {
+            macroTargets = { calories: 0, protein: 0, carbs: 0, fat: 0 };
+        }
+    } catch (e) {
+        macroTargets = { calories: 0, protein: 0, carbs: 0, fat: 0 };
+    }
+    document.getElementById('trackerCalTarget').textContent = macroTargets.calories ? macroTargets.calories.toLocaleString() : '--';
+    document.getElementById('trackerProteinTarget').textContent = macroTargets.protein || '--';
+    document.getElementById('trackerCarbsTarget').textContent = macroTargets.carbs || '--';
+    document.getElementById('trackerFatTarget').textContent = macroTargets.fat || '--';
+}
+
+// ===== LOAD TOLERANCE =====
+async function loadTolerance(userId, phase) {
+    try {
+        // Phase-specific first, then global
+        var { data: phaseData } = await supabase.from('macro_tolerance')
+            .select('tolerance_pct').eq('user_id', userId).eq('phase', phase.num).single();
+        if (phaseData) {
+            tolerancePct = phaseData.tolerance_pct;
+            return;
+        }
+        var { data: globalData } = await supabase.from('macro_tolerance')
+            .select('tolerance_pct').eq('user_id', userId).is('phase', null).single();
+        if (globalData) {
+            tolerancePct = globalData.tolerance_pct;
+            return;
+        }
+    } catch (e) { /* use default */ }
+    tolerancePct = 10;
+}
+
+// ===== LOAD FOOD LOG =====
+var currentFoodLog = [];
+
+async function loadFoodLog(userId, date) {
+    try {
+        var { data, error } = await supabase.from('food_log').select('*')
+            .eq('user_id', userId).eq('logged_date', date)
+            .order('created_at', { ascending: true });
+        if (error) throw error;
+        currentFoodLog = data || [];
+    } catch (e) {
+        currentFoodLog = [];
+    }
+    renderFoodLog();
+    renderMacroProgress();
+}
+
+function renderFoodLog() {
+    var meals = { breakfast: [], lunch: [], dinner: [], snack: [] };
+    currentFoodLog.forEach(function(item) {
+        if (meals[item.meal_type]) meals[item.meal_type].push(item);
+    });
+
+    ['breakfast', 'lunch', 'dinner', 'snack'].forEach(function(meal) {
+        var container = document.getElementById('mealItems' + capitalize(meal));
+        var calsEl = document.getElementById('mealCals' + capitalize(meal));
+        var items = meals[meal];
+
+        if (items.length === 0) {
+            container.innerHTML = '<div class="meal-group-empty">No foods logged</div>';
+            calsEl.textContent = '0 cal';
+            return;
+        }
+
+        var totalCals = 0;
+        var html = '';
+        items.forEach(function(item) {
+            totalCals += Number(item.calories) || 0;
+            html += '<div class="food-item">';
+            html += '<div class="food-item-info">';
+            html += '<div class="food-item-name">' + escapeHtml(item.food_name) + '</div>';
+            html += '<div class="food-item-serving">' + item.serving_size + ' ' + item.serving_unit + (item.brand ? ' &middot; ' + escapeHtml(item.brand) : '') + '</div>';
+            html += '</div>';
+            html += '<div class="food-item-macros">';
+            html += '<span>' + Math.round(item.calories) + ' cal</span>';
+            html += '<span>' + Math.round(item.protein) + 'p</span>';
+            html += '<span>' + Math.round(item.carbs) + 'c</span>';
+            html += '<span>' + Math.round(item.fat) + 'f</span>';
+            html += '</div>';
+            html += '<div class="food-item-actions">';
+            html += '<button class="delete-btn" onclick="deleteFoodLogEntry(\'' + item.id + '\')" title="Delete"><i class="fa-solid fa-trash"></i></button>';
+            html += '</div>';
+            html += '</div>';
+        });
+        container.innerHTML = html;
+        calsEl.textContent = Math.round(totalCals) + ' cal';
+    });
+}
+
+function capitalize(str) {
+    return str.charAt(0).toUpperCase() + str.slice(1);
+}
+
+function escapeHtml(str) {
+    if (!str) return '';
+    return str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+}
+
+// ===== RENDER MACRO PROGRESS =====
+function renderMacroProgress() {
+    var totals = { calories: 0, protein: 0, carbs: 0, fat: 0 };
+    currentFoodLog.forEach(function(item) {
+        totals.calories += Number(item.calories) || 0;
+        totals.protein += Number(item.protein) || 0;
+        totals.carbs += Number(item.carbs) || 0;
+        totals.fat += Number(item.fat) || 0;
+    });
+
+    // Calories hero
+    var calStatus = getToleranceStatus(totals.calories, macroTargets.calories, tolerancePct);
+    var calColor = calStatus === 'on-target' ? 'var(--green)' : calStatus === 'close' ? 'var(--orange)' : macroTargets.calories ? 'var(--red)' : 'var(--yellow)';
+    document.getElementById('trackerCalConsumed').textContent = Math.round(totals.calories).toLocaleString();
+    document.getElementById('trackerCalConsumed').style.color = calColor;
+
+    // Macro bars
+    renderBar('Protein', totals.protein, macroTargets.protein);
+    renderBar('Carbs', totals.carbs, macroTargets.carbs);
+    renderBar('Fat', totals.fat, macroTargets.fat);
+}
+
+function renderBar(name, consumed, target) {
+    var lowerName = name.toLowerCase();
+    var consumedEl = document.getElementById('tracker' + name + 'Consumed');
+    var barEl = document.getElementById('tracker' + name + 'Bar');
+    var tolLow = document.getElementById('tracker' + name + 'TolLow');
+    var tolHigh = document.getElementById('tracker' + name + 'TolHigh');
+
+    consumedEl.textContent = Math.round(consumed);
+
+    if (!target || target === 0) {
+        barEl.style.width = '0%';
+        barEl.style.background = 'var(--medium-gray)';
+        tolLow.style.display = 'none';
+        tolHigh.style.display = 'none';
+        return;
+    }
+
+    var pct = Math.min((consumed / target) * 100, 100);
+    var status = getToleranceStatus(consumed, target, tolerancePct);
+    var color = status === 'on-target' ? 'var(--green)' : status === 'close' ? 'var(--orange)' : 'var(--red)';
+
+    barEl.style.width = pct + '%';
+    barEl.style.background = color;
+
+    // Tolerance markers
+    var lowPct = Math.max(0, (1 - tolerancePct / 100)) * 100;
+    var highPct = Math.min(100, (1 + tolerancePct / 100) * 100);
+    tolLow.style.display = '';
+    tolLow.style.left = lowPct + '%';
+    tolHigh.style.display = '';
+    tolHigh.style.left = highPct + '%';
+}
+
+function getToleranceStatus(consumed, target, pct) {
+    if (!target || target === 0) return 'off';
+    var ratio = consumed / target;
+    var low = 1 - (pct / 100);
+    var high = 1 + (pct / 100);
+    if (ratio >= low && ratio <= high) return 'on-target';
+    // "close" = within 1.5x the tolerance band
+    var closeLow = 1 - (pct * 1.5 / 100);
+    var closeHigh = 1 + (pct * 1.5 / 100);
+    if (ratio >= closeLow && ratio <= closeHigh) return 'close';
+    return 'off';
+}
+
+// ===== FOOD SEARCH =====
+function openFoodSearchModal() {
+    document.getElementById('foodSearchModal').classList.add('active');
+    document.getElementById('foodSearchInput').value = '';
+    document.getElementById('foodSearchResults').innerHTML = '';
+    document.getElementById('foodSearchStatus').textContent = '';
+    setTimeout(function() { document.getElementById('foodSearchInput').focus(); }, 100);
+}
+
+function closeFoodSearchModal() {
+    document.getElementById('foodSearchModal').classList.remove('active');
+}
+
+// Debounced search
+document.addEventListener('DOMContentLoaded', function() {
+    var input = document.getElementById('foodSearchInput');
+    if (input) {
+        input.addEventListener('input', function() {
+            clearTimeout(foodSearchTimeout);
+            var q = this.value.trim();
+            if (q.length < 2) {
+                document.getElementById('foodSearchResults').innerHTML = '';
+                document.getElementById('foodSearchStatus').textContent = '';
+                return;
+            }
+            document.getElementById('foodSearchStatus').textContent = 'Searching...';
+            foodSearchTimeout = setTimeout(function() { searchFoods(q); }, 300);
+        });
+    }
+});
+
+async function searchFoods(query) {
+    var resultsEl = document.getElementById('foodSearchResults');
+    var statusEl = document.getElementById('foodSearchStatus');
+
+    try {
+        var [usdaResults, offResults] = await Promise.all([
+            searchUSDA(query),
+            searchOpenFoodFacts(query)
+        ]);
+
+        var all = usdaResults.concat(offResults);
+        if (all.length === 0) {
+            statusEl.textContent = 'No results found. Try a different search or enter manually.';
+            resultsEl.innerHTML = '';
+            return;
+        }
+
+        statusEl.textContent = all.length + ' results found';
+        var html = '';
+        all.forEach(function(food) {
+            html += '<div class="food-search-result" onclick=\'selectFoodResult(' + JSON.stringify(food).replace(/'/g, "\\'") + ')\'>';
+            html += '<div class="food-search-result-info">';
+            html += '<div class="food-search-result-name">' + escapeHtml(food.name) + '</div>';
+            if (food.brand) html += '<div class="food-search-result-brand">' + escapeHtml(food.brand) + '</div>';
+            html += '</div>';
+            html += '<div class="food-search-result-macros">' + Math.round(food.calories) + ' cal &middot; ' + Math.round(food.protein) + 'p &middot; ' + Math.round(food.carbs) + 'c &middot; ' + Math.round(food.fat) + 'f</div>';
+            html += '<div class="food-search-result-source">' + food.source + '</div>';
+            html += '</div>';
+        });
+        resultsEl.innerHTML = html;
+    } catch (e) {
+        statusEl.textContent = 'Search failed. Please try again.';
+        resultsEl.innerHTML = '';
+    }
+}
+
+async function searchUSDA(query) {
+    try {
+        var response = await fetch('https://api.nal.usda.gov/fdc/v1/foods/search?api_key=' + USDA_API_KEY, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                query: query,
+                pageSize: 15,
+                dataType: ['Foundation', 'SR Legacy', 'Branded']
+            })
+        });
+        var data = await response.json();
+        if (!data.foods) return [];
+        return data.foods.map(normalizeUSDAFood).filter(function(f) { return f !== null; });
+    } catch (e) {
+        return [];
+    }
+}
+
+function normalizeUSDAFood(item) {
+    if (!item || !item.foodNutrients) return null;
+    var nutrients = {};
+    item.foodNutrients.forEach(function(n) {
+        if (n.nutrientId === 1008 || n.nutrientNumber === '208') nutrients.calories = n.value || 0;
+        if (n.nutrientId === 1003 || n.nutrientNumber === '203') nutrients.protein = n.value || 0;
+        if (n.nutrientId === 1005 || n.nutrientNumber === '205') nutrients.carbs = n.value || 0;
+        if (n.nutrientId === 1004 || n.nutrientNumber === '204') nutrients.fat = n.value || 0;
+    });
+    return {
+        name: item.description || 'Unknown',
+        brand: item.brandName || item.brandOwner || '',
+        calories: nutrients.calories || 0,
+        protein: nutrients.protein || 0,
+        carbs: nutrients.carbs || 0,
+        fat: nutrients.fat || 0,
+        servingSize: item.servingSize || 100,
+        servingUnit: item.servingSizeUnit || 'g',
+        source: 'usda',
+        sourceId: String(item.fdcId || '')
+    };
+}
+
+async function searchOpenFoodFacts(query) {
+    try {
+        var response = await fetch('https://world.openfoodfacts.org/cgi/search.pl?search_terms=' + encodeURIComponent(query) + '&json=1&page_size=15');
+        var data = await response.json();
+        if (!data.products) return [];
+        return data.products.map(normalizeOFFFood).filter(function(f) { return f !== null; });
+    } catch (e) {
+        return [];
+    }
+}
+
+function normalizeOFFFood(product) {
+    if (!product || !product.nutriments) return null;
+    var n = product.nutriments;
+    var cal = n['energy-kcal_100g'] || n['energy-kcal'] || 0;
+    if (!cal && n['energy_100g']) cal = Math.round(n['energy_100g'] / 4.184);
+    return {
+        name: product.product_name || 'Unknown',
+        brand: product.brands || '',
+        calories: cal,
+        protein: n.proteins_100g || n.proteins || 0,
+        carbs: n.carbohydrates_100g || n.carbohydrates || 0,
+        fat: n.fat_100g || n.fat || 0,
+        servingSize: 100,
+        servingUnit: 'g',
+        source: 'openfoodfacts',
+        sourceId: product.code || ''
+    };
+}
+
+// ===== SELECT FOOD & LOG MODAL =====
+function selectFoodResult(food) {
+    selectedFood = food;
+    closeFoodSearchModal();
+    openFoodLogModal(food);
+}
+
+function openFoodLogModal(food) {
+    document.getElementById('foodLogModal').classList.add('active');
+    document.getElementById('logFoodName').textContent = food.name;
+    document.getElementById('logFoodBrand').textContent = food.brand || '';
+    document.getElementById('logServingSize').value = food.servingSize || 100;
+
+    // Set the serving unit dropdown
+    var unitSelect = document.getElementById('logServingUnit');
+    var unitVal = (food.servingUnit || 'g').toLowerCase();
+    unitSelect.value = unitVal;
+    if (unitSelect.value !== unitVal) unitSelect.value = 'g';
+
+    // Auto-select meal based on time
+    autoSelectMeal();
+    updateLogPreview();
+}
+
+function closeFoodLogModal() {
+    document.getElementById('foodLogModal').classList.remove('active');
+    selectedFood = null;
+}
+
+function autoSelectMeal() {
+    var hour = new Date().getHours();
+    var meal = 'snack';
+    if (hour >= 5 && hour < 11) meal = 'breakfast';
+    else if (hour >= 11 && hour < 15) meal = 'lunch';
+    else if (hour >= 15 && hour < 21) meal = 'dinner';
+    selectMeal(meal);
+}
+
+function selectMeal(meal) {
+    selectedMeal = meal;
+    document.querySelectorAll('#logMealSelector .food-log-meal-option').forEach(function(btn) {
+        btn.classList.toggle('active', btn.dataset.meal === meal);
+    });
+}
+
+function selectManualMeal(meal) {
+    manualSelectedMeal = meal;
+    document.querySelectorAll('#manualMealSelector .food-log-meal-option').forEach(function(btn) {
+        btn.classList.toggle('active', btn.dataset.meal === meal);
+    });
+}
+
+function updateLogPreview() {
+    if (!selectedFood) return;
+    var newServing = parseFloat(document.getElementById('logServingSize').value) || 0;
+    var scaled = scaleNutrients(selectedFood, newServing);
+    document.getElementById('logPreviewCal').textContent = Math.round(scaled.calories);
+    document.getElementById('logPreviewProtein').textContent = Math.round(scaled.protein) + 'g';
+    document.getElementById('logPreviewCarbs').textContent = Math.round(scaled.carbs) + 'g';
+    document.getElementById('logPreviewFat').textContent = Math.round(scaled.fat) + 'g';
+}
+
+function scaleNutrients(food, newServing) {
+    var baseServing = food.servingSize || 100;
+    if (baseServing === 0) baseServing = 100;
+    var ratio = newServing / baseServing;
+    return {
+        calories: food.calories * ratio,
+        protein: food.protein * ratio,
+        carbs: food.carbs * ratio,
+        fat: food.fat * ratio
+    };
+}
+
+// ===== SAVE FOOD LOG =====
+async function saveFoodLog() {
+    if (!selectedFood || !currentUser || !supabase) return;
+    if (!selectedMeal) { showToast('Please select a meal'); return; }
+
+    var servingSize = parseFloat(document.getElementById('logServingSize').value) || 0;
+    var servingUnit = document.getElementById('logServingUnit').value;
+    var scaled = scaleNutrients(selectedFood, servingSize);
+
+    var entry = {
+        user_id: currentUser.id,
+        logged_date: formatDate(trackerDate),
+        meal_type: selectedMeal,
+        food_name: selectedFood.name,
+        brand: selectedFood.brand || null,
+        serving_size: servingSize,
+        serving_unit: servingUnit,
+        calories: Math.round(scaled.calories * 10) / 10,
+        protein: Math.round(scaled.protein * 10) / 10,
+        carbs: Math.round(scaled.carbs * 10) / 10,
+        fat: Math.round(scaled.fat * 10) / 10,
+        source: selectedFood.source,
+        source_id: selectedFood.sourceId || null
+    };
+
+    try {
+        var { error } = await supabase.from('food_log').insert(entry);
+        if (error) throw error;
+        closeFoodLogModal();
+        showToast(selectedFood.name + ' logged!');
+        await loadFoodLog(currentUser.id, formatDate(trackerDate));
+        recalculateStreak();
+        loadRecentFoods(currentUser.id);
+    } catch (e) {
+        showToast('Failed to log food. Please try again.');
+    }
+}
+
+// ===== DELETE FOOD LOG ENTRY =====
+async function deleteFoodLogEntry(id) {
+    if (!supabase || !currentUser) return;
+    try {
+        var { error } = await supabase.from('food_log').delete().eq('id', id);
+        if (error) throw error;
+        showToast('Entry removed');
+        await loadFoodLog(currentUser.id, formatDate(trackerDate));
+        recalculateStreak();
+    } catch (e) {
+        showToast('Failed to delete entry.');
+    }
+}
+
+// ===== MANUAL ENTRY =====
+function openManualEntryModal() {
+    closeFoodSearchModal();
+    document.getElementById('manualEntryModal').classList.add('active');
+    document.getElementById('manualFoodName').value = '';
+    document.getElementById('manualServingSize').value = 1;
+    document.getElementById('manualCalories').value = '';
+    document.getElementById('manualProtein').value = '';
+    document.getElementById('manualCarbs').value = '';
+    document.getElementById('manualFat').value = '';
+    // Auto-select meal
+    var hour = new Date().getHours();
+    var meal = 'snack';
+    if (hour >= 5 && hour < 11) meal = 'breakfast';
+    else if (hour >= 11 && hour < 15) meal = 'lunch';
+    else if (hour >= 15 && hour < 21) meal = 'dinner';
+    selectManualMeal(meal);
+}
+
+function closeManualEntryModal() {
+    document.getElementById('manualEntryModal').classList.remove('active');
+}
+
+async function saveManualEntry() {
+    if (!currentUser || !supabase) return;
+    var foodName = document.getElementById('manualFoodName').value.trim();
+    if (!foodName) { showToast('Please enter a food name'); return; }
+    if (!manualSelectedMeal) { showToast('Please select a meal'); return; }
+
+    var entry = {
+        user_id: currentUser.id,
+        logged_date: formatDate(trackerDate),
+        meal_type: manualSelectedMeal,
+        food_name: foodName,
+        brand: null,
+        serving_size: parseFloat(document.getElementById('manualServingSize').value) || 1,
+        serving_unit: document.getElementById('manualServingUnit').value,
+        calories: parseFloat(document.getElementById('manualCalories').value) || 0,
+        protein: parseFloat(document.getElementById('manualProtein').value) || 0,
+        carbs: parseFloat(document.getElementById('manualCarbs').value) || 0,
+        fat: parseFloat(document.getElementById('manualFat').value) || 0,
+        source: 'manual',
+        source_id: null
+    };
+
+    try {
+        var { error } = await supabase.from('food_log').insert(entry);
+        if (error) throw error;
+        closeManualEntryModal();
+        showToast(foodName + ' logged!');
+        await loadFoodLog(currentUser.id, formatDate(trackerDate));
+        recalculateStreak();
+        loadRecentFoods(currentUser.id);
+    } catch (e) {
+        showToast('Failed to log food. Please try again.');
+    }
+}
+
+// ===== RECENT FOODS =====
+async function loadRecentFoods(userId) {
+    var listEl = document.getElementById('recentFoodList');
+    try {
+        var { data, error } = await supabase.from('food_log')
+            .select('food_name, brand, serving_size, serving_unit, calories, protein, carbs, fat, source, source_id')
+            .eq('user_id', userId)
+            .order('created_at', { ascending: false })
+            .limit(50);
+
+        if (error) throw error;
+        if (!data || data.length === 0) {
+            listEl.innerHTML = '<span style="color: var(--medium-gray); font-size: 0.8rem; font-style: italic;">No recent foods yet</span>';
+            return;
+        }
+
+        // Deduplicate by food_name
+        var seen = {};
+        var unique = [];
+        data.forEach(function(item) {
+            var key = item.food_name.toLowerCase();
+            if (!seen[key] && unique.length < 20) {
+                seen[key] = true;
+                unique.push(item);
+            }
+        });
+
+        var html = '';
+        unique.forEach(function(item) {
+            var foodObj = JSON.stringify({
+                name: item.food_name,
+                brand: item.brand || '',
+                calories: item.calories,
+                protein: item.protein,
+                carbs: item.carbs,
+                fat: item.fat,
+                servingSize: item.serving_size,
+                servingUnit: item.serving_unit,
+                source: item.source || 'manual',
+                sourceId: item.source_id || ''
+            }).replace(/'/g, "\\'");
+            html += '<button class="recent-food-chip" onclick=\'selectFoodResult(' + foodObj + ')\'>' + escapeHtml(item.food_name) + '</button>';
+        });
+        listEl.innerHTML = html;
+    } catch (e) {
+        listEl.innerHTML = '<span style="color: var(--medium-gray); font-size: 0.8rem; font-style: italic;">No recent foods yet</span>';
+    }
+}
+
+// ===== BARCODE SCANNER =====
+var scannerRunning = false;
+
+function openScannerModal() {
+    document.getElementById('scannerModal').classList.add('active');
+    document.getElementById('scannerStatus').textContent = 'Initializing camera...';
+    startScanner();
+}
+
+function closeScannerModal() {
+    document.getElementById('scannerModal').classList.remove('active');
+    stopScanner();
+}
+
+function startScanner() {
+    if (scannerRunning) return;
+    if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
+        document.getElementById('scannerStatus').textContent = 'Camera not available on this device.';
+        return;
+    }
+
+    if (typeof Quagga === 'undefined') {
+        document.getElementById('scannerStatus').textContent = 'Barcode scanner not loaded. Please search by name.';
+        return;
+    }
+
+    Quagga.init({
+        inputStream: {
+            name: 'Live',
+            type: 'LiveStream',
+            target: document.getElementById('scannerViewport'),
+            constraints: {
+                facingMode: 'environment',
+                width: { ideal: 640 },
+                height: { ideal: 480 }
+            }
+        },
+        decoder: {
+            readers: ['upc_reader', 'ean_reader', 'ean_8_reader', 'upc_e_reader']
+        },
+        locate: true
+    }, function(err) {
+        if (err) {
+            document.getElementById('scannerStatus').textContent = 'Camera access denied or not available.';
+            return;
+        }
+        scannerRunning = true;
+        Quagga.start();
+        document.getElementById('scannerStatus').textContent = 'Point your camera at a barcode';
+    });
+
+    Quagga.onDetected(function(result) {
+        if (!result || !result.codeResult || !result.codeResult.code) return;
+        var barcode = result.codeResult.code;
+        stopScanner();
+        document.getElementById('scannerStatus').textContent = 'Barcode detected: ' + barcode + ' — Looking up...';
+        lookupBarcode(barcode);
+    });
+}
+
+function stopScanner() {
+    if (scannerRunning && typeof Quagga !== 'undefined') {
+        Quagga.stop();
+        scannerRunning = false;
+    }
+}
+
+async function lookupBarcode(barcode) {
+    // Try Open Food Facts first (best barcode coverage)
+    try {
+        var response = await fetch('https://world.openfoodfacts.org/api/v2/product/' + barcode + '.json');
+        var data = await response.json();
+        if (data.status === 1 && data.product) {
+            var food = normalizeOFFFood(data.product);
+            if (food) {
+                food.sourceId = barcode;
+                closeScannerModal();
+                selectFoodResult(food);
+                return;
+            }
+        }
+    } catch (e) { /* fallback */ }
+
+    // Fallback: search USDA by barcode
+    try {
+        var response2 = await fetch('https://api.nal.usda.gov/fdc/v1/foods/search?api_key=' + USDA_API_KEY, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ query: barcode, pageSize: 5, dataType: ['Branded'] })
+        });
+        var data2 = await response2.json();
+        if (data2.foods && data2.foods.length > 0) {
+            var food2 = normalizeUSDAFood(data2.foods[0]);
+            if (food2) {
+                food2.sourceId = barcode;
+                closeScannerModal();
+                selectFoodResult(food2);
+                return;
+            }
+        }
+    } catch (e) { /* not found */ }
+
+    // Not found
+    document.getElementById('scannerStatus').textContent = 'Product not found for barcode ' + barcode;
+    setTimeout(function() {
+        document.getElementById('scannerStatus').innerHTML = 'Product not found. <a style="color: var(--yellow); cursor: pointer; font-weight: 700;" onclick="closeScannerModal(); openFoodSearchModal();">Search by name instead</a>';
+    }, 100);
+}
+
+// ===== STREAK SYSTEM =====
+async function loadStreak(userId) {
+    try {
+        var { data, error } = await supabase.from('macro_streaks')
+            .select('current_streak, longest_streak')
+            .eq('user_id', userId).single();
+        if (data && !error) {
+            currentStreak = data.current_streak || 0;
+            longestStreak = data.longest_streak || 0;
+        }
+    } catch (e) { /* no streak row yet */ }
+    renderStreak();
+}
+
+function renderStreak() {
+    document.getElementById('streakValue').textContent = currentStreak;
+    document.getElementById('streakBest').textContent = longestStreak;
+    var fireIcon = document.getElementById('streakFireIcon');
+    if (currentStreak >= 3) {
+        fireIcon.classList.add('on-fire');
+    } else {
+        fireIcon.classList.remove('on-fire');
+    }
+}
+
+async function recalculateStreak() {
+    if (!supabase || !currentUser) return;
+
+    try {
+        // Fetch last 90 days of food_log entries
+        var ninetyDaysAgo = new Date();
+        ninetyDaysAgo.setDate(ninetyDaysAgo.getDate() - 90);
+        var { data: logs, error } = await supabase.from('food_log')
+            .select('logged_date, calories, protein, carbs, fat')
+            .eq('user_id', currentUser.id)
+            .gte('logged_date', formatDate(ninetyDaysAgo))
+            .order('logged_date', { ascending: false });
+
+        if (error) throw error;
+
+        // Sum macros by date
+        var dayTotals = {};
+        (logs || []).forEach(function(entry) {
+            if (!dayTotals[entry.logged_date]) {
+                dayTotals[entry.logged_date] = { calories: 0, protein: 0, carbs: 0, fat: 0 };
+            }
+            dayTotals[entry.logged_date].calories += Number(entry.calories) || 0;
+            dayTotals[entry.logged_date].protein += Number(entry.protein) || 0;
+            dayTotals[entry.logged_date].carbs += Number(entry.carbs) || 0;
+            dayTotals[entry.logged_date].fat += Number(entry.fat) || 0;
+        });
+
+        // Walk backward from yesterday
+        var streak = 0;
+        var checkDate = new Date();
+        checkDate.setDate(checkDate.getDate() - 1); // Start from yesterday
+
+        while (streak < 90) {
+            var dateStr = formatDate(checkDate);
+            var day = dayTotals[dateStr];
+            if (!day) break; // No entries = streak broken
+
+            // Check all four macros within tolerance
+            var calOk = macroTargets.calories > 0 && getToleranceStatus(day.calories, macroTargets.calories, tolerancePct) === 'on-target';
+            var proOk = macroTargets.protein > 0 && getToleranceStatus(day.protein, macroTargets.protein, tolerancePct) === 'on-target';
+            var carbOk = macroTargets.carbs > 0 && getToleranceStatus(day.carbs, macroTargets.carbs, tolerancePct) === 'on-target';
+            var fatOk = macroTargets.fat > 0 && getToleranceStatus(day.fat, macroTargets.fat, tolerancePct) === 'on-target';
+
+            // If no targets set, consider it a miss
+            if (!macroTargets.calories) break;
+
+            if (calOk && proOk && carbOk && fatOk) {
+                streak++;
+                checkDate.setDate(checkDate.getDate() - 1);
+            } else {
+                break;
+            }
+        }
+
+        currentStreak = streak;
+        if (streak > longestStreak) longestStreak = streak;
+
+        // Upsert to macro_streaks
+        var { error: upsertError } = await supabase.from('macro_streaks')
+            .upsert({
+                user_id: currentUser.id,
+                current_streak: currentStreak,
+                longest_streak: longestStreak,
+                last_hit_date: streak > 0 ? formatDate(new Date(new Date().setDate(new Date().getDate() - 1))) : null,
+                updated_at: new Date().toISOString()
+            }, { onConflict: 'user_id' });
+
+        renderStreak();
+
+        // Check milestones
+        checkStreakMilestones(streak);
+    } catch (e) {
+        // Streak calculation failed — silently continue
+    }
+}
+
+async function checkStreakMilestones(streak) {
+    var milestones = [7, 14, 21, 30, 60, 90];
+    if (milestones.indexOf(streak) === -1) return;
+
+    try {
+        // Notify the athlete
+        await supabase.from('notifications').insert({
+            user_id: currentUser.id,
+            title: streak + ' Day Streak!',
+            message: 'You\'ve hit your macro targets ' + streak + ' days in a row. Keep it up!',
+            read: false
+        });
+
+        // Notify assigned coach
+        var { data: coaching } = await supabase.from('coach_athletes')
+            .select('coach_id')
+            .eq('athlete_id', currentUser.id)
+            .limit(1);
+
+        if (coaching && coaching.length > 0) {
+            var displayName = currentUser.email.split('@')[0];
+            await supabase.from('notifications').insert({
+                user_id: coaching[0].coach_id,
+                title: displayName + ' hit a ' + streak + ' day streak!',
+                message: displayName + ' has hit their macro targets ' + streak + ' consecutive days.',
+                read: false
+            });
+        }
+    } catch (e) { /* notification insert failed — not critical */ }
+}
+
+// ===== LEAD MODAL (placeholder) =====
+function openLeadModal() {
+    // Placeholder — same pattern as dashboard
+}
+
+// ===== INIT =====
+checkSession();
+</script>
+
+<script src="https://link.msgsndr.com/js/form_embed.js" type="text/javascript" defer></script>
+<script src="https://widgets.leadconnectorhq.com/loader.js" data-resources-url="https://widgets.leadconnectorhq.com/chat-widget/loader.js" data-widget-id="6995d6d76e6009387f78d31e" defer></script>
+</body>
+</html>

@@ -3556,6 +3556,277 @@
             border-top-color: var(--yellow);
             transform: translateY(2px);
         }
+
+        /* ===== TRACKER SUMMARY CARD ===== */
+        .tracker-summary-card {
+            background: var(--dark-gray);
+            border: 2px solid var(--medium-gray);
+            padding: 1.5rem 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .tracker-summary-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 1rem;
+        }
+
+        .tracker-summary-header h3 {
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .tracker-summary-header h3 i { color: var(--yellow); }
+
+        .tracker-summary-cals {
+            text-align: center;
+            margin-bottom: 1rem;
+        }
+
+        .tracker-summary-cals-value {
+            font-size: 1.8rem;
+            font-weight: 900;
+        }
+
+        .tracker-summary-cals-label {
+            font-size: 0.7rem;
+            font-weight: 700;
+            color: var(--light-gray);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .tracker-summary-bars {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .tracker-summary-bar-header {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.7rem;
+            font-weight: 700;
+            color: var(--light-gray);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 0.35rem;
+        }
+
+        .tracker-summary-bar-track {
+            width: 100%;
+            height: 8px;
+            background: var(--medium-gray);
+        }
+
+        .tracker-summary-bar-fill {
+            height: 100%;
+            transition: width 0.5s ease, background 0.3s ease;
+            max-width: 100%;
+        }
+
+        .tracker-summary-streak {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            font-size: 0.85rem;
+            font-weight: 700;
+            padding-top: 0.75rem;
+            border-top: 1px solid var(--medium-gray);
+        }
+
+        .tracker-summary-streak i {
+            color: #f39c12;
+        }
+
+        .tracker-summary-streak i.on-fire {
+            animation: summaryFireGlow 1.5s ease-in-out infinite;
+        }
+
+        @keyframes summaryFireGlow {
+            0%, 100% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.15); opacity: 0.8; }
+        }
+
+        /* ===== COACH: FOOD LOG CARD ===== */
+        .coach-foodlog-card {
+            background: var(--dark-gray);
+            border: 2px solid var(--medium-gray);
+            padding: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .coach-foodlog-date-nav {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .coach-foodlog-date-nav button {
+            background: transparent;
+            border: 1px solid var(--medium-gray);
+            color: var(--white);
+            width: 32px;
+            height: 32px;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .coach-foodlog-date-nav button:hover {
+            border-color: var(--yellow);
+            color: var(--yellow);
+        }
+
+        .coach-foodlog-date-label {
+            font-size: 0.9rem;
+            font-weight: 700;
+            min-width: 140px;
+            text-align: center;
+        }
+
+        .coach-foodlog-totals {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+            background: var(--black);
+            padding: 0.75rem;
+            border: 1px solid var(--medium-gray);
+        }
+
+        .coach-foodlog-total {
+            text-align: center;
+        }
+
+        .coach-foodlog-total-label {
+            font-size: 0.6rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--light-gray);
+        }
+
+        .coach-foodlog-total-value {
+            font-size: 1.1rem;
+            font-weight: 900;
+        }
+
+        .coach-foodlog-item {
+            display: flex;
+            align-items: center;
+            padding: 0.5rem 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            gap: 0.75rem;
+            font-size: 0.85rem;
+        }
+
+        .coach-foodlog-item:last-child { border-bottom: none; }
+
+        .coach-foodlog-item-name {
+            flex: 1;
+            font-weight: 600;
+        }
+
+        .coach-foodlog-item-macros {
+            font-size: 0.75rem;
+            color: var(--light-gray);
+            white-space: nowrap;
+        }
+
+        .coach-foodlog-empty {
+            color: var(--medium-gray);
+            font-size: 0.85rem;
+            font-style: italic;
+            text-align: center;
+            padding: 1rem;
+        }
+
+        /* ===== COACH: STREAK SUMMARY CARD ===== */
+        .coach-streak-card {
+            background: var(--dark-gray);
+            border: 2px solid var(--medium-gray);
+            padding: 1.5rem;
+            margin-top: 2rem;
+            text-align: center;
+        }
+
+        .coach-streak-card h4 {
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 1rem;
+        }
+
+        .coach-streak-card h4 i { color: var(--yellow); margin-right: 0.5rem; }
+
+        .coach-streak-stats {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        .coach-streak-stat-label {
+            font-size: 0.65rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--light-gray);
+        }
+
+        .coach-streak-stat-value {
+            font-size: 1.6rem;
+            font-weight: 900;
+        }
+
+        /* ===== TOLERANCE MODAL ===== */
+        .tolerance-phase-row {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 0.75rem 0;
+            border-bottom: 1px solid var(--medium-gray);
+        }
+
+        .tolerance-phase-label {
+            flex: 1;
+            font-size: 0.85rem;
+            font-weight: 700;
+        }
+
+        .tolerance-phase-input {
+            width: 80px;
+            padding: 0.5rem;
+            background: var(--black);
+            border: 1px solid var(--medium-gray);
+            color: var(--white);
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.9rem;
+            font-weight: 600;
+            text-align: center;
+        }
+
+        .tolerance-phase-input:focus {
+            outline: none;
+            border-color: var(--yellow);
+        }
+
+        @media (max-width: 768px) {
+            .tracker-summary-bars { grid-template-columns: 1fr; }
+            .coach-foodlog-totals { grid-template-columns: repeat(2, 1fr); }
+        }
     </style>
 </head>
 <body>
@@ -3686,6 +3957,7 @@
         <div class="fuelpath-subnav">
             <div class="fuelpath-subnav-container">
                 <a href="fuelpath-dashboard" class="active">My Dashboard</a>
+                <a href="fuelpath-tracker">Food Tracker</a>
                 <a href="fuelpath-phase-1-maintain">Phase 1: Baseline</a>
                 <a href="fuelpath-phase-2-cut">Phase 2: Cut</a>
                 <a href="fuelpath-phase-3-maintain">Phase 3: Maintain</a>
@@ -3761,6 +4033,37 @@
                     </div>
                     <div class="phase-motivation" id="phaseMotivation" style="text-align:center; margin-top:0.5rem;">Let's build a strong foundation.</div>
                 </div>
+
+                <!-- Tracker Summary Card -->
+                <div class="tracker-summary-card" id="trackerSummaryCard" style="display: none;">
+                    <div class="tracker-summary-header">
+                        <h3><i class="fa-solid fa-utensils"></i> Today's Food Tracker</h3>
+                        <a href="fuelpath-tracker" class="btn-outline btn-small" style="padding: 0.5rem 1rem; font-size: 0.75rem;">Open Tracker</a>
+                    </div>
+                    <div class="tracker-summary-cals">
+                        <div class="tracker-summary-cals-value" id="summaryCalValue">0 / -- cal</div>
+                        <div class="tracker-summary-cals-label">Calories</div>
+                    </div>
+                    <div class="tracker-summary-bars">
+                        <div>
+                            <div class="tracker-summary-bar-header"><span>Protein</span><span id="summaryProteinLabel">0 / --g</span></div>
+                            <div class="tracker-summary-bar-track"><div class="tracker-summary-bar-fill" id="summaryProteinBar" style="width:0%; background: #27AE60;"></div></div>
+                        </div>
+                        <div>
+                            <div class="tracker-summary-bar-header"><span>Carbs</span><span id="summaryCarbsLabel">0 / --g</span></div>
+                            <div class="tracker-summary-bar-track"><div class="tracker-summary-bar-fill" id="summaryCarbsBar" style="width:0%; background: #27AE60;"></div></div>
+                        </div>
+                        <div>
+                            <div class="tracker-summary-bar-header"><span>Fat</span><span id="summaryFatLabel">0 / --g</span></div>
+                            <div class="tracker-summary-bar-track"><div class="tracker-summary-bar-fill" id="summaryFatBar" style="width:0%; background: #27AE60;"></div></div>
+                        </div>
+                    </div>
+                    <div class="tracker-summary-streak">
+                        <i class="fa-solid fa-fire" id="summaryStreakFire"></i>
+                        <span><span id="summaryStreakValue">0</span> Day Streak</span>
+                    </div>
+                </div>
+
                 <div class="macros-checkin-row">
                     <!-- LEFT: Phase Checklist -->
                     <div class="dash-card">
@@ -4098,6 +4401,7 @@
                 <button class="coach-action-btn" onclick="openCoachMacroModal()"><i class="fa-solid fa-fire"></i> Adjust Macros</button>
                 <button class="coach-action-btn" onclick="openProgressModal()"><i class="fa-solid fa-chart-line"></i> Log Progress</button>
                 <button class="coach-action-btn" onclick="openCoachNoteModal()"><i class="fa-solid fa-note-sticky"></i> Add Note</button>
+                <button class="coach-action-btn" onclick="openToleranceModal()"><i class="fa-solid fa-sliders"></i> Tolerance</button>
                 <button class="coach-action-btn danger" onclick="releaseAthlete()"><i class="fa-solid fa-user-minus"></i> Release</button>
             </div>
 
@@ -4196,6 +4500,45 @@
                                 <span class="coach-summary-stat-notes" id="drillCheckinNotes"></span>
                             </div>
                         </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Streak + Food Log Cards (shown in drill-down) -->
+            <div class="section-container" style="padding-top: 0;">
+                <!-- Streak Card -->
+                <div class="coach-streak-card" id="coachDrillStreak">
+                    <h4><i class="fa-solid fa-fire"></i> Macro Streak</h4>
+                    <div class="coach-streak-stats">
+                        <div>
+                            <div class="coach-streak-stat-label">Current Streak</div>
+                            <div class="coach-streak-stat-value" id="drillStreakCurrent">0</div>
+                        </div>
+                        <div>
+                            <div class="coach-streak-stat-label">Longest Streak</div>
+                            <div class="coach-streak-stat-value" id="drillStreakLongest">0</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Food Log Card -->
+                <div class="coach-foodlog-card" id="coachDrillFoodLog">
+                    <div class="dash-card-header" style="margin-bottom: 1rem;">
+                        <h3 class="dash-card-title" style="font-size: 0.9rem;"><i class="fa-solid fa-utensils" style="color: var(--yellow); margin-right: 0.5rem;"></i> Food Log</h3>
+                    </div>
+                    <div class="coach-foodlog-date-nav">
+                        <button onclick="changeCoachFoodLogDate(-1)"><i class="fa-solid fa-chevron-left"></i></button>
+                        <div class="coach-foodlog-date-label" id="coachFoodLogDateLabel">Today</div>
+                        <button onclick="changeCoachFoodLogDate(1)"><i class="fa-solid fa-chevron-right"></i></button>
+                    </div>
+                    <div class="coach-foodlog-totals" id="coachFoodLogTotals">
+                        <div class="coach-foodlog-total"><div class="coach-foodlog-total-label">Calories</div><div class="coach-foodlog-total-value" id="coachFLTotalCal">0</div></div>
+                        <div class="coach-foodlog-total"><div class="coach-foodlog-total-label">Protein</div><div class="coach-foodlog-total-value" id="coachFLTotalProtein">0g</div></div>
+                        <div class="coach-foodlog-total"><div class="coach-foodlog-total-label">Carbs</div><div class="coach-foodlog-total-value" id="coachFLTotalCarbs">0g</div></div>
+                        <div class="coach-foodlog-total"><div class="coach-foodlog-total-label">Fat</div><div class="coach-foodlog-total-value" id="coachFLTotalFat">0g</div></div>
+                    </div>
+                    <div id="coachFoodLogItems">
+                        <div class="coach-foodlog-empty">No foods logged on this day</div>
                     </div>
                 </div>
             </div>
@@ -4665,6 +5008,41 @@
         </div>
     </div>
 
+    <!-- Tolerance Settings Modal (Coach) -->
+    <div class="modal-overlay" id="toleranceModal">
+        <div class="modal-container" style="max-width:500px;">
+            <button class="modal-close" onclick="closeToleranceModal()">&times;</button>
+            <h3><i class="fa-solid fa-sliders" style="color: var(--yellow); margin-right: 0.5rem;"></i> Macro Tolerance</h3>
+            <p style="color: var(--light-gray); font-size: 0.85rem; margin-bottom: 1.5rem;">Set how close an athlete must hit their targets for it to count as "on target." Default is 10%.</p>
+            <div class="tolerance-phase-row">
+                <div class="tolerance-phase-label">Global Default</div>
+                <input type="number" class="tolerance-phase-input" id="tolGlobal" min="1" max="50" value="10">
+                <span style="font-size:0.85rem; color: var(--light-gray);">%</span>
+            </div>
+            <div class="tolerance-phase-row">
+                <div class="tolerance-phase-label">Phase 1: Baseline</div>
+                <input type="number" class="tolerance-phase-input" id="tolPhase1" min="1" max="50" placeholder="--">
+                <span style="font-size:0.85rem; color: var(--light-gray);">%</span>
+            </div>
+            <div class="tolerance-phase-row">
+                <div class="tolerance-phase-label">Phase 2: Cut</div>
+                <input type="number" class="tolerance-phase-input" id="tolPhase2" min="1" max="50" placeholder="--">
+                <span style="font-size:0.85rem; color: var(--light-gray);">%</span>
+            </div>
+            <div class="tolerance-phase-row">
+                <div class="tolerance-phase-label">Phase 3: Maintain</div>
+                <input type="number" class="tolerance-phase-input" id="tolPhase3" min="1" max="50" placeholder="--">
+                <span style="font-size:0.85rem; color: var(--light-gray);">%</span>
+            </div>
+            <div class="tolerance-phase-row" style="border-bottom: none;">
+                <div class="tolerance-phase-label">Phase 4: Build</div>
+                <input type="number" class="tolerance-phase-input" id="tolPhase4" min="1" max="50" placeholder="--">
+                <span style="font-size:0.85rem; color: var(--light-gray);">%</span>
+            </div>
+            <button class="btn-primary" style="width:100%; margin-top: 1.5rem;" onclick="saveToleranceSettings()">Save Tolerance Settings</button>
+        </div>
+    </div>
+
     <!-- Account Settings Modal -->
     <div class="modal-overlay" id="accountModal">
         <div class="modal-container" style="max-width:550px;">
@@ -5079,6 +5457,8 @@ async function initDashboard(user) {
         loadCheckins(user.id);
         // Load notifications for all users
         loadNotifications(user.id);
+        // Load tracker summary card
+        loadTrackerSummary(user.id);
         // Check for coach macro changes
         checkMacroChanges(user.id, phase);
     }
@@ -6635,10 +7015,17 @@ async function loadCoachView() {
             .eq('phase', phase.num)
             .eq('year', phase.year);
 
+        // Fetch streaks for all athletes
+        var { data: streaks } = await supabase
+            .from('macro_streaks')
+            .select('user_id, current_streak')
+            .in('user_id', athleteIds);
+
         // Build lookup maps
         var latestWeight = {};
         var latestCheckin = {};
         var athleteMacros = {};
+        var athleteStreaks = {};
 
         if (weights) weights.forEach(function(w) {
             if (!latestWeight[w.user_id]) latestWeight[w.user_id] = w;
@@ -6648,6 +7035,9 @@ async function loadCoachView() {
         });
         if (macros) macros.forEach(function(m) {
             athleteMacros[m.user_id] = m;
+        });
+        if (streaks) streaks.forEach(function(s) {
+            athleteStreaks[s.user_id] = s;
         });
 
         var totalAthletes = athleteIds.length;
@@ -6672,14 +7062,18 @@ async function loadCoachView() {
             var calVal = m ? m.calories : '--';
             var energyVal = c && c.energy_level ? c.energy_level + '/5' : '--';
             var checkinDate = c ? new Date(c.week_of + 'T12:00:00').toLocaleDateString('en-US', { month: 'short', day: 'numeric' }) : 'Never';
+            var sk = athleteStreaks[p.id];
+            var streakVal = sk ? sk.current_streak : 0;
+            var streakDisplay = streakVal > 0 ? (streakVal >= 3 ? '<i class="fa-solid fa-fire" style="color:#f39c12;"></i> ' : '') + streakVal : '--';
 
             html += '<div class="client-card' + (stale ? ' needs-attention' : '') + '" onclick="drillIntoClient(\'' + p.id + '\', \'' + name.replace(/'/g, "\\'") + '\')">';
             html += '<div class="client-card-name">' + name + '</div>';
             html += '<div class="client-card-email">' + p.email + '</div>';
-            html += '<div class="client-card-stats">';
+            html += '<div class="client-card-stats" style="grid-template-columns: repeat(4, 1fr);">';
             html += '<div class="client-card-stat"><div class="label">Weight</div><div class="value">' + weightVal + '</div></div>';
             html += '<div class="client-card-stat"><div class="label">Calories</div><div class="value">' + calVal + '</div></div>';
             html += '<div class="client-card-stat"><div class="label">Energy</div><div class="value">' + energyVal + '</div></div>';
+            html += '<div class="client-card-stat"><div class="label">Streak</div><div class="value">' + streakDisplay + '</div></div>';
             html += '</div>';
             html += '<div class="client-card-last-checkin' + (stale ? ' stale' : '') + '"><i class="fa-solid fa-clock"></i> Last check-in: ' + checkinDate + '</div>';
             html += '</div>';
@@ -6877,6 +7271,10 @@ async function drillIntoClient(clientId, clientName) {
     // Load coach-only sections
     loadCoachNotes(clientId);
     loadMacroChangeLog(clientId);
+    // Load food tracker data for drilldown
+    coachFoodLogDate = new Date();
+    loadCoachFoodLog(clientId, coachFoodLogDate);
+    loadCoachDrillStreak(clientId);
 }
 
 function backToCoachList() {
@@ -7330,6 +7728,225 @@ async function changePassword() {
 document.getElementById('accountModal').addEventListener('click', function(e) {
     if (e.target === this) closeAccountModal();
 });
+
+// Close tolerance modal on click outside
+var tolModal = document.getElementById('toleranceModal');
+if (tolModal) {
+    tolModal.addEventListener('click', function(e) {
+        if (e.target === this) closeToleranceModal();
+    });
+}
+
+// ===== TRACKER SUMMARY (Dashboard) =====
+async function loadTrackerSummary(userId) {
+    var card = document.getElementById('trackerSummaryCard');
+    if (!card || !supabase) return;
+
+    try {
+        var phase = getPhaseInfo();
+        var today = new Date();
+        var todayStr = today.getFullYear() + '-' + String(today.getMonth() + 1).padStart(2, '0') + '-' + String(today.getDate()).padStart(2, '0');
+
+        // Fetch targets, today's food log totals, and streak in parallel
+        var [macroResult, logResult, streakResult] = await Promise.all([
+            supabase.from('saved_macros').select('calories, protein, carbs, fat')
+                .eq('user_id', userId).eq('phase', phase.num).eq('year', phase.year).single(),
+            supabase.from('food_log').select('calories, protein, carbs, fat')
+                .eq('user_id', userId).eq('logged_date', todayStr),
+            supabase.from('macro_streaks').select('current_streak, longest_streak')
+                .eq('user_id', userId).single()
+        ]);
+
+        var targets = (macroResult.data && !macroResult.error) ? macroResult.data : { calories: 0, protein: 0, carbs: 0, fat: 0 };
+        var totals = { calories: 0, protein: 0, carbs: 0, fat: 0 };
+        if (logResult.data && !logResult.error) {
+            logResult.data.forEach(function(e) {
+                totals.calories += Number(e.calories) || 0;
+                totals.protein += Number(e.protein) || 0;
+                totals.carbs += Number(e.carbs) || 0;
+                totals.fat += Number(e.fat) || 0;
+            });
+        }
+        var streak = (streakResult.data && !streakResult.error) ? streakResult.data : { current_streak: 0, longest_streak: 0 };
+
+        // Update UI
+        document.getElementById('summaryCalValue').textContent = Math.round(totals.calories) + ' / ' + (targets.calories ? targets.calories.toLocaleString() : '--') + ' cal';
+        updateSummaryBar('Protein', totals.protein, targets.protein);
+        updateSummaryBar('Carbs', totals.carbs, targets.carbs);
+        updateSummaryBar('Fat', totals.fat, targets.fat);
+        document.getElementById('summaryStreakValue').textContent = streak.current_streak || 0;
+        var fireEl = document.getElementById('summaryStreakFire');
+        if (streak.current_streak >= 3) fireEl.classList.add('on-fire');
+        else fireEl.classList.remove('on-fire');
+
+        card.style.display = 'block';
+    } catch (e) {
+        // Tracker tables may not exist yet — fail silently
+        card.style.display = 'none';
+    }
+}
+
+function updateSummaryBar(name, consumed, target) {
+    var label = document.getElementById('summary' + name + 'Label');
+    var bar = document.getElementById('summary' + name + 'Bar');
+    label.textContent = Math.round(consumed) + ' / ' + (target || '--') + 'g';
+    if (!target) {
+        bar.style.width = '0%';
+        bar.style.background = '#333';
+        return;
+    }
+    var pct = Math.min((consumed / target) * 100, 100);
+    var ratio = consumed / target;
+    var color = (ratio >= 0.9 && ratio <= 1.1) ? '#27AE60' : (ratio >= 0.75 && ratio <= 1.25) ? '#f39c12' : '#e74c3c';
+    bar.style.width = pct + '%';
+    bar.style.background = color;
+}
+
+// ===== COACH: FOOD LOG IN DRILLDOWN =====
+var coachFoodLogDate = new Date();
+
+function changeCoachFoodLogDate(delta) {
+    coachFoodLogDate.setDate(coachFoodLogDate.getDate() + delta);
+    loadCoachFoodLog(viewingAthleteId, coachFoodLogDate);
+}
+
+async function loadCoachFoodLog(athleteId, date) {
+    if (!supabase || !athleteId) return;
+    var d = date || new Date();
+    var dateStr = d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0');
+
+    // Update date label
+    var today = new Date();
+    var todayStr = today.getFullYear() + '-' + String(today.getMonth() + 1).padStart(2, '0') + '-' + String(today.getDate()).padStart(2, '0');
+    var label = dateStr === todayStr ? 'Today' : d.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+    document.getElementById('coachFoodLogDateLabel').textContent = label;
+
+    try {
+        var { data, error } = await supabase.from('food_log').select('*')
+            .eq('user_id', athleteId).eq('logged_date', dateStr)
+            .order('created_at', { ascending: true });
+
+        if (error) throw error;
+
+        var items = data || [];
+        var totals = { calories: 0, protein: 0, carbs: 0, fat: 0 };
+        items.forEach(function(e) {
+            totals.calories += Number(e.calories) || 0;
+            totals.protein += Number(e.protein) || 0;
+            totals.carbs += Number(e.carbs) || 0;
+            totals.fat += Number(e.fat) || 0;
+        });
+
+        document.getElementById('coachFLTotalCal').textContent = Math.round(totals.calories);
+        document.getElementById('coachFLTotalProtein').textContent = Math.round(totals.protein) + 'g';
+        document.getElementById('coachFLTotalCarbs').textContent = Math.round(totals.carbs) + 'g';
+        document.getElementById('coachFLTotalFat').textContent = Math.round(totals.fat) + 'g';
+
+        var container = document.getElementById('coachFoodLogItems');
+        if (items.length === 0) {
+            container.innerHTML = '<div class="coach-foodlog-empty">No foods logged on this day</div>';
+            return;
+        }
+
+        var html = '';
+        items.forEach(function(item) {
+            var mealIcon = item.meal_type === 'breakfast' ? 'fa-sun' : item.meal_type === 'lunch' ? 'fa-cloud-sun' : item.meal_type === 'dinner' ? 'fa-moon' : 'fa-cookie';
+            html += '<div class="coach-foodlog-item">';
+            html += '<i class="fa-solid ' + mealIcon + '" style="color: var(--yellow); font-size: 0.8rem; width: 20px; text-align: center;"></i>';
+            html += '<div class="coach-foodlog-item-name">' + (item.food_name || '').replace(/</g, '&lt;') + '</div>';
+            html += '<div class="coach-foodlog-item-macros">' + Math.round(item.calories) + ' cal &middot; ' + Math.round(item.protein) + 'p &middot; ' + Math.round(item.carbs) + 'c &middot; ' + Math.round(item.fat) + 'f</div>';
+            html += '</div>';
+        });
+        container.innerHTML = html;
+    } catch (e) {
+        document.getElementById('coachFoodLogItems').innerHTML = '<div class="coach-foodlog-empty">Unable to load food log</div>';
+    }
+}
+
+// ===== COACH: STREAK IN DRILLDOWN =====
+async function loadCoachDrillStreak(athleteId) {
+    if (!supabase || !athleteId) return;
+    try {
+        var { data, error } = await supabase.from('macro_streaks')
+            .select('current_streak, longest_streak')
+            .eq('user_id', athleteId).single();
+        if (data && !error) {
+            document.getElementById('drillStreakCurrent').textContent = data.current_streak || 0;
+            document.getElementById('drillStreakLongest').textContent = data.longest_streak || 0;
+        } else {
+            document.getElementById('drillStreakCurrent').textContent = '0';
+            document.getElementById('drillStreakLongest').textContent = '0';
+        }
+    } catch (e) {
+        document.getElementById('drillStreakCurrent').textContent = '0';
+        document.getElementById('drillStreakLongest').textContent = '0';
+    }
+}
+
+// ===== COACH: TOLERANCE MODAL =====
+function openToleranceModal() {
+    if (!viewingAthleteId) return;
+    document.getElementById('toleranceModal').classList.add('active');
+    // Reset fields
+    document.getElementById('tolGlobal').value = 10;
+    document.getElementById('tolPhase1').value = '';
+    document.getElementById('tolPhase2').value = '';
+    document.getElementById('tolPhase3').value = '';
+    document.getElementById('tolPhase4').value = '';
+    loadToleranceSettings(viewingAthleteId);
+}
+
+function closeToleranceModal() {
+    document.getElementById('toleranceModal').classList.remove('active');
+}
+
+async function loadToleranceSettings(athleteId) {
+    if (!supabase) return;
+    try {
+        var { data, error } = await supabase.from('macro_tolerance')
+            .select('phase, tolerance_pct')
+            .eq('user_id', athleteId);
+        if (error) throw error;
+        (data || []).forEach(function(row) {
+            if (row.phase === null) {
+                document.getElementById('tolGlobal').value = row.tolerance_pct;
+            } else if (row.phase >= 1 && row.phase <= 4) {
+                document.getElementById('tolPhase' + row.phase).value = row.tolerance_pct;
+            }
+        });
+    } catch (e) { /* silent */ }
+}
+
+async function saveToleranceSettings() {
+    if (!supabase || !currentUser || !viewingAthleteId) return;
+    try {
+        // Delete existing rows for this athlete
+        await supabase.from('macro_tolerance').delete().eq('user_id', viewingAthleteId);
+
+        // Build new rows
+        var rows = [];
+        var globalVal = parseFloat(document.getElementById('tolGlobal').value);
+        if (globalVal && globalVal > 0) {
+            rows.push({ user_id: viewingAthleteId, phase: null, tolerance_pct: globalVal, set_by: currentUser.id });
+        }
+        for (var i = 1; i <= 4; i++) {
+            var val = parseFloat(document.getElementById('tolPhase' + i).value);
+            if (val && val > 0) {
+                rows.push({ user_id: viewingAthleteId, phase: i, tolerance_pct: val, set_by: currentUser.id });
+            }
+        }
+
+        if (rows.length > 0) {
+            var { error } = await supabase.from('macro_tolerance').insert(rows);
+            if (error) throw error;
+        }
+
+        closeToleranceModal();
+        showToast('Tolerance settings saved');
+    } catch (e) {
+        showToast('Failed to save tolerance settings');
+    }
+}
 
 // ===== INIT =====
 checkSession();
