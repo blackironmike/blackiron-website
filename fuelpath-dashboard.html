@@ -1053,6 +1053,24 @@
             height: 100%;
             transition: width 0.6s ease;
         }
+        .phase-card .phase-checklist-section {
+            margin-top: 1.75rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid var(--medium-gray);
+        }
+        .phase-card .phase-checklist-title {
+            font-size: 0.95rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--yellow);
+            margin-bottom: 0.5rem;
+        }
+        .phase-card .phase-checklist-subtitle {
+            font-size: 0.85rem;
+            color: var(--light-gray);
+            margin-bottom: 1rem;
+        }
 
         /* ===== DASHBOARD HERO ===== */
         .dash-hero {
@@ -3666,6 +3684,11 @@
                         <div class="phase-progress-bar">
                             <div class="phase-progress-fill" id="phaseProgressFill" style="width: 0%"></div>
                         </div>
+                        <div class="phase-checklist-section">
+                            <h4 class="phase-checklist-title" id="checklistTitle">Phase Transition Checklist</h4>
+                            <p class="phase-checklist-subtitle" id="checklistSubtitle">Complete these before moving to the next phase.</p>
+                            <div class="checklist-interactive" id="checklistContainer"></div>
+                        </div>
                     </div>
                     <!-- RIGHT: My Macros (compact) -->
                     <div class="dash-card macros-compact">
@@ -3861,18 +3884,6 @@
             </div>
         </section>
 
-        <!-- Section 5: Phase Transition Checklist -->
-        <section class="section">
-            <div class="section-container">
-                <div class="dash-card">
-                    <div class="dash-card-header">
-                        <h3 class="dash-card-title"><i class="fa-solid fa-clipboard-check"></i> <span id="checklistTitle">Phase Transition Checklist</span></h3>
-                    </div>
-                    <p style="color: var(--light-gray); margin-bottom: 1.5rem;" id="checklistSubtitle">Complete these before moving to the next phase.</p>
-                    <div class="checklist-interactive" id="checklistContainer"></div>
-                </div>
-            </div>
-        </section>
 
         <!-- Section 7: Resources & Downloads -->
         <section class="section section-alt">
