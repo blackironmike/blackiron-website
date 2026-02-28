@@ -3766,15 +3766,15 @@
                     <div class="tracker-summary-bars">
                         <div>
                             <div class="tracker-summary-bar-header"><span>Protein</span><span id="summaryProteinLabel">0 / --g</span></div>
-                            <div class="tracker-summary-bar-track"><div class="tracker-summary-bar-fill" id="summaryProteinBar" style="width:0%; background: #27AE60;"></div></div>
+                            <div class="tracker-summary-bar-track"><div class="tracker-summary-bar-fill" id="summaryProteinBar" style="width:0%; background: #e74c3c;"></div></div>
                         </div>
                         <div>
                             <div class="tracker-summary-bar-header"><span>Carbs</span><span id="summaryCarbsLabel">0 / --g</span></div>
-                            <div class="tracker-summary-bar-track"><div class="tracker-summary-bar-fill" id="summaryCarbsBar" style="width:0%; background: #27AE60;"></div></div>
+                            <div class="tracker-summary-bar-track"><div class="tracker-summary-bar-fill" id="summaryCarbsBar" style="width:0%; background: #2196F3;"></div></div>
                         </div>
                         <div>
                             <div class="tracker-summary-bar-header"><span>Fat</span><span id="summaryFatLabel">0 / --g</span></div>
-                            <div class="tracker-summary-bar-track"><div class="tracker-summary-bar-fill" id="summaryFatBar" style="width:0%; background: #27AE60;"></div></div>
+                            <div class="tracker-summary-bar-track"><div class="tracker-summary-bar-fill" id="summaryFatBar" style="width:0%; background: #FFD202;"></div></div>
                         </div>
                     </div>
                     <div class="tracker-summary-streak">
@@ -3822,7 +3822,7 @@
                                     </div>
                                     <div class="macro-legend">
                                         <div class="macro-legend-item">
-                                            <span class="macro-legend-dot" style="background: var(--yellow);"></span>
+                                            <span class="macro-legend-dot" style="background: #e74c3c;"></span>
                                             <div class="macro-legend-detail">
                                                 <div class="macro-legend-name">Protein</div>
                                                 <div class="macro-legend-value"><span id="macroProtein">--</span>g</div>
@@ -3830,7 +3830,7 @@
                                             </div>
                                         </div>
                                         <div class="macro-legend-item">
-                                            <span class="macro-legend-dot" style="background: #4CAF50;"></span>
+                                            <span class="macro-legend-dot" style="background: #2196F3;"></span>
                                             <div class="macro-legend-detail">
                                                 <div class="macro-legend-name">Carbs</div>
                                                 <div class="macro-legend-value"><span id="macroCarbs">--</span>g</div>
@@ -3838,7 +3838,7 @@
                                             </div>
                                         </div>
                                         <div class="macro-legend-item">
-                                            <span class="macro-legend-dot" style="background: #2196F3;"></span>
+                                            <span class="macro-legend-dot" style="background: var(--yellow);"></span>
                                             <div class="macro-legend-detail">
                                                 <div class="macro-legend-name">Fat</div>
                                                 <div class="macro-legend-value"><span id="macroFat">--</span>g</div>
@@ -5338,7 +5338,7 @@ function renderMacroPieChart(protein, carbs, fat) {
             labels: ['Protein', 'Carbs', 'Fat'],
             datasets: [{
                 data: [proteinCals, carbsCals, fatCals],
-                backgroundColor: ['#FFD202', '#4CAF50', '#2196F3'],
+                backgroundColor: ['#e74c3c', '#2196F3', '#FFD202'],
                 borderWidth: 0,
                 hoverOffset: 6
             }]
@@ -7503,10 +7503,9 @@ function updateSummaryBar(name, consumed, target) {
         return;
     }
     var pct = Math.min((consumed / target) * 100, 100);
-    var ratio = consumed / target;
-    var color = (ratio >= 0.9 && ratio <= 1.1) ? '#27AE60' : (ratio >= 0.75 && ratio <= 1.25) ? '#f39c12' : '#e74c3c';
+    var macroColors = { Protein: '#e74c3c', Carbs: '#2196F3', Fat: '#FFD202' };
     bar.style.width = pct + '%';
-    bar.style.background = color;
+    bar.style.background = macroColors[name] || '#27AE60';
 }
 
 // ===== COACH: FOOD LOG IN DRILLDOWN =====

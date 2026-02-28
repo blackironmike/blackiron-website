@@ -2066,6 +2066,7 @@ function renderBar(name, consumed, target) {
     var barEl = document.getElementById('tracker' + name + 'Bar');
     var tolLow = document.getElementById('tracker' + name + 'TolLow');
     var tolHigh = document.getElementById('tracker' + name + 'TolHigh');
+    var macroColors = { Protein: '#e74c3c', Carbs: '#2196F3', Fat: '#FFD202' };
 
     consumedEl.textContent = Math.round(consumed);
 
@@ -2078,11 +2079,9 @@ function renderBar(name, consumed, target) {
     }
 
     var pct = Math.min((consumed / target) * 100, 100);
-    var status = getToleranceStatus(consumed, target, tolerancePct);
-    var color = status === 'on-target' ? 'var(--green)' : status === 'close' ? 'var(--orange)' : 'var(--red)';
 
     barEl.style.width = pct + '%';
-    barEl.style.background = color;
+    barEl.style.background = macroColors[name] || 'var(--green)';
 
     // Tolerance markers
     var lowPct = Math.max(0, (1 - tolerancePct / 100)) * 100;
@@ -2140,23 +2139,15 @@ document.addEventListener('DOMContentLoaded', function() {
 async function searchFoods(query) {
     var resultsEl = document.getElementById('foodSearchResults');
     var statusEl = document.getElementById('foodSearchStatus');
+    resultsEl.innerHTML = '';
+    statusEl.textContent = 'Searching...';
+    var allResults = [];
+    var completed = 0;
 
-    try {
-        var [usdaResults, offResults] = await Promise.all([
-            searchUSDA(query),
-            searchOpenFoodFacts(query)
-        ]);
-
-        var all = usdaResults.concat(offResults);
-        if (all.length === 0) {
-            statusEl.textContent = 'No results found. Try a different search or enter manually.';
-            resultsEl.innerHTML = '';
-            return;
-        }
-
-        statusEl.textContent = all.length + ' results found';
+    function renderResults() {
+        statusEl.textContent = allResults.length + ' results found';
         var html = '';
-        all.forEach(function(food) {
+        allResults.forEach(function(food) {
             html += '<div class="food-search-result" onclick=\'selectFoodResult(' + JSON.stringify(food).replace(/'/g, "\\'") + ')\'>';
             html += '<div class="food-search-result-info">';
             html += '<div class="food-search-result-name">' + escapeHtml(food.name) + '</div>';
@@ -2167,10 +2158,17 @@ async function searchFoods(query) {
             html += '</div>';
         });
         resultsEl.innerHTML = html;
-    } catch (e) {
-        statusEl.textContent = 'Search failed. Please try again.';
-        resultsEl.innerHTML = '';
     }
+
+    function onBatchDone(results) {
+        allResults = allResults.concat(results);
+        completed++;
+        if (allResults.length > 0) renderResults();
+        else if (completed === 2) statusEl.textContent = 'No results found. Try a different search or enter manually.';
+    }
+
+    searchOpenFoodFacts(query).then(onBatchDone).catch(function() { onBatchDone([]); });
+    searchUSDA(query).then(onBatchDone).catch(function() { onBatchDone([]); });
 }
 
 async function searchUSDA(query) {
@@ -2347,14 +2345,17 @@ async function saveFoodLog() {
     try {
         var { error } = await supabase.from('food_log').insert(entry);
         if (error) throw error;
-        closeFoodLogModal();
-        showToast(selectedFood.name + ' logged!');
+    } catch (e) {
+        showToast('Failed to log food. Please try again.');
+        return;
+    }
+    closeFoodLogModal();
+    showToast(selectedFood.name + ' logged!');
+    try {
         await loadFoodLog(currentUser.id, formatDate(trackerDate));
         recalculateStreak();
         loadRecentFoods(currentUser.id);
-    } catch (e) {
-        showToast('Failed to log food. Please try again.');
-    }
+    } catch (e) { /* silently handle refresh failure */ }
 }
 
 // ===== DELETE FOOD LOG ENTRY =====
@@ -2363,12 +2364,15 @@ async function deleteFoodLogEntry(id) {
     try {
         var { error } = await supabase.from('food_log').delete().eq('id', id);
         if (error) throw error;
-        showToast('Entry removed');
-        await loadFoodLog(currentUser.id, formatDate(trackerDate));
-        recalculateStreak();
     } catch (e) {
         showToast('Failed to delete entry.');
+        return;
     }
+    showToast('Entry removed');
+    try {
+        await loadFoodLog(currentUser.id, formatDate(trackerDate));
+        recalculateStreak();
+    } catch (e) { /* silently handle refresh failure */ }
 }
 
 // ===== MANUAL ENTRY =====
@@ -2419,14 +2423,17 @@ async function saveManualEntry() {
     try {
         var { error } = await supabase.from('food_log').insert(entry);
         if (error) throw error;
-        closeManualEntryModal();
-        showToast(foodName + ' logged!');
+    } catch (e) {
+        showToast('Failed to log food. Please try again.');
+        return;
+    }
+    closeManualEntryModal();
+    showToast(foodName + ' logged!');
+    try {
         await loadFoodLog(currentUser.id, formatDate(trackerDate));
         recalculateStreak();
         loadRecentFoods(currentUser.id);
-    } catch (e) {
-        showToast('Failed to log food. Please try again.');
-    }
+    } catch (e) { /* silently handle refresh failure */ }
 }
 
 // ===== RECENT FOODS =====
