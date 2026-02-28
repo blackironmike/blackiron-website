@@ -2453,28 +2453,6 @@
             }
         }
 
-        /* ===== COACH VIEW TOGGLE ===== */
-        .coach-toggle-btn {
-            background: transparent;
-            border: 2px solid var(--yellow);
-            color: var(--yellow);
-            padding: 0.4rem 1rem;
-            font-family: 'Montserrat', sans-serif;
-            font-size: 0.75rem;
-            font-weight: 900;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            margin-right: 0.5rem;
-        }
-
-        .user-bar .coach-toggle-btn:hover,
-        .user-bar .coach-toggle-btn.active {
-            background: var(--yellow);
-            color: var(--black);
-        }
-
         .user-bar-left {
             display: flex;
             align-items: center;
@@ -3318,19 +3296,19 @@
         .tracker-summary-card {
             background: var(--dark-gray);
             border: 2px solid var(--medium-gray);
-            padding: 1.5rem 2rem;
-            margin-bottom: 2rem;
+            padding: 1rem 1.5rem;
+            margin-bottom: 1.5rem;
         }
 
         .tracker-summary-header {
             display: flex;
             align-items: center;
             justify-content: space-between;
-            margin-bottom: 1rem;
+            margin-bottom: 0.6rem;
         }
 
         .tracker-summary-header h3 {
-            font-size: 0.9rem;
+            font-size: 0.8rem;
             text-transform: uppercase;
             letter-spacing: 1px;
             display: flex;
@@ -3342,16 +3320,16 @@
 
         .tracker-summary-cals {
             text-align: center;
-            margin-bottom: 1rem;
+            margin-bottom: 0.6rem;
         }
 
         .tracker-summary-cals-value {
-            font-size: 1.8rem;
+            font-size: 1.4rem;
             font-weight: 900;
         }
 
         .tracker-summary-cals-label {
-            font-size: 0.7rem;
+            font-size: 0.65rem;
             font-weight: 700;
             color: var(--light-gray);
             text-transform: uppercase;
@@ -3361,24 +3339,24 @@
         .tracker-summary-bars {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 1rem;
-            margin-bottom: 1rem;
+            gap: 0.75rem;
+            margin-bottom: 0.6rem;
         }
 
         .tracker-summary-bar-header {
             display: flex;
             justify-content: space-between;
-            font-size: 0.7rem;
+            font-size: 0.65rem;
             font-weight: 700;
             color: var(--light-gray);
             text-transform: uppercase;
             letter-spacing: 0.5px;
-            margin-bottom: 0.35rem;
+            margin-bottom: 0.25rem;
         }
 
         .tracker-summary-bar-track {
             width: 100%;
-            height: 8px;
+            height: 6px;
             background: var(--medium-gray);
         }
 
@@ -3393,9 +3371,9 @@
             align-items: center;
             justify-content: center;
             gap: 0.5rem;
-            font-size: 0.85rem;
+            font-size: 0.75rem;
             font-weight: 700;
-            padding-top: 0.75rem;
+            padding-top: 0.5rem;
             border-top: 1px solid var(--medium-gray);
         }
 
@@ -3615,6 +3593,11 @@
             <div class="fp-menu-divider"></div>
             <a href="fuelpath-supplements" data-page="fuelpath-supplements"><i class="fa-solid fa-capsules"></i> Supplements</a>
             <a href="fuelpath-decade" data-page="fuelpath-decade"><i class="fa-solid fa-road"></i> Decade Roadmap</a>
+            <div class="fp-menu-divider"></div>
+            <a href="#" id="menuCoachToggleBtn" style="display:none;" onclick="toggleCoachView(); closeFpMenu();"><i class="fa-solid fa-clipboard-user"></i> <span id="coachToggleLabel">Coach View</span></a>
+            <a href="#" id="adminLinkBtn" style="display:none;" onclick="window.location.href='fuelpath-admin'"><i class="fa-solid fa-shield-halved"></i> Admin</a>
+            <a href="#" onclick="openAccountModal(); closeFpMenu();"><i class="fa-solid fa-gear"></i> Account</a>
+            <a href="#" onclick="handleLogout()"><i class="fa-solid fa-right-from-bracket"></i> Sign Out</a>
         </div>
         <div class="fp-side-menu-footer">
             <a href="/"><i class="fa-solid fa-arrow-left"></i> Back to Black Iron Athletics</a>
@@ -3690,12 +3673,8 @@
         <div class="user-bar">
             <div class="user-bar-left">
                 <span class="user-bar-email"><i class="fa-solid fa-user"></i> <span id="userEmail"></span></span>
-                <button id="coachToggleBtn" class="coach-toggle-btn" style="display:none;" onclick="toggleCoachView()">
-                    <i class="fa-solid fa-clipboard-user"></i> <span id="coachToggleLabel">Coach View</span>
-                </button>
             </div>
             <div class="user-bar-right">
-                <button id="adminLinkBtn" style="display:none;" onclick="window.location.href='fuelpath-admin'"><i class="fa-solid fa-shield-halved"></i> Admin</button>
                 <div style="position:relative;">
                     <button class="notification-bell" id="notificationBell" onclick="toggleNotificationPanel()">
                         <i class="fa-solid fa-bell"></i>
@@ -3711,8 +3690,6 @@
                         </div>
                     </div>
                 </div>
-                <button onclick="openAccountModal()" title="Account Settings"><i class="fa-solid fa-gear"></i> Account</button>
-                <button onclick="handleLogout()"><i class="fa-solid fa-right-from-bracket"></i> Sign Out</button>
             </div>
         </div>
 
@@ -5155,7 +5132,7 @@ async function initDashboard(user) {
 
         // Show coach toggle if coach or owner
         if (userRole === 'coach' || userRole === 'owner') {
-            document.getElementById('coachToggleBtn').style.display = '';
+            document.getElementById('menuCoachToggleBtn').style.display = '';
         }
 
         // Show admin link if owner
@@ -6625,7 +6602,7 @@ function showCoachView() {
     currentView = 'coach';
     viewingAthleteId = null;
     document.getElementById('coachToggleLabel').textContent = 'My Dashboard';
-    document.getElementById('coachToggleBtn').classList.add('active');
+    document.getElementById('menuCoachToggleBtn').classList.add('active');
 
     // Hide athlete dashboard sections
     var dashSections = document.querySelectorAll('#dashboardContainer > section, #dashboardContainer > .phase-banner, #dashboardContainer > .dash-hero, #dashboardContainer > #subStatusBar, #dashboardContainer > #coachingCallBanner');
@@ -6644,7 +6621,7 @@ function showAthleteView() {
     currentView = 'athlete';
     viewingAthleteId = null;
     document.getElementById('coachToggleLabel').textContent = 'Coach View';
-    document.getElementById('coachToggleBtn').classList.remove('active');
+    document.getElementById('menuCoachToggleBtn').classList.remove('active');
 
     // Show athlete dashboard sections
     var dashSections = document.querySelectorAll('#dashboardContainer > section, #dashboardContainer > .dash-hero, #dashboardContainer > #subStatusBar, #dashboardContainer > #coachingCallBanner');
@@ -7679,6 +7656,7 @@ checkSession();
         toggle.setAttribute('aria-expanded', 'false');
         document.body.style.overflow = '';
     }
+    window.closeFpMenu = closeMenu;
     toggle.addEventListener('click', openMenu);
     closeBtn.addEventListener('click', closeMenu);
     backdrop.addEventListener('click', closeMenu);
