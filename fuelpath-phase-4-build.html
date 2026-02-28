@@ -1,9 +1,9 @@
-ï»¿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Phase 4: Build | October â€“ December | FuelPath: The 4-Phase Metabolic System | Black Iron Athletics</title>
+    <title>Phase 4: Build | October – December | FuelPath: The 4-Phase Metabolic System | Black Iron Athletics</title>
     <meta name="description" content="Phase 4 of FuelPath: the Building Phase (October-December). Invest in next year's results with a controlled caloric surplus designed to fuel muscle growth and strength gains.">
     <meta name="geo.region" content="US-TX">
     <meta name="geo.placename" content="Frisco">
@@ -107,6 +107,12 @@
         }
         .fp-topbar-left { display: flex; align-items: center; gap: 1.25rem; }
         .fp-topbar-logo img { height: 36px; width: auto; display: block; }
+        .fp-topbar-brand {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        .fp-topbar-brand img { height: 24px; width: auto; display: block; }
         .fp-topbar-back {
             color: var(--light-gray); text-decoration: none; font-size: 0.8rem; font-weight: 700;
             text-transform: uppercase; letter-spacing: 0.5px; transition: color 0.3s;
@@ -136,9 +142,10 @@
             display: flex; align-items: center; justify-content: space-between;
             padding: 1rem 1.5rem; border-bottom: 1px solid var(--medium-gray);
         }
-        .fp-side-menu-header span {
-            font-size: 1.1rem; font-weight: 900; text-transform: uppercase;
-            letter-spacing: 1px; color: var(--yellow);
+        .fp-side-menu-header img {
+            height: 22px;
+            width: auto;
+            display: block;
         }
         .fp-side-menu-close {
             background: none; border: none; color: var(--light-gray); font-size: 1.3rem;
@@ -1303,12 +1310,13 @@
             <a href="/" class="fp-topbar-logo"><img src="images/Anvil-WHITE.png" alt="Black Iron Athletics"></a>
             <a href="/" class="fp-topbar-back"><i class="fa-solid fa-arrow-left"></i> Main Site</a>
         </div>
+        <div class="fp-topbar-brand"><img src="images/fuel-path-logo.png" alt="FuelPath"></div>
         <button class="fp-menu-toggle" aria-label="Open FuelPath menu" aria-expanded="false"><i class="fa-solid fa-bars"></i></button>
     </header>
     <div class="fp-menu-backdrop" id="fpMenuBackdrop"></div>
     <aside class="fp-side-menu" id="fpSideMenu" data-page="fuelpath-phase-4-build">
         <div class="fp-side-menu-header">
-            <span>FuelPath</span>
+            <img src="images/fuel-path-logo.png" alt="FuelPath">
             <button class="fp-side-menu-close" aria-label="Close menu"><i class="fa-solid fa-xmark"></i></button>
         </div>
         <div class="fp-side-menu-links">
@@ -2092,8 +2100,8 @@
     if (!window.supabase) return;
     var sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
     var { data } = await sb.auth.getSession();
-    if (!data || !data.session) return; // not logged in â€” gate stays visible
-    // User is authenticated â€” grant access
+    if (!data || !data.session) return; // not logged in — gate stays visible
+    // User is authenticated — grant access
     document.getElementById('gateOverlay').style.display = 'none';
 })();
 </script>
