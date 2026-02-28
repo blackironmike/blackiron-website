@@ -74,236 +74,103 @@
             line-height: 1.2;
         }
 
-        /* ===== NAV ===== */
-        nav {
+        /* ===== FUELPATH TOPBAR ===== */
+        .fp-topbar {
             position: fixed;
             top: 0;
+            left: 0;
             width: 100%;
-            padding: 1.5rem 0;
+            height: 56px;
             background: var(--black);
-            z-index: 1000;
             border-bottom: 1px solid var(--medium-gray);
-        }
-
-        .nav-container {
-            max-width: 100%;
-            margin: 0;
-            padding: 0 4rem;
             display: flex;
+            align-items: center;
             justify-content: space-between;
-            align-items: center;
+            padding: 0 1.5rem;
+            z-index: 1000;
         }
-
-        .logo { height: 50px; }
-        .logo a { display: block; height: 100%; }
-        .logo img { height: 100%; width: auto; }
-
-        .nav-links {
-            display: flex;
-            gap: 3rem;
-            list-style: none;
-            align-items: center;
-        }
-
-        .nav-links > li { position: relative; }
-
-        .nav-links a {
-            color: var(--white);
-            text-decoration: none;
-            font-size: 0.95rem;
-            font-weight: 900;
-            transition: color 0.3s ease;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-
-        .nav-links > li > a:hover { color: var(--yellow); }
-
-        .submenu {
-            display: none;
+        .fp-topbar-left { display: flex; align-items: center; gap: 1.25rem; }
+        .fp-topbar-brand {
             position: absolute;
-            top: 100%;
-            left: 0;
-            background: rgba(26, 26, 26, 0.95);
-            backdrop-filter: blur(10px);
-            min-width: 240px;
-            padding: 0.5rem 0;
-            border: 1px solid var(--medium-gray);
-            list-style: none;
+            left: 50%;
+            transform: translateX(-50%);
         }
-
-        .submenu li { padding: 0; }
-
-        .submenu a {
-            display: block;
-            padding: 1rem 1.5rem;
-            font-size: 0.85rem;
-            font-weight: 900;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            transition: all 0.3s ease;
+        .fp-topbar-brand img { height: 47px; width: auto; display: block; }
+        .fp-menu-toggle {
+            background: none; border: none; color: var(--white); font-size: 1.4rem;
+            cursor: pointer; padding: 0.5rem; transition: color 0.3s;
+            display: flex; align-items: center; justify-content: center;
         }
-
-        .submenu a:hover {
-            background: rgba(255, 210, 2, 0.1);
-            color: var(--yellow);
-            padding-left: 2rem;
+        .fp-menu-toggle:hover { color: var(--yellow); }
+        /* ===== SIDE MENU ===== */
+        .fp-menu-backdrop {
+            position: fixed; inset: 0; background: rgba(0,0,0,0.6); z-index: 1100;
+            opacity: 0; visibility: hidden; transition: opacity 0.3s, visibility 0.3s;
         }
-
-        .nav-links > li:hover .submenu { display: block; }
-
-        .has-submenu > a::after {
-            content: '';
-            display: inline-block;
-            width: 0;
-            height: 0;
-            margin-left: 0.5rem;
-            border-left: 4px solid transparent;
-            border-right: 4px solid transparent;
-            border-top: 5px solid var(--white);
-            transition: all 0.3s ease;
+        .fp-menu-backdrop.open { opacity: 1; visibility: visible; }
+        .fp-side-menu {
+            position: fixed; top: 0; right: 0; width: 300px; max-width: 85vw; height: 100%;
+            background: var(--dark-gray); z-index: 1101; transform: translateX(100%);
+            transition: transform 0.3s ease; display: flex; flex-direction: column; overflow-y: auto;
         }
-
-        .has-submenu:hover > a::after {
-            border-top-color: var(--yellow);
-            transform: translateY(2px);
+        .fp-side-menu.open { transform: translateX(0); }
+        .fp-side-menu-header {
+            display: flex; align-items: center; justify-content: space-between;
+            padding: 1rem 1.5rem; border-bottom: 1px solid var(--medium-gray);
         }
-
-        .nav-cta-group {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
+        .fp-side-menu-header img { height: 22px; width: auto; display: block; }
+        .fp-side-menu-close {
+            background: none; border: none; color: var(--light-gray); font-size: 1.3rem;
+            cursor: pointer; padding: 0.25rem; transition: color 0.3s;
         }
+        .fp-side-menu-close:hover { color: var(--white); }
+        .fp-side-menu-links { flex: 1; padding: 0.75rem 0; }
+        .fp-side-menu-links a {
+            display: flex; align-items: center; gap: 0.75rem; padding: 0.85rem 1.5rem;
+            color: var(--light-gray); text-decoration: none; font-size: 0.9rem; font-weight: 700;
+            text-transform: uppercase; letter-spacing: 0.5px; transition: all 0.2s;
+        }
+        .fp-side-menu-links a:hover { color: var(--white); background: rgba(255,255,255,0.05); }
+        .fp-side-menu-links a.active { color: var(--yellow); }
+        .fp-side-menu-links a i { width: 20px; text-align: center; font-size: 0.85rem; }
+        .fp-side-menu-links .fp-menu-dot {
+            width: 10px; height: 10px; border-radius: 50%; display: inline-block; margin-left: 5px;
+        }
+        .fp-side-menu-links .fp-menu-divider { height: 1px; background: var(--medium-gray); margin: 0.5rem 1.5rem; }
+        .fp-side-menu-links .fp-menu-label {
+            padding: 0.75rem 1.5rem 0.25rem; font-size: 0.7rem; font-weight: 700;
+            text-transform: uppercase; letter-spacing: 1.5px; color: #666;
+        }
+        .fp-side-menu-footer { border-top: 1px solid var(--medium-gray); padding: 1rem 1.5rem; }
+        .fp-side-menu-footer a {
+            color: var(--light-gray); text-decoration: none; font-size: 0.8rem; font-weight: 600;
+            display: flex; align-items: center; gap: 0.5rem; transition: color 0.3s;
+        }
+        .fp-side-menu-footer a:hover { color: var(--yellow); }
 
-        .cta-btn {
+        .skip-link {
+            position: absolute;
+            top: -100%;
+            left: 1rem;
             background: var(--yellow);
             color: var(--black);
-            padding: 0.9rem 1.5rem;
-            border-radius: 0;
+            padding: 0.5rem 1rem;
+            z-index: 10000;
+            font-weight: 700;
             text-decoration: none;
-            font-weight: 900;
-            font-size: 0.85rem;
-            transition: all 0.3s ease;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            border: 2px solid var(--yellow);
-            white-space: nowrap;
         }
-
-        .cta-btn:hover {
-            background: var(--black);
-            color: var(--yellow);
-        }
-
-        .login-btn {
-            color: var(--yellow);
-            padding: 0.9rem 1.5rem;
-            border-radius: 0;
-            text-decoration: none;
-            font-weight: 900;
-            font-size: 0.85rem;
-            transition: all 0.3s ease;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            border: 2px solid var(--yellow);
-            white-space: nowrap;
-            background: transparent;
-        }
-
-        .login-btn:hover {
-            background: var(--yellow);
-            color: var(--black);
-        }
-
-        /* ===== HAMBURGER / MOBILE NAV ===== */
-        .hamburger {
-            display: none;
-            flex-direction: column;
-            justify-content: center;
-            gap: 5px;
-            width: 30px;
-            height: 30px;
-            cursor: pointer;
-            background: none;
-            border: none;
-            padding: 0;
-            z-index: 1002;
-        }
-
-        .hamburger span {
-            display: block;
-            width: 30px;
-            height: 3px;
-            background: var(--white);
-            transition: all 0.3s ease;
-        }
-
-        .hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(6px, 6px); }
-        .hamburger.active span:nth-child(2) { opacity: 0; }
-        .hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(6px, -6px); }
-
-        .mobile-nav-overlay {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.97);
-            z-index: 1001;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            gap: 0;
-        }
-
-        .mobile-nav-overlay.active { display: flex; }
-
-        .mobile-nav-overlay a {
-            color: var(--white);
-            text-decoration: none;
-            font-size: 1.2rem;
-            font-weight: 900;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            padding: 1rem 2rem;
-            transition: color 0.3s ease;
-            text-align: center;
-        }
-
-        .mobile-nav-overlay .mobile-sub-link { font-size: 0.9rem; color: var(--light-gray); padding: 0.5rem 2rem; font-weight: 700; letter-spacing: 0.5px; }
-        .mobile-nav-overlay .mobile-sub-link:hover { color: var(--yellow); }
-        .mobile-nav-overlay a:hover { color: var(--yellow); }
-
-        .mobile-nav-overlay .mobile-cta {
-            margin-top: 1.5rem;
-            background: var(--yellow);
-            color: var(--black);
-            padding: 1rem 2.5rem;
-            font-size: 1rem;
-            font-weight: 900;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            border: 2px solid var(--yellow);
-            transition: all 0.3s ease;
-        }
-
-        .mobile-nav-overlay .mobile-cta:hover {
-            background: transparent;
-            color: var(--yellow);
-        }
+        .skip-link:focus { top: 0.5rem; }
 
         /* ===== ADMIN HERO ===== */
         .admin-hero {
-            padding-top: 100px;
-            padding-bottom: 2rem;
+            padding-top: 56px;
             background: var(--dark-gray);
             border-bottom: 1px solid var(--medium-gray);
         }
 
         .admin-hero-container {
             max-width: 100%;
-            padding: 2rem 4rem;
+            padding: 1.5rem 4rem;
         }
 
         .admin-hero h1 {
@@ -762,94 +629,17 @@
             margin-right: 0.5rem;
         }
 
-        /* ===== FOOTER ===== */
-        footer {
-            padding: 4rem 0 2rem;
-            background: var(--black);
-            border-top: 1px solid var(--medium-gray);
-            width: 100%;
-        }
-
-        .footer-container {
-            max-width: 100%;
-            margin: 0;
-            padding: 0 4rem;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 4rem;
-            margin-bottom: 3rem;
-        }
-
-        .footer-section h3 {
-            font-weight: 900;
-            margin-bottom: 1.5rem;
-            text-transform: uppercase;
-            font-size: 0.9rem;
-            letter-spacing: 1px;
-        }
-
-        .footer-section ul { list-style: none; }
-        .footer-section ul li { margin-bottom: 0.75rem; }
-
-        .footer-section a {
-            color: var(--light-gray);
-            text-decoration: none;
-            transition: color 0.3s ease;
-            font-weight: 500;
-        }
-
-        .footer-section a:hover { color: var(--yellow); }
-
-        .footer-logo {
-            height: 60px;
-            margin-bottom: 1.5rem;
-        }
-
-        .footer-bottom {
-            text-align: center;
-            padding-top: 2rem;
-            border-top: 1px solid var(--medium-gray);
-            color: var(--light-gray);
-            font-size: 0.9rem;
-        }
-
         /* ===== RESPONSIVE ===== */
         @media (max-width: 1024px) {
-            .nav-container { padding: 0 2rem; }
             .admin-hero-container { padding: 2rem; }
             .user-bar { padding-left: 2rem; padding-right: 2rem; }
             .admin-stats-bar { padding-left: 2rem; padding-right: 2rem; }
             .admin-toolbar { padding-left: 2rem; padding-right: 2rem; }
             .admin-table-wrap { padding-left: 2rem; padding-right: 2rem; }
-            .footer-container { padding-left: 2rem; padding-right: 2rem; }
         }
 
         @media (max-width: 768px) {
-            .hamburger { display: flex !important; }
-            .nav-links { display: none !important; }
-            .nav-cta-group .login-btn { display: none; }
-
-            .nav-container {
-                padding: 0 1.5rem;
-                flex-wrap: wrap;
-            }
-
-            .nav-cta-group {
-                order: 3;
-                width: 100%;
-            }
-
-            .cta-btn {
-                order: 3;
-                width: 100%;
-                text-align: center;
-                margin-top: 0.75rem;
-                padding: 0.7rem 1rem;
-                font-size: 0.8rem;
-            }
-
-            .admin-hero { padding-top: 130px; }
-            .admin-hero-container { padding: 2rem 1.5rem; }
+            .admin-hero-container { padding: 1.5rem; }
             .admin-hero h1 { font-size: 1.5rem; }
 
             .user-bar {
@@ -886,11 +676,6 @@
                 padding: 0.7rem 0.75rem;
                 font-size: 0.75rem;
             }
-
-            .footer-container {
-                padding: 0 1.5rem;
-                gap: 2rem;
-            }
         }
 
         @media (max-width: 480px) {
@@ -909,24 +694,6 @@
             }
         }
 
-        /* Skip Navigation */
-        .skip-link {
-            position: absolute;
-            top: -100%;
-            left: 50%;
-            transform: translateX(-50%);
-            background: var(--yellow);
-            color: var(--black);
-            padding: 0.75rem 1.5rem;
-            font-weight: 700;
-            z-index: 10000;
-            text-decoration: none;
-            transition: top 0.2s;
-        }
-        .skip-link:focus {
-            top: 10px;
-        }
-
         /* Focus Visible Styles */
         a:focus-visible,
         button:focus-visible,
@@ -937,76 +704,47 @@
             outline: 2px solid var(--yellow);
             outline-offset: 2px;
         }
-
-        /* Keyboard Nav for Submenus */
-        .nav-links > li:focus-within .submenu,
-        .has-submenu.submenu-open .submenu {
-            display: block;
-        }
-        .has-submenu:focus-within > a::after {
-            border-top-color: var(--yellow);
-            transform: translateY(2px);
-        }
     </style>
 </head>
 <body>
     <a href="#main-content" class="skip-link">Skip to main content</a>
-    <nav>
-        <div class="nav-container">
-            <div class="logo">
-                <a href="/">
-                    <img src="images/logo.png" alt="Black Iron Athletics">
-                </a>
-            </div>
-            <ul class="nav-links">
-                <li class="has-submenu">
-                    <a href="about">About Us</a>
-                    <ul class="submenu">
-                        <li><a href="about#mission">Our Mission</a></li>
-                        <li><a href="about#team">Meet the Team</a></li>
-                        <li><a href="programs">Programs</a></li>
-                        <li><a href="schedule">Class Schedule</a></li>
-                    </ul>
-                </li>
-                <li class="has-submenu">
-                    <a href="getting-started">Getting Started</a>
-                    <ul class="submenu">
-                        <li><a href="getting-started#membership">Membership Options</a></li>
-                        <li><a href="getting-started#faqs">FAQs</a></li>
-                    </ul>
-                </li>
-                <li><a href="media">Media</a></li>
-                <li><a href="blog/">Blog</a></li>
-                <li><a href="contact">Contact</a></li>
-            </ul>
-            <div class="nav-cta-group">
-                <a href="fuelpath-dashboard" class="login-btn">My Dashboard</a>
-                <a href="#" onclick="openLeadModal(); return false;" class="cta-btn">Book Free Consultation</a>
-            </div>
-            <button class="hamburger" onclick="toggleMobileNav()" aria-label="Menu">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
-        </div>
-    </nav>
 
-    <div class="mobile-nav-overlay" id="mobileNav">
-        <a href="/" onclick="closeMobileNav()">Home</a>
-        <a href="about" onclick="closeMobileNav()">About Us</a>
-        <a href="about#mission" class="mobile-sub-link" onclick="closeMobileNav()">Our Mission</a>
-        <a href="about#team" class="mobile-sub-link" onclick="closeMobileNav()">Meet the Team</a>
-        <a href="programs" class="mobile-sub-link" onclick="closeMobileNav()">Programs</a>
-        <a href="schedule" class="mobile-sub-link" onclick="closeMobileNav()">Class Schedule</a>
-        <a href="getting-started" onclick="closeMobileNav()">Getting Started</a>
-        <a href="getting-started#membership" class="mobile-sub-link" onclick="closeMobileNav()">Membership Options</a>
-        <a href="getting-started#faqs" class="mobile-sub-link" onclick="closeMobileNav()">FAQs</a>
-        <a href="media" onclick="closeMobileNav()">Media</a>
-        <a href="blog/" onclick="closeMobileNav()">Blog</a>
-        <a href="contact" onclick="closeMobileNav()">Contact</a>
-        <a href="#" class="mobile-cta" onclick="closeMobileNav(); openLeadModal(); return false;">Book Free Consultation</a>
-        <a href="fuelpath-dashboard" class="mobile-login" onclick="closeMobileNav()">My Dashboard</a>
-    </div>
+    <!-- FuelPath Top Bar -->
+    <header class="fp-topbar">
+        <div class="fp-topbar-left"></div>
+        <div class="fp-topbar-brand"><img src="images/fuel-path-logo.png" alt="FuelPath"></div>
+        <button class="fp-menu-toggle" aria-label="Open FuelPath menu" aria-expanded="false"><i class="fa-solid fa-bars"></i></button>
+    </header>
+
+    <!-- Side Menu Backdrop -->
+    <div class="fp-menu-backdrop" id="fpMenuBackdrop"></div>
+
+    <!-- Side Menu -->
+    <aside class="fp-side-menu" id="fpSideMenu" data-page="fuelpath-admin">
+        <div class="fp-side-menu-header">
+            <img src="images/fuel-path-logo.png" alt="FuelPath">
+            <button class="fp-side-menu-close" aria-label="Close menu"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+        <div class="fp-side-menu-links">
+            <a href="fuelpath-dashboard" data-page="fuelpath-dashboard"><i class="fa-solid fa-gauge"></i> My Dashboard</a>
+            <a href="fuelpath-tracker" data-page="fuelpath-tracker"><i class="fa-solid fa-utensils"></i> Food Tracker</a>
+            <div class="fp-menu-divider"></div>
+            <div class="fp-menu-label">The 4 Phases</div>
+            <a href="fuelpath-phase-1-maintain" data-page="fuelpath-phase-1-maintain"><span class="fp-menu-dot" style="background:var(--phase-baseline)"></span> Phase 1: Baseline</a>
+            <a href="fuelpath-phase-2-cut" data-page="fuelpath-phase-2-cut"><span class="fp-menu-dot" style="background:var(--phase-cut)"></span> Phase 2: Cut</a>
+            <a href="fuelpath-phase-3-maintain" data-page="fuelpath-phase-3-maintain"><span class="fp-menu-dot" style="background:var(--phase-maintain)"></span> Phase 3: Maintain</a>
+            <a href="fuelpath-phase-4-build" data-page="fuelpath-phase-4-build"><span class="fp-menu-dot" style="background:var(--phase-build)"></span> Phase 4: Build</a>
+            <div class="fp-menu-divider"></div>
+            <a href="fuelpath-supplements" data-page="fuelpath-supplements"><i class="fa-solid fa-capsules"></i> Supplements</a>
+            <a href="fuelpath-decade" data-page="fuelpath-decade"><i class="fa-solid fa-road"></i> Decade Roadmap</a>
+            <div class="fp-menu-divider"></div>
+            <a href="fuelpath-admin" data-page="fuelpath-admin"><i class="fa-solid fa-shield-halved"></i> Admin</a>
+            <a href="#" onclick="handleLogout()"><i class="fa-solid fa-right-from-bracket"></i> Sign Out</a>
+        </div>
+        <div class="fp-side-menu-footer">
+            <a href="/"><i class="fa-solid fa-arrow-left"></i> Back to Black Iron Athletics</a>
+        </div>
+    </aside>
 
     <main id="main-content">
 
@@ -1038,10 +776,6 @@
         <div class="user-bar">
             <div class="user-bar-left">
                 <span class="user-bar-email"><i class="fa-solid fa-user"></i> <span id="userEmail"></span></span>
-            </div>
-            <div class="user-bar-right">
-                <button onclick="window.location.href='fuelpath-dashboard'"><i class="fa-solid fa-arrow-left"></i> Dashboard</button>
-                <button onclick="handleLogout()"><i class="fa-solid fa-right-from-bracket"></i> Sign Out</button>
             </div>
         </div>
 
@@ -1117,52 +851,8 @@
 
     </main>
 
-    <footer>
-        <div class="footer-container">
-            <div class="footer-section">
-                <a href="/">
-                    <img src="images/logo.png" alt="Black Iron Athletics" class="footer-logo" loading="lazy">
-                </a>
-                <p style="color: var(--light-gray); margin-bottom: 1rem;">Forging everyday people into everyday athletes through strength, community, and purpose.</p>
-            </div>
-            <div class="footer-section">
-                <h3>Quick Links</h3>
-                <ul>
-                    <li><a href="/">Home</a></li>
-                    <li><a href="schedule">Class Schedule</a></li>
-                    <li><a href="faq">FAQ</a></li>
-                    <li><a href="privacy-policy">Terms & Privacy Policy</a></li>
-                    <li><a href="privacy-policy#sms-terms">SMS Terms</a></li>
-                </ul>
-            </div>
-            <div class="footer-section">
-                <h3>Contact</h3>
-                <p style="color: var(--light-gray); margin-bottom: 1rem;">
-                    279 Main St #122<br>
-                    Frisco, TX 75036
-                </p>
-                <p style="margin-bottom: 1.5rem;">
-                    <a href="tel:(972)785-7036" style="color: var(--yellow); font-weight: 700;">(972) 785-7036</a>
-                </p>
-            </div>
-            <div class="footer-section">
-                <h3>Hours</h3>
-                <p style="color: var(--light-gray); margin-bottom: 1rem;">
-                    Check our class calendar for an up to date schedule.
-                </p>
-                <p style="color: var(--yellow); font-weight: 700;">
-                    Open Gym: 24/7
-                </p>
-            </div>
-        </div>
-        <div class="footer-bottom">
-            <div style="margin-bottom: 1.5rem; display: flex; justify-content: center; gap: 1.5rem; font-size: 1.5rem;">
-                <a href="https://www.instagram.com/blackiron_athletics/" target="_blank" rel="noopener" style="color: var(--light-gray); transition: color 0.3s ease;" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
-                <a href="https://www.youtube.com/channel/UCF1XjUXEs81OWY70chem6vA" target="_blank" rel="noopener" style="color: var(--light-gray); transition: color 0.3s ease;" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
-                <a href="https://www.facebook.com/BlackIronAthletics/" target="_blank" rel="noopener" style="color: var(--light-gray); transition: color 0.3s ease;" aria-label="Facebook"><i class="fa-brands fa-facebook"></i></a>
-            </div>
-            <p>&copy; 2026 Black Iron Athletics. All rights reserved.</p>
-        </div>
+    <footer style="border-top: 1px solid var(--medium-gray); padding: 1.5rem; text-align: center; color: #666; font-size: 0.75rem;">
+        &copy; 2026 Black Iron Athletics. All rights reserved.
     </footer>
 
 <script>
@@ -1181,16 +871,33 @@ var sortField = 'created_at';
 var sortAsc = false;
 var pendingChange = null; // { type: 'role'|'coach', ... }
 
-// ===== MOBILE NAV =====
-function toggleMobileNav() {
-    document.getElementById('mobileNav').classList.toggle('active');
-    document.querySelector('.hamburger').classList.toggle('active');
-}
-
-function closeMobileNav() {
-    document.getElementById('mobileNav').classList.remove('active');
-    document.querySelector('.hamburger').classList.remove('active');
-}
+// ===== FUELPATH SIDE MENU =====
+(function() {
+    var menu = document.getElementById('fpSideMenu');
+    var backdrop = document.getElementById('fpMenuBackdrop');
+    var toggle = document.querySelector('.fp-menu-toggle');
+    var closeBtn = menu.querySelector('.fp-side-menu-close');
+    function openMenu() {
+        menu.classList.add('open');
+        backdrop.classList.add('open');
+        toggle.setAttribute('aria-expanded', 'true');
+        document.body.style.overflow = 'hidden';
+    }
+    function closeMenu() {
+        menu.classList.remove('open');
+        backdrop.classList.remove('open');
+        toggle.setAttribute('aria-expanded', 'false');
+        document.body.style.overflow = '';
+    }
+    toggle.addEventListener('click', openMenu);
+    closeBtn.addEventListener('click', closeMenu);
+    backdrop.addEventListener('click', closeMenu);
+    document.addEventListener('keydown', function(e) { if (e.key === 'Escape') closeMenu(); });
+    var path = window.location.pathname.replace(/\/$/, '').split('/').pop().replace('.html', '') || 'index';
+    menu.querySelectorAll('.fp-side-menu-links a[data-page]').forEach(function(a) {
+        if (a.getAttribute('data-page') === path) a.classList.add('active');
+    });
+})();
 
 // ===== AUTH + ROLE GATE =====
 async function checkSession() {
@@ -1662,56 +1369,12 @@ async function handleLogout() {
     window.location.href = 'fuelpath-dashboard';
 }
 
-// ===== LEAD MODAL PLACEHOLDER =====
-function openLeadModal() {
-    // Placeholder â€” same as other pages
-}
-
 // ===== INIT =====
 checkSession();
 </script>
 <script>
-// ===== ACCESSIBILITY: KEYBOARD NAV & FOCUS TRAP =====
+// ===== ACCESSIBILITY: FOCUS TRAP =====
 (function() {
-    // --- Keyboard Navigation for Submenus ---
-    document.querySelectorAll('.has-submenu').forEach(function(item) {
-        var link = item.querySelector('a');
-        var sub = item.querySelector('.submenu');
-        if (!link || !sub) return;
-        link.setAttribute('aria-haspopup', 'true');
-        link.setAttribute('aria-expanded', 'false');
-        function openSub() { item.classList.add('submenu-open'); link.setAttribute('aria-expanded', 'true'); }
-        function closeSub() { item.classList.remove('submenu-open'); link.setAttribute('aria-expanded', 'false'); }
-        link.addEventListener('keydown', function(e) {
-            if (e.key === 'Enter' || e.key === ' ') {
-                e.preventDefault();
-                if (link.getAttribute('aria-expanded') === 'true') { closeSub(); }
-                else { openSub(); var f = sub.querySelector('a'); if (f) f.focus(); }
-            }
-            if (e.key === 'ArrowDown') { e.preventDefault(); openSub(); var f = sub.querySelector('a'); if (f) f.focus(); }
-        });
-        sub.addEventListener('keydown', function(e) {
-            var links = sub.querySelectorAll('a');
-            var idx = Array.prototype.indexOf.call(links, document.activeElement);
-            if (e.key === 'Escape') { closeSub(); link.focus(); }
-            if (e.key === 'ArrowDown' && idx < links.length - 1) { e.preventDefault(); links[idx + 1].focus(); }
-            if (e.key === 'ArrowUp') { e.preventDefault(); if (idx > 0) links[idx - 1].focus(); else { closeSub(); link.focus(); } }
-        });
-        item.addEventListener('focusout', function() {
-            setTimeout(function() { if (!item.contains(document.activeElement)) closeSub(); }, 0);
-        });
-    });
-
-    // --- Hamburger aria-expanded ---
-    var hamburger = document.querySelector('.hamburger');
-    if (hamburger) {
-        hamburger.setAttribute('aria-expanded', 'false');
-        var mn = document.getElementById('mobileNav');
-        if (mn) new MutationObserver(function() {
-            hamburger.setAttribute('aria-expanded', mn.classList.contains('active') ? 'true' : 'false');
-        }).observe(mn, { attributes: true, attributeFilter: ['class'] });
-    }
-
     // --- Modal Focus Trapping ---
     var prevFocus = null;
     function trapFocus(modal) {
