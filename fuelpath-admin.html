@@ -1403,7 +1403,7 @@ function renderTable() {
         var u = filteredUsers[i];
         var isSelf = currentUser && u.id === currentUser.id;
         var role = u.role || 'athlete';
-        var name = u.display_name || 'â€”';
+        var name = u.display_name || u.email.split('@')[0] || '—';
         var email = u.email || 'â€”';
         var joined = u.created_at ? formatDate(u.created_at) : 'â€”';
 
