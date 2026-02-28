@@ -90,206 +90,89 @@
             line-height: 1.2;
         }
 
-        /* ===== NAV ===== */
-        nav {
+        /* ===== FUELPATH TOPBAR ===== */
+        .fp-topbar {
             position: fixed;
             top: 0;
+            left: 0;
             width: 100%;
-            padding: 1.5rem 0;
+            height: 56px;
             background: var(--black);
-            z-index: 1000;
             border-bottom: 1px solid var(--medium-gray);
-        }
-
-        .nav-container {
-            max-width: 100%;
-            margin: 0;
-            padding: 0 4rem;
             display: flex;
+            align-items: center;
             justify-content: space-between;
-            align-items: center;
+            padding: 0 1.5rem;
+            z-index: 1000;
         }
-
-        .logo { height: 50px; }
-        .logo a { display: block; height: 100%; }
-        .logo img { height: 100%; width: auto; }
-
-        .nav-links {
-            display: flex;
-            gap: 3rem;
-            list-style: none;
-            align-items: center;
+        .fp-topbar-left { display: flex; align-items: center; gap: 1.25rem; }
+        .fp-topbar-logo img { height: 36px; width: auto; display: block; }
+        .fp-topbar-back {
+            color: var(--light-gray); text-decoration: none; font-size: 0.8rem; font-weight: 700;
+            text-transform: uppercase; letter-spacing: 0.5px; transition: color 0.3s;
+            display: flex; align-items: center; gap: 0.4rem;
         }
-
-        .nav-links > li { position: relative; }
-
-        .nav-links a {
-            color: var(--white);
-            text-decoration: none;
-            font-size: 0.95rem;
-            font-weight: 900;
-            transition: color 0.3s ease;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
+        .fp-topbar-back:hover { color: var(--yellow); }
+        .fp-topbar-back i { font-size: 0.7rem; }
+        .fp-menu-toggle {
+            background: none; border: none; color: var(--white); font-size: 1.4rem;
+            cursor: pointer; padding: 0.5rem; transition: color 0.3s;
+            display: flex; align-items: center; justify-content: center;
         }
-
-        .nav-links > li > a:hover { color: var(--yellow); }
-
-        .submenu {
-            display: none;
-            position: absolute;
-            top: 100%;
-            left: 0;
-            background: rgba(26, 26, 26, 0.95);
-            backdrop-filter: blur(10px);
-            min-width: 240px;
-            padding: 0.5rem 0;
-            border: 1px solid var(--medium-gray);
-            list-style: none;
+        .fp-menu-toggle:hover { color: var(--yellow); }
+        /* ===== SIDE MENU ===== */
+        .fp-menu-backdrop {
+            position: fixed; inset: 0; background: rgba(0,0,0,0.6); z-index: 1100;
+            opacity: 0; visibility: hidden; transition: opacity 0.3s, visibility 0.3s;
         }
-
-        .submenu li { padding: 0; }
-
-        .submenu a {
-            display: block;
-            padding: 1rem 1.5rem;
-            font-size: 0.85rem;
-            font-weight: 900;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            transition: all 0.3s ease;
+        .fp-menu-backdrop.open { opacity: 1; visibility: visible; }
+        .fp-side-menu {
+            position: fixed; top: 0; right: 0; width: 300px; max-width: 85vw; height: 100%;
+            background: var(--dark-gray); z-index: 1101; transform: translateX(100%);
+            transition: transform 0.3s ease; display: flex; flex-direction: column; overflow-y: auto;
         }
-
-        .submenu a:hover {
-            background: rgba(255, 210, 2, 0.1);
-            color: var(--yellow);
-            padding-left: 2rem;
+        .fp-side-menu.open { transform: translateX(0); }
+        .fp-side-menu-header {
+            display: flex; align-items: center; justify-content: space-between;
+            padding: 1rem 1.5rem; border-bottom: 1px solid var(--medium-gray);
         }
-
-        .nav-links > li:hover .submenu { display: block; }
-
-        .has-submenu > a::after {
-            content: '';
-            display: inline-block;
-            width: 0;
-            height: 0;
-            margin-left: 0.5rem;
-            border-left: 4px solid transparent;
-            border-right: 4px solid transparent;
-            border-top: 5px solid var(--white);
-            transition: all 0.3s ease;
+        .fp-side-menu-header span {
+            font-size: 1.1rem; font-weight: 900; text-transform: uppercase;
+            letter-spacing: 1px; color: var(--yellow);
         }
-
-        .has-submenu:hover > a::after {
-            border-top-color: var(--yellow);
-            transform: translateY(2px);
+        .fp-side-menu-close {
+            background: none; border: none; color: var(--light-gray); font-size: 1.3rem;
+            cursor: pointer; padding: 0.25rem; transition: color 0.3s;
         }
-
-        .nav-cta-group {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
+        .fp-side-menu-close:hover { color: var(--white); }
+        .fp-side-menu-links { flex: 1; padding: 0.75rem 0; }
+        .fp-side-menu-links a {
+            display: flex; align-items: center; gap: 0.75rem; padding: 0.85rem 1.5rem;
+            color: var(--light-gray); text-decoration: none; font-size: 0.9rem; font-weight: 700;
+            text-transform: uppercase; letter-spacing: 0.5px; transition: all 0.2s;
         }
-
-        .cta-btn {
-            background: var(--yellow);
-            color: var(--black);
-            padding: 0.9rem 1.5rem;
-            border-radius: 0;
-            text-decoration: none;
-            font-weight: 900;
-            font-size: 0.85rem;
-            transition: all 0.3s ease;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            border: 2px solid var(--yellow);
-            white-space: nowrap;
+        .fp-side-menu-links a:hover { color: var(--white); background: rgba(255,255,255,0.05); }
+        .fp-side-menu-links a.active { color: var(--yellow); }
+        .fp-side-menu-links a i { width: 20px; text-align: center; font-size: 0.85rem; }
+        .fp-side-menu-links .fp-menu-dot {
+            width: 10px; height: 10px; border-radius: 50%; display: inline-block; margin-left: 5px;
         }
-
-        .cta-btn:hover {
-            background: var(--black);
-            color: var(--yellow);
+        .fp-side-menu-links .fp-menu-divider { height: 1px; background: var(--medium-gray); margin: 0.5rem 1.5rem; }
+        .fp-side-menu-links .fp-menu-label {
+            padding: 0.75rem 1.5rem 0.25rem; font-size: 0.7rem; font-weight: 700;
+            text-transform: uppercase; letter-spacing: 1.5px; color: #666;
         }
-
-        .login-btn {
-            color: var(--yellow);
-            padding: 0.9rem 1.5rem;
-            border-radius: 0;
-            text-decoration: none;
-            font-weight: 900;
-            font-size: 0.85rem;
-            transition: all 0.3s ease;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            border: 2px solid var(--yellow);
-            white-space: nowrap;
-            background: transparent;
+        .fp-side-menu-footer { border-top: 1px solid var(--medium-gray); padding: 1rem 1.5rem; }
+        .fp-side-menu-footer a {
+            color: var(--light-gray); text-decoration: none; font-size: 0.8rem; font-weight: 600;
+            display: flex; align-items: center; gap: 0.5rem; transition: color 0.3s;
         }
-
-        .login-btn:hover {
-            background: var(--yellow);
-            color: var(--black);
-        }
-
-        /* ===== HAMBURGER ===== */
-        .hamburger {
-            display: none;
-            background: transparent;
-            border: none;
-            cursor: pointer;
-            padding: 0.5rem;
-            z-index: 1001;
-        }
-
-        .hamburger span {
-            display: block;
-            width: 28px;
-            height: 3px;
-            background: var(--white);
-            margin: 5px 0;
-            transition: all 0.3s ease;
-        }
-
-        .hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(6px, 6px); }
-        .hamburger.active span:nth-child(2) { opacity: 0; }
-        .hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(6px, -6px); }
-
-        .mobile-nav-overlay {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.97);
-            z-index: 999;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            gap: 1.5rem;
-        }
-
-        .mobile-nav-overlay.active { display: flex; }
-
-        .mobile-nav-overlay a {
-            color: var(--white);
-            text-decoration: none;
-            font-size: 1.2rem;
-            font-weight: 900;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            transition: color 0.3s ease;
-        }
-
-        .mobile-nav-overlay a:hover { color: var(--yellow); }
-        .mobile-nav-overlay .mobile-sub-link { font-size: 0.9rem; font-weight: 600; color: var(--light-gray); }
-        .mobile-nav-overlay .mobile-cta { color: var(--yellow); border: 2px solid var(--yellow); padding: 0.75rem 2rem; margin-top: 1rem; }
-        .mobile-nav-overlay .mobile-login { color: var(--yellow); font-size: 1rem; }
+        .fp-side-menu-footer a:hover { color: var(--yellow); }
 
         /* ===== HERO ===== */
         .hero {
             margin-top: 0;
-            padding-top: 80px;
+            padding-top: 56px;
             min-height: 40vh;
             display: flex;
             align-items: center;
@@ -503,46 +386,6 @@
             padding: 0.7rem 1.5rem;
             font-size: 0.85rem;
         }
-
-        /* ===== FUELPATH SUBNAV ===== */
-        .fuelpath-subnav {
-            background: var(--dark-gray);
-            border-bottom: 1px solid var(--medium-gray);
-            width: 100%;
-            position: relative;
-            z-index: 10;
-        }
-
-        .fuelpath-subnav-container {
-            max-width: 100%;
-            margin: 0;
-            padding: 0 4rem;
-            display: flex;
-            align-items: center;
-            gap: 0;
-            overflow-x: auto;
-            -webkit-overflow-scrolling: touch;
-            scrollbar-width: none;
-        }
-
-        .fuelpath-subnav-container::-webkit-scrollbar { display: none; }
-
-        .fuelpath-subnav a {
-            color: var(--light-gray);
-            text-decoration: none;
-            font-size: 0.8rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            padding: 1rem 1.25rem;
-            white-space: nowrap;
-            transition: all 0.3s ease;
-            border-bottom: 2px solid transparent;
-            display: block;
-        }
-
-        .fuelpath-subnav a:hover { color: var(--yellow); }
-        .fuelpath-subnav a.active { color: var(--yellow); border-bottom: 2px solid var(--yellow); }
 
         /* ===== USER BAR ===== */
         .user-bar {
@@ -1356,9 +1199,6 @@
 
         /* ===== RESPONSIVE: TABLET ===== */
         @media (max-width: 768px) {
-            .nav-links, .nav-cta-group { display: none; }
-            .hamburger { display: block; }
-            .nav-container { padding: 0 1.5rem; }
             .hero-container { padding: 3rem 1.5rem; }
             .hero { min-height: 30vh; }
             .section-container { padding: 0 1.5rem; }
@@ -1415,10 +1255,6 @@
             /* Recent food chips — bigger tap targets */
             .recent-food-chip { padding: 0.6rem 1rem; font-size: 0.8rem; min-height: 40px; display: inline-flex; align-items: center; }
 
-            /* Subnav scrollable */
-            .fuelpath-subnav-container { padding: 0 1rem; }
-            .fuelpath-subnav a { padding: 0.85rem 1rem; font-size: 0.75rem; }
-
             /* Modal */
             .modal-overlay { padding: 0.75rem; align-items: flex-start; padding-top: 2rem; }
             .modal-container { padding: 1.5rem; max-height: 90vh; overflow-y: auto; }
@@ -1430,7 +1266,6 @@
 
         /* ===== RESPONSIVE: SMALL PHONE ===== */
         @media (max-width: 420px) {
-            .nav-container { padding: 0 1rem; }
             .hero-container { padding: 2rem 1rem; }
             .hero-content h1 { font-size: 2rem; }
             .hero-content p { font-size: 1rem; }
@@ -1487,78 +1322,48 @@
             .footer-container { padding: 0 1rem; gap: 2rem; }
             .footer-bottom { margin: 0 1rem; }
 
-            /* Subnav */
-            .fuelpath-subnav-container { padding: 0 0.75rem; }
-            .fuelpath-subnav a { padding: 0.75rem 0.75rem; font-size: 0.7rem; }
         }
     </style>
 </head>
 <body>
 
-<!-- ===== NAV ===== -->
-<nav>
-    <div class="nav-container">
-        <div class="logo">
-            <a href="/">
-                <img src="images/logo.png" alt="Black Iron Athletics">
-            </a>
-        </div>
-        <ul class="nav-links">
-            <li class="has-submenu">
-                <a href="about">About Us</a>
-                <ul class="submenu">
-                    <li><a href="about#mission">Our Mission</a></li>
-                    <li><a href="about#team">Meet the Team</a></li>
-                    <li><a href="programs">Programs</a></li>
-                    <li><a href="schedule">Class Schedule</a></li>
-                </ul>
-            </li>
-            <li class="has-submenu">
-                <a href="getting-started">Getting Started</a>
-                <ul class="submenu">
-                    <li><a href="getting-started#membership">Membership Options</a></li>
-                    <li><a href="getting-started#faqs">FAQs</a></li>
-                </ul>
-            </li>
-            <li><a href="media">Media</a></li>
-            <li><a href="blog/">Blog</a></li>
-            <li><a href="contact">Contact</a></li>
-        </ul>
-        <div class="nav-cta-group">
-            <a href="fuelpath-dashboard" class="login-btn">My Dashboard</a>
-            <a href="#" onclick="openLeadModal(); return false;" class="cta-btn">Book Free Consultation</a>
-        </div>
-        <button class="hamburger" onclick="toggleMobileNav()" aria-label="Menu">
-            <span></span>
-            <span></span>
-            <span></span>
-        </button>
+<!-- FuelPath Top Bar -->
+<header class="fp-topbar">
+    <div class="fp-topbar-left">
+        <a href="/" class="fp-topbar-logo"><img src="images/Anvil-WHITE.png" alt="Black Iron Athletics"></a>
+        <a href="/" class="fp-topbar-back"><i class="fa-solid fa-arrow-left"></i> Main Site</a>
     </div>
-</nav>
-
-<!-- Mobile Nav Overlay -->
-<div class="mobile-nav-overlay" id="mobileNav">
-    <a href="/" onclick="closeMobileNav()">Home</a>
-    <a href="about" onclick="closeMobileNav()">About Us</a>
-    <a href="about#mission" class="mobile-sub-link" onclick="closeMobileNav()">Our Mission</a>
-    <a href="about#team" class="mobile-sub-link" onclick="closeMobileNav()">Meet the Team</a>
-    <a href="programs" class="mobile-sub-link" onclick="closeMobileNav()">Programs</a>
-    <a href="schedule" class="mobile-sub-link" onclick="closeMobileNav()">Class Schedule</a>
-    <a href="getting-started" onclick="closeMobileNav()">Getting Started</a>
-    <a href="getting-started#membership" class="mobile-sub-link" onclick="closeMobileNav()">Membership Options</a>
-    <a href="getting-started#faqs" class="mobile-sub-link" onclick="closeMobileNav()">FAQs</a>
-    <a href="media" onclick="closeMobileNav()">Media</a>
-    <a href="blog/" onclick="closeMobileNav()">Blog</a>
-    <a href="contact" onclick="closeMobileNav()">Contact</a>
-    <a href="#" class="mobile-cta" onclick="closeMobileNav(); openLeadModal(); return false;">Book Free Consultation</a>
-    <a href="fuelpath-dashboard" class="mobile-login" onclick="closeMobileNav()">My Dashboard</a>
-</div>
+    <button class="fp-menu-toggle" aria-label="Open FuelPath menu" aria-expanded="false"><i class="fa-solid fa-bars"></i></button>
+</header>
+<div class="fp-menu-backdrop" id="fpMenuBackdrop"></div>
+<aside class="fp-side-menu" id="fpSideMenu" data-page="fuelpath-tracker">
+    <div class="fp-side-menu-header">
+        <span>FuelPath</span>
+        <button class="fp-side-menu-close" aria-label="Close menu"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+    <div class="fp-side-menu-links">
+        <a href="fuelpath-dashboard" data-page="fuelpath-dashboard"><i class="fa-solid fa-gauge"></i> My Dashboard</a>
+        <a href="fuelpath-tracker" data-page="fuelpath-tracker"><i class="fa-solid fa-utensils"></i> Food Tracker</a>
+        <div class="fp-menu-divider"></div>
+        <div class="fp-menu-label">The 4 Phases</div>
+        <a href="fuelpath-phase-1-maintain" data-page="fuelpath-phase-1-maintain"><span class="fp-menu-dot" style="background:var(--phase-baseline)"></span> Phase 1: Baseline</a>
+        <a href="fuelpath-phase-2-cut" data-page="fuelpath-phase-2-cut"><span class="fp-menu-dot" style="background:var(--phase-cut)"></span> Phase 2: Cut</a>
+        <a href="fuelpath-phase-3-maintain" data-page="fuelpath-phase-3-maintain"><span class="fp-menu-dot" style="background:var(--phase-maintain)"></span> Phase 3: Maintain</a>
+        <a href="fuelpath-phase-4-build" data-page="fuelpath-phase-4-build"><span class="fp-menu-dot" style="background:var(--phase-build)"></span> Phase 4: Build</a>
+        <div class="fp-menu-divider"></div>
+        <a href="fuelpath-supplements" data-page="fuelpath-supplements"><i class="fa-solid fa-capsules"></i> Supplements</a>
+        <a href="fuelpath-decade" data-page="fuelpath-decade"><i class="fa-solid fa-road"></i> Decade Roadmap</a>
+    </div>
+    <div class="fp-side-menu-footer">
+        <a href="/"><i class="fa-solid fa-arrow-left"></i> Back to Black Iron Athletics</a>
+    </div>
+</aside>
 
 <main>
 
     <!-- Auth Hero (shown when logged out) -->
     <section class="hero" id="authHero">
-        <img src="images/hero-fuelpath-how-to-use.webp" alt="Food Tracker" class="hero-bg" fetchpriority="high">
+        <img src="images/hero-fuelpath-tracker.webp" alt="Food Tracker" class="hero-bg" fetchpriority="high">
         <div class="hero-container">
             <div class="hero-content">
                 <div class="hero-subtitle">FuelPath Food Tracker</div>
@@ -1598,20 +1403,6 @@
     <!-- TRACKER (shown when logged in)              -->
     <!-- ============================================ -->
     <div id="trackerContainer" style="display: none;">
-
-        <!-- FuelPath Subnav -->
-        <div class="fuelpath-subnav">
-            <div class="fuelpath-subnav-container">
-                <a href="fuelpath-dashboard">My Dashboard</a>
-                <a href="fuelpath-tracker" class="active">Food Tracker</a>
-                <a href="fuelpath-phase-1-maintain">Phase 1: Baseline</a>
-                <a href="fuelpath-phase-2-cut">Phase 2: Cut</a>
-                <a href="fuelpath-phase-3-maintain">Phase 3: Maintain</a>
-                <a href="fuelpath-phase-4-build">Phase 4: Build</a>
-                <a href="fuelpath-supplements">Supplements</a>
-                <a href="fuelpath-decade">Decade Roadmap</a>
-            </div>
-        </div>
 
         <!-- User Bar -->
         <div class="user-bar">
@@ -2056,18 +1847,6 @@ async function checkSession() {
     if (data && data.session) {
         showTracker(data.session.user);
     }
-}
-
-// ===== MOBILE NAV =====
-function toggleMobileNav() {
-    document.getElementById('mobileNav').classList.toggle('active');
-    document.querySelector('.hamburger').classList.toggle('active');
-    document.body.style.overflow = document.getElementById('mobileNav').classList.contains('active') ? 'hidden' : '';
-}
-function closeMobileNav() {
-    document.getElementById('mobileNav').classList.remove('active');
-    document.querySelector('.hamburger').classList.remove('active');
-    document.body.style.overflow = '';
 }
 
 // ===== TOAST =====
@@ -2936,6 +2715,34 @@ async function checkStreakMilestones(streak) {
 function openLeadModal() {
     // Placeholder — same pattern as dashboard
 }
+
+// ===== FUELPATH SIDE MENU =====
+(function() {
+    var menu = document.getElementById('fpSideMenu');
+    var backdrop = document.getElementById('fpMenuBackdrop');
+    var toggle = document.querySelector('.fp-menu-toggle');
+    var closeBtn = menu.querySelector('.fp-side-menu-close');
+    function openMenu() {
+        menu.classList.add('open');
+        backdrop.classList.add('open');
+        toggle.setAttribute('aria-expanded', 'true');
+        document.body.style.overflow = 'hidden';
+    }
+    function closeMenu() {
+        menu.classList.remove('open');
+        backdrop.classList.remove('open');
+        toggle.setAttribute('aria-expanded', 'false');
+        document.body.style.overflow = '';
+    }
+    toggle.addEventListener('click', openMenu);
+    closeBtn.addEventListener('click', closeMenu);
+    backdrop.addEventListener('click', closeMenu);
+    document.addEventListener('keydown', function(e) { if (e.key === 'Escape') closeMenu(); });
+    var path = window.location.pathname.replace(/\/$/, '').split('/').pop().replace('.html', '') || 'index';
+    menu.querySelectorAll('.fp-side-menu-links a[data-page]').forEach(function(a) {
+        if (a.getAttribute('data-page') === path) a.classList.add('active');
+    });
+})();
 
 // ===== INIT =====
 checkSession();
