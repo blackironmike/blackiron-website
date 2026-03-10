@@ -3623,6 +3623,10 @@
                 <p class="auth-subtitle" id="authSubtitle">Access your personal dashboard</p>
                 <div id="authError" class="auth-error"></div>
                 <form id="authForm" onsubmit="handleAuth(event)">
+                    <div class="form-group" id="authNameGroup" style="display:none;">
+                        <label for="authName">Your Name</label>
+                        <input type="text" id="authName" placeholder="First Last">
+                    </div>
                     <div class="form-group">
                         <label for="authEmail">Email</label>
                         <input type="email" id="authEmail" required placeholder="you@example.com">
@@ -4885,6 +4889,7 @@ function toggleAuthMode() {
     document.getElementById('authSubmitBtn').textContent = isSignUp ? 'Create Account' : 'Sign In';
     document.getElementById('authToggleText').textContent = isSignUp ? 'Already have an account?' : "Don't have an account?";
     document.getElementById('authToggleLink').textContent = isSignUp ? 'Sign In' : 'Sign Up';
+    document.getElementById('authNameGroup').style.display = isSignUp ? '' : 'none';
     document.getElementById('authError').style.display = 'none';
 }
 
@@ -4905,8 +4910,24 @@ async function handleAuth(e) {
         if (result.error) {
             showAuthError(result.error.message);
         } else if (isSignUp && result.data && !result.data.session) {
+            // Save display name to profile if provided
+            var signUpName = document.getElementById('authName').value.trim();
+            if (signUpName && result.data.user) {
+                try {
+                    await supabase.from('profiles').update({ display_name: signUpName }).eq('id', result.data.user.id);
+                } catch (e) { /* silent */ }
+            }
             showAuthError('Check your email to confirm your account, then sign in.');
         } else {
+            // Save display name to profile if signup with auto-confirm
+            if (isSignUp && result.data.user) {
+                var signUpName2 = document.getElementById('authName').value.trim();
+                if (signUpName2) {
+                    try {
+                        await supabase.from('profiles').update({ display_name: signUpName2 }).eq('id', result.data.user.id);
+                    } catch (e) { /* silent */ }
+                }
+            }
             // On successful auth, claim any subscriptions tied to this email
             if (result.data.user) {
                 await claimSubscriptionByEmail(result.data.user.id, result.data.user.email);
