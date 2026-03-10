@@ -1086,11 +1086,17 @@ function getAssignedCoachId(athleteId) {
     return null;
 }
 
+// ===== HELPER: title case a name =====
+function titleCase(str) {
+    if (!str) return '';
+    return str.replace(/\b\w/g, function(c) { return c.toUpperCase(); });
+}
+
 // ===== HELPER: get coach name by id =====
 function getCoachName(coachId) {
     for (var i = 0; i < allCoaches.length; i++) {
         if (allCoaches[i].id === coachId) {
-            return allCoaches[i].display_name || (allCoaches[i].email ? allCoaches[i].email.split('@')[0] : '—');
+            return titleCase(allCoaches[i].display_name || (allCoaches[i].email ? allCoaches[i].email.split('@')[0] : '—'));
         }
     }
     return '—';
@@ -1110,7 +1116,7 @@ function renderTable() {
         var u = filteredUsers[i];
         var isSelf = currentUser && u.id === currentUser.id;
         var role = u.role || 'athlete';
-        var name = u.display_name || u.email.split('@')[0] || '—';
+        var name = titleCase(u.display_name || u.email.split('@')[0] || '—');
         var email = u.email || '—';
         var joined = u.created_at ? formatDate(u.created_at) : '—';
 
@@ -1133,7 +1139,7 @@ function renderTable() {
             html += '<option value=""' + (!assignedCoachId ? ' selected' : '') + '>Unassigned</option>';
             for (var c = 0; c < allCoaches.length; c++) {
                 var coach = allCoaches[c];
-                var coachName = coach.display_name || (coach.email ? coach.email.split('@')[0] : '—');
+                var coachName = titleCase(coach.display_name || (coach.email ? coach.email.split('@')[0] : '—'));
                 html += '<option value="' + escapeAttr(coach.id) + '"' + (assignedCoachId === coach.id ? ' selected' : '') + '>' + escapeHtml(coachName) + '</option>';
             }
             html += '</select>';
