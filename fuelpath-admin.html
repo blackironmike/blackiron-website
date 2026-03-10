@@ -928,7 +928,7 @@ async function checkSession() {
         return;
     }
 
-    // Owner confirmed â€” show admin panel
+    // Owner confirmed — show admin panel
     document.getElementById('adminLoading').style.display = 'none';
     document.getElementById('adminPanel').style.display = 'block';
     document.getElementById('userEmail').textContent = currentUser.email;
@@ -1090,10 +1090,10 @@ function getAssignedCoachId(athleteId) {
 function getCoachName(coachId) {
     for (var i = 0; i < allCoaches.length; i++) {
         if (allCoaches[i].id === coachId) {
-            return allCoaches[i].display_name || allCoaches[i].email || 'â€”';
+            return allCoaches[i].display_name || allCoaches[i].email || '—';
         }
     }
-    return 'â€”';
+    return '—';
 }
 
 // ===== RENDER TABLE =====
@@ -1111,8 +1111,8 @@ function renderTable() {
         var isSelf = currentUser && u.id === currentUser.id;
         var role = u.role || 'athlete';
         var name = u.display_name || u.email.split('@')[0] || '—';
-        var email = u.email || 'â€”';
-        var joined = u.created_at ? formatDate(u.created_at) : 'â€”';
+        var email = u.email || '—';
+        var joined = u.created_at ? formatDate(u.created_at) : '—';
 
         html += '<tr' + (isSelf ? ' class="self-row"' : '') + '>';
         html += '<td class="user-name">' + escapeHtml(name) + (isSelf ? ' <span style="color: var(--yellow); font-size: 0.7rem;">(You)</span>' : '') + '</td>';
@@ -1133,12 +1133,12 @@ function renderTable() {
             html += '<option value=""' + (!assignedCoachId ? ' selected' : '') + '>Unassigned</option>';
             for (var c = 0; c < allCoaches.length; c++) {
                 var coach = allCoaches[c];
-                var coachName = coach.display_name || coach.email || 'â€”';
+                var coachName = coach.display_name || coach.email || '—';
                 html += '<option value="' + escapeAttr(coach.id) + '"' + (assignedCoachId === coach.id ? ' selected' : '') + '>' + escapeHtml(coachName) + '</option>';
             }
             html += '</select>';
         } else {
-            html += '<span style="color: #666;">â€”</span>';
+            html += '<span style="color: #666; font-size: 0.8rem; font-style: italic;">No coach assigned</span>';
         }
         html += '</td>';
 
