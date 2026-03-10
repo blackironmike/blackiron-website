@@ -1332,6 +1332,11 @@
             <div class="fp-menu-divider"></div>
             <a href="fuelpath-supplements" data-page="fuelpath-supplements"><i class="fa-solid fa-capsules"></i> Supplements</a>
             <a href="fuelpath-decade" data-page="fuelpath-decade"><i class="fa-solid fa-road"></i> Decade Roadmap</a>
+            <div class="fp-menu-divider"></div>
+            <a href="fuelpath-dashboard" id="menuCoachToggleBtn" style="display:none;" data-page=""><i class="fa-solid fa-clipboard-user"></i> Coach View</a>
+            <a href="fuelpath-admin" id="adminLinkBtn" style="display:none;" data-page="fuelpath-admin"><i class="fa-solid fa-shield-halved"></i> Admin</a>
+            <a href="fuelpath-dashboard" data-page=""><i class="fa-solid fa-gear"></i> Account</a>
+            <a href="#" onclick="handleLogout()"><i class="fa-solid fa-right-from-bracket"></i> Sign Out</a>
         </div>
         <div class="fp-side-menu-footer">
             <a href="/"><i class="fa-solid fa-arrow-left"></i> Back to Black Iron Athletics</a>
@@ -2069,16 +2074,32 @@
 <script src="https://widgets.leadconnectorhq.com/loader.js" data-resources-url="https://widgets.leadconnectorhq.com/chat-widget/loader.js" data-widget-id="6995d6d76e6009387f78d31e" defer></script>
 <script>
 // ===== BLUEPRINT AUTH GATE =====
+var _fpSupabase = null;
 (async function() {
     var SUPABASE_URL = 'https://hmwfpwcookrwgsbnutyc.supabase.co';
     var SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imhtd2Zwd2Nvb2tyd2dzYm51dHljIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzE1NTUwMTcsImV4cCI6MjA4NzEzMTAxN30.CpX9hIshZqf68B10vPZXt7dHbSXE_aVqfmKuiWN_Lpw';
     if (!window.supabase) return;
     var sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+    _fpSupabase = sb;
     var { data } = await sb.auth.getSession();
     if (!data || !data.session) return; // not logged in � gate stays visible
     // User is authenticated � grant access
     document.getElementById('gateOverlay').style.display = 'none';
+    // Detect coach/owner role for menu
+    try {
+        var { data: profile } = await sb.from('profiles').select('role').eq('id', data.session.user.id).single();
+        if (profile && (profile.role === 'coach' || profile.role === 'owner')) {
+            document.getElementById('menuCoachToggleBtn').style.display = '';
+        }
+        if (profile && profile.role === 'owner') {
+            document.getElementById('adminLinkBtn').style.display = '';
+        }
+    } catch (e) { /* silent */ }
 })();
+async function handleLogout() {
+    if (_fpSupabase) { await _fpSupabase.auth.signOut(); }
+    window.location.href = 'fuelpath-dashboard';
+}
 </script>
 <script>
 // ===== FUELPATH SIDE MENU =====
