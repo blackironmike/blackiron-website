@@ -1090,7 +1090,7 @@ function getAssignedCoachId(athleteId) {
 function getCoachName(coachId) {
     for (var i = 0; i < allCoaches.length; i++) {
         if (allCoaches[i].id === coachId) {
-            return allCoaches[i].display_name || allCoaches[i].email || '—';
+            return allCoaches[i].display_name || (allCoaches[i].email ? allCoaches[i].email.split('@')[0] : '—');
         }
     }
     return '—';
@@ -1133,7 +1133,7 @@ function renderTable() {
             html += '<option value=""' + (!assignedCoachId ? ' selected' : '') + '>Unassigned</option>';
             for (var c = 0; c < allCoaches.length; c++) {
                 var coach = allCoaches[c];
-                var coachName = coach.display_name || coach.email || '—';
+                var coachName = coach.display_name || (coach.email ? coach.email.split('@')[0] : '—');
                 html += '<option value="' + escapeAttr(coach.id) + '"' + (assignedCoachId === coach.id ? ' selected' : '') + '>' + escapeHtml(coachName) + '</option>';
             }
             html += '</select>';
