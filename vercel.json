@@ -1,4 +1,5 @@
 {
+  "buildCommand": "node generate-sitemap.js",
   "cleanUrls": true,
   "trailingSlash": false,
   "redirects": [
@@ -34,6 +35,7 @@
     { "source": "/blueprint-supplements", "destination": "/fuelpath-supplements", "permanent": true },
     { "source": "/blueprint-decade", "destination": "/fuelpath-decade", "permanent": true },
     { "source": "/blueprint-dashboard", "destination": "/fuelpath-dashboard", "permanent": true },
-    { "source": "/blueprint-admin", "destination": "/fuelpath-admin", "permanent": true }
+    { "source": "/blueprint-admin", "destination": "/fuelpath-admin", "permanent": true },
+    { "source": "/fuelpath-tracker", "destination": "/fuelpath-dashboard", "permanent": false }
   ]
 }
