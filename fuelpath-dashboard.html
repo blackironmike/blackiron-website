@@ -3898,6 +3898,66 @@
             .dash-quick-actions { grid-template-columns: 1fr; }
         }
 
+        /* ===== MORE TAB ===== */
+        .more-account-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+        .more-role-card {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1.25rem 1.5rem;
+            background: var(--dark-gray);
+            border: 1px solid var(--medium-gray);
+            margin-bottom: 1rem;
+        }
+        .more-role-card-icon {
+            font-size: 1.5rem;
+            color: var(--yellow);
+            flex-shrink: 0;
+            width: 40px;
+            text-align: center;
+        }
+        .more-role-card h4 {
+            font-size: 0.95rem;
+            margin-bottom: 0.15rem;
+        }
+        .more-role-card p {
+            font-size: 0.8rem;
+            color: var(--light-gray);
+            margin: 0;
+        }
+        .more-role-card .btn-primary,
+        .more-role-card a.btn-primary {
+            margin-left: auto;
+            flex-shrink: 0;
+            white-space: nowrap;
+        }
+        .more-signout-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            width: 100%;
+            padding: 1rem;
+            background: transparent;
+            border: 2px solid #e74c3c;
+            color: #e74c3c;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.9rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .more-signout-btn:hover {
+            background: #e74c3c;
+            color: var(--white);
+        }
+
         /* ===== FUEL PATH EDUCATION TAB ===== */
         .fuelpath-edu-hero {
             padding: 2.5rem 0 1.5rem;
@@ -4972,12 +5032,234 @@
 
         <!-- ===== TAB 5: MORE ===== -->
         <div id="tabMore" class="tab-panel">
-            <div class="section" style="padding-top: 2rem;">
+
+            <!-- My Macros Card -->
+            <div class="section" style="padding-top: 1.5rem; padding-bottom: 1.5rem;">
                 <div class="section-container">
-                    <h2 style="font-size: 1.5rem; margin-bottom: 1rem;"><i class="fa-solid fa-ellipsis" style="color: var(--yellow); margin-right: 0.5rem;"></i> More</h2>
-                    <p style="color: var(--light-gray);">Coming soon — macros, resources, account settings, and more.</p>
+                    <div class="dash-card macros-compact">
+                        <div class="dash-card-header">
+                            <h3 class="dash-card-title"><i class="fa-solid fa-fire"></i> My Macros</h3>
+                            <button class="btn-secondary btn-small" onclick="openCalcModal()">Recalculate</button>
+                        </div>
+                        <div id="macrosContent">
+                            <div class="macro-change-banner" id="macroChangeBanner">
+                                <div class="macro-change-banner-header">
+                                    <i class="fa-solid fa-user-pen"></i>
+                                    <span>Coach Updated Your Macros</span>
+                                </div>
+                                <div class="macro-change-values" id="macroChangeValues"></div>
+                                <div class="macro-change-note" id="macroChangeNote" style="display:none;"></div>
+                                <button class="macro-change-dismiss" onclick="dismissMacroChange()">Got It</button>
+                            </div>
+                            <div id="macrosPopulated" style="display: none;">
+                                <div class="macro-calories-hero">
+                                    <div class="macro-calories-number" id="macroCals">--</div>
+                                    <div class="macro-calories-label">CALORIES / DAY</div>
+                                </div>
+                                <div class="macro-visual-row">
+                                    <div class="macro-chart-wrap">
+                                        <canvas id="macroPieChart"></canvas>
+                                    </div>
+                                    <div class="macro-legend">
+                                        <div class="macro-legend-item">
+                                            <span class="macro-legend-dot" style="background: #e74c3c;"></span>
+                                            <div class="macro-legend-detail">
+                                                <div class="macro-legend-name">Protein</div>
+                                                <div class="macro-legend-value"><span id="macroProtein">--</span>g</div>
+                                                <div class="macro-legend-pct" id="macroProteinPct">--%</div>
+                                            </div>
+                                        </div>
+                                        <div class="macro-legend-item">
+                                            <span class="macro-legend-dot" style="background: #2196F3;"></span>
+                                            <div class="macro-legend-detail">
+                                                <div class="macro-legend-name">Carbs</div>
+                                                <div class="macro-legend-value"><span id="macroCarbs">--</span>g</div>
+                                                <div class="macro-legend-pct" id="macroCarbsPct">--%</div>
+                                            </div>
+                                        </div>
+                                        <div class="macro-legend-item">
+                                            <span class="macro-legend-dot" style="background: var(--yellow);"></span>
+                                            <div class="macro-legend-detail">
+                                                <div class="macro-legend-name">Fat</div>
+                                                <div class="macro-legend-value"><span id="macroFat">--</span>g</div>
+                                                <div class="macro-legend-pct" id="macroFatPct">--%</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="macrosEmpty" class="empty-state">
+                                <i class="fa-solid fa-calculator"></i>
+                                <p>No macros saved for this phase yet.</p>
+                                <button class="btn-primary btn-small" onclick="openCalcModal()">Calculate Your Macros</button>
+                            </div>
+                        </div>
+                        <div id="macroActions" style="display: none; margin-top: 1.5rem; gap: 0.75rem; align-items: center; flex-wrap: wrap;">
+                            <button class="btn-secondary btn-small" onclick="generatePhasePDF()" id="downloadPdfBtn" title="Download Phase Plan PDF"><i class="fa-solid fa-file-pdf" style="margin-right: 0.4rem;"></i> Download PDF</button>
+                            <button class="collapsible-toggle" onclick="toggleCollapsible(this)">
+                                <i class="fa-solid fa-floppy-disk"></i> Save My Macros
+                            </button>
+                        </div>
+                        <div class="collapsible-content">
+                            <form class="dash-form" id="macroForm" onsubmit="saveMacros(event)">
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="macroCalInput">Calories</label>
+                                        <input type="number" id="macroCalInput" required min="800" max="8000" placeholder="e.g. 2200">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="macroProteinInput">Protein (g)</label>
+                                        <input type="number" id="macroProteinInput" required min="30" max="500" placeholder="e.g. 180">
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="macroCarbsInput">Carbs (g)</label>
+                                        <input type="number" id="macroCarbsInput" required min="0" max="800" placeholder="e.g. 220">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="macroFatInput">Fat (g)</label>
+                                        <input type="number" id="macroFatInput" required min="10" max="300" placeholder="e.g. 65">
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="macroWeightInput">Body Weight (lbs)</label>
+                                        <input type="number" id="macroWeightInput" min="50" max="700" step="0.1" placeholder="e.g. 185">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="macroActivityInput">Activity Level</label>
+                                        <select id="macroActivityInput">
+                                            <option value="">Select...</option>
+                                            <option value="1.2">Sedentary</option>
+                                            <option value="1.375">Lightly Active</option>
+                                            <option value="1.55">Moderately Active</option>
+                                            <option value="1.725">Very Active</option>
+                                            <option value="1.9">Extremely Active</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <button type="submit" class="btn-primary btn-small">Save Macros</button>
+                                <div id="macroSaveSuccess" class="form-success">Macros saved!</div>
+                                <div id="macroSaveError" class="form-error">Error saving macros. Please try again.</div>
+                            </form>
+                        </div>
+                    </div>
                 </div>
             </div>
+
+            <!-- Resources & Downloads -->
+            <div class="section section-alt" style="padding-top: 1.5rem; padding-bottom: 1.5rem;">
+                <div class="section-container">
+                    <div class="dash-card">
+                        <div class="dash-card-header">
+                            <h3 class="dash-card-title"><i class="fa-solid fa-download"></i> Resources &amp; Downloads</h3>
+                        </div>
+                        <p style="color: var(--light-gray); margin-bottom: 2rem;">Printable tools to keep you on track. Download, print, and pin to your fridge.</p>
+                        <div class="downloads-grid">
+                            <a href="#" onclick="generatePhasePDF(); return false;" class="download-card" id="downloadPdfCard">
+                                <i class="fa-solid fa-file-pdf"></i>
+                                <h4>My Phase Plan</h4>
+                                <p>Your custom macros, supplements, and phase checklist — generated from your dashboard data.</p>
+                            </a>
+                            <a href="Phase1-Baseline-Meal-Template.pdf" target="_blank" rel="noopener" class="download-card" style="border-top: 3px solid var(--phase-baseline);">
+                                <i class="fa-solid fa-utensils"></i>
+                                <h4>Phase 1: Baseline Meals</h4>
+                                <p>Sample meal structure for the Baseline phase.</p>
+                            </a>
+                            <a href="Phase2-Cut-Meal-Template.pdf" target="_blank" rel="noopener" class="download-card" style="border-top: 3px solid var(--phase-cut);">
+                                <i class="fa-solid fa-utensils"></i>
+                                <h4>Phase 2: Cut Meals</h4>
+                                <p>Sample meal structure for the Cut phase.</p>
+                            </a>
+                            <a href="Phase3-Maintain-Meal-Template.pdf" target="_blank" rel="noopener" class="download-card" style="border-top: 3px solid var(--phase-maintain);">
+                                <i class="fa-solid fa-utensils"></i>
+                                <h4>Phase 3: Maintain Meals</h4>
+                                <p>Sample meal structure for the Maintain phase.</p>
+                            </a>
+                            <a href="Phase4-Build-Meal-Template.pdf" target="_blank" rel="noopener" class="download-card" style="border-top: 3px solid var(--phase-build);">
+                                <i class="fa-solid fa-utensils"></i>
+                                <h4>Phase 4: Build Meals</h4>
+                                <p>Sample meal structure for the Build phase.</p>
+                            </a>
+                            <a href="Supplement-Quick-Reference.pdf" target="_blank" rel="noopener" class="download-card">
+                                <i class="fa-solid fa-capsules"></i>
+                                <h4>Supplement Card</h4>
+                                <p>Quick-reference card with dosages for every phase. Gym bag friendly.</p>
+                            </a>
+                            <a href="Competition-Prep-Modifier.pdf" target="_blank" rel="noopener" class="download-card">
+                                <i class="fa-solid fa-trophy"></i>
+                                <h4>Competition Prep</h4>
+                                <p>Modify your FuelPath around competition dates.</p>
+                            </a>
+                            <a href="Quarterly-Planning-Worksheet.pdf" target="_blank" rel="noopener" class="download-card">
+                                <i class="fa-solid fa-pen-to-square"></i>
+                                <h4>Quarterly Planner</h4>
+                                <p>Goal-setting worksheet for the start of each new phase.</p>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Account Settings (inline) -->
+            <div class="section" style="padding-top: 1.5rem; padding-bottom: 1.5rem;">
+                <div class="section-container">
+                    <div class="dash-card">
+                        <div class="dash-card-header">
+                            <h3 class="dash-card-title"><i class="fa-solid fa-gear"></i> Account</h3>
+                        </div>
+                        <div class="more-account-grid">
+                            <div class="form-group">
+                                <label style="font-size: 0.8rem; color: var(--light-gray); font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px;">Email</label>
+                                <div class="account-field-readonly" id="moreAccountEmail"></div>
+                            </div>
+                            <div class="form-group">
+                                <label style="font-size: 0.8rem; color: var(--light-gray); font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px;">Display Name</label>
+                                <input type="text" id="moreDisplayName" placeholder="Enter your display name" style="width:100%; padding:0.85rem 1rem; background:var(--black); border:2px solid var(--medium-gray); color:var(--white); font-family:'Montserrat',sans-serif; font-size:0.95rem; font-weight:500;">
+                            </div>
+                            <div>
+                                <button class="btn-primary btn-small" onclick="saveMoreDisplayName()">Save Name</button>
+                                <span class="form-success" id="moreNameMsg" style="display:none; margin-left: 0.5rem;">Saved!</span>
+                            </div>
+                        </div>
+                        <div style="margin-top: 1rem; padding-top: 1rem; border-top: 1px solid var(--medium-gray);">
+                            <button class="btn-secondary btn-small" onclick="openAccountModal()"><i class="fa-solid fa-key" style="margin-right: 0.4rem;"></i> Change Password</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Coach/Admin Cards + Sign Out -->
+            <div class="section" style="padding-top: 0; padding-bottom: 2rem;">
+                <div class="section-container">
+                    <!-- Coach View Toggle (hidden unless coach/owner) -->
+                    <div class="more-role-card" id="moreCoachCard" style="display: none;">
+                        <div class="more-role-card-icon"><i class="fa-solid fa-clipboard-user"></i></div>
+                        <div>
+                            <h4>Coach Dashboard</h4>
+                            <p>View and manage your assigned athletes.</p>
+                        </div>
+                        <button class="btn-primary btn-small" onclick="enterCoachMode()">Open</button>
+                    </div>
+
+                    <!-- Admin Link (hidden unless owner) -->
+                    <div class="more-role-card" id="moreAdminCard" style="display: none;">
+                        <div class="more-role-card-icon"><i class="fa-solid fa-shield-halved"></i></div>
+                        <div>
+                            <h4>Admin Panel</h4>
+                            <p>Manage users, subscriptions, and system settings.</p>
+                        </div>
+                        <a href="fuelpath-admin" class="btn-primary btn-small">Open</a>
+                    </div>
+
+                    <!-- Sign Out -->
+                    <button class="more-signout-btn" onclick="handleLogout()">
+                        <i class="fa-solid fa-right-from-bracket"></i> Sign Out
+                    </button>
+                </div>
+            </div>
+
         </div>
 
         <!-- ============================================ -->
@@ -6117,6 +6399,39 @@ function showTab(tabId) {
     }
 }
 
+// ===== MORE TAB =====
+function enterCoachMode() {
+    showCoachView();
+}
+
+async function saveMoreDisplayName() {
+    if (!supabase || !currentUser) return;
+    var name = document.getElementById('moreDisplayName').value.trim();
+    if (!name) return;
+    try {
+        await supabase.from('profiles').update({ display_name: name }).eq('id', currentUser.id);
+        userDisplayName = name;
+        var msg = document.getElementById('moreNameMsg');
+        if (msg) { msg.style.display = 'inline'; setTimeout(function() { msg.style.display = 'none'; }, 2000); }
+    } catch (e) { /* silent */ }
+}
+
+function populateMoreTab() {
+    var emailEl = document.getElementById('moreAccountEmail');
+    if (emailEl && currentUser) emailEl.textContent = currentUser.email;
+    var nameEl = document.getElementById('moreDisplayName');
+    if (nameEl && userDisplayName) nameEl.value = userDisplayName;
+    // Show coach/admin cards based on role
+    if (userRole === 'coach' || userRole === 'owner') {
+        var coachCard = document.getElementById('moreCoachCard');
+        if (coachCard) coachCard.style.display = '';
+    }
+    if (userRole === 'owner') {
+        var adminCard = document.getElementById('moreAdminCard');
+        if (adminCard) adminCard.style.display = '';
+    }
+}
+
 // ===== FUEL PATH TAB =====
 function renderFuelPathTab() {
     var phase = getPhaseInfo();
@@ -6237,6 +6552,9 @@ async function initDashboard(user) {
         if (userRole === 'owner') {
             document.getElementById('adminLinkBtn').style.display = '';
         }
+
+        // Populate More tab with account info and role cards
+        populateMoreTab();
 
         // Claim any unclaimed subscriptions first
         await claimSubscriptionByEmail(user.id, user.email);
