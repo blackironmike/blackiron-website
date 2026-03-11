@@ -5114,6 +5114,10 @@ function showDashboard(user) {
     document.getElementById('dashboardContainer').style.display = 'block';
     document.getElementById('userEmail').textContent = user.email;
     initDashboard(user);
+    // Auto-open account modal if linked from another page
+    if (new URLSearchParams(window.location.search).get('account')) {
+        setTimeout(function() { openAccountModal(); }, 300);
+    }
 }
 
 function hideDashboard() {
