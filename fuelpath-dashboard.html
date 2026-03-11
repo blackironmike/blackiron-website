@@ -1039,6 +1039,273 @@
             margin-top: 0.25rem;
         }
 
+        /* ===== TIMELINE DAY BLOCKS ===== */
+        .week-day-blocks {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 1px;
+            width: 100%;
+            height: 100%;
+        }
+        .day-block {
+            width: 100%;
+            height: 100%;
+            min-height: 18px;
+            background: var(--dark-gray);
+            position: relative;
+            cursor: default;
+        }
+        .day-block.future {
+            opacity: 0.3;
+            background: var(--medium-gray);
+        }
+        .day-block-tooltip {
+            display: none;
+            position: absolute;
+            bottom: calc(100% + 6px);
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--black);
+            border: 1px solid var(--medium-gray);
+            padding: 0.35rem 0.6rem;
+            font-size: 0.65rem;
+            font-weight: 600;
+            white-space: nowrap;
+            z-index: 10;
+            color: var(--white);
+        }
+        .day-block:hover .day-block-tooltip {
+            display: block;
+        }
+
+        /* ===== COMPLIANCE STATS ===== */
+        .compliance-card {
+            background: var(--dark-gray);
+            border: 2px solid var(--medium-gray);
+            padding: 2rem;
+            margin-top: 2rem;
+        }
+        .compliance-card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+        .compliance-card-title {
+            font-size: 1.1rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .compliance-card-title i {
+            color: var(--yellow);
+            margin-right: 0.75rem;
+        }
+        .compliance-stats-row {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+        .compliance-stat {
+            background: var(--black);
+            border: 1px solid var(--medium-gray);
+            padding: 1rem;
+            text-align: center;
+        }
+        .compliance-stat-label {
+            font-size: 0.65rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--light-gray);
+            margin-bottom: 0.25rem;
+        }
+        .compliance-stat-value {
+            font-size: 1.75rem;
+            font-weight: 900;
+            line-height: 1.2;
+        }
+        .compliance-stat-unit {
+            font-size: 0.7rem;
+            color: var(--light-gray);
+            font-weight: 600;
+        }
+        .compliance-macro-bars {
+            margin-bottom: 2rem;
+        }
+        .compliance-macro-bar {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 0.75rem;
+        }
+        .compliance-macro-name {
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--light-gray);
+            width: 70px;
+            flex-shrink: 0;
+        }
+        .compliance-macro-track {
+            flex: 1;
+            height: 10px;
+            background: var(--medium-gray);
+        }
+        .compliance-macro-fill {
+            height: 100%;
+            transition: width 0.5s ease;
+        }
+        .compliance-macro-pct {
+            font-size: 0.85rem;
+            font-weight: 900;
+            width: 45px;
+            text-align: right;
+            flex-shrink: 0;
+        }
+        .compliance-chart-wrap {
+            width: 100%;
+            max-height: 200px;
+        }
+
+        /* ===== ACHIEVEMENTS ===== */
+        .achievements-card {
+            background: var(--dark-gray);
+            border: 2px solid var(--medium-gray);
+            padding: 2rem;
+            margin-top: 2rem;
+        }
+        .achievements-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+        .achievements-title {
+            font-size: 1.1rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .achievements-title i {
+            color: var(--yellow);
+            margin-right: 0.75rem;
+        }
+        .achievements-count {
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: var(--light-gray);
+        }
+        .achievements-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+            gap: 1rem;
+        }
+        .achievement-badge {
+            background: var(--black);
+            border: 2px solid var(--medium-gray);
+            padding: 1rem 0.75rem;
+            text-align: center;
+            transition: border-color 0.3s ease, opacity 0.3s ease;
+        }
+        .achievement-badge.unlocked {
+            opacity: 1;
+        }
+        .achievement-badge.locked {
+            opacity: 0.3;
+            filter: grayscale(100%);
+        }
+        .achievement-badge-icon {
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+        }
+        .achievement-badge-name {
+            font-size: 0.7rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 0.25rem;
+        }
+        .achievement-badge-trigger {
+            font-size: 0.6rem;
+            color: var(--light-gray);
+            font-weight: 500;
+        }
+
+        /* ===== CONFETTI CANVAS ===== */
+        #dashConfettiCanvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 99998;
+        }
+
+        /* ===== ACHIEVEMENT TOAST ===== */
+        .achievement-toast {
+            position: fixed;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%) translateY(100px);
+            background: var(--dark-gray);
+            border: 2px solid var(--medium-gray);
+            padding: 1rem 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            z-index: 99999;
+            opacity: 0;
+            transition: opacity 0.4s ease, transform 0.4s ease;
+            max-width: 400px;
+            width: 90%;
+        }
+        .achievement-toast.show {
+            opacity: 1;
+            transform: translateX(-50%) translateY(0);
+        }
+        .achievement-toast-icon {
+            font-size: 1.8rem;
+            flex-shrink: 0;
+        }
+        .achievement-toast-text {
+            flex: 1;
+        }
+        .achievement-toast-name {
+            font-size: 0.9rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .achievement-toast-desc {
+            font-size: 0.75rem;
+            color: var(--light-gray);
+            font-weight: 500;
+            margin-top: 0.15rem;
+        }
+
+        @media (max-width: 768px) {
+            .compliance-stats-row {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .achievements-grid {
+                grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+            }
+            .week-day-blocks {
+                display: none;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .compliance-card,
+            .achievements-card {
+                padding: 1.25rem;
+            }
+        }
+
         /* ===== DASHBOARD HERO ===== */
         .dash-hero {
             padding-top: 56px;
@@ -3884,6 +4151,70 @@
                         <div class="checklist-interactive" id="checklistContainer"></div>
                     </div>
                 </div>
+
+                <!-- Compliance Stats -->
+                <div class="compliance-card" id="complianceCard" style="display: none;">
+                    <div class="compliance-card-header">
+                        <h3 class="compliance-card-title"><i class="fa-solid fa-bullseye"></i> Compliance</h3>
+                    </div>
+                    <div class="compliance-stats-row" id="complianceStatsRow">
+                        <div class="compliance-stat">
+                            <div class="compliance-stat-label">Overall</div>
+                            <div class="compliance-stat-value" id="compOverallPct">--</div>
+                            <div class="compliance-stat-unit">of days on target</div>
+                        </div>
+                        <div class="compliance-stat">
+                            <div class="compliance-stat-label">Current Streak</div>
+                            <div class="compliance-stat-value" id="compCurrentStreak">--</div>
+                            <div class="compliance-stat-unit">days</div>
+                        </div>
+                        <div class="compliance-stat">
+                            <div class="compliance-stat-label">Best Streak</div>
+                            <div class="compliance-stat-value" id="compBestStreak">--</div>
+                            <div class="compliance-stat-unit">days</div>
+                        </div>
+                        <div class="compliance-stat">
+                            <div class="compliance-stat-label">Phase to Date</div>
+                            <div class="compliance-stat-value" id="compPhasePct">--</div>
+                            <div class="compliance-stat-unit">compliance</div>
+                        </div>
+                    </div>
+                    <div class="compliance-macro-bars" id="complianceMacroBars">
+                        <div class="compliance-macro-bar">
+                            <div class="compliance-macro-name">Calories</div>
+                            <div class="compliance-macro-track"><div class="compliance-macro-fill" id="compCalBar" style="width:0%; background: #27AE60;"></div></div>
+                            <div class="compliance-macro-pct" id="compCalPct">--%</div>
+                        </div>
+                        <div class="compliance-macro-bar">
+                            <div class="compliance-macro-name">Protein</div>
+                            <div class="compliance-macro-track"><div class="compliance-macro-fill" id="compProBar" style="width:0%; background: #e74c3c;"></div></div>
+                            <div class="compliance-macro-pct" id="compProPct">--%</div>
+                        </div>
+                        <div class="compliance-macro-bar">
+                            <div class="compliance-macro-name">Carbs</div>
+                            <div class="compliance-macro-track"><div class="compliance-macro-fill" id="compCarbBar" style="width:0%; background: #2196F3;"></div></div>
+                            <div class="compliance-macro-pct" id="compCarbPct">--%</div>
+                        </div>
+                        <div class="compliance-macro-bar">
+                            <div class="compliance-macro-name">Fat</div>
+                            <div class="compliance-macro-track"><div class="compliance-macro-fill" id="compFatBar" style="width:0%; background: #FFD202;"></div></div>
+                            <div class="compliance-macro-pct" id="compFatPct">--%</div>
+                        </div>
+                    </div>
+                    <div class="compliance-chart-wrap">
+                        <canvas id="complianceWeeklyChart"></canvas>
+                    </div>
+                </div>
+
+                <!-- Achievements -->
+                <div class="achievements-card" id="achievementsCard" style="display: none;">
+                    <div class="achievements-header">
+                        <h3 class="achievements-title"><i class="fa-solid fa-trophy"></i> Achievements</h3>
+                        <span class="achievements-count" id="achievementsCount">0 / 18</span>
+                    </div>
+                    <div class="achievements-grid" id="achievementsGrid"></div>
+                </div>
+
                 <!-- Full-width Weekly Check-In -->
                 <div class="dash-card" style="background: var(--dark-gray); margin-top: 2rem;">
                     <div class="dash-card-header">
@@ -4362,6 +4693,9 @@
     <!-- Footer -->
 
     </main>
+
+    <!-- Confetti Canvas -->
+    <canvas id="dashConfettiCanvas"></canvas>
 
     <footer>
         <div class="footer-container">
@@ -5180,6 +5514,8 @@ async function initDashboard(user) {
         loadTrackerSummary(user.id);
         // Check for coach macro changes
         checkMacroChanges(user.id, phase);
+        // Load compliance data + achievements
+        loadPhaseComplianceData(user.id, phase);
     }
 }
 
@@ -7652,6 +7988,591 @@ async function saveToleranceSettings() {
     } catch (e) {
         showToast('Failed to save tolerance settings');
     }
+}
+
+// ===== COMPLIANCE SCORING FUNCTIONS =====
+function getComplianceScore(consumed, target, tol) {
+    if (!target || target === 0) return 0;
+    var ratio = consumed / target;
+    var low = 1 - (tol / 100);
+    var high = 1 + (tol / 100);
+    if (ratio >= low && ratio <= high) return 1.0;
+    var dist;
+    if (ratio < low) dist = low - ratio;
+    else dist = ratio - high;
+    var maxDist = (tol / 100) * 2;
+    var score = 1.0 - Math.min(dist / maxDist, 1.0);
+    return Math.max(0, Math.min(1, score));
+}
+
+function scoreToColor(score) {
+    var stops = [
+        { p: 0.00, r: 231, g: 76,  b: 60  },
+        { p: 0.25, r: 243, g: 156, b: 18  },
+        { p: 0.50, r: 255, g: 210, b: 2   },
+        { p: 0.75, r: 39,  g: 174, b: 96  }
+    ];
+    if (score >= 0.75) return 'rgb(39,174,96)';
+    if (score <= 0) return 'rgb(231,76,60)';
+    var i = 0;
+    for (var s = 1; s < stops.length; s++) {
+        if (score < stops[s].p) { i = s - 1; break; }
+        i = s;
+    }
+    var from = stops[i];
+    var to = stops[Math.min(i + 1, stops.length - 1)];
+    var range = to.p - from.p;
+    var t = range > 0 ? (score - from.p) / range : 0;
+    var r = Math.round(from.r + (to.r - from.r) * t);
+    var g = Math.round(from.g + (to.g - from.g) * t);
+    var b = Math.round(from.b + (to.b - from.b) * t);
+    return 'rgb(' + r + ',' + g + ',' + b + ')';
+}
+
+function getDayComplianceScore(dayTotals, targets, tol) {
+    var macros = ['calories', 'protein', 'carbs', 'fat'];
+    var total = 0;
+    var count = 0;
+    macros.forEach(function(m) {
+        if (targets[m] && targets[m] > 0) {
+            total += getComplianceScore(dayTotals[m] || 0, targets[m], tol);
+            count++;
+        }
+    });
+    return count > 0 ? total / count : 0;
+}
+
+function getToleranceStatus(consumed, target, pct) {
+    if (!target || target === 0) return 'off';
+    var ratio = consumed / target;
+    var low = 1 - (pct / 100);
+    var high = 1 + (pct / 100);
+    if (ratio >= low && ratio <= high) return 'on-target';
+    var closeLow = 1 - (pct * 1.5 / 100);
+    var closeHigh = 1 + (pct * 1.5 / 100);
+    if (ratio >= closeLow && ratio <= closeHigh) return 'close';
+    return 'off';
+}
+
+// ===== PHASE COMPLIANCE DATA =====
+var phaseComplianceData = {}; // { '2026-01-06': { calories: X, protein: Y, ... }, ... }
+var phaseMacroTargets = { calories: 0, protein: 0, carbs: 0, fat: 0 };
+var phaseTolerancePct = 10;
+
+async function loadPhaseComplianceData(userId, phase) {
+    if (!supabase) return;
+    phaseComplianceData = {};
+
+    try {
+        // Load targets & tolerance in parallel
+        var [macroRes, tolPhaseRes, tolGlobalRes] = await Promise.all([
+            supabase.from('saved_macros').select('calories, protein, carbs, fat')
+                .eq('user_id', userId).eq('phase', phase.num).eq('year', phase.year).single(),
+            supabase.from('macro_tolerance').select('tolerance_pct')
+                .eq('user_id', userId).eq('phase', phase.num).single(),
+            supabase.from('macro_tolerance').select('tolerance_pct')
+                .eq('user_id', userId).is('phase', null).single()
+        ]);
+
+        if (macroRes.data && !macroRes.error) {
+            phaseMacroTargets = { calories: macroRes.data.calories, protein: macroRes.data.protein, carbs: macroRes.data.carbs, fat: macroRes.data.fat };
+        } else {
+            phaseMacroTargets = { calories: 0, protein: 0, carbs: 0, fat: 0 };
+        }
+
+        if (tolPhaseRes.data) phaseTolerancePct = tolPhaseRes.data.tolerance_pct;
+        else if (tolGlobalRes.data) phaseTolerancePct = tolGlobalRes.data.tolerance_pct;
+        else phaseTolerancePct = 10;
+
+        // Fetch food log for entire phase
+        var startStr = phase.startDate.getFullYear() + '-' + String(phase.startDate.getMonth() + 1).padStart(2, '0') + '-' + String(phase.startDate.getDate()).padStart(2, '0');
+        var endStr = phase.endDate.getFullYear() + '-' + String(phase.endDate.getMonth() + 1).padStart(2, '0') + '-' + String(phase.endDate.getDate()).padStart(2, '0');
+
+        var { data: logs, error } = await supabase.from('food_log')
+            .select('logged_date, calories, protein, carbs, fat')
+            .eq('user_id', userId)
+            .gte('logged_date', startStr)
+            .lte('logged_date', endStr);
+
+        if (error) throw error;
+
+        (logs || []).forEach(function(entry) {
+            if (!phaseComplianceData[entry.logged_date]) {
+                phaseComplianceData[entry.logged_date] = { calories: 0, protein: 0, carbs: 0, fat: 0 };
+            }
+            phaseComplianceData[entry.logged_date].calories += Number(entry.calories) || 0;
+            phaseComplianceData[entry.logged_date].protein += Number(entry.protein) || 0;
+            phaseComplianceData[entry.logged_date].carbs += Number(entry.carbs) || 0;
+            phaseComplianceData[entry.logged_date].fat += Number(entry.fat) || 0;
+        });
+
+        // Render day blocks on timeline
+        renderTimelineDayBlocks(phase);
+        // Calculate and render compliance stats
+        calculateComplianceStats(phase);
+        // Check achievements
+        loadAndCheckAchievements(userId);
+    } catch (e) {
+        // Compliance data unavailable — fail silently
+    }
+}
+
+function renderTimelineDayBlocks(phase) {
+    var track = document.getElementById('phaseWeeksTrack');
+    if (!track) return;
+    var today = new Date();
+    var todayStr = today.getFullYear() + '-' + String(today.getMonth() + 1).padStart(2, '0') + '-' + String(today.getDate()).padStart(2, '0');
+    var elapsed = phase.totalDays - phase.remaining;
+    var currentWeek = Math.min(13, Math.max(1, Math.ceil(elapsed / 7)));
+
+    var html = '';
+    for (var w = 1; w <= 13; w++) {
+        var weekScores = [];
+        var dayBlocksHtml = '';
+        for (var d = 0; d < 7; d++) {
+            var dayNum = (w - 1) * 7 + d;
+            var dayDate = new Date(phase.startDate);
+            dayDate.setDate(dayDate.getDate() + dayNum);
+            var dayStr = dayDate.getFullYear() + '-' + String(dayDate.getMonth() + 1).padStart(2, '0') + '-' + String(dayDate.getDate()).padStart(2, '0');
+            var isFuture = dayStr > todayStr;
+            var dayData = phaseComplianceData[dayStr];
+            var score = 0;
+            var blockColor = 'var(--dark-gray)';
+            var tooltipText = dayDate.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+
+            if (isFuture) {
+                dayBlocksHtml += '<div class="day-block future"><div class="day-block-tooltip">' + tooltipText + '</div></div>';
+            } else if (dayData && phaseMacroTargets.calories > 0) {
+                score = getDayComplianceScore(dayData, phaseMacroTargets, phaseTolerancePct);
+                blockColor = scoreToColor(score);
+                weekScores.push(score);
+                var pctLabel = Math.round(score * 100) + '%';
+                dayBlocksHtml += '<div class="day-block" style="background:' + blockColor + '"><div class="day-block-tooltip">' + tooltipText + ' &middot; ' + pctLabel + '</div></div>';
+            } else if (!isFuture && dayDate >= phase.startDate) {
+                dayBlocksHtml += '<div class="day-block" style="background:var(--dark-gray)"><div class="day-block-tooltip">' + tooltipText + ' &middot; No data</div></div>';
+            } else {
+                dayBlocksHtml += '<div class="day-block future"></div>';
+            }
+        }
+
+        // Week segment wrapper
+        var weekAvgScore = weekScores.length > 0 ? weekScores.reduce(function(a, b) { return a + b; }, 0) / weekScores.length : 0;
+        var weekColor = weekScores.length > 0 ? scoreToColor(weekAvgScore) : (w < currentWeek ? phase.colorHex : 'var(--medium-gray)');
+        var cls = 'phase-week-segment';
+        var style = 'border: 2px solid ' + weekColor + '; background: transparent; overflow: hidden;';
+        if (w < currentWeek) {
+            cls += ' completed';
+        } else if (w === currentWeek) {
+            cls += ' current';
+            style += ' box-shadow: 0 0 12px ' + weekColor + '40;';
+        }
+        html += '<div class="' + cls + '" style="' + style + '">';
+        html += '<div class="week-day-blocks">' + dayBlocksHtml + '</div>';
+        html += '<span class="week-label">' + w + '</span>';
+        html += '</div>';
+    }
+    track.innerHTML = html;
+}
+
+// ===== COMPLIANCE STATS =====
+var complianceWeeklyChart = null;
+
+function calculateComplianceStats(phase) {
+    var card = document.getElementById('complianceCard');
+    if (!card || phaseMacroTargets.calories <= 0) return;
+
+    var today = new Date();
+    var todayStr = today.getFullYear() + '-' + String(today.getMonth() + 1).padStart(2, '0') + '-' + String(today.getDate()).padStart(2, '0');
+    var daysTracked = 0;
+    var daysOnTarget = 0;
+    var perMacroHits = { calories: 0, protein: 0, carbs: 0, fat: 0 };
+    var perMacroTotal = 0;
+    var weeklyData = [];
+
+    // Walk through each day of the phase up to today
+    for (var w = 0; w < 13; w++) {
+        var weekHits = 0;
+        var weekDays = 0;
+        for (var d = 0; d < 7; d++) {
+            var dayNum = w * 7 + d;
+            var dayDate = new Date(phase.startDate);
+            dayDate.setDate(dayDate.getDate() + dayNum);
+            var dayStr = dayDate.getFullYear() + '-' + String(dayDate.getMonth() + 1).padStart(2, '0') + '-' + String(dayDate.getDate()).padStart(2, '0');
+            if (dayStr > todayStr) continue;
+            if (dayDate > phase.endDate) continue;
+
+            var dayData = phaseComplianceData[dayStr];
+            if (!dayData) continue;
+
+            daysTracked++;
+            perMacroTotal++;
+
+            var macros = ['calories', 'protein', 'carbs', 'fat'];
+            var allOnTarget = true;
+            macros.forEach(function(m) {
+                if (phaseMacroTargets[m] > 0) {
+                    var status = getToleranceStatus(dayData[m] || 0, phaseMacroTargets[m], phaseTolerancePct);
+                    if (status === 'on-target') {
+                        perMacroHits[m]++;
+                    } else {
+                        allOnTarget = false;
+                    }
+                }
+            });
+
+            if (allOnTarget) {
+                daysOnTarget++;
+                weekHits++;
+            }
+            weekDays++;
+        }
+        weeklyData.push(weekDays > 0 ? Math.round((weekHits / weekDays) * 100) : 0);
+    }
+
+    var overallPct = daysTracked > 0 ? Math.round((daysOnTarget / daysTracked) * 100) : 0;
+
+    // Load streak data
+    var streakEl = document.getElementById('compCurrentStreak');
+    var bestStreakEl = document.getElementById('compBestStreak');
+    if (supabase && currentUser) {
+        supabase.from('macro_streaks').select('current_streak, longest_streak')
+            .eq('user_id', getTargetUserId()).single().then(function(res) {
+                if (res.data && !res.error) {
+                    streakEl.textContent = res.data.current_streak || 0;
+                    bestStreakEl.textContent = res.data.longest_streak || 0;
+                }
+            }).catch(function() {});
+    }
+
+    // Update UI
+    document.getElementById('compOverallPct').textContent = overallPct + '%';
+    document.getElementById('compPhasePct').textContent = overallPct + '%';
+
+    // Per-macro bars
+    var macroBarData = [
+        { name: 'Cal', el: 'compCalBar', pctEl: 'compCalPct', key: 'calories' },
+        { name: 'Pro', el: 'compProBar', pctEl: 'compProPct', key: 'protein' },
+        { name: 'Carb', el: 'compCarbBar', pctEl: 'compCarbPct', key: 'carbs' },
+        { name: 'Fat', el: 'compFatBar', pctEl: 'compFatPct', key: 'fat' }
+    ];
+    macroBarData.forEach(function(item) {
+        var pct = perMacroTotal > 0 ? Math.round((perMacroHits[item.key] / perMacroTotal) * 100) : 0;
+        document.getElementById(item.el).style.width = pct + '%';
+        document.getElementById(item.pctEl).textContent = pct + '%';
+    });
+
+    // Weekly chart
+    renderComplianceChart(weeklyData);
+
+    card.style.display = 'block';
+}
+
+function renderComplianceChart(weeklyData) {
+    var ctx = document.getElementById('complianceWeeklyChart');
+    if (!ctx) return;
+    if (complianceWeeklyChart) complianceWeeklyChart.destroy();
+
+    var barColors = weeklyData.map(function(val) {
+        return scoreToColor(val / 100);
+    });
+
+    var labels = [];
+    for (var i = 1; i <= 13; i++) labels.push('W' + i);
+
+    complianceWeeklyChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: labels,
+            datasets: [{
+                data: weeklyData,
+                backgroundColor: barColors,
+                borderWidth: 0
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: { display: false },
+                tooltip: {
+                    backgroundColor: '#1a1a1a',
+                    titleFont: { family: 'Montserrat', weight: '700' },
+                    bodyFont: { family: 'Montserrat', weight: '500' },
+                    callbacks: {
+                        label: function(ctx) { return ctx.raw + '% compliance'; }
+                    }
+                }
+            },
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    max: 100,
+                    ticks: { color: '#999', font: { family: 'Montserrat', size: 10 }, callback: function(v) { return v + '%'; } },
+                    grid: { color: '#333' }
+                },
+                x: {
+                    ticks: { color: '#999', font: { family: 'Montserrat', size: 10, weight: '700' } },
+                    grid: { display: false }
+                }
+            }
+        }
+    });
+}
+
+// ===== ACHIEVEMENTS =====
+var ACHIEVEMENT_DEFS = [
+    { key: 'streak_3', name: 'Getting Started', trigger: '3-day streak', tier: 'bronze', category: 'streaks', icon: 'fa-fire' },
+    { key: 'streak_7', name: 'One Week Strong', trigger: '7-day streak', tier: 'bronze', category: 'streaks', icon: 'fa-fire' },
+    { key: 'streak_14', name: 'Two Week Warrior', trigger: '14-day streak', tier: 'silver', category: 'streaks', icon: 'fa-fire' },
+    { key: 'streak_21', name: 'Three Week Iron', trigger: '21-day streak', tier: 'silver', category: 'streaks', icon: 'fa-fire' },
+    { key: 'streak_30', name: 'Monthly Machine', trigger: '30-day streak', tier: 'gold', category: 'streaks', icon: 'fa-fire' },
+    { key: 'streak_60', name: 'Two Month Titan', trigger: '60-day streak', tier: 'gold', category: 'streaks', icon: 'fa-fire' },
+    { key: 'streak_90', name: 'Quarter Champion', trigger: '90-day streak', tier: 'platinum', category: 'streaks', icon: 'fa-fire' },
+    { key: 'comp_50', name: 'Half Way There', trigger: '50% overall compliance', tier: 'bronze', category: 'compliance', icon: 'fa-bullseye' },
+    { key: 'comp_75', name: 'Three Quarters', trigger: '75% overall compliance', tier: 'silver', category: 'compliance', icon: 'fa-bullseye' },
+    { key: 'comp_90', name: 'Precision Athlete', trigger: '90% overall compliance', tier: 'gold', category: 'compliance', icon: 'fa-bullseye' },
+    { key: 'logged_7', name: 'First Full Week', trigger: '7 days logged', tier: 'bronze', category: 'tracking', icon: 'fa-calendar-check' },
+    { key: 'logged_30', name: 'Monthly Logger', trigger: '30 days logged', tier: 'silver', category: 'tracking', icon: 'fa-calendar-check' },
+    { key: 'logged_60', name: 'Habitual Tracker', trigger: '60 days logged', tier: 'gold', category: 'tracking', icon: 'fa-calendar-check' },
+    { key: 'logged_91', name: 'Full Phase Tracked', trigger: 'Every day of a phase', tier: 'platinum', category: 'tracking', icon: 'fa-calendar-check' },
+    { key: 'perfect_day', name: 'Perfect Day', trigger: 'All macros on-target in 1 day', tier: 'bronze', category: 'mastery', icon: 'fa-star' },
+    { key: 'perfect_week', name: 'Perfect Week', trigger: '7 consecutive perfect days', tier: 'gold', category: 'mastery', icon: 'fa-star' },
+    { key: 'protein_king', name: 'Protein King', trigger: 'Protein on-target 14 days straight', tier: 'silver', category: 'mastery', icon: 'fa-drumstick-bite' },
+    { key: 'macro_master', name: 'Macro Master', trigger: 'All 4 macros on-target 7 straight', tier: 'gold', category: 'mastery', icon: 'fa-crown' }
+];
+
+var TIER_COLORS = { bronze: '#cd7f32', silver: '#c0c0c0', gold: '#FFD202', platinum: '#e5e4e2' };
+
+var unlockedAchievements = {};
+
+async function loadAndCheckAchievements(userId) {
+    if (!supabase) return;
+
+    // Load unlocked achievements
+    try {
+        var { data, error } = await supabase.from('achievements')
+            .select('achievement_key, unlocked_at')
+            .eq('user_id', userId);
+        if (!error && data) {
+            data.forEach(function(a) { unlockedAchievements[a.achievement_key] = a.unlocked_at; });
+        }
+    } catch (e) { /* table may not exist yet */ }
+
+    // Compute earned achievements from phase data
+    var earned = computeEarnedAchievements();
+
+    // Unlock new ones
+    var newUnlocks = [];
+    earned.forEach(function(key) {
+        if (!unlockedAchievements[key]) {
+            newUnlocks.push(key);
+            unlockedAchievements[key] = new Date().toISOString();
+        }
+    });
+
+    // Insert new unlocks
+    if (newUnlocks.length > 0 && supabase) {
+        var inserts = newUnlocks.map(function(key) {
+            return { user_id: userId, achievement_key: key };
+        });
+        try {
+            await supabase.from('achievements').insert(inserts);
+        } catch (e) { /* silent — table may not exist */ }
+    }
+
+    // Render badge grid
+    renderAchievements();
+
+    // Show toasts for new unlocks
+    newUnlocks.forEach(function(key, idx) {
+        var def = ACHIEVEMENT_DEFS.find(function(d) { return d.key === key; });
+        if (def) {
+            setTimeout(function() {
+                showDashAchievementToast(def.name, def.trigger, TIER_COLORS[def.tier]);
+                if (def.tier === 'gold' || def.tier === 'platinum') {
+                    fireDashConfetti();
+                }
+            }, 500 + idx * 4500);
+        }
+    });
+
+    document.getElementById('achievementsCard').style.display = 'block';
+}
+
+function computeEarnedAchievements() {
+    var earned = [];
+    if (phaseMacroTargets.calories <= 0) return earned;
+
+    var today = new Date();
+    var todayStr = today.getFullYear() + '-' + String(today.getMonth() + 1).padStart(2, '0') + '-' + String(today.getDate()).padStart(2, '0');
+
+    // Build sorted array of day data
+    var sortedDays = Object.keys(phaseComplianceData).filter(function(d) { return d <= todayStr; }).sort();
+    var daysLogged = sortedDays.length;
+
+    // Check each day for on-target status
+    var perfectDays = []; // dates where all macros on target
+    var proteinOnTargetDays = [];
+    sortedDays.forEach(function(dateStr) {
+        var day = phaseComplianceData[dateStr];
+        var macros = ['calories', 'protein', 'carbs', 'fat'];
+        var allOnTarget = true;
+        var proteinOk = false;
+        macros.forEach(function(m) {
+            if (phaseMacroTargets[m] > 0) {
+                var status = getToleranceStatus(day[m] || 0, phaseMacroTargets[m], phaseTolerancePct);
+                if (status !== 'on-target') allOnTarget = false;
+                if (m === 'protein' && status === 'on-target') proteinOk = true;
+            }
+        });
+        if (allOnTarget) perfectDays.push(dateStr);
+        if (proteinOk) proteinOnTargetDays.push(dateStr);
+    });
+
+    // Overall compliance %
+    var overallPct = daysLogged > 0 ? Math.round((perfectDays.length / daysLogged) * 100) : 0;
+
+    // Streak from macro_streaks (loaded separately)
+    var currentStreakVal = parseInt(document.getElementById('compCurrentStreak').textContent) || 0;
+    var bestStreakVal = parseInt(document.getElementById('compBestStreak').textContent) || 0;
+    var maxStreak = Math.max(currentStreakVal, bestStreakVal);
+
+    // Streak achievements
+    if (maxStreak >= 3) earned.push('streak_3');
+    if (maxStreak >= 7) earned.push('streak_7');
+    if (maxStreak >= 14) earned.push('streak_14');
+    if (maxStreak >= 21) earned.push('streak_21');
+    if (maxStreak >= 30) earned.push('streak_30');
+    if (maxStreak >= 60) earned.push('streak_60');
+    if (maxStreak >= 90) earned.push('streak_90');
+
+    // Compliance achievements
+    if (overallPct >= 50) earned.push('comp_50');
+    if (overallPct >= 75) earned.push('comp_75');
+    if (overallPct >= 90) earned.push('comp_90');
+
+    // Tracking achievements
+    if (daysLogged >= 7) earned.push('logged_7');
+    if (daysLogged >= 30) earned.push('logged_30');
+    if (daysLogged >= 60) earned.push('logged_60');
+    if (daysLogged >= 91) earned.push('logged_91');
+
+    // Perfect day
+    if (perfectDays.length >= 1) earned.push('perfect_day');
+
+    // Perfect week (7 consecutive perfect days)
+    if (hasConsecutiveDays(perfectDays, 7)) earned.push('perfect_week');
+
+    // Macro master (all macros on target 7 consecutive)
+    if (hasConsecutiveDays(perfectDays, 7)) earned.push('macro_master');
+
+    // Protein king (14 consecutive days protein on target)
+    if (hasConsecutiveDays(proteinOnTargetDays, 14)) earned.push('protein_king');
+
+    return earned;
+}
+
+function hasConsecutiveDays(dateArray, count) {
+    if (dateArray.length < count) return false;
+    var sorted = dateArray.slice().sort();
+    var streak = 1;
+    for (var i = 1; i < sorted.length; i++) {
+        var prev = new Date(sorted[i - 1]);
+        var curr = new Date(sorted[i]);
+        var diff = Math.round((curr - prev) / (1000 * 60 * 60 * 24));
+        if (diff === 1) {
+            streak++;
+            if (streak >= count) return true;
+        } else {
+            streak = 1;
+        }
+    }
+    return false;
+}
+
+function renderAchievements() {
+    var grid = document.getElementById('achievementsGrid');
+    if (!grid) return;
+
+    var unlockedCount = 0;
+    var html = '';
+    ACHIEVEMENT_DEFS.forEach(function(def) {
+        var isUnlocked = !!unlockedAchievements[def.key];
+        if (isUnlocked) unlockedCount++;
+        var tierColor = TIER_COLORS[def.tier];
+        var cls = 'achievement-badge ' + (isUnlocked ? 'unlocked' : 'locked');
+        var borderStyle = isUnlocked ? 'border-color: ' + tierColor : '';
+
+        html += '<div class="' + cls + '" style="' + borderStyle + '">';
+        html += '<div class="achievement-badge-icon" style="color:' + tierColor + '"><i class="fa-solid ' + def.icon + '"></i></div>';
+        html += '<div class="achievement-badge-name">' + def.name + '</div>';
+        html += '<div class="achievement-badge-trigger">' + def.trigger + '</div>';
+        html += '</div>';
+    });
+    grid.innerHTML = html;
+    document.getElementById('achievementsCount').textContent = unlockedCount + ' / ' + ACHIEVEMENT_DEFS.length;
+}
+
+// ===== CONFETTI & TOASTS (Dashboard) =====
+function fireDashConfetti() {
+    var canvas = document.getElementById('dashConfettiCanvas');
+    if (!canvas) return;
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+    var ctx = canvas.getContext('2d');
+    var particles = [];
+    var colors = ['#FFD202', '#27AE60', '#e74c3c', '#2196F3', '#ffffff'];
+    for (var i = 0; i < 120; i++) {
+        particles.push({
+            x: canvas.width * 0.5 + (Math.random() - 0.5) * canvas.width * 0.4,
+            y: canvas.height * 0.4,
+            vx: (Math.random() - 0.5) * 12,
+            vy: -(Math.random() * 10 + 4),
+            w: Math.random() * 8 + 4,
+            h: Math.random() * 6 + 2,
+            color: colors[Math.floor(Math.random() * colors.length)],
+            rotation: Math.random() * Math.PI * 2,
+            rotationSpeed: (Math.random() - 0.5) * 0.2,
+            gravity: 0.15 + Math.random() * 0.1,
+            life: 1
+        });
+    }
+    var startTime = Date.now();
+    function animate() {
+        var elapsed = Date.now() - startTime;
+        if (elapsed > 3000) { ctx.clearRect(0, 0, canvas.width, canvas.height); return; }
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        particles.forEach(function(p) {
+            p.x += p.vx;
+            p.vy += p.gravity;
+            p.y += p.vy;
+            p.rotation += p.rotationSpeed;
+            p.life = Math.max(0, 1 - elapsed / 3000);
+            ctx.save();
+            ctx.translate(p.x, p.y);
+            ctx.rotate(p.rotation);
+            ctx.globalAlpha = p.life;
+            ctx.fillStyle = p.color;
+            ctx.fillRect(-p.w / 2, -p.h / 2, p.w, p.h);
+            ctx.restore();
+        });
+        requestAnimationFrame(animate);
+    }
+    animate();
+}
+
+function showDashAchievementToast(name, description, tierColor) {
+    var toast = document.createElement('div');
+    toast.className = 'achievement-toast';
+    toast.innerHTML = '<div class="achievement-toast-icon" style="color:' + (tierColor || '#FFD202') + '"><i class="fa-solid fa-trophy"></i></div>'
+        + '<div class="achievement-toast-text"><div class="achievement-toast-name" style="color:' + (tierColor || '#FFD202') + '">' + name + '</div>'
+        + '<div class="achievement-toast-desc">' + description + '</div></div>';
+    document.body.appendChild(toast);
+    requestAnimationFrame(function() { toast.classList.add('show'); });
+    setTimeout(function() {
+        toast.classList.remove('show');
+        setTimeout(function() { toast.remove(); }, 400);
+    }, 4000);
 }
 
 // ===== INIT =====

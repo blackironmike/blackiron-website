@@ -588,6 +588,93 @@
             opacity: 0.4;
         }
 
+        /* ===== MACRO CHECKMARKS ===== */
+        .macro-check {
+            display: inline-flex;
+            align-items: center;
+            margin-left: 0.5rem;
+            font-size: 1.1rem;
+            transition: color 0.3s ease, transform 0.3s ease;
+        }
+        .macro-check.popped {
+            animation: checkPop 0.4s ease-out;
+        }
+        @keyframes checkPop {
+            0% { transform: scale(1); }
+            40% { transform: scale(1.5); }
+            100% { transform: scale(1); }
+        }
+        .calories-check {
+            display: inline-flex;
+            align-items: center;
+            margin-left: 0.75rem;
+            font-size: 1.3rem;
+            transition: color 0.3s ease, transform 0.3s ease;
+        }
+        .calories-check.popped {
+            animation: checkPop 0.4s ease-out;
+        }
+        .tracker-streak.pulse-streak {
+            animation: streakPulse 0.6s ease-in-out;
+        }
+        @keyframes streakPulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.08); }
+        }
+
+        /* ===== CONFETTI CANVAS ===== */
+        #confettiCanvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 99998;
+        }
+
+        /* ===== ACHIEVEMENT TOAST ===== */
+        .achievement-toast {
+            position: fixed;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%) translateY(100px);
+            background: var(--dark-gray);
+            border: 2px solid var(--medium-gray);
+            padding: 1rem 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            z-index: 99999;
+            opacity: 0;
+            transition: opacity 0.4s ease, transform 0.4s ease;
+            max-width: 400px;
+            width: 90%;
+        }
+        .achievement-toast.show {
+            opacity: 1;
+            transform: translateX(-50%) translateY(0);
+        }
+        .achievement-toast-icon {
+            font-size: 1.8rem;
+            flex-shrink: 0;
+        }
+        .achievement-toast-text {
+            flex: 1;
+        }
+        .achievement-toast-name {
+            font-size: 0.9rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .achievement-toast-desc {
+            font-size: 0.75rem;
+            color: var(--light-gray);
+            font-weight: 500;
+            margin-top: 0.15rem;
+        }
+
         /* ===== STREAK ===== */
         .tracker-streak {
             text-align: center;
@@ -1442,14 +1529,14 @@
         <!-- Macro Progress -->
         <div class="tracker-macro-section">
             <div class="tracker-calories-hero">
-                <div class="tracker-calories-consumed" id="trackerCalConsumed">0</div>
+                <div class="tracker-calories-consumed" id="trackerCalConsumed">0<span class="calories-check" id="trackerCaloriesCheck"><i class="fa-solid fa-circle" style="font-size: 0.6em; opacity: 0.3;"></i></span></div>
                 <div class="tracker-calories-target">/ <span id="trackerCalTarget">--</span> cal</div>
                 <div class="tracker-calories-label">Calories</div>
             </div>
 
             <div class="tracker-macro-bars">
                 <div class="tracker-macro-bar">
-                    <div class="tracker-macro-bar-label">Protein</div>
+                    <div class="tracker-macro-bar-label">Protein <span class="macro-check" id="trackerProteinCheck"><i class="fa-solid fa-circle" style="font-size: 0.6em; opacity: 0.3;"></i></span></div>
                     <div class="tracker-macro-bar-values"><span id="trackerProteinConsumed">0</span>g <span>/ <span id="trackerProteinTarget">--</span>g</span></div>
                     <div class="tracker-bar-track">
                         <div class="tracker-bar-fill" id="trackerProteinBar" style="width:0%; background: var(--green);"></div>
@@ -1458,7 +1545,7 @@
                     </div>
                 </div>
                 <div class="tracker-macro-bar">
-                    <div class="tracker-macro-bar-label">Carbs</div>
+                    <div class="tracker-macro-bar-label">Carbs <span class="macro-check" id="trackerCarbsCheck"><i class="fa-solid fa-circle" style="font-size: 0.6em; opacity: 0.3;"></i></span></div>
                     <div class="tracker-macro-bar-values"><span id="trackerCarbsConsumed">0</span>g <span>/ <span id="trackerCarbsTarget">--</span>g</span></div>
                     <div class="tracker-bar-track">
                         <div class="tracker-bar-fill" id="trackerCarbsBar" style="width:0%; background: var(--green);"></div>
@@ -1467,7 +1554,7 @@
                     </div>
                 </div>
                 <div class="tracker-macro-bar">
-                    <div class="tracker-macro-bar-label">Fat</div>
+                    <div class="tracker-macro-bar-label">Fat <span class="macro-check" id="trackerFatCheck"><i class="fa-solid fa-circle" style="font-size: 0.6em; opacity: 0.3;"></i></span></div>
                     <div class="tracker-macro-bar-values"><span id="trackerFatConsumed">0</span>g <span>/ <span id="trackerFatTarget">--</span>g</span></div>
                     <div class="tracker-bar-track">
                         <div class="tracker-bar-fill" id="trackerFatBar" style="width:0%; background: var(--green);"></div>
@@ -1751,6 +1838,9 @@
     </div>
 </div>
 
+<!-- Confetti Canvas -->
+<canvas id="confettiCanvas"></canvas>
+
 <!-- ========================================= -->
 <!-- JAVASCRIPT                                -->
 <!-- ========================================= -->
@@ -1951,6 +2041,8 @@ function updateDateLabel() {
 function changeDate(delta) {
     trackerDate.setDate(trackerDate.getDate() + delta);
     updateDateLabel();
+    dailyCelebrationFired = false;
+    previousCheckStates = { Calories: false, Protein: false, Carbs: false, Fat: false };
     if (currentUser) {
         loadFoodLog(currentUser.id, formatDate(trackerDate));
     }
@@ -1961,6 +2053,8 @@ function jumpToDate(dateStr) {
     var parts = dateStr.split('-');
     trackerDate = new Date(parseInt(parts[0]), parseInt(parts[1]) - 1, parseInt(parts[2]));
     updateDateLabel();
+    dailyCelebrationFired = false;
+    previousCheckStates = { Calories: false, Protein: false, Carbs: false, Fat: false };
     if (currentUser) {
         loadFoodLog(currentUser.id, formatDate(trackerDate));
     }
@@ -2073,6 +2167,85 @@ function escapeHtml(str) {
     return str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 }
 
+// ===== COMPLIANCE SCORING FUNCTIONS =====
+var previousCheckStates = { Calories: false, Protein: false, Carbs: false, Fat: false };
+var dailyCelebrationFired = false;
+
+function getComplianceScore(consumed, target, tol) {
+    if (!target || target === 0) return 0;
+    var ratio = consumed / target;
+    var low = 1 - (tol / 100);
+    var high = 1 + (tol / 100);
+    // If within tolerance, score = 1.0
+    if (ratio >= low && ratio <= high) return 1.0;
+    // Distance from nearest tolerance boundary
+    var dist;
+    if (ratio < low) dist = low - ratio;
+    else dist = ratio - high;
+    // Normalize: score drops from 1.0 at boundary to 0.0 at 2x tolerance away
+    var maxDist = (tol / 100) * 2;
+    var score = 1.0 - Math.min(dist / maxDist, 1.0);
+    return Math.max(0, Math.min(1, score));
+}
+
+function scoreToColor(score) {
+    // 4-stop gradient: Red(0-25%) → Orange(25-50%) → Yellow(50-75%) → Green(75-100%)
+    var stops = [
+        { p: 0.00, r: 231, g: 76,  b: 60  }, // #e74c3c Red
+        { p: 0.25, r: 243, g: 156, b: 18  }, // #f39c12 Orange
+        { p: 0.50, r: 255, g: 210, b: 2   }, // #FFD202 Yellow
+        { p: 0.75, r: 39,  g: 174, b: 96  }  // #27AE60 Green
+    ];
+    if (score >= 0.75) return 'rgb(39,174,96)';
+    if (score <= 0) return 'rgb(231,76,60)';
+    var i = 0;
+    for (var s = 1; s < stops.length; s++) {
+        if (score < stops[s].p) { i = s - 1; break; }
+        i = s;
+    }
+    var from = stops[i];
+    var to = stops[Math.min(i + 1, stops.length - 1)];
+    var range = to.p - from.p;
+    var t = range > 0 ? (score - from.p) / range : 0;
+    var r = Math.round(from.r + (to.r - from.r) * t);
+    var g = Math.round(from.g + (to.g - from.g) * t);
+    var b = Math.round(from.b + (to.b - from.b) * t);
+    return 'rgb(' + r + ',' + g + ',' + b + ')';
+}
+
+function getDayComplianceScore(dayTotals, targets, tol) {
+    var macros = ['calories', 'protein', 'carbs', 'fat'];
+    var total = 0;
+    var count = 0;
+    macros.forEach(function(m) {
+        if (targets[m] && targets[m] > 0) {
+            total += getComplianceScore(dayTotals[m] || 0, targets[m], tol);
+            count++;
+        }
+    });
+    return count > 0 ? total / count : 0;
+}
+
+function updateMacroCheck(name, score) {
+    var el = document.getElementById('tracker' + name + 'Check');
+    if (!el) return;
+    var color = scoreToColor(score);
+    var icon = score >= 0.75 ? 'fa-circle-check' : 'fa-circle';
+    var opacity = score < 0.1 ? '0.3' : '1';
+    el.innerHTML = '<i class="fa-solid ' + icon + '" style="font-size: 0.6em;"></i>';
+    el.style.color = color;
+    el.style.opacity = opacity;
+    // Pop animation when transitioning to green
+    var wasGreen = previousCheckStates[name];
+    var isGreen = score >= 0.75;
+    if (isGreen && !wasGreen) {
+        el.classList.remove('popped');
+        void el.offsetWidth; // force reflow
+        el.classList.add('popped');
+    }
+    previousCheckStates[name] = isGreen;
+}
+
 // ===== RENDER MACRO PROGRESS =====
 function renderMacroProgress() {
     var totals = { calories: 0, protein: 0, carbs: 0, fat: 0 };
@@ -2083,16 +2256,42 @@ function renderMacroProgress() {
         totals.fat += Number(item.fat) || 0;
     });
 
-    // Calories hero
-    var calStatus = getToleranceStatus(totals.calories, macroTargets.calories, tolerancePct);
-    var calColor = calStatus === 'on-target' ? 'var(--green)' : calStatus === 'close' ? 'var(--orange)' : macroTargets.calories ? 'var(--red)' : 'var(--yellow)';
-    document.getElementById('trackerCalConsumed').textContent = Math.round(totals.calories).toLocaleString();
-    document.getElementById('trackerCalConsumed').style.color = calColor;
+    // Compliance scores
+    var calScore = getComplianceScore(totals.calories, macroTargets.calories, tolerancePct);
+    var proScore = getComplianceScore(totals.protein, macroTargets.protein, tolerancePct);
+    var carbScore = getComplianceScore(totals.carbs, macroTargets.carbs, tolerancePct);
+    var fatScore = getComplianceScore(totals.fat, macroTargets.fat, tolerancePct);
+
+    // Calories hero — use compliance color
+    var calColor = macroTargets.calories ? scoreToColor(calScore) : 'var(--yellow)';
+    var calEl = document.getElementById('trackerCalConsumed');
+    // Preserve the checkmark span
+    var checkSpan = document.getElementById('trackerCaloriesCheck');
+    calEl.textContent = Math.round(totals.calories).toLocaleString();
+    calEl.appendChild(checkSpan);
+    calEl.style.color = calColor;
+
+    // Update checkmarks
+    updateMacroCheck('Calories', calScore);
+    updateMacroCheck('Protein', proScore);
+    updateMacroCheck('Carbs', carbScore);
+    updateMacroCheck('Fat', fatScore);
 
     // Macro bars
     renderBar('Protein', totals.protein, macroTargets.protein);
     renderBar('Carbs', totals.carbs, macroTargets.carbs);
     renderBar('Fat', totals.fat, macroTargets.fat);
+
+    // Daily celebration: when ALL 4 macros hit green
+    if (calScore >= 0.75 && proScore >= 0.75 && carbScore >= 0.75 && fatScore >= 0.75 && !dailyCelebrationFired && macroTargets.calories > 0) {
+        dailyCelebrationFired = true;
+        fireConfetti();
+        var streakEl = document.querySelector('.tracker-streak');
+        if (streakEl) {
+            streakEl.classList.add('pulse-streak');
+            setTimeout(function() { streakEl.classList.remove('pulse-streak'); }, 600);
+        }
+    }
 }
 
 function renderBar(name, consumed, target) {
@@ -2759,6 +2958,69 @@ async function checkStreakMilestones(streak) {
             });
         }
     } catch (e) { /* notification insert failed — not critical */ }
+}
+
+// ===== CONFETTI SYSTEM =====
+function fireConfetti() {
+    var canvas = document.getElementById('confettiCanvas');
+    if (!canvas) return;
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+    var ctx = canvas.getContext('2d');
+    var particles = [];
+    var colors = ['#FFD202', '#27AE60', '#e74c3c', '#2196F3', '#ffffff'];
+    for (var i = 0; i < 120; i++) {
+        particles.push({
+            x: canvas.width * 0.5 + (Math.random() - 0.5) * canvas.width * 0.4,
+            y: canvas.height * 0.4,
+            vx: (Math.random() - 0.5) * 12,
+            vy: -(Math.random() * 10 + 4),
+            w: Math.random() * 8 + 4,
+            h: Math.random() * 6 + 2,
+            color: colors[Math.floor(Math.random() * colors.length)],
+            rotation: Math.random() * Math.PI * 2,
+            rotationSpeed: (Math.random() - 0.5) * 0.2,
+            gravity: 0.15 + Math.random() * 0.1,
+            life: 1
+        });
+    }
+    var startTime = Date.now();
+    function animate() {
+        var elapsed = Date.now() - startTime;
+        if (elapsed > 3000) { ctx.clearRect(0, 0, canvas.width, canvas.height); return; }
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        particles.forEach(function(p) {
+            p.x += p.vx;
+            p.vy += p.gravity;
+            p.y += p.vy;
+            p.rotation += p.rotationSpeed;
+            p.life = Math.max(0, 1 - elapsed / 3000);
+            ctx.save();
+            ctx.translate(p.x, p.y);
+            ctx.rotate(p.rotation);
+            ctx.globalAlpha = p.life;
+            ctx.fillStyle = p.color;
+            ctx.fillRect(-p.w / 2, -p.h / 2, p.w, p.h);
+            ctx.restore();
+        });
+        requestAnimationFrame(animate);
+    }
+    animate();
+}
+
+// ===== ACHIEVEMENT TOAST =====
+function showAchievementToast(name, description, tierColor) {
+    var toast = document.createElement('div');
+    toast.className = 'achievement-toast';
+    toast.innerHTML = '<div class="achievement-toast-icon" style="color:' + (tierColor || '#FFD202') + '"><i class="fa-solid fa-trophy"></i></div>'
+        + '<div class="achievement-toast-text"><div class="achievement-toast-name" style="color:' + (tierColor || '#FFD202') + '">' + name + '</div>'
+        + '<div class="achievement-toast-desc">' + description + '</div></div>';
+    document.body.appendChild(toast);
+    requestAnimationFrame(function() { toast.classList.add('show'); });
+    setTimeout(function() {
+        toast.classList.remove('show');
+        setTimeout(function() { toast.remove(); }, 400);
+    }, 4000);
 }
 
 // ===== LEAD MODAL (placeholder) =====
