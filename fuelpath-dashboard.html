@@ -3898,6 +3898,142 @@
             .dash-quick-actions { grid-template-columns: 1fr; }
         }
 
+        /* ===== FUEL PATH EDUCATION TAB ===== */
+        .fuelpath-edu-hero {
+            padding: 2.5rem 0 1.5rem;
+            text-align: center;
+        }
+        .fuelpath-edu-hero-subtitle {
+            font-size: 0.8rem;
+            font-weight: 700;
+            color: var(--yellow);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 0.75rem;
+        }
+        .fuelpath-edu-hero-title {
+            font-size: clamp(1.5rem, 4vw, 2.2rem);
+            font-weight: 900;
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+        }
+        .fuelpath-edu-hero-desc {
+            font-size: 0.95rem;
+            color: var(--light-gray);
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+        .fuelpath-you-are-here {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem 1.5rem;
+            background: var(--dark-gray);
+            border: 1px solid var(--medium-gray);
+        }
+        .fuelpath-yah-badge {
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            color: var(--yellow);
+            white-space: nowrap;
+        }
+        .fuelpath-yah-phase {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 0.95rem;
+            transition: color 0.2s;
+        }
+        .fuelpath-yah-phase:hover { color: var(--yellow); }
+        .phase-cards-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+        }
+        .phase-card {
+            background: var(--dark-gray);
+            padding: 1.5rem;
+            border: 1px solid var(--medium-gray);
+        }
+        .phase-card-num {
+            font-size: 0.7rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-bottom: 0.35rem;
+        }
+        .phase-card h4 {
+            font-size: 1.2rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            margin-bottom: 0.75rem;
+        }
+        .phase-card p {
+            font-size: 0.85rem;
+            color: var(--light-gray);
+            line-height: 1.5;
+            margin-bottom: 1rem;
+        }
+        .phase-card-link {
+            font-size: 0.8rem;
+            font-weight: 700;
+            color: var(--yellow);
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            transition: opacity 0.2s;
+        }
+        .phase-card-link:hover { opacity: 0.8; }
+        .phase-card-link i { margin-left: 0.25rem; font-size: 0.7rem; }
+        .fuelpath-extra-links {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+        .fuelpath-extra-card {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1.25rem 1.5rem;
+            background: var(--black);
+            border: 1px solid var(--medium-gray);
+            text-decoration: none;
+            transition: border-color 0.2s;
+        }
+        .fuelpath-extra-card:hover { border-color: var(--yellow); }
+        .fuelpath-extra-icon {
+            font-size: 1.5rem;
+            color: var(--yellow);
+            flex-shrink: 0;
+            width: 40px;
+            text-align: center;
+        }
+        .fuelpath-extra-card h4 {
+            font-size: 0.95rem;
+            color: var(--white);
+            margin-bottom: 0.25rem;
+        }
+        .fuelpath-extra-card p {
+            font-size: 0.8rem;
+            color: var(--light-gray);
+            margin: 0;
+        }
+        .fuelpath-extra-card > i:last-child {
+            margin-left: auto;
+            flex-shrink: 0;
+        }
+        @media (max-width: 768px) {
+            .phase-cards-grid { grid-template-columns: 1fr; }
+        }
+        @media (max-width: 480px) {
+            .fuelpath-you-are-here { flex-direction: column; align-items: flex-start; gap: 0.5rem; }
+        }
+
         /* ===== COACH THREAD (athlete view) ===== */
         .coach-thread {
             max-height: 400px;
@@ -4740,12 +4876,98 @@
 
         <!-- ===== TAB 4: FUEL PATH ===== -->
         <div id="tabFuelPath" class="tab-panel">
-            <div class="section" style="padding-top: 2rem;">
+
+            <!-- Hero -->
+            <div class="fuelpath-edu-hero">
                 <div class="section-container">
-                    <h2 style="font-size: 1.5rem; margin-bottom: 1rem;"><i class="fa-solid fa-map" style="color: var(--yellow); margin-right: 0.5rem;"></i> Fuel Path</h2>
-                    <p style="color: var(--light-gray);">Coming soon — the 4-Phase Metabolic System education hub.</p>
+                    <div class="fuelpath-edu-hero-subtitle">FuelPath Education</div>
+                    <h2 class="fuelpath-edu-hero-title">The 4-Phase Metabolic System</h2>
+                    <p class="fuelpath-edu-hero-desc">A year-long nutrition periodization framework that cycles through four distinct phases to optimize body composition, performance, and metabolic health.</p>
                 </div>
             </div>
+
+            <!-- You Are Here Badge -->
+            <div class="section" style="padding: 1.5rem 0;">
+                <div class="section-container">
+                    <div class="fuelpath-you-are-here" id="fuelPathYouAreHere">
+                        <span class="fuelpath-yah-badge" id="fuelPathYahBadge">
+                            <i class="fa-solid fa-location-dot"></i> You Are Here
+                        </span>
+                        <a href="#" id="fuelPathYahLink" class="fuelpath-yah-phase">
+                            <span id="fuelPathYahPhase">Phase 1: Baseline</span>
+                            <i class="fa-solid fa-arrow-right" style="font-size: 0.75rem;"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Why Cycle Phases -->
+            <div class="section" style="padding: 0 0 2rem;">
+                <div class="section-container">
+                    <div class="dash-card">
+                        <h3 style="font-size: 1.1rem; margin-bottom: 1rem;"><i class="fa-solid fa-rotate" style="color: var(--yellow); margin-right: 0.5rem;"></i> Why Cycle Phases?</h3>
+                        <p style="color: var(--light-gray); font-size: 0.9rem; margin-bottom: 1rem;">Your metabolism is adaptive. Staying in a caloric deficit too long causes your body to down-regulate energy expenditure, halt fat loss, and lose muscle. Staying in a surplus too long leads to excessive fat gain. Periodizing nutrition — just like training — keeps your metabolism responsive and your progress moving forward.</p>
+                        <p style="color: var(--light-gray); font-size: 0.9rem;">The FuelPath system cycles through <strong style="color: var(--white);">Baseline → Cut → Maintain → Build</strong> in 13-week blocks. Each phase has a specific metabolic goal, calorie strategy, and set of supplements. After one full cycle, you start again — leaner, stronger, and more metabolically efficient than before.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 4 Phase Cards -->
+            <div class="section" style="padding: 0 0 2rem;">
+                <div class="section-container">
+                    <div class="phase-cards-grid">
+                        <div class="phase-card" style="border-top: 4px solid var(--phase-baseline);">
+                            <div class="phase-card-num" style="color: var(--phase-baseline);">Phase 1</div>
+                            <h4>Baseline</h4>
+                            <p>Establish maintenance calories, build tracking habits, and create a metabolic starting point for the year.</p>
+                            <a href="fuelpath-phase-1-maintain" class="phase-card-link">Learn More <i class="fa-solid fa-arrow-right"></i></a>
+                        </div>
+                        <div class="phase-card" style="border-top: 4px solid var(--phase-cut);">
+                            <div class="phase-card-num" style="color: var(--phase-cut);">Phase 2</div>
+                            <h4>Cut</h4>
+                            <p>Strategic caloric deficit to reduce body fat while preserving muscle mass. The transformation phase.</p>
+                            <a href="fuelpath-phase-2-cut" class="phase-card-link">Learn More <i class="fa-solid fa-arrow-right"></i></a>
+                        </div>
+                        <div class="phase-card" style="border-top: 4px solid var(--phase-maintain);">
+                            <div class="phase-card-num" style="color: var(--phase-maintain);">Phase 3</div>
+                            <h4>Maintain</h4>
+                            <p>Lock in your new body composition at maintenance calories. Reverse diet back up and reset metabolic rate.</p>
+                            <a href="fuelpath-phase-3-maintain" class="phase-card-link">Learn More <i class="fa-solid fa-arrow-right"></i></a>
+                        </div>
+                        <div class="phase-card" style="border-top: 4px solid var(--phase-build);">
+                            <div class="phase-card-num" style="color: var(--phase-build);">Phase 4</div>
+                            <h4>Build</h4>
+                            <p>Controlled caloric surplus to add lean muscle mass. Fuel hard training and set up next year's cut.</p>
+                            <a href="fuelpath-phase-4-build" class="phase-card-link">Learn More <i class="fa-solid fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Decade Roadmap + Supplements -->
+            <div class="section section-alt" style="padding: 2rem 0;">
+                <div class="section-container">
+                    <div class="fuelpath-extra-links">
+                        <a href="fuelpath-decade" class="fuelpath-extra-card">
+                            <div class="fuelpath-extra-icon"><i class="fa-solid fa-road"></i></div>
+                            <div>
+                                <h4>Decade Roadmap</h4>
+                                <p>See where 10 years of consistent phase cycling takes your body composition.</p>
+                            </div>
+                            <i class="fa-solid fa-chevron-right" style="color: var(--light-gray);"></i>
+                        </a>
+                        <a href="fuelpath-supplements" class="fuelpath-extra-card">
+                            <div class="fuelpath-extra-icon"><i class="fa-solid fa-capsules"></i></div>
+                            <div>
+                                <h4>Supplements &amp; Hydration</h4>
+                                <p>Evidence-based supplement protocols for every phase, plus hydration targets.</p>
+                            </div>
+                            <i class="fa-solid fa-chevron-right" style="color: var(--light-gray);"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
         </div>
 
         <!-- ===== TAB 5: MORE ===== -->
@@ -5895,6 +6117,17 @@ function showTab(tabId) {
     }
 }
 
+// ===== FUEL PATH TAB =====
+function renderFuelPathTab() {
+    var phase = getPhaseInfo();
+    var badge = document.getElementById('fuelPathYahBadge');
+    if (badge) badge.style.color = phase.colorHex;
+    var phaseLabel = document.getElementById('fuelPathYahPhase');
+    if (phaseLabel) phaseLabel.textContent = 'Phase ' + phase.num + ': ' + phase.name;
+    var link = document.getElementById('fuelPathYahLink');
+    if (link) link.href = phase.link;
+}
+
 // ===== FOOD LOG TAB (MOCK) =====
 var foodlogDateOffset = 0;
 function changeFoodLogDate(delta) {
@@ -5976,6 +6209,7 @@ async function initDashboard(user) {
     renderQuickLinks(phase);
     renderChecklist(phase);
     renderTransitionCard(phase);
+    renderFuelPathTab();
     if (supabase && user) {
         // Detect coach/owner role
         try {
