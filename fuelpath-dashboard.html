@@ -3840,6 +3840,81 @@
             .tracker-summary-bars { grid-template-columns: 1fr; }
             .coach-foodlog-totals { grid-template-columns: repeat(2, 1fr); }
         }
+
+        /* ===== BOTTOM TAB BAR ===== */
+        .fp-bottom-tabs {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 64px;
+            background: var(--dark-gray);
+            border-top: 1px solid var(--medium-gray);
+            display: none;
+            z-index: 1000;
+            padding-bottom: env(safe-area-inset-bottom, 0px);
+        }
+        .fp-bottom-tabs.visible {
+            display: flex;
+        }
+        .fp-bottom-tabs button {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 0.25rem;
+            background: none;
+            border: none;
+            color: var(--light-gray);
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.65rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            cursor: pointer;
+            transition: color 0.2s;
+            padding: 0.5rem 0;
+            -webkit-tap-highlight-color: transparent;
+        }
+        .fp-bottom-tabs button i {
+            font-size: 1.2rem;
+            transition: color 0.2s;
+        }
+        .fp-bottom-tabs button.tab-active {
+            color: var(--yellow);
+        }
+        .fp-bottom-tabs button:hover {
+            color: var(--white);
+        }
+        .fp-bottom-tabs button.tab-active:hover {
+            color: var(--yellow);
+        }
+
+        /* Tab panel switching */
+        .tab-panel { display: none; }
+        .tab-panel.tab-active { display: block; }
+
+        /* Body padding for tab bar when visible */
+        body.has-bottom-tabs {
+            padding-bottom: calc(64px + env(safe-area-inset-bottom, 0px));
+        }
+
+        /* ===== BOTTOM TABS RESPONSIVE ===== */
+        @media (max-width: 480px) {
+            .fp-bottom-tabs {
+                height: 56px;
+            }
+            .fp-bottom-tabs button {
+                font-size: 0.6rem;
+            }
+            .fp-bottom-tabs button i {
+                font-size: 1rem;
+            }
+            body.has-bottom-tabs {
+                padding-bottom: calc(56px + env(safe-area-inset-bottom, 0px));
+            }
+        }
     </style>
 </head>
 <body>
@@ -3936,6 +4011,9 @@
             <p><i class="fa-solid fa-check-circle" style="color: #27AE60;"></i> <strong>Coaching Call Purchased!</strong> Book your 30-minute session now.</p>
             <a href="https://api.leadconnectorhq.com/widget/booking/COACHING_CALENDAR_ID" target="_blank" rel="noopener">Schedule Your Call &rarr;</a>
         </div>
+
+        <!-- ===== TAB 1: DASHBOARD ===== -->
+        <div id="tabDashboard" class="tab-panel tab-active">
 
         <!-- Dashboard Hero Image -->
         <section class="dash-hero">
@@ -4391,6 +4469,48 @@
             </div>
         </section>
 
+        </div><!-- end #tabDashboard -->
+
+        <!-- ===== TAB 2: FOOD LOG ===== -->
+        <div id="tabFoodLog" class="tab-panel">
+            <div class="section" style="padding-top: 2rem;">
+                <div class="section-container">
+                    <h2 style="font-size: 1.5rem; margin-bottom: 1rem;"><i class="fa-solid fa-utensils" style="color: var(--yellow); margin-right: 0.5rem;"></i> Food Log</h2>
+                    <p style="color: var(--light-gray);">Coming soon — this tab will connect to Cronometer for automatic food tracking.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- ===== TAB 3: CHECK-IN ===== -->
+        <div id="tabCheckIn" class="tab-panel">
+            <div class="section" style="padding-top: 2rem;">
+                <div class="section-container">
+                    <h2 style="font-size: 1.5rem; margin-bottom: 1rem;"><i class="fa-solid fa-clipboard-check" style="color: var(--yellow); margin-right: 0.5rem;"></i> Check-In</h2>
+                    <p style="color: var(--light-gray);">Coming soon — weekly check-ins, compliance stats, and achievements will live here.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- ===== TAB 4: FUEL PATH ===== -->
+        <div id="tabFuelPath" class="tab-panel">
+            <div class="section" style="padding-top: 2rem;">
+                <div class="section-container">
+                    <h2 style="font-size: 1.5rem; margin-bottom: 1rem;"><i class="fa-solid fa-map" style="color: var(--yellow); margin-right: 0.5rem;"></i> Fuel Path</h2>
+                    <p style="color: var(--light-gray);">Coming soon — the 4-Phase Metabolic System education hub.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- ===== TAB 5: MORE ===== -->
+        <div id="tabMore" class="tab-panel">
+            <div class="section" style="padding-top: 2rem;">
+                <div class="section-container">
+                    <h2 style="font-size: 1.5rem; margin-bottom: 1rem;"><i class="fa-solid fa-ellipsis" style="color: var(--yellow); margin-right: 0.5rem;"></i> More</h2>
+                    <p style="color: var(--light-gray);">Coming soon — macros, resources, account settings, and more.</p>
+                </div>
+            </div>
+        </div>
+
         <!-- ============================================ -->
         <!-- COACH VIEW (hidden for athletes)             -->
         <!-- ============================================ -->
@@ -4619,6 +4739,30 @@
         </div>
 
     </div><!-- end #dashboardContainer -->
+
+    <!-- Bottom Tab Bar -->
+    <nav id="bottomTabBar" class="fp-bottom-tabs">
+        <button class="tab-active" onclick="showTab('tabDashboard')">
+            <i class="fa-solid fa-house"></i>
+            <span>Dashboard</span>
+        </button>
+        <button onclick="showTab('tabFoodLog')">
+            <i class="fa-solid fa-utensils"></i>
+            <span>Food Log</span>
+        </button>
+        <button onclick="showTab('tabCheckIn')">
+            <i class="fa-solid fa-clipboard-check"></i>
+            <span>Check-In</span>
+        </button>
+        <button onclick="showTab('tabFuelPath')">
+            <i class="fa-solid fa-map"></i>
+            <span>Fuel Path</span>
+        </button>
+        <button onclick="showTab('tabMore')">
+            <i class="fa-solid fa-ellipsis"></i>
+            <span>More</span>
+        </button>
+    </nav>
 
     <!-- ============================================ -->
     <!-- COACH MODALS                                 -->
@@ -5455,12 +5599,61 @@ function getTargetUserId() {
     return currentUser ? currentUser.id : null;
 }
 
+// ===== TAB SWITCHING =====
+var chartsInitialized = {};
+var TAB_IDS = ['tabDashboard', 'tabFoodLog', 'tabCheckIn', 'tabFuelPath', 'tabMore'];
+
+function showTab(tabId) {
+    // Hide all tab panels
+    TAB_IDS.forEach(function(id) {
+        var panel = document.getElementById(id);
+        if (panel) panel.classList.remove('tab-active');
+    });
+    // Show selected panel
+    var selected = document.getElementById(tabId);
+    if (selected) selected.classList.add('tab-active');
+    // Update bottom bar active state
+    var buttons = document.querySelectorAll('#bottomTabBar button');
+    buttons.forEach(function(btn, i) {
+        if (TAB_IDS[i] === tabId) {
+            btn.classList.add('tab-active');
+        } else {
+            btn.classList.remove('tab-active');
+        }
+    });
+    // Scroll to top
+    window.scrollTo(0, 0);
+    // Lazy-init charts when their tab is first shown
+    if (tabId === 'tabCheckIn' && !chartsInitialized.checkIn) {
+        setTimeout(function() {
+            if (typeof complianceChartInstance !== 'undefined' && complianceChartInstance) { complianceChartInstance.destroy(); complianceChartInstance = null; }
+            if (typeof drawComplianceChart === 'function') drawComplianceChart();
+            if (typeof weightChartInstance !== 'undefined' && weightChartInstance) { weightChartInstance.destroy(); weightChartInstance = null; }
+            if (typeof drawWeightChart === 'function') drawWeightChart();
+            chartsInitialized.checkIn = true;
+        }, 100);
+    }
+    if (tabId === 'tabMore' && !chartsInitialized.more) {
+        setTimeout(function() {
+            if (typeof macroPieInstance !== 'undefined' && macroPieInstance) { macroPieInstance.destroy(); macroPieInstance = null; }
+            if (typeof drawMacroPie === 'function') drawMacroPie();
+            chartsInitialized.more = true;
+        }, 100);
+    }
+}
+
 // ===== DASHBOARD STATE =====
 function showDashboard(user) {
     document.getElementById('authHero').style.display = 'none';
     document.getElementById('authSection').style.display = 'none';
     document.getElementById('dashboardContainer').style.display = 'block';
     document.getElementById('userEmail').textContent = user.email;
+    // Show bottom tab bar and add body padding
+    document.getElementById('bottomTabBar').classList.add('visible');
+    document.body.classList.add('has-bottom-tabs');
+    // Hide hamburger menu when logged in (bottom tabs replace it)
+    var menuToggle = document.querySelector('.fp-menu-toggle');
+    if (menuToggle) menuToggle.style.display = 'none';
     initDashboard(user);
     // Auto-open account modal if linked from another page
     if (new URLSearchParams(window.location.search).get('account')) {
@@ -5474,6 +5667,15 @@ function hideDashboard() {
     document.getElementById('dashboardContainer').style.display = 'none';
     document.getElementById('subStatusBar').style.display = 'none';
     document.getElementById('coachingCallBanner').style.display = 'none';
+    // Hide bottom tab bar and remove body padding
+    document.getElementById('bottomTabBar').classList.remove('visible');
+    document.body.classList.remove('has-bottom-tabs');
+    // Show hamburger menu when logged out
+    var menuToggle = document.querySelector('.fp-menu-toggle');
+    if (menuToggle) menuToggle.style.display = '';
+    // Reset to dashboard tab
+    showTab('tabDashboard');
+    chartsInitialized = {};
 }
 
 async function initDashboard(user) {
@@ -6977,12 +7179,14 @@ function showCoachView() {
     document.getElementById('coachToggleLabel').textContent = 'My Dashboard';
     document.getElementById('menuCoachToggleBtn').classList.add('active');
 
-    // Hide athlete dashboard sections
-    var dashSections = document.querySelectorAll('#dashboardContainer > section, #dashboardContainer > .phase-banner, #dashboardContainer > .dash-hero, #dashboardContainer > #subStatusBar, #dashboardContainer > #coachingCallBanner');
-    dashSections.forEach(function(el) { el.style.display = 'none'; });
-    // Also hide transition section
-    var transSection = document.getElementById('transitionSection');
-    if (transSection) transSection.style.display = 'none';
+    // Hide all tab panels
+    TAB_IDS.forEach(function(id) {
+        var panel = document.getElementById(id);
+        if (panel) panel.classList.remove('tab-active');
+    });
+    // Hide bottom tab bar in coach mode
+    document.getElementById('bottomTabBar').classList.remove('visible');
+    document.body.classList.remove('has-bottom-tabs');
 
     // Show coach view
     document.getElementById('coachViewContainer').classList.add('active');
@@ -6996,20 +7200,18 @@ function showAthleteView() {
     document.getElementById('coachToggleLabel').textContent = 'Coach View';
     document.getElementById('menuCoachToggleBtn').classList.remove('active');
 
-    // Show athlete dashboard sections
-    var dashSections = document.querySelectorAll('#dashboardContainer > section, #dashboardContainer > .dash-hero, #dashboardContainer > #subStatusBar, #dashboardContainer > #coachingCallBanner');
-    dashSections.forEach(function(el) { el.style.display = ''; });
-    // Re-render phase banner visibility
-    var phase = getPhaseInfo();
-    document.getElementById('phaseBanner').style.display = '';
-    renderTransitionCard(phase);
-
     // Hide coach view
     document.getElementById('coachViewContainer').classList.remove('active');
     document.getElementById('coachDrilldown').classList.remove('active');
 
+    // Show bottom tab bar and return to dashboard tab
+    document.getElementById('bottomTabBar').classList.add('visible');
+    document.body.classList.add('has-bottom-tabs');
+    showTab('tabDashboard');
+
     // Reload own data
     if (currentUser) {
+        var phase = getPhaseInfo();
         loadMacros(currentUser.id, phase);
         loadWeightData(currentUser.id, phase);
         loadBodyCompData(currentUser.id, phase);
