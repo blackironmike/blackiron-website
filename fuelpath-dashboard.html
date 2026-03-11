@@ -20,7 +20,11 @@
     <meta name="twitter:image" content="https://www.blackironathletics.com/images/social-share.png">
     <link rel="icon" type="image/png" href="images/anvil-favicon.png">
     <meta name="theme-color" content="#000000">
-    <link rel="apple-touch-icon" href="images/anvil-favicon.png">
+    <link rel="apple-touch-icon" href="images/FuelPath-Box Logo.png">
+    <link rel="manifest" href="fuelpath-manifest.json">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="FuelPath">
     <link rel="preload" as="image" href="images/hero-fuelpath-dashboard.webp">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -1656,58 +1660,28 @@
             font-weight: 900;
         }
 
-        /* ===== CHECKLIST INTERACTIVE ===== */
-        .checklist-interactive {
-            max-width: 700px;
-        }
-
-        .checklist-interactive .checklist-item {
+        /* ===== DASHBOARD BODY STATS ===== */
+        .dash-body-stats {
             display: flex;
-            align-items: flex-start;
             gap: 1rem;
-            padding: 1.25rem 0;
-            border-bottom: 1px solid var(--medium-gray);
+            justify-content: space-around;
         }
-
-        .checklist-interactive .checklist-item:last-child {
-            border-bottom: none;
+        .dash-body-stat {
+            text-align: center;
+            flex: 1;
         }
-
-        .checklist-checkbox {
-            flex-shrink: 0;
-            width: 28px;
-            height: 28px;
-            border: 2px solid var(--yellow);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            margin-top: 2px;
-            background: transparent;
-        }
-
-        .checklist-checkbox.checked {
-            background: var(--yellow);
-        }
-
-        .checklist-checkbox.checked::after {
-            content: '\f00c';
-            font-family: 'Font Awesome 6 Free';
+        .dash-body-stat-value {
+            font-size: 1.6rem;
             font-weight: 900;
-            color: var(--black);
-            font-size: 0.85rem;
+            color: var(--yellow);
+            margin-bottom: 0.25rem;
         }
-
-        .checklist-interactive .checklist-text {
+        .dash-body-stat-label {
+            font-size: 0.7rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
             color: var(--light-gray);
-            line-height: 1.7;
-            font-size: 0.95rem;
-        }
-
-        .checklist-interactive .checklist-item.checked .checklist-text {
-            text-decoration: line-through;
-            opacity: 0.5;
         }
 
         /* ===== YEAR-OVER-YEAR ===== */
@@ -4528,13 +4502,25 @@
                     </button>
                 </div>
 
-                <!-- Phase Checklist (kept on dashboard) -->
+                <!-- Body Stats Snapshot -->
                 <div class="dash-card" style="margin-top: 1.5rem;">
                     <div class="dash-card-header">
-                        <h3 class="dash-card-title"><i class="fa-solid fa-clipboard-check" style="color: var(--yellow); margin-right: 0.75rem;"></i> <span id="checklistTitle">Phase Transition Checklist</span></h3>
+                        <h3 class="dash-card-title"><i class="fa-solid fa-weight-scale" style="color: var(--yellow); margin-right: 0.75rem;"></i> Body Stats</h3>
                     </div>
-                    <p style="color: var(--light-gray); margin-bottom: 1rem;" id="checklistSubtitle">Complete these before moving to the next phase.</p>
-                    <div class="checklist-interactive" id="checklistContainer"></div>
+                    <div class="dash-body-stats">
+                        <div class="dash-body-stat">
+                            <div class="dash-body-stat-value" id="dashStatWeight">--</div>
+                            <div class="dash-body-stat-label">Weight (lbs)</div>
+                        </div>
+                        <div class="dash-body-stat">
+                            <div class="dash-body-stat-value" id="dashStatSMM">--</div>
+                            <div class="dash-body-stat-label">Skeletal Muscle</div>
+                        </div>
+                        <div class="dash-body-stat">
+                            <div class="dash-body-stat-value" id="dashStatBF">--</div>
+                            <div class="dash-body-stat-label">Body Fat %</div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
@@ -6424,6 +6410,12 @@ function showDashboard(user) {
     if (new URLSearchParams(window.location.search).get('account')) {
         setTimeout(function() { openAccountModal(); }, 300);
     }
+    // Hash-based tab routing (e.g. #foodlog, #checkin, #fuelpath, #more)
+    var hash = window.location.hash.replace('#', '');
+    var hashMap = { foodlog: 'tabFoodLog', checkin: 'tabCheckIn', fuelpath: 'tabFuelPath', more: 'tabMore', dashboard: 'tabDashboard' };
+    if (hash && hashMap[hash]) {
+        setTimeout(function() { showTab(hashMap[hash]); }, 100);
+    }
 }
 
 function hideDashboard() {
@@ -6448,7 +6440,6 @@ async function initDashboard(user) {
     var phase = getPhaseInfo();
     renderPhaseBanner(phase);
     renderQuickLinks(phase);
-    renderChecklist(phase);
     renderTransitionCard(phase);
     renderFuelPathTab();
     if (supabase && user) {
@@ -6490,7 +6481,7 @@ async function initDashboard(user) {
         loadMacros(user.id, phase);
         loadWeightData(user.id, phase);
         loadBodyCompData(user.id, phase);
-        loadChecklistProgress(user.id, phase);
+        // loadChecklistProgress removed — checklist section removed
         // loadYearOverYear(user.id); // Removed — YOY section hidden
         loadCheckins(user.id);
         // Load notifications for all users
@@ -6831,6 +6822,13 @@ async function loadWeightData(userId, phase) {
 
         weightDataCache = data;
 
+        // Populate dashboard body stats - weight
+        var latestWeight = data[data.length - 1];
+        if (latestWeight && latestWeight.weight) {
+            var dwEl = document.getElementById('dashStatWeight');
+            if (dwEl) dwEl.textContent = latestWeight.weight.toFixed(1);
+        }
+
         // Filter for current phase period
         var phaseStart = phase.startDate.toISOString().split('T')[0];
         var phaseEnd = phase.endDate.toISOString().split('T')[0];
@@ -7092,6 +7090,16 @@ async function loadBodyCompData(userId, phase) {
         // Show latest entry summary
         var latest = data[data.length - 1];
 
+        // Populate dashboard body stats - SMM and BF%
+        if (latest.skeletal_muscle_mass) {
+            var dsmEl = document.getElementById('dashStatSMM');
+            if (dsmEl) dsmEl.textContent = latest.skeletal_muscle_mass;
+        }
+        if (latest.body_fat_pct) {
+            var dbfEl = document.getElementById('dashStatBF');
+            if (dbfEl) dbfEl.textContent = latest.body_fat_pct + '%';
+        }
+
         // Update My Progress stats row
         if (latest.body_fat_pct) {
             var bfEl = document.getElementById('progressBodyFat');
@@ -7153,58 +7161,7 @@ async function loadBodyCompData(userId, phase) {
 }
 
 
-// ===== CHECKLIST =====
-function renderChecklist(phase) {
-    var transition = getNextTransition(phase.num);
-    document.getElementById('checklistTitle').textContent = transition.label;
-    var container = document.getElementById('checklistContainer');
-    var html = '';
-    transition.items.forEach(function(item) {
-        html += '<div class="checklist-item" data-key="' + item.key + '">' +
-            '<div class="checklist-checkbox" onclick="toggleChecklistItem(this, \'' + item.key + '\')"></div>' +
-            '<span class="checklist-text">' + item.text + '</span>' +
-            '</div>';
-    });
-    container.innerHTML = html;
-}
-
-async function toggleChecklistItem(el, key) {
-    var isChecked = el.classList.toggle('checked');
-    el.closest('.checklist-item').classList.toggle('checked', isChecked);
-    if (!supabase) return;
-    var targetId = getTargetUserId();
-    if (!targetId) return;
-    var phase = getPhaseInfo();
-    try {
-        if (isChecked) {
-            await supabase.from('checklist_progress').upsert({
-                user_id: targetId,
-                item_key: key,
-                phase: phase.num,
-                year: phase.year,
-                completed: true
-            }, { onConflict: 'user_id,item_key,phase,year' });
-        } else {
-            await supabase.from('checklist_progress').delete()
-                .eq('user_id', targetId).eq('item_key', key).eq('phase', phase.num).eq('year', phase.year);
-        }
-    } catch (e) { /* fail silently */ }
-}
-
-async function loadChecklistProgress(userId, phase) {
-    try {
-        var { data, error } = await supabase.from('checklist_progress').select('item_key')
-            .eq('user_id', userId).eq('phase', phase.num).eq('year', phase.year).eq('completed', true);
-        if (error || !data) return;
-        data.forEach(function(row) {
-            var item = document.querySelector('.checklist-item[data-key="' + row.item_key + '"]');
-            if (item) {
-                item.classList.add('checked');
-                item.querySelector('.checklist-checkbox').classList.add('checked');
-            }
-        });
-    } catch (e) { /* fail silently */ }
-}
+// ===== CHECKLIST (removed) =====
 
 // ===== YEAR-OVER-YEAR =====
 async function loadYearOverYear(userId) {

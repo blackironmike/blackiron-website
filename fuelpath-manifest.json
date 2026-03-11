@@ -1,0 +1,16 @@
+{
+  "name": "FuelPath by Black Iron Athletics",
+  "short_name": "FuelPath",
+  "start_url": "/fuelpath-dashboard",
+  "display": "standalone",
+  "background_color": "#000000",
+  "theme_color": "#000000",
+  "icons": [
+    {
+      "src": "images/FuelPath-Box Logo.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
