@@ -9143,9 +9143,11 @@ async function loadCrossPhaseData(userId, currentPhase) {
             var inserts = newUnlocks.map(function(key) {
                 return { user_id: userId, achievement_key: key };
             });
-            try { await supabase.from('achievements').insert(inserts); } catch (e) {}
+            try { await supabase.from('achievements').upsert(inserts, { onConflict: 'user_id,achievement_key', ignoreDuplicates: true }); } catch (e) {}
             renderAchievements();
             newUnlocks.forEach(function(key, idx) {
+                if (toastedThisSession[key]) return;
+                toastedThisSession[key] = true;
                 var def = ACHIEVEMENT_DEFS.find(function(d) { return d.key === key; });
                 if (def) {
                     setTimeout(function() {
@@ -9414,24 +9416,30 @@ var TIER_COLORS = { bronze: '#cd7f32', silver: '#c0c0c0', gold: '#FFD202', plati
 
 var unlockedAchievements = {};
 var achievementProgress = {}; // { key: { current, target, pct } }
+var achievementsLoadedFromDB = false; // flag: DB load completed
+var toastedThisSession = {}; // prevent repeat toasts on refresh
 
 async function loadAndCheckAchievements(userId) {
     if (!supabase) return;
 
-    // Load unlocked achievements
+    // Load unlocked achievements from DB
     try {
         var { data, error } = await supabase.from('achievements')
             .select('achievement_key, unlocked_at')
             .eq('user_id', userId);
         if (!error && data) {
-            data.forEach(function(a) { unlockedAchievements[a.achievement_key] = a.unlocked_at; });
+            data.forEach(function(a) {
+                unlockedAchievements[a.achievement_key] = a.unlocked_at;
+                toastedThisSession[a.achievement_key] = true; // already earned — don't toast
+            });
         }
+        achievementsLoadedFromDB = true;
     } catch (e) { /* table may not exist yet */ }
 
     // Compute earned achievements from phase data
     var earned = computeEarnedAchievements();
 
-    // Unlock new ones
+    // Unlock new ones (only those not already in DB)
     var newUnlocks = [];
     earned.forEach(function(key) {
         if (!unlockedAchievements[key]) {
@@ -9440,21 +9448,23 @@ async function loadAndCheckAchievements(userId) {
         }
     });
 
-    // Insert new unlocks
+    // Insert new unlocks (upsert to avoid duplicate key errors)
     if (newUnlocks.length > 0 && supabase) {
         var inserts = newUnlocks.map(function(key) {
             return { user_id: userId, achievement_key: key };
         });
         try {
-            await supabase.from('achievements').insert(inserts);
+            await supabase.from('achievements').upsert(inserts, { onConflict: 'user_id,achievement_key', ignoreDuplicates: true });
         } catch (e) { /* silent — table may not exist */ }
     }
 
     // Render achievements UI
     renderAchievements();
 
-    // Show toasts for new unlocks
+    // Show toasts only for genuinely new unlocks (not already toasted)
     newUnlocks.forEach(function(key, idx) {
+        if (toastedThisSession[key]) return; // already toasted
+        toastedThisSession[key] = true;
         var def = ACHIEVEMENT_DEFS.find(function(d) { return d.key === key; });
         if (def) {
             setTimeout(function() {
