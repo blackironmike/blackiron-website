@@ -39,9 +39,9 @@ CREATE POLICY "Coaches can read athlete messages"
     USING (
         auth.uid() = coach_id
         OR EXISTS (
-            SELECT 1 FROM coach_assignments
-            WHERE coach_assignments.coach_id = auth.uid()
-            AND coach_assignments.athlete_id = coach_athlete_messages.athlete_id
+            SELECT 1 FROM coach_athletes
+            WHERE coach_athletes.coach_id = auth.uid()
+            AND coach_athletes.athlete_id = coach_athlete_messages.athlete_id
         )
     );
 
@@ -51,8 +51,8 @@ CREATE POLICY "Coaches can send messages"
     WITH CHECK (
         sender_role = 'coach'
         AND EXISTS (
-            SELECT 1 FROM coach_assignments
-            WHERE coach_assignments.coach_id = auth.uid()
-            AND coach_assignments.athlete_id = coach_athlete_messages.athlete_id
+            SELECT 1 FROM coach_athletes
+            WHERE coach_athletes.coach_id = auth.uid()
+            AND coach_athletes.athlete_id = coach_athlete_messages.athlete_id
         )
     );
