@@ -1202,6 +1202,11 @@
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
             gap: 1rem;
+            overflow: hidden;
+            transition: max-height 0.4s ease;
+        }
+        .achievements-grid.collapsed {
+            /* JS sets max-height to one row's height */
         }
         .achievement-badge {
             background: var(--black);
@@ -1234,18 +1239,11 @@
             font-weight: 500;
         }
 
-        /* ===== NEXT UP ACHIEVEMENTS ===== */
-        .achievements-next-up { display: flex; flex-direction: column; gap: 1rem; }
-        .next-achievement { background: var(--black); border: 2px solid var(--medium-gray); border-left: 4px solid; padding: 1rem 1.25rem; display: flex; align-items: center; gap: 1rem; }
-        .next-achievement-icon { font-size: 1.4rem; flex-shrink: 0; width: 2rem; text-align: center; }
-        .next-achievement-info { flex: 1; min-width: 0; }
-        .next-achievement-name { font-size: 0.8rem; font-weight: 900; text-transform: uppercase; letter-spacing: 0.5px; }
-        .next-achievement-trigger { font-size: 0.7rem; color: var(--light-gray); margin-top: 0.15rem; }
-        .next-achievement-progress { margin-top: 0.5rem; }
-        .next-achievement-bar { height: 6px; background: rgba(255,255,255,0.1); width: 100%; position: relative; }
-        .next-achievement-fill { height: 100%; transition: width 0.6s ease; }
-        .next-achievement-pct { font-size: 0.65rem; color: var(--light-gray); margin-top: 0.25rem; font-weight: 600; }
-        .achievements-congrats { text-align: center; padding: 2rem 1rem; color: var(--yellow); font-weight: 700; font-size: 1rem; }
+        /* ===== ACHIEVEMENTS EXPAND TOGGLE ===== */
+        .achievements-expand { background: transparent; border: none; color: var(--yellow); font-family: 'Montserrat', sans-serif; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; cursor: pointer; padding: 0.5rem 0; margin-top: 0.75rem; display: flex; align-items: center; gap: 0.4rem; }
+        .achievements-expand:hover { text-decoration: underline; }
+        .achievements-expand i { transition: transform 0.3s ease; font-size: 0.65rem; }
+        .achievements-expand.open i { transform: rotate(180deg); }
 
         /* ===== CONFETTI CANVAS ===== */
         #dashConfettiCanvas {
@@ -4225,13 +4223,10 @@
                         <h3 class="achievements-title"><i class="fa-solid fa-trophy"></i> Achievements</h3>
                         <span class="achievements-count" id="achievementsCount">0 / 32</span>
                     </div>
-                    <div class="achievements-next-up" id="achievementsNextUp"></div>
-                    <button class="collapsible-toggle" onclick="toggleCollapsible(this)" style="margin-top:1.5rem;">
-                        <i class="fa-solid fa-chevron-down"></i> View All Achievements
+                    <div class="achievements-grid collapsed" id="achievementsGrid"></div>
+                    <button class="achievements-expand" id="achievementsExpand" onclick="toggleAchievementsGrid()">
+                        <i class="fa-solid fa-chevron-down"></i> <span>Show All</span>
                     </button>
-                    <div class="collapsible-content">
-                        <div class="achievements-grid" id="achievementsGrid"></div>
-                    </div>
                 </div>
 
                 <!-- Full-width Weekly Check-In -->
@@ -8511,7 +8506,6 @@ async function loadAndCheckAchievements(userId) {
     }
 
     // Render achievements UI
-    renderNextUp();
     renderAchievements();
 
     // Show toasts for new unlocks
@@ -8783,68 +8777,28 @@ function hasConsecutiveDays(dateArray, count) {
     return false;
 }
 
-function getNextAchievements(count) {
-    count = count || 3;
-    var locked = ACHIEVEMENT_DEFS.filter(function(def) { return !unlockedAchievements[def.key]; });
-    locked.sort(function(a, b) {
-        var pa = achievementProgress[a.key] || { pct: 0 };
-        var pb = achievementProgress[b.key] || { pct: 0 };
-        return pb.pct - pa.pct;
-    });
-    return locked.slice(0, count);
-}
-
-function renderNextUp() {
-    var container = document.getElementById('achievementsNextUp');
-    if (!container) return;
-
-    var unlockedCount = Object.keys(unlockedAchievements).length;
-
-    // All unlocked — show congrats
-    if (unlockedCount >= ACHIEVEMENT_DEFS.length) {
-        container.innerHTML = '<div class="achievements-congrats"><i class="fa-solid fa-crown"></i> All achievements unlocked. You are Iron.</div>';
-        return;
-    }
-
-    var nextUp = getNextAchievements(3);
-    var html = '';
-    nextUp.forEach(function(def) {
-        var tierColor = TIER_COLORS[def.tier];
-        var prog = achievementProgress[def.key] || { current: 0, target: 1, pct: 0 };
-        var label = prog.current + ' / ' + prog.target;
-
-        // Add unit hint based on achievement category
-        if (def.category === 'streaks' || def.key === 'streak_3') label += ' days';
-        else if (def.category === 'compliance') label += '%';
-        else if (def.category === 'tracking') label += ' days';
-        else if (def.key === 'perfect_week' || def.key === 'macro_master' || def.key === 'iron_discipline') label += ' days';
-        else if (def.key === 'protein_king') label += ' days';
-        else if (def.key === 'cal_commander') label += ' days';
-        else if (def.key === 'weekend_warrior') label += ' weekends';
-        else if (def.category === 'milestones') label += ' phases';
-
-        label += ' (' + prog.pct + '%)';
-
-        html += '<div class="next-achievement" style="border-left-color:' + tierColor + '">';
-        html += '<div class="next-achievement-icon" style="color:' + tierColor + '"><i class="fa-solid ' + def.icon + '"></i></div>';
-        html += '<div class="next-achievement-info">';
-        html += '<div class="next-achievement-name">' + def.name + '</div>';
-        html += '<div class="next-achievement-trigger">' + def.trigger + '</div>';
-        html += '<div class="next-achievement-progress">';
-        html += '<div class="next-achievement-bar"><div class="next-achievement-fill" style="width:' + prog.pct + '%;background:' + tierColor + '"></div></div>';
-        html += '<div class="next-achievement-pct">' + label + '</div>';
-        html += '</div></div></div>';
-    });
-    container.innerHTML = html;
-}
-
 function renderAchievements() {
     var grid = document.getElementById('achievementsGrid');
     if (!grid) return;
 
+    // Sort: unlocked first (by unlock date desc), then locked by progress desc
+    var sorted = ACHIEVEMENT_DEFS.slice().sort(function(a, b) {
+        var aUnlocked = !!unlockedAchievements[a.key];
+        var bUnlocked = !!unlockedAchievements[b.key];
+        if (aUnlocked && !bUnlocked) return 1;
+        if (!aUnlocked && bUnlocked) return -1;
+        // Both locked — sort by progress % descending
+        if (!aUnlocked && !bUnlocked) {
+            var pa = (achievementProgress[a.key] || { pct: 0 }).pct;
+            var pb = (achievementProgress[b.key] || { pct: 0 }).pct;
+            return pb - pa;
+        }
+        return 0;
+    });
+
     var unlockedCount = 0;
     var html = '';
-    ACHIEVEMENT_DEFS.forEach(function(def) {
+    sorted.forEach(function(def) {
         var isUnlocked = !!unlockedAchievements[def.key];
         if (isUnlocked) unlockedCount++;
         var tierColor = TIER_COLORS[def.tier];
@@ -8859,7 +8813,43 @@ function renderAchievements() {
     });
     grid.innerHTML = html;
     document.getElementById('achievementsCount').textContent = unlockedCount + ' / ' + ACHIEVEMENT_DEFS.length;
+
+    // Clamp to one row height
+    clampAchievementsGrid();
 }
+
+function clampAchievementsGrid() {
+    var grid = document.getElementById('achievementsGrid');
+    if (!grid || !grid.classList.contains('collapsed')) return;
+    // Measure the first badge to determine one row height (badge height + gap)
+    var firstBadge = grid.querySelector('.achievement-badge');
+    if (firstBadge) {
+        var rowHeight = firstBadge.offsetHeight + 16; // 16 = 1rem gap
+        grid.style.maxHeight = rowHeight + 'px';
+    }
+}
+
+function toggleAchievementsGrid() {
+    var grid = document.getElementById('achievementsGrid');
+    var btn = document.getElementById('achievementsExpand');
+    if (!grid || !btn) return;
+
+    if (grid.classList.contains('collapsed')) {
+        grid.style.maxHeight = grid.scrollHeight + 'px';
+        grid.classList.remove('collapsed');
+        btn.classList.add('open');
+        btn.querySelector('span').textContent = 'Show Less';
+    } else {
+        var firstBadge = grid.querySelector('.achievement-badge');
+        var rowHeight = firstBadge ? firstBadge.offsetHeight + 16 : 120;
+        grid.style.maxHeight = rowHeight + 'px';
+        grid.classList.add('collapsed');
+        btn.classList.remove('open');
+        btn.querySelector('span').textContent = 'Show All';
+    }
+}
+
+window.addEventListener('resize', function() { clampAchievementsGrid(); });
 
 // ===== CONFETTI & TOASTS (Dashboard) =====
 function fireDashConfetti() {
