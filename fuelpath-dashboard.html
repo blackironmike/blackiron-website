@@ -3898,6 +3898,62 @@
             .dash-quick-actions { grid-template-columns: 1fr; }
         }
 
+        /* ===== COACH THREAD (athlete view) ===== */
+        .coach-thread {
+            max-height: 400px;
+            overflow-y: auto;
+        }
+        .coach-thread-empty {
+            text-align: center;
+            padding: 2rem;
+        }
+        .coach-thread-msg {
+            display: flex;
+            gap: 0.75rem;
+            padding: 0.75rem 0;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+        .coach-thread-msg:last-child { border-bottom: none; }
+        .coach-thread-avatar {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.7rem;
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+        .coach-thread-avatar.coach-avatar { background: var(--yellow); color: var(--black); }
+        .coach-thread-avatar.athlete-avatar { background: var(--medium-gray); color: var(--white); }
+        .coach-thread-body { flex: 1; }
+        .coach-thread-meta {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 0.25rem;
+        }
+        .coach-thread-sender {
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+        .coach-thread-time {
+            font-size: 0.7rem;
+            color: #666;
+        }
+        .coach-thread-text {
+            font-size: 0.85rem;
+            color: var(--light-gray);
+            line-height: 1.5;
+        }
+        .coach-thread-reply {
+            padding-top: 0.75rem;
+            border-top: 1px solid var(--medium-gray);
+            margin-top: 0.75rem;
+        }
+
         /* ===== FOOD LOG TAB ===== */
         .foodlog-connect-banner {
             display: flex;
@@ -4502,12 +4558,184 @@
 
         <!-- ===== TAB 3: CHECK-IN ===== -->
         <div id="tabCheckIn" class="tab-panel">
-            <div class="section" style="padding-top: 2rem;">
+
+            <!-- Weekly Check-In (inline form) -->
+            <div class="section" style="padding-top: 1.5rem; padding-bottom: 2rem;">
                 <div class="section-container">
-                    <h2 style="font-size: 1.5rem; margin-bottom: 1rem;"><i class="fa-solid fa-clipboard-check" style="color: var(--yellow); margin-right: 0.5rem;"></i> Check-In</h2>
-                    <p style="color: var(--light-gray);">Coming soon — weekly check-ins, compliance stats, and achievements will live here.</p>
+                    <div class="dash-card" style="background: var(--dark-gray);">
+                        <div class="dash-card-header">
+                            <h3 class="dash-card-title"><i class="fa-solid fa-clipboard-question"></i> Weekly Check-In</h3>
+                        </div>
+                        <p style="color: var(--light-gray); margin-bottom: 1.5rem;">Take 2 minutes to reflect on your week. This data helps you (and your coach) spot trends and make better decisions.</p>
+                        <button class="btn-primary btn-small" onclick="openCheckinModal()"><i class="fa-solid fa-pen-to-square"></i> Submit Weekly Check-In</button>
+                        <div id="checkinTrendGrid"></div>
+                        <div class="checkin-history" style="margin-top: 1.5rem;">
+                            <button class="collapsible-toggle" onclick="toggleCollapsible(this)">
+                                <i class="fa-solid fa-chevron-down"></i> Check-In History
+                            </button>
+                            <div class="collapsible-content">
+                                <div id="checkinHistoryList"></div>
+                                <div id="checkinEmpty" class="empty-state" style="padding: 2rem;">
+                                    <p>No check-ins yet. Submit your first one above!</p>
+                                </div>
+                                <div id="checkinCoachingUpsell" class="coaching-upsell" style="display: none;">
+                                    <h4><i class="fa-solid fa-chart-line" style="color: var(--yellow); margin-right: 0.5rem;"></i> See What a Coach Sees</h4>
+                                    <p>You've built a solid check-in history. Athletes who work with a coach see 2x better adherence and faster results. Let a coach analyze your data and build a plan around it.</p>
+                                    <a href="PLACEHOLDER_COACHING_BOOKING_URL" class="btn-primary">Book a Coaching Call — $99</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
+
+            <!-- Compliance Stats -->
+            <div class="section" style="padding-top: 0; padding-bottom: 2rem;">
+                <div class="section-container">
+                    <div class="compliance-card" id="complianceCard" style="display: none;">
+                        <div class="compliance-card-header">
+                            <h3 class="compliance-card-title"><i class="fa-solid fa-bullseye"></i> Compliance</h3>
+                        </div>
+                        <div class="compliance-stats-row" id="complianceStatsRow">
+                            <div class="compliance-stat">
+                                <div class="compliance-stat-label">Overall</div>
+                                <div class="compliance-stat-value" id="compOverallPct">--</div>
+                                <div class="compliance-stat-unit">of days on target</div>
+                            </div>
+                            <div class="compliance-stat">
+                                <div class="compliance-stat-label">Current Streak</div>
+                                <div class="compliance-stat-value" id="compCurrentStreak">--</div>
+                                <div class="compliance-stat-unit">days</div>
+                            </div>
+                            <div class="compliance-stat">
+                                <div class="compliance-stat-label">Best Streak</div>
+                                <div class="compliance-stat-value" id="compBestStreak">--</div>
+                                <div class="compliance-stat-unit">days</div>
+                            </div>
+                            <div class="compliance-stat">
+                                <div class="compliance-stat-label">Phase to Date</div>
+                                <div class="compliance-stat-value" id="compPhasePct">--</div>
+                                <div class="compliance-stat-unit">compliance</div>
+                            </div>
+                        </div>
+                        <div class="compliance-macro-bars" id="complianceMacroBars">
+                            <div class="compliance-macro-bar">
+                                <div class="compliance-macro-name">Calories</div>
+                                <div class="compliance-macro-track"><div class="compliance-macro-fill" id="compCalBar" style="width:0%; background: #27AE60;"></div></div>
+                                <div class="compliance-macro-pct" id="compCalPct">--%</div>
+                            </div>
+                            <div class="compliance-macro-bar">
+                                <div class="compliance-macro-name">Protein</div>
+                                <div class="compliance-macro-track"><div class="compliance-macro-fill" id="compProBar" style="width:0%; background: #e74c3c;"></div></div>
+                                <div class="compliance-macro-pct" id="compProPct">--%</div>
+                            </div>
+                            <div class="compliance-macro-bar">
+                                <div class="compliance-macro-name">Carbs</div>
+                                <div class="compliance-macro-track"><div class="compliance-macro-fill" id="compCarbBar" style="width:0%; background: #2196F3;"></div></div>
+                                <div class="compliance-macro-pct" id="compCarbPct">--%</div>
+                            </div>
+                            <div class="compliance-macro-bar">
+                                <div class="compliance-macro-name">Fat</div>
+                                <div class="compliance-macro-track"><div class="compliance-macro-fill" id="compFatBar" style="width:0%; background: #FFD202;"></div></div>
+                                <div class="compliance-macro-pct" id="compFatPct">--%</div>
+                            </div>
+                        </div>
+                        <div class="compliance-chart-wrap">
+                            <canvas id="complianceWeeklyChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- My Progress (Weight + Body Comp) -->
+            <div class="section section-alt" style="padding-top: 2rem; padding-bottom: 2rem;">
+                <div class="section-container">
+                    <div class="dash-card" style="background: var(--black);">
+                        <div class="dash-card-header">
+                            <h3 class="dash-card-title"><i class="fa-solid fa-chart-line"></i> My Progress</h3>
+                        </div>
+                        <div class="stats-row stats-row-3" id="progressSummary">
+                            <div class="stat-card">
+                                <div class="stat-card-label">Weight</div>
+                                <div class="stat-card-value" id="weightCurrent">--</div>
+                                <div class="stat-card-unit">lbs</div>
+                                <div class="stat-card-change" id="weightChange"></div>
+                            </div>
+                            <div class="stat-card">
+                                <div class="stat-card-label">Body Fat</div>
+                                <div class="stat-card-value" id="progressBodyFat">--</div>
+                                <div class="stat-card-unit">%</div>
+                                <div class="stat-card-change" id="progressBodyFatChange"></div>
+                            </div>
+                            <div class="stat-card">
+                                <div class="stat-card-label">Skeletal Muscle</div>
+                                <div class="stat-card-value" id="progressSMM">--</div>
+                                <div class="stat-card-unit">lbs</div>
+                                <div class="stat-card-change" id="progressSMMChange"></div>
+                            </div>
+                        </div>
+                        <div class="weight-chart-container">
+                            <canvas id="weightChart"></canvas>
+                        </div>
+                        <div class="progress-actions" style="display: flex; gap: 1rem; margin: 1.5rem 0;">
+                            <button class="btn-primary btn-small" onclick="openProgressModal()"><i class="fa-solid fa-chart-line"></i> Log Progress</button>
+                        </div>
+                        <div class="weight-history">
+                            <button class="collapsible-toggle" onclick="toggleCollapsible(this)">
+                                <i class="fa-solid fa-chevron-down"></i> Weight History
+                            </button>
+                            <div class="collapsible-content">
+                                <div class="weight-history-list" id="weightHistoryList"></div>
+                            </div>
+                        </div>
+                        <div id="bodyCompContent" style="display: none;">
+                            <div id="bodyCompPopulated" style="display: none;">
+                                <div class="body-comp-summary" id="bodyCompSummary"></div>
+                            </div>
+                            <div id="bodyCompEmpty"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Achievements -->
+            <div class="section" style="padding-top: 2rem; padding-bottom: 2rem;">
+                <div class="section-container">
+                    <div class="achievements-card" id="achievementsCard" style="display: none;">
+                        <div class="achievements-header">
+                            <h3 class="achievements-title"><i class="fa-solid fa-trophy"></i> Achievements</h3>
+                            <span class="achievements-count" id="achievementsCount">0 / 32</span>
+                        </div>
+                        <div class="achievements-grid collapsed" id="achievementsGrid"></div>
+                        <button class="achievements-expand" id="achievementsExpand" onclick="toggleAchievementsGrid()">
+                            <i class="fa-solid fa-chevron-down"></i> <span>Show All</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Coach Notes Thread (athlete view) -->
+            <div class="section" style="padding-top: 0; padding-bottom: 2rem;">
+                <div class="section-container">
+                    <div class="dash-card" id="athleteCoachNotesCard">
+                        <div class="dash-card-header">
+                            <h3 class="dash-card-title"><i class="fa-solid fa-comments" style="color: var(--yellow); margin-right: 0.5rem;"></i> Coach Notes</h3>
+                        </div>
+                        <div id="athleteCoachThread" class="coach-thread">
+                            <div class="coach-thread-empty" id="coachThreadEmpty">
+                                <i class="fa-solid fa-comments" style="font-size: 2rem; color: var(--medium-gray); margin-bottom: 0.5rem;"></i>
+                                <p style="color: var(--light-gray); font-size: 0.85rem;">No messages from your coach yet. Check back after your next check-in.</p>
+                            </div>
+                            <div id="coachThreadMessages"></div>
+                        </div>
+                        <div class="coach-thread-reply" id="coachThreadReply" style="display: none;">
+                            <textarea id="athleteReplyText" rows="2" placeholder="Reply to your coach..." style="width:100%; background: var(--black); color: var(--white); border: 2px solid var(--medium-gray); padding: 0.75rem; font-family: 'Montserrat', sans-serif; font-size: 0.85rem; resize: vertical;"></textarea>
+                            <button class="btn-primary btn-small" onclick="sendAthleteReply()" style="margin-top: 0.5rem;"><i class="fa-solid fa-paper-plane"></i> Send</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
         </div>
 
         <!-- ===== TAB 4: FUEL PATH ===== -->
@@ -5642,20 +5870,26 @@ function showTab(tabId) {
     });
     // Scroll to top
     window.scrollTo(0, 0);
-    // Lazy-init charts when their tab is first shown
+    // Lazy-init charts when their tab is first shown (Canvas elements in hidden tabs measure 0x0)
     if (tabId === 'tabCheckIn' && !chartsInitialized.checkIn) {
         setTimeout(function() {
-            if (typeof complianceChartInstance !== 'undefined' && complianceChartInstance) { complianceChartInstance.destroy(); complianceChartInstance = null; }
-            if (typeof drawComplianceChart === 'function') drawComplianceChart();
-            if (typeof weightChartInstance !== 'undefined' && weightChartInstance) { weightChartInstance.destroy(); weightChartInstance = null; }
-            if (typeof drawWeightChart === 'function') drawWeightChart();
+            // Re-render compliance chart
+            if (typeof complianceWeeklyChart !== 'undefined' && complianceWeeklyChart) { complianceWeeklyChart.destroy(); complianceWeeklyChart = null; }
+            if (currentUser) {
+                var phase = getPhaseInfo();
+                loadPhaseComplianceData(currentUser.id, phase);
+                loadWeightData(currentUser.id, phase);
+            }
             chartsInitialized.checkIn = true;
         }, 100);
     }
     if (tabId === 'tabMore' && !chartsInitialized.more) {
         setTimeout(function() {
-            if (typeof macroPieInstance !== 'undefined' && macroPieInstance) { macroPieInstance.destroy(); macroPieInstance = null; }
-            if (typeof drawMacroPie === 'function') drawMacroPie();
+            if (typeof macroPieChart !== 'undefined' && macroPieChart) { macroPieChart.destroy(); macroPieChart = null; }
+            if (currentUser) {
+                var phase = getPhaseInfo();
+                loadMacros(currentUser.id, phase);
+            }
             chartsInitialized.more = true;
         }, 100);
     }
@@ -5789,6 +6023,8 @@ async function initDashboard(user) {
         checkMacroChanges(user.id, phase);
         // Load compliance data + achievements
         loadPhaseComplianceData(user.id, phase);
+        // Load coach-athlete messages thread
+        loadAthleteCoachNotes();
     }
 }
 
@@ -9122,6 +9358,71 @@ function toggleAchievementsGrid() {
 }
 
 window.addEventListener('resize', function() { clampAchievementsGrid(); });
+
+// ===== COACH-ATHLETE MESSAGING (athlete side) =====
+async function loadAthleteCoachNotes() {
+    if (!supabase || !currentUser) return;
+    try {
+        var { data, error } = await supabase.from('coach_athlete_messages')
+            .select('id, message, sender_role, created_at')
+            .eq('athlete_id', currentUser.id)
+            .order('created_at', { ascending: true })
+            .limit(50);
+        if (error) throw error;
+        var container = document.getElementById('coachThreadMessages');
+        var emptyEl = document.getElementById('coachThreadEmpty');
+        var replyEl = document.getElementById('coachThreadReply');
+        if (!data || data.length === 0) {
+            if (emptyEl) emptyEl.style.display = '';
+            if (container) container.innerHTML = '';
+            if (replyEl) replyEl.style.display = 'none';
+            return;
+        }
+        if (emptyEl) emptyEl.style.display = 'none';
+        if (replyEl) replyEl.style.display = '';
+        var html = '';
+        data.forEach(function(msg) {
+            var isCoach = msg.sender_role === 'coach';
+            var avatarClass = isCoach ? 'coach-avatar' : 'athlete-avatar';
+            var avatarIcon = isCoach ? '<i class="fa-solid fa-clipboard-user"></i>' : '<i class="fa-solid fa-user"></i>';
+            var senderLabel = isCoach ? 'Coach' : 'You';
+            var time = new Date(msg.created_at).toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+            html += '<div class="coach-thread-msg">';
+            html += '<div class="coach-thread-avatar ' + avatarClass + '">' + avatarIcon + '</div>';
+            html += '<div class="coach-thread-body">';
+            html += '<div class="coach-thread-meta"><span class="coach-thread-sender">' + senderLabel + '</span><span class="coach-thread-time">' + time + '</span></div>';
+            html += '<div class="coach-thread-text">' + escapeHtml(msg.message) + '</div>';
+            html += '</div></div>';
+        });
+        if (container) container.innerHTML = html;
+        // Scroll to bottom
+        var thread = document.querySelector('.coach-thread');
+        if (thread) thread.scrollTop = thread.scrollHeight;
+    } catch (e) { /* silent */ }
+}
+
+async function sendAthleteReply() {
+    if (!supabase || !currentUser) return;
+    var textarea = document.getElementById('athleteReplyText');
+    var msg = textarea.value.trim();
+    if (!msg) return;
+    try {
+        var { error } = await supabase.from('coach_athlete_messages').insert({
+            athlete_id: currentUser.id,
+            message: msg,
+            sender_role: 'athlete'
+        });
+        if (error) throw error;
+        textarea.value = '';
+        loadAthleteCoachNotes();
+    } catch (e) { /* silent */ }
+}
+
+function escapeHtml(str) {
+    var div = document.createElement('div');
+    div.appendChild(document.createTextNode(str));
+    return div.innerHTML;
+}
 
 // ===== CONFETTI & TOASTS (Dashboard) =====
 function fireDashConfetti() {
