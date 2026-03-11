@@ -3898,6 +3898,171 @@
             .dash-quick-actions { grid-template-columns: 1fr; }
         }
 
+        /* ===== FOOD LOG TAB ===== */
+        .foodlog-connect-banner {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1.25rem 1.5rem;
+            background: linear-gradient(135deg, #1a1a2e, #16213e);
+            border: 1px solid var(--medium-gray);
+            margin: 1rem 1.5rem 0;
+        }
+        .foodlog-connect-icon {
+            font-size: 1.5rem;
+            color: var(--yellow);
+            flex-shrink: 0;
+        }
+        .foodlog-connect-text {
+            flex: 1;
+        }
+        .foodlog-connect-text strong {
+            display: block;
+            font-size: 0.95rem;
+            margin-bottom: 0.2rem;
+        }
+        .foodlog-connect-text p {
+            font-size: 0.8rem;
+            color: var(--light-gray);
+            margin: 0;
+        }
+        .foodlog-date-nav {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1.5rem;
+            padding: 1rem 1.5rem;
+        }
+        .foodlog-date-nav button {
+            background: none;
+            border: 1px solid var(--medium-gray);
+            color: var(--white);
+            width: 36px;
+            height: 36px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: border-color 0.2s;
+        }
+        .foodlog-date-nav button:hover {
+            border-color: var(--yellow);
+            color: var(--yellow);
+        }
+        .foodlog-date-label {
+            font-weight: 700;
+            font-size: 1rem;
+            min-width: 140px;
+            text-align: center;
+        }
+        .foodlog-macro-summary {
+            padding: 0 1.5rem;
+            margin-bottom: 1rem;
+        }
+        .foodlog-cal-hero {
+            display: flex;
+            align-items: baseline;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+        .foodlog-cal-number {
+            font-size: 2.5rem;
+            font-weight: 900;
+            color: var(--yellow);
+            line-height: 1;
+        }
+        .foodlog-cal-target {
+            font-size: 1rem;
+            color: var(--light-gray);
+            font-weight: 600;
+        }
+        .foodlog-macro-bars {
+            display: flex;
+            flex-direction: column;
+            gap: 0.6rem;
+        }
+        .foodlog-macro-row {
+            display: grid;
+            grid-template-columns: 60px 1fr 80px;
+            align-items: center;
+            gap: 0.75rem;
+        }
+        .foodlog-macro-name {
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            color: var(--light-gray);
+        }
+        .foodlog-macro-track {
+            height: 8px;
+            background: var(--medium-gray);
+            overflow: hidden;
+        }
+        .foodlog-macro-fill {
+            height: 100%;
+            transition: width 0.3s ease;
+        }
+        .foodlog-macro-label {
+            font-size: 0.75rem;
+            color: var(--light-gray);
+            text-align: right;
+        }
+        .foodlog-meals {
+            padding: 0 1.5rem;
+        }
+        .foodlog-meal-group {
+            border: 1px solid var(--medium-gray);
+            background: var(--dark-gray);
+            margin-bottom: 1rem;
+        }
+        .foodlog-meal-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0.75rem 1rem;
+            border-bottom: 1px solid var(--medium-gray);
+        }
+        .foodlog-meal-header h4 {
+            font-size: 0.85rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+        }
+        .foodlog-meal-cals {
+            font-size: 0.8rem;
+            color: var(--yellow);
+            font-weight: 700;
+        }
+        .foodlog-meal-items {
+            padding: 0;
+        }
+        .foodlog-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.6rem 1rem;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+        .foodlog-item:last-child {
+            border-bottom: none;
+        }
+        .foodlog-item-name {
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+        .foodlog-item-macros {
+            font-size: 0.72rem;
+            color: var(--light-gray);
+            white-space: nowrap;
+        }
+        @media (max-width: 600px) {
+            .foodlog-connect-banner { flex-direction: column; text-align: center; margin: 1rem 1rem 0; }
+            .foodlog-macro-summary { padding: 0 1rem; }
+            .foodlog-meals { padding: 0 1rem; }
+            .foodlog-item { flex-direction: column; align-items: flex-start; gap: 0.2rem; }
+            .foodlog-macro-row { grid-template-columns: 50px 1fr 65px; }
+        }
+
         /* ===== BOTTOM TAB BAR ===== */
         .fp-bottom-tabs {
             position: fixed;
@@ -4200,11 +4365,138 @@
 
         <!-- ===== TAB 2: FOOD LOG ===== -->
         <div id="tabFoodLog" class="tab-panel">
-            <div class="section" style="padding-top: 2rem;">
-                <div class="section-container">
-                    <h2 style="font-size: 1.5rem; margin-bottom: 1rem;"><i class="fa-solid fa-utensils" style="color: var(--yellow); margin-right: 0.5rem;"></i> Food Log</h2>
-                    <p style="color: var(--light-gray);">Coming soon — this tab will connect to Cronometer for automatic food tracking.</p>
+
+            <!-- Cronometer Connect Banner -->
+            <div class="foodlog-connect-banner">
+                <div class="foodlog-connect-icon"><i class="fa-solid fa-link"></i></div>
+                <div class="foodlog-connect-text">
+                    <strong>Connect Cronometer</strong>
+                    <p>Automatically sync your meals and macros from Cronometer.</p>
                 </div>
+                <button class="btn-primary btn-small" disabled style="opacity: 0.5; cursor: not-allowed;">Coming Soon</button>
+            </div>
+
+            <!-- Date Navigation -->
+            <div class="foodlog-date-nav">
+                <button onclick="changeFoodLogDate(-1)"><i class="fa-solid fa-chevron-left"></i></button>
+                <div class="foodlog-date-label" id="foodlogDateLabel">Today</div>
+                <button onclick="changeFoodLogDate(1)"><i class="fa-solid fa-chevron-right"></i></button>
+            </div>
+
+            <!-- Daily Macro Summary -->
+            <div class="foodlog-macro-summary">
+                <div class="foodlog-cal-hero">
+                    <div class="foodlog-cal-number" id="foodlogCalConsumed">1,847</div>
+                    <div class="foodlog-cal-target">/ <span id="foodlogCalTarget">--</span> cal</div>
+                </div>
+                <div class="foodlog-macro-bars">
+                    <div class="foodlog-macro-row">
+                        <span class="foodlog-macro-name">Protein</span>
+                        <div class="foodlog-macro-track"><div class="foodlog-macro-fill" id="foodlogProteinBar" style="width: 75%; background: #e74c3c;"></div></div>
+                        <span class="foodlog-macro-label" id="foodlogProteinLabel">142 / --g</span>
+                    </div>
+                    <div class="foodlog-macro-row">
+                        <span class="foodlog-macro-name">Carbs</span>
+                        <div class="foodlog-macro-track"><div class="foodlog-macro-fill" id="foodlogCarbsBar" style="width: 68%; background: #2196F3;"></div></div>
+                        <span class="foodlog-macro-label" id="foodlogCarbsLabel">196 / --g</span>
+                    </div>
+                    <div class="foodlog-macro-row">
+                        <span class="foodlog-macro-name">Fat</span>
+                        <div class="foodlog-macro-track"><div class="foodlog-macro-fill" id="foodlogFatBar" style="width: 82%; background: #FFD202;"></div></div>
+                        <span class="foodlog-macro-label" id="foodlogFatLabel">57 / --g</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Meal Groups -->
+            <div class="foodlog-meals">
+                <!-- Breakfast -->
+                <div class="foodlog-meal-group">
+                    <div class="foodlog-meal-header">
+                        <h4><i class="fa-solid fa-sun" style="color: var(--yellow); margin-right: 0.5rem;"></i> Breakfast</h4>
+                        <span class="foodlog-meal-cals">487 cal</span>
+                    </div>
+                    <div class="foodlog-meal-items">
+                        <div class="foodlog-item">
+                            <div class="foodlog-item-name">Scrambled Eggs (3 large)</div>
+                            <div class="foodlog-item-macros">218 cal | 18g P | 2g C | 15g F</div>
+                        </div>
+                        <div class="foodlog-item">
+                            <div class="foodlog-item-name">Whole Wheat Toast (2 slices)</div>
+                            <div class="foodlog-item-macros">138 cal | 7g P | 24g C | 2g F</div>
+                        </div>
+                        <div class="foodlog-item">
+                            <div class="foodlog-item-name">Greek Yogurt (170g)</div>
+                            <div class="foodlog-item-macros">131 cal | 17g P | 6g C | 4g F</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Lunch -->
+                <div class="foodlog-meal-group">
+                    <div class="foodlog-meal-header">
+                        <h4><i class="fa-solid fa-cloud-sun" style="color: #2196F3; margin-right: 0.5rem;"></i> Lunch</h4>
+                        <span class="foodlog-meal-cals">612 cal</span>
+                    </div>
+                    <div class="foodlog-meal-items">
+                        <div class="foodlog-item">
+                            <div class="foodlog-item-name">Grilled Chicken Breast (6 oz)</div>
+                            <div class="foodlog-item-macros">281 cal | 53g P | 0g C | 6g F</div>
+                        </div>
+                        <div class="foodlog-item">
+                            <div class="foodlog-item-name">Brown Rice (1 cup cooked)</div>
+                            <div class="foodlog-item-macros">216 cal | 5g P | 45g C | 2g F</div>
+                        </div>
+                        <div class="foodlog-item">
+                            <div class="foodlog-item-name">Mixed Vegetables (1 cup)</div>
+                            <div class="foodlog-item-macros">115 cal | 5g P | 21g C | 1g F</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Dinner -->
+                <div class="foodlog-meal-group">
+                    <div class="foodlog-meal-header">
+                        <h4><i class="fa-solid fa-moon" style="color: #9b59b6; margin-right: 0.5rem;"></i> Dinner</h4>
+                        <span class="foodlog-meal-cals">548 cal</span>
+                    </div>
+                    <div class="foodlog-meal-items">
+                        <div class="foodlog-item">
+                            <div class="foodlog-item-name">Salmon Fillet (5 oz)</div>
+                            <div class="foodlog-item-macros">292 cal | 32g P | 0g C | 18g F</div>
+                        </div>
+                        <div class="foodlog-item">
+                            <div class="foodlog-item-name">Sweet Potato (1 medium)</div>
+                            <div class="foodlog-item-macros">103 cal | 2g P | 24g C | 0g F</div>
+                        </div>
+                        <div class="foodlog-item">
+                            <div class="foodlog-item-name">Broccoli w/ Olive Oil (1.5 cups)</div>
+                            <div class="foodlog-item-macros">153 cal | 5g P | 10g C | 11g F</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Snack -->
+                <div class="foodlog-meal-group">
+                    <div class="foodlog-meal-header">
+                        <h4><i class="fa-solid fa-apple-whole" style="color: #27AE60; margin-right: 0.5rem;"></i> Snack</h4>
+                        <span class="foodlog-meal-cals">200 cal</span>
+                    </div>
+                    <div class="foodlog-meal-items">
+                        <div class="foodlog-item">
+                            <div class="foodlog-item-name">Protein Shake (1 scoop + water)</div>
+                            <div class="foodlog-item-macros">120 cal | 24g P | 3g C | 1g F</div>
+                        </div>
+                        <div class="foodlog-item">
+                            <div class="foodlog-item-name">Banana (1 medium)</div>
+                            <div class="foodlog-item-macros">105 cal | 1g P | 27g C | 0g F</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div style="text-align: center; padding: 1.5rem; color: #666; font-size: 0.8rem;">
+                <i class="fa-solid fa-info-circle"></i> This is sample data. Connect Cronometer to see your real meals.
             </div>
         </div>
 
@@ -5369,6 +5661,44 @@ function showTab(tabId) {
     }
 }
 
+// ===== FOOD LOG TAB (MOCK) =====
+var foodlogDateOffset = 0;
+function changeFoodLogDate(delta) {
+    foodlogDateOffset += delta;
+    var d = new Date();
+    d.setDate(d.getDate() + foodlogDateOffset);
+    var label = document.getElementById('foodlogDateLabel');
+    if (foodlogDateOffset === 0) {
+        label.textContent = 'Today';
+    } else if (foodlogDateOffset === -1) {
+        label.textContent = 'Yesterday';
+    } else if (foodlogDateOffset === 1) {
+        label.textContent = 'Tomorrow';
+    } else {
+        label.textContent = d.toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric' });
+    }
+}
+
+function renderFoodLogTargets() {
+    if (!phaseMacroTargets || !phaseMacroTargets.calories) return;
+    var t = phaseMacroTargets;
+    var calTarget = document.getElementById('foodlogCalTarget');
+    if (calTarget) calTarget.textContent = t.calories.toLocaleString();
+    var proteinLabel = document.getElementById('foodlogProteinLabel');
+    if (proteinLabel) proteinLabel.textContent = '142 / ' + t.protein + 'g';
+    var carbsLabel = document.getElementById('foodlogCarbsLabel');
+    if (carbsLabel) carbsLabel.textContent = '196 / ' + t.carbs + 'g';
+    var fatLabel = document.getElementById('foodlogFatLabel');
+    if (fatLabel) fatLabel.textContent = '57 / ' + t.fat + 'g';
+    // Update bar widths based on mock consumed vs real targets
+    var pBar = document.getElementById('foodlogProteinBar');
+    if (pBar) pBar.style.width = Math.min(100, Math.round(142 / t.protein * 100)) + '%';
+    var cBar = document.getElementById('foodlogCarbsBar');
+    if (cBar) cBar.style.width = Math.min(100, Math.round(196 / t.carbs * 100)) + '%';
+    var fBar = document.getElementById('foodlogFatBar');
+    if (fBar) fBar.style.width = Math.min(100, Math.round(57 / t.fat * 100)) + '%';
+}
+
 // ===== DASHBOARD STATE =====
 function showDashboard(user) {
     document.getElementById('authHero').style.display = 'none';
@@ -5605,9 +5935,10 @@ function renderMacroPieChart(protein, carbs, fat) {
     var carbsPct = totalCals > 0 ? Math.round((carbsCals / totalCals) * 100) : 0;
     var fatPct = totalCals > 0 ? 100 - proteinPct - carbsPct : 0;
 
-    document.getElementById('macroProteinPct').textContent = proteinPct + '%';
-    document.getElementById('macroCarbsPct').textContent = carbsPct + '%';
-    document.getElementById('macroFatPct').textContent = fatPct + '%';
+    var pctEl;
+    pctEl = document.getElementById('macroProteinPct'); if (pctEl) pctEl.textContent = proteinPct + '%';
+    pctEl = document.getElementById('macroCarbsPct'); if (pctEl) pctEl.textContent = carbsPct + '%';
+    pctEl = document.getElementById('macroFatPct'); if (pctEl) pctEl.textContent = fatPct + '%';
 
     var ctx = document.getElementById('macroPieChart');
     if (!ctx) return;
@@ -5658,21 +5989,22 @@ async function loadMacros(userId, phase) {
         var { data, error } = await supabase.from('saved_macros').select('*')
             .eq('user_id', userId).eq('phase', phase.num).eq('year', phase.year).single();
         if (data && !error) {
-            document.getElementById('macroCals').textContent = data.calories.toLocaleString();
-            document.getElementById('macroProtein').textContent = data.protein;
-            document.getElementById('macroCarbs').textContent = data.carbs;
-            document.getElementById('macroFat').textContent = data.fat;
-            document.getElementById('macrosPopulated').style.display = 'block';
-            document.getElementById('macrosEmpty').style.display = 'none';
-            document.getElementById('macroActions').style.display = 'flex';
+            var el;
+            el = document.getElementById('macroCals'); if (el) el.textContent = data.calories.toLocaleString();
+            el = document.getElementById('macroProtein'); if (el) el.textContent = data.protein;
+            el = document.getElementById('macroCarbs'); if (el) el.textContent = data.carbs;
+            el = document.getElementById('macroFat'); if (el) el.textContent = data.fat;
+            el = document.getElementById('macrosPopulated'); if (el) el.style.display = 'block';
+            el = document.getElementById('macrosEmpty'); if (el) el.style.display = 'none';
+            el = document.getElementById('macroActions'); if (el) el.style.display = 'flex';
             renderMacroPieChart(data.protein, data.carbs, data.fat);
             // Pre-fill form
-            document.getElementById('macroCalInput').value = data.calories;
-            document.getElementById('macroProteinInput').value = data.protein;
-            document.getElementById('macroCarbsInput').value = data.carbs;
-            document.getElementById('macroFatInput').value = data.fat;
-            if (data.weight) document.getElementById('macroWeightInput').value = data.weight;
-            if (data.activity_level) document.getElementById('macroActivityInput').value = data.activity_level;
+            el = document.getElementById('macroCalInput'); if (el) el.value = data.calories;
+            el = document.getElementById('macroProteinInput'); if (el) el.value = data.protein;
+            el = document.getElementById('macroCarbsInput'); if (el) el.value = data.carbs;
+            el = document.getElementById('macroFatInput'); if (el) el.value = data.fat;
+            if (data.weight) { el = document.getElementById('macroWeightInput'); if (el) el.value = data.weight; }
+            if (data.activity_level) { el = document.getElementById('macroActivityInput'); if (el) el.value = data.activity_level; }
         }
     } catch (e) { /* empty state shown by default */ }
 }
@@ -8028,6 +8360,8 @@ async function loadPhaseComplianceData(userId, phase) {
         } else {
             phaseMacroTargets = { calories: 0, protein: 0, carbs: 0, fat: 0 };
         }
+        // Update Food Log tab mock targets
+        if (typeof renderFoodLogTargets === 'function') renderFoodLogTargets();
 
         if (tolPhaseRes.data) phaseTolerancePct = tolPhaseRes.data.tolerance_pct;
         else if (tolGlobalRes.data) phaseTolerancePct = tolGlobalRes.data.tolerance_pct;
