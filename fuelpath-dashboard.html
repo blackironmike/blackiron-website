@@ -4210,7 +4210,7 @@
                 <div class="achievements-card" id="achievementsCard" style="display: none;">
                     <div class="achievements-header">
                         <h3 class="achievements-title"><i class="fa-solid fa-trophy"></i> Achievements</h3>
-                        <span class="achievements-count" id="achievementsCount">0 / 18</span>
+                        <span class="achievements-count" id="achievementsCount">0 / 32</span>
                     </div>
                     <div class="achievements-grid" id="achievementsGrid"></div>
                 </div>
@@ -8058,10 +8058,14 @@ function getToleranceStatus(consumed, target, pct) {
 var phaseComplianceData = {}; // { '2026-01-06': { calories: X, protein: Y, ... }, ... }
 var phaseMacroTargets = { calories: 0, protein: 0, carbs: 0, fat: 0 };
 var phaseTolerancePct = 10;
+var totalDaysLoggedAllTime = 0; // cross-phase count of unique days with food logged
+var completedPhaseCount = 0; // how many phases have 80%+ days tracked
 
 async function loadPhaseComplianceData(userId, phase) {
     if (!supabase) return;
     phaseComplianceData = {};
+    totalDaysLoggedAllTime = 0;
+    completedPhaseCount = 0;
 
     try {
         // Load targets & tolerance in parallel
@@ -8106,6 +8110,9 @@ async function loadPhaseComplianceData(userId, phase) {
             phaseComplianceData[entry.logged_date].fat += Number(entry.fat) || 0;
         });
 
+        // Cross-phase: count total unique days logged and completed phases
+        loadCrossPhaseData(userId, phase);
+
         // Render day blocks on timeline
         renderTimelineDayBlocks(phase);
         // Calculate and render compliance stats
@@ -8115,6 +8122,88 @@ async function loadPhaseComplianceData(userId, phase) {
     } catch (e) {
         // Compliance data unavailable — fail silently
     }
+}
+
+async function loadCrossPhaseData(userId, currentPhase) {
+    if (!supabase) return;
+    try {
+        // Count total unique days with any food logged (all time)
+        var { data: allLogs, error: allErr } = await supabase.from('food_log')
+            .select('logged_date')
+            .eq('user_id', userId);
+        if (!allErr && allLogs) {
+            var uniqueDays = {};
+            allLogs.forEach(function(e) { uniqueDays[e.logged_date] = true; });
+            totalDaysLoggedAllTime = Object.keys(uniqueDays).length;
+        }
+
+        // Check phase completion for past phases (80%+ days tracked)
+        var year = currentPhase.year;
+        var phaseRanges = [
+            { num: 1, start: new Date(year, 0, 1), end: new Date(year, 2, 31) },
+            { num: 2, start: new Date(year, 3, 1), end: new Date(year, 5, 30) },
+            { num: 3, start: new Date(year, 6, 1), end: new Date(year, 8, 30) },
+            { num: 4, start: new Date(year, 9, 1), end: new Date(year, 11, 31) }
+        ];
+        // Also check previous year
+        var prevYear = year - 1;
+        var prevPhaseRanges = [
+            { num: 1, start: new Date(prevYear, 0, 1), end: new Date(prevYear, 2, 31) },
+            { num: 2, start: new Date(prevYear, 3, 1), end: new Date(prevYear, 5, 30) },
+            { num: 3, start: new Date(prevYear, 6, 1), end: new Date(prevYear, 8, 30) },
+            { num: 4, start: new Date(prevYear, 9, 1), end: new Date(prevYear, 11, 31) }
+        ];
+        var allRanges = prevPhaseRanges.concat(phaseRanges);
+        var today = new Date();
+        completedPhaseCount = 0;
+
+        allRanges.forEach(function(pr) {
+            // Only check phases that have fully ended
+            if (pr.end >= today) return;
+            var totalDays = Math.ceil((pr.end - pr.start) / (1000 * 60 * 60 * 24)) + 1;
+            var trackedDays = 0;
+            if (allLogs) {
+                var uniqueInPhase = {};
+                allLogs.forEach(function(e) {
+                    var d = new Date(e.logged_date + 'T00:00:00');
+                    if (d >= pr.start && d <= pr.end) {
+                        uniqueInPhase[e.logged_date] = true;
+                    }
+                });
+                trackedDays = Object.keys(uniqueInPhase).length;
+            }
+            if (totalDays > 0 && (trackedDays / totalDays) >= 0.8) {
+                completedPhaseCount++;
+            }
+        });
+
+        // Re-check achievements with updated cross-phase data
+        // (achievements were already loaded, just recompute earned)
+        var earned = computeEarnedAchievements();
+        var newUnlocks = [];
+        earned.forEach(function(key) {
+            if (!unlockedAchievements[key]) {
+                newUnlocks.push(key);
+                unlockedAchievements[key] = new Date().toISOString();
+            }
+        });
+        if (newUnlocks.length > 0 && supabase) {
+            var inserts = newUnlocks.map(function(key) {
+                return { user_id: userId, achievement_key: key };
+            });
+            try { await supabase.from('achievements').insert(inserts); } catch (e) {}
+            renderAchievements();
+            newUnlocks.forEach(function(key, idx) {
+                var def = ACHIEVEMENT_DEFS.find(function(d) { return d.key === key; });
+                if (def) {
+                    setTimeout(function() {
+                        showDashAchievementToast(def.name, def.trigger, TIER_COLORS[def.tier]);
+                        if (def.tier === 'gold' || def.tier === 'platinum') fireDashConfetti();
+                    }, 500 + idx * 4500);
+                }
+            });
+        }
+    } catch (e) { /* cross-phase data unavailable */ }
 }
 
 function renderTimelineDayBlocks(phase) {
@@ -8321,24 +8410,45 @@ function renderComplianceChart(weeklyData) {
 
 // ===== ACHIEVEMENTS =====
 var ACHIEVEMENT_DEFS = [
-    { key: 'streak_3', name: 'Getting Started', trigger: '3-day streak', tier: 'bronze', category: 'streaks', icon: 'fa-fire' },
-    { key: 'streak_7', name: 'One Week Strong', trigger: '7-day streak', tier: 'bronze', category: 'streaks', icon: 'fa-fire' },
-    { key: 'streak_14', name: 'Two Week Warrior', trigger: '14-day streak', tier: 'silver', category: 'streaks', icon: 'fa-fire' },
-    { key: 'streak_21', name: 'Three Week Iron', trigger: '21-day streak', tier: 'silver', category: 'streaks', icon: 'fa-fire' },
-    { key: 'streak_30', name: 'Monthly Machine', trigger: '30-day streak', tier: 'gold', category: 'streaks', icon: 'fa-fire' },
-    { key: 'streak_60', name: 'Two Month Titan', trigger: '60-day streak', tier: 'gold', category: 'streaks', icon: 'fa-fire' },
-    { key: 'streak_90', name: 'Quarter Champion', trigger: '90-day streak', tier: 'platinum', category: 'streaks', icon: 'fa-fire' },
-    { key: 'comp_50', name: 'Half Way There', trigger: '50% overall compliance', tier: 'bronze', category: 'compliance', icon: 'fa-bullseye' },
-    { key: 'comp_75', name: 'Three Quarters', trigger: '75% overall compliance', tier: 'silver', category: 'compliance', icon: 'fa-bullseye' },
-    { key: 'comp_90', name: 'Precision Athlete', trigger: '90% overall compliance', tier: 'gold', category: 'compliance', icon: 'fa-bullseye' },
-    { key: 'logged_7', name: 'First Full Week', trigger: '7 days logged', tier: 'bronze', category: 'tracking', icon: 'fa-calendar-check' },
-    { key: 'logged_30', name: 'Monthly Logger', trigger: '30 days logged', tier: 'silver', category: 'tracking', icon: 'fa-calendar-check' },
-    { key: 'logged_60', name: 'Habitual Tracker', trigger: '60 days logged', tier: 'gold', category: 'tracking', icon: 'fa-calendar-check' },
-    { key: 'logged_91', name: 'Full Phase Tracked', trigger: 'Every day of a phase', tier: 'platinum', category: 'tracking', icon: 'fa-calendar-check' },
-    { key: 'perfect_day', name: 'Perfect Day', trigger: 'All macros on-target in 1 day', tier: 'bronze', category: 'mastery', icon: 'fa-star' },
+    // First Steps
+    { key: 'first_log', name: 'First Rep', trigger: 'Log your first food', tier: 'bronze', category: 'first_steps', icon: 'fa-dumbbell' },
+    { key: 'first_perfect', name: 'Dialed In', trigger: 'All macros on-target in 1 day', tier: 'bronze', category: 'first_steps', icon: 'fa-bullseye' },
+    { key: 'streak_3', name: 'Spark', trigger: '3-day streak', tier: 'bronze', category: 'first_steps', icon: 'fa-fire' },
+    // Streaks
+    { key: 'streak_7', name: 'Iron Week', trigger: '7-day streak', tier: 'bronze', category: 'streaks', icon: 'fa-fire' },
+    { key: 'streak_14', name: 'Forged', trigger: '14-day streak', tier: 'silver', category: 'streaks', icon: 'fa-fire' },
+    { key: 'streak_21', name: 'Unbreakable', trigger: '21-day streak', tier: 'silver', category: 'streaks', icon: 'fa-fire' },
+    { key: 'streak_30', name: 'Iron Will', trigger: '30-day streak', tier: 'gold', category: 'streaks', icon: 'fa-fire' },
+    { key: 'streak_45', name: 'Relentless', trigger: '45-day streak', tier: 'gold', category: 'streaks', icon: 'fa-fire' },
+    { key: 'streak_60', name: 'War Machine', trigger: '60-day streak', tier: 'gold', category: 'streaks', icon: 'fa-fire' },
+    { key: 'streak_90', name: 'Ironclad', trigger: '90-day streak', tier: 'platinum', category: 'streaks', icon: 'fa-fire' },
+    { key: 'streak_180', name: 'Half Year Hero', trigger: '180-day streak', tier: 'platinum', category: 'streaks', icon: 'fa-fire' },
+    // Compliance
+    { key: 'comp_50', name: 'Half Measures', trigger: '50% overall compliance', tier: 'bronze', category: 'compliance', icon: 'fa-bullseye' },
+    { key: 'comp_75', name: 'Lock & Load', trigger: '75% overall compliance', tier: 'silver', category: 'compliance', icon: 'fa-bullseye' },
+    { key: 'comp_90', name: 'Sniper', trigger: '90% overall compliance', tier: 'gold', category: 'compliance', icon: 'fa-bullseye' },
+    { key: 'comp_95', name: 'Surgical', trigger: '95% overall compliance', tier: 'platinum', category: 'compliance', icon: 'fa-crosshairs' },
+    // Tracking
+    { key: 'logged_7', name: 'Punching In', trigger: '7 days logged', tier: 'bronze', category: 'tracking', icon: 'fa-calendar-check' },
+    { key: 'logged_30', name: 'On the Clock', trigger: '30 days logged', tier: 'silver', category: 'tracking', icon: 'fa-calendar-check' },
+    { key: 'logged_60', name: 'Grinder', trigger: '60 days logged', tier: 'gold', category: 'tracking', icon: 'fa-calendar-check' },
+    { key: 'logged_91', name: 'Full Tour', trigger: 'Every day of a phase', tier: 'gold', category: 'tracking', icon: 'fa-calendar-check' },
+    { key: 'logged_180', name: 'Half Year Hustle', trigger: '180 days logged total', tier: 'platinum', category: 'tracking', icon: 'fa-calendar-check' },
+    { key: 'logged_365', name: 'Year of Iron', trigger: '365 days logged total', tier: 'platinum', category: 'tracking', icon: 'fa-calendar-check' },
+    // Mastery
     { key: 'perfect_week', name: 'Perfect Week', trigger: '7 consecutive perfect days', tier: 'gold', category: 'mastery', icon: 'fa-star' },
     { key: 'protein_king', name: 'Protein King', trigger: 'Protein on-target 14 days straight', tier: 'silver', category: 'mastery', icon: 'fa-drumstick-bite' },
-    { key: 'macro_master', name: 'Macro Master', trigger: 'All 4 macros on-target 7 straight', tier: 'gold', category: 'mastery', icon: 'fa-crown' }
+    { key: 'cal_commander', name: 'Calorie Commander', trigger: 'Calories on-target 21 days straight', tier: 'silver', category: 'mastery', icon: 'fa-scale-balanced' },
+    { key: 'weekend_warrior', name: 'Weekend Warrior', trigger: 'On-target Sat & Sun, 4 weeks running', tier: 'silver', category: 'mastery', icon: 'fa-shield-halved' },
+    { key: 'macro_master', name: 'Macro Master', trigger: 'All 4 macros on-target 14 straight', tier: 'gold', category: 'mastery', icon: 'fa-crown' },
+    { key: 'iron_discipline', name: 'Iron Discipline', trigger: 'All 4 macros on-target 30 straight', tier: 'platinum', category: 'mastery', icon: 'fa-crown' },
+    // Grit
+    { key: 'bounce_back', name: 'Bounce Back', trigger: 'Hit all macros day after a miss', tier: 'bronze', category: 'grit', icon: 'fa-rotate-right' },
+    // Milestones
+    { key: 'phase_complete', name: 'Phase Complete', trigger: '80%+ days tracked in a phase', tier: 'gold', category: 'milestones', icon: 'fa-flag-checkered' },
+    { key: 'two_phases', name: 'Double Down', trigger: 'Complete 2 phases', tier: 'gold', category: 'milestones', icon: 'fa-flag-checkered' },
+    { key: 'three_phases', name: 'Triple Threat', trigger: 'Complete 3 phases', tier: 'platinum', category: 'milestones', icon: 'fa-flag-checkered' },
+    { key: 'full_year', name: 'Iron Year', trigger: 'Complete all 4 phases', tier: 'platinum', category: 'milestones', icon: 'fa-trophy' }
 ];
 
 var TIER_COLORS = { bronze: '#cd7f32', silver: '#c0c0c0', gold: '#FFD202', platinum: '#e5e4e2' };
@@ -8401,75 +8511,163 @@ async function loadAndCheckAchievements(userId) {
 
 function computeEarnedAchievements() {
     var earned = [];
-    if (phaseMacroTargets.calories <= 0) return earned;
 
     var today = new Date();
     var todayStr = today.getFullYear() + '-' + String(today.getMonth() + 1).padStart(2, '0') + '-' + String(today.getDate()).padStart(2, '0');
 
-    // Build sorted array of day data
+    // Build sorted array of day data from current phase
     var sortedDays = Object.keys(phaseComplianceData).filter(function(d) { return d <= todayStr; }).sort();
-    var daysLogged = sortedDays.length;
+    var daysLoggedPhase = sortedDays.length;
+
+    // First Rep: any food logged at all
+    if (daysLoggedPhase >= 1 || totalDaysLoggedAllTime >= 1) earned.push('first_log');
+
+    // If no targets set, only first_log can be earned
+    if (phaseMacroTargets.calories <= 0) return earned;
 
     // Check each day for on-target status
     var perfectDays = []; // dates where all macros on target
     var proteinOnTargetDays = [];
+    var calOnTargetDays = [];
+    var dayStatuses = {}; // dateStr → { perfect: bool }
+
     sortedDays.forEach(function(dateStr) {
         var day = phaseComplianceData[dateStr];
         var macros = ['calories', 'protein', 'carbs', 'fat'];
         var allOnTarget = true;
         var proteinOk = false;
+        var calOk = false;
         macros.forEach(function(m) {
             if (phaseMacroTargets[m] > 0) {
                 var status = getToleranceStatus(day[m] || 0, phaseMacroTargets[m], phaseTolerancePct);
                 if (status !== 'on-target') allOnTarget = false;
                 if (m === 'protein' && status === 'on-target') proteinOk = true;
+                if (m === 'calories' && status === 'on-target') calOk = true;
             }
         });
+        dayStatuses[dateStr] = { perfect: allOnTarget };
         if (allOnTarget) perfectDays.push(dateStr);
         if (proteinOk) proteinOnTargetDays.push(dateStr);
+        if (calOk) calOnTargetDays.push(dateStr);
     });
 
     // Overall compliance %
-    var overallPct = daysLogged > 0 ? Math.round((perfectDays.length / daysLogged) * 100) : 0;
+    var overallPct = daysLoggedPhase > 0 ? Math.round((perfectDays.length / daysLoggedPhase) * 100) : 0;
 
     // Streak from macro_streaks (loaded separately)
     var currentStreakVal = parseInt(document.getElementById('compCurrentStreak').textContent) || 0;
     var bestStreakVal = parseInt(document.getElementById('compBestStreak').textContent) || 0;
     var maxStreak = Math.max(currentStreakVal, bestStreakVal);
 
-    // Streak achievements
+    // === First Steps ===
+    if (perfectDays.length >= 1) earned.push('first_perfect');
     if (maxStreak >= 3) earned.push('streak_3');
+
+    // === Streaks ===
     if (maxStreak >= 7) earned.push('streak_7');
     if (maxStreak >= 14) earned.push('streak_14');
     if (maxStreak >= 21) earned.push('streak_21');
     if (maxStreak >= 30) earned.push('streak_30');
+    if (maxStreak >= 45) earned.push('streak_45');
     if (maxStreak >= 60) earned.push('streak_60');
     if (maxStreak >= 90) earned.push('streak_90');
+    if (maxStreak >= 180) earned.push('streak_180');
 
-    // Compliance achievements
+    // === Compliance ===
     if (overallPct >= 50) earned.push('comp_50');
     if (overallPct >= 75) earned.push('comp_75');
     if (overallPct >= 90) earned.push('comp_90');
+    if (overallPct >= 95) earned.push('comp_95');
 
-    // Tracking achievements
-    if (daysLogged >= 7) earned.push('logged_7');
-    if (daysLogged >= 30) earned.push('logged_30');
-    if (daysLogged >= 60) earned.push('logged_60');
-    if (daysLogged >= 91) earned.push('logged_91');
+    // === Tracking (phase-level) ===
+    if (daysLoggedPhase >= 7) earned.push('logged_7');
+    if (daysLoggedPhase >= 30) earned.push('logged_30');
+    if (daysLoggedPhase >= 60) earned.push('logged_60');
+    if (daysLoggedPhase >= 91) earned.push('logged_91');
 
-    // Perfect day
-    if (perfectDays.length >= 1) earned.push('perfect_day');
+    // === Tracking (cross-phase, uses totalDaysLoggedAllTime) ===
+    if (totalDaysLoggedAllTime >= 180) earned.push('logged_180');
+    if (totalDaysLoggedAllTime >= 365) earned.push('logged_365');
 
-    // Perfect week (7 consecutive perfect days)
+    // === Mastery ===
+    // Perfect Week (7 consecutive perfect days)
     if (hasConsecutiveDays(perfectDays, 7)) earned.push('perfect_week');
 
-    // Macro master (all macros on target 7 consecutive)
-    if (hasConsecutiveDays(perfectDays, 7)) earned.push('macro_master');
-
-    // Protein king (14 consecutive days protein on target)
+    // Protein King (14 consecutive days protein on target)
     if (hasConsecutiveDays(proteinOnTargetDays, 14)) earned.push('protein_king');
 
+    // Calorie Commander (21 consecutive days calories on target)
+    if (hasConsecutiveDays(calOnTargetDays, 21)) earned.push('cal_commander');
+
+    // Macro Master (all 4 macros on-target 14 straight)
+    if (hasConsecutiveDays(perfectDays, 14)) earned.push('macro_master');
+
+    // Iron Discipline (all 4 macros on-target 30 straight)
+    if (hasConsecutiveDays(perfectDays, 30)) earned.push('iron_discipline');
+
+    // Weekend Warrior (on-target Sat & Sun, 4 consecutive weeks)
+    if (checkWeekendWarrior(sortedDays, dayStatuses)) earned.push('weekend_warrior');
+
+    // === Grit ===
+    // Bounce Back (hit all macros the day after a miss)
+    if (checkBounceBack(sortedDays, dayStatuses)) earned.push('bounce_back');
+
+    // === Milestones (cross-phase) ===
+    if (completedPhaseCount >= 1) earned.push('phase_complete');
+    if (completedPhaseCount >= 2) earned.push('two_phases');
+    if (completedPhaseCount >= 3) earned.push('three_phases');
+    if (completedPhaseCount >= 4) earned.push('full_year');
+
     return earned;
+}
+
+function checkWeekendWarrior(sortedDays, dayStatuses) {
+    // Need 4 consecutive weekends (Sat+Sun) where both days are perfect
+    var weekendPairs = []; // array of { sat: dateStr, sun: dateStr }
+    sortedDays.forEach(function(dateStr) {
+        var d = new Date(dateStr + 'T00:00:00');
+        var dow = d.getDay();
+        if (dow === 6 && dayStatuses[dateStr] && dayStatuses[dateStr].perfect) {
+            // Saturday — check if Sunday is also perfect
+            var sun = new Date(d);
+            sun.setDate(sun.getDate() + 1);
+            var sunStr = sun.getFullYear() + '-' + String(sun.getMonth() + 1).padStart(2, '0') + '-' + String(sun.getDate()).padStart(2, '0');
+            if (dayStatuses[sunStr] && dayStatuses[sunStr].perfect) {
+                weekendPairs.push(dateStr);
+            }
+        }
+    });
+    if (weekendPairs.length < 4) return false;
+    // Check for 4 consecutive weekly Saturdays (7 days apart)
+    var consecutive = 1;
+    for (var i = 1; i < weekendPairs.length; i++) {
+        var prev = new Date(weekendPairs[i - 1]);
+        var curr = new Date(weekendPairs[i]);
+        var diff = Math.round((curr - prev) / (1000 * 60 * 60 * 24));
+        if (diff === 7) {
+            consecutive++;
+            if (consecutive >= 4) return true;
+        } else {
+            consecutive = 1;
+        }
+    }
+    return false;
+}
+
+function checkBounceBack(sortedDays, dayStatuses) {
+    // Hit all macros the day after a miss
+    for (var i = 1; i < sortedDays.length; i++) {
+        var prev = sortedDays[i - 1];
+        var curr = sortedDays[i];
+        // Check they're consecutive days
+        var prevDate = new Date(prev);
+        var currDate = new Date(curr);
+        var diff = Math.round((currDate - prevDate) / (1000 * 60 * 60 * 24));
+        if (diff === 1 && !dayStatuses[prev].perfect && dayStatuses[curr].perfect) {
+            return true;
+        }
+    }
+    return false;
 }
 
 function hasConsecutiveDays(dateArray, count) {
