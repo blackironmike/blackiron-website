@@ -1234,6 +1234,19 @@
             font-weight: 500;
         }
 
+        /* ===== NEXT UP ACHIEVEMENTS ===== */
+        .achievements-next-up { display: flex; flex-direction: column; gap: 1rem; }
+        .next-achievement { background: var(--black); border: 2px solid var(--medium-gray); border-left: 4px solid; padding: 1rem 1.25rem; display: flex; align-items: center; gap: 1rem; }
+        .next-achievement-icon { font-size: 1.4rem; flex-shrink: 0; width: 2rem; text-align: center; }
+        .next-achievement-info { flex: 1; min-width: 0; }
+        .next-achievement-name { font-size: 0.8rem; font-weight: 900; text-transform: uppercase; letter-spacing: 0.5px; }
+        .next-achievement-trigger { font-size: 0.7rem; color: var(--light-gray); margin-top: 0.15rem; }
+        .next-achievement-progress { margin-top: 0.5rem; }
+        .next-achievement-bar { height: 6px; background: rgba(255,255,255,0.1); width: 100%; position: relative; }
+        .next-achievement-fill { height: 100%; transition: width 0.6s ease; }
+        .next-achievement-pct { font-size: 0.65rem; color: var(--light-gray); margin-top: 0.25rem; font-weight: 600; }
+        .achievements-congrats { text-align: center; padding: 2rem 1rem; color: var(--yellow); font-weight: 700; font-size: 1rem; }
+
         /* ===== CONFETTI CANVAS ===== */
         #dashConfettiCanvas {
             position: fixed;
@@ -4212,7 +4225,13 @@
                         <h3 class="achievements-title"><i class="fa-solid fa-trophy"></i> Achievements</h3>
                         <span class="achievements-count" id="achievementsCount">0 / 32</span>
                     </div>
-                    <div class="achievements-grid" id="achievementsGrid"></div>
+                    <div class="achievements-next-up" id="achievementsNextUp"></div>
+                    <button class="collapsible-toggle" onclick="toggleCollapsible(this)" style="margin-top:1.5rem;">
+                        <i class="fa-solid fa-chevron-down"></i> View All Achievements
+                    </button>
+                    <div class="collapsible-content">
+                        <div class="achievements-grid" id="achievementsGrid"></div>
+                    </div>
                 </div>
 
                 <!-- Full-width Weekly Check-In -->
@@ -8454,6 +8473,7 @@ var ACHIEVEMENT_DEFS = [
 var TIER_COLORS = { bronze: '#cd7f32', silver: '#c0c0c0', gold: '#FFD202', platinum: '#e5e4e2' };
 
 var unlockedAchievements = {};
+var achievementProgress = {}; // { key: { current, target, pct } }
 
 async function loadAndCheckAchievements(userId) {
     if (!supabase) return;
@@ -8490,7 +8510,8 @@ async function loadAndCheckAchievements(userId) {
         } catch (e) { /* silent — table may not exist */ }
     }
 
-    // Render badge grid
+    // Render achievements UI
+    renderNextUp();
     renderAchievements();
 
     // Show toasts for new unlocks
@@ -8511,6 +8532,12 @@ async function loadAndCheckAchievements(userId) {
 
 function computeEarnedAchievements() {
     var earned = [];
+    achievementProgress = {}; // reset
+
+    function setProgress(key, current, target) {
+        var clamped = Math.min(current, target);
+        achievementProgress[key] = { current: clamped, target: target, pct: target > 0 ? Math.round((clamped / target) * 100) : 0 };
+    }
 
     var today = new Date();
     var todayStr = today.getFullYear() + '-' + String(today.getMonth() + 1).padStart(2, '0') + '-' + String(today.getDate()).padStart(2, '0');
@@ -8518,12 +8545,19 @@ function computeEarnedAchievements() {
     // Build sorted array of day data from current phase
     var sortedDays = Object.keys(phaseComplianceData).filter(function(d) { return d <= todayStr; }).sort();
     var daysLoggedPhase = sortedDays.length;
+    var anyLogged = daysLoggedPhase >= 1 || totalDaysLoggedAllTime >= 1;
 
     // First Rep: any food logged at all
-    if (daysLoggedPhase >= 1 || totalDaysLoggedAllTime >= 1) earned.push('first_log');
+    setProgress('first_log', anyLogged ? 1 : 0, 1);
+    if (anyLogged) earned.push('first_log');
 
-    // If no targets set, only first_log can be earned
-    if (phaseMacroTargets.calories <= 0) return earned;
+    // If no targets set, only first_log can be earned — set remaining to 0
+    if (phaseMacroTargets.calories <= 0) {
+        ACHIEVEMENT_DEFS.forEach(function(def) {
+            if (!achievementProgress[def.key]) setProgress(def.key, 0, 1);
+        });
+        return earned;
+    }
 
     // Check each day for on-target status
     var perfectDays = []; // dates where all macros on target
@@ -8559,63 +8593,75 @@ function computeEarnedAchievements() {
     var bestStreakVal = parseInt(document.getElementById('compBestStreak').textContent) || 0;
     var maxStreak = Math.max(currentStreakVal, bestStreakVal);
 
+    // Compute longest consecutive runs for mastery progress
+    var bestPerfectRun = longestConsecutiveRun(perfectDays);
+    var bestProteinRun = longestConsecutiveRun(proteinOnTargetDays);
+    var bestCalRun = longestConsecutiveRun(calOnTargetDays);
+    var bestWeekendRun = bestConsecutiveWeekends(sortedDays, dayStatuses);
+    var bounceBackFound = checkBounceBack(sortedDays, dayStatuses);
+
     // === First Steps ===
+    setProgress('first_perfect', Math.min(perfectDays.length, 1), 1);
     if (perfectDays.length >= 1) earned.push('first_perfect');
+    setProgress('streak_3', maxStreak, 3);
     if (maxStreak >= 3) earned.push('streak_3');
 
     // === Streaks ===
-    if (maxStreak >= 7) earned.push('streak_7');
-    if (maxStreak >= 14) earned.push('streak_14');
-    if (maxStreak >= 21) earned.push('streak_21');
-    if (maxStreak >= 30) earned.push('streak_30');
-    if (maxStreak >= 45) earned.push('streak_45');
-    if (maxStreak >= 60) earned.push('streak_60');
-    if (maxStreak >= 90) earned.push('streak_90');
-    if (maxStreak >= 180) earned.push('streak_180');
+    [7, 14, 21, 30, 45, 60, 90, 180].forEach(function(t) {
+        setProgress('streak_' + t, maxStreak, t);
+        if (maxStreak >= t) earned.push('streak_' + t);
+    });
 
     // === Compliance ===
-    if (overallPct >= 50) earned.push('comp_50');
-    if (overallPct >= 75) earned.push('comp_75');
-    if (overallPct >= 90) earned.push('comp_90');
-    if (overallPct >= 95) earned.push('comp_95');
+    [50, 75, 90, 95].forEach(function(t) {
+        var key = 'comp_' + t;
+        setProgress(key, overallPct, t);
+        if (overallPct >= t) earned.push(key);
+    });
 
     // === Tracking (phase-level) ===
-    if (daysLoggedPhase >= 7) earned.push('logged_7');
-    if (daysLoggedPhase >= 30) earned.push('logged_30');
-    if (daysLoggedPhase >= 60) earned.push('logged_60');
-    if (daysLoggedPhase >= 91) earned.push('logged_91');
+    [7, 30, 60, 91].forEach(function(t) {
+        setProgress('logged_' + t, daysLoggedPhase, t);
+        if (daysLoggedPhase >= t) earned.push('logged_' + t);
+    });
 
-    // === Tracking (cross-phase, uses totalDaysLoggedAllTime) ===
+    // === Tracking (cross-phase) ===
+    setProgress('logged_180', totalDaysLoggedAllTime, 180);
     if (totalDaysLoggedAllTime >= 180) earned.push('logged_180');
+    setProgress('logged_365', totalDaysLoggedAllTime, 365);
     if (totalDaysLoggedAllTime >= 365) earned.push('logged_365');
 
     // === Mastery ===
-    // Perfect Week (7 consecutive perfect days)
-    if (hasConsecutiveDays(perfectDays, 7)) earned.push('perfect_week');
+    setProgress('perfect_week', bestPerfectRun, 7);
+    if (bestPerfectRun >= 7) earned.push('perfect_week');
 
-    // Protein King (14 consecutive days protein on target)
-    if (hasConsecutiveDays(proteinOnTargetDays, 14)) earned.push('protein_king');
+    setProgress('protein_king', bestProteinRun, 14);
+    if (bestProteinRun >= 14) earned.push('protein_king');
 
-    // Calorie Commander (21 consecutive days calories on target)
-    if (hasConsecutiveDays(calOnTargetDays, 21)) earned.push('cal_commander');
+    setProgress('cal_commander', bestCalRun, 21);
+    if (bestCalRun >= 21) earned.push('cal_commander');
 
-    // Macro Master (all 4 macros on-target 14 straight)
-    if (hasConsecutiveDays(perfectDays, 14)) earned.push('macro_master');
+    setProgress('macro_master', bestPerfectRun, 14);
+    if (bestPerfectRun >= 14) earned.push('macro_master');
 
-    // Iron Discipline (all 4 macros on-target 30 straight)
-    if (hasConsecutiveDays(perfectDays, 30)) earned.push('iron_discipline');
+    setProgress('iron_discipline', bestPerfectRun, 30);
+    if (bestPerfectRun >= 30) earned.push('iron_discipline');
 
-    // Weekend Warrior (on-target Sat & Sun, 4 consecutive weeks)
-    if (checkWeekendWarrior(sortedDays, dayStatuses)) earned.push('weekend_warrior');
+    setProgress('weekend_warrior', bestWeekendRun, 4);
+    if (bestWeekendRun >= 4) earned.push('weekend_warrior');
 
     // === Grit ===
-    // Bounce Back (hit all macros the day after a miss)
-    if (checkBounceBack(sortedDays, dayStatuses)) earned.push('bounce_back');
+    setProgress('bounce_back', bounceBackFound ? 1 : 0, 1);
+    if (bounceBackFound) earned.push('bounce_back');
 
     // === Milestones (cross-phase) ===
+    setProgress('phase_complete', completedPhaseCount, 1);
     if (completedPhaseCount >= 1) earned.push('phase_complete');
+    setProgress('two_phases', completedPhaseCount, 2);
     if (completedPhaseCount >= 2) earned.push('two_phases');
+    setProgress('three_phases', completedPhaseCount, 3);
     if (completedPhaseCount >= 3) earned.push('three_phases');
+    setProgress('full_year', completedPhaseCount, 4);
     if (completedPhaseCount >= 4) earned.push('full_year');
 
     return earned;
@@ -8670,6 +8716,55 @@ function checkBounceBack(sortedDays, dayStatuses) {
     return false;
 }
 
+function longestConsecutiveRun(dateArray) {
+    if (dateArray.length === 0) return 0;
+    var sorted = dateArray.slice().sort();
+    var best = 1;
+    var streak = 1;
+    for (var i = 1; i < sorted.length; i++) {
+        var prev = new Date(sorted[i - 1]);
+        var curr = new Date(sorted[i]);
+        var diff = Math.round((curr - prev) / (1000 * 60 * 60 * 24));
+        if (diff === 1) {
+            streak++;
+            if (streak > best) best = streak;
+        } else {
+            streak = 1;
+        }
+    }
+    return best;
+}
+
+function bestConsecutiveWeekends(sortedDays, dayStatuses) {
+    var weekendPairs = [];
+    sortedDays.forEach(function(dateStr) {
+        var d = new Date(dateStr + 'T00:00:00');
+        if (d.getDay() === 6 && dayStatuses[dateStr] && dayStatuses[dateStr].perfect) {
+            var sun = new Date(d);
+            sun.setDate(sun.getDate() + 1);
+            var sunStr = sun.getFullYear() + '-' + String(sun.getMonth() + 1).padStart(2, '0') + '-' + String(sun.getDate()).padStart(2, '0');
+            if (dayStatuses[sunStr] && dayStatuses[sunStr].perfect) {
+                weekendPairs.push(dateStr);
+            }
+        }
+    });
+    if (weekendPairs.length === 0) return 0;
+    var best = 1;
+    var consecutive = 1;
+    for (var i = 1; i < weekendPairs.length; i++) {
+        var prev = new Date(weekendPairs[i - 1]);
+        var curr = new Date(weekendPairs[i]);
+        var diff = Math.round((curr - prev) / (1000 * 60 * 60 * 24));
+        if (diff === 7) {
+            consecutive++;
+            if (consecutive > best) best = consecutive;
+        } else {
+            consecutive = 1;
+        }
+    }
+    return best;
+}
+
 function hasConsecutiveDays(dateArray, count) {
     if (dateArray.length < count) return false;
     var sorted = dateArray.slice().sort();
@@ -8686,6 +8781,61 @@ function hasConsecutiveDays(dateArray, count) {
         }
     }
     return false;
+}
+
+function getNextAchievements(count) {
+    count = count || 3;
+    var locked = ACHIEVEMENT_DEFS.filter(function(def) { return !unlockedAchievements[def.key]; });
+    locked.sort(function(a, b) {
+        var pa = achievementProgress[a.key] || { pct: 0 };
+        var pb = achievementProgress[b.key] || { pct: 0 };
+        return pb.pct - pa.pct;
+    });
+    return locked.slice(0, count);
+}
+
+function renderNextUp() {
+    var container = document.getElementById('achievementsNextUp');
+    if (!container) return;
+
+    var unlockedCount = Object.keys(unlockedAchievements).length;
+
+    // All unlocked — show congrats
+    if (unlockedCount >= ACHIEVEMENT_DEFS.length) {
+        container.innerHTML = '<div class="achievements-congrats"><i class="fa-solid fa-crown"></i> All achievements unlocked. You are Iron.</div>';
+        return;
+    }
+
+    var nextUp = getNextAchievements(3);
+    var html = '';
+    nextUp.forEach(function(def) {
+        var tierColor = TIER_COLORS[def.tier];
+        var prog = achievementProgress[def.key] || { current: 0, target: 1, pct: 0 };
+        var label = prog.current + ' / ' + prog.target;
+
+        // Add unit hint based on achievement category
+        if (def.category === 'streaks' || def.key === 'streak_3') label += ' days';
+        else if (def.category === 'compliance') label += '%';
+        else if (def.category === 'tracking') label += ' days';
+        else if (def.key === 'perfect_week' || def.key === 'macro_master' || def.key === 'iron_discipline') label += ' days';
+        else if (def.key === 'protein_king') label += ' days';
+        else if (def.key === 'cal_commander') label += ' days';
+        else if (def.key === 'weekend_warrior') label += ' weekends';
+        else if (def.category === 'milestones') label += ' phases';
+
+        label += ' (' + prog.pct + '%)';
+
+        html += '<div class="next-achievement" style="border-left-color:' + tierColor + '">';
+        html += '<div class="next-achievement-icon" style="color:' + tierColor + '"><i class="fa-solid ' + def.icon + '"></i></div>';
+        html += '<div class="next-achievement-info">';
+        html += '<div class="next-achievement-name">' + def.name + '</div>';
+        html += '<div class="next-achievement-trigger">' + def.trigger + '</div>';
+        html += '<div class="next-achievement-progress">';
+        html += '<div class="next-achievement-bar"><div class="next-achievement-fill" style="width:' + prog.pct + '%;background:' + tierColor + '"></div></div>';
+        html += '<div class="next-achievement-pct">' + label + '</div>';
+        html += '</div></div></div>';
+    });
+    container.innerHTML = html;
 }
 
 function renderAchievements() {
