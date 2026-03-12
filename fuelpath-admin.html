@@ -704,6 +704,55 @@
             outline: 2px solid var(--yellow);
             outline-offset: 2px;
         }
+        /* ===== BOTTOM TAB BAR ===== */
+        .fp-bottom-tabs {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 72px;
+            background: var(--dark-gray);
+            border-top: 1px solid var(--medium-gray);
+            display: flex;
+            z-index: 1000;
+            padding-bottom: env(safe-area-inset-bottom, 0px);
+        }
+        .fp-bottom-tabs a {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 0.25rem;
+            background: none;
+            border: none;
+            color: var(--light-gray);
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.55rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            cursor: pointer;
+            transition: color 0.2s;
+            padding: 0.5rem 0;
+            text-decoration: none;
+            -webkit-tap-highlight-color: transparent;
+        }
+        .fp-bottom-tabs a i { font-size: 1.4rem; transition: color 0.2s; }
+        .fp-bottom-tabs a.tab-active { color: var(--yellow); }
+        .fp-bottom-tabs a:hover { color: var(--white); }
+        .fp-bottom-tabs a.tab-active:hover { color: var(--yellow); }
+        @media (max-width: 480px) {
+            .fp-bottom-tabs { height: 64px; }
+            .fp-bottom-tabs a { font-size: 0.5rem; }
+            .fp-bottom-tabs a i { font-size: 1.2rem; }
+        }
+        body {
+            padding-bottom: calc(72px + env(safe-area-inset-bottom, 0px));
+        }
+        @media (max-width: 480px) {
+            body { padding-bottom: calc(64px + env(safe-area-inset-bottom, 0px)); }
+        }
     </style>
 </head>
 <body>
@@ -852,6 +901,30 @@
     <!-- Footer -->
 
     </main>
+
+    <!-- Bottom Tab Bar -->
+    <nav class="fp-bottom-tabs">
+        <a href="fuelpath-dashboard">
+            <i class="fa-solid fa-house"></i>
+            <span>Dashboard</span>
+        </a>
+        <a href="fuelpath-dashboard#foodlog">
+            <i class="fa-solid fa-utensils"></i>
+            <span>Food Log</span>
+        </a>
+        <a href="fuelpath-dashboard#checkin">
+            <i class="fa-solid fa-clipboard-check"></i>
+            <span>Check-In</span>
+        </a>
+        <a href="fuelpath-dashboard#fuelpath">
+            <i class="fa-solid fa-map"></i>
+            <span>Fuel Path</span>
+        </a>
+        <a href="fuelpath-dashboard#more" class="tab-active">
+            <i class="fa-solid fa-ellipsis"></i>
+            <span>More</span>
+        </a>
+    </nav>
 
     <footer style="border-top: 1px solid var(--medium-gray); padding: 1.5rem; text-align: center; color: #666; font-size: 0.75rem;">
         &copy; 2026 Black Iron Athletics. All rights reserved.

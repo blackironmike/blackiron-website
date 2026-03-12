@@ -4221,7 +4221,7 @@
             bottom: 0;
             left: 0;
             width: 100%;
-            height: 64px;
+            height: 72px;
             background: var(--dark-gray);
             border-top: 1px solid var(--medium-gray);
             display: none;
@@ -4242,7 +4242,7 @@
             border: none;
             color: var(--light-gray);
             font-family: 'Montserrat', sans-serif;
-            font-size: 0.65rem;
+            font-size: 0.55rem;
             font-weight: 700;
             text-transform: uppercase;
             letter-spacing: 0.5px;
@@ -4252,7 +4252,7 @@
             -webkit-tap-highlight-color: transparent;
         }
         .fp-bottom-tabs button i {
-            font-size: 1.2rem;
+            font-size: 1.4rem;
             transition: color 0.2s;
         }
         .fp-bottom-tabs button.tab-active {
@@ -4271,22 +4271,22 @@
 
         /* Body padding for tab bar when visible */
         body.has-bottom-tabs {
-            padding-bottom: calc(64px + env(safe-area-inset-bottom, 0px));
+            padding-bottom: calc(72px + env(safe-area-inset-bottom, 0px));
         }
 
         /* ===== BOTTOM TABS RESPONSIVE ===== */
         @media (max-width: 480px) {
             .fp-bottom-tabs {
-                height: 56px;
+                height: 64px;
             }
             .fp-bottom-tabs button {
-                font-size: 0.6rem;
+                font-size: 0.5rem;
             }
             .fp-bottom-tabs button i {
-                font-size: 1rem;
+                font-size: 1.2rem;
             }
             body.has-bottom-tabs {
-                padding-bottom: calc(56px + env(safe-area-inset-bottom, 0px));
+                padding-bottom: calc(64px + env(safe-area-inset-bottom, 0px));
             }
         }
     </style>
@@ -4613,12 +4613,34 @@
                 </div>
             </div>
 
+            <!-- Coach Notes Thread (athlete view) -->
+            <div class="section" style="padding-top: 0; padding-bottom: 2rem;">
+                <div class="section-container">
+                    <div class="dash-card" id="athleteCoachNotesCard">
+                        <div class="dash-card-header">
+                            <h3 class="dash-card-title"><i class="fa-solid fa-comments" style="color: var(--yellow); margin-right: 0.5rem;"></i> Coach Notes</h3>
+                        </div>
+                        <div id="athleteCoachThread" class="coach-thread">
+                            <div class="coach-thread-empty" id="coachThreadEmpty">
+                                <i class="fa-solid fa-comments" style="font-size: 2rem; color: var(--medium-gray); margin-bottom: 0.5rem;"></i>
+                                <p style="color: var(--light-gray); font-size: 0.85rem;">No messages from your coach yet. Check back after your next check-in.</p>
+                            </div>
+                            <div id="coachThreadMessages"></div>
+                        </div>
+                        <div class="coach-thread-reply" id="coachThreadReply" style="display: none;">
+                            <textarea id="athleteReplyText" rows="2" placeholder="Reply to your coach..." style="width:100%; background: var(--black); color: var(--white); border: 2px solid var(--medium-gray); padding: 0.75rem; font-family: 'Montserrat', sans-serif; font-size: 0.85rem; resize: vertical;"></textarea>
+                            <button class="btn-primary btn-small" onclick="sendAthleteReply()" style="margin-top: 0.5rem;"><i class="fa-solid fa-paper-plane"></i> Send</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             <!-- Compliance Stats -->
             <div class="section" style="padding-top: 0; padding-bottom: 2rem;">
                 <div class="section-container">
-                    <div class="compliance-card" id="complianceCard" style="display: none;">
-                        <div class="compliance-card-header">
-                            <h3 class="compliance-card-title"><i class="fa-solid fa-bullseye"></i> Compliance</h3>
+                    <div class="dash-card compliance-card" id="complianceCard" style="display: none;">
+                        <div class="dash-card-header">
+                            <h3 class="dash-card-title"><i class="fa-solid fa-bullseye"></i> Compliance</h3>
                         </div>
                         <div class="compliance-stats-row" id="complianceStatsRow">
                             <div class="compliance-stat">
@@ -4672,9 +4694,9 @@
             </div>
 
             <!-- My Progress (Weight + Body Comp) -->
-            <div class="section section-alt" style="padding-top: 2rem; padding-bottom: 2rem;">
+            <div class="section" style="padding-top: 2rem; padding-bottom: 2rem;">
                 <div class="section-container">
-                    <div class="dash-card" style="background: var(--black);">
+                    <div class="dash-card" style="background: var(--dark-gray);">
                         <div class="dash-card-header">
                             <h3 class="dash-card-title"><i class="fa-solid fa-chart-line"></i> My Progress</h3>
                         </div>
@@ -4731,34 +4753,13 @@
                             <span class="achievements-count" id="achievementsCount">0 / 32</span>
                         </div>
                         <div class="achievements-grid collapsed" id="achievementsGrid"></div>
-                        <button class="achievements-expand" id="achievementsExpand" onclick="toggleAchievementsGrid()">
-                            <i class="fa-solid fa-chevron-down"></i> <span>Show All</span>
+                        <button class="achievements-expand" id="achievementsExpand" onclick="openAchievementsModal()">
+                            <i class="fa-solid fa-trophy"></i> <span>Show All</span>
                         </button>
                     </div>
                 </div>
             </div>
 
-            <!-- Coach Notes Thread (athlete view) -->
-            <div class="section" style="padding-top: 0; padding-bottom: 2rem;">
-                <div class="section-container">
-                    <div class="dash-card" id="athleteCoachNotesCard">
-                        <div class="dash-card-header">
-                            <h3 class="dash-card-title"><i class="fa-solid fa-comments" style="color: var(--yellow); margin-right: 0.5rem;"></i> Coach Notes</h3>
-                        </div>
-                        <div id="athleteCoachThread" class="coach-thread">
-                            <div class="coach-thread-empty" id="coachThreadEmpty">
-                                <i class="fa-solid fa-comments" style="font-size: 2rem; color: var(--medium-gray); margin-bottom: 0.5rem;"></i>
-                                <p style="color: var(--light-gray); font-size: 0.85rem;">No messages from your coach yet. Check back after your next check-in.</p>
-                            </div>
-                            <div id="coachThreadMessages"></div>
-                        </div>
-                        <div class="coach-thread-reply" id="coachThreadReply" style="display: none;">
-                            <textarea id="athleteReplyText" rows="2" placeholder="Reply to your coach..." style="width:100%; background: var(--black); color: var(--white); border: 2px solid var(--medium-gray); padding: 0.75rem; font-family: 'Montserrat', sans-serif; font-size: 0.85rem; resize: vertical;"></textarea>
-                            <button class="btn-primary btn-small" onclick="sendAthleteReply()" style="margin-top: 0.5rem;"><i class="fa-solid fa-paper-plane"></i> Send</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
 
         </div>
 
@@ -5342,6 +5343,15 @@
             <span>More</span>
         </button>
     </nav>
+
+    <!-- Achievements Modal -->
+    <div class="modal-overlay" id="achievementsModal">
+        <div class="modal-container" style="max-width:700px;">
+            <button class="modal-close" onclick="closeAchievementsModal()">&times;</button>
+            <h3><i class="fa-solid fa-trophy" style="color: var(--yellow); margin-right: 0.75rem;"></i>Achievements <span id="achievementsModalCount" style="font-size: 0.85rem; font-weight: 700; color: var(--light-gray); margin-left: 0.5rem;"></span></h3>
+            <div class="achievements-grid" id="achievementsModalGrid" style="max-height: none;"></div>
+        </div>
+    </div>
 
     <!-- ============================================ -->
     <!-- COACH MODALS                                 -->
@@ -9034,6 +9044,14 @@ if (tolModal) {
     });
 }
 
+// Close achievements modal on click outside
+var achModal = document.getElementById('achievementsModal');
+if (achModal) {
+    achModal.addEventListener('click', function(e) {
+        if (e.target === this) closeAchievementsModal();
+    });
+}
+
 // ===== TRACKER SUMMARY (Dashboard) =====
 async function loadTrackerSummary(userId) {
     var card = document.getElementById('trackerSummaryCard');
@@ -10071,41 +10089,37 @@ function renderAchievements() {
         html += '</div>';
     });
     grid.innerHTML = html;
-    document.getElementById('achievementsCount').textContent = unlockedCount + ' / ' + ACHIEVEMENT_DEFS.length;
+    var countText = unlockedCount + ' / ' + ACHIEVEMENT_DEFS.length;
+    document.getElementById('achievementsCount').textContent = countText;
 
-    // Clamp to one row height
+    // Also populate modal grid if it exists
+    var modalGrid = document.getElementById('achievementsModalGrid');
+    if (modalGrid) modalGrid.innerHTML = html;
+    var modalCount = document.getElementById('achievementsModalCount');
+    if (modalCount) modalCount.textContent = countText;
+
+    // Clamp inline preview to one row height
     clampAchievementsGrid();
 }
 
 function clampAchievementsGrid() {
     var grid = document.getElementById('achievementsGrid');
     if (!grid || !grid.classList.contains('collapsed')) return;
-    // Measure the first badge to determine one row height (badge height + gap)
     var firstBadge = grid.querySelector('.achievement-badge');
     if (firstBadge) {
-        var rowHeight = firstBadge.offsetHeight + 16; // 16 = 1rem gap
+        var rowHeight = firstBadge.offsetHeight + 16;
         grid.style.maxHeight = rowHeight + 'px';
     }
 }
 
-function toggleAchievementsGrid() {
-    var grid = document.getElementById('achievementsGrid');
-    var btn = document.getElementById('achievementsExpand');
-    if (!grid || !btn) return;
+function openAchievementsModal() {
+    var modal = document.getElementById('achievementsModal');
+    if (modal) modal.classList.add('active');
+}
 
-    if (grid.classList.contains('collapsed')) {
-        grid.style.maxHeight = grid.scrollHeight + 'px';
-        grid.classList.remove('collapsed');
-        btn.classList.add('open');
-        btn.querySelector('span').textContent = 'Show Less';
-    } else {
-        var firstBadge = grid.querySelector('.achievement-badge');
-        var rowHeight = firstBadge ? firstBadge.offsetHeight + 16 : 120;
-        grid.style.maxHeight = rowHeight + 'px';
-        grid.classList.add('collapsed');
-        btn.classList.remove('open');
-        btn.querySelector('span').textContent = 'Show All';
-    }
+function closeAchievementsModal() {
+    var modal = document.getElementById('achievementsModal');
+    if (modal) modal.classList.remove('active');
 }
 
 window.addEventListener('resize', function() { clampAchievementsGrid(); });
@@ -10242,7 +10256,6 @@ checkSession();
 </script>
 
 <script src="https://link.msgsndr.com/js/form_embed.js" type="text/javascript" defer></script>
-<script src="https://widgets.leadconnectorhq.com/loader.js" data-resources-url="https://widgets.leadconnectorhq.com/chat-widget/loader.js" data-widget-id="6995d6d76e6009387f78d31e" defer></script>
 <script>
 // ===== FUELPATH SIDE MENU =====
 (function() {
