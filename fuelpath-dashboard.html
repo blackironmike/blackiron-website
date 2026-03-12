@@ -125,61 +125,6 @@
         }
         .fp-topbar-back:hover { color: var(--yellow); }
         .fp-topbar-back i { font-size: 0.7rem; }
-        .fp-menu-toggle {
-            background: none; border: none; color: var(--white); font-size: 1.4rem;
-            cursor: pointer; padding: 0.5rem; transition: color 0.3s;
-            display: flex; align-items: center; justify-content: center;
-        }
-        .fp-menu-toggle:hover { color: var(--yellow); }
-        /* ===== SIDE MENU ===== */
-        .fp-menu-backdrop {
-            position: fixed; inset: 0; background: rgba(0,0,0,0.6); z-index: 1100;
-            opacity: 0; visibility: hidden; transition: opacity 0.3s, visibility 0.3s;
-        }
-        .fp-menu-backdrop.open { opacity: 1; visibility: visible; }
-        .fp-side-menu {
-            position: fixed; top: 0; right: 0; width: 300px; max-width: 85vw; height: 100%;
-            background: var(--dark-gray); z-index: 1101; transform: translateX(100%);
-            transition: transform 0.3s ease; display: flex; flex-direction: column; overflow-y: auto;
-        }
-        .fp-side-menu.open { transform: translateX(0); }
-        .fp-side-menu-header {
-            display: flex; align-items: center; justify-content: space-between;
-            padding: 1rem 1.5rem; border-bottom: 1px solid var(--medium-gray);
-        }
-        .fp-side-menu-header img {
-            height: 22px;
-            width: auto;
-            display: block;
-        }
-        .fp-side-menu-close {
-            background: none; border: none; color: var(--light-gray); font-size: 1.3rem;
-            cursor: pointer; padding: 0.25rem; transition: color 0.3s;
-        }
-        .fp-side-menu-close:hover { color: var(--white); }
-        .fp-side-menu-links { flex: 1; padding: 0.75rem 0; }
-        .fp-side-menu-links a {
-            display: flex; align-items: center; gap: 0.75rem; padding: 0.85rem 1.5rem;
-            color: var(--light-gray); text-decoration: none; font-size: 0.9rem; font-weight: 700;
-            text-transform: uppercase; letter-spacing: 0.5px; transition: all 0.2s;
-        }
-        .fp-side-menu-links a:hover { color: var(--white); background: rgba(255,255,255,0.05); }
-        .fp-side-menu-links a.active { color: var(--yellow); }
-        .fp-side-menu-links a i { width: 20px; text-align: center; font-size: 0.85rem; }
-        .fp-side-menu-links .fp-menu-dot {
-            width: 10px; height: 10px; border-radius: 50%; display: inline-block; margin-left: 5px;
-        }
-        .fp-side-menu-links .fp-menu-divider { height: 1px; background: var(--medium-gray); margin: 0.5rem 1.5rem; }
-        .fp-side-menu-links .fp-menu-label {
-            padding: 0.75rem 1.5rem 0.25rem; font-size: 0.7rem; font-weight: 700;
-            text-transform: uppercase; letter-spacing: 1.5px; color: #666;
-        }
-        .fp-side-menu-footer { border-top: 1px solid var(--medium-gray); padding: 1rem 1.5rem; }
-        .fp-side-menu-footer a {
-            color: var(--light-gray); text-decoration: none; font-size: 0.8rem; font-weight: 600;
-            display: flex; align-items: center; gap: 0.5rem; transition: color 0.3s;
-        }
-        .fp-side-menu-footer a:hover { color: var(--yellow); }
 
         /* ===== HERO ===== */
         .hero {
@@ -4295,38 +4240,12 @@
     <a href="#main-content" class="skip-link">Skip to main content</a>
     <!-- FuelPath Top Bar -->
     <header class="fp-topbar">
-        <div class="fp-topbar-left"></div>
-        <div class="fp-topbar-brand"><img src="images/fuel-path-logo.png" alt="FuelPath"></div>
-        <button class="fp-menu-toggle" aria-label="Open FuelPath menu" aria-expanded="false"><i class="fa-solid fa-bars"></i></button>
+        <div class="fp-topbar-left">
+            <a href="/" class="fp-topbar-back"><i class="fa-solid fa-chevron-left"></i> Home</a>
+        </div>
+        <a href="fuelpath-dashboard" class="fp-topbar-brand"><img src="images/Fuel-Path-Anvil-Banner.png" alt="FuelPath"></a>
+        <div style="width:40px"></div>
     </header>
-    <div class="fp-menu-backdrop" id="fpMenuBackdrop"></div>
-    <aside class="fp-side-menu" id="fpSideMenu" data-page="fuelpath-dashboard">
-        <div class="fp-side-menu-header">
-            <img src="images/fuel-path-logo.png" alt="FuelPath">
-            <button class="fp-side-menu-close" aria-label="Close menu"><i class="fa-solid fa-xmark"></i></button>
-        </div>
-        <div class="fp-side-menu-links">
-            <a href="fuelpath-dashboard" data-page="fuelpath-dashboard"><i class="fa-solid fa-gauge"></i> My Dashboard</a>
-            <a href="#" onclick="showTab('tabFoodLog'); closeFpMenu(); return false;"><i class="fa-solid fa-utensils"></i> Food Tracker</a>
-            <div class="fp-menu-divider"></div>
-            <div class="fp-menu-label">The 4 Phases</div>
-            <a href="fuelpath-phase-1-maintain" data-page="fuelpath-phase-1-maintain"><span class="fp-menu-dot" style="background:var(--phase-baseline)"></span> Phase 1: Baseline</a>
-            <a href="fuelpath-phase-2-cut" data-page="fuelpath-phase-2-cut"><span class="fp-menu-dot" style="background:var(--phase-cut)"></span> Phase 2: Cut</a>
-            <a href="fuelpath-phase-3-maintain" data-page="fuelpath-phase-3-maintain"><span class="fp-menu-dot" style="background:var(--phase-maintain)"></span> Phase 3: Maintain</a>
-            <a href="fuelpath-phase-4-build" data-page="fuelpath-phase-4-build"><span class="fp-menu-dot" style="background:var(--phase-build)"></span> Phase 4: Build</a>
-            <div class="fp-menu-divider"></div>
-            <a href="fuelpath-supplements" data-page="fuelpath-supplements"><i class="fa-solid fa-capsules"></i> Supplements</a>
-            <a href="fuelpath-decade" data-page="fuelpath-decade"><i class="fa-solid fa-road"></i> Decade Roadmap</a>
-            <div class="fp-menu-divider"></div>
-            <a href="#" id="menuCoachToggleBtn" style="display:none;" onclick="toggleCoachView(); closeFpMenu();"><i class="fa-solid fa-clipboard-user"></i> <span id="coachToggleLabel">Coach View</span></a>
-            <a href="#" id="adminLinkBtn" style="display:none;" onclick="window.location.href='fuelpath-admin'"><i class="fa-solid fa-shield-halved"></i> Admin</a>
-            <a href="#" onclick="openAccountModal(); closeFpMenu();"><i class="fa-solid fa-gear"></i> Account</a>
-            <a href="#" onclick="handleLogout()"><i class="fa-solid fa-right-from-bracket"></i> Sign Out</a>
-        </div>
-        <div class="fp-side-menu-footer">
-            <a href="/"><i class="fa-solid fa-arrow-left"></i> Back to Black Iron Athletics</a>
-        </div>
-    </aside>
 
     <main id="main-content">
 
@@ -6193,6 +6112,24 @@ var chartsInitialized = {};
 var TAB_IDS = ['tabDashboard', 'tabFoodLog', 'tabCheckIn', 'tabFuelPath', 'tabMore'];
 
 function showTab(tabId) {
+    // If in coach mode, exit coach view minimally (avoid recursion with showAthleteView)
+    if (currentView === 'coach') {
+        currentView = 'athlete';
+        viewingAthleteId = null;
+        document.getElementById('coachViewContainer').classList.remove('active');
+        document.getElementById('coachDrilldown').classList.remove('active');
+        document.getElementById('bottomTabBar').classList.add('visible');
+        document.body.classList.add('has-bottom-tabs');
+        // Reload own data
+        if (currentUser) {
+            var phase = getPhaseInfo();
+            loadMacros(currentUser.id, phase);
+            loadWeightData(currentUser.id, phase);
+            loadBodyCompData(currentUser.id, phase);
+            loadChecklistProgress(currentUser.id, phase);
+            loadCheckins(currentUser.id);
+        }
+    }
     // Hide all tab panels
     TAB_IDS.forEach(function(id) {
         var panel = document.getElementById(id);
@@ -6713,9 +6650,6 @@ function showDashboard(user) {
     // Show bottom tab bar and add body padding
     document.getElementById('bottomTabBar').classList.add('visible');
     document.body.classList.add('has-bottom-tabs');
-    // Hide hamburger menu when logged in (bottom tabs replace it)
-    var menuToggle = document.querySelector('.fp-menu-toggle');
-    if (menuToggle) menuToggle.style.display = 'none';
     initDashboard(user);
     // Auto-open account modal if linked from another page
     if (new URLSearchParams(window.location.search).get('account')) {
@@ -6738,9 +6672,6 @@ function hideDashboard() {
     // Hide bottom tab bar and remove body padding
     document.getElementById('bottomTabBar').classList.remove('visible');
     document.body.classList.remove('has-bottom-tabs');
-    // Show hamburger menu when logged out
-    var menuToggle = document.querySelector('.fp-menu-toggle');
-    if (menuToggle) menuToggle.style.display = '';
     // Reset to dashboard tab
     showTab('tabDashboard');
     chartsInitialized = {};
@@ -6770,16 +6701,6 @@ async function initDashboard(user) {
                 }
             }
         } catch (e) { /* silent */ }
-
-        // Show coach toggle if coach or owner
-        if (userRole === 'coach' || userRole === 'owner') {
-            document.getElementById('menuCoachToggleBtn').style.display = '';
-        }
-
-        // Show admin link if owner
-        if (userRole === 'owner') {
-            document.getElementById('adminLinkBtn').style.display = '';
-        }
 
         // Populate More tab with account info and role cards
         populateMoreTab();
@@ -8224,17 +8145,14 @@ function toggleCoachView() {
 function showCoachView() {
     currentView = 'coach';
     viewingAthleteId = null;
-    document.getElementById('coachToggleLabel').textContent = 'My Dashboard';
-    document.getElementById('menuCoachToggleBtn').classList.add('active');
-
     // Hide all tab panels
     TAB_IDS.forEach(function(id) {
         var panel = document.getElementById(id);
         if (panel) panel.classList.remove('tab-active');
     });
-    // Hide bottom tab bar in coach mode
-    document.getElementById('bottomTabBar').classList.remove('visible');
-    document.body.classList.remove('has-bottom-tabs');
+    // Keep bottom tab bar visible, highlight "More" as active tab
+    document.querySelectorAll('#bottomTabBar button').forEach(function(btn) { btn.classList.remove('tab-active'); });
+    document.querySelector('#bottomTabBar button:last-child').classList.add('tab-active');
 
     // Show coach view
     document.getElementById('coachViewContainer').classList.add('active');
@@ -8245,9 +8163,6 @@ function showCoachView() {
 function showAthleteView() {
     currentView = 'athlete';
     viewingAthleteId = null;
-    document.getElementById('coachToggleLabel').textContent = 'Coach View';
-    document.getElementById('menuCoachToggleBtn').classList.remove('active');
-
     // Hide coach view
     document.getElementById('coachViewContainer').classList.remove('active');
     document.getElementById('coachDrilldown').classList.remove('active');
@@ -10256,36 +10171,6 @@ checkSession();
 </script>
 
 <script src="https://link.msgsndr.com/js/form_embed.js" type="text/javascript" defer></script>
-<script>
-// ===== FUELPATH SIDE MENU =====
-(function() {
-    var menu = document.getElementById('fpSideMenu');
-    var backdrop = document.getElementById('fpMenuBackdrop');
-    var toggle = document.querySelector('.fp-menu-toggle');
-    var closeBtn = menu.querySelector('.fp-side-menu-close');
-    function openMenu() {
-        menu.classList.add('open');
-        backdrop.classList.add('open');
-        toggle.setAttribute('aria-expanded', 'true');
-        document.body.style.overflow = 'hidden';
-    }
-    function closeMenu() {
-        menu.classList.remove('open');
-        backdrop.classList.remove('open');
-        toggle.setAttribute('aria-expanded', 'false');
-        document.body.style.overflow = '';
-    }
-    window.closeFpMenu = closeMenu;
-    toggle.addEventListener('click', openMenu);
-    closeBtn.addEventListener('click', closeMenu);
-    backdrop.addEventListener('click', closeMenu);
-    document.addEventListener('keydown', function(e) { if (e.key === 'Escape') closeMenu(); });
-    var path = window.location.pathname.replace(/\/$/, '').split('/').pop().replace('.html', '') || 'index';
-    menu.querySelectorAll('.fp-side-menu-links a[data-page]').forEach(function(a) {
-        if (a.getAttribute('data-page') === path) a.classList.add('active');
-    });
-})();
-</script>
 <script>
 // ===== ACCESSIBILITY: FOCUS TRAP =====
 (function() {
