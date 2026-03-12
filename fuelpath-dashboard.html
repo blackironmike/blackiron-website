@@ -6405,7 +6405,7 @@ async function checkCronometerConnection() {
             .from('cronometer_connections')
             .select('access_token, cronometer_user_id')
             .eq('user_id', currentUser.id)
-            .single();
+            .maybeSingle();
         if (error || !data) return;
 
         cronometerAccessToken = data.access_token;
