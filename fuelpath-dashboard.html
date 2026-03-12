@@ -2808,7 +2808,7 @@
         }
 
         .coach-hero {
-            padding: 2rem 4rem;
+            padding: calc(56px + 2rem) 4rem 2rem;
             background: var(--dark-gray);
             border-bottom: 1px solid var(--medium-gray);
         }
@@ -8157,6 +8157,7 @@ function showCoachView() {
     // Show coach view
     document.getElementById('coachViewContainer').classList.add('active');
     document.getElementById('coachDrilldown').classList.remove('active');
+    window.scrollTo(0, 0);
     loadCoachView();
 }
 
