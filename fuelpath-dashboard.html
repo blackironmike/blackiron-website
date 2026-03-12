@@ -4531,13 +4531,13 @@
         <div id="tabFoodLog" class="tab-panel">
 
             <!-- Cronometer Connect Banner -->
-            <div class="foodlog-connect-banner">
-                <div class="foodlog-connect-icon"><i class="fa-solid fa-link"></i></div>
+            <div class="foodlog-connect-banner" id="cronometerBanner">
+                <div class="foodlog-connect-icon" id="cronometerBannerIcon"><i class="fa-solid fa-link"></i></div>
                 <div class="foodlog-connect-text">
-                    <strong>Connect Cronometer</strong>
-                    <p>Automatically sync your meals and macros from Cronometer.</p>
+                    <strong id="cronometerBannerTitle">Connect Cronometer</strong>
+                    <p id="cronometerBannerDesc">Automatically sync your meals and macros from Cronometer.</p>
                 </div>
-                <button class="btn-primary btn-small" disabled style="opacity: 0.5; cursor: not-allowed;">Coming Soon</button>
+                <button class="btn-primary btn-small" id="cronometerBannerBtn" onclick="connectCronometer()">Connect</button>
             </div>
 
             <!-- Date Navigation -->
@@ -4550,117 +4550,33 @@
             <!-- Daily Macro Summary -->
             <div class="foodlog-macro-summary">
                 <div class="foodlog-cal-hero">
-                    <div class="foodlog-cal-number" id="foodlogCalConsumed">1,847</div>
+                    <div class="foodlog-cal-number" id="foodlogCalConsumed">--</div>
                     <div class="foodlog-cal-target">/ <span id="foodlogCalTarget">--</span> cal</div>
                 </div>
                 <div class="foodlog-macro-bars">
                     <div class="foodlog-macro-row">
                         <span class="foodlog-macro-name">Protein</span>
-                        <div class="foodlog-macro-track"><div class="foodlog-macro-fill" id="foodlogProteinBar" style="width: 75%; background: #e74c3c;"></div></div>
-                        <span class="foodlog-macro-label" id="foodlogProteinLabel">142 / --g</span>
+                        <div class="foodlog-macro-track"><div class="foodlog-macro-fill" id="foodlogProteinBar" style="width: 0%; background: #e74c3c;"></div></div>
+                        <span class="foodlog-macro-label" id="foodlogProteinLabel">-- / --g</span>
                     </div>
                     <div class="foodlog-macro-row">
                         <span class="foodlog-macro-name">Carbs</span>
-                        <div class="foodlog-macro-track"><div class="foodlog-macro-fill" id="foodlogCarbsBar" style="width: 68%; background: #2196F3;"></div></div>
-                        <span class="foodlog-macro-label" id="foodlogCarbsLabel">196 / --g</span>
+                        <div class="foodlog-macro-track"><div class="foodlog-macro-fill" id="foodlogCarbsBar" style="width: 0%; background: #2196F3;"></div></div>
+                        <span class="foodlog-macro-label" id="foodlogCarbsLabel">-- / --g</span>
                     </div>
                     <div class="foodlog-macro-row">
                         <span class="foodlog-macro-name">Fat</span>
-                        <div class="foodlog-macro-track"><div class="foodlog-macro-fill" id="foodlogFatBar" style="width: 82%; background: #FFD202;"></div></div>
-                        <span class="foodlog-macro-label" id="foodlogFatLabel">57 / --g</span>
+                        <div class="foodlog-macro-track"><div class="foodlog-macro-fill" id="foodlogFatBar" style="width: 0%; background: #FFD202;"></div></div>
+                        <span class="foodlog-macro-label" id="foodlogFatLabel">-- / --g</span>
                     </div>
                 </div>
             </div>
 
-            <!-- Meal Groups -->
-            <div class="foodlog-meals">
-                <!-- Breakfast -->
-                <div class="foodlog-meal-group">
-                    <div class="foodlog-meal-header">
-                        <h4><i class="fa-solid fa-sun" style="color: var(--yellow); margin-right: 0.5rem;"></i> Breakfast</h4>
-                        <span class="foodlog-meal-cals">487 cal</span>
-                    </div>
-                    <div class="foodlog-meal-items">
-                        <div class="foodlog-item">
-                            <div class="foodlog-item-name">Scrambled Eggs (3 large)</div>
-                            <div class="foodlog-item-macros">218 cal | 18g P | 2g C | 15g F</div>
-                        </div>
-                        <div class="foodlog-item">
-                            <div class="foodlog-item-name">Whole Wheat Toast (2 slices)</div>
-                            <div class="foodlog-item-macros">138 cal | 7g P | 24g C | 2g F</div>
-                        </div>
-                        <div class="foodlog-item">
-                            <div class="foodlog-item-name">Greek Yogurt (170g)</div>
-                            <div class="foodlog-item-macros">131 cal | 17g P | 6g C | 4g F</div>
-                        </div>
-                    </div>
-                </div>
+            <!-- Meal Groups (rendered dynamically) -->
+            <div id="foodlogMealsContainer" class="foodlog-meals"></div>
 
-                <!-- Lunch -->
-                <div class="foodlog-meal-group">
-                    <div class="foodlog-meal-header">
-                        <h4><i class="fa-solid fa-cloud-sun" style="color: #2196F3; margin-right: 0.5rem;"></i> Lunch</h4>
-                        <span class="foodlog-meal-cals">612 cal</span>
-                    </div>
-                    <div class="foodlog-meal-items">
-                        <div class="foodlog-item">
-                            <div class="foodlog-item-name">Grilled Chicken Breast (6 oz)</div>
-                            <div class="foodlog-item-macros">281 cal | 53g P | 0g C | 6g F</div>
-                        </div>
-                        <div class="foodlog-item">
-                            <div class="foodlog-item-name">Brown Rice (1 cup cooked)</div>
-                            <div class="foodlog-item-macros">216 cal | 5g P | 45g C | 2g F</div>
-                        </div>
-                        <div class="foodlog-item">
-                            <div class="foodlog-item-name">Mixed Vegetables (1 cup)</div>
-                            <div class="foodlog-item-macros">115 cal | 5g P | 21g C | 1g F</div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Dinner -->
-                <div class="foodlog-meal-group">
-                    <div class="foodlog-meal-header">
-                        <h4><i class="fa-solid fa-moon" style="color: #9b59b6; margin-right: 0.5rem;"></i> Dinner</h4>
-                        <span class="foodlog-meal-cals">548 cal</span>
-                    </div>
-                    <div class="foodlog-meal-items">
-                        <div class="foodlog-item">
-                            <div class="foodlog-item-name">Salmon Fillet (5 oz)</div>
-                            <div class="foodlog-item-macros">292 cal | 32g P | 0g C | 18g F</div>
-                        </div>
-                        <div class="foodlog-item">
-                            <div class="foodlog-item-name">Sweet Potato (1 medium)</div>
-                            <div class="foodlog-item-macros">103 cal | 2g P | 24g C | 0g F</div>
-                        </div>
-                        <div class="foodlog-item">
-                            <div class="foodlog-item-name">Broccoli w/ Olive Oil (1.5 cups)</div>
-                            <div class="foodlog-item-macros">153 cal | 5g P | 10g C | 11g F</div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Snack -->
-                <div class="foodlog-meal-group">
-                    <div class="foodlog-meal-header">
-                        <h4><i class="fa-solid fa-apple-whole" style="color: #27AE60; margin-right: 0.5rem;"></i> Snack</h4>
-                        <span class="foodlog-meal-cals">200 cal</span>
-                    </div>
-                    <div class="foodlog-meal-items">
-                        <div class="foodlog-item">
-                            <div class="foodlog-item-name">Protein Shake (1 scoop + water)</div>
-                            <div class="foodlog-item-macros">120 cal | 24g P | 3g C | 1g F</div>
-                        </div>
-                        <div class="foodlog-item">
-                            <div class="foodlog-item-name">Banana (1 medium)</div>
-                            <div class="foodlog-item-macros">105 cal | 1g P | 27g C | 0g F</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div style="text-align: center; padding: 1.5rem; color: #666; font-size: 0.8rem;">
-                <i class="fa-solid fa-info-circle"></i> This is sample data. Connect Cronometer to see your real meals.
+            <div id="foodlogSampleNotice" style="text-align: center; padding: 1.5rem; color: #666; font-size: 0.8rem;">
+                <i class="fa-solid fa-info-circle"></i> Connect Cronometer above to sync your meals and macros.
             </div>
         </div>
 
@@ -6286,6 +6202,10 @@ function showTab(tabId) {
     });
     // Scroll to top
     window.scrollTo(0, 0);
+    // Load food log from DB when tab is shown
+    if (tabId === 'tabFoodLog' && cronometerConnected) {
+        renderFoodLogFromDB(getFoodLogDateStr());
+    }
     // Lazy-init charts when their tab is first shown (Canvas elements in hidden tabs measure 0x0)
     if (tabId === 'tabCheckIn' && !chartsInitialized.checkIn) {
         setTimeout(function() {
@@ -6355,8 +6275,18 @@ function renderFuelPathTab() {
     if (link) link.href = phase.link;
 }
 
-// ===== FOOD LOG TAB (MOCK) =====
+// ===== FOOD LOG TAB =====
 var foodlogDateOffset = 0;
+var cronometerConnected = false;
+var cronometerAccessToken = null;
+var cronometerUserId = null;
+
+function getFoodLogDateStr() {
+    var d = new Date();
+    d.setDate(d.getDate() + foodlogDateOffset);
+    return d.toISOString().split('T')[0];
+}
+
 function changeFoodLogDate(delta) {
     foodlogDateOffset += delta;
     var d = new Date();
@@ -6371,6 +6301,9 @@ function changeFoodLogDate(delta) {
     } else {
         label.textContent = d.toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric' });
     }
+    if (cronometerConnected) {
+        renderFoodLogFromDB(getFoodLogDateStr());
+    }
 }
 
 function renderFoodLogTargets() {
@@ -6378,19 +6311,380 @@ function renderFoodLogTargets() {
     var t = phaseMacroTargets;
     var calTarget = document.getElementById('foodlogCalTarget');
     if (calTarget) calTarget.textContent = t.calories.toLocaleString();
-    var proteinLabel = document.getElementById('foodlogProteinLabel');
-    if (proteinLabel) proteinLabel.textContent = '142 / ' + t.protein + 'g';
-    var carbsLabel = document.getElementById('foodlogCarbsLabel');
-    if (carbsLabel) carbsLabel.textContent = '196 / ' + t.carbs + 'g';
-    var fatLabel = document.getElementById('foodlogFatLabel');
-    if (fatLabel) fatLabel.textContent = '57 / ' + t.fat + 'g';
-    // Update bar widths based on mock consumed vs real targets
+    // If not connected, just show targets with dashes
+    if (!cronometerConnected) {
+        var proteinLabel = document.getElementById('foodlogProteinLabel');
+        if (proteinLabel) proteinLabel.textContent = '-- / ' + t.protein + 'g';
+        var carbsLabel = document.getElementById('foodlogCarbsLabel');
+        if (carbsLabel) carbsLabel.textContent = '-- / ' + t.carbs + 'g';
+        var fatLabel = document.getElementById('foodlogFatLabel');
+        if (fatLabel) fatLabel.textContent = '-- / ' + t.fat + 'g';
+        var pBar = document.getElementById('foodlogProteinBar');
+        if (pBar) pBar.style.width = '0%';
+        var cBar = document.getElementById('foodlogCarbsBar');
+        if (cBar) cBar.style.width = '0%';
+        var fBar = document.getElementById('foodlogFatBar');
+        if (fBar) fBar.style.width = '0%';
+    }
+}
+
+function escapeHtml(str) {
+    var div = document.createElement('div');
+    div.appendChild(document.createTextNode(str));
+    return div.innerHTML;
+}
+
+// ===== CRONOMETER OAUTH =====
+var CRONOMETER_CLIENT_ID = 'bia-fuelpath';
+
+function connectCronometer() {
+    var state = Math.random().toString(36).substring(2) + Date.now().toString(36);
+    sessionStorage.setItem('cronometer_oauth_state', state);
+    var redirectUri = encodeURIComponent(window.location.origin + '/fuelpath-dashboard.html');
+    var url = 'https://cronometer.com/oauth/authorize'
+        + '?response_type=code'
+        + '&client_id=' + encodeURIComponent(CRONOMETER_CLIENT_ID)
+        + '&redirect_uri=' + redirectUri
+        + '&state=' + state
+        + '&scope=diary';
+    window.location.href = url;
+}
+
+async function handleCronometerCallback() {
+    var params = new URLSearchParams(window.location.search);
+    var code = params.get('code');
+    var state = params.get('state');
+    if (!code || !state) return;
+
+    var savedState = sessionStorage.getItem('cronometer_oauth_state');
+    if (state !== savedState) {
+        console.error('Cronometer OAuth state mismatch');
+        return;
+    }
+    sessionStorage.removeItem('cronometer_oauth_state');
+
+    try {
+        var resp = await fetch('/api/cronometer-token', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ action: 'exchange', code: code })
+        });
+        if (!resp.ok) throw new Error('Token exchange failed');
+        var data = await resp.json();
+
+        cronometerAccessToken = data.access_token;
+        cronometerUserId = data.user_id;
+        cronometerConnected = true;
+
+        // Store in Supabase
+        if (supabase && currentUser) {
+            await supabase.from('cronometer_connections').upsert({
+                user_id: currentUser.id,
+                cronometer_user_id: data.user_id || null,
+                access_token: data.access_token,
+                connected_at: new Date().toISOString()
+            });
+        }
+
+        // Clean URL
+        var cleanUrl = window.location.pathname + window.location.hash;
+        window.history.replaceState({}, '', cleanUrl);
+
+        updateCronometerBanner();
+        // Auto-sync today
+        await syncCronometerDay(getFoodLogDateStr());
+    } catch (err) {
+        console.error('Cronometer callback error:', err);
+    }
+}
+
+async function checkCronometerConnection() {
+    if (!supabase || !currentUser) return;
+    try {
+        var { data, error } = await supabase
+            .from('cronometer_connections')
+            .select('access_token, cronometer_user_id')
+            .eq('user_id', currentUser.id)
+            .single();
+        if (error || !data) return;
+
+        cronometerAccessToken = data.access_token;
+        cronometerUserId = data.cronometer_user_id;
+        cronometerConnected = true;
+        updateCronometerBanner();
+        // Load today's food log from DB
+        renderFoodLogFromDB(getFoodLogDateStr());
+    } catch (e) {
+        // No connection — that's fine
+    }
+}
+
+function updateCronometerBanner() {
+    var icon = document.getElementById('cronometerBannerIcon');
+    var title = document.getElementById('cronometerBannerTitle');
+    var desc = document.getElementById('cronometerBannerDesc');
+    var btn = document.getElementById('cronometerBannerBtn');
+    var notice = document.getElementById('foodlogSampleNotice');
+
+    if (cronometerConnected) {
+        if (icon) icon.innerHTML = '<i class="fa-solid fa-circle-check" style="color: #27AE60;"></i>';
+        if (title) title.textContent = 'Cronometer Connected';
+        if (desc) desc.textContent = 'Your meals sync automatically. Tap Sync Now to refresh.';
+        if (btn) {
+            btn.textContent = 'Sync Now';
+            btn.setAttribute('onclick', 'syncCronometerDay(getFoodLogDateStr())');
+        }
+        if (notice) notice.style.display = 'none';
+
+        // Add disconnect link if not already present
+        if (desc && !document.getElementById('cronometerDisconnectLink')) {
+            var link = document.createElement('a');
+            link.id = 'cronometerDisconnectLink';
+            link.href = '#';
+            link.style.cssText = 'color: #999; font-size: 0.75rem; margin-left: 0.5rem;';
+            link.textContent = 'Disconnect';
+            link.onclick = function(e) { e.preventDefault(); disconnectCronometer(); };
+            desc.parentNode.appendChild(link);
+        }
+    } else {
+        if (icon) icon.innerHTML = '<i class="fa-solid fa-link"></i>';
+        if (title) title.textContent = 'Connect Cronometer';
+        if (desc) desc.textContent = 'Automatically sync your meals and macros from Cronometer.';
+        if (btn) {
+            btn.textContent = 'Connect';
+            btn.setAttribute('onclick', 'connectCronometer()');
+        }
+        if (notice) notice.style.display = '';
+
+        var existingLink = document.getElementById('cronometerDisconnectLink');
+        if (existingLink) existingLink.remove();
+    }
+}
+
+var MEAL_ICONS = {
+    breakfast: { icon: 'fa-sun', color: 'var(--yellow)' },
+    lunch: { icon: 'fa-cloud-sun', color: '#2196F3' },
+    dinner: { icon: 'fa-moon', color: '#9b59b6' },
+    snack: { icon: 'fa-apple-whole', color: '#27AE60' }
+};
+
+function mapCronometerMeal(name) {
+    if (!name) return 'snack';
+    var lower = name.toLowerCase();
+    if (lower === 'breakfast') return 'breakfast';
+    if (lower === 'lunch') return 'lunch';
+    if (lower === 'dinner' || lower === 'supper') return 'dinner';
+    return 'snack'; // Snacks, Snack, or anything else
+}
+
+async function syncCronometerDay(dateStr) {
+    if (!cronometerConnected || !cronometerAccessToken) return;
+    var btn = document.getElementById('cronometerBannerBtn');
+    if (btn) { btn.disabled = true; btn.textContent = 'Syncing...'; }
+
+    try {
+        var resp = await fetch('/api/cronometer-diary', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ access_token: cronometerAccessToken, day: dateStr })
+        });
+
+        if (resp.status === 401) {
+            // Token expired — disconnect
+            cronometerConnected = false;
+            cronometerAccessToken = null;
+            updateCronometerBanner();
+            return;
+        }
+
+        if (!resp.ok) throw new Error('Diary fetch failed');
+        var diary = await resp.json();
+
+        // Delete existing cronometer entries for this date
+        if (supabase && currentUser) {
+            await supabase.from('food_log')
+                .delete()
+                .eq('user_id', currentUser.id)
+                .eq('logged_date', dateStr)
+                .eq('source', 'cronometer');
+
+            // Insert new entries — one row per meal group
+            var groups = diary.meals || diary.groups || [];
+            var inserts = [];
+            for (var i = 0; i < groups.length; i++) {
+                var group = groups[i];
+                var mealType = mapCronometerMeal(group.name || group.meal);
+                var foods = group.foods || group.items || [];
+                var foodNames = foods.map(function(f) { return f.name || f.food_name || ''; }).filter(Boolean);
+                var displayName = foodNames.join(', ');
+                if (displayName.length > 200) displayName = displayName.substring(0, 197) + '...';
+
+                inserts.push({
+                    user_id: currentUser.id,
+                    logged_date: dateStr,
+                    meal_type: mealType,
+                    food_name: displayName || group.name || 'Meal',
+                    calories: Math.round(group.calories || group.energy || 0),
+                    protein: Math.round((group.protein || 0) * 10) / 10,
+                    carbs: Math.round((group.carbs || group.totalCarbs || 0) * 10) / 10,
+                    fat: Math.round((group.fat || 0) * 10) / 10,
+                    source: 'cronometer'
+                });
+            }
+
+            if (inserts.length > 0) {
+                await supabase.from('food_log').insert(inserts);
+            }
+
+            // Update last_synced_at
+            await supabase.from('cronometer_connections')
+                .update({ last_synced_at: new Date().toISOString() })
+                .eq('user_id', currentUser.id);
+        }
+
+        // Re-render
+        await renderFoodLogFromDB(dateStr);
+    } catch (err) {
+        console.error('Cronometer sync error:', err);
+    } finally {
+        if (btn) { btn.disabled = false; btn.textContent = 'Sync Now'; }
+    }
+}
+
+async function renderFoodLogFromDB(dateStr) {
+    if (!supabase || !currentUser) return;
+    var container = document.getElementById('foodlogMealsContainer');
+    if (!container) return;
+
+    try {
+        var { data: entries, error } = await supabase
+            .from('food_log')
+            .select('*')
+            .eq('user_id', currentUser.id)
+            .eq('logged_date', dateStr)
+            .order('created_at', { ascending: true });
+
+        if (error) throw error;
+
+        if (!entries || entries.length === 0) {
+            container.innerHTML = '<div style="text-align: center; padding: 2rem; color: #888;">'
+                + '<i class="fa-solid fa-utensils" style="font-size: 2rem; margin-bottom: 0.5rem; display: block; opacity: 0.3;"></i>'
+                + 'No meals logged for this day.</div>';
+            updateFoodLogMacroSummary(0, 0, 0, 0);
+            return;
+        }
+
+        // Group by meal_type
+        var mealOrder = ['breakfast', 'lunch', 'dinner', 'snack'];
+        var grouped = {};
+        var totalCal = 0, totalP = 0, totalC = 0, totalF = 0;
+
+        for (var i = 0; i < entries.length; i++) {
+            var e = entries[i];
+            var mt = e.meal_type || 'snack';
+            if (!grouped[mt]) grouped[mt] = [];
+            grouped[mt].push(e);
+            totalCal += e.calories || 0;
+            totalP += e.protein || 0;
+            totalC += e.carbs || 0;
+            totalF += e.fat || 0;
+        }
+
+        var html = '';
+        for (var m = 0; m < mealOrder.length; m++) {
+            var meal = mealOrder[m];
+            if (!grouped[meal]) continue;
+            var items = grouped[meal];
+            var mealCals = items.reduce(function(sum, x) { return sum + (x.calories || 0); }, 0);
+            var info = MEAL_ICONS[meal] || MEAL_ICONS.snack;
+            var mealLabel = meal.charAt(0).toUpperCase() + meal.slice(1);
+
+            html += '<div class="foodlog-meal-group">';
+            html += '<div class="foodlog-meal-header">';
+            html += '<h4><i class="fa-solid ' + info.icon + '" style="color: ' + info.color + '; margin-right: 0.5rem;"></i> ' + escapeHtml(mealLabel) + '</h4>';
+            html += '<span class="foodlog-meal-cals">' + mealCals.toLocaleString() + ' cal</span>';
+            html += '</div>';
+            html += '<div class="foodlog-meal-items">';
+
+            for (var j = 0; j < items.length; j++) {
+                var item = items[j];
+                html += '<div class="foodlog-item">';
+                html += '<div class="foodlog-item-name">' + escapeHtml(item.food_name || 'Unknown') + '</div>';
+                html += '<div class="foodlog-item-macros">' + (item.calories || 0) + ' cal | '
+                    + (item.protein || 0) + 'g P | '
+                    + (item.carbs || 0) + 'g C | '
+                    + (item.fat || 0) + 'g F</div>';
+                html += '</div>';
+            }
+
+            html += '</div></div>';
+        }
+
+        container.innerHTML = html;
+        updateFoodLogMacroSummary(totalCal, totalP, totalC, totalF);
+    } catch (err) {
+        console.error('Error rendering food log:', err);
+        container.innerHTML = '<div style="text-align: center; padding: 2rem; color: #e74c3c;">'
+            + '<i class="fa-solid fa-triangle-exclamation"></i> Error loading food log.</div>';
+    }
+}
+
+function updateFoodLogMacroSummary(cal, protein, carbs, fat) {
+    var calEl = document.getElementById('foodlogCalConsumed');
+    if (calEl) calEl.textContent = cal.toLocaleString();
+
+    var t = phaseMacroTargets || {};
+    var calTarget = document.getElementById('foodlogCalTarget');
+    if (calTarget && t.calories) calTarget.textContent = t.calories.toLocaleString();
+
+    var pLabel = document.getElementById('foodlogProteinLabel');
+    if (pLabel) pLabel.textContent = Math.round(protein) + ' / ' + (t.protein || '--') + 'g';
+    var cLabel = document.getElementById('foodlogCarbsLabel');
+    if (cLabel) cLabel.textContent = Math.round(carbs) + ' / ' + (t.carbs || '--') + 'g';
+    var fLabel = document.getElementById('foodlogFatLabel');
+    if (fLabel) fLabel.textContent = Math.round(fat) + ' / ' + (t.fat || '--') + 'g';
+
+    // Update bar widths
     var pBar = document.getElementById('foodlogProteinBar');
-    if (pBar) pBar.style.width = Math.min(100, Math.round(142 / t.protein * 100)) + '%';
+    if (pBar && t.protein) pBar.style.width = Math.min(100, Math.round(protein / t.protein * 100)) + '%';
     var cBar = document.getElementById('foodlogCarbsBar');
-    if (cBar) cBar.style.width = Math.min(100, Math.round(196 / t.carbs * 100)) + '%';
+    if (cBar && t.carbs) cBar.style.width = Math.min(100, Math.round(carbs / t.carbs * 100)) + '%';
     var fBar = document.getElementById('foodlogFatBar');
-    if (fBar) fBar.style.width = Math.min(100, Math.round(57 / t.fat * 100)) + '%';
+    if (fBar && t.fat) fBar.style.width = Math.min(100, Math.round(fat / t.fat * 100)) + '%';
+}
+
+async function disconnectCronometer() {
+    if (!confirm('Disconnect Cronometer? Your synced food log entries will be kept.')) return;
+
+    try {
+        // Revoke token at Cronometer
+        if (cronometerAccessToken) {
+            await fetch('/api/cronometer-token', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ action: 'disconnect', access_token: cronometerAccessToken })
+            });
+        }
+
+        // Remove from Supabase
+        if (supabase && currentUser) {
+            await supabase.from('cronometer_connections')
+                .delete()
+                .eq('user_id', currentUser.id);
+        }
+    } catch (err) {
+        console.error('Disconnect error:', err);
+    }
+
+    cronometerConnected = false;
+    cronometerAccessToken = null;
+    cronometerUserId = null;
+    updateCronometerBanner();
+    // Clear meal display
+    var container = document.getElementById('foodlogMealsContainer');
+    if (container) container.innerHTML = '';
+    // Reset macro summary to dashes
+    renderFoodLogTargets();
 }
 
 // ===== DASHBOARD STATE =====
@@ -6488,6 +6782,9 @@ async function initDashboard(user) {
         loadNotifications(user.id);
         // Load tracker summary card
         loadTrackerSummary(user.id);
+        // Cronometer OAuth callback + connection check
+        await handleCronometerCallback();
+        await checkCronometerConnection();
         // Check for coach macro changes
         checkMacroChanges(user.id, phase);
         // Load compliance data + achievements
