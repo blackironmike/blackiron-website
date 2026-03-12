@@ -25,7 +25,7 @@ export default async function handler(req, res) {
     return res.status(500).json({ error: 'Server configuration error' });
   }
 
-  const { action, code, access_token } = req.body || {};
+  const { action, code, access_token, redirect_uri } = req.body || {};
 
   if (action === 'exchange') {
     // Exchange authorization code for access token
@@ -38,7 +38,8 @@ export default async function handler(req, res) {
         grant_type: 'authorization_code',
         code: code,
         client_id: clientId,
-        client_secret: clientSecret
+        client_secret: clientSecret,
+        redirect_uri: redirect_uri || ''
       });
 
       const response = await fetch('https://cronometer.com/oauth/token?' + params.toString(), {
