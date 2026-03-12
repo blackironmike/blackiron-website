@@ -3996,32 +3996,42 @@
         }
 
         /* ===== FOOD LOG TAB ===== */
-        .foodlog-connect-banner {
+        .foodlog-week-view {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 6px;
+            padding: 0.75rem 1.5rem;
+        }
+        .foodlog-week-day {
             display: flex;
+            flex-direction: column;
             align-items: center;
-            gap: 1rem;
-            padding: 1.25rem 1.5rem;
-            background: linear-gradient(135deg, #1a1a2e, #16213e);
+            padding: 0.5rem 0;
+            background: var(--dark-gray);
             border: 2px solid var(--medium-gray);
-            margin: 1rem 1.5rem 0;
+            cursor: pointer;
+            transition: border-color 0.2s;
         }
-        .foodlog-connect-icon {
-            font-size: 1.5rem;
-            color: var(--yellow);
-            flex-shrink: 0;
+        .foodlog-week-day:hover {
+            border-color: var(--yellow);
         }
-        .foodlog-connect-text {
-            flex: 1;
+        .foodlog-week-day.active {
+            border-color: var(--yellow);
         }
-        .foodlog-connect-text strong {
-            display: block;
-            font-size: 0.95rem;
-            margin-bottom: 0.2rem;
+        .foodlog-week-day.future {
+            opacity: 0.3;
+            pointer-events: none;
         }
-        .foodlog-connect-text p {
-            font-size: 0.8rem;
+        .foodlog-week-day-letter {
+            font-size: 0.65rem;
+            font-weight: 700;
+            text-transform: uppercase;
             color: var(--light-gray);
-            margin: 0;
+            margin-bottom: 2px;
+        }
+        .foodlog-week-day-num {
+            font-size: 1rem;
+            font-weight: 900;
         }
         .foodlog-date-nav {
             display: flex;
@@ -4153,7 +4163,7 @@
             white-space: nowrap;
         }
         @media (max-width: 600px) {
-            .foodlog-connect-banner { flex-direction: column; text-align: center; margin: 1rem 1rem 0; }
+            .foodlog-week-view { gap: 4px; padding: 0.75rem 1rem; }
             .foodlog-macro-summary { padding: 0 1rem; }
             .foodlog-meals { padding: 0 1rem; }
             .foodlog-item { flex-direction: column; align-items: flex-start; gap: 0.2rem; }
@@ -4449,14 +4459,16 @@
         <!-- ===== TAB 2: FOOD LOG ===== -->
         <div id="tabFoodLog" class="tab-panel">
 
-            <!-- Cronometer Connect Banner -->
-            <div class="foodlog-connect-banner" id="cronometerBanner">
-                <div class="foodlog-connect-icon" id="cronometerBannerIcon"><i class="fa-solid fa-link"></i></div>
-                <div class="foodlog-connect-text">
-                    <strong id="cronometerBannerTitle">Connect Cronometer</strong>
-                    <p id="cronometerBannerDesc">Automatically sync your meals and macros from Cronometer.</p>
-                </div>
-                <button class="btn-primary btn-small" id="cronometerBannerBtn" onclick="connectCronometer()">Connect</button>
+            <!-- Cronometer Sync Button -->
+            <div style="display: flex; justify-content: flex-end; padding: 0.75rem 1.5rem 0;">
+                <button class="btn-primary btn-small" id="cronometerSyncBtn" onclick="openCronometerModal()" style="font-size: 0.8rem; padding: 0.4rem 1rem;">
+                    <i class="fa-solid fa-link" id="cronometerSyncBtnIcon"></i> <span id="cronometerSyncBtnText">Cronometer</span>
+                </button>
+            </div>
+
+            <!-- Week Day Selector -->
+            <div class="foodlog-week-view" id="foodlogWeekView">
+                <!-- Rendered by renderFoodLogWeekView() -->
             </div>
 
             <!-- Date Navigation -->
@@ -5741,6 +5753,16 @@
         </div>
     </div>
 
+    <!-- Cronometer Modal -->
+    <div class="modal-overlay" id="cronometerModal">
+        <div class="modal-container" style="max-width: 450px; padding: 2rem;">
+            <button class="modal-close" onclick="closeCronometerModal()">&times;</button>
+            <div id="cronometerModalBody">
+                <!-- Populated dynamically by updateCronometerUI() -->
+            </div>
+        </div>
+    </div>
+
     <!-- Account Settings Modal -->
     <div class="modal-overlay" id="accountModal">
         <div class="modal-container" style="max-width:550px;">
@@ -6251,6 +6273,7 @@ function changeFoodLogDate(delta) {
     } else {
         label.textContent = d.toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric' });
     }
+    renderFoodLogWeekView();
     if (cronometerConnected) {
         renderFoodLogFromDB(getFoodLogDateStr());
     }
@@ -6340,7 +6363,7 @@ async function handleCronometerCallback() {
         var cleanUrl = window.location.pathname + window.location.hash;
         window.history.replaceState({}, '', cleanUrl);
 
-        updateCronometerBanner();
+        updateCronometerUI();
         // Auto-sync today
         await syncCronometerDay(getFoodLogDateStr());
     } catch (err) {
@@ -6361,7 +6384,8 @@ async function checkCronometerConnection() {
         cronometerAccessToken = data.access_token;
         cronometerUserId = data.cronometer_user_id;
         cronometerConnected = true;
-        updateCronometerBanner();
+        updateCronometerUI();
+        renderFoodLogWeekView();
         // Load today's food log from DB
         renderFoodLogFromDB(getFoodLogDateStr());
     } catch (e) {
@@ -6369,45 +6393,121 @@ async function checkCronometerConnection() {
     }
 }
 
-function updateCronometerBanner() {
-    var icon = document.getElementById('cronometerBannerIcon');
-    var title = document.getElementById('cronometerBannerTitle');
-    var desc = document.getElementById('cronometerBannerDesc');
-    var btn = document.getElementById('cronometerBannerBtn');
+function updateCronometerUI() {
+    var btnIcon = document.getElementById('cronometerSyncBtnIcon');
+    var btnText = document.getElementById('cronometerSyncBtnText');
     var notice = document.getElementById('foodlogSampleNotice');
 
     if (cronometerConnected) {
-        if (icon) icon.innerHTML = '<i class="fa-solid fa-circle-check" style="color: #27AE60;"></i>';
-        if (title) title.textContent = 'Cronometer Connected';
-        if (desc) desc.textContent = 'Your meals sync automatically. Tap Sync Now to refresh.';
-        if (btn) {
-            btn.textContent = 'Sync Now';
-            btn.setAttribute('onclick', 'syncCronometerDay(getFoodLogDateStr())');
-        }
+        if (btnIcon) btnIcon.className = 'fa-solid fa-circle-check';
+        if (btnIcon) btnIcon.style.color = '#27AE60';
+        if (btnText) btnText.textContent = 'Sync';
         if (notice) notice.style.display = 'none';
-
-        // Add disconnect link if not already present
-        if (desc && !document.getElementById('cronometerDisconnectLink')) {
-            var link = document.createElement('a');
-            link.id = 'cronometerDisconnectLink';
-            link.href = '#';
-            link.style.cssText = 'color: #999; font-size: 0.75rem; margin-left: 0.5rem;';
-            link.textContent = 'Disconnect';
-            link.onclick = function(e) { e.preventDefault(); disconnectCronometer(); };
-            desc.parentNode.appendChild(link);
-        }
     } else {
-        if (icon) icon.innerHTML = '<i class="fa-solid fa-link"></i>';
-        if (title) title.textContent = 'Connect Cronometer';
-        if (desc) desc.textContent = 'Automatically sync your meals and macros from Cronometer.';
-        if (btn) {
-            btn.textContent = 'Connect';
-            btn.setAttribute('onclick', 'connectCronometer()');
-        }
+        if (btnIcon) btnIcon.className = 'fa-solid fa-link';
+        if (btnIcon) btnIcon.style.color = '';
+        if (btnText) btnText.textContent = 'Cronometer';
         if (notice) notice.style.display = '';
+    }
 
-        var existingLink = document.getElementById('cronometerDisconnectLink');
-        if (existingLink) existingLink.remove();
+    // Update modal body content
+    var body = document.getElementById('cronometerModalBody');
+    if (!body) return;
+
+    if (cronometerConnected) {
+        body.innerHTML = '<div style="text-align: center;">'
+            + '<i class="fa-solid fa-circle-check" style="font-size: 2.5rem; color: #27AE60; margin-bottom: 1rem; display: block;"></i>'
+            + '<h3 style="margin-bottom: 0.5rem;">Cronometer Connected</h3>'
+            + '<p style="color: var(--light-gray); font-size: 0.85rem; margin-bottom: 1.5rem;">Your meals sync automatically from Cronometer.</p>'
+            + '<button class="btn-primary" style="width: 100%; margin-bottom: 1rem;" onclick="syncCronometerDay(getFoodLogDateStr()); closeCronometerModal();"><i class="fa-solid fa-rotate"></i> Sync Now</button>'
+            + '<a href="#" onclick="event.preventDefault(); closeCronometerModal(); disconnectCronometer();" style="color: #999; font-size: 0.8rem;">Disconnect Cronometer</a>'
+            + '</div>';
+    } else {
+        body.innerHTML = '<div style="text-align: center;">'
+            + '<i class="fa-solid fa-link" style="font-size: 2.5rem; color: var(--yellow); margin-bottom: 1rem; display: block;"></i>'
+            + '<h3 style="margin-bottom: 0.5rem;">Connect Cronometer</h3>'
+            + '<p style="color: var(--light-gray); font-size: 0.85rem; margin-bottom: 1.5rem;">Automatically sync your meals and macros from Cronometer to your FuelPath food log.</p>'
+            + '<button class="btn-primary" style="width: 100%;" onclick="connectCronometer()"><i class="fa-solid fa-plug"></i> Connect</button>'
+            + '</div>';
+    }
+}
+
+function openCronometerModal() {
+    updateCronometerUI();
+    document.getElementById('cronometerModal').classList.add('active');
+}
+
+function closeCronometerModal() {
+    document.getElementById('cronometerModal').classList.remove('active');
+}
+
+function renderFoodLogWeekView() {
+    var container = document.getElementById('foodlogWeekView');
+    if (!container) return;
+
+    // Determine the selected date
+    var selected = new Date();
+    selected.setDate(selected.getDate() + foodlogDateOffset);
+
+    // Find Monday of the week containing the selected date
+    var monday = new Date(selected);
+    var dayOfWeek = monday.getDay(); // 0=Sun, 1=Mon, ...
+    var diff = dayOfWeek === 0 ? -6 : 1 - dayOfWeek;
+    monday.setDate(monday.getDate() + diff);
+
+    var today = new Date();
+    today.setHours(0, 0, 0, 0);
+    var dayLetters = ['M', 'T', 'W', 'T', 'F', 'S', 'S'];
+    var html = '';
+
+    for (var i = 0; i < 7; i++) {
+        var d = new Date(monday);
+        d.setDate(monday.getDate() + i);
+        d.setHours(0, 0, 0, 0);
+
+        var dateStr = d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0');
+
+        // Compute offset for this day relative to today
+        var timeDiff = d.getTime() - today.getTime();
+        var dayOffset = Math.round(timeDiff / (1000 * 60 * 60 * 24));
+
+        var classes = 'foodlog-week-day';
+        if (dayOffset === foodlogDateOffset) classes += ' active';
+        if (d > today) classes += ' future';
+
+        // Determine background color from compliance data
+        var bgColor = 'var(--dark-gray)';
+        if (phaseComplianceData[dateStr] && phaseMacroTargets && phaseMacroTargets.calories > 0) {
+            var dayScore = getDayComplianceScore(phaseComplianceData[dateStr], phaseMacroTargets, phaseTolerancePct);
+            bgColor = scoreToColor(dayScore);
+        }
+
+        html += '<div class="' + classes + '" data-offset="' + dayOffset + '" onclick="navigateToFoodLogDay(' + dayOffset + ')" style="background: ' + bgColor + ';">';
+        html += '<span class="foodlog-week-day-letter">' + dayLetters[i] + '</span>';
+        html += '<span class="foodlog-week-day-num">' + d.getDate() + '</span>';
+        html += '</div>';
+    }
+
+    container.innerHTML = html;
+}
+
+function navigateToFoodLogDay(offset) {
+    foodlogDateOffset = offset;
+    var d = new Date();
+    d.setDate(d.getDate() + foodlogDateOffset);
+    var label = document.getElementById('foodlogDateLabel');
+    if (foodlogDateOffset === 0) {
+        label.textContent = 'Today';
+    } else if (foodlogDateOffset === -1) {
+        label.textContent = 'Yesterday';
+    } else if (foodlogDateOffset === 1) {
+        label.textContent = 'Tomorrow';
+    } else {
+        label.textContent = d.toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric' });
+    }
+    renderFoodLogWeekView();
+    if (cronometerConnected) {
+        renderFoodLogFromDB(getFoodLogDateStr());
     }
 }
 
@@ -6429,8 +6529,8 @@ function mapCronometerMeal(name) {
 
 async function syncCronometerDay(dateStr) {
     if (!cronometerConnected || !cronometerAccessToken) return;
-    var btn = document.getElementById('cronometerBannerBtn');
-    if (btn) { btn.disabled = true; btn.textContent = 'Syncing...'; }
+    var btn = document.getElementById('cronometerSyncBtn');
+    if (btn) { btn.disabled = true; }
 
     try {
         var resp = await fetch('/api/cronometer-diary', {
@@ -6443,7 +6543,7 @@ async function syncCronometerDay(dateStr) {
             // Token expired — disconnect
             cronometerConnected = false;
             cronometerAccessToken = null;
-            updateCronometerBanner();
+            updateCronometerUI();
             return;
         }
 
@@ -6498,10 +6598,11 @@ async function syncCronometerDay(dateStr) {
 
         // Re-render
         await renderFoodLogFromDB(dateStr);
+        renderFoodLogWeekView();
     } catch (err) {
         console.error('Cronometer sync error:', err);
     } finally {
-        if (btn) { btn.disabled = false; btn.textContent = 'Sync Now'; }
+        if (btn) { btn.disabled = false; }
     }
 }
 
@@ -6633,7 +6734,7 @@ async function disconnectCronometer() {
     cronometerConnected = false;
     cronometerAccessToken = null;
     cronometerUserId = null;
-    updateCronometerBanner();
+    updateCronometerUI();
     // Clear meal display
     var container = document.getElementById('foodlogMealsContainer');
     if (container) container.innerHTML = '';
@@ -9305,6 +9406,8 @@ async function loadPhaseComplianceData(userId, phase) {
 
         // Render day blocks on timeline
         renderTimelineDayBlocks(phase);
+        // Render week view in food log tab
+        renderFoodLogWeekView();
         // Calculate and render compliance stats
         calculateComplianceStats(phase);
         // Check achievements
