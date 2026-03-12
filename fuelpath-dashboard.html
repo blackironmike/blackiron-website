@@ -6526,6 +6526,8 @@ async function syncCronometerDay(dateStr) {
                     logged_date: dateStr,
                     meal_type: mealType,
                     food_name: displayName || group.name || 'Meal',
+                    serving_size: 1,
+                    serving_unit: 'meal',
                     calories: Math.round(macros.kcal || 0),
                     protein: Math.round((macros.protein || 0) * 10) / 10,
                     carbs: Math.round((macros.total_carbs || 0) * 10) / 10,
