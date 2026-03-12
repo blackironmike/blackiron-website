@@ -47,11 +47,7 @@ export default async function handler(req, res) {
       if (!response.ok) {
         const errBody = await response.text();
         console.error('Cronometer token exchange error:', response.status, errBody);
-        return res.status(502).json({
-          error: 'Failed to exchange token',
-          detail: errBody,
-          debug: { clientIdLen: clientId.length, clientIdPrefix: clientId.substring(0, 4), codeLen: code.length }
-        });
+        return res.status(502).json({ error: 'Failed to exchange token' });
       }
 
       const data = await response.json();

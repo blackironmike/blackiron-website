@@ -6509,25 +6509,27 @@ async function syncCronometerDay(dateStr) {
                 .eq('source', 'cronometer');
 
             // Insert new entries — one row per meal group
-            var groups = diary.meals || diary.groups || [];
+            // Cronometer diary_summary response: { foods: [ { name: "Breakfast", foods: [...], macros: { kcal, protein, fat, total_carbs } }, ... ] }
+            var groups = diary.foods || [];
             var inserts = [];
             for (var i = 0; i < groups.length; i++) {
                 var group = groups[i];
-                var mealType = mapCronometerMeal(group.name || group.meal);
-                var foods = group.foods || group.items || [];
-                var foodNames = foods.map(function(f) { return f.name || f.food_name || ''; }).filter(Boolean);
+                var mealType = mapCronometerMeal(group.name);
+                var foods = group.foods || [];
+                var foodNames = foods.map(function(f) { return f.name || ''; }).filter(Boolean);
                 var displayName = foodNames.join(', ');
                 if (displayName.length > 200) displayName = displayName.substring(0, 197) + '...';
 
+                var macros = group.macros || {};
                 inserts.push({
                     user_id: currentUser.id,
                     logged_date: dateStr,
                     meal_type: mealType,
                     food_name: displayName || group.name || 'Meal',
-                    calories: Math.round(group.calories || group.energy || 0),
-                    protein: Math.round((group.protein || 0) * 10) / 10,
-                    carbs: Math.round((group.carbs || group.totalCarbs || 0) * 10) / 10,
-                    fat: Math.round((group.fat || 0) * 10) / 10,
+                    calories: Math.round(macros.kcal || 0),
+                    protein: Math.round((macros.protein || 0) * 10) / 10,
+                    carbs: Math.round((macros.total_carbs || 0) * 10) / 10,
+                    fat: Math.round((macros.fat || 0) * 10) / 10,
                     source: 'cronometer'
                 });
             }
