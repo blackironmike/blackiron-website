@@ -6499,18 +6499,21 @@ async function syncCronometerDay(dateStr) {
 
         if (!resp.ok) throw new Error('Diary fetch failed');
         var diary = await resp.json();
+        console.log('[FuelPath] Cronometer diary response:', JSON.stringify(diary).substring(0, 500));
 
         // Delete existing cronometer entries for this date
         if (supabase && currentUser) {
-            await supabase.from('food_log')
+            var delResult = await supabase.from('food_log')
                 .delete()
                 .eq('user_id', currentUser.id)
                 .eq('logged_date', dateStr)
                 .eq('source', 'cronometer');
+            console.log('[FuelPath] Delete result:', delResult.error ? delResult.error.message : 'ok');
 
             // Insert new entries — one row per meal group
             // Cronometer diary_summary response: { foods: [ { name: "Breakfast", foods: [...], macros: { kcal, protein, fat, total_carbs } }, ... ] }
             var groups = diary.foods || [];
+            console.log('[FuelPath] Meal groups found:', groups.length);
             var inserts = [];
             for (var i = 0; i < groups.length; i++) {
                 var group = groups[i];
@@ -6536,8 +6539,10 @@ async function syncCronometerDay(dateStr) {
                 });
             }
 
+            console.log('[FuelPath] Inserts to make:', inserts.length, inserts);
             if (inserts.length > 0) {
-                await supabase.from('food_log').insert(inserts);
+                var insertResult = await supabase.from('food_log').insert(inserts);
+                console.log('[FuelPath] Insert result:', insertResult.error ? insertResult.error : 'ok');
             }
 
             // Update last_synced_at
