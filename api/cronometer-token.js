@@ -41,16 +41,17 @@ export default async function handler(req, res) {
         client_secret: clientSecret
       });
 
-      const response = await fetch('https://cronometer.com/oauth/token', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-        body: params.toString()
-      });
+      const url = 'https://cronometer.com/oauth/token?' + params.toString();
+      const response = await fetch(url, { method: 'POST' });
 
       if (!response.ok) {
         const errBody = await response.text();
         console.error('Cronometer token exchange error:', response.status, errBody);
-        return res.status(502).json({ error: 'Failed to exchange token', detail: errBody, debug: { clientIdLen: clientId.length, codeLen: code.length } });
+        return res.status(502).json({
+          error: 'Failed to exchange token',
+          detail: errBody,
+          debug: { clientIdLen: clientId.length, clientIdPrefix: clientId.substring(0, 4), codeLen: code.length }
+        });
       }
 
       const data = await response.json();
