@@ -6367,7 +6367,7 @@ async function handleCronometerCallback() {
         var resp = await fetch('/api/cronometer-token', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ action: 'exchange', code: code, redirect_uri: window.location.origin + '/fuelpath-dashboard.html' })
+            body: JSON.stringify({ action: 'exchange', code: code })
         });
         if (!resp.ok) throw new Error('Token exchange failed');
         var data = await resp.json();
