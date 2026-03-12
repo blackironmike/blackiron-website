@@ -41,8 +41,10 @@ export default async function handler(req, res) {
         client_secret: clientSecret
       });
 
-      const response = await fetch('https://cronometer.com/oauth/token?' + params.toString(), {
-        method: 'POST'
+      const response = await fetch('https://cronometer.com/oauth/token', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: params.toString()
       });
 
       if (!response.ok) {
