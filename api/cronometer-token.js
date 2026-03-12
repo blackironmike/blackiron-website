@@ -17,8 +17,8 @@ export default async function handler(req, res) {
     return res.status(405).json({ error: 'Method not allowed' });
   }
 
-  const clientId = process.env.CRONOMETER_CLIENT_ID;
-  const clientSecret = process.env.CRONOMETER_CLIENT_SECRET;
+  const clientId = (process.env.CRONOMETER_CLIENT_ID || '').trim();
+  const clientSecret = (process.env.CRONOMETER_CLIENT_SECRET || '').trim();
 
   if (!clientId || !clientSecret) {
     console.error('CRONOMETER_CLIENT_ID or CRONOMETER_CLIENT_SECRET not set');
@@ -50,7 +50,7 @@ export default async function handler(req, res) {
       if (!response.ok) {
         const errBody = await response.text();
         console.error('Cronometer token exchange error:', response.status, errBody);
-        return res.status(502).json({ error: 'Failed to exchange token', detail: errBody });
+        return res.status(502).json({ error: 'Failed to exchange token', detail: errBody, debug: { clientIdLen: clientId.length, codeLen: code.length } });
       }
 
       const data = await response.json();
