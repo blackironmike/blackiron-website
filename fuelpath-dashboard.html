@@ -4343,6 +4343,12 @@
             <a href="https://api.leadconnectorhq.com/widget/booking/COACHING_CALENDAR_ID" target="_blank" rel="noopener">Schedule Your Call &rarr;</a>
         </div>
 
+        <!-- Pull-to-Refresh Indicator (global) -->
+        <div class="ptr-indicator" id="ptrIndicator">
+            <span class="ptr-icon-wrap" id="ptrIconWrap"><i class="fa-solid fa-arrow-rotate-right"></i></span>
+            <span id="ptrText">Pull to refresh</span>
+        </div>
+
         <!-- ===== TAB 1: DASHBOARD ===== -->
         <div id="tabDashboard" class="tab-panel tab-active">
 
@@ -4492,12 +4498,6 @@
                 <button class="btn-primary btn-small" id="cronometerSyncBtn" onclick="openCronometerModal()" style="font-size: 0.8rem; padding: 0.4rem 1rem;">
                     <i class="fa-solid fa-link" id="cronometerSyncBtnIcon"></i> <span id="cronometerSyncBtnText">Cronometer</span>
                 </button>
-            </div>
-
-            <!-- Pull-to-Refresh Indicator -->
-            <div class="ptr-indicator" id="ptrIndicator">
-                <span class="ptr-icon-wrap" id="ptrIconWrap"><i class="fa-solid fa-arrow-rotate-right"></i></span>
-                <span id="ptrText">Pull to refresh</span>
             </div>
 
             <!-- Week Day Selector -->
@@ -6269,7 +6269,6 @@ var foodlogDateOffset = 0;
 var cronometerConnected = false;
 var cronometerAccessToken = null;
 var cronometerUserId = null;
-var lastFoodLogRefresh = 0;
 
 function getFoodLogDateStr() {
     var d = new Date();
@@ -6698,7 +6697,6 @@ async function renderFoodLogFromDB(dateStr) {
 
         container.innerHTML = html;
         updateFoodLogMacroSummary(totalCal, totalP, totalC, totalF);
-        lastFoodLogRefresh = Date.now();
     } catch (err) {
         console.error('Error rendering food log:', err);
         container.innerHTML = '<div style="text-align: center; padding: 2rem; color: #e74c3c;">'
@@ -10292,43 +10290,92 @@ function showDashAchievementToast(name, description, tierColor) {
     }, 4000);
 }
 
+// ===== REFRESH CURRENT TAB =====
+function refreshCurrentTab() {
+    if (!currentUser) return Promise.resolve();
+    var phase = getPhaseInfo();
+
+    // Find active tab
+    var activeTab = '';
+    TAB_IDS.forEach(function(id) {
+        var el = document.getElementById(id);
+        if (el && el.classList.contains('tab-active')) activeTab = id;
+    });
+
+    switch (activeTab) {
+        case 'tabDashboard':
+            loadMacros(currentUser.id, phase);
+            loadWeightData(currentUser.id, phase);
+            loadBodyCompData(currentUser.id, phase);
+            loadTrackerSummary(currentUser.id);
+            loadPhaseComplianceData(currentUser.id, phase);
+            return Promise.resolve();
+        case 'tabFoodLog':
+            var p = cronometerConnected
+                ? syncCronometerDay(getFoodLogDateStr())
+                : renderFoodLogFromDB(getFoodLogDateStr()).then(function() { renderFoodLogWeekView(); });
+            return p;
+        case 'tabCheckIn':
+            loadPhaseComplianceData(currentUser.id, phase);
+            loadWeightData(currentUser.id, phase);
+            loadCheckins(currentUser.id);
+            loadAthleteCoachNotes();
+            return Promise.resolve();
+        case 'tabMore':
+            loadMacros(currentUser.id, phase);
+            return Promise.resolve();
+        default:
+            return Promise.resolve();
+    }
+}
+
 // ===== AUTO-REFRESH ON VISIBILITY =====
+var lastAutoRefresh = 0;
 document.addEventListener('visibilitychange', function() {
     if (document.visibilityState !== 'visible') return;
-    var foodLogTab = document.getElementById('tabFoodLog');
-    if (!foodLogTab || !foodLogTab.classList.contains('tab-active')) return;
-    if (Date.now() - lastFoodLogRefresh < 30000) return;
-    if (cronometerConnected) {
-        syncCronometerDay(getFoodLogDateStr());
-    } else {
-        renderFoodLogFromDB(getFoodLogDateStr());
-        renderFoodLogWeekView();
-    }
+    if (Date.now() - lastAutoRefresh < 30000) return;
+    lastAutoRefresh = Date.now();
+    refreshCurrentTab();
 });
 
-// ===== PULL-TO-REFRESH =====
+// ===== PULL-TO-REFRESH (all tabs) =====
 (function() {
     var ptrStartY = 0;
     var ptrPulling = false;
     var ptrThreshold = 60;
     var ptrReady = false;
 
-    var tabFoodLog = document.getElementById('tabFoodLog');
-    if (!tabFoodLog) return;
-
-    function haptic(ms) {
-        if (navigator.vibrate) navigator.vibrate(ms || 10);
+    function haptic(pattern) {
+        // Vibration API (Android Chrome, etc.)
+        if (navigator.vibrate) {
+            navigator.vibrate(pattern);
+            return;
+        }
+        // AudioContext impulse fallback (iOS + others without Vibration API)
+        try {
+            var ctx = new (window.AudioContext || window.webkitAudioContext)();
+            var osc = ctx.createOscillator();
+            var gain = ctx.createGain();
+            osc.type = 'triangle';
+            osc.frequency.value = 150;
+            gain.gain.value = 0.01; // nearly silent
+            osc.connect(gain);
+            gain.connect(ctx.destination);
+            osc.start();
+            osc.stop(ctx.currentTime + 0.03);
+        } catch (e) { /* no haptic available */ }
     }
 
-    tabFoodLog.addEventListener('touchstart', function(e) {
+    document.addEventListener('touchstart', function(e) {
         if (window.scrollY > 0) return;
-        if (!tabFoodLog.classList.contains('tab-active')) return;
+        var dc = document.getElementById('dashboardContainer');
+        if (!dc || dc.style.display === 'none') return;
         ptrStartY = e.touches[0].clientY;
         ptrPulling = true;
         ptrReady = false;
     }, { passive: true });
 
-    tabFoodLog.addEventListener('touchmove', function(e) {
+    document.addEventListener('touchmove', function(e) {
         if (!ptrPulling || window.scrollY > 0) { ptrPulling = false; return; }
         var pullDist = e.touches[0].clientY - ptrStartY;
         var indicator = document.getElementById('ptrIndicator');
@@ -10336,7 +10383,6 @@ document.addEventListener('visibilitychange', function() {
         var iconWrap = document.getElementById('ptrIconWrap');
         if (pullDist > 10 && indicator) {
             indicator.classList.add('visible');
-            // Rotate icon proportionally to pull distance (0-180deg)
             var rotation = Math.min(pullDist / ptrThreshold, 1) * 180;
             if (iconWrap) iconWrap.style.transform = 'rotate(' + rotation + 'deg)';
 
@@ -10344,7 +10390,7 @@ document.addEventListener('visibilitychange', function() {
                 ptrReady = true;
                 indicator.classList.add('ready');
                 if (ptrText) ptrText.textContent = 'Release to refresh';
-                haptic(15);
+                haptic(50);
             } else if (pullDist < ptrThreshold && ptrReady) {
                 ptrReady = false;
                 indicator.classList.remove('ready');
@@ -10353,7 +10399,7 @@ document.addEventListener('visibilitychange', function() {
         }
     }, { passive: true });
 
-    tabFoodLog.addEventListener('touchend', function() {
+    document.addEventListener('touchend', function() {
         if (!ptrPulling) return;
         ptrPulling = false;
         var indicator = document.getElementById('ptrIndicator');
@@ -10362,29 +10408,26 @@ document.addEventListener('visibilitychange', function() {
         if (!indicator || !indicator.classList.contains('visible')) return;
 
         if (ptrReady) {
-            // Refreshing state
             if (ptrText) ptrText.textContent = 'Refreshing...';
             indicator.classList.remove('ready');
             indicator.classList.add('refreshing');
             if (iconWrap) iconWrap.style.transform = '';
 
             var done = function() {
-                // Success state
                 indicator.classList.remove('refreshing');
                 indicator.classList.add('done');
                 if (iconWrap) iconWrap.innerHTML = '<i class="fa-solid fa-circle-check"></i>';
                 if (ptrText) ptrText.textContent = 'Updated';
-                haptic([10, 40, 20]);
+                haptic([30, 50, 40]);
+                lastAutoRefresh = Date.now();
 
-                // Flash the food log content
-                var meals = document.getElementById('foodlogMealsContainer');
-                if (meals) { meals.classList.add('ptr-flash'); }
+                // Flash the active tab content
+                var activePanel = document.querySelector('.tab-panel.tab-active');
+                if (activePanel) activePanel.classList.add('ptr-flash');
 
-                // Hide after a moment and reset
                 setTimeout(function() {
                     indicator.classList.remove('visible', 'done');
-                    if (meals) meals.classList.remove('ptr-flash');
-                    // Reset icon
+                    if (activePanel) activePanel.classList.remove('ptr-flash');
                     setTimeout(function() {
                         if (iconWrap) iconWrap.innerHTML = '<i class="fa-solid fa-arrow-rotate-right"></i>';
                         if (ptrText) ptrText.textContent = 'Pull to refresh';
@@ -10392,16 +10435,8 @@ document.addEventListener('visibilitychange', function() {
                 }, 1200);
             };
 
-            if (cronometerConnected) {
-                syncCronometerDay(getFoodLogDateStr()).then(done).catch(done);
-            } else {
-                renderFoodLogFromDB(getFoodLogDateStr()).then(function() {
-                    renderFoodLogWeekView();
-                    done();
-                }).catch(done);
-            }
+            refreshCurrentTab().then(done).catch(done);
         } else {
-            // Cancelled — reset
             indicator.classList.remove('visible', 'ready');
             if (iconWrap) iconWrap.style.transform = '';
         }
