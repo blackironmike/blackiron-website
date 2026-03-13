@@ -61,7 +61,7 @@
 
         :root {
             --black: #000000;
-            --dark-gray: #1a1a1a;
+            --dark-gray: #000000;
             --medium-gray: #333333;
             --light-gray: #cccccc;
             --white: #ffffff;
@@ -1855,7 +1855,7 @@
         }
 
         .modal-container {
-            background: #1a1a1a;
+            background: var(--dark-gray);
             border: 2px solid var(--medium-gray);
             max-width: 700px;
             width: 100%;
@@ -4552,7 +4552,7 @@
             <div class="section-container">
 
                 <!-- Weekly Check-In (inline form) -->
-                <div class="dash-card" style="background: var(--dark-gray);">
+                <div class="dash-card">
                     <div class="dash-card-header">
                         <h3 class="dash-card-title"><i class="fa-solid fa-clipboard-question"></i> Weekly Check-In</h3>
                     </div>
@@ -4650,7 +4650,7 @@
                 </div>
 
                 <!-- My Progress (Weight + Body Comp) -->
-                <div class="dash-card" style="background: var(--dark-gray);">
+                <div class="dash-card">
                     <div class="dash-card-header">
                         <h3 class="dash-card-title"><i class="fa-solid fa-chart-line"></i> My Progress</h3>
                     </div>
@@ -7023,7 +7023,7 @@ function renderMacroPieChart(protein, carbs, fat) {
             plugins: {
                 legend: { display: false },
                 tooltip: {
-                    backgroundColor: '#1a1a1a',
+                    backgroundColor: '#222222',
                     titleFont: { family: 'Montserrat', weight: '700' },
                     bodyFont: { family: 'Montserrat', weight: '500' },
                     padding: 12,
@@ -7320,7 +7320,7 @@ function renderProgressChart(weightData, bodyCompData) {
                     labels: { color: '#ccc', font: { family: 'Montserrat', weight: '600' } }
                 },
                 tooltip: {
-                    backgroundColor: '#1a1a1a',
+                    backgroundColor: '#222222',
                     titleColor: '#fff',
                     bodyColor: '#ccc',
                     borderColor: '#333',
@@ -9706,7 +9706,7 @@ function renderComplianceChart(weeklyData) {
             plugins: {
                 legend: { display: false },
                 tooltip: {
-                    backgroundColor: '#1a1a1a',
+                    backgroundColor: '#222222',
                     titleFont: { family: 'Montserrat', weight: '700' },
                     bodyFont: { family: 'Montserrat', weight: '500' },
                     callbacks: {
