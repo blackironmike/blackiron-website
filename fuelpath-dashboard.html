@@ -3996,6 +3996,21 @@
         }
 
         /* ===== FOOD LOG TAB ===== */
+        .ptr-indicator {
+            text-align: center;
+            padding: 0.75rem;
+            color: var(--light-gray);
+            font-size: 0.8rem;
+            font-weight: 600;
+            overflow: hidden;
+            max-height: 0;
+            opacity: 0;
+            transition: max-height 0.3s, opacity 0.3s;
+        }
+        .ptr-indicator.visible { max-height: 50px; opacity: 1; }
+        .ptr-indicator.refreshing .fa-arrow-rotate-right { animation: spin 1s linear infinite; }
+        @keyframes spin { to { transform: rotate(360deg); } }
+
         .foodlog-week-view {
             display: grid;
             grid-template-columns: repeat(7, 1fr);
@@ -4464,6 +4479,12 @@
                 <button class="btn-primary btn-small" id="cronometerSyncBtn" onclick="openCronometerModal()" style="font-size: 0.8rem; padding: 0.4rem 1rem;">
                     <i class="fa-solid fa-link" id="cronometerSyncBtnIcon"></i> <span id="cronometerSyncBtnText">Cronometer</span>
                 </button>
+            </div>
+
+            <!-- Pull-to-Refresh Indicator -->
+            <div class="ptr-indicator" id="ptrIndicator">
+                <i class="fa-solid fa-arrow-rotate-right" id="ptrIcon"></i>
+                <span id="ptrText">Pull to refresh</span>
             </div>
 
             <!-- Week Day Selector -->
@@ -6172,8 +6193,9 @@ function showTab(tabId) {
     // Scroll to top
     window.scrollTo(0, 0);
     // Load food log from DB when tab is shown
-    if (tabId === 'tabFoodLog' && cronometerConnected) {
+    if (tabId === 'tabFoodLog') {
         renderFoodLogFromDB(getFoodLogDateStr());
+        renderFoodLogWeekView();
     }
     // Lazy-init charts when their tab is first shown (Canvas elements in hidden tabs measure 0x0)
     if (tabId === 'tabCheckIn' && !chartsInitialized.checkIn) {
@@ -6249,6 +6271,7 @@ var foodlogDateOffset = 0;
 var cronometerConnected = false;
 var cronometerAccessToken = null;
 var cronometerUserId = null;
+var lastFoodLogRefresh = 0;
 
 function getFoodLogDateStr() {
     var d = new Date();
@@ -6677,6 +6700,7 @@ async function renderFoodLogFromDB(dateStr) {
 
         container.innerHTML = html;
         updateFoodLogMacroSummary(totalCal, totalP, totalC, totalF);
+        lastFoodLogRefresh = Date.now();
     } catch (err) {
         console.error('Error rendering food log:', err);
         container.innerHTML = '<div style="text-align: center; padding: 2rem; color: #e74c3c;">'
@@ -10269,6 +10293,83 @@ function showDashAchievementToast(name, description, tierColor) {
         setTimeout(function() { toast.remove(); }, 400);
     }, 4000);
 }
+
+// ===== AUTO-REFRESH ON VISIBILITY =====
+document.addEventListener('visibilitychange', function() {
+    if (document.visibilityState !== 'visible') return;
+    var foodLogTab = document.getElementById('tabFoodLog');
+    if (!foodLogTab || !foodLogTab.classList.contains('tab-active')) return;
+    if (Date.now() - lastFoodLogRefresh < 30000) return;
+    if (cronometerConnected) {
+        syncCronometerDay(getFoodLogDateStr());
+    } else {
+        renderFoodLogFromDB(getFoodLogDateStr());
+        renderFoodLogWeekView();
+    }
+});
+
+// ===== PULL-TO-REFRESH =====
+(function() {
+    var ptrStartY = 0;
+    var ptrPulling = false;
+    var ptrThreshold = 60;
+
+    var tabFoodLog = document.getElementById('tabFoodLog');
+    if (!tabFoodLog) return;
+
+    tabFoodLog.addEventListener('touchstart', function(e) {
+        if (window.scrollY > 0) return;
+        if (!tabFoodLog.classList.contains('tab-active')) return;
+        ptrStartY = e.touches[0].clientY;
+        ptrPulling = true;
+    }, { passive: true });
+
+    tabFoodLog.addEventListener('touchmove', function(e) {
+        if (!ptrPulling || window.scrollY > 0) { ptrPulling = false; return; }
+        var pullDist = e.touches[0].clientY - ptrStartY;
+        var indicator = document.getElementById('ptrIndicator');
+        var ptrText = document.getElementById('ptrText');
+        if (pullDist > 10 && indicator) {
+            indicator.classList.add('visible');
+            if (pullDist >= ptrThreshold) {
+                if (ptrText) ptrText.textContent = 'Release to refresh';
+            } else {
+                if (ptrText) ptrText.textContent = 'Pull to refresh';
+            }
+        }
+    }, { passive: true });
+
+    tabFoodLog.addEventListener('touchend', function() {
+        if (!ptrPulling) return;
+        ptrPulling = false;
+        var indicator = document.getElementById('ptrIndicator');
+        var ptrText = document.getElementById('ptrText');
+        if (!indicator || !indicator.classList.contains('visible')) return;
+
+        // Check if we pulled past threshold by reading the text state
+        if (ptrText && ptrText.textContent === 'Release to refresh') {
+            // Show refreshing spinner
+            if (ptrText) ptrText.textContent = 'Refreshing...';
+            indicator.classList.add('refreshing');
+
+            var done = function() {
+                indicator.classList.remove('visible', 'refreshing');
+                if (ptrText) ptrText.textContent = 'Pull to refresh';
+            };
+
+            if (cronometerConnected) {
+                syncCronometerDay(getFoodLogDateStr()).then(done).catch(done);
+            } else {
+                renderFoodLogFromDB(getFoodLogDateStr()).then(function() {
+                    renderFoodLogWeekView();
+                    done();
+                }).catch(done);
+            }
+        } else {
+            indicator.classList.remove('visible');
+        }
+    });
+})();
 
 // ===== INIT =====
 checkSession();
