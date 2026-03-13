@@ -4006,11 +4006,23 @@
             overflow: hidden;
             max-height: 0;
             opacity: 0;
-            transition: max-height 0.3s, opacity 0.3s;
+            transition: max-height 0.3s, opacity 0.3s, color 0.2s;
+        }
+        .ptr-indicator .ptr-icon-wrap {
+            display: inline-block;
+            transition: transform 0.1s ease-out;
         }
         .ptr-indicator.visible { max-height: 50px; opacity: 1; }
-        .ptr-indicator.refreshing .fa-arrow-rotate-right { animation: spin 1s linear infinite; }
+        .ptr-indicator.ready { color: var(--yellow); }
+        .ptr-indicator.refreshing .ptr-icon-wrap { animation: spin 0.8s linear infinite; }
+        .ptr-indicator.done { color: #27AE60; }
         @keyframes spin { to { transform: rotate(360deg); } }
+        @keyframes ptr-flash {
+            0% { opacity: 1; }
+            30% { opacity: 0.4; }
+            100% { opacity: 1; }
+        }
+        .ptr-flash { animation: ptr-flash 0.4s ease-out; }
 
         .foodlog-week-view {
             display: grid;
@@ -4484,7 +4496,7 @@
 
             <!-- Pull-to-Refresh Indicator -->
             <div class="ptr-indicator" id="ptrIndicator">
-                <i class="fa-solid fa-arrow-rotate-right" id="ptrIcon"></i>
+                <span class="ptr-icon-wrap" id="ptrIconWrap"><i class="fa-solid fa-arrow-rotate-right"></i></span>
                 <span id="ptrText">Pull to refresh</span>
             </div>
 
@@ -10299,15 +10311,21 @@ document.addEventListener('visibilitychange', function() {
     var ptrStartY = 0;
     var ptrPulling = false;
     var ptrThreshold = 60;
+    var ptrReady = false;
 
     var tabFoodLog = document.getElementById('tabFoodLog');
     if (!tabFoodLog) return;
+
+    function haptic(ms) {
+        if (navigator.vibrate) navigator.vibrate(ms || 10);
+    }
 
     tabFoodLog.addEventListener('touchstart', function(e) {
         if (window.scrollY > 0) return;
         if (!tabFoodLog.classList.contains('tab-active')) return;
         ptrStartY = e.touches[0].clientY;
         ptrPulling = true;
+        ptrReady = false;
     }, { passive: true });
 
     tabFoodLog.addEventListener('touchmove', function(e) {
@@ -10315,11 +10333,21 @@ document.addEventListener('visibilitychange', function() {
         var pullDist = e.touches[0].clientY - ptrStartY;
         var indicator = document.getElementById('ptrIndicator');
         var ptrText = document.getElementById('ptrText');
+        var iconWrap = document.getElementById('ptrIconWrap');
         if (pullDist > 10 && indicator) {
             indicator.classList.add('visible');
-            if (pullDist >= ptrThreshold) {
+            // Rotate icon proportionally to pull distance (0-180deg)
+            var rotation = Math.min(pullDist / ptrThreshold, 1) * 180;
+            if (iconWrap) iconWrap.style.transform = 'rotate(' + rotation + 'deg)';
+
+            if (pullDist >= ptrThreshold && !ptrReady) {
+                ptrReady = true;
+                indicator.classList.add('ready');
                 if (ptrText) ptrText.textContent = 'Release to refresh';
-            } else {
+                haptic(15);
+            } else if (pullDist < ptrThreshold && ptrReady) {
+                ptrReady = false;
+                indicator.classList.remove('ready');
                 if (ptrText) ptrText.textContent = 'Pull to refresh';
             }
         }
@@ -10330,17 +10358,38 @@ document.addEventListener('visibilitychange', function() {
         ptrPulling = false;
         var indicator = document.getElementById('ptrIndicator');
         var ptrText = document.getElementById('ptrText');
+        var iconWrap = document.getElementById('ptrIconWrap');
         if (!indicator || !indicator.classList.contains('visible')) return;
 
-        // Check if we pulled past threshold by reading the text state
-        if (ptrText && ptrText.textContent === 'Release to refresh') {
-            // Show refreshing spinner
+        if (ptrReady) {
+            // Refreshing state
             if (ptrText) ptrText.textContent = 'Refreshing...';
+            indicator.classList.remove('ready');
             indicator.classList.add('refreshing');
+            if (iconWrap) iconWrap.style.transform = '';
 
             var done = function() {
-                indicator.classList.remove('visible', 'refreshing');
-                if (ptrText) ptrText.textContent = 'Pull to refresh';
+                // Success state
+                indicator.classList.remove('refreshing');
+                indicator.classList.add('done');
+                if (iconWrap) iconWrap.innerHTML = '<i class="fa-solid fa-circle-check"></i>';
+                if (ptrText) ptrText.textContent = 'Updated';
+                haptic([10, 40, 20]);
+
+                // Flash the food log content
+                var meals = document.getElementById('foodlogMealsContainer');
+                if (meals) { meals.classList.add('ptr-flash'); }
+
+                // Hide after a moment and reset
+                setTimeout(function() {
+                    indicator.classList.remove('visible', 'done');
+                    if (meals) meals.classList.remove('ptr-flash');
+                    // Reset icon
+                    setTimeout(function() {
+                        if (iconWrap) iconWrap.innerHTML = '<i class="fa-solid fa-arrow-rotate-right"></i>';
+                        if (ptrText) ptrText.textContent = 'Pull to refresh';
+                    }, 300);
+                }, 1200);
             };
 
             if (cronometerConnected) {
@@ -10352,8 +10401,11 @@ document.addEventListener('visibilitychange', function() {
                 }).catch(done);
             }
         } else {
-            indicator.classList.remove('visible');
+            // Cancelled — reset
+            indicator.classList.remove('visible', 'ready');
+            if (iconWrap) iconWrap.style.transform = '';
         }
+        ptrReady = false;
     });
 })();
 
