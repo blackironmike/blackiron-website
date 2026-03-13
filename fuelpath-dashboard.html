@@ -1022,7 +1022,7 @@
             background: var(--dark-gray);
             border: 2px solid var(--medium-gray);
             padding: 2rem;
-            margin-top: 2rem;
+            margin-top: 0;
         }
         .compliance-card-header {
             display: flex;
@@ -1114,7 +1114,8 @@
             background: var(--dark-gray);
             border: 2px solid var(--medium-gray);
             padding: 2rem;
-            margin-top: 2rem;
+            margin-top: 0;
+            margin-bottom: 1rem;
         }
         .achievements-header {
             display: flex;
@@ -4535,183 +4536,168 @@
         <!-- ===== TAB 3: CHECK-IN ===== -->
         <div id="tabCheckIn" class="tab-panel">
 
-            <!-- Weekly Check-In (inline form) -->
-            <div class="section" style="padding-top: 1rem; padding-bottom: 0.75rem;">
-                <div class="section-container">
-                    <div class="dash-card" style="background: var(--dark-gray);">
-                        <div class="dash-card-header">
-                            <h3 class="dash-card-title"><i class="fa-solid fa-clipboard-question"></i> Weekly Check-In</h3>
-                        </div>
-                        <p style="color: var(--light-gray); margin-bottom: 1.5rem;">Take 2 minutes to reflect on your week. This data helps you (and your coach) spot trends and make better decisions.</p>
-                        <button class="btn-primary btn-small" onclick="openCheckinModal()"><i class="fa-solid fa-pen-to-square"></i> Submit Weekly Check-In</button>
-                        <div id="checkinTrendGrid"></div>
-                        <div class="checkin-history" style="margin-top: 1.5rem;">
-                            <button class="collapsible-toggle" onclick="toggleCollapsible(this)">
-                                <i class="fa-solid fa-chevron-down"></i> Check-In History
-                            </button>
-                            <div class="collapsible-content">
-                                <div id="checkinHistoryList"></div>
-                                <div id="checkinEmpty" class="empty-state" style="padding: 2rem;">
-                                    <p>No check-ins yet. Submit your first one above!</p>
-                                </div>
-                                <div id="checkinCoachingUpsell" class="coaching-upsell" style="display: none;">
-                                    <h4><i class="fa-solid fa-chart-line" style="color: var(--yellow); margin-right: 0.5rem;"></i> See What a Coach Sees</h4>
-                                    <p>You've built a solid check-in history. Athletes who work with a coach see 2x better adherence and faster results. Let a coach analyze your data and build a plan around it.</p>
-                                    <a href="PLACEHOLDER_COACHING_BOOKING_URL" class="btn-primary">Book a Coaching Call — $99</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+        <section class="section">
+            <div class="section-container">
 
-            <!-- Coach Notes Thread (athlete view) -->
-            <div class="section" style="padding-top: 0; padding-bottom: 0.75rem;">
-                <div class="section-container">
-                    <div class="dash-card" id="athleteCoachNotesCard">
-                        <div class="dash-card-header">
-                            <h3 class="dash-card-title"><i class="fa-solid fa-comments" style="color: var(--yellow); margin-right: 0.5rem;"></i> Coach Notes</h3>
-                        </div>
-                        <div id="athleteCoachThread" class="coach-thread">
-                            <div class="coach-thread-empty" id="coachThreadEmpty">
-                                <i class="fa-solid fa-comments" style="font-size: 2rem; color: var(--medium-gray); margin-bottom: 0.5rem;"></i>
-                                <p style="color: var(--light-gray); font-size: 0.85rem;">No messages from your coach yet. Check back after your next check-in.</p>
-                            </div>
-                            <div id="coachThreadMessages"></div>
-                        </div>
-                        <div class="coach-thread-reply" id="coachThreadReply" style="display: none;">
-                            <textarea id="athleteReplyText" rows="2" placeholder="Reply to your coach..." style="width:100%; background: var(--black); color: var(--white); border: 2px solid var(--medium-gray); padding: 0.75rem; font-family: 'Montserrat', sans-serif; font-size: 0.85rem; resize: vertical;"></textarea>
-                            <button class="btn-primary btn-small" onclick="sendAthleteReply()" style="margin-top: 0.5rem;"><i class="fa-solid fa-paper-plane"></i> Send</button>
-                        </div>
+                <!-- Weekly Check-In (inline form) -->
+                <div class="dash-card" style="background: var(--dark-gray);">
+                    <div class="dash-card-header">
+                        <h3 class="dash-card-title"><i class="fa-solid fa-clipboard-question"></i> Weekly Check-In</h3>
                     </div>
-                </div>
-            </div>
-
-            <!-- Compliance Stats -->
-            <div class="section" style="padding-top: 0; padding-bottom: 0.75rem;">
-                <div class="section-container">
-                    <div class="dash-card compliance-card" id="complianceCard" style="display: none;">
-                        <div class="dash-card-header">
-                            <h3 class="dash-card-title"><i class="fa-solid fa-bullseye"></i> Compliance</h3>
-                        </div>
-                        <div class="compliance-stats-row" id="complianceStatsRow">
-                            <div class="compliance-stat">
-                                <div class="compliance-stat-label">Overall</div>
-                                <div class="compliance-stat-value" id="compOverallPct">--</div>
-                                <div class="compliance-stat-unit">of days on target</div>
-                            </div>
-                            <div class="compliance-stat">
-                                <div class="compliance-stat-label">Current Streak</div>
-                                <div class="compliance-stat-value" id="compCurrentStreak">--</div>
-                                <div class="compliance-stat-unit">days</div>
-                            </div>
-                            <div class="compliance-stat">
-                                <div class="compliance-stat-label">Best Streak</div>
-                                <div class="compliance-stat-value" id="compBestStreak">--</div>
-                                <div class="compliance-stat-unit">days</div>
-                            </div>
-                            <div class="compliance-stat">
-                                <div class="compliance-stat-label">Phase to Date</div>
-                                <div class="compliance-stat-value" id="compPhasePct">--</div>
-                                <div class="compliance-stat-unit">compliance</div>
-                            </div>
-                        </div>
-                        <div class="compliance-macro-bars" id="complianceMacroBars">
-                            <div class="compliance-macro-bar">
-                                <div class="compliance-macro-name">Calories</div>
-                                <div class="compliance-macro-track"><div class="compliance-macro-fill" id="compCalBar" style="width:0%; background: #27AE60;"></div></div>
-                                <div class="compliance-macro-pct" id="compCalPct">--%</div>
-                            </div>
-                            <div class="compliance-macro-bar">
-                                <div class="compliance-macro-name">Protein</div>
-                                <div class="compliance-macro-track"><div class="compliance-macro-fill" id="compProBar" style="width:0%; background: #e74c3c;"></div></div>
-                                <div class="compliance-macro-pct" id="compProPct">--%</div>
-                            </div>
-                            <div class="compliance-macro-bar">
-                                <div class="compliance-macro-name">Carbs</div>
-                                <div class="compliance-macro-track"><div class="compliance-macro-fill" id="compCarbBar" style="width:0%; background: #2196F3;"></div></div>
-                                <div class="compliance-macro-pct" id="compCarbPct">--%</div>
-                            </div>
-                            <div class="compliance-macro-bar">
-                                <div class="compliance-macro-name">Fat</div>
-                                <div class="compliance-macro-track"><div class="compliance-macro-fill" id="compFatBar" style="width:0%; background: #FFD202;"></div></div>
-                                <div class="compliance-macro-pct" id="compFatPct">--%</div>
-                            </div>
-                        </div>
-                        <div class="compliance-chart-wrap">
-                            <canvas id="complianceWeeklyChart"></canvas>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- My Progress (Weight + Body Comp) -->
-            <div class="section" style="padding-top: 0; padding-bottom: 0.75rem;">
-                <div class="section-container">
-                    <div class="dash-card" style="background: var(--dark-gray);">
-                        <div class="dash-card-header">
-                            <h3 class="dash-card-title"><i class="fa-solid fa-chart-line"></i> My Progress</h3>
-                        </div>
-                        <div class="stats-row stats-row-3" id="progressSummary">
-                            <div class="stat-card">
-                                <div class="stat-card-label">Weight</div>
-                                <div class="stat-card-value" id="weightCurrent">--</div>
-                                <div class="stat-card-unit">lbs</div>
-                                <div class="stat-card-change" id="weightChange"></div>
-                            </div>
-                            <div class="stat-card">
-                                <div class="stat-card-label">Body Fat</div>
-                                <div class="stat-card-value" id="progressBodyFat">--</div>
-                                <div class="stat-card-unit">%</div>
-                                <div class="stat-card-change" id="progressBodyFatChange"></div>
-                            </div>
-                            <div class="stat-card">
-                                <div class="stat-card-label">Skeletal Muscle</div>
-                                <div class="stat-card-value" id="progressSMM">--</div>
-                                <div class="stat-card-unit">lbs</div>
-                                <div class="stat-card-change" id="progressSMMChange"></div>
-                            </div>
-                        </div>
-                        <div class="weight-chart-container">
-                            <canvas id="weightChart"></canvas>
-                        </div>
-                        <div class="progress-actions" style="display: flex; gap: 1rem; margin: 1.5rem 0;">
-                            <button class="btn-primary btn-small" onclick="openProgressModal()"><i class="fa-solid fa-chart-line"></i> Log Progress</button>
-                        </div>
-                        <div class="weight-history">
-                            <button class="collapsible-toggle" onclick="toggleCollapsible(this)">
-                                <i class="fa-solid fa-chevron-down"></i> Weight History
-                            </button>
-                            <div class="collapsible-content">
-                                <div class="weight-history-list" id="weightHistoryList"></div>
-                            </div>
-                        </div>
-                        <div id="bodyCompContent" style="display: none;">
-                            <div id="bodyCompPopulated" style="display: none;">
-                                <div class="body-comp-summary" id="bodyCompSummary"></div>
-                            </div>
-                            <div id="bodyCompEmpty"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Achievements -->
-            <div class="section" style="padding-top: 0; padding-bottom: 0.75rem;">
-                <div class="section-container">
-                    <div class="achievements-card" id="achievementsCard" style="display: none;">
-                        <div class="achievements-header">
-                            <h3 class="achievements-title"><i class="fa-solid fa-trophy"></i> Achievements</h3>
-                            <span class="achievements-count" id="achievementsCount">0 / 32</span>
-                        </div>
-                        <div class="achievements-grid collapsed" id="achievementsGrid"></div>
-                        <button class="achievements-expand" id="achievementsExpand" onclick="openAchievementsModal()">
-                            <i class="fa-solid fa-trophy"></i> <span>Show All</span>
+                    <p style="color: var(--light-gray); margin-bottom: 1.5rem;">Take 2 minutes to reflect on your week. This data helps you (and your coach) spot trends and make better decisions.</p>
+                    <button class="btn-primary btn-small" onclick="openCheckinModal()"><i class="fa-solid fa-pen-to-square"></i> Submit Weekly Check-In</button>
+                    <div id="checkinTrendGrid"></div>
+                    <div class="checkin-history" style="margin-top: 1.5rem;">
+                        <button class="collapsible-toggle" onclick="toggleCollapsible(this)">
+                            <i class="fa-solid fa-chevron-down"></i> Check-In History
                         </button>
+                        <div class="collapsible-content">
+                            <div id="checkinHistoryList"></div>
+                            <div id="checkinEmpty" class="empty-state" style="padding: 2rem;">
+                                <p>No check-ins yet. Submit your first one above!</p>
+                            </div>
+                            <div id="checkinCoachingUpsell" class="coaching-upsell" style="display: none;">
+                                <h4><i class="fa-solid fa-chart-line" style="color: var(--yellow); margin-right: 0.5rem;"></i> See What a Coach Sees</h4>
+                                <p>You've built a solid check-in history. Athletes who work with a coach see 2x better adherence and faster results. Let a coach analyze your data and build a plan around it.</p>
+                                <a href="PLACEHOLDER_COACHING_BOOKING_URL" class="btn-primary">Book a Coaching Call — $99</a>
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </div>
 
+                <!-- Coach Notes Thread (athlete view) -->
+                <div class="dash-card" id="athleteCoachNotesCard">
+                    <div class="dash-card-header">
+                        <h3 class="dash-card-title"><i class="fa-solid fa-comments" style="color: var(--yellow); margin-right: 0.5rem;"></i> Coach Notes</h3>
+                    </div>
+                    <div id="athleteCoachThread" class="coach-thread">
+                        <div class="coach-thread-empty" id="coachThreadEmpty">
+                            <i class="fa-solid fa-comments" style="font-size: 2rem; color: var(--medium-gray); margin-bottom: 0.5rem;"></i>
+                            <p style="color: var(--light-gray); font-size: 0.85rem;">No messages from your coach yet. Check back after your next check-in.</p>
+                        </div>
+                        <div id="coachThreadMessages"></div>
+                    </div>
+                    <div class="coach-thread-reply" id="coachThreadReply" style="display: none;">
+                        <textarea id="athleteReplyText" rows="2" placeholder="Reply to your coach..." style="width:100%; background: var(--black); color: var(--white); border: 2px solid var(--medium-gray); padding: 0.75rem; font-family: 'Montserrat', sans-serif; font-size: 0.85rem; resize: vertical;"></textarea>
+                        <button class="btn-primary btn-small" onclick="sendAthleteReply()" style="margin-top: 0.5rem;"><i class="fa-solid fa-paper-plane"></i> Send</button>
+                    </div>
+                </div>
+
+                <!-- Compliance Stats -->
+                <div class="dash-card compliance-card" id="complianceCard" style="display: none;">
+                    <div class="dash-card-header">
+                        <h3 class="dash-card-title"><i class="fa-solid fa-bullseye"></i> Compliance</h3>
+                    </div>
+                    <div class="compliance-stats-row" id="complianceStatsRow">
+                        <div class="compliance-stat">
+                            <div class="compliance-stat-label">Overall</div>
+                            <div class="compliance-stat-value" id="compOverallPct">--</div>
+                            <div class="compliance-stat-unit">of days on target</div>
+                        </div>
+                        <div class="compliance-stat">
+                            <div class="compliance-stat-label">Current Streak</div>
+                            <div class="compliance-stat-value" id="compCurrentStreak">--</div>
+                            <div class="compliance-stat-unit">days</div>
+                        </div>
+                        <div class="compliance-stat">
+                            <div class="compliance-stat-label">Best Streak</div>
+                            <div class="compliance-stat-value" id="compBestStreak">--</div>
+                            <div class="compliance-stat-unit">days</div>
+                        </div>
+                        <div class="compliance-stat">
+                            <div class="compliance-stat-label">Phase to Date</div>
+                            <div class="compliance-stat-value" id="compPhasePct">--</div>
+                            <div class="compliance-stat-unit">compliance</div>
+                        </div>
+                    </div>
+                    <div class="compliance-macro-bars" id="complianceMacroBars">
+                        <div class="compliance-macro-bar">
+                            <div class="compliance-macro-name">Calories</div>
+                            <div class="compliance-macro-track"><div class="compliance-macro-fill" id="compCalBar" style="width:0%; background: #27AE60;"></div></div>
+                            <div class="compliance-macro-pct" id="compCalPct">--%</div>
+                        </div>
+                        <div class="compliance-macro-bar">
+                            <div class="compliance-macro-name">Protein</div>
+                            <div class="compliance-macro-track"><div class="compliance-macro-fill" id="compProBar" style="width:0%; background: #e74c3c;"></div></div>
+                            <div class="compliance-macro-pct" id="compProPct">--%</div>
+                        </div>
+                        <div class="compliance-macro-bar">
+                            <div class="compliance-macro-name">Carbs</div>
+                            <div class="compliance-macro-track"><div class="compliance-macro-fill" id="compCarbBar" style="width:0%; background: #2196F3;"></div></div>
+                            <div class="compliance-macro-pct" id="compCarbPct">--%</div>
+                        </div>
+                        <div class="compliance-macro-bar">
+                            <div class="compliance-macro-name">Fat</div>
+                            <div class="compliance-macro-track"><div class="compliance-macro-fill" id="compFatBar" style="width:0%; background: #FFD202;"></div></div>
+                            <div class="compliance-macro-pct" id="compFatPct">--%</div>
+                        </div>
+                    </div>
+                    <div class="compliance-chart-wrap">
+                        <canvas id="complianceWeeklyChart"></canvas>
+                    </div>
+                </div>
+
+                <!-- My Progress (Weight + Body Comp) -->
+                <div class="dash-card" style="background: var(--dark-gray);">
+                    <div class="dash-card-header">
+                        <h3 class="dash-card-title"><i class="fa-solid fa-chart-line"></i> My Progress</h3>
+                    </div>
+                    <div class="stats-row stats-row-3" id="progressSummary">
+                        <div class="stat-card">
+                            <div class="stat-card-label">Weight</div>
+                            <div class="stat-card-value" id="weightCurrent">--</div>
+                            <div class="stat-card-unit">lbs</div>
+                            <div class="stat-card-change" id="weightChange"></div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-card-label">Body Fat</div>
+                            <div class="stat-card-value" id="progressBodyFat">--</div>
+                            <div class="stat-card-unit">%</div>
+                            <div class="stat-card-change" id="progressBodyFatChange"></div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-card-label">Skeletal Muscle</div>
+                            <div class="stat-card-value" id="progressSMM">--</div>
+                            <div class="stat-card-unit">lbs</div>
+                            <div class="stat-card-change" id="progressSMMChange"></div>
+                        </div>
+                    </div>
+                    <div class="weight-chart-container">
+                        <canvas id="weightChart"></canvas>
+                    </div>
+                    <div class="progress-actions" style="display: flex; gap: 1rem; margin: 1.5rem 0;">
+                        <button class="btn-primary btn-small" onclick="openProgressModal()"><i class="fa-solid fa-chart-line"></i> Log Progress</button>
+                    </div>
+                    <div class="weight-history">
+                        <button class="collapsible-toggle" onclick="toggleCollapsible(this)">
+                            <i class="fa-solid fa-chevron-down"></i> Weight History
+                        </button>
+                        <div class="collapsible-content">
+                            <div class="weight-history-list" id="weightHistoryList"></div>
+                        </div>
+                    </div>
+                    <div id="bodyCompContent" style="display: none;">
+                        <div id="bodyCompPopulated" style="display: none;">
+                            <div class="body-comp-summary" id="bodyCompSummary"></div>
+                        </div>
+                        <div id="bodyCompEmpty"></div>
+                    </div>
+                </div>
+
+                <!-- Achievements -->
+                <div class="achievements-card" id="achievementsCard" style="display: none;">
+                    <div class="achievements-header">
+                        <h3 class="achievements-title"><i class="fa-solid fa-trophy"></i> Achievements</h3>
+                        <span class="achievements-count" id="achievementsCount">0 / 32</span>
+                    </div>
+                    <div class="achievements-grid collapsed" id="achievementsGrid"></div>
+                    <button class="achievements-expand" id="achievementsExpand" onclick="openAchievementsModal()">
+                        <i class="fa-solid fa-trophy"></i> <span>Show All</span>
+                    </button>
+                </div>
+
+            </div>
+        </section>
 
         </div>
 
