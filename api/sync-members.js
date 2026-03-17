@@ -54,7 +54,7 @@ function isWithinDaysOfAnniversary(memberSinceDate, years, windowDays = 14) {
 async function wodifyFetch(path) {
   const res = await fetch(`${WODIFY_BASE}${path}`, {
     headers: {
-      'Authorization': `Bearer ${getEnv('WODIFY_API_KEY')}`,
+      'x-api-key': getEnv('WODIFY_API_KEY'),
       'Accept': 'application/json',
     },
   });

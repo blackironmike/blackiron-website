@@ -52,7 +52,7 @@ function supabase() {
 async function wodifyFetch(path) {
   const res = await fetch(`${WODIFY_BASE}${path}`, {
     headers: {
-      'Authorization': `Bearer ${getEnv('WODIFY_API_KEY')}`,
+      'x-api-key': getEnv('WODIFY_API_KEY'),
       'Accept': 'application/json',
     },
   });
@@ -81,7 +81,7 @@ async function wodifyCreateLead(contact) {
   const res = await fetch(`${WODIFY_BASE}/leads`, {
     method: 'POST',
     headers: {
-      'Authorization': `Bearer ${getEnv('WODIFY_API_KEY')}`,
+      'x-api-key': getEnv('WODIFY_API_KEY'),
       'Content-Type': 'application/json',
       'Accept': 'application/json',
     },
