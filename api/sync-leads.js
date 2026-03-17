@@ -318,12 +318,19 @@ async function syncGhlToWodify(db, log, processedEmails) {
 // --- Handler ---
 
 export default async function handler(req, res) {
-  // Verify cron secret (Vercel sends this header for cron jobs)
-  const authHeader = req.headers.authorization;
+  // Verify cron secret
+  // Vercel cron sends Authorization: Bearer <CRON_SECRET>
+  // Manual testing: ?secret=<CRON_SECRET>
   const cronSecret = process.env.CRON_SECRET;
-
-  if (cronSecret && authHeader !== `Bearer ${cronSecret}`) {
-    return res.status(401).json({ error: 'Unauthorized' });
+  if (cronSecret) {
+    const authHeader = req.headers.authorization;
+    const querySecret = req.query.secret;
+    const authorized =
+      authHeader === `Bearer ${cronSecret}` ||
+      querySecret === cronSecret;
+    if (!authorized) {
+      return res.status(401).json({ error: 'Unauthorized' });
+    }
   }
 
   if (req.method !== 'GET' && req.method !== 'POST') {
