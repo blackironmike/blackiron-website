@@ -353,12 +353,18 @@ export default async function handler(req, res) {
 
   try {
     const processedEmails = new Set();
+    const warnings = [];
 
     // Direction 1: Wodify -> GHL
     await syncWodifyToGhl(db, logEntry, processedEmails);
 
-    // Direction 2: GHL -> Wodify
-    await syncGhlToWodify(db, logEntry, processedEmails);
+    // Direction 2: GHL -> Wodify (non-fatal if scope not available)
+    try {
+      await syncGhlToWodify(db, logEntry, processedEmails);
+    } catch (err) {
+      console.error('GHL->Wodify sync failed (non-fatal):', err.message);
+      warnings.push(`GHL->Wodify skipped: ${err.message}`);
+    }
 
     // Update sync log
     await db
@@ -375,6 +381,7 @@ export default async function handler(req, res) {
     return res.status(200).json({
       success: true,
       ...logEntry,
+      ...(warnings.length ? { warnings } : {}),
     });
   } catch (err) {
     console.error('Lead sync failed:', err);
