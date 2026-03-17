@@ -153,12 +153,25 @@ async function ghlUpdateContact(contactId, updates) {
   });
 }
 
-async function ghlGetRecentContacts(sinceIso) {
-  // Fetch contacts created after a given timestamp that don't have the 'wodify' tag
-  const data = await ghlFetch(
-    `/contacts/?locationId=${getEnv('GHL_LOCATION_ID')}&startAfter=${encodeURIComponent(sinceIso)}&limit=100`
-  );
-  return (data.contacts || []).filter(c => !(c.tags || []).includes('wodify'));
+async function ghlGetAllContacts() {
+  // Fetch all GHL contacts and filter to those without the 'wodify' tag
+  const allContacts = [];
+  let startAfterId = null;
+
+  while (true) {
+    let url = `/contacts/?locationId=${getEnv('GHL_LOCATION_ID')}&limit=100`;
+    if (startAfterId) url += `&startAfterId=${startAfterId}`;
+
+    const data = await ghlFetch(url);
+    const contacts = data.contacts || [];
+    if (contacts.length === 0) break;
+
+    allContacts.push(...contacts);
+    if (contacts.length < 100) break;
+    startAfterId = contacts[contacts.length - 1].id;
+  }
+
+  return allContacts.filter(c => !(c.tags || []).includes('wodify'));
 }
 
 function buildTagsForLead(lead) {
@@ -251,20 +264,7 @@ async function syncWodifyToGhl(db, log, processedEmails) {
 }
 
 async function syncGhlToWodify(db, log, processedEmails) {
-  // Get last successful sync time for GHL->Wodify direction
-  const { data: lastSync } = await db
-    .from('sync_log')
-    .select('completed_at')
-    .eq('sync_type', 'leads')
-    .eq('status', 'completed')
-    .order('completed_at', { ascending: false })
-    .limit(1)
-    .maybeSingle();
-
-  // Default to 24 hours ago if no previous sync
-  const sinceIso = lastSync?.completed_at || new Date(Date.now() - 86400000).toISOString();
-
-  const ghlContacts = await ghlGetRecentContacts(sinceIso);
+  const ghlContacts = await ghlGetAllContacts();
 
   for (const contact of ghlContacts) {
     const email = (contact.email || '').toLowerCase().trim();
