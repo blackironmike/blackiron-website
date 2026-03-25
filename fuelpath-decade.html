@@ -1252,7 +1252,7 @@
 
             <div class="timeline">
                 <div class="timeline-item reveal">
-                    <div class="timeline-label">Year 1 â€” Chapter One</div>
+                    <div class="timeline-label">Year 1 — Chapter One</div>
                     <h3>Learn the System</h3>
                     <div class="phase-badges">
                         <span class="phase-badge phase-badge--baseline">Baseline</span>
@@ -1272,7 +1272,7 @@
                 </div>
 
                 <div class="timeline-item reveal">
-                    <div class="timeline-label">Year 2 â€” Chapter Two</div>
+                    <div class="timeline-label">Year 2 — Chapter Two</div>
                     <h3>Refine &amp; Optimize</h3>
                     <div class="phase-badges">
                         <span class="phase-badge phase-badge--baseline">Baseline</span>
@@ -1292,7 +1292,7 @@
                 </div>
 
                 <div class="timeline-item reveal">
-                    <div class="timeline-label">Years 3-4 â€” Chapter Three</div>
+                    <div class="timeline-label">Years 3-4 — Chapter Three</div>
                     <h3>Auto-Regulation</h3>
                     <div class="phase-badges">
                         <span class="phase-badge phase-badge--cut">Cut</span>
@@ -1311,7 +1311,7 @@
                 </div>
 
                 <div class="timeline-item reveal">
-                    <div class="timeline-label">Years 5-10 â€” Chapter Four</div>
+                    <div class="timeline-label">Years 5-10 — Chapter Four</div>
                     <h3>Mastery</h3>
                     <div class="phase-badges">
                         <span class="phase-badge phase-badge--maintain">Maintain</span>
@@ -1454,7 +1454,8 @@
                     <li><a href="faq">FAQ</a></li>
                     <li><a href="#" onclick="openSubscribeModal(); return false;">Subscribe</a></li>
                     <li><a href="#" onclick="openCancelModal(); return false;">Cancel Membership</a></li>
-                    <li><a href="privacy-policy">Terms & Privacy Policy</a></li>
+                    <li><a href="privacy-policy">Privacy Policy</a></li>
+                    <li><a href="terms">Terms &amp; Conditions</a></li>
                     <li><a href="privacy-policy#sms-terms">SMS Terms</a></li>
                 </ul>
             </div>
@@ -1476,7 +1477,7 @@
                     Check our class calendar for an up to date schedule.
                 </p>
                 <p style="color: var(--yellow); font-weight: 700;">
-                    Open Gym: 24/7
+                    Open Gym: 7 Days a Week
                 </p>
             </div>
         </div>
@@ -1530,7 +1531,7 @@
           "name": "I'm not losing weight during my cut.",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "First, are you actually tracking everything? Most stalls come from underreporting intake â€” cooking oils, sauces, drinks, and 'just a bite' add up fast. If your tracking is tight and the scale hasn't moved in 2+ weeks, rerun the calculator. You may need to adjust your activity level input down."
+            "text": "First, are you actually tracking everything? Most stalls come from underreporting intake — cooking oils, sauces, drinks, and 'just a bite' add up fast. If your tracking is tight and the scale hasn't moved in 2+ weeks, rerun the calculator. You may need to adjust your activity level input down."
           }
         },
         {
@@ -1562,7 +1563,7 @@
           "name": "Do I need to track macros forever?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Not forever, but probably longer than you think. Most people need 2-3 years of consistent tracking before they can intuitively eat at their targets. Think of tracking like training wheels â€” you'll know when you're ready to take them off."
+            "text": "Not forever, but probably longer than you think. Most people need 2-3 years of consistent tracking before they can intuitively eat at their targets. Think of tracking like training wheels — you'll know when you're ready to take them off."
           }
         },
         {
@@ -1793,8 +1794,8 @@ var _fpSupabase = null;
     var sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
     _fpSupabase = sb;
     var { data } = await sb.auth.getSession();
-    if (!data || !data.session) return; // not logged in â€” gate stays visible
-    // User is authenticated â€” grant access
+    if (!data || !data.session) return; // not logged in — gate stays visible
+    // User is authenticated — grant access
     document.getElementById('gateOverlay').style.display = 'none';
     // Detect coach/owner role for menu
     try {

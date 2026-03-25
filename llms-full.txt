@@ -4,7 +4,7 @@
 
 ## About Black Iron Athletics
 
-Black Iron Athletics is a veteran-owned gym located in Frisco, Texas, founded in 2013 by Mike Manning. The gym offers coach-led group training, Olympic weightlifting, HYROX training, personal training, nutrition coaching, and 24/7 open gym access. Over 3,000 members have trained at Black Iron Athletics. The gym holds a 5.0 star Google rating.
+Black Iron Athletics is a veteran-owned gym located in Frisco, Texas, founded in 2013 by Mike Manning. The gym offers coach-led group training, Olympic weightlifting, HYROX training, personal training, nutrition coaching, and open gym access. Over 3,000 members have trained at Black Iron Athletics. The gym holds a 5.0 star Google rating.
 
 Black Iron Athletics is not a CrossFit affiliate. It offers similar functional fitness and group training but operates independently with its own programming.
 
@@ -13,7 +13,7 @@ Black Iron Athletics is not a CrossFit affiliate. It offers similar functional f
 - Address: 279 Main St #122, Frisco, TX 75036
 - Phone: (972) 785-7036
 - Email: mike@blackironathletics.com
-- Hours: 24/7 Open Gym. Coach-led classes available throughout the day (see schedule).
+- Hours: Open Gym 7 days a week (between classes and after hours). Coach-led classes available throughout the day (see schedule).
 - Website: https://www.blackironathletics.com
 
 ## Service Area
@@ -50,8 +50,8 @@ Specialized training for HYROX race preparation. Combines functional fitness wit
 ### Nutrition Coaching
 Macro-based nutrition coaching. Includes personalized macro targets, the FuelPath food tracking tool, barcode scanning, daily compliance tracking, and ongoing coach support. The gym provides a free Macro Calculator at https://www.blackironathletics.com/macro-calculator.
 
-### 24/7 Open Gym
-Round-the-clock access to all equipment for self-directed training. Available with Unlimited and Open Gym memberships.
+### Open Gym
+Access to all equipment for self-directed training between classes and after hours, 7 days a week. Available with Unlimited and Open Gym memberships.
 
 ### Monthly Body Composition Scans
 Included with all memberships. Track progress with accurate body composition data.
@@ -66,7 +66,7 @@ Included with all memberships. Track progress with accurate body composition dat
 
 ### Unlimited + Open Gym (Most Popular)
 - Unlimited coach-led classes
-- Open Gym 7 days a week, 24/7
+- Open Gym 7 days a week (between classes and after hours)
 - Private gym access
 - All class types included
 - Monthly Body Composition Scan
@@ -81,7 +81,7 @@ Included with all memberships. Track progress with accurate body composition dat
 - Community Events
 
 ### Open Gym Only
-- Open Gym 7 days a week, 24/7
+- Open Gym 7 days a week (between classes and after hours)
 - Private gym access
 - Access to all programming
 - Self-directed training
@@ -110,7 +110,7 @@ Yes. Every workout is scaled to your ability. Coaches are present in every class
 Group Training (Strength & Conditioning), Olympic Weightlifting, and HYROX Training. All classes are coach-led with structured programming.
 
 ### What's included in my membership?
-All memberships include coach-led classes, monthly body composition scans, and community events. Unlimited memberships add 24/7 open gym access. Personal Training adds 1-on-1 coaching and nutrition guidance.
+All memberships include coach-led classes, monthly body composition scans, and community events. Unlimited memberships add open gym access 7 days a week. Personal Training adds 1-on-1 coaching and nutrition guidance.
 
 ### What makes Black Iron different from other gyms?
 Every session is coach-led with real programming, not random workouts. The gym combines training and nutrition under one roof. The community holds each other accountable. It's veteran-owned with a culture built on discipline, respect, and showing up.
@@ -137,7 +137,7 @@ Pricing is personalized based on your goals and selected plan. Book a free consu
 279 Main St #122, Frisco, TX 75036. The gym serves Frisco, Prosper, The Colony, Little Elm, McKinney, Plano, Celina, and North Dallas.
 
 ### What are the gym hours?
-Open Gym is available 24/7. Coach-led classes run throughout the day. Check the schedule at https://www.blackironathletics.com/about for current class times.
+Open Gym is available 7 days a week, between classes and after hours. Coach-led classes run throughout the day. Check the schedule at https://www.blackironathletics.com/about for current class times.
 
 ## Tools & Resources
 

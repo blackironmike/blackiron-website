@@ -3,22 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Phase 1: Baseline (January�March) | FuelPath: The 4-Phase Metabolic System | Black Iron Athletics</title>
-    <meta name="description" content="Phase 1 of FuelPath: The 4-Phase Metabolic System � Baseline. January through March. Reset after the holidays, stabilize your weight, build tracking habits, and prepare your body for the work ahead.">
+    <title>Phase 1: Baseline (January?March) | FuelPath: The 4-Phase Metabolic System | Black Iron Athletics</title>
+    <meta name="description" content="Phase 1 of FuelPath: The 4-Phase Metabolic System ? Baseline. January through March. Reset after the holidays, stabilize your weight, build tracking habits, and prepare your body for the work ahead.">
     <meta name="geo.region" content="US-TX">
     <meta name="geo.placename" content="Frisco">
     <link rel="canonical" href="https://www.blackironathletics.com/fuelpath-phase-1-maintain">
     <!-- Open Graph -->
-    <meta property="og:title" content="Phase 1: Baseline (January�March) | FuelPath: The 4-Phase Metabolic System | Black Iron Athletics">
-    <meta property="og:description" content="Phase 1 of FuelPath: The 4-Phase Metabolic System � Baseline. Reset after the holidays, stabilize your weight, and prepare for the cut ahead.">
+    <meta property="og:title" content="Phase 1: Baseline (January?March) | FuelPath: The 4-Phase Metabolic System | Black Iron Athletics">
+    <meta property="og:description" content="Phase 1 of FuelPath: The 4-Phase Metabolic System ? Baseline. Reset after the holidays, stabilize your weight, and prepare for the cut ahead.">
     <meta property="og:url" content="https://www.blackironathletics.com/fuelpath-phase-1-maintain">
     <meta property="og:image" content="https://www.blackironathletics.com/images/social-share.png">
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="Black Iron Athletics">
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Phase 1: Baseline (January�March) | FuelPath: The 4-Phase Metabolic System | Black Iron Athletics">
-    <meta name="twitter:description" content="Phase 1 of FuelPath: The 4-Phase Metabolic System � Baseline. Reset after the holidays, stabilize your weight, and prepare for the cut ahead.">
+    <meta name="twitter:title" content="Phase 1: Baseline (January?March) | FuelPath: The 4-Phase Metabolic System | Black Iron Athletics">
+    <meta name="twitter:description" content="Phase 1 of FuelPath: The 4-Phase Metabolic System ? Baseline. Reset after the holidays, stabilize your weight, and prepare for the cut ahead.">
     <meta name="twitter:image" content="https://www.blackironathletics.com/images/social-share.png">
     <link rel="icon" type="image/png" href="images/anvil-favicon.png">
     <meta name="theme-color" content="#000000">
@@ -1643,7 +1643,8 @@
                     <li><a href="faq">FAQ</a></li>
                     <li><a href="#" onclick="openSubscribeModal(); return false;">Subscribe</a></li>
                     <li><a href="#" onclick="openCancelModal(); return false;">Cancel Membership</a></li>
-                    <li><a href="privacy-policy">Terms & Privacy Policy</a></li>
+                    <li><a href="privacy-policy">Privacy Policy</a></li>
+                    <li><a href="terms">Terms &amp; Conditions</a></li>
                     <li><a href="privacy-policy#sms-terms">SMS Terms</a></li>
                 </ul>
             </div>
@@ -1665,7 +1666,7 @@
                     Check our class calendar for an up to date schedule.
                 </p>
                 <p style="color: var(--yellow); font-weight: 700;">
-                    Open Gym: 24/7
+                    Open Gym: 7 Days a Week
                 </p>
             </div>
         </div>
@@ -1685,7 +1686,7 @@
     {
       "@context": "https://schema.org",
       "@type": "Article",
-      "headline": "Phase 1: Baseline � January through March",
+      "headline": "Phase 1: Baseline ? January through March",
       "description": "The foundation-setting phase of FuelPath: The 4-Phase Metabolic System. Stabilize your weight, build tracking habits, and prepare for the cut ahead.",
       "author": { "@type": "Organization", "name": "Black Iron Athletics" },
       "publisher": {
@@ -2007,8 +2008,8 @@ var _fpSupabase = null;
     var sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
     _fpSupabase = sb;
     var { data } = await sb.auth.getSession();
-    if (!data || !data.session) return; // not logged in � gate stays visible
-    // User is authenticated � grant access
+    if (!data || !data.session) return; // not logged in ? gate stays visible
+    // User is authenticated ? grant access
     document.getElementById('gateOverlay').style.display = 'none';
     // Detect coach/owner role for menu
     try {

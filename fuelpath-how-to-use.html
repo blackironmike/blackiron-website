@@ -1,4 +1,4 @@
-ï»¿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -1863,7 +1863,8 @@
                     <li><a href="faq">FAQ</a></li>
                     <li><a href="#" onclick="openSubscribeModal(); return false;">Subscribe</a></li>
                     <li><a href="#" onclick="openCancelModal(); return false;">Cancel Membership</a></li>
-                    <li><a href="privacy-policy">Terms & Privacy Policy</a></li>
+                    <li><a href="privacy-policy">Privacy Policy</a></li>
+                    <li><a href="terms">Terms &amp; Conditions</a></li>
                     <li><a href="privacy-policy#sms-terms">SMS Terms</a></li>
                 </ul>
             </div>
@@ -1885,7 +1886,7 @@
                     Check our class calendar for an up to date schedule.
                 </p>
                 <p style="color: var(--yellow); font-weight: 700;">
-                    Open Gym: 24/7
+                    Open Gym: 7 Days a Week
                 </p>
             </div>
         </div>
@@ -2253,8 +2254,8 @@
     if (!window.supabase) return;
     var sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
     var { data } = await sb.auth.getSession();
-    if (!data || !data.session) return; // not logged in â€” gate stays visible
-    // User is authenticated â€” grant access
+    if (!data || !data.session) return; // not logged in — gate stays visible
+    // User is authenticated — grant access
     document.getElementById('gateOverlay').style.display = 'none';
 })();
 </script>

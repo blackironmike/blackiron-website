@@ -1317,7 +1317,7 @@
             .tracker-add-bar { flex-direction: column; }
             .tracker-add-bar button { width: 100%; padding: 1rem 2rem; font-size: 0.9rem; }
 
-            /* Food items â€” stack macros below name */
+            /* Food items — stack macros below name */
             .food-item { flex-wrap: wrap; padding: 0.85rem 1rem; }
             .food-item-info { width: 100%; flex: none; }
             .food-item-macros { width: 100%; justify-content: flex-start; gap: 0.75rem; font-size: 0.75rem; margin-top: 0.25rem; }
@@ -1327,7 +1327,7 @@
             /* Bigger tap targets for delete buttons */
             .food-item-actions button { padding: 0.5rem; font-size: 1rem; min-width: 36px; min-height: 36px; display: flex; align-items: center; justify-content: center; }
 
-            /* Meal group headers â€” bigger tap target */
+            /* Meal group headers — bigger tap target */
             .meal-group-header { padding: 1rem; }
 
             /* Food log modal */
@@ -1346,7 +1346,7 @@
             /* Scanner */
             .scanner-viewport { height: 250px; }
 
-            /* Recent food chips â€” bigger tap targets */
+            /* Recent food chips — bigger tap targets */
             .recent-food-chip { padding: 0.6rem 1rem; font-size: 0.8rem; min-height: 40px; display: inline-flex; align-items: center; }
 
             /* Modal */
@@ -1658,7 +1658,8 @@
                 <li><a href="/">Home</a></li>
                 <li><a href="schedule">Class Schedule</a></li>
                 <li><a href="faq">FAQ</a></li>
-                <li><a href="privacy-policy">Terms & Privacy Policy</a></li>
+                <li><a href="privacy-policy">Privacy Policy</a></li>
+                    <li><a href="terms">Terms &amp; Conditions</a></li>
                 <li><a href="privacy-policy#sms-terms">SMS Terms</a></li>
             </ul>
         </div>
@@ -1678,7 +1679,7 @@
                 Check our class calendar for an up to date schedule.
             </p>
             <p style="color: var(--yellow); font-weight: 700;">
-                Open Gym: 24/7
+                Open Gym: 7 Days a Week
             </p>
         </div>
     </div>
@@ -1850,7 +1851,7 @@ var SUPABASE_URL = 'https://hmwfpwcookrwgsbnutyc.supabase.co';
 var SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imhtd2Zwd2Nvb2tyd2dzYm51dHljIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzE1NTUwMTcsImV4cCI6MjA4NzEzMTAxN30.CpX9hIshZqf68B10vPZXt7dHbSXE_aVqfmKuiWN_Lpw';
 var supabase = window.supabase ? window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY) : null;
 
-// USDA FoodData Central API Key â€” get yours free at https://fdc.nal.usda.gov/api-key-signup/
+// USDA FoodData Central API Key — get yours free at https://fdc.nal.usda.gov/api-key-signup/
 var USDA_API_KEY = 'flHs9ewIb4bafJ3TuCHkQCnV5JPeZRPh055My6RP';
 
 // ===== STATE =====
@@ -2189,7 +2190,7 @@ function getComplianceScore(consumed, target, tol) {
 }
 
 function scoreToColor(score) {
-    // 4-stop gradient: Red(0-25%) â†’ Orange(25-50%) â†’ Yellow(50-75%) â†’ Green(75-100%)
+    // 4-stop gradient: Red(0-25%) ? Orange(25-50%) ? Yellow(50-75%) ? Green(75-100%)
     var stops = [
         { p: 0.00, r: 231, g: 76,  b: 60  }, // #e74c3c Red
         { p: 0.25, r: 243, g: 156, b: 18  }, // #f39c12 Orange
@@ -2262,7 +2263,7 @@ function renderMacroProgress() {
     var carbScore = getComplianceScore(totals.carbs, macroTargets.carbs, tolerancePct);
     var fatScore = getComplianceScore(totals.fat, macroTargets.fat, tolerancePct);
 
-    // Calories hero â€” use compliance color
+    // Calories hero — use compliance color
     var calColor = macroTargets.calories ? scoreToColor(calScore) : 'var(--yellow)';
     var calEl = document.getElementById('trackerCalConsumed');
     // Preserve the checkmark span
@@ -2774,7 +2775,7 @@ function startScanner() {
         if (!result || !result.codeResult || !result.codeResult.code) return;
         var barcode = result.codeResult.code;
         stopScanner();
-        document.getElementById('scannerStatus').textContent = 'Barcode detected: ' + barcode + ' â€” Looking up...';
+        document.getElementById('scannerStatus').textContent = 'Barcode detected: ' + barcode + ' — Looking up...';
         lookupBarcode(barcode);
     });
 }
@@ -2925,7 +2926,7 @@ async function recalculateStreak() {
         // Check milestones
         checkStreakMilestones(streak);
     } catch (e) {
-        // Streak calculation failed â€” silently continue
+        // Streak calculation failed — silently continue
     }
 }
 
@@ -2957,7 +2958,7 @@ async function checkStreakMilestones(streak) {
                 read: false
             });
         }
-    } catch (e) { /* notification insert failed â€” not critical */ }
+    } catch (e) { /* notification insert failed — not critical */ }
 }
 
 // ===== CONFETTI SYSTEM =====
@@ -3025,7 +3026,7 @@ function showAchievementToast(name, description, tierColor) {
 
 // ===== LEAD MODAL (placeholder) =====
 function openLeadModal() {
-    // Placeholder â€” same pattern as dashboard
+    // Placeholder — same pattern as dashboard
 }
 
 // ===== FUELPATH SIDE MENU =====
