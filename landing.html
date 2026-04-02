@@ -704,6 +704,10 @@
             background: var(--yellow);
         }
 
+        .guide-photo-mobile {
+            display: none;
+        }
+
         .guide-text-col {
             flex: 1;
         }
@@ -1407,12 +1411,23 @@
 
             /* Guide responsive */
             .guide-grid {
-                grid-template-columns: 1fr;
+                flex-direction: column;
                 min-height: auto;
+                padding: 0;
             }
 
             .guide-photo-col {
-                height: 300px;
+                display: none;
+            }
+
+            .guide-photo-mobile {
+                display: block;
+                width: 100%;
+                max-width: 280px;
+                margin: 1.5rem auto;
+                object-fit: cover;
+                object-position: center 35%;
+                border-bottom: 4px solid var(--yellow);
             }
 
             .guide-text-col {
@@ -1564,7 +1579,7 @@
     <!-- Urgency Banner (below header, above hero) -->
     <div class="urgency-banner">
         <span class="urgency-dot"></span>
-        Only 4 consultation spots left this week
+        Only a few spots left
     </div>
 
     <main id="main-content">
@@ -1713,6 +1728,7 @@
                 <div class="guide-text-col">
                     <div class="guide-empathy">
                         <div class="section-subtitle">Your Guide</div>
+                        <img src="images/owner-headcoach-mike.webp" alt="Mike Manning, Owner & Marine Veteran" class="guide-photo-mobile" loading="lazy">
                         <h2>We've Been Where You Are</h2>
                         <p>Busy, skeptical, wondering if this time will be different. We get it — we've coached thousands of people who walked in feeling exactly like that.</p>
                         <p>And we watched them become the strongest, most confident version of themselves.</p>
