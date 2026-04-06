@@ -1459,22 +1459,41 @@
                 gap: 2rem;
             }
 
-            /* Urgency card responsive - slim bottom bar */
+            /* Urgency card responsive - bold bottom bar */
             .urgency-card {
                 left: 0;
                 right: 0;
                 bottom: 0;
+                background: var(--yellow);
                 border: none;
-                border-top: 2px solid var(--black);
-                box-shadow: 0 -4px 16px rgba(0, 0, 0, 0.3);
+                box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.5);
                 transform: translateY(100%);
                 justify-content: center;
                 gap: 0.6rem;
-                padding: 0.85rem 1rem;
+                padding: 0.9rem 1rem;
+                padding-bottom: calc(0.9rem + env(safe-area-inset-bottom, 0px));
             }
 
             .urgency-card.visible {
                 transform: translateY(0);
+            }
+
+            .urgency-card .urgency-card-dot {
+                background: var(--black);
+            }
+
+            .urgency-card .urgency-card-text {
+                color: var(--black);
+                font-weight: 900;
+            }
+
+            .urgency-card .urgency-card-cta {
+                background: var(--white);
+                color: var(--black);
+            }
+
+            .urgency-card .urgency-card-dismiss {
+                color: rgba(0, 0, 0, 0.4);
             }
 
             .urgency-contrast-container {
