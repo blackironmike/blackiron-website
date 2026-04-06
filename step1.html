@@ -228,7 +228,7 @@
 
         /* ===== CHALLENGE BLOCK ===== */
         .challenge-block {
-            background: var(--dark-gray);
+            background: var(--black);
             border: 2px solid var(--medium-gray);
             padding: 2.5rem 2rem;
             text-align: center;
@@ -268,7 +268,8 @@
         }
 
         .challenge-btn:hover {
-            background: #e6bd00;
+            background: #28a745;
+            color: var(--white);
             transform: translateY(-1px);
         }
 
@@ -278,7 +279,7 @@
 
         .challenge-dare {
             font-size: 0.8rem;
-            color: rgba(255, 255, 255, 0.4);
+            color: var(--yellow);
             font-style: italic;
             margin-top: 0.75rem;
         }
@@ -286,7 +287,7 @@
         .challenge-trust {
             margin-top: 1.5rem;
             font-size: 0.75rem;
-            color: rgba(255, 255, 255, 0.4);
+            color: var(--white);
         }
 
         .challenge-trust i {
@@ -323,7 +324,7 @@
             max-width: 480px;
             max-height: 90vh;
             overflow-y: auto;
-            padding: 2rem 1.75rem;
+            padding: 0 1rem 0.5rem;
             position: relative;
             transform: scale(0.9) translateY(20px);
             transition: transform 0.3s;
@@ -335,38 +336,29 @@
 
         .modal-close {
             position: absolute;
-            top: 0.75rem;
-            right: 0.75rem;
+            top: 0.25rem;
+            right: 0.25rem;
             background: none;
             border: none;
             color: var(--light-gray);
             font-size: 1.5rem;
+            line-height: 1;
             cursor: pointer;
-            width: 36px;
-            height: 36px;
+            width: 32px;
+            height: 32px;
             display: flex;
             align-items: center;
             justify-content: center;
+            z-index: 1;
             transition: color 0.2s;
-            font-family: 'Montserrat', sans-serif;
         }
 
         .modal-close:hover {
             color: var(--white);
         }
 
-        .modal-header h2 {
-            font-size: 1.5rem;
-            text-transform: uppercase;
-            color: var(--white);
-            margin-bottom: 0.25rem;
-        }
-
-        .modal-header p {
-            font-size: 0.85rem;
-            color: var(--light-gray);
-            margin-bottom: 1rem;
-            line-height: 1.5;
+        .modal-card .form-embed {
+            margin-top: -10px;
         }
 
         .modal-card .form-embed iframe {
@@ -376,30 +368,6 @@
 
         body.modal-open {
             overflow: hidden;
-        }
-
-        /* ===== WHAT HAPPENS NEXT ===== */
-        .next-step {
-            background: rgba(255, 210, 2, 0.06);
-            border: 1px solid rgba(255, 210, 2, 0.2);
-            padding: 0.75rem 1rem;
-            margin-top: 1rem;
-        }
-
-        .next-step-label {
-            font-size: 0.65rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
-            color: var(--yellow);
-            margin-bottom: 0.25rem;
-        }
-
-        .next-step p {
-            font-size: 0.75rem;
-            color: var(--light-gray);
-            line-height: 1.4;
-            margin: 0;
         }
 
         /* ===== JOURNEY PREVIEW ===== */
@@ -639,6 +607,31 @@
             font-size: 0.9rem;
         }
 
+        /* ===== BOTTOM CTA ===== */
+        .bottom-cta {
+            background: var(--dark-gray);
+            padding: 3rem 2rem;
+            text-align: center;
+            border-top: 1px solid var(--medium-gray);
+        }
+
+        .bottom-cta-inner {
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .bottom-cta p {
+            font-size: 1rem;
+            color: var(--light-gray);
+            margin-bottom: 1.25rem;
+            line-height: 1.6;
+        }
+
+        .bottom-cta .challenge-btn {
+            max-width: 360px;
+            margin: 0 auto;
+        }
+
         /* ===== FOOTER ===== */
         .footer {
             background: var(--black);
@@ -704,9 +697,19 @@
                 padding: 2rem 1.5rem;
             }
 
+            .challenge-btn {
+                font-size: 0.95rem;
+                padding: 0.9rem 1.5rem;
+            }
+
+            .bottom-cta .challenge-btn {
+                font-size: 0.95rem;
+                padding: 0.9rem 1.5rem;
+            }
+
             .modal-card {
                 max-width: 100%;
-                padding: 1.75rem 1.25rem;
+                padding: 0 0.75rem 0.5rem;
             }
 
             .objections {
@@ -792,11 +795,11 @@
             </div>
 
             <div class="challenge-block">
-                <h2>Still Thinking About It?</h2>
+                <h2>What Are You Waiting For?</h2>
                 <p class="challenge-body">A year from now, you'll wish you started today. Same routine. Same excuses. Same reflection in the mirror. Nothing changes until you do.</p>
-                <button class="challenge-btn" id="open-modal" aria-haspopup="dialog">I'm Done Waiting. Let's Go.</button>
+                <button class="challenge-btn" id="open-modal" aria-haspopup="dialog">I Am Ready</button>
                 <p class="challenge-dare">Only click if you're actually ready to do something about it.</p>
-                <p class="challenge-trust"><i class="fa-solid fa-lock"></i> No commitment. No credit card. 30 seconds.</p>
+                <p class="challenge-trust"><i class="fa-solid fa-lock"></i> No commitment. No credit card. It only takes a few seconds to fill out, but it can change your life forever.</p>
             </div>
         </div>
     </section>
@@ -886,6 +889,14 @@
         </div>
     </div>
 
+    <!-- Bottom CTA -->
+    <div class="bottom-cta">
+        <div class="bottom-cta-inner">
+            <p>You scrolled all the way down here. That's not curiosity, that's a sign. Find a time that works for you before we get booked up. This is our busy season.</p>
+            <button class="challenge-btn open-modal-btn" aria-haspopup="dialog">I Am Ready</button>
+        </div>
+    </div>
+
     <!-- Minimal Footer -->
     <div class="footer">
         <p>&copy; 2026 Black Iron Athletics. All rights reserved.</p>
@@ -896,10 +907,6 @@
     <div class="modal-overlay" id="form-modal" role="dialog" aria-modal="true" aria-label="Lead capture form">
         <div class="modal-card">
             <button class="modal-close" id="close-modal" aria-label="Close form">&times;</button>
-            <div class="modal-header">
-                <h2>Let's Go.</h2>
-                <p>Tell us a little about yourself. A coach will personally reach out.</p>
-            </div>
             <div class="form-embed">
                 <iframe
                     src="https://api.leadconnectorhq.com/widget/form/9bTVJ7mcDsr29X0mCJbz"
@@ -920,10 +927,6 @@
                 ></iframe>
                 <script src="https://link.msgsndr.com/js/form_embed.js"></script>
             </div>
-            <div class="next-step">
-                <div class="next-step-label">What happens next?</div>
-                <p>After you submit, you'll see more about our gym, our members, and how to book your free consultation. A coach will also reach out personally.</p>
-            </div>
         </div>
     </div>
 
@@ -932,10 +935,13 @@
     (function() {
         var overlay = document.getElementById('form-modal');
         var openBtn = document.getElementById('open-modal');
+        var openBtns = document.querySelectorAll('.open-modal-btn');
         var closeBtn = document.getElementById('close-modal');
         var modalCard = overlay.querySelector('.modal-card');
+        var lastTrigger = openBtn;
 
-        function openModal() {
+        function openModal(trigger) {
+            lastTrigger = trigger || openBtn;
             overlay.classList.add('active');
             document.body.classList.add('modal-open');
             closeBtn.focus();
@@ -944,10 +950,13 @@
         function closeModal() {
             overlay.classList.remove('active');
             document.body.classList.remove('modal-open');
-            openBtn.focus();
+            lastTrigger.focus();
         }
 
-        openBtn.addEventListener('click', openModal);
+        openBtn.addEventListener('click', function() { openModal(openBtn); });
+        openBtns.forEach(function(btn) {
+            btn.addEventListener('click', function() { openModal(btn); });
+        });
         closeBtn.addEventListener('click', closeModal);
 
         // Close on backdrop click
