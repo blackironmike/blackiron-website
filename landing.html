@@ -152,23 +152,6 @@
             pointer-events: auto;
         }
 
-        .urgency-card-dismiss {
-            background: none;
-            border: none;
-            color: rgba(0, 0, 0, 0.3);
-            font-size: 0.9rem;
-            cursor: pointer;
-            padding: 0;
-            margin-right: -0.25rem;
-            line-height: 1;
-            transition: color 0.2s ease;
-            flex-shrink: 0;
-        }
-
-        .urgency-card-dismiss:hover {
-            color: var(--black);
-        }
-
         .urgency-card-dot {
             position: relative;
             display: inline-block;
@@ -429,6 +412,28 @@
             text-transform: uppercase;
             letter-spacing: 2px;
             margin-top: 2rem;
+        }
+
+        .hero-bullets {
+            list-style: none;
+            padding: 0;
+            margin: 0 0 2.5rem 0;
+        }
+
+        .hero-bullets li {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.75rem;
+            margin-bottom: 0.75rem;
+            font-size: 1.1rem;
+            color: var(--white);
+            line-height: 1.5;
+        }
+
+        .hero-bullets li i {
+            color: var(--yellow);
+            margin-top: 0.25rem;
+            flex-shrink: 0;
         }
 
         /* ===== VIDEO SECTION ===== */
@@ -1297,6 +1302,10 @@
                 margin-bottom: 2rem;
             }
 
+            .hero-bullets li {
+                font-size: 1rem;
+            }
+
             .hero-buttons {
                 flex-direction: column;
             }
@@ -1505,11 +1514,11 @@
             }
 
             .urgency-card .urgency-card-dot {
-                background: var(--black);
+                background: #ff4444;
             }
 
             .urgency-card .urgency-card-dot::before {
-                background: var(--black);
+                background: #ff4444;
             }
 
             .urgency-card .urgency-card-text {
@@ -1520,10 +1529,6 @@
             .urgency-card .urgency-card-cta {
                 background: var(--white);
                 color: var(--black);
-            }
-
-            .urgency-card .urgency-card-dismiss {
-                color: rgba(0, 0, 0, 0.4);
             }
 
             .urgency-contrast-container {
@@ -1727,11 +1732,16 @@
         <img src="images/coach-smiling.webp" alt="Coach at Black Iron Athletics" class="hero-bg" fetchpriority="high">
         <div class="hero-container">
             <div class="hero-content">
-                <div class="trust-badges" style="margin-bottom: 1rem;">Step 1 Complete. Now See What's Waiting for You.</div>
-                <h1>Too Busy to Be Out of Shape</h1>
-                <p>You took the first step. Now see why thousands of busy professionals in Frisco trust Black Iron Athletics to help them get strong, stay consistent, and finally feel like themselves again.</p>
+                <div class="trust-badges" style="margin-bottom: 1rem;">Step 1 Complete. Here's What Happens Next.</div>
+                <h1>You Took the First Step</h1>
+                <ul class="hero-bullets">
+                    <li><i class="fa-solid fa-circle-check"></i> A coach will personally reach out to you</li>
+                    <li><i class="fa-solid fa-circle-check"></i> Book a free consultation at a time that works</li>
+                    <li><i class="fa-solid fa-circle-check"></i> Tour the gym, ask questions, zero pressure</li>
+                    <li><i class="fa-solid fa-circle-check"></i> Get a plan built around your goals and schedule</li>
+                </ul>
                 <div class="hero-buttons">
-                    <a href="#booking" class="btn-primary">Book Your Free Consultation</a>
+                    <a href="#booking" class="btn-primary">Book Consultation</a>
                     <a href="#included" class="btn-secondary">See What's Included</a>
                 </div>
                 <div class="trust-badges" style="margin-top: 2rem;">Veteran-Owned | 13+ Years | 5-Star Reviews</div>
@@ -2365,24 +2375,17 @@
     <span class="urgency-card-dot"></span>
     <span class="urgency-card-text">Limited spots this week</span>
     <a href="#booking" class="urgency-card-cta" id="urgencyBookBtn">Book Now</a>
-    <button class="urgency-card-dismiss" id="urgencyDismiss" aria-label="Dismiss">&times;</button>
 </div>
 
 <script>
-// ===== URGENCY CARD: scroll-trigger + dismiss =====
+// ===== URGENCY CARD: scroll-trigger =====
 (function() {
     var card = document.getElementById('urgencyCard');
-    var dismissBtn = document.getElementById('urgencyDismiss');
     var bookBtn = document.getElementById('urgencyBookBtn');
-    var STORAGE_KEY = 'urgency_card_dismissed';
     var SCROLL_THRESHOLD = 400;
-    var dismissed = false;
     var bookingVisible = false;
 
-    if (sessionStorage.getItem(STORAGE_KEY)) return;
-
     function updateVisibility() {
-        if (dismissed) return;
         var scrolled = window.scrollY >= SCROLL_THRESHOLD;
         if (scrolled && !bookingVisible) {
             card.classList.add('visible');
@@ -2391,17 +2394,8 @@
         }
     }
 
-    function dismiss() {
-        dismissed = true;
-        card.classList.remove('visible');
-        sessionStorage.setItem(STORAGE_KEY, '1');
-    }
-
-    dismissBtn.addEventListener('click', dismiss);
-
     bookBtn.addEventListener('click', function(e) {
         e.preventDefault();
-        dismiss();
         var booking = document.getElementById('booking');
         if (booking) booking.scrollIntoView({ behavior: 'smooth' });
     });
