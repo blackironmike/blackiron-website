@@ -99,8 +99,9 @@
         }
 
         #booking,
-        #included {
-            scroll-margin-top: 76px;
+        #included,
+        #booking-cal {
+            scroll-margin-top: 90px;
         }
 
         /* All headings use Montserrat Black */
@@ -1741,7 +1742,7 @@
                     <li><i class="fa-solid fa-circle-check"></i> Get a plan built around your goals and schedule</li>
                 </ul>
                 <div class="hero-buttons">
-                    <a href="#booking" class="btn-primary">Book Consultation</a>
+                    <a href="#booking-cal" class="btn-primary">Book Consultation</a>
                     <a href="#included" class="btn-secondary">See What's Included</a>
                 </div>
                 <div class="trust-badges" style="margin-top: 2rem;">Veteran-Owned | 13+ Years | 5-Star Reviews</div>
@@ -1932,7 +1933,7 @@
             </div>
 
             <div style="text-align: center; margin-top: 3rem;" class="reveal">
-                <a href="#booking" class="btn-primary">Book Your Free Consultation</a>
+                <a href="#booking-cal" class="btn-primary">Book Your Free Consultation</a>
                 <div class="urgency-badge" style="justify-content: center; color: var(--white);"><span class="urgency-dot"></span> Only a few spots left — book yours now</div>
             </div>
 
@@ -2048,7 +2049,7 @@
             </div>
 
             <div style="text-align: center; margin-top: 3rem;" class="reveal">
-                <a href="#booking" class="btn-primary">Book Your Free Consultation</a>
+                <a href="#booking-cal" class="btn-primary">Book Your Free Consultation</a>
                 <div class="urgency-badge" style="justify-content: center; color: var(--white);"><span class="urgency-dot"></span> Only a few spots left — book yours now</div>
             </div>
 
@@ -2078,7 +2079,7 @@
                 </div>
             </div>
             <div class="urgency-contrast-cta reveal">
-                <a href="#booking" class="btn-primary">Book Your Free Consultation</a>
+                <a href="#booking-cal" class="btn-primary">Book Your Free Consultation</a>
                 <div class="urgency-badge" style="justify-content: center; color: var(--white);"><span class="urgency-dot"></span> Only a few spots left — book yours now</div>
             </div>
         </div>
@@ -2105,7 +2106,7 @@
                 </div>
             </div>
 
-            <div class="booking-embed reveal">
+            <div id="booking-cal" class="booking-embed reveal">
                 <iframe src="https://api.leadconnectorhq.com/widget/booking/aOyy4UPbwziVvHz35TCU" style="width: 100%; border: none; overflow: hidden;" scrolling="no" id="aOyy4UPbwziVvHz35TCU_landing" title="Book a free consultation"></iframe>
                 <script src="https://link.msgsndr.com/js/form_embed.js" type="text/javascript" defer></script>
             </div>
@@ -2374,7 +2375,7 @@
 <div class="urgency-card" id="urgencyCard" aria-label="Limited spots available">
     <span class="urgency-card-dot"></span>
     <span class="urgency-card-text">Limited spots this week</span>
-    <a href="#booking" class="urgency-card-cta" id="urgencyBookBtn">Book Now</a>
+    <a href="#booking-cal" class="urgency-card-cta" id="urgencyBookBtn">Book Now</a>
 </div>
 
 <script>
@@ -2396,7 +2397,7 @@
 
     bookBtn.addEventListener('click', function(e) {
         e.preventDefault();
-        var booking = document.getElementById('booking');
+        var booking = document.getElementById('booking-cal');
         if (booking) booking.scrollIntoView({ behavior: 'smooth' });
     });
 
