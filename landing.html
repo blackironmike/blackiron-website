@@ -1700,18 +1700,34 @@
 </head>
 <body>
     <script>
-    // Block GHL form_embed.js from auto-scrolling to its iframe on load
+    // Block ALL auto-scrolling during page load (GHL form_embed.js hijacks scroll)
     if (history.scrollRestoration) history.scrollRestoration = 'manual';
     var _origScrollIntoView = Element.prototype.scrollIntoView;
-    var _allowScroll = false;
+    var _origScrollTo = window.scrollTo;
+    var _origScroll = window.scroll;
+    var _scrollLocked = true;
     Element.prototype.scrollIntoView = function() {
-        if (_allowScroll) return _origScrollIntoView.apply(this, arguments);
+        if (!_scrollLocked) return _origScrollIntoView.apply(this, arguments);
+    };
+    window.scrollTo = function() {
+        if (!_scrollLocked) return _origScrollTo.apply(window, arguments);
+    };
+    window.scroll = function() {
+        if (!_scrollLocked) return _origScroll.apply(window, arguments);
     };
     window.addEventListener('load', function() {
-        window.scrollTo(0, 0);
+        _origScrollTo.call(window, 0, 0);
+        // Lazy-load the booking iframe now that page is at top
+        var iframe = document.getElementById('aOyy4UPbwziVvHz35TCU_landing');
+        if (iframe && iframe.dataset.src && !iframe.src) {
+            iframe.src = iframe.dataset.src;
+        }
         setTimeout(function() {
-            _allowScroll = true;
+            _scrollLocked = false;
             Element.prototype.scrollIntoView = _origScrollIntoView;
+            window.scrollTo = _origScrollTo;
+            window.scroll = _origScroll;
+            _origScrollTo.call(window, 0, 0);
         }, 2000);
     });
     </script>
@@ -2123,7 +2139,7 @@
             </div>
 
             <div id="booking-cal" class="booking-embed reveal">
-                <iframe src="https://api.leadconnectorhq.com/widget/booking/aOyy4UPbwziVvHz35TCU" style="width: 100%; border: none; overflow: hidden;" scrolling="no" id="aOyy4UPbwziVvHz35TCU_landing" title="Book a free consultation"></iframe>
+                <iframe data-src="https://api.leadconnectorhq.com/widget/booking/aOyy4UPbwziVvHz35TCU" style="width: 100%; border: none; overflow: hidden;" scrolling="no" id="aOyy4UPbwziVvHz35TCU_landing" title="Book a free consultation" tabindex="-1"></iframe>
                 <script src="https://link.msgsndr.com/js/form_embed.js" type="text/javascript" defer></script>
             </div>
         </div>
