@@ -1699,6 +1699,12 @@
     </style>
 </head>
 <body>
+    <script>
+    // Force scroll to top on page load (prevents GHL embed script from auto-scrolling to iframe)
+    if (history.scrollRestoration) history.scrollRestoration = 'manual';
+    window.scrollTo(0, 0);
+    window.addEventListener('load', function() { setTimeout(function() { window.scrollTo(0, 0); }, 50); });
+    </script>
     <a href="#main-content" class="skip-link">Skip to main content</a>
 
     <!-- Header - Logo only, no navigation -->
