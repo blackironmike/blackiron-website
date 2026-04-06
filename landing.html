@@ -1700,10 +1700,20 @@
 </head>
 <body>
     <script>
-    // Force scroll to top on page load (prevents GHL embed script from auto-scrolling to iframe)
+    // Block GHL form_embed.js from auto-scrolling to its iframe on load
     if (history.scrollRestoration) history.scrollRestoration = 'manual';
-    window.scrollTo(0, 0);
-    window.addEventListener('load', function() { setTimeout(function() { window.scrollTo(0, 0); }, 50); });
+    var _origScrollIntoView = Element.prototype.scrollIntoView;
+    var _allowScroll = false;
+    Element.prototype.scrollIntoView = function() {
+        if (_allowScroll) return _origScrollIntoView.apply(this, arguments);
+    };
+    window.addEventListener('load', function() {
+        window.scrollTo(0, 0);
+        setTimeout(function() {
+            _allowScroll = true;
+            Element.prototype.scrollIntoView = _origScrollIntoView;
+        }, 2000);
+    });
     </script>
     <a href="#main-content" class="skip-link">Skip to main content</a>
 
