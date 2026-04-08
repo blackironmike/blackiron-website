@@ -1719,12 +1719,28 @@
 </head>
 <body>
     <script>
+    // Force page to load at top - block GHL form_embed.js scroll hijack
     if(history.scrollRestoration)history.scrollRestoration='manual';
-    var _origSIV=Element.prototype.scrollIntoView;
-    Element.prototype.scrollIntoView=function(){
-        if(this.tagName==='IFRAME'||this.querySelector('iframe'))return;
-        return _origSIV.apply(this,arguments);
-    };
+    window.scrollTo(0,0);
+    document.documentElement.scrollTop=0;
+    // Block all scroll methods until page settles
+    var _siv=Element.prototype.scrollIntoView;
+    var _sto=window.scrollTo;
+    var _scr=window.scroll;
+    Element.prototype.scrollIntoView=function(){};
+    window.scrollTo=function(){};
+    window.scroll=function(){};
+    // Restore after 3s
+    setTimeout(function(){
+        Element.prototype.scrollIntoView=_siv;
+        window.scrollTo=_sto;
+        window.scroll=_scr;
+    },3000);
+    // Force top on every load event (covers iOS bfcache)
+    function _top(){document.documentElement.scrollTop=0;document.body.scrollTop=0;}
+    document.addEventListener('DOMContentLoaded',_top);
+    window.addEventListener('load',_top);
+    window.addEventListener('pageshow',_top);
     </script>
     <a href="#main-content" class="skip-link">Skip to main content</a>
 
