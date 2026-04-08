@@ -1720,12 +1720,14 @@
 <body>
     <script>
     if(history.scrollRestoration)history.scrollRestoration='manual';
-    var _siv=Element.prototype.scrollIntoView;
-    Element.prototype.scrollIntoView=function(){
-        if(this.tagName==='IFRAME'||this.closest&&this.closest('.hero-booking-embed'))return;
-        return _siv.apply(this,arguments);
+    // form_embed.js uses window.scrollTo(x,y) to hijack scroll - block it for 3s
+    var _sto=window.scrollTo;
+    window.scrollTo=function(x,y){
+        // Only allow scrollTo(0,0), block everything else during load
+        if((x===0||x&&x.top===0)&&(!y||y===0))return _sto.call(window,0,0);
     };
-    window.addEventListener('pageshow',function(){document.documentElement.scrollTop=0;document.body.scrollTop=0;});
+    setTimeout(function(){window.scrollTo=_sto;},3000);
+    window.addEventListener('pageshow',function(){_sto.call(window,0,0);});
     </script>
     <a href="#main-content" class="skip-link">Skip to main content</a>
 
