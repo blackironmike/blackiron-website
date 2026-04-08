@@ -1718,7 +1718,14 @@
     </style>
 </head>
 <body>
-    <script>if(history.scrollRestoration)history.scrollRestoration='manual';</script>
+    <script>
+    if(history.scrollRestoration)history.scrollRestoration='manual';
+    var _origSIV=Element.prototype.scrollIntoView;
+    Element.prototype.scrollIntoView=function(){
+        if(this.tagName==='IFRAME'||this.querySelector('iframe'))return;
+        return _origSIV.apply(this,arguments);
+    };
+    </script>
     <a href="#main-content" class="skip-link">Skip to main content</a>
 
     <!-- Header - Logo only, no navigation -->
