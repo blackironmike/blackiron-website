@@ -331,42 +331,47 @@
         }
 
         .hero-container {
-            max-width: 1200px;
+            max-width: 100%;
             width: 100%;
-            margin: 0 auto;
+            margin: 0;
             padding: 4rem;
             position: relative;
             z-index: 1;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 3rem;
-            align-items: start;
         }
 
         .hero-content {
-            max-width: 100%;
+            max-width: 800px;
         }
 
-        .hero-booking {
+        /* ===== HERO BOOKING SECTION ===== */
+        .hero-booking-section {
             background: var(--dark-gray);
-            border: 1px solid var(--medium-gray);
-            padding: 0.5rem;
-            box-shadow: 0 0 30px rgba(255, 210, 2, 0.08);
-            position: sticky;
-            top: 100px;
+            padding: 3rem 2rem;
+            border-top: 3px solid var(--yellow);
+        }
+
+        .hero-booking-container {
+            max-width: 800px;
+            margin: 0 auto;
         }
 
         .hero-booking-label {
             text-align: center;
-            font-size: 0.75rem;
+            font-size: 0.85rem;
             font-weight: 700;
             color: var(--yellow);
             text-transform: uppercase;
-            letter-spacing: 1.5px;
-            padding: 0.75rem 0 0.5rem;
+            letter-spacing: 2px;
+            margin-bottom: 1rem;
         }
 
-        .hero-booking iframe {
+        .hero-booking-embed {
+            background: var(--black);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            padding: 1rem;
+        }
+
+        .hero-booking-embed iframe {
             width: 100%;
             border: none;
             min-height: 550px;
@@ -530,18 +535,6 @@
 
         .zero-pressure-badge i {
             font-size: 1rem;
-        }
-
-        @media (max-width: 900px) {
-            .hero-container {
-                grid-template-columns: 1fr;
-                padding: 2.5rem 1.5rem;
-                gap: 2rem;
-            }
-
-            .hero-booking {
-                position: static;
-            }
         }
 
         @media (max-width: 768px) {
@@ -1488,6 +1481,19 @@
                 padding: 4rem 0;
             }
 
+            /* Hero booking responsive */
+            .hero-booking-section {
+                padding: 2rem 1.5rem;
+            }
+
+            .hero-booking-embed {
+                padding: 0.5rem;
+            }
+
+            .hero-booking-embed iframe {
+                min-height: 450px;
+            }
+
             /* Booking responsive */
             .booking-section {
                 padding: 4rem 0;
@@ -1816,12 +1822,18 @@
                 <div class="zero-pressure-badge"><i class="fa-solid fa-shield-halved"></i> Zero pressure. Zero commitment. Just a conversation.</div>
                 <div class="trust-badges" style="margin-top: 1.5rem;">Veteran-Owned | 13+ Years | 5-Star Reviews</div>
             </div>
-            <div class="hero-booking">
-                <div class="hero-booking-label"><i class="fa-solid fa-calendar-check" style="margin-right: 0.4rem;"></i> Pick Your Time</div>
+        </div>
+    </section>
+
+    <!-- ===== HERO BOOKING ===== -->
+    <div class="hero-booking-section">
+        <div class="hero-booking-container">
+            <div class="hero-booking-label"><i class="fa-solid fa-calendar-check" style="margin-right: 0.4rem;"></i> Pick Your Time</div>
+            <div class="hero-booking-embed">
                 <iframe data-src="https://api.leadconnectorhq.com/widget/booking/aOyy4UPbwziVvHz35TCU" style="width: 100%; border: none; overflow: hidden;" scrolling="no" id="heroBookingIframe" title="Book a free consultation"></iframe>
             </div>
         </div>
-    </section>
+    </div>
 
     <!-- ===== HERO TESTIMONIAL ===== -->
     <!-- FLAG: Replace with a real member testimonial that includes a SPECIFIC, MEASURABLE result (lbs lost, energy gained, etc.) -->
