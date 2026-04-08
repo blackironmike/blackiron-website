@@ -1716,46 +1716,6 @@
     </style>
 </head>
 <body>
-    <script>
-    // Block ALL auto-scrolling during page load (GHL form_embed.js hijacks scroll)
-    if (history.scrollRestoration) history.scrollRestoration = 'manual';
-    var _origScrollIntoView = Element.prototype.scrollIntoView;
-    var _origScrollTo = window.scrollTo;
-    var _origScroll = window.scroll;
-    var _scrollLocked = true;
-    Element.prototype.scrollIntoView = function() {
-        if (!_scrollLocked) return _origScrollIntoView.apply(this, arguments);
-    };
-    window.scrollTo = function() {
-        if (!_scrollLocked) return _origScrollTo.apply(window, arguments);
-    };
-    window.scroll = function() {
-        if (!_scrollLocked) return _origScroll.apply(window, arguments);
-    };
-    // Force scroll to top repeatedly during lock period
-    var _forceTopInterval = setInterval(function() {
-        _origScrollTo.call(window, 0, 0);
-    }, 100);
-    function _unlockScroll() {
-        clearInterval(_forceTopInterval);
-        _scrollLocked = false;
-        Element.prototype.scrollIntoView = _origScrollIntoView;
-        window.scrollTo = _origScrollTo;
-        window.scroll = _origScroll;
-        _origScrollTo.call(window, 0, 0);
-        // Lazy-load hero booking iframe after scroll is safe
-        var heroIframe = document.getElementById('heroBookingIframe');
-        if (heroIframe && !heroIframe.src && heroIframe.dataset.src) {
-            heroIframe.src = heroIframe.dataset.src;
-        }
-    }
-    window.addEventListener('load', function() {
-        _origScrollTo.call(window, 0, 0);
-        setTimeout(_unlockScroll, 3000);
-    });
-    // Fallback: unlock after 5s even if load hasn't fired (slow networks)
-    setTimeout(function() { if (_scrollLocked) _unlockScroll(); }, 5000);
-    </script>
     <a href="#main-content" class="skip-link">Skip to main content</a>
 
     <!-- Header - Logo only, no navigation -->
@@ -1830,7 +1790,7 @@
         <div class="hero-booking-container">
             <div class="hero-booking-label"><i class="fa-solid fa-calendar-check" style="margin-right: 0.4rem;"></i> Pick Your Time</div>
             <div class="hero-booking-embed">
-                <iframe data-src="https://api.leadconnectorhq.com/widget/booking/aOyy4UPbwziVvHz35TCU" style="width: 100%; border: none; overflow: hidden;" scrolling="no" id="heroBookingIframe" title="Book a free consultation"></iframe>
+                <iframe src="https://api.leadconnectorhq.com/widget/booking/aOyy4UPbwziVvHz35TCU" style="width: 100%; border: none; overflow: hidden;" scrolling="no" id="heroBookingIframe" title="Book a free consultation"></iframe>
             </div>
         </div>
     </div>
