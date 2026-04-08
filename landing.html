@@ -1719,28 +1719,13 @@
 </head>
 <body>
     <script>
-    // Force page to load at top - block GHL form_embed.js scroll hijack
     if(history.scrollRestoration)history.scrollRestoration='manual';
-    window.scrollTo(0,0);
-    document.documentElement.scrollTop=0;
-    // Block all scroll methods until page settles
     var _siv=Element.prototype.scrollIntoView;
-    var _sto=window.scrollTo;
-    var _scr=window.scroll;
-    Element.prototype.scrollIntoView=function(){};
-    window.scrollTo=function(){};
-    window.scroll=function(){};
-    // Restore after 3s
-    setTimeout(function(){
-        Element.prototype.scrollIntoView=_siv;
-        window.scrollTo=_sto;
-        window.scroll=_scr;
-    },3000);
-    // Force top on every load event (covers iOS bfcache)
-    function _top(){document.documentElement.scrollTop=0;document.body.scrollTop=0;}
-    document.addEventListener('DOMContentLoaded',_top);
-    window.addEventListener('load',_top);
-    window.addEventListener('pageshow',_top);
+    Element.prototype.scrollIntoView=function(){
+        if(this.tagName==='IFRAME'||this.closest&&this.closest('.hero-booking-embed'))return;
+        return _siv.apply(this,arguments);
+    };
+    window.addEventListener('pageshow',function(){document.documentElement.scrollTop=0;document.body.scrollTop=0;});
     </script>
     <a href="#main-content" class="skip-link">Skip to main content</a>
 
@@ -1816,7 +1801,7 @@
         <div class="hero-booking-container">
             <div class="hero-booking-label"><i class="fa-solid fa-calendar-check" style="margin-right: 0.4rem;"></i> Pick Your Time</div>
             <div class="hero-booking-embed">
-                <iframe src="https://api.leadconnectorhq.com/widget/booking/aOyy4UPbwziVvHz35TCU" style="width: 100%; border: none;" loading="lazy" id="booking-cal-top" title="Book a free consultation"></iframe>
+                <iframe src="https://api.leadconnectorhq.com/widget/booking/aOyy4UPbwziVvHz35TCU" style="width: 100%; border: none;" id="booking-cal-top" title="Book a free consultation"></iframe>
             </div>
         </div>
     </div>
@@ -1995,7 +1980,7 @@
         <div class="hero-booking-container">
             <div class="hero-booking-label"><i class="fa-solid fa-calendar-check" style="margin-right: 0.4rem;"></i> Pick Your Time</div>
             <div class="hero-booking-embed">
-                <iframe src="https://api.leadconnectorhq.com/widget/booking/aOyy4UPbwziVvHz35TCU" style="width: 100%; border: none;" loading="lazy" id="booking-cal-mid" title="Book a free consultation"></iframe>
+                <iframe src="https://api.leadconnectorhq.com/widget/booking/aOyy4UPbwziVvHz35TCU" style="width: 100%; border: none;" id="booking-cal-mid" title="Book a free consultation"></iframe>
             </div>
         </div>
     </div>
@@ -2133,7 +2118,7 @@
             <h2 class="booking-title" style="text-align: center;">Book Your Free Consultation</h2>
             <p class="booking-description" style="text-align: center;">You've done the hardest part by reaching out. Now pick a time that works and come see for yourself. No credit card required.</p>
             <div id="booking-cal" class="hero-booking-embed">
-                <iframe src="https://api.leadconnectorhq.com/widget/booking/aOyy4UPbwziVvHz35TCU" style="width: 100%; border: none;" loading="lazy" id="booking-cal-bottom" title="Book a free consultation"></iframe>
+                <iframe src="https://api.leadconnectorhq.com/widget/booking/aOyy4UPbwziVvHz35TCU" style="width: 100%; border: none;" id="booking-cal-bottom" title="Book a free consultation"></iframe>
             </div>
         </div>
     </div>
