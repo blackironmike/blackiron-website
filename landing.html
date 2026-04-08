@@ -331,16 +331,45 @@
         }
 
         .hero-container {
-            max-width: 100%;
+            max-width: 1200px;
             width: 100%;
-            margin: 0;
+            margin: 0 auto;
             padding: 4rem;
             position: relative;
             z-index: 1;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: start;
         }
 
         .hero-content {
-            max-width: 800px;
+            max-width: 100%;
+        }
+
+        .hero-booking {
+            background: var(--dark-gray);
+            border: 1px solid var(--medium-gray);
+            padding: 0.5rem;
+            box-shadow: 0 0 30px rgba(255, 210, 2, 0.08);
+            position: sticky;
+            top: 100px;
+        }
+
+        .hero-booking-label {
+            text-align: center;
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: var(--yellow);
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            padding: 0.75rem 0 0.5rem;
+        }
+
+        .hero-booking iframe {
+            width: 100%;
+            border: none;
+            min-height: 550px;
         }
 
         .hero-content h1 {
@@ -501,6 +530,18 @@
 
         .zero-pressure-badge i {
             font-size: 1rem;
+        }
+
+        @media (max-width: 900px) {
+            .hero-container {
+                grid-template-columns: 1fr;
+                padding: 2.5rem 1.5rem;
+                gap: 2rem;
+            }
+
+            .hero-booking {
+                position: static;
+            }
         }
 
         @media (max-width: 768px) {
@@ -1149,110 +1190,6 @@
             min-height: 600px;
         }
 
-        /* ===== BOOKING WIDGETS ===== */
-        .slots-widget-heading {
-            font-size: 0.7rem;
-            font-weight: 600;
-            color: rgba(255, 255, 255, 0.4);
-            text-transform: uppercase;
-            letter-spacing: 3px;
-            margin-bottom: 1rem;
-            text-align: center;
-        }
-
-        /* --- Next Slots Widget --- */
-        .next-slots-widget {
-            margin-bottom: 2rem;
-        }
-        .next-slots-list {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.6rem;
-            justify-content: center;
-            margin-bottom: 1rem;
-        }
-        .slot-card {
-            background: rgba(255, 255, 255, 0.04);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            padding: 0.7rem 1rem;
-            cursor: pointer;
-            transition: all 0.25s ease;
-            text-align: center;
-            min-width: 120px;
-            flex: 0 1 auto;
-            max-width: 155px;
-        }
-        .slot-card:hover, .slot-card:focus-visible {
-            background: rgba(255, 210, 2, 0.06);
-            border-color: rgba(255, 210, 2, 0.4);
-            box-shadow: 0 0 16px rgba(255, 210, 2, 0.08);
-        }
-        .slot-card-day {
-            font-weight: 600;
-            font-size: 0.65rem;
-            color: rgba(255, 255, 255, 0.45);
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
-            margin-bottom: 0.2rem;
-        }
-        .slot-card-date {
-            font-weight: 700;
-            font-size: 0.8rem;
-            color: var(--white);
-            margin-bottom: 0.35rem;
-            padding-bottom: 0.35rem;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-        }
-        .slot-card-time {
-            font-weight: 800;
-            font-size: 0.9rem;
-            color: var(--yellow);
-        }
-
-        /* --- Skeleton Loading --- */
-        @keyframes shimmer {
-            0% { background-position: -200% 0; }
-            100% { background-position: 200% 0; }
-        }
-        .skeleton {
-            background: linear-gradient(90deg, rgba(255,255,255,0.03) 25%, rgba(255,255,255,0.06) 50%, rgba(255,255,255,0.03) 75%);
-            background-size: 200% 100%;
-            animation: shimmer 1.5s infinite;
-            border-radius: 0;
-        }
-        .skeleton-card {
-            height: 65px;
-            min-width: 120px;
-            flex: 0 1 auto;
-            max-width: 155px;
-            border: 1px solid rgba(255, 255, 255, 0.06);
-        }
-
-        /* --- Widget Error/Empty States --- */
-        .widget-error, .widget-empty {
-            text-align: center;
-            padding: 1.5rem 1rem;
-            color: rgba(255, 255, 255, 0.4);
-            font-size: 0.85rem;
-        }
-        .widget-retry-btn {
-            background: transparent;
-            color: var(--yellow);
-            border: 1px solid var(--yellow);
-            padding: 0.4rem 1.25rem;
-            font-family: 'Montserrat', sans-serif;
-            font-weight: 700;
-            font-size: 0.75rem;
-            text-transform: uppercase;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            margin-top: 0.75rem;
-        }
-        .widget-retry-btn:hover {
-            background: var(--yellow);
-            color: var(--black);
-        }
-
         /* Footer */
         footer {
             padding: 4rem 0 2rem;
@@ -1374,12 +1311,8 @@
         /* ===== RESPONSIVE: 768px ===== */
         @media (max-width: 768px) {
             .hero {
-                min-height: 70vh;
+                min-height: auto;
                 padding-top: 0;
-            }
-
-            .hero-container {
-                padding: 2rem 1.5rem;
             }
 
             .hero-content h1 {
@@ -1637,16 +1570,6 @@
                 padding: 4rem 0;
             }
 
-            /* Widget responsive — 2x2 grid on mobile */
-            .next-slots-list {
-                display: grid;
-                grid-template-columns: 1fr 1fr;
-                gap: 0.5rem;
-            }
-            .slot-card {
-                max-width: 100%;
-                min-width: 0;
-            }
         }
 
         /* Skip Navigation */
@@ -1803,16 +1726,29 @@
     window.scroll = function() {
         if (!_scrollLocked) return _origScroll.apply(window, arguments);
     };
+    // Force scroll to top repeatedly during lock period
+    var _forceTopInterval = setInterval(function() {
+        _origScrollTo.call(window, 0, 0);
+    }, 100);
+    function _unlockScroll() {
+        clearInterval(_forceTopInterval);
+        _scrollLocked = false;
+        Element.prototype.scrollIntoView = _origScrollIntoView;
+        window.scrollTo = _origScrollTo;
+        window.scroll = _origScroll;
+        _origScrollTo.call(window, 0, 0);
+        // Lazy-load hero booking iframe after scroll is safe
+        var heroIframe = document.getElementById('heroBookingIframe');
+        if (heroIframe && !heroIframe.src && heroIframe.dataset.src) {
+            heroIframe.src = heroIframe.dataset.src;
+        }
+    }
     window.addEventListener('load', function() {
         _origScrollTo.call(window, 0, 0);
-        setTimeout(function() {
-            _scrollLocked = false;
-            Element.prototype.scrollIntoView = _origScrollIntoView;
-            window.scrollTo = _origScrollTo;
-            window.scroll = _origScroll;
-            _origScrollTo.call(window, 0, 0);
-        }, 2000);
+        setTimeout(_unlockScroll, 3000);
     });
+    // Fallback: unlock after 5s even if load hasn't fired (slow networks)
+    setTimeout(function() { if (_scrollLocked) _unlockScroll(); }, 5000);
     </script>
     <a href="#main-content" class="skip-link">Skip to main content</a>
 
@@ -1879,6 +1815,10 @@
                 </div>
                 <div class="zero-pressure-badge"><i class="fa-solid fa-shield-halved"></i> Zero pressure. Zero commitment. Just a conversation.</div>
                 <div class="trust-badges" style="margin-top: 1.5rem;">Veteran-Owned | 13+ Years | 5-Star Reviews</div>
+            </div>
+            <div class="hero-booking">
+                <div class="hero-booking-label"><i class="fa-solid fa-calendar-check" style="margin-right: 0.4rem;"></i> Pick Your Time</div>
+                <iframe data-src="https://api.leadconnectorhq.com/widget/booking/aOyy4UPbwziVvHz35TCU" style="width: 100%; border: none; overflow: hidden;" scrolling="no" id="heroBookingIframe" title="Book a free consultation"></iframe>
             </div>
         </div>
     </section>
@@ -1986,21 +1926,6 @@
         </div>
     </section>
 
-    <!-- Available Times CTA -->
-    <div style="padding: 3rem 0; background: var(--dark-gray);">
-        <div style="max-width: 800px; margin: 0 auto; padding: 0 4rem;">
-            <div class="next-slots-widget reveal">
-                <div class="slots-widget-heading">Next Available Times</div>
-                <div class="next-slots-list">
-                    <div class="skeleton skeleton-card"></div>
-                    <div class="skeleton skeleton-card"></div>
-                    <div class="skeleton skeleton-card"></div>
-                    <div class="skeleton skeleton-card"></div>
-                </div>
-            </div>
-        </div>
-    </div>
-
     <!-- ===== 5. GUIDE (Empathy + Authority) ===== -->
     <section class="guide-section">
         <div class="guide-container">
@@ -2068,16 +1993,6 @@
             <div style="text-align: center; margin-top: 3rem;" class="reveal">
                 <a href="#booking-cal" class="btn-primary">Book Your Free Consultation</a>
                 <div class="urgency-badge" style="justify-content: center; color: var(--white);"><span class="urgency-dot"></span> Only a few spots left — book yours now</div>
-            </div>
-
-            <div class="next-slots-widget reveal" style="margin-top: 2rem;">
-                <div class="slots-widget-heading">Next Available Times</div>
-                <div class="next-slots-list">
-                    <div class="skeleton skeleton-card"></div>
-                    <div class="skeleton skeleton-card"></div>
-                    <div class="skeleton skeleton-card"></div>
-                    <div class="skeleton skeleton-card"></div>
-                </div>
             </div>
         </div>
     </section>
@@ -2185,16 +2100,6 @@
                 <a href="#booking-cal" class="btn-primary">Book Your Free Consultation</a>
                 <div class="urgency-badge" style="justify-content: center; color: var(--white);"><span class="urgency-dot"></span> Only a few spots left — book yours now</div>
             </div>
-
-            <div class="next-slots-widget reveal" style="margin-top: 2rem;">
-                <div class="slots-widget-heading">Next Available Times</div>
-                <div class="next-slots-list">
-                    <div class="skeleton skeleton-card"></div>
-                    <div class="skeleton skeleton-card"></div>
-                    <div class="skeleton skeleton-card"></div>
-                    <div class="skeleton skeleton-card"></div>
-                </div>
-            </div>
         </div>
     </section>
 
@@ -2226,17 +2131,6 @@
                 <h2 class="booking-title">Book Your Free Consultation</h2>
                 <p class="booking-description">You've done the hardest part by reaching out. Now pick a time that works and come see for yourself. No credit card required.</p>
                 <div class="urgency-badge" style="justify-content: center; color: var(--white); margin-bottom: 2rem;"><span class="urgency-dot"></span> Only a few spots left - book yours now</div>
-            </div>
-
-            <!-- Next Available Times Widget -->
-            <div class="next-slots-widget reveal">
-                <div class="slots-widget-heading">Next Available Times</div>
-                <div class="next-slots-list">
-                    <div class="skeleton skeleton-card"></div>
-                    <div class="skeleton skeleton-card"></div>
-                    <div class="skeleton skeleton-card"></div>
-                    <div class="skeleton skeleton-card"></div>
-                </div>
             </div>
 
             <div id="booking-cal" class="booking-embed reveal">
@@ -2372,135 +2266,6 @@
     document.querySelectorAll('.reveal, .reveal-scale').forEach(function(el) {
         observer.observe(el);
     });
-})();
-</script>
-
-<script>
-// ===== BOOKING WIDGETS =====
-(function() {
-    var API_URL = '/api/free-slots';
-    var cache = {};
-    var DAY_NAMES = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
-    var MONTH_NAMES = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
-
-    function toDateStr(d) {
-        var y = d.getFullYear();
-        var m = String(d.getMonth() + 1).padStart(2, '0');
-        var day = String(d.getDate()).padStart(2, '0');
-        return y + '-' + m + '-' + day;
-    }
-
-    function formatTime(isoStr) {
-        var d = new Date(isoStr);
-        var h = d.getHours();
-        var m = d.getMinutes();
-        var ampm = h >= 12 ? 'PM' : 'AM';
-        h = h % 12 || 12;
-        return h + ':' + String(m).padStart(2, '0') + ' ' + ampm + ' CT';
-    }
-
-    function addDays(d, n) {
-        var r = new Date(d);
-        r.setDate(r.getDate() + n);
-        return r;
-    }
-
-    function fetchSlots(startDate, endDate, cb) {
-        var key = startDate + '_' + endDate;
-        if (cache[key]) { return cb(null, cache[key]); }
-        var url = API_URL + '?startDate=' + startDate + '&endDate=' + endDate;
-        fetch(url)
-            .then(function(r) {
-                if (!r.ok) throw new Error('HTTP ' + r.status);
-                return r.json();
-            })
-            .then(function(data) {
-                cache[key] = data;
-                cb(null, data);
-            })
-            .catch(function(err) { cb(err, null); });
-    }
-
-    function parseSlots(data) {
-        var slots = [];
-        if (!data || typeof data !== 'object') return slots;
-        var source = data;
-        if (data && typeof data === 'object' && !Array.isArray(data)) {
-            if (data.slots) source = data.slots;
-            else if (data.data) source = data.data;
-        }
-        Object.keys(source).forEach(function(dateKey) {
-            var dayData = source[dateKey];
-            var daySlots = [];
-            if (Array.isArray(dayData)) {
-                daySlots = dayData;
-            } else if (dayData && Array.isArray(dayData.slots)) {
-                daySlots = dayData.slots;
-            }
-            daySlots.forEach(function(s) {
-                slots.push({ dateKey: dateKey, iso: s, time: new Date(s) });
-            });
-        });
-        slots.sort(function(a, b) { return a.time - b.time; });
-        return slots;
-    }
-
-    function onSlotClick() {
-        var embed = document.querySelector('.booking-embed');
-        if (embed) {
-            embed.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        }
-    }
-
-    function renderAllWidgets(slots) {
-        var widgets = document.querySelectorAll('.next-slots-widget');
-        var topSlots = slots.slice(0, 4);
-        widgets.forEach(function(widget) {
-            var list = widget.querySelector('.next-slots-list');
-            if (!list) return;
-            list.innerHTML = '';
-            if (topSlots.length === 0) {
-                list.innerHTML = '<div class="widget-empty">No upcoming slots found. Check back soon!</div>';
-                return;
-            }
-            topSlots.forEach(function(s) {
-                var card = document.createElement('button');
-                card.className = 'slot-card';
-                card.setAttribute('aria-label', 'Book ' + DAY_NAMES[s.time.getDay()] + ' ' + MONTH_NAMES[s.time.getMonth()] + ' ' + s.time.getDate() + ' at ' + formatTime(s.iso));
-                card.innerHTML = '<div class="slot-card-day">' + DAY_NAMES[s.time.getDay()] + '</div>' +
-                    '<div class="slot-card-date">' + MONTH_NAMES[s.time.getMonth()] + ' ' + s.time.getDate() + '</div>' +
-                    '<div class="slot-card-time">' + formatTime(s.iso) + '</div>';
-                card.addEventListener('click', onSlotClick);
-                list.appendChild(card);
-            });
-        });
-    }
-
-    function showError() {
-        var widgets = document.querySelectorAll('.next-slots-widget');
-        widgets.forEach(function(widget) {
-            var list = widget.querySelector('.next-slots-list');
-            if (list) {
-                list.innerHTML = '<div class="widget-error">Unable to load availability.<br><button class="widget-retry-btn" onclick="window.__retrySlots()">Retry</button></div>';
-            }
-        });
-    }
-
-    function loadSlots() {
-        var today = new Date();
-        var start = toDateStr(today);
-        var end = toDateStr(addDays(today, 14));
-        fetchSlots(start, end, function(err, data) {
-            if (err) { showError(); return; }
-            var allSlots = parseSlots(data);
-            var now = new Date();
-            allSlots = allSlots.filter(function(s) { return s.time > now; });
-            renderAllWidgets(allSlots);
-        });
-    }
-
-    window.__retrySlots = loadSlots;
-    loadSlots();
 })();
 </script>
 
