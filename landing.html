@@ -1720,13 +1720,13 @@
 <body>
     <script>
     if(history.scrollRestoration)history.scrollRestoration='manual';
-    // form_embed.js uses window.scrollTo(x,y) to hijack scroll - block it for 3s
-    var _sto=window.scrollTo;
-    window.scrollTo=function(x,y){
-        // Only allow scrollTo(0,0), block everything else during load
-        if((x===0||x&&x.top===0)&&(!y||y===0))return _sto.call(window,0,0);
-    };
-    setTimeout(function(){window.scrollTo=_sto;},3000);
+    if(window.location.hash)history.replaceState(null,'',window.location.pathname+window.location.search);
+    var _sto=window.scrollTo,_scr=window.scroll;
+    window.scrollTo=function(){};
+    window.scroll=function(){};
+    document.documentElement.scrollTop=0;document.body.scrollTop=0;
+    var _ft=setInterval(function(){document.documentElement.scrollTop=0;document.body.scrollTop=0;},50);
+    setTimeout(function(){clearInterval(_ft);window.scrollTo=_sto;window.scroll=_scr;},3000);
     window.addEventListener('pageshow',function(){_sto.call(window,0,0);});
     </script>
     <a href="#main-content" class="skip-link">Skip to main content</a>
