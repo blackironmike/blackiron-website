@@ -392,23 +392,43 @@
             line-height: 1.5;
         }
 
-        /* ===== PHOTO STRIP ===== */
-        .photo-strip {
-            display: grid;
-            grid-template-columns: 1fr 1fr 1fr;
-            gap: 0;
+        /* ===== PHOTO CAROUSEL ===== */
+        .photo-carousel {
+            overflow: hidden;
+            background: var(--black);
         }
 
-        .photo-strip img {
-            width: 100%;
-            height: 300px;
+        .photo-carousel-track {
+            display: flex;
+            width: max-content;
+            animation: scroll-photos 30s linear infinite;
+        }
+
+        .photo-carousel-track img {
+            height: 280px;
+            width: auto;
+            aspect-ratio: 1 / 1;
             object-fit: cover;
             display: block;
+            flex-shrink: 0;
+        }
+
+        @keyframes scroll-photos {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        .photo-carousel:hover .photo-carousel-track {
+            animation-play-state: paused;
         }
 
         @media (max-width: 768px) {
-            .photo-strip img {
+            .photo-carousel-track img {
                 height: 200px;
+            }
+
+            .photo-carousel-track {
+                animation-duration: 20s;
             }
         }
 
@@ -828,11 +848,26 @@
         </div>
     </section>
 
-    <!-- PHOTO STRIP -->
-    <div class="photo-strip">
-        <img src="images/ad-coaching-pair.png" alt="Members encouraging each other during a workout" loading="lazy">
-        <img src="images/ad-wallball.png" alt="Member doing wall ball squats" loading="lazy">
-        <img src="images/ad-blessed.png" alt="Member laughing at the gym" loading="lazy">
+    <!-- PHOTO CAROUSEL -->
+    <div class="photo-carousel">
+        <div class="photo-carousel-track">
+            <img src="images/ad-coach-mike.png" alt="Member laughing at the gym" loading="lazy">
+            <img src="images/ad-pullup.png" alt="Members encouraging each other during a workout" loading="lazy">
+            <img src="images/ad-squat-bw.png" alt="Coach Mike at Black Iron Athletics" loading="lazy">
+            <img src="images/ad-strong-woman.png" alt="Member on the pull-up bar" loading="lazy">
+            <img src="images/ad-wallball.png" alt="Member squatting with barbell" loading="lazy">
+            <img src="images/ad-runner.png" alt="Member with strong woman shirt" loading="lazy">
+            <img src="images/ad-blessed.png" alt="Member doing wall balls" loading="lazy">
+            <img src="images/ad-coaching-pair.png" alt="Member running outdoors" loading="lazy">
+            <img src="images/ad-coach-mike.png" alt="Member laughing at the gym" loading="lazy">
+            <img src="images/ad-pullup.png" alt="Members encouraging each other during a workout" loading="lazy">
+            <img src="images/ad-squat-bw.png" alt="Coach Mike at Black Iron Athletics" loading="lazy">
+            <img src="images/ad-strong-woman.png" alt="Member on the pull-up bar" loading="lazy">
+            <img src="images/ad-wallball.png" alt="Member squatting with barbell" loading="lazy">
+            <img src="images/ad-runner.png" alt="Member with strong woman shirt" loading="lazy">
+            <img src="images/ad-blessed.png" alt="Member doing wall balls" loading="lazy">
+            <img src="images/ad-coaching-pair.png" alt="Member running outdoors" loading="lazy">
+        </div>
     </div>
 
     <!-- 5. SOCIAL PROOF BAR -->
