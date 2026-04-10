@@ -149,11 +149,12 @@
         }
 
         .progress-inner {
-            max-width: 480px;
+            max-width: 680px;
             margin: 0 auto;
             display: flex;
             align-items: center;
             justify-content: center;
+            flex-wrap: wrap;
             gap: 0;
         }
 
@@ -167,6 +168,12 @@
             text-transform: uppercase;
             letter-spacing: 1px;
             white-space: nowrap;
+        }
+
+        .step-completed {
+            background: transparent;
+            border: 2px solid var(--yellow);
+            color: var(--yellow);
         }
 
         .step-active {
@@ -189,6 +196,10 @@
             font-weight: 900;
         }
 
+        .step-completed .step-number {
+            color: var(--yellow);
+        }
+
         .step-active .step-number {
             background: var(--black);
             color: var(--yellow);
@@ -203,6 +214,13 @@
             width: 40px;
             height: 2px;
             background: var(--yellow);
+            flex-shrink: 0;
+        }
+
+        .step-connector-dim {
+            width: 40px;
+            height: 2px;
+            background: rgba(255, 255, 255, 0.2);
             flex-shrink: 0;
         }
 
@@ -646,8 +664,9 @@
                 font-size: 0.65rem;
             }
 
-            .step-connector {
-                width: 24px;
+            .step-connector,
+            .step-connector-dim {
+                width: 20px;
             }
 
             .hero-grid {
@@ -765,14 +784,19 @@
     <!-- 2. PROGRESS BAR -->
     <div class="progress-bar">
         <div class="progress-inner">
-            <div class="step step-active">
-                <div class="step-number">1</div>
-                You Are Here
+            <div class="step step-completed">
+                <div class="step-number"><i class="fa-solid fa-check"></i></div>
+                You Found Us
             </div>
             <div class="step-connector"></div>
-            <div class="step step-inactive">
+            <div class="step step-active">
                 <div class="step-number">2</div>
                 Book Consultation
+            </div>
+            <div class="step-connector-dim"></div>
+            <div class="step step-inactive">
+                <div class="step-number">3</div>
+                Join the Community
             </div>
         </div>
     </div>
