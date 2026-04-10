@@ -149,12 +149,11 @@
         }
 
         .progress-inner {
-            max-width: 680px;
+            max-width: 480px;
             margin: 0 auto;
             display: flex;
             align-items: center;
             justify-content: center;
-            flex-wrap: wrap;
             gap: 0;
         }
 
@@ -168,12 +167,6 @@
             text-transform: uppercase;
             letter-spacing: 1px;
             white-space: nowrap;
-        }
-
-        .step-completed {
-            background: transparent;
-            border: 2px solid var(--yellow);
-            color: var(--yellow);
         }
 
         .step-active {
@@ -196,10 +189,6 @@
             font-weight: 900;
         }
 
-        .step-completed .step-number {
-            color: var(--yellow);
-        }
-
         .step-active .step-number {
             background: var(--black);
             color: var(--yellow);
@@ -214,13 +203,6 @@
             width: 40px;
             height: 2px;
             background: var(--yellow);
-            flex-shrink: 0;
-        }
-
-        .step-connector-dim {
-            width: 40px;
-            height: 2px;
-            background: rgba(255, 255, 255, 0.2);
             flex-shrink: 0;
         }
 
@@ -655,34 +637,13 @@
                 display: none;
             }
 
-            .progress-bar {
-                padding: 1.25rem 1.5rem;
-            }
-
-            .progress-inner {
-                flex-direction: column;
-                align-items: stretch;
-                gap: 0;
-                max-width: 280px;
-            }
-
             .step {
-                padding: 0.6rem 1rem;
-                font-size: 0.75rem;
-                justify-content: flex-start;
+                padding: 0.4rem 0.75rem;
+                font-size: 0.65rem;
             }
 
-            .step-number {
-                width: 22px;
-                height: 22px;
-                font-size: 0.7rem;
-            }
-
-            .step-connector,
-            .step-connector-dim {
-                width: 2px;
-                height: 16px;
-                margin-left: 21px;
+            .step-connector {
+                width: 24px;
             }
 
             .hero-grid {
@@ -800,41 +761,17 @@
     <!-- 2. PROGRESS BAR -->
     <div class="progress-bar">
         <div class="progress-inner">
-            <div class="step step-completed">
-                <div class="step-number"><i class="fa-solid fa-check"></i></div>
-                You Found Us
+            <div class="step step-active">
+                <div class="step-number">1</div>
+                You Are Here
             </div>
             <div class="step-connector"></div>
-            <div class="step step-active">
+            <div class="step step-inactive">
                 <div class="step-number">2</div>
                 Book Consultation
             </div>
-            <div class="step-connector-dim"></div>
-            <div class="step step-inactive">
-                <div class="step-number">3</div>
-                Join the Community
-            </div>
         </div>
     </div>
-
-    <!-- 3. HERO SECTION -->
-    <section class="hero">
-        <div class="hero-grid">
-            <div class="hero-content">
-                <div class="hero-headline-wrapper">
-                    <div class="hero-yellow-bar"></div>
-                    <h1>What Are You Waiting For?</h1>
-                </div>
-                <p class="hero-sub">Your first step starts here. No pressure. No commitment.</p>
-                <a href="#booking" class="cta-btn">Book My Free Consultation</a>
-            </div>
-            <div class="hero-image-side">
-                <div class="hero-image-overlay"></div>
-                <div class="hero-image-accent"></div>
-                <img src="images/coach-smiling.webp" alt="Coach smiling at Black Iron Athletics" fetchpriority="high">
-            </div>
-        </div>
-    </section>
 
     <!-- BOOKING CALENDAR -->
     <section class="booking-section" id="booking">
@@ -852,6 +789,25 @@
                     title="Book a Consultation"
                 ></iframe>
                 <script src="https://link.msgsndr.com/js/form_embed.js"></script>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3. HERO SECTION -->
+    <section class="hero">
+        <div class="hero-grid">
+            <div class="hero-content">
+                <div class="hero-headline-wrapper">
+                    <div class="hero-yellow-bar"></div>
+                    <h1>What Are You Waiting For?</h1>
+                </div>
+                <p class="hero-sub">Your first step starts here. No pressure. No commitment.</p>
+                <a href="#booking" class="cta-btn">Book My Free Consultation</a>
+            </div>
+            <div class="hero-image-side">
+                <div class="hero-image-overlay"></div>
+                <div class="hero-image-accent"></div>
+                <img src="images/coach-smiling.webp" alt="Coach smiling at Black Iron Athletics" fetchpriority="high">
             </div>
         </div>
     </section>
