@@ -109,7 +109,8 @@
             padding: 1rem 2rem;
             display: flex;
             align-items: center;
-            justify-content: space-between;
+            justify-content: center;
+            position: relative;
             border-bottom: 3px solid var(--yellow);
         }
 
@@ -127,6 +128,10 @@
             display: flex;
             align-items: center;
             gap: 0.5rem;
+            position: absolute;
+            right: 2rem;
+            top: 50%;
+            transform: translateY(-50%);
         }
 
         .header-phone:hover {
@@ -385,6 +390,26 @@
             font-size: 1rem;
             color: var(--white);
             line-height: 1.5;
+        }
+
+        /* ===== PHOTO STRIP ===== */
+        .photo-strip {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 0;
+        }
+
+        .photo-strip img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            display: block;
+        }
+
+        @media (max-width: 768px) {
+            .photo-strip img {
+                height: 200px;
+            }
         }
 
         /* ===== 5. SOCIAL PROOF BAR ===== */
@@ -785,7 +810,7 @@
                 </div>
                 <div class="bullet-item">
                     <i class="fa-solid fa-circle-check"></i>
-                    <span>A real coach will reach out (not a sales team)</span>
+                    <span>Meet with a real coach, not a sales team</span>
                 </div>
                 <div class="bullet-item">
                     <i class="fa-solid fa-circle-check"></i>
@@ -802,6 +827,13 @@
             </div>
         </div>
     </section>
+
+    <!-- PHOTO STRIP -->
+    <div class="photo-strip">
+        <img src="images/ad-coaching-pair.png" alt="Members encouraging each other during a workout" loading="lazy">
+        <img src="images/ad-wallball.png" alt="Member doing wall ball squats" loading="lazy">
+        <img src="images/ad-blessed.png" alt="Member laughing at the gym" loading="lazy">
+    </div>
 
     <!-- 5. SOCIAL PROOF BAR -->
     <section class="social-proof">
