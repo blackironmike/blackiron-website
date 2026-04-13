@@ -4,13 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Class Schedule | Black Iron Athletics | Gym Classes in Frisco, TX</title>
-    <meta name="description" content="View the class schedule at Black Iron Athletics in Frisco, TX. Strength & conditioning, HYROX training, and Olympic weightlifting classes for all fitness levels. Morning, afternoon & evening times available.">
+    <meta name="description" content="View the class schedule at Black Iron Athletics in Frisco, TX. Strength & conditioning and Olympic weightlifting classes for all fitness levels. Morning, afternoon & evening times available.">
     <meta name="geo.region" content="US-TX">
     <meta name="geo.placename" content="Frisco">
     <link rel="canonical" href="https://www.blackironathletics.com/schedule">
     <!-- Open Graph -->
     <meta property="og:title" content="Class Schedule | Black Iron Athletics | Gym Classes in Frisco, TX">
-    <meta property="og:description" content="View the class schedule at Black Iron Athletics in Frisco, TX. Strength & conditioning, HYROX, and Olympic weightlifting classes for all fitness levels.">
+    <meta property="og:description" content="View the class schedule at Black Iron Athletics in Frisco, TX. Strength & conditioning and Olympic weightlifting classes for all fitness levels.">
     <meta property="og:url" content="https://www.blackironathletics.com/schedule">
     <meta property="og:image" content="https://www.blackironathletics.com/images/social-share.png">
     <meta property="og:type" content="website">
@@ -18,7 +18,7 @@
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Class Schedule | Black Iron Athletics | Gym Classes in Frisco, TX">
-    <meta name="twitter:description" content="View the class schedule at Black Iron Athletics in Frisco, TX. Strength & conditioning, HYROX, and Olympic weightlifting classes for all fitness levels.">
+    <meta name="twitter:description" content="View the class schedule at Black Iron Athletics in Frisco, TX. Strength & conditioning and Olympic weightlifting classes for all fitness levels.">
     <meta name="twitter:image" content="https://www.blackironathletics.com/images/social-share.png">
     <link rel="icon" type="image/png" href="images/anvil-favicon.png">
     <meta name="theme-color" content="#000000">
@@ -581,6 +581,23 @@
             letter-spacing: 0.5px;
         }
 
+        /* Open Gym Schedule - Green Theme */
+        .schedule-time.open-gym {
+            color: #22c55e;
+        }
+
+        .weekly-class.open-gym .weekly-class-time {
+            color: #22c55e;
+        }
+
+        .schedule-card.open-gym {
+            border-left-color: #22c55e;
+        }
+
+        .schedule-card.open-gym:hover {
+            border-color: #22c55e;
+        }
+
         /* Desktop: show weekly, hide daily */
         .schedule-daily {
             display: none;
@@ -1137,7 +1154,6 @@
             <div class="schedule-legend">
                 <div class="legend-item"><div class="legend-dot dot-sc"></div> Strength & Conditioning</div>
                 <div class="legend-item"><div class="legend-dot dot-wl"></div> Weightlifting</div>
-                <div class="legend-item"><div class="legend-dot dot-hyrox"></div> Hyrox</div>
             </div>
 
             <!-- Weekly Calendar (Desktop) -->
@@ -1174,7 +1190,7 @@
                         <div class="weekly-class"><div class="weekly-class-time">12:00 PM</div><div class="weekly-class-name">Strength & Conditioning</div></div>
                         <div class="weekly-class"><div class="weekly-class-time">4:15 PM</div><div class="weekly-class-name">Strength & Conditioning</div></div>
                         <div class="weekly-class"><div class="weekly-class-time">5:15 PM</div><div class="weekly-class-name">Strength & Conditioning</div></div>
-                        <div class="weekly-class type-hyrox"><div class="weekly-class-time">6:15 PM</div><div class="weekly-class-name">Hyrox</div></div>
+                        <div class="weekly-class type-weightlifting"><div class="weekly-class-time">6:15 PM</div><div class="weekly-class-name">Weightlifting</div></div>
                     </div>
                 </div>
                 <div class="schedule-weekly-col" data-weekday="4">
@@ -1205,7 +1221,6 @@
                     <div class="schedule-weekly-classes">
                         <div class="weekly-class type-weightlifting"><div class="weekly-class-time">8:30 AM</div><div class="weekly-class-name">Weightlifting</div></div>
                         <div class="weekly-class"><div class="weekly-class-time">9:30 AM</div><div class="weekly-class-name">Strength & Conditioning</div></div>
-                        <div class="weekly-class type-hyrox"><div class="weekly-class-time">10:30 AM</div><div class="weekly-class-name">Hyrox</div></div>
                     </div>
                 </div>
             </div>
@@ -1312,9 +1327,9 @@
                         <div class="schedule-time">5:15 PM</div>
                         <div><div class="schedule-class-name">Strength & Conditioning</div><div class="schedule-duration">60 min</div></div>
                     </div>
-                    <div class="schedule-card type-hyrox">
+                    <div class="schedule-card type-weightlifting">
                         <div class="schedule-time">6:15 PM</div>
-                        <div><div class="schedule-class-name">Hyrox</div><div class="schedule-duration">60 min</div></div>
+                        <div><div class="schedule-class-name">Weightlifting</div><div class="schedule-duration">60 min</div></div>
                     </div>
                 </div>
             </div>
@@ -1394,10 +1409,6 @@
                         <div class="schedule-time">9:30 AM</div>
                         <div><div class="schedule-class-name">Strength & Conditioning</div><div class="schedule-duration">60 min</div></div>
                     </div>
-                    <div class="schedule-card type-hyrox">
-                        <div class="schedule-time">10:30 AM</div>
-                        <div><div class="schedule-class-name">Hyrox</div><div class="schedule-duration">60 min</div></div>
-                    </div>
                 </div>
             </div>
             </div><!-- end schedule-daily -->
@@ -1405,6 +1416,256 @@
             <div style="text-align: center; margin-top: 3rem;">
                 <p style="font-size: 1.1rem; color: var(--light-gray); margin-bottom: 2rem;">Questions about class times or looking for something specific?</p>
                 <a href="#" onclick="openLeadModal(); return false;" class="btn-primary">Book Free Consultation</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Open Gym Schedule Section -->
+    <section id="open-gym-schedule" class="section section-alt">
+        <div class="section-container reveal">
+            <div class="section-header reveal">
+                <div class="section-subtitle">Train On Your Schedule</div>
+                <h2 class="section-title">Open Gym Schedule</h2>
+                <p class="section-description">24/7 member access available any time classes are not in session.</p>
+            </div>
+
+            <!-- Weekly Calendar (Desktop) -->
+            <div class="schedule-weekly">
+                <div class="schedule-weekly-col" data-weekday="1">
+                    <div class="schedule-weekly-header">Monday</div>
+                    <div class="schedule-weekly-classes">
+                        <div class="weekly-class open-gym"><div class="weekly-class-time">Until 5:15 AM</div><div class="weekly-class-name">Early Access</div></div>
+                        <div class="weekly-class open-gym"><div class="weekly-class-time">7:15 AM - 9:30 AM</div><div class="weekly-class-name">Open Gym</div></div>
+                        <div class="weekly-class open-gym"><div class="weekly-class-time">10:30 AM - 12:00 PM</div><div class="weekly-class-name">Open Gym</div></div>
+                        <div class="weekly-class open-gym"><div class="weekly-class-time">1:00 PM - 4:15 PM</div><div class="weekly-class-name">Open Gym</div></div>
+                        <div class="weekly-class open-gym"><div class="weekly-class-time">6:15 PM+</div><div class="weekly-class-name">After Hours</div></div>
+                    </div>
+                </div>
+                <div class="schedule-weekly-col" data-weekday="2">
+                    <div class="schedule-weekly-header">Tuesday</div>
+                    <div class="schedule-weekly-classes">
+                        <div class="weekly-class open-gym"><div class="weekly-class-time">Until 5:15 AM</div><div class="weekly-class-name">Early Access</div></div>
+                        <div class="weekly-class open-gym"><div class="weekly-class-time">7:15 AM - 9:30 AM</div><div class="weekly-class-name">Open Gym</div></div>
+                        <div class="weekly-class open-gym"><div class="weekly-class-time">10:30 AM - 11:00 AM</div><div class="weekly-class-name">Open Gym</div></div>
+                        <div class="weekly-class open-gym"><div class="weekly-class-time">1:00 PM - 4:15 PM</div><div class="weekly-class-name">Open Gym</div></div>
+                        <div class="weekly-class open-gym"><div class="weekly-class-time">6:15 PM+</div><div class="weekly-class-name">After Hours</div></div>
+                    </div>
+                </div>
+                <div class="schedule-weekly-col" data-weekday="3">
+                    <div class="schedule-weekly-header">Wednesday</div>
+                    <div class="schedule-weekly-classes">
+                        <div class="weekly-class open-gym"><div class="weekly-class-time">Until 5:15 AM</div><div class="weekly-class-name">Early Access</div></div>
+                        <div class="weekly-class open-gym"><div class="weekly-class-time">7:15 AM - 9:30 AM</div><div class="weekly-class-name">Open Gym</div></div>
+                        <div class="weekly-class open-gym"><div class="weekly-class-time">10:30 AM - 12:00 PM</div><div class="weekly-class-name">Open Gym</div></div>
+                        <div class="weekly-class open-gym"><div class="weekly-class-time">1:00 PM - 4:15 PM</div><div class="weekly-class-name">Open Gym</div></div>
+                        <div class="weekly-class open-gym"><div class="weekly-class-time">7:15 PM+</div><div class="weekly-class-name">After Hours</div></div>
+                    </div>
+                </div>
+                <div class="schedule-weekly-col" data-weekday="4">
+                    <div class="schedule-weekly-header">Thursday</div>
+                    <div class="schedule-weekly-classes">
+                        <div class="weekly-class open-gym"><div class="weekly-class-time">Until 5:15 AM</div><div class="weekly-class-name">Early Access</div></div>
+                        <div class="weekly-class open-gym"><div class="weekly-class-time">7:15 AM - 9:30 AM</div><div class="weekly-class-name">Open Gym</div></div>
+                        <div class="weekly-class open-gym"><div class="weekly-class-time">10:30 AM - 11:00 AM</div><div class="weekly-class-name">Open Gym</div></div>
+                        <div class="weekly-class open-gym"><div class="weekly-class-time">1:00 PM - 4:15 PM</div><div class="weekly-class-name">Open Gym</div></div>
+                        <div class="weekly-class open-gym"><div class="weekly-class-time">6:15 PM+</div><div class="weekly-class-name">After Hours</div></div>
+                    </div>
+                </div>
+                <div class="schedule-weekly-col" data-weekday="5">
+                    <div class="schedule-weekly-header">Friday</div>
+                    <div class="schedule-weekly-classes">
+                        <div class="weekly-class open-gym"><div class="weekly-class-time">Until 5:15 AM</div><div class="weekly-class-name">Early Access</div></div>
+                        <div class="weekly-class open-gym"><div class="weekly-class-time">7:15 AM - 9:30 AM</div><div class="weekly-class-name">Open Gym</div></div>
+                        <div class="weekly-class open-gym"><div class="weekly-class-time">10:30 AM - 12:00 PM</div><div class="weekly-class-name">Open Gym</div></div>
+                        <div class="weekly-class open-gym"><div class="weekly-class-time">1:00 PM - 4:15 PM</div><div class="weekly-class-name">Open Gym</div></div>
+                        <div class="weekly-class open-gym"><div class="weekly-class-time">6:15 PM+</div><div class="weekly-class-name">After Hours</div></div>
+                    </div>
+                </div>
+                <div class="schedule-weekly-col" data-weekday="6">
+                    <div class="schedule-weekly-header">Saturday</div>
+                    <div class="schedule-weekly-classes">
+                        <div class="weekly-class open-gym"><div class="weekly-class-time">Until 8:30 AM</div><div class="weekly-class-name">Early Access</div></div>
+                        <div class="weekly-class open-gym"><div class="weekly-class-time">10:30 AM+</div><div class="weekly-class-name">After Hours</div></div>
+                    </div>
+                </div>
+                <div class="schedule-weekly-col" data-weekday="0">
+                    <div class="schedule-weekly-header">Sunday</div>
+                    <div class="schedule-weekly-classes">
+                        <div class="weekly-class open-gym"><div class="weekly-class-time">ALL DAY</div><div class="weekly-class-name">24/7 Access</div></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Daily Calendar (Mobile) -->
+            <div class="schedule-daily">
+            <div class="schedule-tabs" role="tablist">
+                <button class="schedule-tab" data-day="monday-og" role="tab">Mon</button>
+                <button class="schedule-tab" data-day="tuesday-og" role="tab">Tue</button>
+                <button class="schedule-tab" data-day="wednesday-og" role="tab">Wed</button>
+                <button class="schedule-tab" data-day="thursday-og" role="tab">Thu</button>
+                <button class="schedule-tab" data-day="friday-og" role="tab">Fri</button>
+                <button class="schedule-tab" data-day="saturday-og" role="tab">Sat</button>
+                <button class="schedule-tab" data-day="sunday-og" role="tab">Sun</button>
+            </div>
+
+            <!-- Monday -->
+            <div class="schedule-day" data-day="monday-og">
+                <div class="schedule-list">
+                    <div class="schedule-card open-gym">
+                        <div class="schedule-time open-gym">Until 5:15 AM</div>
+                        <div><div class="schedule-class-name">Early Access</div></div>
+                    </div>
+                    <div class="schedule-card open-gym">
+                        <div class="schedule-time open-gym">7:15 AM - 9:30 AM</div>
+                        <div><div class="schedule-class-name">Open Gym</div></div>
+                    </div>
+                    <div class="schedule-card open-gym">
+                        <div class="schedule-time open-gym">10:30 AM - 12:00 PM</div>
+                        <div><div class="schedule-class-name">Open Gym</div></div>
+                    </div>
+                    <div class="schedule-card open-gym">
+                        <div class="schedule-time open-gym">1:00 PM - 4:15 PM</div>
+                        <div><div class="schedule-class-name">Open Gym</div></div>
+                    </div>
+                    <div class="schedule-card open-gym">
+                        <div class="schedule-time open-gym">6:15 PM+</div>
+                        <div><div class="schedule-class-name">After Hours</div></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tuesday -->
+            <div class="schedule-day" data-day="tuesday-og">
+                <div class="schedule-list">
+                    <div class="schedule-card open-gym">
+                        <div class="schedule-time open-gym">Until 5:15 AM</div>
+                        <div><div class="schedule-class-name">Early Access</div></div>
+                    </div>
+                    <div class="schedule-card open-gym">
+                        <div class="schedule-time open-gym">7:15 AM - 9:30 AM</div>
+                        <div><div class="schedule-class-name">Open Gym</div></div>
+                    </div>
+                    <div class="schedule-card open-gym">
+                        <div class="schedule-time open-gym">10:30 AM - 11:00 AM</div>
+                        <div><div class="schedule-class-name">Open Gym</div></div>
+                    </div>
+                    <div class="schedule-card open-gym">
+                        <div class="schedule-time open-gym">1:00 PM - 4:15 PM</div>
+                        <div><div class="schedule-class-name">Open Gym</div></div>
+                    </div>
+                    <div class="schedule-card open-gym">
+                        <div class="schedule-time open-gym">6:15 PM+</div>
+                        <div><div class="schedule-class-name">After Hours</div></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Wednesday -->
+            <div class="schedule-day" data-day="wednesday-og">
+                <div class="schedule-list">
+                    <div class="schedule-card open-gym">
+                        <div class="schedule-time open-gym">Until 5:15 AM</div>
+                        <div><div class="schedule-class-name">Early Access</div></div>
+                    </div>
+                    <div class="schedule-card open-gym">
+                        <div class="schedule-time open-gym">7:15 AM - 9:30 AM</div>
+                        <div><div class="schedule-class-name">Open Gym</div></div>
+                    </div>
+                    <div class="schedule-card open-gym">
+                        <div class="schedule-time open-gym">10:30 AM - 12:00 PM</div>
+                        <div><div class="schedule-class-name">Open Gym</div></div>
+                    </div>
+                    <div class="schedule-card open-gym">
+                        <div class="schedule-time open-gym">1:00 PM - 4:15 PM</div>
+                        <div><div class="schedule-class-name">Open Gym</div></div>
+                    </div>
+                    <div class="schedule-card open-gym">
+                        <div class="schedule-time open-gym">7:15 PM+</div>
+                        <div><div class="schedule-class-name">After Hours</div></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Thursday -->
+            <div class="schedule-day" data-day="thursday-og">
+                <div class="schedule-list">
+                    <div class="schedule-card open-gym">
+                        <div class="schedule-time open-gym">Until 5:15 AM</div>
+                        <div><div class="schedule-class-name">Early Access</div></div>
+                    </div>
+                    <div class="schedule-card open-gym">
+                        <div class="schedule-time open-gym">7:15 AM - 9:30 AM</div>
+                        <div><div class="schedule-class-name">Open Gym</div></div>
+                    </div>
+                    <div class="schedule-card open-gym">
+                        <div class="schedule-time open-gym">10:30 AM - 11:00 AM</div>
+                        <div><div class="schedule-class-name">Open Gym</div></div>
+                    </div>
+                    <div class="schedule-card open-gym">
+                        <div class="schedule-time open-gym">1:00 PM - 4:15 PM</div>
+                        <div><div class="schedule-class-name">Open Gym</div></div>
+                    </div>
+                    <div class="schedule-card open-gym">
+                        <div class="schedule-time open-gym">6:15 PM+</div>
+                        <div><div class="schedule-class-name">After Hours</div></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Friday -->
+            <div class="schedule-day" data-day="friday-og">
+                <div class="schedule-list">
+                    <div class="schedule-card open-gym">
+                        <div class="schedule-time open-gym">Until 5:15 AM</div>
+                        <div><div class="schedule-class-name">Early Access</div></div>
+                    </div>
+                    <div class="schedule-card open-gym">
+                        <div class="schedule-time open-gym">7:15 AM - 9:30 AM</div>
+                        <div><div class="schedule-class-name">Open Gym</div></div>
+                    </div>
+                    <div class="schedule-card open-gym">
+                        <div class="schedule-time open-gym">10:30 AM - 12:00 PM</div>
+                        <div><div class="schedule-class-name">Open Gym</div></div>
+                    </div>
+                    <div class="schedule-card open-gym">
+                        <div class="schedule-time open-gym">1:00 PM - 4:15 PM</div>
+                        <div><div class="schedule-class-name">Open Gym</div></div>
+                    </div>
+                    <div class="schedule-card open-gym">
+                        <div class="schedule-time open-gym">6:15 PM+</div>
+                        <div><div class="schedule-class-name">After Hours</div></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Saturday -->
+            <div class="schedule-day" data-day="saturday-og">
+                <div class="schedule-list">
+                    <div class="schedule-card open-gym">
+                        <div class="schedule-time open-gym">Until 8:30 AM</div>
+                        <div><div class="schedule-class-name">Early Access</div></div>
+                    </div>
+                    <div class="schedule-card open-gym">
+                        <div class="schedule-time open-gym">10:30 AM+</div>
+                        <div><div class="schedule-class-name">After Hours</div></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sunday -->
+            <div class="schedule-day" data-day="sunday-og">
+                <div class="schedule-list">
+                    <div class="schedule-card open-gym">
+                        <div class="schedule-time open-gym">ALL DAY</div>
+                        <div><div class="schedule-class-name">24/7 Access</div></div>
+                    </div>
+                </div>
+            </div>
+            </div><!-- end schedule-daily -->
+
+            <div style="text-align: center; margin-top: 3rem;">
+                <p style="font-size: 1.1rem; color: var(--light-gray); margin-bottom: 2rem;">All members have 24/7 access via key fob. Follow our structured programming or create your own workouts.</p>
+                <a href="#" onclick="openLeadModal(); return false;" class="btn-primary">Become a Member</a>
             </div>
         </div>
     </section>
@@ -1433,8 +1694,8 @@
 
                 <div class="class-type-card type-hyrox reveal">
                     <div class="class-type-icon"><i class="fa-solid fa-person-running"></i></div>
-                    <h3>Hyrox</h3>
-                    <p>Focused on getting you race day ready. A blend of running and functional fitness stations designed to prepare you for Hyrox competition or just push your endurance to the next level.</p>
+                    <h3>Hyrox (Open Gym)</h3>
+                    <p>Available during open gym hours for self-guided training. Our facility is equipped with everything you need to prepare for Hyrox competition including running stations and functional fitness equipment. Train at your own pace using our structured programming or create your own workouts.</p>
                 </div>
             </div>
         </div>
@@ -1721,8 +1982,9 @@
 
     // Schedule Tabs (Mobile) + Weekly Highlight (Desktop)
     (function() {
-        var tabs = document.querySelectorAll('.schedule-tab');
-        var days = document.querySelectorAll('.schedule-day');
+        // Class Schedule
+        var tabs = document.querySelectorAll('#schedule .schedule-tab');
+        var days = document.querySelectorAll('#schedule .schedule-day');
         var dayNames = ['sunday','monday','tuesday','wednesday','thursday','friday','saturday'];
         var todayIndex = new Date().getDay();
         var today = dayNames[todayIndex];
@@ -1732,8 +1994,8 @@
         function showDay(day) {
             tabs.forEach(function(t) { t.classList.remove('active'); });
             days.forEach(function(d) { d.classList.remove('active'); });
-            var activeTab = document.querySelector('.schedule-tab[data-day="' + day + '"]');
-            var activeDay = document.querySelector('.schedule-day[data-day="' + day + '"]');
+            var activeTab = document.querySelector('#schedule .schedule-tab[data-day="' + day + '"]');
+            var activeDay = document.querySelector('#schedule .schedule-day[data-day="' + day + '"]');
             if (activeTab) activeTab.classList.add('active');
             if (activeDay) activeDay.classList.add('active');
         }
@@ -1747,7 +2009,38 @@
         showDay(today);
 
         // Desktop: highlight today's column
-        var todayCol = document.querySelector('.schedule-weekly-col[data-weekday="' + todayIndex + '"]');
+        var todayCol = document.querySelector('#schedule .schedule-weekly-col[data-weekday="' + todayIndex + '"]');
+        if (todayCol) todayCol.classList.add('today');
+    })();
+
+    // Open Gym Schedule Tabs (Mobile) + Weekly Highlight (Desktop)
+    (function() {
+        var ogTabs = document.querySelectorAll('#open-gym-schedule .schedule-tab');
+        var ogDays = document.querySelectorAll('#open-gym-schedule .schedule-day');
+        var dayNames = ['sunday','monday','tuesday','wednesday','thursday','friday','saturday'];
+        var todayIndex = new Date().getDay();
+        var today = dayNames[todayIndex] + '-og';
+
+        // Mobile: tab switching
+        function showOGDay(day) {
+            ogTabs.forEach(function(t) { t.classList.remove('active'); });
+            ogDays.forEach(function(d) { d.classList.remove('active'); });
+            var activeTab = document.querySelector('#open-gym-schedule .schedule-tab[data-day="' + day + '"]');
+            var activeDay = document.querySelector('#open-gym-schedule .schedule-day[data-day="' + day + '"]');
+            if (activeTab) activeTab.classList.add('active');
+            if (activeDay) activeDay.classList.add('active');
+        }
+
+        ogTabs.forEach(function(tab) {
+            tab.addEventListener('click', function() {
+                showOGDay(this.getAttribute('data-day'));
+            });
+        });
+
+        showOGDay(today);
+
+        // Desktop: highlight today's column
+        var todayCol = document.querySelector('#open-gym-schedule .schedule-weekly-col[data-weekday="' + todayIndex + '"]');
         if (todayCol) todayCol.classList.add('today');
     })();
 
