@@ -1481,14 +1481,15 @@
                         <div class="weekly-class open-gym"><div class="weekly-class-time">6:15 PM+</div><div class="weekly-class-name">After Hours</div></div>
                     </div>
                 </div>
-                <div class="schedule-weekly-col" data-weekday="6">
+                <div class="schedule-weekly-col schedule-weekend-stack" data-weekday="6">
                     <div class="schedule-weekly-header">Saturday</div>
                     <div class="schedule-weekly-classes">
                         <div class="weekly-class open-gym"><div class="weekly-class-time">Until 8:30 AM</div><div class="weekly-class-name">Early Access</div></div>
                         <div class="weekly-class open-gym"><div class="weekly-class-time">10:30 AM+</div><div class="weekly-class-name">After Hours</div></div>
                     </div>
-                </div>
-                <div class="schedule-weekly-col" data-weekday="0">
+
+                    <div style="height: 1.5rem;"></div>
+
                     <div class="schedule-weekly-header">Sunday</div>
                     <div class="schedule-weekly-classes">
                         <div class="weekly-class open-gym"><div class="weekly-class-time">ALL DAY</div><div class="weekly-class-name">24/7 Access</div></div>
@@ -2039,8 +2040,9 @@
 
         showOGDay(today);
 
-        // Desktop: highlight today's column
-        var todayCol = document.querySelector('#open-gym-schedule .schedule-weekly-col[data-weekday="' + todayIndex + '"]');
+        // Desktop: highlight today's column (Sunday is stacked under Saturday)
+        var highlightIndex = todayIndex === 0 ? 6 : todayIndex; // Sunday (0) uses Saturday column (6)
+        var todayCol = document.querySelector('#open-gym-schedule .schedule-weekly-col[data-weekday="' + highlightIndex + '"]');
         if (todayCol) todayCol.classList.add('today');
     })();
 
