@@ -598,6 +598,16 @@
             border-color: #22c55e;
         }
 
+        /* Open Gym: Align Sunday with Friday's 4th time slot */
+        #open-gym-schedule .schedule-weekend-stack .schedule-weekly-header:last-of-type {
+            margin-top: 7.5rem;
+        }
+
+        /* Mobile: Add spacing between time and class name */
+        .schedule-card > div > div {
+            margin-top: 0.5rem;
+        }
+
         /* Desktop: show weekly, hide daily */
         .schedule-daily {
             display: none;
@@ -1487,8 +1497,6 @@
                         <div class="weekly-class open-gym"><div class="weekly-class-time">Until 8:30 AM</div><div class="weekly-class-name">Early Access</div></div>
                         <div class="weekly-class open-gym"><div class="weekly-class-time">10:30 AM+</div><div class="weekly-class-name">After Hours</div></div>
                     </div>
-
-                    <div style="height: 1.5rem;"></div>
 
                     <div class="schedule-weekly-header">Sunday</div>
                     <div class="schedule-weekly-classes">
