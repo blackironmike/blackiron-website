@@ -41,6 +41,22 @@
     { "source": "/blueprint-decade", "destination": "/fuelpath-decade", "permanent": true },
     { "source": "/blueprint-dashboard", "destination": "/fuelpath-dashboard", "permanent": true },
     { "source": "/blueprint-admin", "destination": "/fuelpath-admin", "permanent": true },
-    { "source": "/fuelpath-tracker", "destination": "/fuelpath-dashboard", "permanent": false }
+    { "source": "/fuelpath-tracker", "destination": "/fuelpath-dashboard", "permanent": false },
+
+    { "source": "/images/logo.png", "destination": "/images/logos/logo.png", "permanent": true },
+    { "source": "/images/black-iron-athletics-logo.png", "destination": "/images/logos/black-iron-athletics-logo.png", "permanent": true },
+    { "source": "/images/Anvil-BLACK.png", "destination": "/images/logos/Anvil-BLACK.png", "permanent": true },
+    { "source": "/images/Anvil-WHITE.png", "destination": "/images/logos/Anvil-WHITE.png", "permanent": true },
+    { "source": "/images/fuel-path-logo.png", "destination": "/images/logos/fuel-path-logo.png", "permanent": true },
+    { "source": "/images/Fuel-Path-Anvil-Banner.png", "destination": "/images/logos/Fuel-Path-Anvil-Banner.png", "permanent": true },
+    { "source": "/images/FuelPath-Box%20Logo.png", "destination": "/images/logos/FuelPath-Box%20Logo.png", "permanent": true },
+    { "source": "/images/email-header.jpg", "destination": "/images/email/email-header.jpg", "permanent": true },
+    { "source": "/images/email-signature-mike.png", "destination": "/images/email/email-signature-mike.png", "permanent": true },
+    { "source": "/images/iron-will-banner.png", "destination": "/images/email/iron-will-banner.png", "permanent": true },
+    { "source": "/images/xenon-event-banner.png", "destination": "/images/email/xenon-event-banner.png", "permanent": true },
+    { "source": "/images/owner-headcoach-mike.webp", "destination": "/images/team/owner-headcoach-mike.webp", "permanent": true },
+    { "source": "/images/hero-main.webp", "destination": "/images/heroes/hero-main.webp", "permanent": true },
+    { "source": "/images/hero-about.webp", "destination": "/images/heroes/hero-about.webp", "permanent": true },
+    { "source": "/images/hero-getting-started.webp", "destination": "/images/heroes/hero-getting-started.webp", "permanent": true }
   ]
 }
