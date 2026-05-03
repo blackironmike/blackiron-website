@@ -120,7 +120,7 @@ Banned list. Do not use these in any draft, on any platform, for any reason:
 
 ### Logo
 
-Located at `images/logo.png` in the website repo. Two confirmed configurations exist:
+Located at `images/logos/logo.png` in the website repo. Two confirmed configurations exist:
 
 1. **Wordmark only** (BLACK IRON ATHLETICS in stacked Montserrat Black) — used on website header
 2. **Wordmark + anvil icon** — used on storefront signage
