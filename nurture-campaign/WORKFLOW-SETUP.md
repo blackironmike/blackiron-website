@@ -19,7 +19,7 @@
 | **Pipeline Stage: Closed** | `0c44de67-9e1b-47cd-83de-096259cec2a6` |
 | **Consultations Calendar** | `aOyy4UPbwziVvHz35TCU` |
 | **Calendar Widget Slug** | `consultations-21` |
-| **Booking Link** | `https://api.leadconnectorhq.com/widget/booking/aOyy4UPbwziVvHz35TCU` |
+| **Booking Link** | `https://book.blackironathletics.com/book` |
 | **Form ID (trigger)** | `vw0hMdDkTCL6K5N3i7vF` |
 | **Tag: new lead** | `XqV5AkbUHjeaMTQk6qnM` |
 | **Tag: nurture - active** | `q7bGXEOgIFntwpL92QCe` |

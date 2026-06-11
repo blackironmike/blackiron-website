@@ -19,6 +19,9 @@
       "destination": "https://www.blackironathletics.com/:path",
       "permanent": true
     },
+    { "source": "/book", "destination": "https://book.blackironathletics.com/book", "permanent": true },
+    { "source": "/landing", "destination": "https://book.blackironathletics.com/book", "permanent": true },
+    { "source": "/step1", "destination": "https://book.blackironathletics.com/book", "permanent": true },
     { "source": "/why-creatine-is-important", "destination": "/blog/why-creatine-is-important", "permanent": true },
     { "source": "/crossfit-alternative-frisco-tx", "destination": "/blog/crossfit-alternative-frisco-tx", "permanent": true },
     { "source": "/olympic-weightlifting-frisco-tx", "destination": "/blog/olympic-weightlifting-frisco-tx", "permanent": true },
