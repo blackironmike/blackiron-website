@@ -14,6 +14,14 @@ const path = require('path');
 
 const PIXEL_ID = process.env.META_PIXEL_ID;
 
+// Comma-separated list of paths that fire ViewContent (mid-funnel event).
+// Example: "/getting-started,/programs,/landing"
+// Add new ad landing pages here without a code change.
+const VIEWCONTENT_PATHS = (process.env.META_VIEWCONTENT_PATHS || '')
+  .split(',')
+  .map(p => p.trim())
+  .filter(Boolean);
+
 // Files that should NOT get the pixel
 const EXCLUDED_FILES = new Set([
   'email-template.html',
@@ -29,7 +37,8 @@ if (!PIXEL_ID) {
   process.exit(0);
 }
 
-function buildPixelSnippet(pixelId) {
+function buildPixelSnippet(pixelId, vcPaths) {
+  const pathsJson = JSON.stringify(vcPaths);
   return [
     '    <!-- Meta Pixel Code -->',
     '    <script>',
@@ -43,8 +52,9 @@ function buildPixelSnippet(pixelId) {
     '    \'https://connect.facebook.net/en_US/fbevents.js\');',
     `    fbq('init', '${pixelId}');`,
     '    fbq(\'track\', \'PageView\');',
-    '    // ViewContent: fires on the consult/offer page',
-    '    if (window.location.pathname === \'/book\' || window.location.pathname === \'/book.html\') {',
+    `    // ViewContent: mid-funnel event for retargeting audiences`,
+    `    var _vcPaths = ${pathsJson};`,
+    '    if (_vcPaths.indexOf(window.location.pathname) > -1) {',
     '      fbq(\'track\', \'ViewContent\');',
     '    }',
     '    </script>',
@@ -88,7 +98,7 @@ function findHtmlFiles(dir) {
 function main() {
   const rootDir = __dirname;
   const htmlFiles = findHtmlFiles(rootDir);
-  const snippet = buildPixelSnippet(PIXEL_ID);
+  const snippet = buildPixelSnippet(PIXEL_ID, VIEWCONTENT_PATHS);
 
   let injected = 0;
   let skipped = 0;
