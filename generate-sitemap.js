@@ -22,6 +22,7 @@ const EXCLUDED_FILES = new Set([
   'fuelpath-admin.html',
   'fuelpath-dashboard.html',
   'group-training.html',
+  'start.html',
   'nutrition-coaching.html',
   'open-gym.html',
   'personal-training.html',
