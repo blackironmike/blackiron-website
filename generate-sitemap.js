@@ -41,6 +41,7 @@ const URL_CONFIG = {
   '/macro-calculator':                          { priority: '0.8', changefreq: 'monthly' },
   '/blog/crossfit-alternative-frisco-tx':       { priority: '0.8', changefreq: 'monthly' },
   '/blog/what-is-xenom-decathlon-of-fitness':   { priority: '0.8', changefreq: 'monthly' },
+  '/blog/xenom-frisco-review':                  { priority: '0.8', changefreq: 'monthly' },
   '/blog/':                                     { priority: '0.7', changefreq: 'weekly' },
   '/mike-manning':                              { priority: '0.7', changefreq: 'monthly' },
   '/fuelpath-philosophy':                       { priority: '0.7', changefreq: 'monthly' },
