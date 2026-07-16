@@ -2,6 +2,9 @@ User-agent: *
 Allow: /
 Disallow: /fuelpath-admin
 Disallow: /fuelpath-dashboard
+Disallow: /nurture-campaign/
+Disallow: /member-newsletter-test-week
+Disallow: /email-template
 
 # AI Crawlers - Explicitly Allowed
 User-agent: GPTBot

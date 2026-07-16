@@ -7,6 +7,23 @@
     { "path": "/api/sync-leads", "schedule": "*/15 * * * *" },
     { "path": "/api/sync-members", "schedule": "0 */6 * * *" }
   ],
+  "headers": [
+    {
+      "source": "/images/(.*)",
+      "headers": [
+        { "key": "Cache-Control", "value": "public, max-age=2592000" }
+      ]
+    },
+    {
+      "source": "/(.*)",
+      "headers": [
+        { "key": "X-Content-Type-Options", "value": "nosniff" },
+        { "key": "X-Frame-Options", "value": "SAMEORIGIN" },
+        { "key": "Referrer-Policy", "value": "strict-origin-when-cross-origin" },
+        { "key": "Permissions-Policy", "value": "camera=(), microphone=(), geolocation=()" }
+      ]
+    }
+  ],
   "redirects": [
     {
       "source": "/:path(.*)",
@@ -20,6 +37,10 @@
       "permanent": true
     },
     { "source": "/book", "destination": "https://book.blackironathletics.com/book", "permanent": true },
+    { "source": "/group-training", "destination": "/programs#group-classes", "permanent": true },
+    { "source": "/personal-training", "destination": "/programs#personal-training", "permanent": true },
+    { "source": "/nutrition-coaching", "destination": "/programs#nutrition-coaching", "permanent": true },
+    { "source": "/open-gym", "destination": "/programs#open-gym", "permanent": true },
     { "source": "/landing", "destination": "https://book.blackironathletics.com/book", "permanent": true },
     { "source": "/step1", "destination": "https://book.blackironathletics.com/book", "permanent": true },
     { "source": "/why-creatine-is-important", "destination": "/blog/why-creatine-is-important", "permanent": true },
