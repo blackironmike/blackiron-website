@@ -53,6 +53,7 @@ const URL_CONFIG = {
   '/blog/crossfit-alternative-frisco-tx':       { priority: '0.8', changefreq: 'monthly' },
   '/blog/what-is-xenom-decathlon-of-fitness':   { priority: '0.8', changefreq: 'monthly' },
   '/blog/xenom-frisco-review':                  { priority: '0.8', changefreq: 'monthly' },
+  '/blog/gym-membership-cost-frisco-tx':        { priority: '0.8', changefreq: 'monthly' },
   '/blog/':                                     { priority: '0.7', changefreq: 'weekly' },
   '/mike-manning':                              { priority: '0.7', changefreq: 'monthly' },
   '/blog/calisthenics-training-frisco-tx':      { priority: '0.7', changefreq: 'monthly' },
