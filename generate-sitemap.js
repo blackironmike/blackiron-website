@@ -19,12 +19,25 @@ const EXCLUDED_FILES = new Set([
   'landing.html',
   'step1.html',
   'thank-you.html',
-  'fuelpath-admin.html',
-  'fuelpath-dashboard.html',
+  'member-newsletter-test-week.html',
   'group-training.html',
   'nutrition-coaching.html',
   'open-gym.html',
   'personal-training.html',
+  // Redirected off-site via vercel.json — must not appear in the sitemap
+  'macro-calculator.html',
+  'fuelpath-admin.html',
+  'fuelpath-dashboard.html',
+  'fuelpath-calendar.html',
+  'fuelpath-decade.html',
+  'fuelpath-how-to-use.html',
+  'fuelpath-philosophy.html',
+  'fuelpath-supplements.html',
+  'fuelpath-tracker.html',
+  'fuelpath-phase-1-maintain.html',
+  'fuelpath-phase-2-cut.html',
+  'fuelpath-phase-3-maintain.html',
+  'fuelpath-phase-4-build.html',
 ]);
 
 // Hand-tuned priority & changefreq for specific URL paths
@@ -32,20 +45,16 @@ const EXCLUDED_FILES = new Set([
 const URL_CONFIG = {
   '/':                                          { priority: '1.0', changefreq: 'weekly' },
   '/getting-started':                           { priority: '0.9', changefreq: 'monthly' },
-  '/book':                                      { priority: '0.9', changefreq: 'monthly' },
   '/fuelpath':                                  { priority: '0.9', changefreq: 'monthly' },
   '/about':                                     { priority: '0.8', changefreq: 'monthly' },
   '/programs':                                  { priority: '0.8', changefreq: 'monthly' },
   '/schedule':                                  { priority: '0.8', changefreq: 'weekly' },
   '/contact':                                   { priority: '0.8', changefreq: 'monthly' },
-  '/macro-calculator':                          { priority: '0.8', changefreq: 'monthly' },
   '/blog/crossfit-alternative-frisco-tx':       { priority: '0.8', changefreq: 'monthly' },
   '/blog/what-is-xenom-decathlon-of-fitness':   { priority: '0.8', changefreq: 'monthly' },
   '/blog/xenom-frisco-review':                  { priority: '0.8', changefreq: 'monthly' },
   '/blog/':                                     { priority: '0.7', changefreq: 'weekly' },
   '/mike-manning':                              { priority: '0.7', changefreq: 'monthly' },
-  '/fuelpath-philosophy':                       { priority: '0.7', changefreq: 'monthly' },
-  '/fuelpath-calendar':                         { priority: '0.7', changefreq: 'monthly' },
   '/blog/calisthenics-training-frisco-tx':      { priority: '0.7', changefreq: 'monthly' },
   '/privacy-policy':                            { priority: '0.3', changefreq: 'yearly' },
 };
@@ -60,8 +69,8 @@ function findHtmlFiles(dir, rootDir) {
   for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
     const fullPath = path.join(dir, entry.name);
     if (entry.isDirectory()) {
-      // Skip hidden dirs, node_modules, learn, etc.
-      if (entry.name.startsWith('.') || entry.name === 'node_modules' || entry.name === 'learn') continue;
+      // Skip hidden dirs, node_modules, learn, and internal email templates
+      if (entry.name.startsWith('.') || entry.name === 'node_modules' || entry.name === 'learn' || entry.name === 'nurture-campaign') continue;
       results = results.concat(findHtmlFiles(fullPath, rootDir));
     } else if (entry.isFile() && entry.name.endsWith('.html')) {
       results.push(path.relative(rootDir, fullPath).replace(/\\/g, '/'));
