@@ -37,6 +37,8 @@
       "permanent": true
     },
     { "source": "/book", "destination": "https://book.blackironathletics.com/book", "permanent": true },
+    { "source": "/free-consultation", "destination": "https://book.blackironathletics.com/book", "permanent": true },
+    { "source": "/pricing", "destination": "/getting-started#membership", "permanent": true },
     { "source": "/group-training", "destination": "/programs#group-classes", "permanent": true },
     { "source": "/personal-training", "destination": "/programs#personal-training", "permanent": true },
     { "source": "/nutrition-coaching", "destination": "/programs#nutrition-coaching", "permanent": true },
