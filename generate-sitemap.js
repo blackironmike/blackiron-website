@@ -55,6 +55,7 @@ const URL_CONFIG = {
   '/blog/xenom-frisco-review':                  { priority: '0.8', changefreq: 'monthly' },
   '/blog/gym-membership-cost-frisco-tx':        { priority: '0.8', changefreq: 'monthly' },
   '/blog/first-week-at-black-iron-athletics':   { priority: '0.8', changefreq: 'monthly' },
+  '/blog/strength-training-over-40':            { priority: '0.8', changefreq: 'monthly' },
   '/blog/':                                     { priority: '0.7', changefreq: 'weekly' },
   '/mike-manning':                              { priority: '0.7', changefreq: 'monthly' },
   '/blog/calisthenics-training-frisco-tx':      { priority: '0.7', changefreq: 'monthly' },
