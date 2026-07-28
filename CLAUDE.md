@@ -218,6 +218,15 @@ from the brand strategy doc. Removes emojis from pain-point cards.
 Updates CTA secondary button label.
 ```
 
+### Chatbot knowledge base
+
+`ghl-chatbot-knowledge-base.csv` is the single source of truth for the GHL website
+chatbot, and `ghl-chatbot-personality.md` holds its personality prompt. Any commit
+that changes membership facts, pricing, programs, policies, or hours on the site
+MUST update the CSV in the same commit. The live bot does not sync automatically —
+after either file changes, remind Michael to re-upload/re-paste it in GHL
+(Settings → Conversation AI) before ending the session.
+
 ### What you don't touch without asking
 
 - `package.json` dependencies. Don't add npm packages. Ask.
