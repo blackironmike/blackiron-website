@@ -220,12 +220,14 @@ Updates CTA secondary button label.
 
 ### Chatbot knowledge base
 
-`ghl-chatbot-knowledge-base.csv` is the single source of truth for the GHL website
-chatbot, and `ghl-chatbot-personality.md` holds its personality prompt. Any commit
-that changes membership facts, pricing, programs, policies, or hours on the site
-MUST update the CSV in the same commit. The live bot does not sync automatically —
-after either file changes, remind Michael to re-upload/re-paste it in GHL
-(Settings → Conversation AI) before ending the session.
+`ghl-chatbot-knowledge-base.md` is the single source of truth for the GHL website
+chatbot (GHL's knowledge-base uploader accepts MD, not CSV), and
+`ghl-chatbot-personality.md` holds its Personality/Goal/Guidelines prompt fields.
+Any commit that changes membership facts, pricing, programs, policies, or hours
+on the site MUST update the knowledge-base MD in the same commit. The live bot
+does not sync automatically — after either file changes, remind Michael to
+re-upload/re-paste it in GHL (AI Agents → Knowledge Base / Conversation AI)
+before ending the session.
 
 ### What you don't touch without asking
 
