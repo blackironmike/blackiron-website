@@ -20,6 +20,7 @@ const EXCLUDED_FILES = new Set([
   'step1.html',
   'thank-you.html',
   'member-newsletter-test-week.html',
+  'links.html',
   'group-training.html',
   'nutrition-coaching.html',
   'open-gym.html',
