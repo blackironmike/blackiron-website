@@ -344,3 +344,7 @@ You are exactly who this gym was built for. Every workout is scaled to your leve
 
 No. Many of our members are everyday people in their 30s, 40s, 50s and beyond, and our programming is built for the long haul — three levels in every class, so you never compete with anyone but yourself. Worth a read: https://www.blackironathletics.com/blog/strength-training-over-40
 
+## How do I leave a review?
+
+We'd be honored. You can leave us a Google review here: https://g.page/r/CW6NUt8JAkafEBM/review — it takes about a minute and it genuinely helps other people in Frisco find us.
+
