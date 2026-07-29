@@ -967,6 +967,12 @@
         }
 
     </style>
+    <!-- Vercel Web Analytics -->
+    <script>
+      window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
+    </script>
+    <script defer src="/_vercel/insights/script.js"></script>
+    <!-- End Vercel Web Analytics -->
 </head>
 <body>
     <a href="#main-content" class="skip-link">Skip to main content</a>
@@ -1533,8 +1539,8 @@ var _fpSupabase = null;
     var sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
     _fpSupabase = sb;
     var { data } = await sb.auth.getSession();
-    if (!data || !data.session) return; // not logged in — gate stays visible
-    // User is authenticated — grant access
+    if (!data || !data.session) return; // not logged in ï¿½ gate stays visible
+    // User is authenticated ï¿½ grant access
     document.getElementById('gateOverlay').style.display = 'none';
     // Detect coach/owner role for menu
     try {

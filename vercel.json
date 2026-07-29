@@ -1,5 +1,5 @@
 {
-  "buildCommand": "node inject-pixel.js && node generate-sitemap.js",
+  "buildCommand": "node inject-pixel.js && node inject-analytics.js && node generate-sitemap.js",
   "outputDirectory": ".",
   "cleanUrls": true,
   "trailingSlash": false,

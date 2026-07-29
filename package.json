@@ -1,9 +1,10 @@
 {
   "private": true,
   "scripts": {
-    "build": "node inject-pixel.js && node generate-sitemap.js"
+    "build": "node inject-pixel.js && node inject-analytics.js && node generate-sitemap.js"
   },
   "dependencies": {
-    "@supabase/supabase-js": "^2.49.0"
+    "@supabase/supabase-js": "^2.49.0",
+    "@vercel/analytics": "^2.0.1"
   }
 }
