@@ -1042,3 +1042,11 @@ footer{border-top:1px solid var(--steel-line);padding:clamp(56px,7vw,88px) 0 0}
 
 .deload-note{border-left:3px solid var(--yellow);background:var(--coal);padding:24px 26px;margin-top:34px;max-width:78ch}
 .deload-note p{color:var(--white)}
+
+/* Named in-house benchmark cards */
+.bench-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--steel-line);border:1px solid var(--steel-line);margin:30px 0}
+.bench{background:var(--black);padding:24px 22px}
+.bench b{display:block;color:var(--white);font-weight:900;font-size:1.05rem;text-transform:uppercase;letter-spacing:.01em}
+.bench span{display:block;color:var(--yellow);font-size:10px;font-weight:700;letter-spacing:1.6px;text-transform:uppercase;margin:8px 0 12px}
+.bench p{color:var(--gray);font-size:.92rem;line-height:1.55;margin:0}
+@media (max-width:760px){.bench-grid{grid-template-columns:1fr}}
