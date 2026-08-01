@@ -992,10 +992,28 @@ footer{border-top:1px solid var(--steel-line);padding:clamp(56px,7vw,88px) 0 0}
 .marquee span{--olc:rgba(255,255,255,.55)}
 @media (min-width:761px){.outline{--olr:1.5px}}
 
-/* Photo-backed surfaces (hero, building band): the halo needs an
-   opaque letter interior, so the hole is pure black and the scrim
-   above is deepened to match. Same clean corners as everywhere else. */
+/* Photo-backed surfaces (hero, building band): the letter interior
+   is TRANSPARENT so the photograph reads through the letterform.
+   The halo technique cannot do this (it needs an opaque interior to
+   mask the stacked copies), so these two surfaces use a real stroke
+   instead. Montserrat Black's corners stay sharp at display sizes.
+   The stroke is set in em so it scales with the type and reads at
+   the same weight on a phone as on a desktop; .030em matches the
+   weight of the halo build it replaces. Owner-picked 2026-08-01.
+
+   The @supports guard matters: without -webkit-text-stroke a
+   transparent fill would render the headline invisible, so any
+   browser lacking it keeps the opaque-interior fallback below. */
 .hero .outline,.building .outline{--hole:#000;--olr:1.5px}
+@supports (-webkit-text-stroke:1px #fff){
+  .hero .outline,.building .outline{
+    color:transparent;
+    -webkit-text-fill-color:transparent;
+    -webkit-text-stroke:.030em var(--olc,var(--white));
+    text-shadow:none;
+    paint-order:stroke fill;
+  }
+}
 
 
 /* ------------------------------------------------------------
