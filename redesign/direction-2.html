@@ -242,6 +242,13 @@ section{border-top:1px solid var(--steel-line)}
 @media (max-width:760px){.lvl-grid{grid-template-columns:1fr}}
 
 /* ---------- Building band ---------- */
+/* recovery tease */
+.rec-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:34px}
+.rec-grid figure{border:1px solid var(--steel-line);margin:0}
+.rec-grid img{width:100%;height:auto;display:block}
+.rec-grid figcaption{padding:10px 14px;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--gray);border-top:1px solid var(--steel-line)}
+.rec-note{margin-top:14px;font-size:13px;color:var(--gray)}
+@media(max-width:720px){.rec-grid{grid-template-columns:1fr}}
 .building{position:relative;overflow:hidden}
 .building-bg{position:absolute;inset:0}
 .building-bg img{width:100%;height:100%;object-fit:cover}
@@ -595,6 +602,20 @@ footer{border-top:1px solid var(--steel-line);padding:clamp(56px,7vw,88px) 0 0}
       <span class="eyebrow rv">The new building &middot; Opened summer 2026</span>
       <h2 class="display rv">279 Main St.<br><span class="outline">Built for the next decade.</span></h2>
       <p class="lead rv">After 13 years in Frisco, we built the gym a brand-new home in the heart of town — 279 Main St, Suite 122. More floor, more racks, the same good people. Come see it.</p>
+    </div>
+  </section>
+
+
+  <section class="sect alt" id="recovery">
+    <div class="wrap">
+      <span class="eyebrow rv">New at 279 Main St</span>
+      <h2 class="rv">The recovery room.<br><span class="outline">Coming soon.</span></h2>
+      <p class="lead rv">Cold plunges and a sauna, built into the new gym. Recovery gets a room of its own — because the work only counts if you keep showing up for it.</p>
+      <div class="rec-grid rv">
+        <figure><img src="/images/renderings/2026-08-01-recovery-room-rendering.jpg" alt="Rendering of the new recovery room with cold plunges and a sauna" loading="lazy" width="600" height="335"><figcaption>The recovery room</figcaption></figure>
+        <figure><img src="/images/renderings/2026-08-01-new-gym-floor-rendering.jpg" alt="Rendering of the new training floor at 279 Main St with the Black Iron wall" loading="lazy" width="600" height="335"><figcaption>The new floor</figcaption></figure>
+      </div>
+      <p class="rec-note rv">Renderings of the new build — details may change before opening day.</p>
     </div>
   </section>
 
