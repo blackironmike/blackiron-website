@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<!-- ============================================================
+     BLACK IRON ATHLETICS — CANONICAL PAGE SHELL (rebuild source)
+     Every rebuilt page copies this skeleton exactly, then fills
+     the {{PAGE_*}} placeholders and the {{SECTIONS}} slot.
+
+     HARD CONTRACTS (breakage = silent production failures):
+     1. <meta name="viewport"> stays in <head> — inject-pixel.js
+        uses it as its insertion marker. Never remove or rename.
+     2. window.openLeadModal keeps its name; #leadModal iframe
+        keeps lazy data-src (never eager src). Modal iframe IDs:
+        lead vw0hMdDkTCL6K5N3i7vF · cancel d4jtjY9fM2Hv9zVTzLwj ·
+        subscribe GnNJNaEX8InuIeGxWjaI. (The contact-page form
+        TtM4VqCtmx8o3ZuBgseK is inline on /contact with an eager
+        src — it is not part of this shell.)
+     3. Shell order: skip-link → nav → menu-backdrop → side-menu
+        → main#main-content → sections → footer → JSON-LD →
+        modals → tail a11y IIFE (verbatim) → form_embed.js →
+        chat widget line.
+     4. Preserve anchor IDs used by vercel.json redirects:
+        #membership + #faqs (getting-started), #group-classes /
+        #personal-training / #nutrition-coaching / #open-gym
+        (programs), #sms-terms (privacy-policy), #mission + #team
+        (about).
+     5. Sticky mobile CTA bar (#stickyMobileCta) on all marketing
+        pages — "Book a Free Consult" → openLeadModal().
+
+     LINKS: hrefs here are root-relative (/about, /schedule…).
+     Pages inside /blog/ historically used ../ prefixed relative
+     links per the live convention; root-relative paths work from
+     any depth, so blog rebuild agents may keep these as-is or
+     prefix ../ — never mix the two styles on one page.
+     ============================================================ -->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <!-- CONTRACT: keep this exact viewport tag — inject-pixel.js insertion marker -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{PAGE_TITLE}}</title>
+    <meta name="description" content="{{PAGE_DESCRIPTION}}">
+    <meta name="geo.region" content="US-TX">
+    <meta name="geo.placename" content="Frisco">
+    <meta name="geo.position" content="33.1503;-96.8236">
+    <link rel="canonical" href="{{PAGE_CANONICAL}}">
+    <!-- Open Graph -->
+    <meta property="og:title" content="{{PAGE_TITLE}}">
+    <meta property="og:description" content="{{PAGE_DESCRIPTION}}">
+    <meta property="og:url" content="{{PAGE_CANONICAL}}">
+    <meta property="og:image" content="{{PAGE_OG_IMAGE}}">
+    <!-- Default og:image if the page has no better shot:
+         https://www.blackironathletics.com/images/social-share.png -->
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Black Iron Athletics">
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="{{PAGE_TITLE}}">
+    <meta name="twitter:description" content="{{PAGE_DESCRIPTION}}">
+    <meta name="twitter:image" content="{{PAGE_OG_IMAGE}}">
+    <link rel="icon" type="image/png" href="/images/anvil-favicon.png">
+    <link rel="apple-touch-icon" href="/images/anvil-favicon.png">
+    <meta name="theme-color" content="#000000">
+    <!-- Per-page hero preload (optional — only for a real above-the-fold hero image):
+         <link rel="preload" as="image" href="/images/heroes/{{PAGE_HERO}}.webp"> -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&display=swap" rel="stylesheet"></noscript>
+    <link rel="stylesheet" href="/css/bia.css">
+    <!-- Per-page <style> goes here if (and only if) the page has a
+         page-unique component. Same token language as bia.css. -->
+    <script defer src="/_vercel/insights/script.js"></script>
+</head>
+<body>
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
+    <!-- ============ NAV (final IA — identical on every page) ============ -->
+    <nav id="nav">
+        <div class="nav-container">
+            <div class="logo">
+                <a href="/" aria-label="Black Iron Athletics home">
+                    <img src="/images/logos/logo.png" alt="Black Iron Athletics">
+                </a>
+            </div>
+            <ul class="nav-links">
+                <li class="has-submenu">
+                    <a href="/about">About Us</a>
+                    <ul class="submenu">
+                        <li><a href="/about">Our Mission</a></li>
+                        <li><a href="/about#team">Meet the Team</a></li>
+                        <li><a href="/media">Media</a></li>
+                    </ul>
+                </li>
+                <li><a href="/programs">Programs</a></li>
+                <li class="has-submenu">
+                    <a href="/getting-started">Getting Started</a>
+                    <ul class="submenu">
+                        <li><a href="/getting-started">How it works</a></li>
+                        <li><a href="/pricing">Membership &amp; Pricing</a></li>
+                        <li><a href="/faq">FAQs</a></li>
+                    </ul>
+                </li>
+                <li><a href="/schedule">Schedule</a></li>
+                <li><a href="/blog/">Blog</a></li>
+                <li><a href="/contact">Contact</a></li>
+            </ul>
+            <a href="#" onclick="openLeadModal(); return false;" class="cta-btn">Book a Free Consult</a>
+            <button class="hamburger" onclick="toggleSideMenu()" aria-label="Menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- ============ SIDE MENU (flat mirror of the nav IA) ============ -->
+    <div class="menu-backdrop" id="menuBackdrop"></div>
+    <div class="side-menu" id="sideMenu">
+        <div class="side-menu-header">
+            <img src="/images/logos/logo.png" alt="Black Iron Athletics">
+            <button class="side-menu-close" onclick="closeSideMenu()" aria-label="Close menu">&times;</button>
+        </div>
+        <div class="side-menu-links">
+            <a href="/">Home</a>
+            <a href="/about">About Us</a>
+            <a href="/about" class="sub-link">Our Mission</a>
+            <a href="/about#team" class="sub-link">Meet the Team</a>
+            <a href="/media" class="sub-link">Media</a>
+            <a href="/programs">Programs</a>
+            <a href="/getting-started">Getting Started</a>
+            <a href="/getting-started" class="sub-link">How it works</a>
+            <a href="/pricing" class="sub-link">Membership &amp; Pricing</a>
+            <a href="/faq" class="sub-link">FAQs</a>
+            <a href="/schedule">Schedule</a>
+            <a href="/blog/">Blog</a>
+            <a href="/contact">Contact</a>
+        </div>
+        <div class="side-menu-footer">
+            <a href="#" onclick="closeSideMenu(); openLeadModal(); return false;">Book a Free Consult</a>
+        </div>
+    </div>
+
+    <main id="main-content">
+
+    <!-- ============================================================
+         {{SECTIONS}}
+
+         Page content goes here. Build sections with bia.css
+         patterns: <section class="sect"> / <section class="sect alt">
+         inside a .wrap container; first block uses .no-top when it
+         opens the page (hero, .page-header, .article-hero).
+
+         CONTRACT — anchor IDs. These IDs are vercel.json redirect
+         targets and must exist on their pages:
+           getting-started: id="membership", id="faqs"
+           programs: id="group-classes", id="personal-training",
+                     id="nutrition-coaching", id="open-gym"
+           privacy-policy: id="sms-terms"
+           about: id="mission", id="team"
+         ============================================================ -->
+
+    </main>
+
+    <!-- ============ FOOTER (identical on every page) ============
+         Note: the Subscribe and Cancel Membership links open modals
+         that this shell includes. A page that strips those modals
+         must point both links at /contact instead. -->
+    <footer>
+        <div class="wrap">
+            <div class="foot-top">
+                <div>
+                    <div class="foot-brand">
+                        <img src="/images/logos/Anvil-WHITE.png" alt="Black Iron Athletics anvil mark" loading="lazy" width="88" height="88">
+                        <div>
+                            <b>Black Iron<br>Athletics</b>
+                            <p class="foot-mission">We help everyday people become everyday athletes.</p>
+                        </div>
+                    </div>
+                    <p class="foot-note">Veteran-owned &middot; Est. 2013 &middot; Serving Frisco, Prosper, The Colony, Little Elm, McKinney, Plano, Celina &amp; North Dallas.</p>
+                </div>
+                <ul class="foot-col">
+                    <li><b>Quick links</b></li>
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/pricing">Pricing</a></li>
+                    <li><a href="/schedule">Class Schedule</a></li>
+                    <li><a href="/faq">FAQ</a></li>
+                    <li><a href="#" onclick="openSubscribeModal(); return false;">Subscribe</a></li>
+                    <li><a href="#" onclick="openCancelModal(); return false;">Cancel Membership</a></li>
+                    <li><a href="/privacy-policy">Privacy Policy</a></li>
+                    <li><a href="/terms">Terms &amp; Conditions</a></li>
+                    <li><a href="/privacy-policy#sms-terms">SMS Terms</a></li>
+                </ul>
+                <ul class="foot-col">
+                    <li><b>Find us</b></li>
+                    <li>279 Main St, Suite 122<br>Frisco, TX 75036</li>
+                    <li>Suite 110 &mdash; our new home next door &mdash; opening October 2026.</li>
+                    <li><a href="tel:+19727857036">(972) 785-7036</a></li>
+                </ul>
+                <ul class="foot-col">
+                    <li><b>Hours</b></li>
+                    <li>Open gym 7 days a week.</li>
+                    <li><a href="/schedule">See the class schedule</a></li>
+                </ul>
+            </div>
+            <div class="foot-bottom">
+                <span>&copy; 2026 Black Iron Athletics. Veteran-owned &middot; Est. 2013.</span>
+                <span class="foot-social">
+                    <a href="https://www.instagram.com/blackiron_athletics/" target="_blank" rel="noopener" aria-label="Instagram">
+                        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="4"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="1.1" fill="currentColor" stroke="none"/></svg>
+                    </a>
+                    <a href="https://www.youtube.com/channel/UCF1XjUXEs81OWY70chem6vA" target="_blank" rel="noopener" aria-label="YouTube">
+                        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="2.5" y="5.5" width="19" height="13" rx="3"/><path d="M10 9.5v5l4.5-2.5z" fill="currentColor" stroke="none"/></svg>
+                    </a>
+                    <a href="https://www.facebook.com/BlackIronAthletics/" target="_blank" rel="noopener" aria-label="Facebook">
+                        <svg class="icon-fill" viewBox="0 0 24 24" aria-hidden="true"><path d="M13.5 21v-7h2.4l.4-3h-2.8V9.1c0-.9.3-1.5 1.6-1.5H16.6V4.9c-.3 0-1.2-.1-2.2-.1-2.2 0-3.7 1.3-3.7 3.8V11H8.3v3h2.4v7h2.8z"/></svg>
+                    </a>
+                </span>
+            </div>
+        </div>
+    </footer>
+
+    <!-- CONTRACT: sticky mobile CTA on all marketing pages (shows at 640px down) -->
+    <a id="stickyMobileCta" class="mobile-cta" href="#" onclick="openLeadModal(); return false;">Book a Free Consult</a>
+
+    <!-- ============================================================
+         {{JSONLD}}
+
+         Page-specific schema block(s) go here, e.g.:
+         <script type="application/ld+json"> … </script>
+         Facts to keep straight in every schema block:
+         - aggregateRating: ratingValue 5.0, ratingCount 68
+         - real openingHours (from ghl-chatbot-knowledge-base.md),
+           never Mo-Su 00:00-23:59
+         - address: 279 Main St #122 today; mention Suite 110 as
+           "opening October 2026" in description text only
+         - OfferCatalog: no Olympic weightlifting classes, no HYROX
+           "class" — HYROX is open-gym-only, self-guided
+         - pricing Offers where present: $200 / $240 / $50 / PT $120-150
+         ============================================================ -->
+
+    <!-- ============ GHL MODALS (iframe blocks VERBATIM — lazy data-src, ids unchanged) ============ -->
+    <div class="modal-overlay" id="leadModal">
+        <div class="modal-container">
+            <button class="modal-close" onclick="closeLeadModal()">&times;</button>
+            <iframe
+                data-src="https://api.leadconnectorhq.com/widget/form/vw0hMdDkTCL6K5N3i7vF"
+                style="width:100%;height:100%;border:none;border-radius:4px"
+                id="inline-vw0hMdDkTCL6K5N3i7vF"
+                data-layout="{'id':'INLINE'}"
+                data-trigger-type="alwaysShow"
+                data-trigger-value=""
+                data-activation-type="alwaysActivated"
+                data-activation-value=""
+                data-deactivation-type="neverDeactivate"
+                data-deactivation-value=""
+                data-form-name="Form 2"
+                data-height="565"
+                data-layout-iframe-id="inline-vw0hMdDkTCL6K5N3i7vF"
+                data-form-id="vw0hMdDkTCL6K5N3i7vF"
+                title="Form 2"
+            ></iframe>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="cancelModal">
+        <div class="modal-container">
+            <button class="modal-close" onclick="closeCancelModal()">&times;</button>
+            <iframe
+                data-src="https://api.leadconnectorhq.com/widget/form/d4jtjY9fM2Hv9zVTzLwj"
+                style="width:100%;height:100%;border:none;border-radius:4px"
+                id="inline-d4jtjY9fM2Hv9zVTzLwj"
+                data-layout="{'id':'INLINE'}"
+                data-trigger-type="alwaysShow"
+                data-trigger-value=""
+                data-activation-type="alwaysActivated"
+                data-activation-value=""
+                data-deactivation-type="neverDeactivate"
+                data-deactivation-value=""
+                data-form-name="Membership Cancellation Form"
+                data-height="787"
+                data-layout-iframe-id="inline-d4jtjY9fM2Hv9zVTzLwj"
+                data-form-id="d4jtjY9fM2Hv9zVTzLwj"
+                title="Membership Cancellation Form"
+            ></iframe>
+        </div>
+    </div>
+    <div class="modal-overlay" id="subscribeModal">
+        <div class="modal-container">
+            <button class="modal-close" onclick="closeSubscribeModal()">&times;</button>
+            <iframe
+                data-src="https://api.leadconnectorhq.com/widget/form/GnNJNaEX8InuIeGxWjaI"
+                style="width:100%;height:100%;border:none;border-radius:4px"
+                id="inline-GnNJNaEX8InuIeGxWjaI"
+                data-layout="{'id':'INLINE'}"
+                data-trigger-type="alwaysShow"
+                data-trigger-value=""
+                data-activation-type="alwaysActivated"
+                data-activation-value=""
+                data-deactivation-type="neverDeactivate"
+                data-deactivation-value=""
+                data-form-name="Subscribe"
+                data-height="430"
+                data-layout-iframe-id="inline-GnNJNaEX8InuIeGxWjaI"
+                data-form-id="GnNJNaEX8InuIeGxWjaI"
+                title="Subscribe"
+            ></iframe>
+        </div>
+    </div>
+
+    <!-- ============ PAGE JS: modals + side menu (function names byte-identical to the live site) ============ -->
+    <script>
+    function openLeadModal() {
+        var modal = document.getElementById('leadModal');
+        var iframe = modal.querySelector('iframe');
+        if (iframe && !iframe.src && iframe.dataset.src) { iframe.src = iframe.dataset.src; }
+        modal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    }
+    function closeLeadModal() {
+        document.getElementById('leadModal').classList.remove('active');
+        document.body.style.overflow = '';
+    }
+    document.getElementById('leadModal').addEventListener('click', function(e) {
+        if (e.target === this) { closeLeadModal(); }
+    });
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') { closeLeadModal(); closeCancelModal(); closeSubscribeModal(); }
+    });
+
+    function openCancelModal() {
+        var modal = document.getElementById('cancelModal');
+        var iframe = modal.querySelector('iframe');
+        if (iframe && !iframe.src && iframe.dataset.src) { iframe.src = iframe.dataset.src; }
+        modal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    }
+    function closeCancelModal() {
+        document.getElementById('cancelModal').classList.remove('active');
+        document.body.style.overflow = '';
+    }
+    document.getElementById('cancelModal').addEventListener('click', function(e) {
+        if (e.target === this) { closeCancelModal(); }
+    });
+    function openSubscribeModal() {
+        var modal = document.getElementById('subscribeModal');
+        var iframe = modal.querySelector('iframe');
+        if (iframe && !iframe.src && iframe.dataset.src) { iframe.src = iframe.dataset.src; }
+        modal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    }
+    function closeSubscribeModal() {
+        document.getElementById('subscribeModal').classList.remove('active');
+        document.body.style.overflow = '';
+    }
+    document.getElementById('subscribeModal').addEventListener('click', function(e) {
+        if (e.target === this) { closeSubscribeModal(); }
+    });
+
+    // Sticky Mobile CTA - hide when modal is open
+    window.addEventListener('scroll', function() {
+        const stickyBar = document.getElementById('stickyMobileCta');
+        if (stickyBar) stickyBar.style.display = '';
+    });
+
+    // Side Menu
+    function toggleSideMenu() {
+        var menu = document.getElementById('sideMenu');
+        var backdrop = document.getElementById('menuBackdrop');
+        var hamburger = document.querySelector('.hamburger');
+        var isOpen = menu.classList.contains('open');
+        if (isOpen) { closeSideMenu(); }
+        else {
+            menu.classList.add('open');
+            backdrop.classList.add('open');
+            hamburger.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+    }
+    function closeSideMenu() {
+        var menu = document.getElementById('sideMenu');
+        var backdrop = document.getElementById('menuBackdrop');
+        var hamburger = document.querySelector('.hamburger');
+        menu.classList.remove('open');
+        backdrop.classList.remove('open');
+        hamburger.classList.remove('active');
+        document.body.style.overflow = '';
+    }
+    document.getElementById('menuBackdrop').addEventListener('click', closeSideMenu);
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') closeSideMenu();
+    });
+    </script>
+
+    <!-- ============ PAGE JS: nav scroll state + reveal observer ============ -->
+    <script>
+    (function(){
+        var nav = document.getElementById('nav');
+        function onScroll(){ if (nav) nav.classList.toggle('scrolled', window.scrollY > 24); }
+        window.addEventListener('scroll', onScroll, {passive:true});
+        onScroll();
+
+        var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        var items = document.querySelectorAll('.rv');
+        if (reduced || !('IntersectionObserver' in window)) {
+            items.forEach(function(el){ el.classList.add('on'); });
+            return;
+        }
+        var io = new IntersectionObserver(function(entries){
+            entries.forEach(function(e){
+                if (e.isIntersecting) { e.target.classList.add('on'); io.unobserve(e.target); }
+            });
+        }, {threshold:0.12, rootMargin:'0px 0px -40px 0px'});
+        items.forEach(function(el){ io.observe(el); });
+    })();
+    </script>
+
+<!-- ============ A11Y TAIL IIFE — copied VERBATIM from index.html. Do not edit. ============ -->
+<script>
+// ===== ACCESSIBILITY: KEYBOARD NAV & FOCUS TRAP =====
+(function() {
+    // --- Keyboard Navigation for Submenus ---
+    document.querySelectorAll('.has-submenu').forEach(function(item) {
+        var link = item.querySelector('a');
+        var sub = item.querySelector('.submenu');
+        if (!link || !sub) return;
+        link.setAttribute('aria-haspopup', 'true');
+        link.setAttribute('aria-expanded', 'false');
+        function openSub() { item.classList.add('submenu-open'); link.setAttribute('aria-expanded', 'true'); }
+        function closeSub() { item.classList.remove('submenu-open'); link.setAttribute('aria-expanded', 'false'); }
+        link.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                if (link.getAttribute('aria-expanded') === 'true') { closeSub(); }
+                else { openSub(); var f = sub.querySelector('a'); if (f) f.focus(); }
+            }
+            if (e.key === 'ArrowDown') { e.preventDefault(); openSub(); var f = sub.querySelector('a'); if (f) f.focus(); }
+        });
+        sub.addEventListener('keydown', function(e) {
+            var links = sub.querySelectorAll('a');
+            var idx = Array.prototype.indexOf.call(links, document.activeElement);
+            if (e.key === 'Escape') { closeSub(); link.focus(); }
+            if (e.key === 'ArrowDown' && idx < links.length - 1) { e.preventDefault(); links[idx + 1].focus(); }
+            if (e.key === 'ArrowUp') { e.preventDefault(); if (idx > 0) links[idx - 1].focus(); else { closeSub(); link.focus(); } }
+        });
+        item.addEventListener('focusout', function() {
+            setTimeout(function() { if (!item.contains(document.activeElement)) closeSub(); }, 0);
+        });
+    });
+
+    // --- Hamburger aria-expanded ---
+    var hamburger = document.querySelector('.hamburger');
+    if (hamburger) {
+        hamburger.setAttribute('aria-expanded', 'false');
+        var sm = document.getElementById('sideMenu');
+        if (sm) new MutationObserver(function() {
+            hamburger.setAttribute('aria-expanded', sm.classList.contains('open') ? 'true' : 'false');
+        }).observe(sm, { attributes: true, attributeFilter: ['class'] });
+    }
+
+    // --- Modal Focus Trapping ---
+    var prevFocus = null;
+    function trapFocus(modal) {
+        prevFocus = document.activeElement;
+        var els = modal.querySelectorAll('button, a[href], iframe, input, select, textarea, [tabindex]:not([tabindex="-1"])');
+        if (!els.length) return;
+        var first = els[0], last = els[els.length - 1];
+        modal._focusTrap = function(e) {
+            if (e.key !== 'Tab') return;
+            if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+            else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+        };
+        modal.addEventListener('keydown', modal._focusTrap);
+        first.focus();
+    }
+    function releaseFocus(modal) {
+        if (modal._focusTrap) { modal.removeEventListener('keydown', modal._focusTrap); delete modal._focusTrap; }
+        if (prevFocus) { prevFocus.focus(); prevFocus = null; }
+    }
+    document.querySelectorAll('.modal-overlay').forEach(function(modal) {
+        modal.setAttribute('role', 'dialog');
+        modal.setAttribute('aria-modal', 'true');
+        new MutationObserver(function() {
+            if (modal.classList.contains('active')) trapFocus(modal);
+            else releaseFocus(modal);
+        }).observe(modal, { attributes: true, attributeFilter: ['class'] });
+    });
+})();
+</script>
+
+<script src="https://link.msgsndr.com/js/form_embed.js" type="text/javascript" defer></script>
+<script src="https://widgets.leadconnectorhq.com/loader.js" data-resources-url="https://widgets.leadconnectorhq.com/chat-widget/loader.js" data-widget-id="6995d6d76e6009387f78d31e" defer></script>
+</body>
+</html>
