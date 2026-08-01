@@ -320,6 +320,38 @@ h3{font-weight:700;font-size:1.25rem;line-height:1.3}
 .gchip{display:inline-flex;align-items:center;gap:12px;border:1px solid var(--line);background:var(--panel);border-radius:999px;padding:12px 22px;font-size:.9rem;font-weight:700}
 @media (max-width:860px){.quotes-grid{grid-template-columns:1fr}}
 
+/* ============ PRICING (training lane) ============ */
+.price-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:22px}
+.price{
+  background:var(--panel);border:1px solid var(--line);border-radius:var(--r);
+  padding:28px 24px;display:grid;gap:14px;align-content:start;
+  transition:transform .18s ease,border-color .18s ease;
+}
+.price:hover{transform:translateY(-4px);border-color:rgba(255,210,2,.5)}
+.price.pop{border-color:rgba(255,210,2,.55);background:linear-gradient(180deg,rgba(255,210,2,.08),rgba(255,210,2,.02)),var(--panel)}
+.price h3{font-size:1.08rem}
+.amount{font-weight:900;font-size:2.4rem;letter-spacing:-.02em;line-height:1}
+.amount span{font-size:.95rem;font-weight:700;letter-spacing:0;color:var(--muted);margin-left:2px}
+.price-list{display:grid;gap:9px;font-size:.9rem;color:#D6D3CC}
+.price-list li{display:flex;gap:11px;align-items:baseline}
+.price-list li::before{content:"";flex:none;width:6px;height:6px;border-radius:50%;background:var(--yellow);transform:translateY(-1px)}
+.daypass{
+  margin-top:22px;display:flex;flex-wrap:wrap;gap:20px;align-items:center;justify-content:space-between;
+  border:1px solid rgba(255,210,2,.4);background:rgba(255,210,2,.07);border-radius:var(--r-sm);
+  padding:24px 26px;
+}
+.daypass>div{display:grid;gap:8px;max-width:58ch}
+.daypass p{color:var(--muted);font-size:.93rem}
+.price-notes{display:grid;gap:10px;margin-top:34px;color:var(--muted);font-size:.9rem;max-width:78ch}
+.price-notes li{display:flex;gap:12px;align-items:baseline}
+.price-notes li::before{content:"";flex:none;width:14px;height:2px;background:var(--line);transform:translateY(-4px)}
+.price-cta{margin-top:34px;display:grid;gap:14px;justify-items:start}
+.price-x{color:var(--muted);font-size:.9rem}
+.price-x a{color:var(--ember);font-weight:700}
+.price-x a:hover{filter:brightness(1.2)}
+@media (max-width:1000px){.price-grid{grid-template-columns:1fr 1fr}}
+@media (max-width:640px){.price-grid{grid-template-columns:1fr}.daypass{flex-direction:column;align-items:flex-start}}
+
 /* ============ FAQ ============ */
 .faq-list{display:grid;gap:14px;max-width:840px}
 .faq-list details{background:var(--panel);border:1px solid var(--line);border-radius:var(--r-sm);overflow:hidden;transition:border-color .18s}
@@ -401,6 +433,7 @@ footer{border-top:1px solid var(--line);background:var(--panel);padding:clamp(48
       <a href="#programs">Programs</a>
       <a href="#foundations">Foundations</a>
       <a href="#coaches">Coaches</a>
+      <a href="#pricing">Pricing</a>
       <a href="#faq">FAQ</a>
       <a href="/schedule">Schedule</a>
     </nav>
@@ -742,6 +775,75 @@ footer{border-top:1px solid var(--line);background:var(--panel);padding:clamp(48
   </div>
 </section>
 
+<!-- ============ PRICING (training lane) ============ -->
+<section id="pricing" aria-labelledby="pricing-h">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow rv">Membership</p>
+      <h2 id="pricing-h" class="rv">Here’s what it costs.</h2>
+      <p class="lead rv d1">We publish our prices because we’re proud of what they buy: a coach who knows your name, programming that’s planned, and a floor where you belong. If you’re comparing us to a $10 big-box, we’re not it — on purpose.</p>
+    </div>
+    <div class="price-grid">
+      <article class="price rv">
+        <h3>Standard</h3>
+        <p class="amount">$200<span>/mo</span></p>
+        <ul class="price-list">
+          <li>3 classes per week</li>
+          <li>Strength &amp; Conditioning, Olympic Weightlifting &amp; HYROX</li>
+          <li>Monthly body-comp scan</li>
+          <li>Community events</li>
+        </ul>
+      </article>
+      <article class="price pop rv d1">
+        <span class="tag tag-y">Most popular</span>
+        <h3>Unlimited + Open Gym</h3>
+        <p class="amount">$240<span>/mo</span></p>
+        <ul class="price-list">
+          <li>Unlimited classes</li>
+          <li>Everything in Standard</li>
+          <li>Open gym access 7 days a week</li>
+        </ul>
+      </article>
+      <article class="price rv d2">
+        <h3>Open Gym Only</h3>
+        <p class="amount">$50<span>/mo</span></p>
+        <ul class="price-list">
+          <li>Self-directed training</li>
+          <li>Access to all programming — S&amp;C, Weightlifting, HYROX</li>
+          <li>Open gym 7 days a week</li>
+        </ul>
+      </article>
+      <article class="price rv d3">
+        <h3>Personal Training</h3>
+        <p class="amount">$120–150<span>/hr</span></p>
+        <ul class="price-list">
+          <li>One coach, one plan</li>
+          <li>Customized programming</li>
+          <li>Individual accountability</li>
+          <li>Nutrition guidance</li>
+        </ul>
+      </article>
+    </div>
+    <div class="daypass rv">
+      <div>
+        <span class="tag tag-y">Try it first</span>
+        <h3>$30 day pass — any class</h3>
+        <p>Come do the work once before you decide anything. If you join, the $30 is credited toward your first month.</p>
+      </div>
+      <a class="btn btn-ghost" href="/book">Grab a day pass</a>
+    </div>
+    <ul class="price-notes rv d1">
+      <li>Military &amp; first responders: special pricing — ask us. Veteran-owned, and proud of it.</li>
+      <li>Every membership starts the same way: a free consultation and the Foundations week. That part isn’t optional, and it’s why this works.</li>
+      <li>Cancel with 30 days’ notice — that’s the whole policy.</li>
+    </ul>
+    <div class="price-cta rv d2">
+      <a class="btn btn-y" href="/book">Book a Free Consult</a>
+      <p class="price-x">Nutrition coaching is separate — a real coach for the other 23 hours, <a href="#beyond">powered by FuelPath</a>.</p>
+    </div>
+  </div>
+</section>
+
 <!-- ============ FAQ ============ -->
 <section id="faq" aria-labelledby="faq-h" style="padding-top:0">
   <div class="wrap">
@@ -760,7 +862,7 @@ footer{border-top:1px solid var(--line);background:var(--panel);padding:clamp(48
       </details>
       <details class="rv d2">
         <summary>What does it cost? <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></summary>
-        <p class="faq-a">Memberships are custom to your goals, so we don’t post one-size pricing. Here’s the straight answer: the consult is free with no pressure, and a $30 day pass lets you try the gym first — credited toward your first month if you join.</p>
+        <p class="faq-a">Standard is $200 a month, Unlimited with open gym is $240, open gym only is $50, and personal training runs $120–150 an hour. Prices are on this page because we don’t do games. Want to try first? A $30 day pass covers any class, credited toward your first month if you join.</p>
       </details>
       <details class="rv d3">
         <summary>I bounced off CrossFit and big gyms before. <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></summary>

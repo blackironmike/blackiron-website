@@ -381,6 +381,41 @@ p{max-width:34em}
   font-size:.78rem;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--oak);
 }
 
+/* ---------- Pricing ---------- */
+.price-grid{display:grid;gap:clamp(1.3rem,2.2vw,1.8rem);margin-top:3.5rem}
+@media (min-width:640px){.price-grid{grid-template-columns:repeat(2,1fr)}}
+@media (min-width:1080px){.price-grid{grid-template-columns:repeat(4,1fr)}}
+.price-card{
+  position:relative;display:flex;flex-direction:column;
+  border:1px solid var(--iron-15);
+  padding:2.1rem 1.6rem 1.6rem;
+}
+.price-card.featured{border-color:var(--oak)}
+.price-flag{
+  position:absolute;top:0;left:1.6rem;transform:translateY(-50%);
+  background:var(--oak);color:var(--iron);
+  font-size:.62rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;
+  padding:5px 11px;
+}
+.price-card h3{margin-bottom:1.1rem}
+.price-val{font-weight:900;font-size:clamp(2.2rem,3.2vw,2.7rem);letter-spacing:-.02em;line-height:1}
+.price-val span{font-size:.78rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--iron-55);margin-left:.35em}
+.price-feats{margin-top:1.5rem;border-top:1px solid var(--iron-15);flex:1}
+.price-feats li{padding:.8rem 0;border-bottom:1px solid var(--iron-08);font-size:.88rem;line-height:1.5;color:var(--iron-70)}
+.price-offer{
+  margin-top:clamp(1.3rem,2.2vw,1.8rem);
+  background:var(--iron);color:var(--bone);
+  padding:clamp(1.9rem,3.5vw,2.7rem) clamp(1.5rem,3vw,2.6rem);
+  display:grid;gap:1.5rem;align-items:center;
+}
+@media (min-width:820px){.price-offer{grid-template-columns:auto 1fr;column-gap:clamp(2.2rem,4vw,3.6rem)}}
+.offer-val{font-weight:900;font-size:clamp(3.2rem,7vw,5rem);letter-spacing:-.02em;line-height:1}
+.price-offer h3{margin-bottom:.7rem}
+.price-offer p{font-size:.95rem;color:var(--bone-70)}
+.price-notes{margin-top:clamp(2.6rem,4vw,3.4rem)}
+.price-notes li{border-top:1px solid var(--oak-45);padding:1.15rem 0;font-size:.92rem;color:var(--iron-70);max-width:44em}
+.price-notes li strong{color:var(--iron);font-weight:700}
+
 /* ---------- FAQ ---------- */
 .faq-list{margin-top:3rem;border-top:1px solid var(--iron-15)}
 .faq-item{border-bottom:1px solid var(--iron-15)}
@@ -490,6 +525,7 @@ p{max-width:34em}
       <a href="#programs">Programs</a>
       <a href="#foundations">Foundations</a>
       <a href="#coaches">Coaches</a>
+      <a href="#pricing">Pricing</a>
       <a href="#faq">FAQ</a>
       <a href="/schedule">Schedule</a>
     </nav>
@@ -824,11 +860,83 @@ p{max-width:34em}
     </div>
   </section>
 
-  <!-- ============ 09 FAQ ============ -->
-  <section class="sec sec-bone" id="faq">
+  <!-- ============ 09 PRICING ============ -->
+  <section class="sec sec-bone" id="pricing">
     <div class="wrap">
       <div class="reveal">
         <span class="index" aria-hidden="true">09</span>
+        <p class="eyebrow">Membership</p>
+        <h2>Straight prices. No fine print.</h2>
+        <p class="lead muted" style="margin-top:1.8rem">We publish our prices because we&rsquo;re proud of what they buy. Coaching is the product — a coach who knows your name, programming that&rsquo;s planned, and a floor where you belong. If you&rsquo;re comparing us to a $10 big-box, we&rsquo;re not it, on purpose.</p>
+      </div>
+      <div class="price-grid">
+        <article class="price-card reveal">
+          <h3>Standard</h3>
+          <p class="price-val">$200<span>/mo</span></p>
+          <ul class="price-feats">
+            <li>3 classes per week</li>
+            <li>Strength &amp; Conditioning, Olympic Weightlifting, HYROX</li>
+            <li>Monthly body-comp scan</li>
+            <li>Community events</li>
+          </ul>
+        </article>
+        <article class="price-card featured reveal" style="--d:.05s">
+          <span class="price-flag">Most Popular</span>
+          <h3>Unlimited + Open Gym</h3>
+          <p class="price-val">$240<span>/mo</span></p>
+          <ul class="price-feats">
+            <li>Unlimited classes</li>
+            <li>Everything in Standard</li>
+            <li>Open gym access 7 days a week</li>
+          </ul>
+        </article>
+        <article class="price-card reveal" style="--d:.1s">
+          <h3>Open Gym Only</h3>
+          <p class="price-val">$50<span>/mo</span></p>
+          <ul class="price-feats">
+            <li>Self-directed training</li>
+            <li>Access to all programming (S&amp;C, Weightlifting, HYROX)</li>
+            <li>Open gym 7 days a week</li>
+          </ul>
+        </article>
+        <article class="price-card reveal" style="--d:.15s">
+          <h3>Personal Training</h3>
+          <p class="price-val">$120–150<span>/hour</span></p>
+          <ul class="price-feats">
+            <li>One coach, one plan</li>
+            <li>Customized programming</li>
+            <li>Individual accountability</li>
+            <li>Nutrition guidance</li>
+          </ul>
+        </article>
+      </div>
+      <div class="price-offer reveal" style="--d:.1s">
+        <span class="offer-val" aria-hidden="true">$30</span>
+        <div>
+          <p class="eyebrow" style="margin-bottom:.9rem">Try it first</p>
+          <h3>The $30 day pass</h3>
+          <p>Walk in and take any class. If you join, the $30 is credited toward your first month — so trying us costs you nothing but the hour.</p>
+        </div>
+      </div>
+      <ul class="price-notes reveal">
+        <li><strong>Military &amp; first responders:</strong> special pricing — ask us. Veteran-owned, and proud of it.</li>
+        <li>Every membership starts the same way: a free consultation and the Foundations week. That part isn&rsquo;t optional, and it&rsquo;s why this works.</li>
+        <li>Cancel with 30 days&rsquo; notice — that&rsquo;s the whole policy.</li>
+      </ul>
+      <div class="plan-cta reveal" style="margin-top:3rem">
+        <a class="btn" href="/book">Book a Free Consult
+          <svg width="16" height="12" viewBox="0 0 16 12" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M0 6h14M9.5 1 15 6l-5.5 5"/></svg>
+        </a>
+        <p class="plan-note">Not sure which one fits? That&rsquo;s what the consult is for.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 10 FAQ ============ -->
+  <section class="sec sec-bone" id="faq" style="padding-top:0">
+    <div class="wrap">
+      <div class="reveal">
+        <span class="index" aria-hidden="true">10</span>
         <p class="eyebrow">Straight answers</p>
         <h2>The questions everyone asks.</h2>
       </div>
@@ -843,7 +951,7 @@ p{max-width:34em}
         </details>
         <details class="faq-item">
           <summary>What does it cost?</summary>
-          <p class="faq-body">Memberships are custom to your goals, so we&rsquo;d rather talk than quote a number that might not fit you. The consult is free with zero pressure, and a $30 day pass lets you try the floor first — credited toward your first month if you join.</p>
+          <p class="faq-body">Standard is $200 a month, Unlimited with open gym is $240, open gym only is $50, and personal training runs $120&ndash;150 an hour. Prices are on this page because we don&rsquo;t do games. Want to try first? A $30 day pass covers any class — credited toward your first month if you join.</p>
         </details>
         <details class="faq-item">
           <summary>I bounced off CrossFit and big-box gyms before.</summary>
