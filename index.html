@@ -40,7 +40,7 @@
       align-items:stretch;margin-top:clamp(34px,5vw,52px);max-width:760px;
     }
     .nd-door{
-      border:1px solid var(--steel-line);background:rgba(0,0,0,.6);
+      border:1px solid var(--steel-line);background:var(--black);
       padding:clamp(22px,3vw,34px) clamp(18px,2.5vw,28px);text-align:center;
     }
     .nd-door small{
@@ -51,9 +51,11 @@
       display:block;font-weight:900;line-height:.9;letter-spacing:-.02em;
       font-size:clamp(2.2rem,4.5vw,3.6rem);
     }
-    .nd-now .nd-num{color:rgba(255,255,255,.07);-webkit-text-stroke:clamp(1px,.02em,1.6px) var(--white)}
-    @media (max-width:760px){.nd-now .nd-num{color:rgba(255,255,255,.34);-webkit-text-stroke:0}}
-    @supports not (-webkit-text-stroke:1px #fff){.nd-now .nd-num{color:var(--gray)}}
+    .nd-now .nd-num{
+      color:var(--black);-webkit-text-stroke:0;
+      text-shadow:1.5px 0 0 var(--white),-1.5px 0 0 var(--white),0 1.5px 0 var(--white),0 -1.5px 0 var(--white),
+        1.05px 1.05px 0 var(--white),-1.05px 1.05px 0 var(--white),1.05px -1.05px 0 var(--white),-1.05px -1.05px 0 var(--white);
+    }
     .nd-next .nd-num{color:var(--white)}
     .nd-tag{
       display:inline-block;margin-top:14px;font-size:10px;font-weight:900;

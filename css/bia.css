@@ -99,9 +99,7 @@ h3{font-size:1.05rem;letter-spacing:.02em;line-height:1.25}
 h4{color:var(--white);font-weight:700;font-size:.95rem;text-transform:uppercase;letter-spacing:.05em}
 
 /* Outline type — the signature accent device */
-.outline{color:rgba(255,255,255,.07);-webkit-text-stroke:clamp(1px,.02em,1.6px) var(--white)}
-@media (max-width:760px){.outline{color:rgba(255,255,255,.34);-webkit-text-stroke:0}}
-@supports not (-webkit-text-stroke:1px #fff){.outline{color:var(--gray)}}
+/* .outline is defined in the CLEAN OUTLINE block at the end of this file. */
 
 .eyebrow{
   display:block;font-size:11px;font-weight:700;letter-spacing:3px;
@@ -342,10 +340,9 @@ section{border-top:1px solid var(--steel-line)}
 .marquee:hover .marquee-track{animation-play-state:paused}
 .marquee span{
   font-weight:900;text-transform:uppercase;font-size:clamp(1.5rem,3.6vw,2.8rem);
-  letter-spacing:.01em;color:rgba(255,255,255,.05);-webkit-text-stroke:clamp(1px,.02em,1.6px) rgba(255,255,255,.55);
+  letter-spacing:.01em;
   padding-right:.6em;
 }
-@supports not (-webkit-text-stroke:1px #fff){.marquee span{color:var(--steel-line)}}
 @keyframes ticker{from{transform:translateX(0)}to{transform:translateX(-50%)}}
 
 
@@ -378,9 +375,8 @@ section{border-top:1px solid var(--steel-line)}
 .step{background:var(--black);padding:clamp(30px,3.5vw,48px)}
 .step em{
   display:block;font-style:normal;font-weight:900;line-height:.85;margin-bottom:22px;
-  font-size:clamp(3.4rem,6vw,5.5rem);color:rgba(255,255,255,.06);-webkit-text-stroke:clamp(1px,.02em,1.8px) var(--white);
+  font-size:clamp(3.4rem,6vw,5.5rem);
 }
-@supports not (-webkit-text-stroke:1px #fff){.step em{color:var(--steel-line)}}
 .step h3{margin-bottom:14px}
 .step p{font-size:.95rem}
 .plan-cta{margin-top:44px;display:flex;flex-wrap:wrap;align-items:center;gap:22px}
@@ -479,10 +475,9 @@ section{border-top:1px solid var(--steel-line)}
 .coach span{font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--gray)}
 .coach-initial{
   aspect-ratio:3/4;display:flex;align-items:center;justify-content:center;
-  background:var(--coal);color:rgba(255,255,255,.06);-webkit-text-stroke:clamp(1px,.02em,1.8px) var(--white);
+  background:var(--coal);
   font-weight:900;font-size:clamp(3rem,6vw,5rem);text-transform:uppercase;
 }
-@supports not (-webkit-text-stroke:1px #fff){.coach-initial{color:var(--gray)}}
 @media (max-width:1020px){.coach-grid{grid-template-columns:repeat(3,1fr)}}
 @media (max-width:860px){.coach-feature{grid-template-columns:1fr}}
 @media (max-width:560px){.coach-grid{grid-template-columns:repeat(2,1fr)}}
@@ -876,9 +871,8 @@ section{border-top:1px solid var(--steel-line)}
 .error-logo{height:64px;width:auto;margin-bottom:32px}
 .error-code{
   font-weight:900;font-size:clamp(6rem,22vw,14rem);line-height:.85;letter-spacing:-.02em;
-  color:rgba(255,255,255,.06);-webkit-text-stroke:clamp(1px,.02em,1.8px) var(--white);
+
 }
-@supports not (-webkit-text-stroke:1px #fff){.error-code{color:var(--steel-line)}}
 .error-title{margin-top:20px;font-size:clamp(1.6rem,3.5vw,2.6rem)}
 .error-text{margin-top:14px;max-width:46ch;color:var(--gray)}
 .error-links{margin-top:34px;display:flex;flex-wrap:wrap;gap:14px;justify-content:center}
@@ -964,4 +958,49 @@ footer{border-top:1px solid var(--steel-line);padding:clamp(56px,7vw,88px) 0 0}
   .marquee-track{animation:none}
   .modal-container{animation:none}
   .prog img,.coach img,.blog-card-image img,.arrow-link svg,.blog-read-more svg{transition:none}
+}
+
+
+/* ------------------------------------------------------------
+   CLEAN OUTLINE (final cascade layer — keep at end of file)
+   The outline device is built from a layered text-shadow halo
+   instead of -webkit-text-stroke: compositing has no miter
+   joins, so Montserrat's sharp corners render clean at every
+   size. The glyph interior fills with the surface color via
+   --hole (default black; .sect.alt provides coal). Photo-backed
+   surfaces (hero, building band) keep the stroke build at
+   display sizes and a solid ghost on phones.
+   ------------------------------------------------------------ */
+.outline,.step em,.coach-initial,.error-code,.marquee span{
+  color:var(--hole,var(--black));
+  -webkit-text-stroke:0;
+  text-shadow:
+    var(--olr,1px) 0 0 var(--olc,var(--white)),
+    calc(var(--olr,1px)*-1) 0 0 var(--olc,var(--white)),
+    0 var(--olr,1px) 0 var(--olc,var(--white)),
+    0 calc(var(--olr,1px)*-1) 0 var(--olc,var(--white)),
+    calc(var(--olr,1px)*.7) calc(var(--olr,1px)*.7) 0 var(--olc,var(--white)),
+    calc(var(--olr,1px)*-.7) calc(var(--olr,1px)*.7) 0 var(--olc,var(--white)),
+    calc(var(--olr,1px)*.7) calc(var(--olr,1px)*-.7) 0 var(--olc,var(--white)),
+    calc(var(--olr,1px)*-.7) calc(var(--olr,1px)*-.7) 0 var(--olc,var(--white));
+}
+.sect.alt{--hole:var(--coal)}
+.step{--hole:var(--black)}          /* step cards are black even inside alt sections */
+.coach-initial{--hole:var(--coal);--olr:1.5px}
+.step em{--olr:1.5px}
+.error-code{--olr:1.5px}
+.marquee span{--olc:rgba(255,255,255,.55)}
+@media (min-width:761px){.outline{--olr:1.5px}}
+
+/* Photo-backed surfaces: halo needs an opaque hole, so keep the
+   stroke build at display sizes, solid ghost on phones. */
+.hero .outline,.building .outline{
+  color:transparent;text-shadow:none;
+  -webkit-text-stroke:clamp(1px,.02em,1.6px) var(--white);
+}
+@media (max-width:760px){
+  .hero .outline,.building .outline{color:rgba(255,255,255,.34);-webkit-text-stroke:0;text-shadow:none}
+}
+@supports not (-webkit-text-stroke:1px #fff){
+  .hero .outline,.building .outline{color:var(--gray);text-shadow:none}
 }
