@@ -23,7 +23,6 @@
      skip-link, nav-container, logo, nav-links, has-submenu,
      submenu, cta-btn, hamburger, menu-backdrop, side-menu*,
      modal-overlay, modal-container, modal-close,
-     #stickyMobileCta (styled via .mobile-cta).
    - Design components use Direction 2 names: wrap, sect, alt,
      eyebrow, display, outline, lead, btn, btn-y, btn-ghost, rv…
    ============================================================ */
@@ -914,22 +913,6 @@ footer{border-top:1px solid var(--steel-line);padding:clamp(56px,7vw,88px) 0 0}
 @media (max-width:640px){.foot-top{grid-template-columns:1fr}}
 
 
-/* ------------------------------------------------------------
-   34. STICKY MOBILE CTA (id="stickyMobileCta" carries this
-   class — the id is a JS/measurement contract, the class is
-   the style hook; marketing pages only, shown at 640px down)
-   ------------------------------------------------------------ */
-.mobile-cta{display:none}
-@media (max-width:640px){
-  .mobile-cta{
-    display:flex;position:fixed;bottom:0;inset-inline:0;z-index:900;
-    background:var(--yellow);color:var(--black);height:58px;align-items:center;justify-content:center;
-    font-weight:900;font-size:13px;letter-spacing:2px;text-transform:uppercase;
-    padding-bottom:env(safe-area-inset-bottom);
-  }
-  .mobile-cta:hover{background:var(--white)}
-  body{padding-bottom:calc(58px + env(safe-area-inset-bottom))}
-}
 
 
 /* ------------------------------------------------------------

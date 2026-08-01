@@ -254,7 +254,6 @@
     </footer>
 
     <!-- CONTRACT: sticky mobile CTA -->
-    <a id="stickyMobileCta" class="mobile-cta" href="#" onclick="openLeadModal(); return false;">Book a Free Consult</a>
 
     <!-- BreadcrumbList Schema -->
     <script type="application/ld+json">
@@ -358,12 +357,6 @@
     }
     document.getElementById('subscribeModal').addEventListener('click', function(e) {
         if (e.target === this) { closeSubscribeModal(); }
-    });
-
-    // Sticky Mobile CTA - hide when modal is open
-    window.addEventListener('scroll', function() {
-        const stickyBar = document.getElementById('stickyMobileCta');
-        if (stickyBar) stickyBar.style.display = '';
     });
 
     // Side Menu
