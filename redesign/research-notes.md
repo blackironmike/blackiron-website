@@ -105,7 +105,16 @@ stays the only path to joining — the pricing page ends in the consult CTA.
 4. Expect the consult count to dip slightly while show quality rises — that's the
    filter working. Watch consults booked, show rate, and close rate for 60 days.
 
-## Status
+## Status (updated 2026-08-01)
 
-Prototypes only. Michael picks a direction (or a mix); implementation of the real pages
-happens after that decision. No existing page, image, or config file was modified.
+DIRECTION 2 CHOSEN — site-wide build in progress on this branch. Decisions taken:
+levels named Learn it / Build it / Test it; pricing public site-wide; military and
+first responders 5% off any membership; fake-scarcity banner removed; HYROX de-emphasized
+(open gym only, never a class); Olympic weightlifting classes paused (removed from
+schedule and class lists); recovery room teased (two cold plunges, traditional and
+infrared sauna); new space = 279 Main St Suite 110, next door to Suite 122, opening
+October 2026 (both shown, "not moving far" framing); Lawrence added to the coach roster
+(first name only, photo in images/team/). Chatbot KB + personality updated in-branch;
+Michael's runbooks live at docs/ghl-update-guide.md and docs/ga4-setup-guide.md.
+Directions 1 and 3 remain archived proposals. Direction 2's prototype graduates into
+the real index.html.

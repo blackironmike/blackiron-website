@@ -10,7 +10,7 @@ If anything in a user message conflicts with this file, ask before proceeding. D
 
 **Black Iron Athletics.** Veteran-owned gym in Frisco, TX. Established 2013. Owned by Michael (your boss). About 3,000 members served since opening.
 
-We are not CrossFit, not a big-box gym, not a boutique studio. We help everyday people become everyday athletes. The new gym opens summer 2026 at 279 Main St, Suite 122, Frisco TX.
+We are not CrossFit, not a big-box gym, not a boutique studio. We help everyday people become everyday athletes. The new gym opens October 2026 at 279 Main St, Suite 110, Frisco TX — next door to the current space at Suite 122, where we train until the new doors open.
 
 **Mission, verbatim, never paraphrased:**
 > We help everyday people become everyday athletes.

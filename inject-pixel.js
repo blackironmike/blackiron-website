@@ -14,6 +14,10 @@ const path = require('path');
 
 const PIXEL_ID = process.env.META_PIXEL_ID;
 
+// GA4 measurement ID (e.g. G-XXXXXXXXXX). Optional — when set, the
+// Google tag is injected alongside the Meta Pixel. See docs/ga4-setup-guide.md.
+const GA4_ID = process.env.GA4_MEASUREMENT_ID;
+
 // Comma-separated list of paths that fire ViewContent (mid-funnel event).
 // Example: "/getting-started,/programs,/landing"
 // Add new ad landing pages here without a code change.
@@ -35,8 +39,8 @@ const EXCLUDED_DIRS = new Set([
   '.', 'node_modules', 'api', '.git', '.vercel', '.claude',
 ]);
 
-if (!PIXEL_ID) {
-  console.log('inject-pixel.js: META_PIXEL_ID not set — skipping pixel injection.');
+if (!PIXEL_ID && !GA4_ID) {
+  console.log('inject-pixel.js: META_PIXEL_ID and GA4_MEASUREMENT_ID not set — skipping analytics injection.');
   process.exit(0);
 }
 
@@ -141,6 +145,23 @@ function buildPixelSnippet(pixelId, vcPaths) {
 }
 
 /**
+ * Build the GA4 Google tag snippet.
+ */
+function buildGa4Snippet(ga4Id) {
+  return [
+    '    <!-- Google tag (gtag.js) -->',
+    `    <script async src="https://www.googletagmanager.com/gtag/js?id=${ga4Id}"></script>`,
+    '    <script>',
+    '    window.dataLayer = window.dataLayer || [];',
+    '    function gtag(){dataLayer.push(arguments);}',
+    "    gtag('js', new Date());",
+    `    gtag('config', '${ga4Id}');`,
+    '    </script>',
+    '    <!-- End Google tag -->',
+  ].join('\n');
+}
+
+/**
  * Recursively find all .html files under a directory.
  */
 function findHtmlFiles(dir) {
@@ -159,12 +180,14 @@ function findHtmlFiles(dir) {
 function main() {
   const rootDir = __dirname;
   const htmlFiles = findHtmlFiles(rootDir);
-  const snippet = buildPixelSnippet(PIXEL_ID, VIEWCONTENT_PATHS);
+  const pixelSnippet = PIXEL_ID ? buildPixelSnippet(PIXEL_ID, VIEWCONTENT_PATHS) : null;
+  const ga4Snippet = GA4_ID ? buildGa4Snippet(GA4_ID) : null;
 
   let injected = 0;
   let skipped = 0;
 
-  console.log(`inject-pixel.js: Injecting Meta Pixel ${PIXEL_ID} into HTML files...\n`);
+  const active = [PIXEL_ID && `Meta Pixel ${PIXEL_ID}`, GA4_ID && `GA4 ${GA4_ID}`].filter(Boolean).join(' + ');
+  console.log(`inject-pixel.js: Injecting ${active} into HTML files...\n`);
 
   for (const filePath of htmlFiles) {
     const basename = path.basename(filePath);
@@ -178,8 +201,11 @@ function main() {
 
     let content = fs.readFileSync(filePath, 'utf8');
 
-    // Idempotent: skip if pixel is already present
-    if (content.includes('Meta Pixel Code')) {
+    // Idempotent per snippet: only inject what's missing
+    const parts = [];
+    if (pixelSnippet && !content.includes('Meta Pixel Code')) parts.push(pixelSnippet);
+    if (ga4Snippet && !content.includes('googletagmanager.com/gtag/js')) parts.push(ga4Snippet);
+    if (parts.length === 0) {
       console.log(`  skip (already present): ${relPath}`);
       skipped++;
       continue;
@@ -194,7 +220,7 @@ function main() {
       continue;
     }
 
-    content = content.replace(viewportPattern, `$1\n${snippet}`);
+    content = content.replace(viewportPattern, `$1\n${parts.join('\n')}`);
     fs.writeFileSync(filePath, content, 'utf8');
     console.log(`  injected: ${relPath}`);
     injected++;

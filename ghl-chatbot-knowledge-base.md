@@ -2,7 +2,7 @@
 
 ## What is Black Iron Athletics?
 
-Black Iron Athletics is a veteran-owned gym located in Frisco, TX, founded in 2013 by Mike Manning. We offer coach-led group training, Olympic weightlifting, HYROX training, personal training, nutrition coaching, and open gym access. Over 3,000 members have trained here and we hold a 5.0 star Google rating.
+Black Iron Athletics is a veteran-owned gym located in Frisco, TX, founded in 2013 by Mike Manning. We offer coach-led Strength and Conditioning classes, personal training, nutrition coaching, and open gym access. Over 3,000 members have trained here and we hold a 5.0 star Google rating.
 
 ## Is Black Iron Athletics a CrossFit gym?
 
@@ -38,11 +38,11 @@ Mike Manning is the Owner and Head Coach. He founded Black Iron Athletics in 201
 
 ## Who are the coaches?
 
-Our coaching staff includes Mike Manning (Owner and Head Coach), Kristin (General Manager), Aileen, Evan, Amber, and Emily.
+Our coaching staff includes Mike Manning (Owner and Head Coach), Kristin (General Manager), Aileen, Evan, Amber, Emily, and Lawrence.
 
 ## What programs do you offer?
 
-We offer Group Training (Strength and Conditioning), Olympic Weightlifting, HYROX Training, Personal Training, Nutrition Coaching, and Open Gym access.
+We offer Group Training (Strength and Conditioning), Personal Training, Nutrition Coaching, and Open Gym access. Olympic weightlifting classes are currently paused — the lifts still live in our programming and in open gym. HYROX-style training is available self-guided during open gym.
 
 ## What is Group Training?
 
@@ -50,11 +50,11 @@ High-energy, coach-led classes for all fitness levels. Every class includes stru
 
 ## What is Olympic Weightlifting?
 
-Dedicated classes focused on the snatch, clean and jerk. Technique-focused coaching for beginners through advanced lifters.
+Olympic weightlifting classes are currently paused. The barbell and Olympic lifts — snatch, clean and jerk — still live in our regular programming, and open gym members can train them anytime. Classes may return.
 
 ## What is HYROX Training?
 
-Specialized training for HYROX race preparation. Combines functional fitness with race-specific conditioning.
+HYROX training at Black Iron is self-guided during open gym — it is not a class. Open gym members can run HYROX-style sessions on their own schedule, with full access to sleds, rowers, ski ergs, and our structured programming.
 
 ## What is Personal Training?
 
@@ -70,27 +70,27 @@ Yes, nutrition coaching is available as a standalone service.
 
 ## What membership options do you offer?
 
-We offer four plans: Standard (3x/week), Unlimited + Open Gym (most popular), Personal Training, and Open Gym Only. Visit https://www.blackironathletics.com/getting-started for details.
+We offer four plans: Standard ($200/month, 3 classes a week), Unlimited + Open Gym ($240/month, most popular), Open Gym Only ($50/month), and Personal Training ($120–150/hour). Visit https://www.blackironathletics.com/getting-started for details.
 
 ## What is the Standard membership?
 
-The Standard plan includes 3 coach-led classes per week in Strength and Conditioning, Olympic Weightlifting, and HYROX, plus a monthly body composition scan and community events.
+The Standard plan is $200 a month. It includes 3 coach-led Strength and Conditioning classes per week, a monthly body composition scan, and community events.
 
 ## What is the Unlimited + Open Gym membership?
 
-Our most popular plan. It includes unlimited coach-led classes, Open Gym access 7 days a week between classes and after hours, private gym access, all class types, monthly body composition scans, and community events.
+Our most popular plan, at $240 a month. It includes unlimited coach-led classes, Open Gym access 7 days a week between classes and after hours, private gym access, monthly body composition scans, and community events.
 
 ## What is the Open Gym Only membership?
 
-Open Gym access 7 days a week between classes and after hours, private gym access, and access to all our structured programming for self-directed training.
+The Open Gym Only plan is $50 a month. It includes Open Gym access 7 days a week between classes and after hours, private gym access, and access to all our structured programming for self-directed training.
 
 ## What is the Personal Training membership?
 
-1-on-1 coaching sessions with customized programming, individual accountability, nutrition guidance, monthly body composition scans, and community events.
+Personal Training runs $120–150 per hour. One coach, one plan: 1-on-1 sessions with customized programming, individual accountability, nutrition guidance, monthly body composition scans, and community events.
 
 ## How much does a membership cost?
 
-Pricing is personalized based on your goals and selected plan. Book a free consultation to discuss options: https://www.blackironathletics.com/book
+Standard is $200 a month (3 classes a week). Unlimited + Open Gym is $240 a month — our most popular plan. Open Gym Only is $50 a month. Personal Training runs $120–150 per hour. Every membership starts with a free consultation and the Foundations week, and a $30 day pass is credited toward your first month if you join. Book your free consultation at https://www.blackironathletics.com/book
 
 ## How do I get started?
 
@@ -122,7 +122,7 @@ Every session is coach-led with real programming, not random workouts. We combin
 
 ## Do you offer a day pass?
 
-Yes! For $30 you can try any class you would like before joining. If you sign up, we will credit that towards your first month.
+Yes. For $30 you can try any class you would like before joining. If you sign up, we will credit that towards your first month.
 
 ## What is your cancellation policy?
 
@@ -130,7 +130,7 @@ We require 30 days written notice to cancel your membership.
 
 ## Do you offer military or first responder discounts?
 
-Yes! As a veteran-owned gym, we proudly support those who serve. Ask us about our military and first responder pricing.
+Yes. Military and first responders get 5% off any membership. We are veteran-owned and proud of it — supporting those who serve is part of who we are.
 
 ## Is the gym climate controlled?
 
@@ -170,7 +170,7 @@ You can view our current class schedule at https://www.blackironathletics.com/sc
 
 ## Do you have a blog?
 
-Yes! We publish fitness and nutrition articles at https://www.blackironathletics.com/blog
+Yes. We publish fitness and nutrition articles at https://www.blackironathletics.com/blog
 
 ## How can I contact you?
 
@@ -222,7 +222,7 @@ Hydration needs vary by phase and activity level. Electrolytes (sodium, potassiu
 
 ## Do you have a macro calculator?
 
-Yes! Our free Macro Calculator helps you estimate your TDEE and set personalized macro targets for protein, carbs, and fat based on your goals. Try it at https://www.blackironathletics.com/macro-calculator
+Yes. Our free Macro Calculator helps you estimate your TDEE and set personalized macro targets for protein, carbs, and fat based on your goals. Try it at https://www.blackironathletics.com/macro-calculator
 
 ## What is the best protein powder?
 
@@ -246,7 +246,7 @@ Every class is about 60 minutes and follows a structured format: warm-up, skill 
 
 ## Can I bring a friend to try a class?
 
-Yes! Guests are welcome to try a class with a $30 day pass. If they sign up for a membership, we credit that $30 towards their first month.
+Yes. Guests are welcome to try a class with a $30 day pass. If they sign up for a membership, we credit that $30 towards their first month.
 
 ## How big are your classes?
 
@@ -282,7 +282,7 @@ Monthly body composition scans are included with all memberships. They measure y
 
 ## Do you have a referral program?
 
-Yes! We have a referral program for current members. Ask us for details.
+Yes. We have a referral program for current members. Ask us for details.
 
 ## What community events do you host?
 
@@ -330,11 +330,11 @@ Owner Mike Manning is a medically retired Marine Corps combat veteran. He served
 
 ## Are you moving to a new location?
 
-We are getting ready for our next chapter — a bigger facility with a larger focus on nutrition and recovery. Until those new doors open, you will find us where we have always been: 279 Main St #122, Frisco, TX 75036.
+Yes — right next door. We train at 279 Main St, Suite 122 today, and our new, bigger space at Suite 110 opens October 2026. It includes a recovery room with two cold plunges plus traditional and infrared saunas. Same street, same parking, same good people.
 
 ## How much do gyms in Frisco cost?
 
-Gym prices in Frisco range from about $10 a month at big-box gyms to $200 or more at boutique studios. We wrote an honest breakdown at https://www.blackironathletics.com/blog/gym-membership-cost-frisco-tx. Our own pricing is personalized by plan, and we will walk you through every number at your free consultation — zero pressure.
+Gym prices in Frisco range from about $10 a month at big-box gyms to $200 or more at boutique studios. We wrote an honest breakdown at https://www.blackironathletics.com/blog/gym-membership-cost-frisco-tx. Our own numbers: Standard is $200 a month, Unlimited + Open Gym is $240 a month, Open Gym Only is $50 a month, and Personal Training runs $120–150 per hour. A free consultation walks you through what fits — zero pressure.
 
 ## I am nervous about starting
 
