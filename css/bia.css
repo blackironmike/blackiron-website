@@ -296,7 +296,7 @@ section{border-top:1px solid var(--steel-line)}
 .hero-bg img{width:100%;height:100%;object-fit:cover;object-position:center 30%}
 .hero-bg::after{
   content:"";position:absolute;inset:0;
-  background:linear-gradient(180deg,rgba(0,0,0,.62) 0%,rgba(0,0,0,.35) 40%,rgba(0,0,0,.82) 78%,#000 100%);
+  background:linear-gradient(180deg,rgba(0,0,0,.62) 0%,rgba(0,0,0,.38) 34%,rgba(0,0,0,.88) 66%,rgba(0,0,0,.95) 84%,#000 100%);
 }
 .hero-in{position:relative;z-index:1;width:100%;padding-block:120px clamp(56px,8vw,96px)}
 .hero p.lead{margin:30px 0 36px;color:var(--white)}
@@ -423,7 +423,7 @@ section{border-top:1px solid var(--steel-line)}
 .building{position:relative;overflow:hidden}
 .building-bg{position:absolute;inset:0}
 .building-bg img{width:100%;height:100%;object-fit:cover}
-.building-bg::after{content:"";position:absolute;inset:0;background:rgba(0,0,0,.8)}
+.building-bg::after{content:"";position:absolute;inset:0;background:rgba(0,0,0,.9)}
 .building-in{position:relative;z-index:1;padding-block:clamp(90px,12vw,170px)}
 .building p{max-width:52ch;margin-top:26px;color:var(--white)}
 
@@ -992,15 +992,7 @@ footer{border-top:1px solid var(--steel-line);padding:clamp(56px,7vw,88px) 0 0}
 .marquee span{--olc:rgba(255,255,255,.55)}
 @media (min-width:761px){.outline{--olr:1.5px}}
 
-/* Photo-backed surfaces: halo needs an opaque hole, so keep the
-   stroke build at display sizes, solid ghost on phones. */
-.hero .outline,.building .outline{
-  color:transparent;text-shadow:none;
-  -webkit-text-stroke:clamp(1px,.02em,1.6px) var(--white);
-}
-@media (max-width:760px){
-  .hero .outline,.building .outline{color:rgba(255,255,255,.34);-webkit-text-stroke:0;text-shadow:none}
-}
-@supports not (-webkit-text-stroke:1px #fff){
-  .hero .outline,.building .outline{color:var(--gray);text-shadow:none}
-}
+/* Photo-backed surfaces (hero, building band): the halo needs an
+   opaque letter interior, so the hole is pure black and the scrim
+   above is deepened to match. Same clean corners as everywhere else. */
+.hero .outline,.building .outline{--hole:#000;--olr:1.5px}
