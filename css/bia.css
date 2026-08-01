@@ -99,7 +99,8 @@ h3{font-size:1.05rem;letter-spacing:.02em;line-height:1.25}
 h4{color:var(--white);font-weight:700;font-size:.95rem;text-transform:uppercase;letter-spacing:.05em}
 
 /* Outline type — the signature accent device */
-.outline{color:transparent;-webkit-text-stroke:1px var(--white)}
+.outline{color:rgba(255,255,255,.07);-webkit-text-stroke:clamp(1px,.02em,1.6px) var(--white)}
+@media (max-width:760px){.outline{color:rgba(255,255,255,.34);-webkit-text-stroke:0}}
 @supports not (-webkit-text-stroke:1px #fff){.outline{color:var(--gray)}}
 
 .eyebrow{
@@ -341,7 +342,7 @@ section{border-top:1px solid var(--steel-line)}
 .marquee:hover .marquee-track{animation-play-state:paused}
 .marquee span{
   font-weight:900;text-transform:uppercase;font-size:clamp(1.5rem,3.6vw,2.8rem);
-  letter-spacing:.01em;color:transparent;-webkit-text-stroke:1px rgba(255,255,255,.55);
+  letter-spacing:.01em;color:rgba(255,255,255,.05);-webkit-text-stroke:clamp(1px,.02em,1.6px) rgba(255,255,255,.55);
   padding-right:.6em;
 }
 @supports not (-webkit-text-stroke:1px #fff){.marquee span{color:var(--steel-line)}}
@@ -377,7 +378,7 @@ section{border-top:1px solid var(--steel-line)}
 .step{background:var(--black);padding:clamp(30px,3.5vw,48px)}
 .step em{
   display:block;font-style:normal;font-weight:900;line-height:.85;margin-bottom:22px;
-  font-size:clamp(3.4rem,6vw,5.5rem);color:transparent;-webkit-text-stroke:1px var(--white);
+  font-size:clamp(3.4rem,6vw,5.5rem);color:rgba(255,255,255,.06);-webkit-text-stroke:clamp(1px,.02em,1.8px) var(--white);
 }
 @supports not (-webkit-text-stroke:1px #fff){.step em{color:var(--steel-line)}}
 .step h3{margin-bottom:14px}
@@ -478,7 +479,7 @@ section{border-top:1px solid var(--steel-line)}
 .coach span{font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--gray)}
 .coach-initial{
   aspect-ratio:3/4;display:flex;align-items:center;justify-content:center;
-  background:var(--coal);color:transparent;-webkit-text-stroke:1px var(--white);
+  background:var(--coal);color:rgba(255,255,255,.06);-webkit-text-stroke:clamp(1px,.02em,1.8px) var(--white);
   font-weight:900;font-size:clamp(3rem,6vw,5rem);text-transform:uppercase;
 }
 @supports not (-webkit-text-stroke:1px #fff){.coach-initial{color:var(--gray)}}
@@ -875,7 +876,7 @@ section{border-top:1px solid var(--steel-line)}
 .error-logo{height:64px;width:auto;margin-bottom:32px}
 .error-code{
   font-weight:900;font-size:clamp(6rem,22vw,14rem);line-height:.85;letter-spacing:-.02em;
-  color:transparent;-webkit-text-stroke:1px var(--white);
+  color:rgba(255,255,255,.06);-webkit-text-stroke:clamp(1px,.02em,1.8px) var(--white);
 }
 @supports not (-webkit-text-stroke:1px #fff){.error-code{color:var(--steel-line)}}
 .error-title{margin-top:20px;font-size:clamp(1.6rem,3.5vw,2.6rem)}

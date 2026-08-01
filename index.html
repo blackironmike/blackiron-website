@@ -51,7 +51,8 @@
       display:block;font-weight:900;line-height:.9;letter-spacing:-.02em;
       font-size:clamp(2.2rem,4.5vw,3.6rem);
     }
-    .nd-now .nd-num{color:transparent;-webkit-text-stroke:1px var(--white)}
+    .nd-now .nd-num{color:rgba(255,255,255,.07);-webkit-text-stroke:clamp(1px,.02em,1.6px) var(--white)}
+    @media (max-width:760px){.nd-now .nd-num{color:rgba(255,255,255,.34);-webkit-text-stroke:0}}
     @supports not (-webkit-text-stroke:1px #fff){.nd-now .nd-num{color:var(--gray)}}
     .nd-next .nd-num{color:var(--white)}
     .nd-tag{
