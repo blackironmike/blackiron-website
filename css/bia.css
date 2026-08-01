@@ -227,8 +227,21 @@ nav.scrolled{background:rgba(0,0,0,.92);border-bottom-color:var(--steel-line);ba
   .cta-btn{margin-left:auto}
 }
 @media (max-width:640px){
-  .cta-btn{padding:11px 16px;font-size:11px}
+  /* The row is logo + CTA + hamburger. Below ~430px the default 28px
+     gaps push the hamburger past the viewport (clipped, and hidden by
+     body overflow-x). Tighten the row so all three always fit. */
+  .nav-container{gap:14px}
+  .cta-btn{padding:11px 14px;font-size:11px;letter-spacing:1.2px}
   .logo img{height:32px}
+}
+@media (max-width:400px){
+  .nav-container{gap:10px;padding-inline:14px}
+  .cta-btn{padding:10px 11px;font-size:10px;letter-spacing:.9px}
+}
+@media (max-width:345px){
+  .nav-container{gap:8px;padding-inline:11px}
+  .cta-btn{padding:9px 9px;font-size:9.5px;letter-spacing:.4px}
+  .logo img{height:28px}
 }
 
 
