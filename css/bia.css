@@ -169,8 +169,9 @@ nav.scrolled{background:rgba(0,0,0,.92);border-bottom-color:var(--steel-line);ba
   max-width:var(--max);margin-inline:auto;padding:0 var(--pad);
   height:74px;display:flex;align-items:center;gap:28px;
 }
+.logo{flex:none}
 .logo a{display:flex;align-items:center}
-.logo img{height:40px;width:auto}
+.logo img{height:40px;width:auto;flex:none;max-width:none}
 
 .nav-links{display:flex;align-items:center;gap:26px;margin-left:auto;list-style:none}
 .nav-links>li{position:relative;display:flex;align-items:center;height:74px}
@@ -548,6 +549,8 @@ section{border-top:1px solid var(--steel-line)}
    23. VISIT ROWS (address / phone / hours / area)
    ------------------------------------------------------------ */
 .visit-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(36px,5vw,72px);align-items:start}
+.visit-ctas{display:flex;flex-wrap:wrap;gap:14px;margin-top:32px}
+@media (max-width:520px){.visit-ctas .btn{width:100%}}
 .visit-rows{border-top:1px solid var(--steel-line)}
 .visit-row{border-bottom:1px solid var(--steel-line);padding:20px 0;display:grid;grid-template-columns:120px 1fr;gap:16px}
 .visit-row b{font-size:11px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:var(--gray);padding-top:4px}
