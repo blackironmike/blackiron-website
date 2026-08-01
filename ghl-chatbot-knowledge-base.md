@@ -90,7 +90,7 @@ Personal Training runs $120–150 per hour. One coach, one plan: 1-on-1 sessions
 
 ## How much does a membership cost?
 
-Standard is $200 a month (3 classes a week). Unlimited + Open Gym is $240 a month — our most popular plan. Open Gym Only is $50 a month. Personal Training runs $120–150 per hour. Every membership starts with a free consultation and the Foundations week, and a $30 day pass is credited toward your first month if you join. Book your free consultation at https://www.blackironathletics.com/book
+Standard is $200 a month (3 classes a week). Unlimited + Open Gym is $240 a month — our most popular plan. Open Gym Only is $50 a month. Personal Training runs $120–150 per hour. Every membership starts with a free consultation and the Foundations week, and a $30 day pass is credited toward your first month if you join. Book your free consultation at https://www.blackironathletics.com/book or buy a day pass online at https://blackiron.wodify.com/OnlineSalesPage/Main?q=Classes%7COnlineMembershipId%3D235166%26LocationId%3D10409
 
 ## How do I get started?
 
@@ -122,7 +122,7 @@ Every session is coach-led with real programming, not random workouts. We combin
 
 ## Do you offer a day pass?
 
-Yes. For $30 you can try any class you would like before joining. If you sign up, we will credit that towards your first month.
+Yes. For $30 you can try any class you would like before joining. If you sign up, we will credit that towards your first month. You can buy your day pass and sign the waiver online here: https://blackiron.wodify.com/OnlineSalesPage/Main?q=Classes%7COnlineMembershipId%3D235166%26LocationId%3D10409
 
 ## What is your cancellation policy?
 
@@ -246,7 +246,7 @@ Every class is about 60 minutes and follows a structured format: warm-up, skill 
 
 ## Can I bring a friend to try a class?
 
-Yes. Guests are welcome to try a class with a $30 day pass. If they sign up for a membership, we credit that $30 towards their first month.
+Yes. Guests are welcome to try a class with a $30 day pass. If they sign up for a membership, we credit that $30 towards their first month. They can pay and sign the waiver online here: https://blackiron.wodify.com/OnlineSalesPage/Main?q=Classes%7COnlineMembershipId%3D235166%26LocationId%3D10409
 
 ## How big are your classes?
 
