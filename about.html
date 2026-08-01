@@ -1,16 +1,18 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <!-- CONTRACT: keep this exact viewport tag — inject-pixel.js insertion marker -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>About Us | Black Iron Athletics | Veteran-Owned Gym in Frisco, TX Since 2013</title>
-    <meta name="description" content="Veteran-owned strength & conditioning gym in Frisco, TX since 2013. 3,000+ members transformed through expert coaching, HYROX, weightlifting & personal training.">
+    <meta name="description" content="Veteran-owned strength &amp; conditioning gym in Frisco, TX since 2013. 3,000+ lives changed through coached classes, Foundations, and real nutrition coaching. Moving next door to Suite 110 in October 2026.">
     <meta name="geo.region" content="US-TX">
     <meta name="geo.placename" content="Frisco">
+    <meta name="geo.position" content="33.1503;-96.8236">
     <link rel="canonical" href="https://www.blackironathletics.com/about">
     <!-- Open Graph -->
     <meta property="og:title" content="About Us | Black Iron Athletics | Veteran-Owned Gym in Frisco, TX">
-    <meta property="og:description" content="Veteran-owned strength & conditioning gym in Frisco, TX since 2013. 3000+ members transformed through expert coaching, HYROX, weightlifting & personal training.">
+    <meta property="og:description" content="Veteran-owned strength &amp; conditioning gym in Frisco, TX since 2013. 3,000+ lives changed through coached classes, Foundations, and real nutrition coaching.">
     <meta property="og:url" content="https://www.blackironathletics.com/about">
     <meta property="og:image" content="https://www.blackironathletics.com/images/social-share.png">
     <meta property="og:type" content="website">
@@ -18,1012 +20,62 @@
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="About Us | Black Iron Athletics | Veteran-Owned Gym in Frisco, TX">
-    <meta name="twitter:description" content="Veteran-owned strength & conditioning gym in Frisco, TX since 2013. 3000+ members transformed through expert coaching, HYROX, weightlifting & personal training.">
+    <meta name="twitter:description" content="Veteran-owned strength &amp; conditioning gym in Frisco, TX since 2013. 3,000+ lives changed through coached classes, Foundations, and real nutrition coaching.">
     <meta name="twitter:image" content="https://www.blackironathletics.com/images/social-share.png">
-    <link rel="icon" type="image/png" href="images/anvil-favicon.png">
+    <link rel="icon" type="image/png" href="/images/anvil-favicon.png">
+    <link rel="apple-touch-icon" href="/images/anvil-favicon.png">
     <meta name="theme-color" content="#000000">
-    <link rel="apple-touch-icon" href="images/anvil-favicon.png">
-    <link rel="preload" as="image" href="images/heroes/hero-about.webp">
+    <link rel="preload" as="image" href="/images/heroes/hero-about.webp">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;900&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
-    <noscript><link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;900&display=swap" rel="stylesheet"></noscript>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" media="print" onload="this.media='all'">
-    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"></noscript>
-    <style>@font-face{font-family:"Font Awesome 6 Brands";font-display:swap}@font-face{font-family:"Font Awesome 6 Free";font-display:swap}</style>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&display=swap" rel="stylesheet"></noscript>
+    <link rel="stylesheet" href="/css/bia.css">
     <style>
-        /* Force full width - override GHL container */
-        body, html {
-            width: 100% !important;
-            max-width: 100% !important;
-            margin: 0 !important;
-            padding: 0 !important;
-        }
-
-        /* Remove GHL's default container padding */
-        .container, .hl_page-preview--content {
-            padding: 0 !important;
-            margin: 0 !important;
-            max-width: 100% !important;
-            width: 100% !important;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        :root {
-            --black: #000000;
-            --dark-gray: #1a1a1a;
-            --medium-gray: #333333;
-            --light-gray: #cccccc;
-            --white: #ffffff;
-            --yellow: #FFD202;
-        }
-
-        body {
-            font-family: 'Montserrat', sans-serif;
-            font-weight: 500;
-            background: var(--black);
-            color: var(--white);
-            overflow-x: hidden;
-            line-height: 1.6;
-            margin: 0;
-            padding: 0;
-        }
-
-        html {
-            margin: 0;
-            padding: 0;
-            scroll-behavior: smooth;
-        }
-
-        /* Anchor offset for fixed nav */
-        #mission,
-        #team,
-        #programs {
-            scroll-margin-top: 100px;
-        }
-
-        /* All headings use Montserrat Black */
-        h1, h2, h3, h4, h5, h6 {
-            font-family: 'Montserrat', sans-serif;
-            font-weight: 900;
-            line-height: 1.2;
-        }
-
-        nav {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            padding: 1.5rem 0;
-            background: var(--black);
-            z-index: 1000;
-            border-bottom: 1px solid var(--medium-gray);
-        }
-
-        .nav-container {
-            max-width: 100%;
-            margin: 0;
-            padding: 0 4rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            height: 50px;
-        }
-
-        .logo a {
-            display: block;
-            height: 100%;
-        }
-
-        .logo img {
-            height: 100%;
-            width: auto;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 3rem;
-            list-style: none;
-            align-items: center;
-        }
-
-        .nav-links > li {
-            position: relative;
-        }
-
-        .nav-links a {
-            color: var(--white);
-            text-decoration: none;
-            font-size: 0.95rem;
-            font-weight: 900;
-            transition: color 0.3s ease;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-
-        .nav-links > li > a:hover {
-            color: var(--yellow);
-        }
-
-        /* Dropdown Submenu */
-        .submenu {
-            display: none;
-            position: absolute;
-            top: 100%;
-            left: 0;
-            background: rgba(26, 26, 26, 0.95);
-            backdrop-filter: blur(10px);
-            min-width: 240px;
-            padding: 0.5rem 0;
-            border: 1px solid var(--medium-gray);
-            list-style: none;
-        }
-
-        .submenu li {
-            padding: 0;
-        }
-
-        .submenu a {
-            display: block;
-            padding: 1rem 1.5rem;
-            font-size: 0.85rem;
-            font-weight: 900;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            transition: all 0.3s ease;
-        }
-
-        .submenu a:hover {
-            background: rgba(255, 210, 2, 0.1);
-            color: var(--yellow);
-            padding-left: 2rem;
-        }
-
-        .nav-links > li:hover .submenu {
-            display: block;
-        }
-
-        .has-submenu > a::after {
-            content: '';
-            display: inline-block;
-            width: 0;
-            height: 0;
-            margin-left: 0.5rem;
-            border-left: 4px solid transparent;
-            border-right: 4px solid transparent;
-            border-top: 5px solid var(--white);
-            transition: all 0.3s ease;
-        }
-
-        .has-submenu:hover > a::after {
-            border-top-color: var(--yellow);
-            transform: translateY(2px);
-        }
-
-        .cta-btn {
-            background: var(--yellow);
-            color: var(--black);
-            padding: 0.9rem 1.5rem;
-            border-radius: 0;
-            text-decoration: none;
-            font-weight: 900;
-            font-size: 0.85rem;
-            transition: all 0.3s ease;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            border: 2px solid var(--yellow);
-            white-space: nowrap;
-        }
-
-        .cta-btn:hover {
-            background: var(--black);
-            color: var(--yellow);
-        }
-
-        /* Hero Section */
-        .hero {
-            margin-top: 0;
-            padding-top: 80px;
-            min-height: 60vh;
-            display: flex;
-            align-items: center;
-            position: relative;
-            background: var(--black);
-        }
-
-        .hero-bg {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            object-position: center 60%;
-            opacity: 0.3;
-            z-index: 0;
-        }
-
-        .hero-container {
-            max-width: 100%;
-            width: 100%;
-            margin: 0;
-            padding: 4rem;
-            position: relative;
-            z-index: 1;
-        }
-
-        .hero-content {
-            max-width: 900px;
-        }
-
-        .hero-subtitle {
-            font-size: 0.9rem;
-            font-weight: 700;
-            color: var(--yellow);
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            margin-bottom: 1.5rem;
-        }
-
-        .hero-content h1 {
-            font-weight: 900;
-            font-size: clamp(2.5rem, 6vw, 4.5rem);
-            line-height: 1.1;
-            margin-bottom: 2rem;
-            text-transform: uppercase;
-        }
-
-        .hero-content p {
-            font-size: 1.3rem;
-            color: var(--light-gray);
-            margin-bottom: 3rem;
-            font-weight: 500;
-            line-height: 1.6;
-            max-width: 600px;
-        }
-
-        /* Section Styles */
-        .section {
-            padding: 6rem 0;
-            background: var(--black);
-            width: 100%;
-        }
-
-        .section-alt {
-            background: var(--dark-gray);
-        }
-
-        .section-container {
-            max-width: 100%;
-            margin: 0;
-            padding: 0 4rem;
-        }
-
-        .section-header {
-            text-align: center;
-            margin-bottom: 4rem;
-        }
-
-        .section-subtitle {
-            font-size: 0.85rem;
-            font-weight: 700;
-            color: var(--yellow);
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            margin-bottom: 1rem;
-        }
-
-        .section-title {
-            font-weight: 900;
-            font-size: clamp(2.5rem, 5vw, 4rem);
-            margin-bottom: 1.5rem;
-            text-transform: uppercase;
-        }
-
-        /* Mission Section */
-        .mission-statement {
-            font-size: 1.8rem;
-            line-height: 1.6;
-            color: var(--yellow);
-            text-align: center;
-            margin-bottom: 4rem;
-            font-weight: 600;
-            font-style: italic;
-        }
-
-        .content-block {
-            max-width: 900px;
-            margin: 0 auto 4rem;
-        }
-
-        .content-block h3 {
-            font-weight: 900;
-            font-size: 1.8rem;
-            margin-bottom: 1.5rem;
-            text-transform: uppercase;
-        }
-
-        .content-block p {
-            font-size: 1.1rem;
-            line-height: 1.8;
-            color: var(--light-gray);
-            margin-bottom: 1.5rem;
-        }
-
-        /* Beliefs Grid */
-        .beliefs-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 2.5rem;
-            margin-top: 4rem;
-        }
-
-        .belief-card {
-            background: var(--dark-gray);
-            padding: 3rem;
-            border: 2px solid var(--medium-gray);
-            transition: all 0.4s ease;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .belief-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 4px;
-            background: var(--yellow);
-            transform: scaleX(0);
-            transition: transform 0.4s ease;
-        }
-
-        .belief-card:hover {
-            border-color: var(--yellow);
-            transform: translateY(-8px);
-            box-shadow: 0 15px 40px rgba(255, 210, 2, 0.15);
-        }
-
-        .belief-card:hover::before {
-            transform: scaleX(1);
-        }
-
-        .belief-icon {
-            font-size: 3rem;
-            color: var(--yellow);
-            margin-bottom: 1.5rem;
-            display: inline-block;
-        }
-
-        .belief-card h4 {
-            font-weight: 900;
-            font-size: 1.5rem;
-            margin-bottom: 1.2rem;
-            color: var(--white);
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-
-        .belief-card p {
-            color: var(--light-gray);
-            line-height: 1.8;
-            font-size: 1.05rem;
-        }
-
-        /* Team Carousel */
-        .carousel-wrapper {
-            position: relative;
-            overflow: hidden;
-            margin-top: 4rem;
-        }
-
-        .team-carousel {
-            display: flex;
-            gap: 2rem;
-            transition: transform 0.5s ease;
-        }
-
-        .carousel-arrow {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            background: rgba(0, 0, 0, 0.7);
-            border: 2px solid var(--yellow);
-            color: var(--yellow);
-            width: 48px;
-            height: 48px;
-            font-size: 1.2rem;
-            cursor: pointer;
-            z-index: 10;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.3s ease;
-        }
-
-        .carousel-arrow:hover {
-            background: var(--yellow);
-            color: var(--black);
-        }
-
-        .carousel-prev { left: 0.5rem; }
-        .carousel-next { right: 0.5rem; }
-
-        .team-card {
-            background: var(--black);
-            overflow: hidden;
-            border: 2px solid var(--medium-gray);
-            transition: border-color 0.3s ease;
-            flex: 0 0 300px;
-        }
-
-        .team-card:hover {
-            border-color: var(--yellow);
-        }
-
-        .team-image {
-            width: 100%;
-            height: 350px;
-            background: var(--medium-gray);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 4rem;
-            color: var(--yellow);
-        }
-
-        .team-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .team-content {
-            padding: 2rem;
-        }
-
-        .team-name {
-            font-weight: 900;
-            font-size: 1.8rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .team-role {
-            color: var(--yellow);
-            font-weight: 700;
-            font-size: 0.9rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-bottom: 1rem;
-        }
-
-        .team-bio {
-            color: var(--light-gray);
-            line-height: 1.8;
-        }
-
-        /* Programs Section */
-        .programs-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 2rem;
-            margin-top: 4rem;
-        }
-
-        .program-card {
-            background: var(--dark-gray);
-            overflow: hidden;
-            transition: all 0.3s ease;
-            border: 2px solid var(--medium-gray);
-        }
-
-        .program-card:hover {
-            border-color: var(--yellow);
-            transform: translateY(-5px);
-        }
-
-        .program-image {
-            width: 100%;
-            height: 300px;
-            object-fit: cover;
-        }
-
-        .program-content {
-            padding: 2.5rem;
-        }
-
-        .program-title {
-            font-weight: 900;
-            font-size: 1.8rem;
-            margin-bottom: 1rem;
-            text-transform: uppercase;
-        }
-
-        .program-description {
-            color: var(--light-gray);
-            margin-bottom: 2rem;
-            line-height: 1.8;
-        }
-
-        .program-link {
-            color: var(--yellow);
-            text-decoration: none;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            font-size: 0.9rem;
-            transition: color 0.3s ease;
-        }
-
-        .program-link:hover {
-            color: var(--white);
-        }
-
-        .btn-primary {
-            background: var(--yellow);
-            color: var(--black);
-            padding: 1.2rem 3rem;
-            text-decoration: none;
-            font-weight: 900;
-            font-size: 1rem;
-            transition: all 0.3s ease;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            border: 2px solid var(--yellow);
-            border-radius: 0;
-            display: inline-block;
-        }
-
-        .btn-primary:hover {
-            background: var(--black);
-            color: var(--yellow);
-        }
-
-        /* CTA Section */
-        .cta-section {
-            background: var(--dark-gray);
-            padding: 8rem 4rem;
-            text-align: center;
-            width: 100%;
-        }
-
-        .cta-title {
-            font-weight: 900;
-            font-size: clamp(2.5rem, 5vw, 4.5rem);
-            margin-bottom: 1.5rem;
-            text-transform: uppercase;
-        }
-
-        .cta-subtitle {
-            font-size: 1.2rem;
-            color: var(--light-gray);
-            margin-bottom: 3rem;
-        }
-
-        /* Map Section */
-        .map-section {
-            width: 100%;
-        }
-
-        .map-section iframe {
-            width: 100%;
-            height: 400px;
-            border: none;
-            display: block;
-        }
-
-        /* Footer */
-        footer {
-            padding: 4rem 0 2rem;
-            background: var(--black);
-            border-top: 1px solid var(--medium-gray);
-            width: 100%;
-        }
-
-        .footer-container {
-            max-width: 100%;
-            margin: 0;
-            padding: 0 4rem;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 4rem;
-            margin-bottom: 3rem;
-        }
-
-        .footer-section h3 {
-            font-weight: 900;
-            margin-bottom: 1.5rem;
-            text-transform: uppercase;
-            font-size: 0.9rem;
-            letter-spacing: 1px;
-        }
-
-        .footer-section ul {
-            list-style: none;
-        }
-
-        .footer-section ul li {
-            margin-bottom: 0.75rem;
-        }
-
-        .footer-section a {
-            color: var(--light-gray);
-            text-decoration: none;
-            transition: color 0.3s ease;
-            font-weight: 500;
-        }
-
-        .footer-section a:hover {
-            color: var(--yellow);
-        }
-
-        .footer-logo {
-            height: 60px;
-            margin-bottom: 1.5rem;
-        }
-
-        .footer-bottom {
-            text-align: center;
-            padding-top: 2rem;
-            border-top: 1px solid var(--medium-gray);
-            color: var(--light-gray);
-            font-size: 0.9rem;
-        }
-
-        /* ===== SCROLL REVEAL ===== */
-        .reveal {
-            opacity: 0;
-            transform: translateY(40px);
-            transition: opacity 0.7s ease, transform 0.7s ease;
-        }
-
-        .reveal.revealed {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .reveal-scale {
-            opacity: 0;
-            transform: scale(0.9);
-            transition: opacity 0.7s ease, transform 0.7s ease;
-        }
-
-        .reveal-scale.revealed {
-            opacity: 1;
-            transform: scale(1);
-        }
-
-        .reveal-stagger > .reveal {
-            transition-delay: calc(var(--reveal-index, 0) * 0.1s);
-        }
-
-        @media (prefers-reduced-motion: reduce) {
-            .reveal,
-            .reveal-scale {
-                opacity: 1;
-                transform: none;
-                transition: none;
-            }
-            .reveal-stagger > .reveal {
-                transition-delay: 0s;
-            }
-        }
-
-        @media (max-width: 1024px) {
-            .nav-container,
-            .hero-container,
-            .section-container,
-            .footer-container {
-                padding-left: 2rem;
-                padding-right: 2rem;
-            }
-        }
-
-        /* Hamburger Menu */
-        .hamburger {
-            display: none;
-            flex-direction: column;
-            justify-content: center;
-            gap: 5px;
-            width: 30px;
-            height: 30px;
-            cursor: pointer;
-            background: none;
-            border: none;
-            padding: 0;
-            z-index: 1002;
-        }
-
-        .hamburger span {
-            display: block;
-            width: 30px;
-            height: 3px;
-            background: var(--white);
-            transition: all 0.3s ease;
-        }
-
-        .hamburger.active span:nth-child(1) {
-            transform: rotate(45deg) translate(6px, 6px);
-        }
-
-        .hamburger.active span:nth-child(2) {
-            opacity: 0;
-        }
-
-        .hamburger.active span:nth-child(3) {
-            transform: rotate(-45deg) translate(6px, -6px);
-        }
-
-        /* Side Menu */
-        .menu-backdrop {
-            position: fixed; inset: 0; background: rgba(0,0,0,0.6); z-index: 1001;
-            opacity: 0; visibility: hidden; transition: opacity 0.3s, visibility 0.3s;
-        }
-        .menu-backdrop.open { opacity: 1; visibility: visible; }
-        .side-menu {
-            position: fixed; top: 0; right: 0; width: 300px; max-width: 85vw; height: 100%;
-            background: var(--dark-gray); z-index: 1002; transform: translateX(100%);
-            transition: transform 0.3s ease; display: flex; flex-direction: column; overflow-y: auto;
-        }
-        .side-menu.open { transform: translateX(0); }
-        .side-menu-header {
-            display: flex; align-items: center; justify-content: space-between;
-            padding: 1rem 1.5rem; border-bottom: 1px solid var(--medium-gray);
-        }
-        .side-menu-header img { height: 30px; width: auto; }
-        .side-menu-close {
-            background: none; border: none; color: var(--light-gray); font-size: 1.3rem;
-            cursor: pointer; padding: 0.25rem; transition: color 0.3s;
-        }
-        .side-menu-close:hover { color: var(--white); }
-        .side-menu-links { flex: 1; padding: 0.75rem 0; }
-        .side-menu-links a {
-            display: block; padding: 0.85rem 1.5rem; color: var(--white); text-decoration: none;
-            font-size: 1rem; font-weight: 900; text-transform: uppercase; letter-spacing: 0.5px;
-            transition: all 0.2s;
-        }
-        .side-menu-links a:hover { color: var(--yellow); background: rgba(255,255,255,0.05); }
-        .side-menu-links .sub-link {
-            font-size: 0.85rem; color: var(--light-gray); padding: 0.5rem 1.5rem 0.5rem 2.5rem;
-            font-weight: 700;
-        }
-        .side-menu-links .sub-link:hover { color: var(--yellow); }
-        .side-menu-links .menu-divider { height: 1px; background: var(--medium-gray); margin: 0.5rem 1.5rem; }
-        .side-menu-footer { border-top: 1px solid var(--medium-gray); padding: 1rem 1.5rem; }
-        .side-menu-footer a {
-            display: block; background: var(--yellow); color: var(--black); padding: 0.9rem 1.5rem;
-            text-align: center; font-weight: 900; font-size: 0.9rem; text-transform: uppercase;
-            text-decoration: none; transition: all 0.3s;
-        }
-        .side-menu-footer a:hover { background: var(--white); }
-
-        @media (max-width: 768px) {
-            .hamburger {
-                display: flex !important;
-            }
-
-            .nav-links {
-                display: none !important;
-            }
-
-            .nav-container {
-                padding: 0 1.5rem;
-                flex-wrap: wrap;
-            }
-
-            .cta-btn {
-                order: 3;
-                width: 100%;
-                text-align: center;
-                margin-top: 0.75rem;
-                padding: 0.7rem 1rem;
-                font-size: 0.8rem;
-            }
-
-            .hero {
-                padding-top: 130px;
-            }
-
-            .hero-container {
-                padding: 2rem 1.5rem;
-            }
-
-            .hero-content h1 {
-                font-size: clamp(2rem, 6vw, 3rem);
-            }
-
-            .hero-content p {
-                font-size: 1.1rem;
-                margin-bottom: 2rem;
-            }
-
-            .section-container {
-                padding: 0 1.5rem;
-            }
-
-            .section-title {
-                font-size: clamp(1.8rem, 5vw, 2.5rem);
-            }
-
-            .section-header {
-                margin-bottom: 2rem;
-            }
-
-            .section {
-                padding: 4rem 0;
-            }
-
-            .mission-statement {
-                font-size: 1.3rem;
-            }
-
-            .beliefs-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .belief-card {
-                padding: 2rem;
-            }
-
-            .team-carousel {
-                gap: 1rem;
-            }
-
-            .team-card {
-                flex: 0 0 260px;
-            }
-
-            .team-image {
-                height: 280px;
-            }
-
-            .team-content {
-                padding: 1.5rem;
-            }
-
-            .team-name {
-                font-size: 1.4rem;
-            }
-
-            .carousel-arrow {
-                width: 36px;
-                height: 36px;
-                font-size: 0.9rem;
-            }
-
-            .carousel-prev { left: 0.25rem; }
-            .carousel-next { right: 0.25rem; }
-
-            .program-image {
-                height: 220px;
-            }
-
-            .program-content {
-                padding: 1.5rem;
-            }
-
-            .program-title {
-                font-size: 1.4rem;
-            }
-
-            .programs-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .cta-section {
-                padding: 4rem 1.5rem;
-            }
-
-            .cta-title {
-                font-size: clamp(1.8rem, 5vw, 2.5rem);
-            }
-
-            .map-section iframe {
-                height: 250px;
-            }
-
-            .footer-container {
-                padding: 0 1.5rem;
-                gap: 2rem;
-            }
-
-            .btn-primary {
-                padding: 0.8rem 1.5rem;
-                font-size: 0.8rem;
-                white-space: normal;
-            }
-
-            .cta-section .btn-primary {
-                display: block;
-                width: 100%;
-            }
-
-            .modal-container {
-                max-width: calc(100% - 2rem);
-            }
-        }
-
-        /* Skip Navigation */
-        .skip-link {
-            position: absolute;
-            top: -100%;
-            left: 50%;
-            transform: translateX(-50%);
-            background: var(--yellow);
-            color: var(--black);
-            padding: 0.75rem 1.5rem;
-            font-weight: 700;
-            z-index: 10000;
-            text-decoration: none;
-            transition: top 0.2s;
-        }
-        .skip-link:focus {
-            top: 10px;
-        }
-
-        /* Focus Visible Styles */
-        a:focus-visible,
-        button:focus-visible,
-        input:focus-visible,
-        select:focus-visible,
-        textarea:focus-visible,
-        [tabindex]:focus-visible {
-            outline: 2px solid var(--yellow);
-            outline-offset: 2px;
-        }
-
-        /* Keyboard Nav for Submenus */
-        .nav-links > li:focus-within .submenu,
-        .has-submenu.submenu-open .submenu {
-            display: block;
-        }
-        .has-submenu:focus-within > a::after {
-            border-top-color: var(--yellow);
-            transform: translateY(2px);
-        }
+        /* Page-unique: six coaches sit three across (two clean rows)
+           instead of the default five. Same tokens as bia.css. */
+        .coach-grid{grid-template-columns:repeat(3,1fr)}
+        @media (max-width:560px){.coach-grid{grid-template-columns:repeat(2,1fr)}}
+        /* Page-unique: six beliefs run three across on desktop. */
+        .beliefs-6{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:44px}
+        @media (max-width:860px){.beliefs-6{grid-template-columns:1fr}}
     </style>
-<script defer src="/_vercel/insights/script.js"></script>
+    <script defer src="/_vercel/insights/script.js"></script>
 </head>
 <body>
     <a href="#main-content" class="skip-link">Skip to main content</a>
-    <nav>
+
+    <!-- ============ NAV (final IA — identical on every page) ============ -->
+    <nav id="nav">
         <div class="nav-container">
             <div class="logo">
-                <a href="/">
-                    <img src="images/logos/logo.png" alt="Black Iron Athletics">
+                <a href="/" aria-label="Black Iron Athletics home">
+                    <img src="/images/logos/logo.png" alt="Black Iron Athletics">
                 </a>
             </div>
             <ul class="nav-links">
                 <li class="has-submenu">
-                    <a href="about">About Us</a>
+                    <a href="/about">About Us</a>
                     <ul class="submenu">
-                        <li><a href="about#mission">Our Mission</a></li>
-                        <li><a href="about#team">Meet the Team</a></li>
-                        <li><a href="programs">Programs</a></li>
-                        <li><a href="schedule">Class Schedule</a></li>
+                        <li><a href="/about">Our Mission</a></li>
+                        <li><a href="/about#team">Meet the Team</a></li>
+                        <li><a href="/media">Media</a></li>
                     </ul>
                 </li>
+                <li><a href="/programs">Programs</a></li>
                 <li class="has-submenu">
-                    <a href="getting-started">Getting Started</a>
+                    <a href="/getting-started">Getting Started</a>
                     <ul class="submenu">
-                        <li><a href="getting-started#membership">Membership Options</a></li>
-                        <li><a href="getting-started#faqs">FAQs</a></li>
+                        <li><a href="/getting-started">How it works</a></li>
+                        <li><a href="/pricing">Membership &amp; Pricing</a></li>
+                        <li><a href="/faq">FAQs</a></li>
                     </ul>
                 </li>
-                <li><a href="media">Media</a></li>
-                <li><a href="blog/">Blog</a></li>
-                <li><a href="contact">Contact</a></li>
+                <li><a href="/schedule">Schedule</a></li>
+                <li><a href="/blog/">Blog</a></li>
+                <li><a href="/contact">Contact</a></li>
             </ul>
-            <a href="#" onclick="openLeadModal(); return false;" class="cta-btn">Book Free Consultation</a>
+            <a href="#" onclick="openLeadModal(); return false;" class="cta-btn">Book a Free Consult</a>
             <button class="hamburger" onclick="toggleSideMenu()" aria-label="Menu">
                 <span></span>
                 <span></span>
@@ -1032,311 +84,265 @@
         </div>
     </nav>
 
+    <!-- ============ SIDE MENU (flat mirror of the nav IA) ============ -->
     <div class="menu-backdrop" id="menuBackdrop"></div>
     <div class="side-menu" id="sideMenu">
         <div class="side-menu-header">
-            <img src="images/logos/logo.png" alt="Black Iron Athletics">
+            <img src="/images/logos/logo.png" alt="Black Iron Athletics">
             <button class="side-menu-close" onclick="closeSideMenu()" aria-label="Close menu">&times;</button>
         </div>
         <div class="side-menu-links">
             <a href="/">Home</a>
-            <a href="about">About Us</a>
-            <a href="about#mission" class="sub-link">Our Mission</a>
-            <a href="about#team" class="sub-link">Meet the Team</a>
-            <a href="programs" class="sub-link">Programs</a>
-            <a href="schedule" class="sub-link">Class Schedule</a>
-            <a href="getting-started">Getting Started</a>
-            <a href="getting-started#membership" class="sub-link">Membership Options</a>
-            <a href="getting-started#faqs" class="sub-link">FAQs</a>
-            <a href="media">Media</a>
-            <a href="blog/">Blog</a>
-            <a href="contact">Contact</a>
+            <a href="/about">About Us</a>
+            <a href="/about" class="sub-link">Our Mission</a>
+            <a href="/about#team" class="sub-link">Meet the Team</a>
+            <a href="/media" class="sub-link">Media</a>
+            <a href="/programs">Programs</a>
+            <a href="/getting-started">Getting Started</a>
+            <a href="/getting-started" class="sub-link">How it works</a>
+            <a href="/pricing" class="sub-link">Membership &amp; Pricing</a>
+            <a href="/faq" class="sub-link">FAQs</a>
+            <a href="/schedule">Schedule</a>
+            <a href="/blog/">Blog</a>
+            <a href="/contact">Contact</a>
         </div>
         <div class="side-menu-footer">
-            <a href="#" onclick="closeSideMenu(); openLeadModal(); return false;">Book Free Consultation</a>
+            <a href="#" onclick="closeSideMenu(); openLeadModal(); return false;">Book a Free Consult</a>
         </div>
     </div>
 
     <main id="main-content">
 
-    <!-- Hero Section -->
-    <section class="hero">
-        <img src="images/heroes/hero-about.webp" alt="About Black Iron Athletics" class="hero-bg" fetchpriority="high">
-        <div class="hero-container">
-            <div class="hero-content">
-                <div class="hero-subtitle">Our Story</div>
-                <h1>Built for People Like You</h1>
-                <p>Veteran-owned. Coach-led. Helping everyday people get strong and stay strong since 2013.</p>
-                <div style="margin-top: 2rem;">
-                    <a href="#" onclick="openLeadModal(); return false;" class="btn-primary">Book Free Consultation</a>
+    <!-- ============ HERO ============ -->
+    <section class="hero hero-short no-top" aria-label="About Black Iron Athletics">
+        <div class="hero-bg">
+            <img class="ph-soft" src="/images/heroes/hero-about.webp" alt="Members training on rowers inside Black Iron Athletics, gym name painted on the wall" fetchpriority="high">
+        </div>
+        <div class="hero-in wrap">
+            <span class="eyebrow eyebrow-y">Our story &middot; Veteran-Owned &middot; Est. 2013</span>
+            <h1 class="display">Built for people<br><span class="outline">like you.</span></h1>
+            <p class="lead">We help everyday people become everyday athletes. A coach on every rep, a plan behind every week, and a floor full of good people &mdash; in Frisco since 2013.</p>
+            <div class="hero-ctas">
+                <a class="btn btn-y" href="#" onclick="openLeadModal(); return false;">Book a Free Consult</a>
+                <a class="btn btn-ghost" href="#team">Meet the Coaches</a>
+            </div>
+            <p class="trust"><span class="stars" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 2l3 7 7 .6-5.3 4.6L18.5 22 12 18l-6.5 4 1.8-7.8L2 9.6 9 9z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3 7 7 .6-5.3 4.6L18.5 22 12 18l-6.5 4 1.8-7.8L2 9.6 9 9z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3 7 7 .6-5.3 4.6L18.5 22 12 18l-6.5 4 1.8-7.8L2 9.6 9 9z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3 7 7 .6-5.3 4.6L18.5 22 12 18l-6.5 4 1.8-7.8L2 9.6 9 9z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3 7 7 .6-5.3 4.6L18.5 22 12 18l-6.5 4 1.8-7.8L2 9.6 9 9z"/></svg></span>5.0 &middot; 68 Google reviews</p>
+        </div>
+    </section>
+
+    <!-- ============ STAT BAND ============ -->
+    <section class="stats" aria-label="Black Iron by the numbers">
+        <div class="stats-grid">
+            <div class="stat rv"><b>13+</b><span>Years in Frisco</span></div>
+            <div class="stat rv"><b>3,000+</b><span>Lives changed</span></div>
+            <div class="stat rv"><b>5.0</b><span>Google rating</span></div>
+            <div class="stat rv"><b>68</b><span>Five-star reviews</span></div>
+        </div>
+    </section>
+
+    <!-- ============ MISSION (CONTRACT: id="mission") ============ -->
+    <section class="sect" id="mission">
+        <div class="wrap">
+            <span class="eyebrow rv">Our mission</span>
+            <h2 class="rv">Why we <span class="outline">exist.</span></h2>
+            <p class="lead rv">We help everyday people become everyday athletes.</p>
+            <div class="h23-rows rv" style="max-width:76ch">
+                <div class="h23-row"><b>The idea</b><p>Black Iron opened in 2013 on a simple belief: everyday people deserve real coaching too. Not a leaderboard culture that treats a Tuesday workout like a tryout. Not a sea of machines and a keycard. A coach who knows your name, programming with a plan behind it, and good people on every side of you.</p></div>
+                <div class="h23-row"><b>The record</b><p>Thirteen years later, that idea has changed more than 3,000 lives across Frisco, Prosper, The Colony, Little Elm, McKinney, Plano, Celina, and North Dallas. Beginners, comeback stories, longtime athletes &mdash; we meet you where you are and coach every rep from there.</p></div>
+                <div class="h23-row"><b>The floor</b><p>We are not CrossFit, not a big-box gym, not a boutique studio. Every member starts with Foundations &mdash; a week of one-on-one coaching &mdash; and every class runs at three levels, so nobody compromises and nobody gets thrown into the deep end.</p></div>
+            </div>
+            <div class="belief rv">
+                <p>&ldquo;Your best years aren&rsquo;t behind you. You just haven&rsquo;t been trained properly yet. We fix the belief, then we forge the body.&rdquo;</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============ THREE VALUES ============ -->
+    <section class="sect alt" id="values">
+        <div class="wrap">
+            <span class="eyebrow rv">Three values</span>
+            <h2 class="rv">What we<br><span class="outline">hold to.</span></h2>
+            <div class="steps">
+                <div class="step rv">
+                    <em>01</em>
+                    <h3>The work matters more than the clock</h3>
+                    <p>Show up, do the work, and let the calendar do its job. We measure progress in months and years &mdash; not in how wrecked you feel by noon.</p>
+                </div>
+                <div class="step rv">
+                    <em>02</em>
+                    <h3>Forge the body, guard the mind</h3>
+                    <p>Training builds more than muscle. Discipline, resilience, a clearer head &mdash; the mental side is half the reason the good people here keep showing up.</p>
+                </div>
+                <div class="step rv">
+                    <em>03</em>
+                    <h3>Person first, athlete second</h3>
+                    <p>You&rsquo;re a parent, a professional, a person with a full plate. The program bends around your life, and a coach pulls you back when you&rsquo;re getting ahead of yourself.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Mission Section -->
-    <section id="mission" class="section">
-        <div class="section-container">
-            <div class="section-header reveal">
-                <div class="section-subtitle">Our Mission</div>
-                <h2 class="section-title">Why We Exist</h2>
-            </div>
-
-            <div class="content-block reveal">
-                <p>Founded in 2013 on one belief: movement is medicine. As a veteran-owned gym, we're built on discipline, integrity, and service.</p>
-                <p>13+ years. 3,000+ lives changed. From complete beginners to experienced athletes — we meet you where you are and help you become who you're meant to be. Serving Frisco, Prosper, The Colony, Little Elm, McKinney, and North Dallas.</p>
-            </div>
-
-            <div class="section-header reveal" style="margin-top: 5rem;">
-                <h2 class="section-title">What We Believe</h2>
-            </div>
-
-            <div class="beliefs-grid reveal-stagger">
-                <div class="belief-card reveal">
-                    <div class="belief-icon"><i class="fa-solid fa-shield-halved"></i></div>
-                    <h4>Quality of Life Over Ego</h4>
-                    <p>Build real strength. Create a body that serves you for decades. Confidence follows.</p>
-                </div>
-
-                <div class="belief-card reveal">
-                    <div class="belief-icon"><i class="fa-solid fa-people-group"></i></div>
-                    <h4>Community & Accountability</h4>
-                    <p>You don't have to figure this out alone. Coaches and athletes who support you, push you, and celebrate every win.</p>
-                </div>
-
-                <div class="belief-card reveal">
-                    <div class="belief-icon"><i class="fa-solid fa-brain"></i></div>
-                    <h4>Mental Health Matters</h4>
-                    <p>The mental battle is often harder than the physical one. Our community supports the whole person, not just the workout.</p>
-                </div>
-
-                <div class="belief-card reveal">
-                    <div class="belief-icon"><i class="fa-solid fa-apple-whole"></i></div>
-                    <h4>Nutrition Is the Foundation</h4>
-                    <p>You can't out-train a bad diet. Nutrition fuels your performance, recovery, and results. We help you build habits that last.</p>
-                </div>
+    <!-- ============ SIX BELIEFS ============ -->
+    <section class="sect" id="beliefs">
+        <div class="wrap">
+            <span class="eyebrow rv">Six beliefs</span>
+            <h2 class="rv">How we run <span class="outline">the floor.</span></h2>
+            <div class="beliefs-6 rv">
+                <div class="fear"><b>Programmed, not random</b><p>Cycled progressions, planned intensity, strength and conditioning balanced every week. Nothing on the whiteboard is an accident.</p></div>
+                <div class="fear"><b>Three levels, one class</b><p>Same movement, same clock, different target. Beginners and 10-year athletes train side by side. The system flexes so the member doesn&rsquo;t have to.</p></div>
+                <div class="fear"><b>Longevity is the backbone</b><p>We train you to love this for decades &mdash; not to survive a six-week challenge.</p></div>
+                <div class="fear"><b>The 23 hours matter more than the 1</b><p>Nutrition, sleep, daily habits. What happens between sessions decides most of your results, so our coaching doesn&rsquo;t stop at the whiteboard.</p></div>
+                <div class="fear"><b>Foundations is non-negotiable</b><p>Every member starts with a week of one-on-one coaching. Basics, baseline, body. It&rsquo;s why this works.</p></div>
+                <div class="fear"><b>An ecosystem, not strangers</b><p>Coaches who check in, members who notice when you miss a week, and a community that makes showing up the easy part.</p></div>
             </div>
         </div>
     </section>
 
-    <!-- Team Section -->
-    <section id="team" class="section section-alt">
-        <div class="section-container">
-            <div class="section-header reveal">
-                <div class="section-subtitle">Our Team</div>
-                <h2 class="section-title">Meet the Coaches</h2>
-                <p style="font-size: 1.2rem; color: var(--light-gray); max-width: 800px; margin: 1rem auto 0;">Expert trainers with 13+ years of experience guiding every rep, every set, every milestone.</p>
-            </div>
-
-            <div class="carousel-wrapper reveal">
-                <button class="carousel-arrow carousel-prev" aria-label="Previous coach"><i class="fa-solid fa-chevron-left"></i></button>
-                <div class="team-carousel" id="teamCarousel">
-                    <a href="mike-manning" class="team-card" style="text-decoration: none; color: inherit;">
-                        <div class="team-image">
-                            <img src="images/team/owner-headcoach-mike.webp" alt="Mike Manning - Owner & Head Coach at Black Iron Athletics" loading="lazy">
-                        </div>
-                        <div class="team-content">
-                            <h3 class="team-name">Mike Manning</h3>
-                            <div class="team-role">Owner & Head Coach</div>
-                        </div>
-                    </a>
-
-                    <div class="team-card">
-                        <div class="team-image">
-                            <img src="images/team/general-manager-caoch-kristin.webp" alt="Kristin - General Manager at Black Iron Athletics" loading="lazy">
-                        </div>
-                        <div class="team-content">
-                            <h3 class="team-name">Kristin</h3>
-                            <div class="team-role">General Manager</div>
-                        </div>
-                    </div>
-
-                    <div class="team-card">
-                        <div class="team-image">
-                            <img src="images/team/coach-aileen.webp" alt="Aileen - Coach at Black Iron Athletics" loading="lazy">
-                        </div>
-                        <div class="team-content">
-                            <h3 class="team-name">Aileen</h3>
-                            <div class="team-role">Coach</div>
-                        </div>
-                    </div>
-
-                    <div class="team-card">
-                        <div class="team-image">
-                            <img src="images/team/coach-evan.webp" alt="Evan - Coach at Black Iron Athletics" loading="lazy">
-                        </div>
-                        <div class="team-content">
-                            <h3 class="team-name">Evan</h3>
-                            <div class="team-role">Coach</div>
-                        </div>
-                    </div>
-
-                    <div class="team-card">
-                        <div class="team-image">
-                            <img src="images/team/coach-amber.webp" alt="Amber - Coach at Black Iron Athletics" loading="lazy">
-                        </div>
-                        <div class="team-content">
-                            <h3 class="team-name">Amber</h3>
-                            <div class="team-role">Coach</div>
-                        </div>
-                    </div>
-
-                    <div class="team-card">
-                        <div class="team-image">
-                            <img src="images/team/coach-emily.webp" alt="Emily - Coach at Black Iron Athletics" loading="lazy">
-                        </div>
-                        <div class="team-content">
-                            <h3 class="team-name">Emily</h3>
-                            <div class="team-role">Coach</div>
-                        </div>
-                    </div>
+    <!-- ============ VETERAN-OWNED STORY ============ -->
+    <section class="sect alt" id="veteran-owned">
+        <div class="wrap">
+            <div class="stakes-grid">
+                <div class="rv">
+                    <span class="eyebrow">Veteran-owned</span>
+                    <h2>Built by a <span class="hl">Marine.</span></h2>
+                    <p class="lead">Mike Manning is a medically retired Marine Corps combat veteran. He led a signals intelligence support team in Afghanistan, rebuilt himself as an athlete after his injuries, and opened Black Iron in 2013 around the thing he missed most from the Corps &mdash; a team that pushes each other to show up and be better.</p>
+                    <p style="margin-top:18px;max-width:60ch">That&rsquo;s why discipline, integrity, and service run through everything here. And it&rsquo;s why military and first responders get 5% off any membership &mdash; no forms to hunt down, just tell us.</p>
+                    <p style="margin-top:26px"><a class="arrow-link" href="/mike-manning">Read Mike&rsquo;s story <svg width="16" height="12" viewBox="0 0 16 12" fill="none" aria-hidden="true"><path d="M10 1l5 5-5 5M15 6H1" stroke="currentColor" stroke-width="1.5"/></svg></a></p>
                 </div>
-                <button class="carousel-arrow carousel-next" aria-label="Next coach"><i class="fa-solid fa-chevron-right"></i></button>
+                <figure class="stakes-img rv">
+                    <img class="ph" src="/images/team/coach-briefing.webp" alt="Mike Manning briefing a group class on the training floor at Black Iron Athletics" loading="lazy" width="1200" height="800">
+                </figure>
             </div>
         </div>
     </section>
 
-    <!-- What We Offer Section -->
-    <section id="programs" class="section">
-        <div class="section-container">
-            <div class="section-header reveal">
-                <div class="section-subtitle">What We Offer</div>
-                <h2 class="section-title">Everything You Need to Succeed</h2>
+    <!-- ============ TEAM (CONTRACT: id="team") ============ -->
+    <section class="sect" id="team">
+        <div class="wrap">
+            <span class="eyebrow rv">The team</span>
+            <h2 class="rv">Real coaches.<br><span class="outline">Every rep.</span></h2>
+            <div class="coach-feature">
+                <figure class="rv"><img class="ph" src="/images/team/owner-headcoach-mike.webp" alt="Mike Manning, owner and head coach of Black Iron Athletics" loading="lazy" width="1340" height="2010"></figure>
+                <div class="rv">
+                    <h3>Mike Manning</h3>
+                    <span class="role">Owner &amp; Head Coach &middot; Veteran</span>
+                    <p class="lead">Coaching in Frisco since 2013. Mike built Black Iron on a simple idea: everyday people deserve real coaching too &mdash; programmed training, honest standards, and a floor where person comes first, athlete second.</p>
+                    <p style="margin-top:22px"><a class="arrow-link" href="/mike-manning">Meet Mike <svg width="16" height="12" viewBox="0 0 16 12" fill="none" aria-hidden="true"><path d="M10 1l5 5-5 5M15 6H1" stroke="currentColor" stroke-width="1.5"/></svg></a></p>
+                </div>
             </div>
-
-            <div class="programs-grid reveal-stagger">
-                <div class="program-card reveal">
-                    <img src="images/training/group-training.webp" alt="Group Training" class="program-image" loading="lazy">
-                    <div class="program-content">
-                        <h3 class="program-title">Group Training</h3>
-                        <p class="program-description">High-energy, coach-led classes for all fitness levels.</p>
-                        <a href="programs#group-classes" class="program-link">Learn More &rarr;</a>
-                    </div>
-                </div>
-
-                <div class="program-card reveal">
-                    <img src="images/training/barbell-overhead.webp" alt="Personal Training" class="program-image" loading="lazy">
-                    <div class="program-content">
-                        <h3 class="program-title">Personal Training</h3>
-                        <p class="program-description">1-on-1 coaching custom-built for your goals.</p>
-                        <a href="programs#personal-training" class="program-link">Learn More &rarr;</a>
-                    </div>
-                </div>
-
-                <div class="program-card reveal">
-                    <img src="images/members/member-blessed.webp" alt="Nutrition Coaching" class="program-image" loading="lazy">
-                    <div class="program-content">
-                        <h3 class="program-title">Nutrition Coaching</h3>
-                        <p class="program-description">Personalized plans to fuel your results.</p>
-                        <a href="programs#nutrition-coaching" class="program-link">Learn More &rarr;</a>
-                    </div>
-                </div>
-
-                <div class="program-card reveal">
-                    <img src="images/training/barbell-curl.webp" alt="Open Gym" class="program-image" loading="lazy">
-                    <div class="program-content">
-                        <h3 class="program-title">Open Gym</h3>
-                        <p class="program-description">Train on your own schedule between classes and after hours, 7 days a week.</p>
-                        <a href="programs#open-gym" class="program-link">Learn More &rarr;</a>
-                    </div>
-                </div>
+            <div class="coach-grid">
+                <article class="coach rv"><figure><img class="ph" src="/images/team/general-manager-caoch-kristin.webp" alt="Coach Kristin, general manager at Black Iron Athletics" loading="lazy" width="800" height="1067"></figure><div><b>Kristin</b><span>General Manager &middot; Coach</span></div></article>
+                <article class="coach rv"><figure><img class="ph" src="/images/team/coach-aileen.webp" alt="Coach Aileen at Black Iron Athletics" loading="lazy" width="800" height="1067"></figure><div><b>Aileen</b><span>Coach</span></div></article>
+                <article class="coach rv"><figure><img class="ph" src="/images/team/coach-amber.webp" alt="Coach Amber at Black Iron Athletics" loading="lazy" width="800" height="1067"></figure><div><b>Amber</b><span>Coach</span></div></article>
+                <article class="coach rv"><figure><img class="ph" src="/images/team/coach-emily.webp" alt="Coach Emily at Black Iron Athletics" loading="lazy" width="800" height="1067"></figure><div><b>Emily</b><span>Coach</span></div></article>
+                <article class="coach rv"><figure><img class="ph" src="/images/team/coach-evan.webp" alt="Coach Evan at Black Iron Athletics" loading="lazy" width="800" height="1067"></figure><div><b>Evan</b><span>Coach</span></div></article>
+                <article class="coach rv"><figure><img class="ph" src="/images/team/coach-lawrence.webp" alt="Coach Lawrence at Black Iron Athletics" loading="lazy" width="800" height="1067"></figure><div><b>Lawrence</b><span>Coach</span></div></article>
             </div>
         </div>
     </section>
 
-    <!-- CTA Section -->
-    <section class="cta-section">
-        <div class="reveal-scale" style="max-width: 100%; margin: 0 auto; padding: 0 2rem;">
-            <h2 class="cta-title">Come See for Yourself</h2>
-            <p class="cta-subtitle">Book a free consultation. No commitment, no pressure.</p>
-            <a href="#" onclick="openLeadModal(); return false;" class="btn-primary">Book Free Consultation</a>
+    <!-- ============ NEXT DOOR IN OCTOBER ============ -->
+    <section class="sect alt" id="next-door">
+        <div class="wrap">
+            <span class="eyebrow eyebrow-y rv">The next chapter &middot; Opening October 2026</span>
+            <h2 class="rv">13 years here.<br><span class="outline">Next door next.</span></h2>
+            <p class="lead rv">This October we move into our new home at 279 Main St, Suite 110 &mdash; right next door to the space we train in today. Not a move across town. A big upgrade in quality, amenities, and space, built for the community we already have.</p>
+            <p class="rv" style="margin-top:18px;max-width:64ch">Until the new doors open, everything runs as usual at Suite 122. And the new space brings a recovery room of its own: two cold plunges, a traditional sauna, and an infrared sauna.</p>
+            <div class="rec-grid rv">
+                <figure><img src="/images/renderings/2026-08-01-recovery-room-rendering.jpg" alt="Rendering of the new recovery room with cold plunges and saunas at 279 Main St, Suite 110" loading="lazy" width="600" height="335"><figcaption>The recovery room &middot; Rendering &mdash; details may change</figcaption></figure>
+                <figure><img src="/images/renderings/2026-08-01-new-gym-floor-rendering.jpg" alt="Rendering of the new training floor at 279 Main St, Suite 110" loading="lazy" width="600" height="335"><figcaption>The new floor &middot; Rendering &mdash; details may change</figcaption></figure>
+            </div>
+            <p class="rec-note rv">Renderings of the new build &mdash; details may change before opening day.</p>
         </div>
     </section>
 
-    <!-- Map Section -->
-    <div class="map-section">
-        <iframe
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3344.9875647886857!2d-96.89026308820058!3d33.15034697358084!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x864c3a240f77e3f7%3A0x9f460209df528d6e!2sBlack%20Iron%20Athletics!5e0!3m2!1sen!2sus!4v1737509000000!5m2!1sen!2sus"
-            title="Black Iron Athletics location on Google Maps"
-            allowfullscreen=""
-            loading="lazy"
-            referrerpolicy="no-referrer-when-downgrade">
-        </iframe>
-    </div>
-
-    <!-- Footer -->
+    <!-- ============ FINAL CTA ============ -->
+    <section class="final" aria-label="Book a free consultation">
+        <div class="slash" aria-hidden="true"></div>
+        <div class="final-in wrap">
+            <h2 class="rv">Come see<br>for yourself.</h2>
+            <p class="lead rv">Book a free consultation &mdash; thirty minutes with a coach, zero pressure. If we&rsquo;re not the right fit, we&rsquo;ll say so.</p>
+            <div class="final-ctas rv">
+                <a class="btn btn-y" href="#" onclick="openLeadModal(); return false;">Book a Free Consult</a>
+                <p class="alt-offer">Prefer to look around first? <a href="/getting-started">See how getting started works</a>.</p>
+            </div>
+            <p class="speed rv">We reply the same day. A real coach, not a bot.</p>
+        </div>
+    </section>
 
     </main>
 
+    <!-- ============ FOOTER (identical on every page) ============ -->
     <footer>
-        <div class="footer-container">
-            <div class="footer-section">
-                <a href="/">
-                    <img src="images/logos/logo.png" alt="Black Iron Athletics" class="footer-logo" loading="lazy">
-                </a>
-                <p style="color: var(--light-gray); margin-bottom: 1rem;">Forging everyday people into everyday athletes through strength, community, and purpose.</p>
-                <p style="color: var(--light-gray); font-size: 0.85rem;">Proudly serving Frisco, Prosper, The Colony, Little Elm, McKinney, Plano, Celina & North Dallas.</p>
-            </div>
-
-            <div class="footer-section">
-                <h3>Quick Links</h3>
-                <ul>
+        <div class="wrap">
+            <div class="foot-top">
+                <div>
+                    <div class="foot-brand">
+                        <img src="/images/logos/Anvil-WHITE.png" alt="Black Iron Athletics anvil mark" loading="lazy" width="88" height="88">
+                        <div>
+                            <b>Black Iron<br>Athletics</b>
+                            <p class="foot-mission">We help everyday people become everyday athletes.</p>
+                        </div>
+                    </div>
+                    <p class="foot-note">Veteran-owned &middot; Est. 2013 &middot; Serving Frisco, Prosper, The Colony, Little Elm, McKinney, Plano, Celina &amp; North Dallas.</p>
+                </div>
+                <ul class="foot-col">
+                    <li><b>Quick links</b></li>
                     <li><a href="/">Home</a></li>
-                    <li><a href="schedule">Class Schedule</a></li>
-                    <li><a href="faq">FAQ</a></li>
+                    <li><a href="/pricing">Pricing</a></li>
+                    <li><a href="/schedule">Class Schedule</a></li>
+                    <li><a href="/faq">FAQ</a></li>
                     <li><a href="#" onclick="openSubscribeModal(); return false;">Subscribe</a></li>
                     <li><a href="#" onclick="openCancelModal(); return false;">Cancel Membership</a></li>
-                    <li><a href="privacy-policy">Privacy Policy</a></li>
-                    <li><a href="terms">Terms &amp; Conditions</a></li>
-                    <li><a href="privacy-policy#sms-terms">SMS Terms</a></li>
+                    <li><a href="/privacy-policy">Privacy Policy</a></li>
+                    <li><a href="/terms">Terms &amp; Conditions</a></li>
+                    <li><a href="/privacy-policy#sms-terms">SMS Terms</a></li>
+                </ul>
+                <ul class="foot-col">
+                    <li><b>Find us</b></li>
+                    <li>279 Main St, Suite 122<br>Frisco, TX 75036</li>
+                    <li>Suite 110 &mdash; our new home next door &mdash; opening October 2026.</li>
+                    <li><a href="tel:+19727857036">(972) 785-7036</a></li>
+                </ul>
+                <ul class="foot-col">
+                    <li><b>Hours</b></li>
+                    <li>Open gym 7 days a week.</li>
+                    <li><a href="/schedule">See the class schedule</a></li>
                 </ul>
             </div>
-
-            <div class="footer-section">
-                <h3>Contact</h3>
-                <p style="color: var(--light-gray); margin-bottom: 1rem;">
-                    279 Main St #122<br>
-                    Frisco, TX 75036
-                </p>
-                <p style="margin-bottom: 1.5rem;">
-                    <a href="tel:(972) 785-7036" style="color: var(--yellow); font-weight: 700;">(972) 785-7036</a>
-                </p>
+            <div class="foot-bottom">
+                <span>&copy; 2026 Black Iron Athletics. Veteran-owned &middot; Est. 2013.</span>
+                <span class="foot-social">
+                    <a href="https://www.instagram.com/blackiron_athletics/" target="_blank" rel="noopener" aria-label="Instagram">
+                        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="4"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="1.1" fill="currentColor" stroke="none"/></svg>
+                    </a>
+                    <a href="https://www.youtube.com/channel/UCF1XjUXEs81OWY70chem6vA" target="_blank" rel="noopener" aria-label="YouTube">
+                        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="2.5" y="5.5" width="19" height="13" rx="3"/><path d="M10 9.5v5l4.5-2.5z" fill="currentColor" stroke="none"/></svg>
+                    </a>
+                    <a href="https://www.facebook.com/BlackIronAthletics/" target="_blank" rel="noopener" aria-label="Facebook">
+                        <svg class="icon-fill" viewBox="0 0 24 24" aria-hidden="true"><path d="M13.5 21v-7h2.4l.4-3h-2.8V9.1c0-.9.3-1.5 1.6-1.5H16.6V4.9c-.3 0-1.2-.1-2.2-.1-2.2 0-3.7 1.3-3.7 3.8V11H8.3v3h2.4v7h2.8z"/></svg>
+                    </a>
+                </span>
             </div>
-
-            <div class="footer-section">
-                <h3>Hours</h3>
-                <p style="color: var(--light-gray); margin-bottom: 1rem;">
-                    Check our class calendar for an up to date schedule.
-                </p>
-                <p style="color: var(--yellow); font-weight: 700;">
-                    Open Gym: 7 Days a Week
-                </p>
-            </div>
-        </div>
-
-        <div class="footer-bottom">
-            <div style="margin-bottom: 1.5rem; display: flex; justify-content: center; gap: 1.5rem; font-size: 1.5rem;">
-                <a href="https://www.instagram.com/blackiron_athletics/" target="_blank" rel="noopener" style="color: var(--light-gray); transition: color 0.3s ease;" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
-                <a href="https://www.youtube.com/channel/UCF1XjUXEs81OWY70chem6vA" target="_blank" rel="noopener" style="color: var(--light-gray); transition: color 0.3s ease;" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
-                <a href="https://www.facebook.com/BlackIronAthletics/" target="_blank" rel="noopener" style="color: var(--light-gray); transition: color 0.3s ease;" aria-label="Facebook"><i class="fa-brands fa-facebook"></i></a>
-            </div>
-            <p>&copy; 2026 Black Iron Athletics. All rights reserved.</p>
         </div>
     </footer>
 
-    <!-- Schema Markup for SEO -->
+    <!-- CONTRACT: sticky mobile CTA on all marketing pages (shows at 640px down) -->
+    <a id="stickyMobileCta" class="mobile-cta" href="#" onclick="openLeadModal(); return false;">Book a Free Consult</a>
+
+    <!-- ============ JSON-LD ============ -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
       "@type": "AboutPage",
       "name": "About Black Iron Athletics",
-      "description": "Learn about Black Iron Athletics' mission to forge everyday people into everyday athletes. Veteran-owned gym in Frisco, TX since 2013.",
+      "description": "The mission, values, beliefs, and coaches behind Black Iron Athletics, a veteran-owned gym in Frisco, TX helping everyday people become everyday athletes since 2013.",
       "url": "https://www.blackironathletics.com/about",
       "mainEntity": {
         "@type": "GymAndHealthClub",
         "name": "Black Iron Athletics",
         "foundingDate": "2013",
-        "description": "Veteran-owned gym in Frisco, TX helping everyday people become everyday athletes since 2013.",
+        "description": "Veteran-owned gym in Frisco, TX helping everyday people become everyday athletes since 2013. Training at 279 Main St, Suite 122 today; the new home at Suite 110 next door opens October 2026.",
         "telephone": "(972) 785-7036",
         "address": {
           "@type": "PostalAddress",
@@ -1345,6 +351,11 @@
           "addressRegion": "TX",
           "postalCode": "75036",
           "addressCountry": "US"
+        },
+        "aggregateRating": {
+          "@type": "AggregateRating",
+          "ratingValue": "5.0",
+          "ratingCount": "68"
         },
         "url": "https://www.blackironathletics.com",
         "sameAs": [
@@ -1355,132 +366,98 @@
       }
     }
     </script>
-<!-- Lead Capture Popup Modal -->
-<style>
-    .modal-overlay {
-        display: none;
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: rgba(0, 0, 0, 0.9);
-        z-index: 9999;
-        overflow-y: auto;
-        padding: 2rem;
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://www.blackironathletics.com/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "About Us",
+            "item": "https://www.blackironathletics.com/about"
+          }
+      ]
     }
-    .modal-overlay.active {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
-    .modal-container {
-        background: #1a1a1a;
-        border: 2px solid var(--medium-gray);
-        max-width: 600px;
-        width: 100%;
-        position: relative;
-        margin: auto;
-        animation: modalSlideIn 0.3s ease-out;
-    }
-    @keyframes modalSlideIn {
-        from { opacity: 0; transform: translateY(-50px); }
-        to { opacity: 1; transform: translateY(0); }
-    }
-    .modal-close {
-        position: absolute;
-        top: 0.5rem;
-        right: 0.5rem;
-        background: transparent;
-        border: none;
-        color: var(--light-gray);
-        font-size: 2rem;
-        cursor: pointer;
-        line-height: 1;
-        padding: 0.5rem;
-        transition: color 0.3s ease;
-        font-weight: 300;
-        z-index: 10000;
-    }
-    .modal-close:hover { color: var(--yellow); }
-    .modal-container iframe {
-        width: 100%;
-        border: none;
-        display: block;
-    }
-    @media (max-width: 768px) {
-        .modal-overlay { padding: 1rem; }
-    }
-</style>
-<div class="modal-overlay" id="leadModal">
-    <div class="modal-container">
-        <button class="modal-close" onclick="closeLeadModal()">&times;</button>
-        <iframe
-            data-src="https://api.leadconnectorhq.com/widget/form/vw0hMdDkTCL6K5N3i7vF"
-            style="width:100%;height:100%;border:none;border-radius:4px"
-            id="inline-vw0hMdDkTCL6K5N3i7vF"
-            data-layout="{'id':'INLINE'}"
-            data-trigger-type="alwaysShow"
-            data-trigger-value=""
-            data-activation-type="alwaysActivated"
-            data-activation-value=""
-            data-deactivation-type="neverDeactivate"
-            data-deactivation-value=""
-            data-form-name="Form 2"
-            data-height="565"
-            data-layout-iframe-id="inline-vw0hMdDkTCL6K5N3i7vF"
-            data-form-id="vw0hMdDkTCL6K5N3i7vF"
-            title="Form 2"
-        ></iframe>
-    </div>
-</div>
+    </script>
 
-<div class="modal-overlay" id="cancelModal">
-    <div class="modal-container">
-        <button class="modal-close" onclick="closeCancelModal()">&times;</button>
-        <iframe
-            data-src="https://api.leadconnectorhq.com/widget/form/d4jtjY9fM2Hv9zVTzLwj"
-            style="width:100%;height:100%;border:none;border-radius:4px"
-            id="inline-d4jtjY9fM2Hv9zVTzLwj"
-            data-layout="{'id':'INLINE'}"
-            data-trigger-type="alwaysShow"
-            data-trigger-value=""
-            data-activation-type="alwaysActivated"
-            data-activation-value=""
-            data-deactivation-type="neverDeactivate"
-            data-deactivation-value=""
-            data-form-name="Membership Cancellation Form"
-            data-height="787"
-            data-layout-iframe-id="inline-d4jtjY9fM2Hv9zVTzLwj"
-            data-form-id="d4jtjY9fM2Hv9zVTzLwj"
-            title="Membership Cancellation Form"
-        ></iframe>
+    <!-- ============ GHL MODALS (iframe blocks VERBATIM — lazy data-src, ids unchanged) ============ -->
+    <div class="modal-overlay" id="leadModal">
+        <div class="modal-container">
+            <button class="modal-close" onclick="closeLeadModal()">&times;</button>
+            <iframe
+                data-src="https://api.leadconnectorhq.com/widget/form/vw0hMdDkTCL6K5N3i7vF"
+                style="width:100%;height:100%;border:none;border-radius:4px"
+                id="inline-vw0hMdDkTCL6K5N3i7vF"
+                data-layout="{'id':'INLINE'}"
+                data-trigger-type="alwaysShow"
+                data-trigger-value=""
+                data-activation-type="alwaysActivated"
+                data-activation-value=""
+                data-deactivation-type="neverDeactivate"
+                data-deactivation-value=""
+                data-form-name="Form 2"
+                data-height="565"
+                data-layout-iframe-id="inline-vw0hMdDkTCL6K5N3i7vF"
+                data-form-id="vw0hMdDkTCL6K5N3i7vF"
+                title="Form 2"
+            ></iframe>
+        </div>
     </div>
-</div>
-<div class="modal-overlay" id="subscribeModal">
-    <div class="modal-container">
-        <button class="modal-close" onclick="closeSubscribeModal()">&times;</button>
-        <iframe
-            data-src="https://api.leadconnectorhq.com/widget/form/GnNJNaEX8InuIeGxWjaI"
-            style="width:100%;height:100%;border:none;border-radius:4px"
-            id="inline-GnNJNaEX8InuIeGxWjaI"
-            data-layout="{'id':'INLINE'}"
-            data-trigger-type="alwaysShow"
-            data-trigger-value=""
-            data-activation-type="alwaysActivated"
-            data-activation-value=""
-            data-deactivation-type="neverDeactivate"
-            data-deactivation-value=""
-            data-form-name="Subscribe"
-            data-height="430"
-            data-layout-iframe-id="inline-GnNJNaEX8InuIeGxWjaI"
-            data-form-id="GnNJNaEX8InuIeGxWjaI"
-            title="Subscribe"
-        ></iframe>
-    </div>
-</div>
 
-<script>
+    <div class="modal-overlay" id="cancelModal">
+        <div class="modal-container">
+            <button class="modal-close" onclick="closeCancelModal()">&times;</button>
+            <iframe
+                data-src="https://api.leadconnectorhq.com/widget/form/d4jtjY9fM2Hv9zVTzLwj"
+                style="width:100%;height:100%;border:none;border-radius:4px"
+                id="inline-d4jtjY9fM2Hv9zVTzLwj"
+                data-layout="{'id':'INLINE'}"
+                data-trigger-type="alwaysShow"
+                data-trigger-value=""
+                data-activation-type="alwaysActivated"
+                data-activation-value=""
+                data-deactivation-type="neverDeactivate"
+                data-deactivation-value=""
+                data-form-name="Membership Cancellation Form"
+                data-height="787"
+                data-layout-iframe-id="inline-d4jtjY9fM2Hv9zVTzLwj"
+                data-form-id="d4jtjY9fM2Hv9zVTzLwj"
+                title="Membership Cancellation Form"
+            ></iframe>
+        </div>
+    </div>
+    <div class="modal-overlay" id="subscribeModal">
+        <div class="modal-container">
+            <button class="modal-close" onclick="closeSubscribeModal()">&times;</button>
+            <iframe
+                data-src="https://api.leadconnectorhq.com/widget/form/GnNJNaEX8InuIeGxWjaI"
+                style="width:100%;height:100%;border:none;border-radius:4px"
+                id="inline-GnNJNaEX8InuIeGxWjaI"
+                data-layout="{'id':'INLINE'}"
+                data-trigger-type="alwaysShow"
+                data-trigger-value=""
+                data-activation-type="alwaysActivated"
+                data-activation-value=""
+                data-deactivation-type="neverDeactivate"
+                data-deactivation-value=""
+                data-form-name="Subscribe"
+                data-height="430"
+                data-layout-iframe-id="inline-GnNJNaEX8InuIeGxWjaI"
+                data-form-id="GnNJNaEX8InuIeGxWjaI"
+                title="Subscribe"
+            ></iframe>
+        </div>
+    </div>
+
+    <!-- ============ PAGE JS: modals + side menu (function names byte-identical to the live site) ============ -->
+    <script>
     function openLeadModal() {
         var modal = document.getElementById('leadModal');
         var iframe = modal.querySelector('iframe');
@@ -1528,91 +505,11 @@
         if (e.target === this) { closeSubscribeModal(); }
     });
 
-    // Infinite Coach Carousel
-    (function() {
-        var carousel = document.getElementById('teamCarousel');
-        if (!carousel) return;
-        var originalCards = Array.from(carousel.querySelectorAll('.team-card'));
-        var cardCount = originalCards.length;
-
-        // Clone all cards and append + prepend for infinite illusion
-        originalCards.forEach(function(card) {
-            carousel.appendChild(card.cloneNode(true));
-        });
-        for (var i = cardCount - 1; i >= 0; i--) {
-            carousel.insertBefore(originalCards[i].cloneNode(true), carousel.firstChild);
-        }
-
-        var currentIndex = cardCount; // start at first original card
-
-        function getStep() {
-            var card = carousel.querySelector('.team-card');
-            var gap = parseFloat(getComputedStyle(carousel).gap) || 32;
-            return card.offsetWidth + gap;
-        }
-
-        function setPosition(animate) {
-            if (animate) {
-                carousel.style.transition = 'transform 0.5s ease';
-            } else {
-                carousel.style.transition = 'none';
-            }
-            carousel.style.transform = 'translateX(-' + (currentIndex * getStep()) + 'px)';
-        }
-
-        // Set initial position without animation
-        setPosition(false);
-
-        function next() {
-            currentIndex++;
-            setPosition(true);
-            setTimeout(function() {
-                if (currentIndex >= cardCount * 2) {
-                    currentIndex -= cardCount;
-                    setPosition(false);
-                }
-            }, 520);
-        }
-
-        function prev() {
-            currentIndex--;
-            setPosition(true);
-            setTimeout(function() {
-                if (currentIndex < cardCount) {
-                    currentIndex += cardCount;
-                    setPosition(false);
-                }
-            }, 520);
-        }
-
-        document.querySelector('.carousel-prev').addEventListener('click', prev);
-        document.querySelector('.carousel-next').addEventListener('click', next);
-
-        // Auto-scroll every 4 seconds
-        var autoPlay = setInterval(next, 4000);
-        var wrapper = carousel.parentElement;
-        wrapper.addEventListener('mouseenter', function() { clearInterval(autoPlay); });
-        wrapper.addEventListener('mouseleave', function() { autoPlay = setInterval(next, 4000); });
-
-        // Touch swipe support for mobile
-        var touchStartX = 0;
-        var touchEndX = 0;
-        wrapper.addEventListener('touchstart', function(e) {
-            touchStartX = e.changedTouches[0].screenX;
-            clearInterval(autoPlay);
-        }, { passive: true });
-        wrapper.addEventListener('touchend', function(e) {
-            touchEndX = e.changedTouches[0].screenX;
-            var diff = touchStartX - touchEndX;
-            if (Math.abs(diff) > 50) {
-                if (diff > 0) { next(); } else { prev(); }
-            }
-            autoPlay = setInterval(next, 4000);
-        }, { passive: true });
-
-        // Recalculate on resize
-        window.addEventListener('resize', function() { setPosition(false); });
-    })();
+    // Sticky Mobile CTA - hide when modal is open
+    window.addEventListener('scroll', function() {
+        const stickyBar = document.getElementById('stickyMobileCta');
+        if (stickyBar) stickyBar.style.display = '';
+    });
 
     // Side Menu
     function toggleSideMenu() {
@@ -1641,36 +538,32 @@
     document.addEventListener('keydown', function(e) {
         if (e.key === 'Escape') closeSideMenu();
     });
-</script>
+    </script>
 
-<script src="https://link.msgsndr.com/js/form_embed.js" type="text/javascript" defer></script>
-<script src="https://widgets.leadconnectorhq.com/loader.js" data-resources-url="https://widgets.leadconnectorhq.com/chat-widget/loader.js" data-widget-id="6995d6d76e6009387f78d31e" defer></script>
+    <!-- ============ PAGE JS: nav scroll state + reveal observer ============ -->
+    <script>
+    (function(){
+        var nav = document.getElementById('nav');
+        function onScroll(){ if (nav) nav.classList.toggle('scrolled', window.scrollY > 24); }
+        window.addEventListener('scroll', onScroll, {passive:true});
+        onScroll();
 
-<script>
-// ===== SCROLL REVEAL =====
-(function() {
-    var staggerParents = document.querySelectorAll('.reveal-stagger');
-    staggerParents.forEach(function(parent) {
-        var children = parent.querySelectorAll('.reveal');
-        children.forEach(function(child, i) {
-            child.style.setProperty('--reveal-index', i);
-        });
-    });
+        var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        var items = document.querySelectorAll('.rv');
+        if (reduced || !('IntersectionObserver' in window)) {
+            items.forEach(function(el){ el.classList.add('on'); });
+            return;
+        }
+        var io = new IntersectionObserver(function(entries){
+            entries.forEach(function(e){
+                if (e.isIntersecting) { e.target.classList.add('on'); io.unobserve(e.target); }
+            });
+        }, {threshold:0.12, rootMargin:'0px 0px -40px 0px'});
+        items.forEach(function(el){ io.observe(el); });
+    })();
+    </script>
 
-    var observer = new IntersectionObserver(function(entries) {
-        entries.forEach(function(entry) {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('revealed');
-                observer.unobserve(entry.target);
-            }
-        });
-    }, { threshold: 0.15, rootMargin: '-50px' });
-
-    document.querySelectorAll('.reveal, .reveal-scale').forEach(function(el) {
-        observer.observe(el);
-    });
-})();
-</script>
+<!-- ============ A11Y TAIL IIFE — copied VERBATIM from index.html. Do not edit. ============ -->
 <script>
 // ===== ACCESSIBILITY: KEYBOARD NAV & FOCUS TRAP =====
 (function() {
@@ -1743,26 +636,7 @@
 })();
 </script>
 
-    <!-- BreadcrumbList Schema -->
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "BreadcrumbList",
-      "itemListElement": [
-          {
-            "@type": "ListItem",
-            "position": 1,
-            "name": "Home",
-            "item": "https://www.blackironathletics.com/"
-          },
-          {
-            "@type": "ListItem",
-            "position": 2,
-            "name": "About Us",
-            "item": "https://www.blackironathletics.com/about.html"
-          }
-      ]
-    }
-    </script>
+<script src="https://link.msgsndr.com/js/form_embed.js" type="text/javascript" defer></script>
+<script src="https://widgets.leadconnectorhq.com/loader.js" data-resources-url="https://widgets.leadconnectorhq.com/chat-widget/loader.js" data-widget-id="6995d6d76e6009387f78d31e" defer></script>
 </body>
 </html>

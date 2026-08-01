@@ -4,43 +4,43 @@
     <meta charset="UTF-8">
     <!-- CONTRACT: keep this exact viewport tag — inject-pixel.js insertion marker -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Group Training Classes in Frisco, TX | Black Iron Athletics</title>
-    <meta name="description" content="Strength &amp; Conditioning classes, personal training, nutrition coaching &amp; open gym at Black Iron Athletics in Frisco, TX. Every rep coached, three levels in every class.">
+    <title>Membership Pricing | Black Iron Athletics — Frisco, TX</title>
+    <meta name="description" content="Membership pricing at Black Iron Athletics in Frisco, TX — in writing: Standard $200/mo, Unlimited + Open Gym $240/mo, Open Gym $50/mo, personal training $120–150/hour. Try any class with a $30 day pass, credited toward your first month.">
     <meta name="geo.region" content="US-TX">
     <meta name="geo.placename" content="Frisco">
     <meta name="geo.position" content="33.1503;-96.8236">
-    <link rel="canonical" href="https://www.blackironathletics.com/programs">
+    <link rel="canonical" href="https://www.blackironathletics.com/pricing">
     <!-- Open Graph -->
-    <meta property="og:title" content="Group Training Classes in Frisco, TX | Black Iron Athletics">
-    <meta property="og:description" content="Strength &amp; Conditioning classes, personal training, nutrition coaching &amp; open gym at Black Iron Athletics in Frisco, TX. Every rep coached, three levels in every class.">
-    <meta property="og:url" content="https://www.blackironathletics.com/programs">
+    <meta property="og:title" content="Membership Pricing | Black Iron Athletics — Frisco, TX">
+    <meta property="og:description" content="Membership pricing at Black Iron Athletics in Frisco, TX — in writing: Standard $200/mo, Unlimited + Open Gym $240/mo, Open Gym $50/mo, personal training $120–150/hour. Try any class with a $30 day pass, credited toward your first month.">
+    <meta property="og:url" content="https://www.blackironathletics.com/pricing">
     <meta property="og:image" content="https://www.blackironathletics.com/images/social-share.png">
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="Black Iron Athletics">
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Group Training Classes in Frisco, TX | Black Iron Athletics">
-    <meta name="twitter:description" content="Strength &amp; Conditioning classes, personal training, nutrition coaching &amp; open gym at Black Iron Athletics in Frisco, TX. Every rep coached, three levels in every class.">
+    <meta name="twitter:title" content="Membership Pricing | Black Iron Athletics — Frisco, TX">
+    <meta name="twitter:description" content="Membership pricing at Black Iron Athletics in Frisco, TX — in writing: Standard $200/mo, Unlimited + Open Gym $240/mo, Open Gym $50/mo, personal training $120–150/hour. Try any class with a $30 day pass, credited toward your first month.">
     <meta name="twitter:image" content="https://www.blackironathletics.com/images/social-share.png">
     <link rel="icon" type="image/png" href="/images/anvil-favicon.png">
     <link rel="apple-touch-icon" href="/images/anvil-favicon.png">
     <meta name="theme-color" content="#000000">
-    <link rel="preload" as="image" href="/images/team/coach-briefing.webp">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
     <noscript><link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&display=swap" rel="stylesheet"></noscript>
     <link rel="stylesheet" href="/css/bia.css">
     <style>
-        /* programs-page-only glue — same token language as bia.css */
-        .prose p{margin-top:18px;max-width:60ch}
-        .prose p:first-child{margin-top:0}
-        .cta-row{display:flex;flex-wrap:wrap;align-items:center;gap:18px;margin-top:clamp(30px,4vw,44px)}
-        .price-line{margin-top:26px;border-top:1px solid var(--steel-line);padding-top:16px;font-size:.95rem;max-width:60ch}
-        .price-line b{color:var(--white);font-weight:700}
-        .levels-block{margin-top:clamp(44px,6vw,72px)}
-        /* Anchor offset for the fixed nav */
-        #group-classes,#personal-training,#nutrition-coaching,#open-gym{scroll-margin-top:96px}
+    /* Pricing page — page-unique components, same token language */
+    .pcard .who{font-size:.85rem;color:var(--gray);line-height:1.55;margin-top:10px}
+    .compare{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--steel-line);border:1px solid var(--steel-line);margin-top:38px}
+    .compare-col{background:var(--black);padding:clamp(26px,3.5vw,44px)}
+    .compare-col.us{background:var(--coal);box-shadow:inset 0 0 0 1px var(--white)}
+    .compare-col h3{margin-bottom:16px}
+    .compare-col li{border-top:1px solid var(--steel-line);padding:12px 0;font-size:.93rem;line-height:1.6}
+    .compare-col.us li{color:var(--white)}
+    .compare-close{margin-top:26px;max-width:66ch}
+    @media (max-width:760px){.compare{grid-template-columns:1fr}}
     </style>
     <script defer src="/_vercel/insights/script.js"></script>
 </head>
@@ -115,157 +115,206 @@
 
     <main id="main-content">
 
-    <!-- ============ HERO ============ -->
-    <section class="hero hero-short no-top" aria-label="Programs at Black Iron Athletics">
-        <div class="hero-bg">
-            <img class="ph-soft" src="/images/team/coach-briefing.webp" alt="Coach briefing a group class on the training floor at Black Iron Athletics" fetchpriority="high">
+    <!-- ============ PAGE HEADER ============ -->
+    <section class="page-header no-top">
+        <div class="wrap">
+            <span class="eyebrow rv">Membership</span>
+            <h1 class="rv">What it costs.<br><span class="outline">In writing.</span></h1>
+            <p class="lead rv">We publish our prices because we&rsquo;re proud of what they buy. Coaching is the product &mdash; a coach who knows your name, programming that&rsquo;s planned, and a floor where you belong. If you&rsquo;re comparing us to a $10 big-box, we&rsquo;re not it. On purpose.</p>
         </div>
-        <div class="hero-in wrap">
-            <span class="eyebrow eyebrow-y">Programs &middot; Frisco, TX</span>
-            <h1 class="display">Everything<br><span class="outline">we coach.</span></h1>
-            <p class="lead">Four ways to train, one standard: a coach who knows your name. Strength &amp; Conditioning classes are the flagship. Personal training, nutrition coaching, and open gym cover the rest of your week.</p>
-            <div class="hero-ctas">
+    </section>
+
+    <!-- ============ THE PLANS ============ -->
+    <section class="sect no-top" id="plans">
+        <div class="wrap">
+            <span class="eyebrow rv">The plans</span>
+            <h2 class="rv">Four ways in.<br><span class="outline">Pick yours.</span></h2>
+            <div class="price-grid">
+                <article class="pcard rv">
+                    <h3>Standard</h3>
+                    <p class="who">For the three-days-a-week athlete building a rhythm.</p>
+                    <b class="pnum">$200<span>/mo</span></b>
+                    <ul>
+                        <li>3 Strength &amp; Conditioning classes per week</li>
+                        <li>A coach on every rep</li>
+                        <li>Monthly body-comp scan</li>
+                        <li>Community events</li>
+                    </ul>
+                </article>
+                <article class="pcard pop rv">
+                    <span class="tag">Most Popular</span>
+                    <h3>Unlimited + Open Gym</h3>
+                    <p class="who">For regulars who want every class and the open floor too.</p>
+                    <b class="pnum">$240<span>/mo</span></b>
+                    <ul>
+                        <li>Unlimited Strength &amp; Conditioning classes</li>
+                        <li>Everything in Standard</li>
+                        <li>Open gym access 7 days a week</li>
+                    </ul>
+                </article>
+                <article class="pcard rv">
+                    <h3>Open Gym Only</h3>
+                    <p class="who">For experienced lifters who run their own program.</p>
+                    <b class="pnum">$50<span>/mo</span></b>
+                    <ul>
+                        <li>Self-directed training</li>
+                        <li>Access to all our programming</li>
+                        <li>Open gym 7 days a week, between classes and after hours</li>
+                    </ul>
+                </article>
+                <article class="pcard rv">
+                    <h3>Personal Training</h3>
+                    <p class="who">For specific goals, a tight schedule, or a private track.</p>
+                    <b class="pnum rng">$120&ndash;150<span>/hour</span></b>
+                    <ul>
+                        <li>One coach, one plan</li>
+                        <li>Customized programming</li>
+                        <li>Individual accountability</li>
+                        <li>Nutrition guidance</li>
+                    </ul>
+                </article>
+            </div>
+            <aside class="pass rv" aria-label="Day pass offer">
+                <b class="pass-num">$30</b>
+                <div>
+                    <b class="pass-title">One day pass. Any class.</b>
+                    <p>Try the floor with real coaching. If you join, the $30 is credited toward your first month.</p>
+                </div>
+                <a class="arrow-link" href="/book">Get a Day Pass <svg width="16" height="12" viewBox="0 0 16 12" fill="none" aria-hidden="true"><path d="M10 1l5 5-5 5M15 6H1" stroke="currentColor" stroke-width="1.5"/></svg></a>
+            </aside>
+            <div class="price-notes rv">
+                <p><b>Military &amp; first responders:</b> 5% off any membership. Veteran-owned, and proud of it.</p>
+                <p><b>Every membership starts the same way:</b> a free consultation and the Foundations week. That part isn&rsquo;t optional, and it&rsquo;s why this works.</p>
+                <p><b>Leaving:</b> cancel with 30 days&rsquo; notice. That&rsquo;s the whole policy.</p>
+            </div>
+            <div class="plan-cta rv">
                 <a class="btn btn-y" href="#" onclick="openLeadModal(); return false;">Book a Free Consult</a>
-                <a class="btn btn-ghost" href="/schedule">See the Schedule</a>
+                <p class="speed">We reply the same day. A real coach, not a bot.</p>
             </div>
         </div>
     </section>
 
-    <!-- ============ GROUP CLASSES ============ -->
-    <section id="group-classes" class="sect">
+    <!-- ============ THE COMPARISON ============ -->
+    <section class="sect alt" id="value">
         <div class="wrap">
-            <span class="eyebrow rv">The flagship</span>
-            <h2 class="rv">Strength &amp; Conditioning.<br><span class="outline">Coached every rep.</span></h2>
+            <span class="eyebrow rv">The comparison</span>
+            <h2 class="rv">About that<br><span class="outline">$10 gym.</span></h2>
+            <p class="lead rv">A $10 membership is priced for people who stop coming. The model only works if most members never show up. Ours is the opposite &mdash; we only work when you show up, so everything in the price exists to keep you showing up.</p>
+            <div class="compare rv">
+                <div class="compare-col">
+                    <h3>What $10 a month buys</h3>
+                    <ul>
+                        <li>A door code and a room of machines.</li>
+                        <li>A workout you have to invent yourself.</li>
+                        <li>Nobody who knows your name.</li>
+                        <li>No plan for month two.</li>
+                    </ul>
+                </div>
+                <div class="compare-col us">
+                    <h3>What your membership buys</h3>
+                    <ul>
+                        <li>A coach on every rep, in every class.</li>
+                        <li>Programming in planned cycles &mdash; strength and conditioning balanced every week.</li>
+                        <li>Three levels in one class, so you&rsquo;re never in over your head.</li>
+                        <li>A monthly body-comp scan with every class membership, so results stay honest.</li>
+                        <li>Good people who notice when you show up &mdash; and when you don&rsquo;t.</li>
+                    </ul>
+                </div>
+            </div>
+            <p class="compare-close rv">If all you need is a room, a big-box is honestly cheaper &mdash; take it. If you want coaching, a plan, and people, that&rsquo;s what the price is for.</p>
+            <p class="rv" style="margin-top:22px"><a class="arrow-link" href="/programs">See everything we coach <svg width="16" height="12" viewBox="0 0 16 12" fill="none" aria-hidden="true"><path d="M10 1l5 5-5 5M15 6H1" stroke="currentColor" stroke-width="1.5"/></svg></a></p>
+        </div>
+    </section>
+
+    <!-- ============ FOUNDATIONS FIRST ============ -->
+    <section class="sect" id="foundations">
+        <div class="wrap">
             <div class="stakes-grid">
                 <div>
-                    <div class="prose">
-                        <p class="lead rv">One hour, programmed weeks ahead. Cycled strength progressions, planned intensity, and conditioning balanced against the barbell work &mdash; never a random workout of the day.</p>
-                        <p class="rv">We spent over a decade as a CrossFit affiliate before we built something better. The intensity and the camaraderie stayed. The randomness and the wear-and-tear didn&rsquo;t. If you&rsquo;ve been searching for a CrossFit alternative in Frisco, this is the class.</p>
-                    </div>
-                    <div class="fears">
-                        <div class="fear rv"><b>Programmed, not random</b><p>Strength and conditioning balanced every single week, on a plan you can see coming.</p></div>
-                        <div class="fear rv"><b>A coach on every rep</b><p>Form first, load second. We push when you need it and pull you back when you&rsquo;re getting ahead of yourself.</p></div>
-                        <div class="fear rv"><b>Built for decades</b><p>Longevity is the backbone. You&rsquo;re here to pick up your kids at 60, not to get hurt at 35.</p></div>
-                    </div>
+                    <span class="eyebrow rv">Where every membership starts</span>
+                    <h2 class="rv">First,<br><span class="outline">Foundations.</span></h2>
+                    <p class="lead rv">Before you pick a plan, you start like every member before you: a free consultation, then the Foundations week &mdash; one-on-one coaching to learn the basics, set a baseline, and understand your body. It&rsquo;s non-negotiable, and it&rsquo;s the reason a first-month beginner can train next to a 10-year athlete without getting hurt or left behind.</p>
+                    <p class="rv" style="margin-top:26px"><a class="arrow-link" href="/getting-started">How your first week works <svg width="16" height="12" viewBox="0 0 16 12" fill="none" aria-hidden="true"><path d="M10 1l5 5-5 5M15 6H1" stroke="currentColor" stroke-width="1.5"/></svg></a></p>
                 </div>
-                <figure class="stakes-img rv"><img class="ph" src="/images/training/group-warmup.webp" alt="Group class warming up together on the training floor" loading="lazy" width="3600" height="2400"></figure>
-            </div>
-
-            <div class="levels-block">
-                <span class="eyebrow rv">Three levels, one floor</span>
-                <p class="lead levels-intro rv">Every class is programmed at three levels. Same movement pattern, same clock, different target &mdash; so a first-month beginner and a 10-year athlete train side by side without either one compromising. The system flexes so the member doesn&rsquo;t have to.</p>
-                <div class="board rv">
-                    <small>A real day on our whiteboard</small>
-                    <p>Back squat. Level 1 &mdash; 5-rep max. Level 2 &mdash; 3-rep max. Level 3 &mdash; 1-rep max.<br>Same bar. Same coaching. Your number.</p>
-                </div>
-                <div class="lvl-grid">
-                    <div class="lvl rv"><b>Level 1 &middot; Learn it</b><p>New, or coming back after years off. Own the movement before you load it. Nobody rushes you.</p></div>
-                    <div class="lvl rv"><b>Level 2 &middot; Build it</b><p>Solid mechanics, growing engine. Where most members live &mdash; and get strong for years.</p></div>
-                    <div class="lvl rv"><b>Level 3 &middot; Test it</b><p>For the seasoned athlete chasing an edge. Bigger loads, same standard, a coach watching anyway.</p></div>
+                <div class="stakes-img rv">
+                    <img class="ph" src="/images/members/member-coaching.webp" alt="Coach working one-on-one with a smiling member on the training floor" loading="lazy" width="800" height="1200">
                 </div>
             </div>
-
-            <div class="cta-row rv">
-                <a class="btn btn-y" href="#" onclick="openLeadModal(); return false;">Book a Free Consult</a>
-                <a class="btn btn-ghost" href="/schedule">See the Class Schedule</a>
+            <div class="steps">
+                <div class="step rv">
+                    <em>01</em>
+                    <h3>Book a free consult</h3>
+                    <p>A conversation with a coach. Goals, history, and what your week actually looks like. No sales pitch &mdash; if we&rsquo;re not the right fit, we&rsquo;ll say so.</p>
+                </div>
+                <div class="step rv">
+                    <em>02</em>
+                    <h3>Do your Foundations week</h3>
+                    <p>A week of one-on-one coaching. Learn the basics, set a baseline, understand your body. Every member starts here, and nobody gets thrown into the deep end.</p>
+                </div>
+                <div class="step rv">
+                    <em>03</em>
+                    <h3>Pick your plan</h3>
+                    <p>Standard, Unlimited, open gym, or personal training. By the end of your Foundations week you&rsquo;ll know which one fits &mdash; and so will your coach.</p>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- ============ PERSONAL TRAINING ============ -->
-    <section id="personal-training" class="sect alt">
+    <!-- ============ MONEY QUESTIONS ============ -->
+    <section class="sect alt" id="money-questions">
         <div class="wrap">
-            <div class="h23-grid">
-                <div>
-                    <span class="eyebrow rv">One-on-one</span>
-                    <h2 class="rv">Personal training.<br><span class="outline">One coach, one plan.</span></h2>
-                    <p class="lead rv">Dedicated one-on-one time with a coach who writes every session for your body, your goals, and your calendar.</p>
-                    <div class="h23-rows">
-                        <div class="h23-row rv"><b>Your program</b><p>Customized, progressive programming &mdash; written for you, rewritten as you progress. No templates.</p></div>
-                        <div class="h23-row rv"><b>Accountability</b><p>One coach who knows your numbers, tracks your progress, and notices when you go quiet.</p></div>
-                        <div class="h23-row rv"><b>Nutrition</b><p>Guidance on the eating part comes with it, so the training and the fuel pull in the same direction.</p></div>
-                        <div class="h23-row rv"><b>The price</b><p>$120&ndash;150 per hour, depending on the coach and the plan. <a href="/pricing">See pricing</a> for the full breakdown.</p></div>
-                    </div>
-                    <div class="cta-row rv">
-                        <a class="arrow-link" href="#" onclick="openLeadModal(); return false;">Talk to a coach <svg width="16" height="12" viewBox="0 0 16 12" fill="none" aria-hidden="true"><path d="M10 1l5 5-5 5M15 6H1" stroke="currentColor" stroke-width="1.5"/></svg></a>
-                    </div>
+            <span class="eyebrow rv">Fair questions</span>
+            <h2 class="rv">Money questions,<br><span class="outline">straight answers.</span></h2>
+            <div class="faq-grid">
+                <div class="faq rv">
+                    <details>
+                        <summary>Why does it cost more than a big-box gym?</summary>
+                        <p>Because you&rsquo;re buying coaching, not access. A coach on every rep, programming in planned cycles, three levels in every class, a monthly body-comp scan &mdash; that&rsquo;s payroll, planning, and attention, not a door code. If a room of machines keeps you training, we&rsquo;re genuinely glad. For most people we meet, it didn&rsquo;t.</p>
+                    </details>
+                    <details>
+                        <summary>Which membership should I pick?</summary>
+                        <p>Train three days a week &mdash; Standard. Want unlimited classes plus the open floor &mdash; Unlimited. Run your own program &mdash; Open Gym. Want one coach and one plan &mdash; personal training. The free consult sorts it out in one conversation, and the Foundations week confirms it.</p>
+                    </details>
+                    <details>
+                        <summary>Can I try it before I join?</summary>
+                        <p>Yes. A $30 day pass covers any class, and it&rsquo;s credited toward your first month if you join. The consultation itself is free.</p>
+                    </details>
+                    <details>
+                        <summary>How does canceling work?</summary>
+                        <p>Give us 30 days&rsquo; notice. That&rsquo;s the whole policy &mdash; no retention scripts, no hoops.</p>
+                    </details>
+                    <details>
+                        <summary>Do you offer discounts?</summary>
+                        <p>Military and first responders take 5% off any membership. We&rsquo;re veteran-owned &mdash; it matters here.</p>
+                    </details>
+                    <details>
+                        <summary>When do classes run?</summary>
+                        <p>Morning through evening &mdash; <a href="/schedule">see this week&rsquo;s schedule</a>. Open gym is available 7 days a week, between classes and after hours.</p>
+                    </details>
                 </div>
-                <figure class="h23-img rv"><img class="ph" src="/images/members/member-coaching.webp" alt="Coach working one-on-one with a member during a personal training session" loading="lazy" width="2400" height="3600"></figure>
-            </div>
-        </div>
-    </section>
-
-    <!-- ============ NUTRITION COACHING ============ -->
-    <section id="nutrition-coaching" class="sect">
-        <div class="wrap">
-            <div class="stakes-grid">
-                <div>
-                    <span class="eyebrow rv">The other 23 hours</span>
-                    <h2 class="rv">Nutrition coaching.<br><span class="outline">A real human, not an app.</span></h2>
-                    <div class="prose">
-                        <p class="lead rv">Training is one hour. Eating is the other 23 &mdash; and it decides most of your results.</p>
-                        <p class="rv">Our nutrition coaching pairs you with a real human coach: weekly check-ins, honest feedback, and targets that adjust as life happens. It runs on <a href="https://fuelpath.app">FuelPath</a>, the coaching platform our own team built &mdash; so the tech serves the coach, not the other way around.</p>
-                        <p class="rv">And because it lives on your phone, it works anywhere. You don&rsquo;t have to train at Black Iron to be coached by us.</p>
-                    </div>
-                    <div class="cta-row rv">
-                        <a class="btn btn-ghost" href="#" onclick="openLeadModal(); return false;">Ask About Coaching</a>
-                        <a class="arrow-link" href="https://fuelpath.app/calculator">Free macro calculator <svg width="16" height="12" viewBox="0 0 16 12" fill="none" aria-hidden="true"><path d="M10 1l5 5-5 5M15 6H1" stroke="currentColor" stroke-width="1.5"/></svg></a>
-                    </div>
-                </div>
-                <figure class="stakes-img rv"><img class="ph" src="/images/members/member-laughing.webp" alt="Member laughing on the gym floor after a session" loading="lazy" width="1024" height="1536"></figure>
-            </div>
-        </div>
-    </section>
-
-    <!-- ============ OPEN GYM ============ -->
-    <section id="open-gym" class="sect alt">
-        <div class="wrap">
-            <div class="h23-grid">
-                <div>
-                    <span class="eyebrow rv">On your schedule</span>
-                    <h2 class="rv">Open gym.<br><span class="outline">Seven days a week.</span></h2>
-                    <p class="lead rv">The floor is yours between classes and after hours, seven days a week. Self-directed training with the whole facility behind it.</p>
-                    <div class="h23-rows">
-                        <div class="h23-row rv"><b>Access</b><p>Seven days a week, between classes and after hours. Key fob entry, climate-controlled, no front desk to wait on.</p></div>
-                        <div class="h23-row rv"><b>Programming</b><p>Every open gym member gets our full structured programming. Follow it at your own pace, or run your own plan.</p></div>
-                        <div class="h23-row rv"><b>The barbell</b><p>Olympic weightlifting classes are paused for now, but the lifts live on here &mdash; snatch, clean &amp; jerk, and all the barbell work stay in our programming and on the open gym floor.</p></div>
-                        <div class="h23-row rv"><b>HYROX</b><p>HYROX-style training on your own schedule during open gym.</p></div>
-                    </div>
-                    <p class="price-line rv"><b>Open Gym Only is $50 a month.</b> Or pair open gym with unlimited classes for $240. <a href="/pricing">See pricing</a>.</p>
-                    <div class="cta-row rv">
-                        <a class="arrow-link" href="/schedule">See open gym hours <svg width="16" height="12" viewBox="0 0 16 12" fill="none" aria-hidden="true"><path d="M10 1l5 5-5 5M15 6H1" stroke="currentColor" stroke-width="1.5"/></svg></a>
-                    </div>
-                </div>
-                <figure class="h23-img rv"><img class="ph" src="/images/training/snatch-action.webp" alt="Member mid-snatch during open gym at Black Iron Athletics" loading="lazy" width="1024" height="1536"></figure>
+                <aside class="offer rv" aria-label="Day pass offer">
+                    <span class="eyebrow">No-pressure option</span>
+                    <b class="price">Try it for <span class="hl">$30</span></b>
+                    <p>One day pass. A full class, real coaching, the actual floor &mdash; credited toward your first month if you join. If it&rsquo;s not your place, you&rsquo;re out one workout and thirty bucks.</p>
+                    <a class="btn btn-y" href="/book">Get a Day Pass</a>
+                </aside>
             </div>
         </div>
     </section>
 
     <!-- ============ FINAL CTA ============ -->
-    <section class="final" aria-label="Get started">
+    <section class="final" aria-label="Book a free consult">
         <div class="slash" aria-hidden="true"></div>
         <div class="final-in wrap">
-            <span class="eyebrow rv">Start here</span>
-            <h2 class="rv">Not sure which<br><span class="outline">program fits?</span></h2>
-            <p class="lead rv">Book a free consult. Twenty minutes with a coach, no pressure &mdash; we&rsquo;ll point you at the right program, and if we&rsquo;re not the right fit, we&rsquo;ll say so.</p>
+            <h2 class="rv">The price is<br><span class="outline">on the wall.</span></h2>
+            <p class="lead rv">Book the free consult. We&rsquo;ll talk goals, walk the floor, and help you pick the right plan &mdash; and if we&rsquo;re not the right fit, we&rsquo;ll tell you.</p>
             <div class="final-ctas rv">
                 <a class="btn btn-y" href="#" onclick="openLeadModal(); return false;">Book a Free Consult</a>
-                <p class="alt-offer">Or try a <a href="/pricing">$30 day pass</a> &mdash; credited toward your first month if you join.</p>
+                <p class="alt-offer">Or just try it &mdash; <a href="/book">$30 day pass</a>, credited toward your first month.</p>
             </div>
-            <p class="speed rv">Every membership starts with a free consultation and the Foundations week.</p>
+            <p class="speed rv">We reply the same day. A real coach, not a bot.</p>
         </div>
     </section>
-
-    <!-- ============ MAP ============ -->
-    <div class="map-section">
-        <iframe
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3344.9875647886857!2d-96.89026308820058!3d33.15034697358084!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x864c3a240f77e3f7%3A0x9f460209df528d6e!2sBlack%20Iron%20Athletics!5e0!3m2!1sen!2sus!4v1737509000000!5m2!1sen!2sus"
-            title="Black Iron Athletics location on Google Maps"
-            allowfullscreen=""
-            loading="lazy"
-            referrerpolicy="no-referrer-when-downgrade">
-        </iframe>
-    </div>
 
     </main>
 
@@ -327,110 +376,105 @@
     <!-- CONTRACT: sticky mobile CTA on all marketing pages (shows at 640px down) -->
     <a id="stickyMobileCta" class="mobile-cta" href="#" onclick="openLeadModal(); return false;">Book a Free Consult</a>
 
-    <!-- Schema Markup: Service -->
+    <!-- ============ JSON-LD ============ -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
-      "@type": "Service",
-      "name": "Fitness Programs",
-      "description": "Programs at Black Iron Athletics in Frisco, TX: Strength and Conditioning group classes, personal training, nutrition coaching, and open gym access 7 days a week.",
-      "url": "https://www.blackironathletics.com/programs",
-      "provider": {
-        "@type": "GymAndHealthClub",
-        "name": "Black Iron Athletics",
-        "description": "Veteran-owned gym in Frisco, TX, established 2013. Training at 279 Main St, Suite 122 today; our new home at Suite 110 next door opens October 2026.",
-        "telephone": "(972) 785-7036",
-        "address": {
-          "@type": "PostalAddress",
-          "streetAddress": "279 Main St #122",
-          "addressLocality": "Frisco",
-          "addressRegion": "TX",
-          "postalCode": "75036",
-          "addressCountry": "US"
+      "@graph": [
+        {
+          "@type": "WebPage",
+          "@id": "https://www.blackironathletics.com/pricing",
+          "url": "https://www.blackironathletics.com/pricing",
+          "name": "Membership Pricing | Black Iron Athletics — Frisco, TX",
+          "description": "Membership pricing at Black Iron Athletics in Frisco, TX: Standard $200 per month, Unlimited + Open Gym $240 per month, Open Gym Only $50 per month, personal training $120-150 per hour, and a $30 day pass credited toward the first month.",
+          "isPartOf": {
+            "@type": "WebSite",
+            "name": "Black Iron Athletics",
+            "url": "https://www.blackironathletics.com"
+          }
         },
-        "url": "https://www.blackironathletics.com",
-        "sameAs": [
-          "https://www.instagram.com/blackiron_athletics/",
-          "https://www.youtube.com/channel/UCF1XjUXEs81OWY70chem6vA",
-          "https://www.facebook.com/BlackIronAthletics/"
-        ]
-      },
-      "hasOfferCatalog": {
-        "@type": "OfferCatalog",
-        "name": "Fitness Programs",
-        "itemListElement": [
-          {
-            "@type": "Offer",
-            "itemOffered": {
-              "@type": "Service",
-              "name": "Strength & Conditioning Group Classes",
-              "description": "Coach-led Strength and Conditioning classes with cycled progressions, planned intensity, and three levels in every class."
-            }
-          },
-          {
-            "@type": "Offer",
-            "priceSpecification": {
-              "@type": "UnitPriceSpecification",
-              "minPrice": 120,
-              "maxPrice": 150,
+        {
+          "@type": "OfferCatalog",
+          "name": "Black Iron Athletics Memberships",
+          "url": "https://www.blackironathletics.com/pricing",
+          "itemListElement": [
+            {
+              "@type": "Offer",
+              "name": "Standard Membership",
+              "description": "3 Strength and Conditioning classes per week, a monthly body-composition scan, and community events.",
+              "price": "200",
               "priceCurrency": "USD",
-              "unitText": "hour"
+              "priceSpecification": {
+                "@type": "UnitPriceSpecification",
+                "price": "200",
+                "priceCurrency": "USD",
+                "unitText": "month"
+              }
             },
-            "itemOffered": {
-              "@type": "Service",
+            {
+              "@type": "Offer",
+              "name": "Unlimited + Open Gym Membership",
+              "description": "Unlimited Strength and Conditioning classes, everything in Standard, and open gym access 7 days a week.",
+              "price": "240",
+              "priceCurrency": "USD",
+              "priceSpecification": {
+                "@type": "UnitPriceSpecification",
+                "price": "240",
+                "priceCurrency": "USD",
+                "unitText": "month"
+              }
+            },
+            {
+              "@type": "Offer",
+              "name": "Open Gym Only Membership",
+              "description": "Self-directed training with access to all Black Iron programming, 7 days a week between classes and after hours.",
+              "price": "50",
+              "priceCurrency": "USD",
+              "priceSpecification": {
+                "@type": "UnitPriceSpecification",
+                "price": "50",
+                "priceCurrency": "USD",
+                "unitText": "month"
+              }
+            },
+            {
+              "@type": "Offer",
               "name": "Personal Training",
-              "description": "One-on-one personal training with customized progressive programming, individual accountability, and nutrition guidance."
+              "description": "One coach, one plan: customized programming, individual accountability, and nutrition guidance.",
+              "priceCurrency": "USD",
+              "priceSpecification": {
+                "@type": "PriceSpecification",
+                "minPrice": 120,
+                "maxPrice": 150,
+                "priceCurrency": "USD",
+                "unitText": "hour"
+              }
             }
-          },
-          {
-            "@type": "Offer",
-            "itemOffered": {
-              "@type": "Service",
-              "name": "Nutrition Coaching",
-              "description": "One-on-one nutrition coaching with a real human coach, weekly check-ins, and honest feedback. Powered by FuelPath."
+          ]
+        },
+        {
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            {
+              "@type": "ListItem",
+              "position": 1,
+              "name": "Home",
+              "item": "https://www.blackironathletics.com/"
+            },
+            {
+              "@type": "ListItem",
+              "position": 2,
+              "name": "Getting Started",
+              "item": "https://www.blackironathletics.com/getting-started"
+            },
+            {
+              "@type": "ListItem",
+              "position": 3,
+              "name": "Membership & Pricing",
+              "item": "https://www.blackironathletics.com/pricing"
             }
-          },
-          {
-            "@type": "Offer",
-            "price": 50,
-            "priceCurrency": "USD",
-            "itemOffered": {
-              "@type": "Service",
-              "name": "Open Gym",
-              "description": "Open gym access 7 days a week, between classes and after hours, with structured programming included."
-            }
-          }
-        ]
-      },
-      "areaServed": {
-        "@type": "City",
-        "name": "Frisco",
-        "containedInPlace": {
-          "@type": "State",
-          "name": "Texas"
+          ]
         }
-      }
-    }
-    </script>
-
-    <!-- BreadcrumbList Schema -->
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "BreadcrumbList",
-      "itemListElement": [
-          {
-            "@type": "ListItem",
-            "position": 1,
-            "name": "Home",
-            "item": "https://www.blackironathletics.com/"
-          },
-          {
-            "@type": "ListItem",
-            "position": 2,
-            "name": "Programs",
-            "item": "https://www.blackironathletics.com/programs"
-          }
       ]
     }
     </script>

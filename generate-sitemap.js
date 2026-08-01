@@ -75,8 +75,9 @@ function findHtmlFiles(dir, rootDir) {
   for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
     const fullPath = path.join(dir, entry.name);
     if (entry.isDirectory()) {
-      // Skip hidden dirs, node_modules, learn, and internal email templates
-      if (entry.name.startsWith('.') || entry.name === 'node_modules' || entry.name === 'learn' || entry.name === 'nurture-campaign') continue;
+      // Skip hidden dirs, node_modules, learn, internal email templates,
+      // and the redesign prototype/reference pages (noindex, review-only)
+      if (entry.name.startsWith('.') || entry.name === 'node_modules' || entry.name === 'learn' || entry.name === 'nurture-campaign' || entry.name === 'redesign') continue;
       results = results.concat(findHtmlFiles(fullPath, rootDir));
     } else if (entry.isFile() && entry.name.endsWith('.html')) {
       results.push(path.relative(rootDir, fullPath).replace(/\\/g, '/'));
