@@ -550,6 +550,7 @@ section{border-top:1px solid var(--steel-line)}
    ------------------------------------------------------------ */
 .visit-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(36px,5vw,72px);align-items:start}
 .visit-ctas{display:flex;flex-wrap:wrap;gap:14px;margin-top:32px}
+.visit-ctas+.speed{margin-top:20px}
 @media (max-width:520px){.visit-ctas .btn{width:100%}}
 .visit-rows{border-top:1px solid var(--steel-line)}
 .visit-row{border-bottom:1px solid var(--steel-line);padding:20px 0;display:grid;grid-template-columns:120px 1fr;gap:16px}
@@ -982,3 +983,62 @@ footer{border-top:1px solid var(--steel-line);padding:clamp(56px,7vw,88px) 0 0}
    opaque letter interior, so the hole is pure black and the scrim
    above is deepened to match. Same clean corners as everywhere else. */
 .hero .outline,.building .outline{--hole:#000;--olr:1.5px}
+
+
+/* ------------------------------------------------------------
+   PROGRAMMING: CYCLE TIMELINE + WEEK STRUCTURE
+   Phase colors are DATA colors, not brand colors — they encode
+   the training block (intro / test / build / deload / retest) the
+   way the coaches' own cycle sheet does. Owner-approved exception
+   to the no-green/blue/red rule, 2026-08-01. Never use these as
+   decoration; only to label a training phase.
+   ------------------------------------------------------------ */
+:root{
+  --ph-intro:#4A9EFF;
+  --ph-test:#FF4B4B;
+  --ph-build:#35D06A;
+  --ph-deload:#9B5DE5;
+}
+
+.cycle-head{display:flex;flex-wrap:wrap;align-items:center;gap:16px;margin-bottom:26px}
+.cycle-tag{
+  border:1px solid var(--yellow);color:var(--yellow);font-size:11px;font-weight:700;
+  letter-spacing:2.5px;text-transform:uppercase;padding:9px 16px;
+}
+.cycle-span{
+  border:1px solid var(--steel-line);color:var(--gray);font-size:11px;font-weight:700;
+  letter-spacing:2px;text-transform:uppercase;padding:9px 16px;margin-left:auto;
+}
+@media (max-width:640px){.cycle-span{margin-left:0}}
+
+.cycle{display:grid;grid-template-columns:repeat(10,1fr);gap:8px;margin-top:24px}
+.cyc{background:var(--coal);border:1px solid var(--steel-line);border-top:4px solid var(--wk,var(--gray));padding:18px 10px 16px;text-align:center}
+.cyc.intro{--wk:var(--ph-intro)} .cyc.test{--wk:var(--ph-test)}
+.cyc.build{--wk:var(--ph-build)} .cyc.deload{--wk:var(--ph-deload)}
+.cyc b{display:block;color:var(--white);font-weight:900;font-size:clamp(1.05rem,1.6vw,1.5rem);line-height:1}
+.cyc .cyc-ph{display:block;color:var(--wk);font-weight:700;font-size:10px;letter-spacing:1.6px;text-transform:uppercase;margin-top:9px}
+.cyc .wknote{display:block;color:var(--gray);font-size:11px;margin-top:10px;line-height:1.35}
+@media (max-width:1000px){.cycle{grid-template-columns:repeat(5,1fr)}}
+@media (max-width:560px){.cycle{grid-template-columns:repeat(2,1fr)}}
+
+.cycle-note{margin-top:22px;color:var(--gray);font-size:.95rem;max-width:70ch}
+.cycle-key{display:flex;flex-wrap:wrap;gap:18px;margin-top:20px;font-size:11px;letter-spacing:1.4px;text-transform:uppercase;color:var(--gray)}
+.cycle-key span{display:inline-flex;align-items:center;gap:8px}
+.cycle-key i{width:14px;height:3px;display:block;background:var(--k)}
+
+/* A week at a glance — same shape every week of the cycle */
+.wkgrid{display:grid;grid-template-columns:repeat(6,1fr);gap:1px;background:var(--steel-line);border:1px solid var(--steel-line);margin-top:26px}
+.wkday{background:var(--black);padding:20px 16px;display:flex;flex-direction:column;gap:14px}
+.wkday header b{display:block;color:var(--white);font-weight:900;font-size:13px;letter-spacing:2px;text-transform:uppercase}
+.wkday header span{display:block;color:var(--yellow);font-size:10px;font-weight:700;letter-spacing:1.4px;text-transform:uppercase;margin-top:6px}
+.blk{border-top:1px solid var(--steel-line);padding-top:11px}
+.blk:first-of-type{border-top:0;padding-top:0}
+.blk em{display:block;font-style:normal;color:var(--gray);font-size:9.5px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase}
+.blk p{color:var(--white);font-size:.86rem;line-height:1.45;margin-top:5px}
+.blk .mins{color:var(--gray);font-size:.78rem}
+@media (max-width:1100px){.wkgrid{grid-template-columns:repeat(3,1fr)}}
+@media (max-width:680px){.wkgrid{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:430px){.wkgrid{grid-template-columns:1fr}}
+
+.deload-note{border-left:3px solid var(--yellow);background:var(--coal);padding:24px 26px;margin-top:34px;max-width:78ch}
+.deload-note p{color:var(--white)}
