@@ -1,16 +1,18 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <!-- CONTRACT: keep this exact viewport tag — inject-pixel.js insertion marker -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Veteran-Owned Gym in Frisco, TX: My Story | Black Iron Athletics Blog</title>
-    <meta name="description" content="Why Black Iron Athletics is veteran-owned — a Marine intelligence team leader's story of Afghanistan, injury, recovery, and the Frisco, TX gym it built.">
+    <meta name="description" content="Why Black Iron Athletics is veteran-owned — a Marine intelligence team leader’s story of Afghanistan, injury, recovery, and the Frisco, TX gym it built.">
     <meta name="geo.region" content="US-TX">
     <meta name="geo.placename" content="Frisco">
+    <meta name="geo.position" content="33.1503;-96.8236">
     <link rel="canonical" href="https://www.blackironathletics.com/blog/veteran-owned-gym-frisco-tx">
     <!-- Open Graph -->
     <meta property="og:title" content="Veteran-Owned Gym in Frisco, TX: My Story">
-    <meta property="og:description" content="Why Black Iron Athletics is veteran-owned — a Marine intelligence team leader's story of Afghanistan, injury, recovery, and the Frisco, TX gym it built.">
+    <meta property="og:description" content="Why Black Iron Athletics is veteran-owned — a Marine intelligence team leader’s story of Afghanistan, injury, recovery, and the Frisco, TX gym it built.">
     <meta property="og:url" content="https://www.blackironathletics.com/blog/veteran-owned-gym-frisco-tx">
     <meta property="og:image" content="https://www.blackironathletics.com/images/social/veteran-story-share.jpg">
     <meta property="og:image:width" content="1200">
@@ -21,469 +23,118 @@
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Veteran-Owned Gym in Frisco, TX: My Story">
-    <meta name="twitter:description" content="Why Black Iron Athletics is veteran-owned — a Marine intelligence team leader's story of Afghanistan, injury, recovery, and the Frisco, TX gym it built.">
+    <meta name="twitter:description" content="Why Black Iron Athletics is veteran-owned — a Marine intelligence team leader’s story of Afghanistan, injury, recovery, and the Frisco, TX gym it built.">
     <meta name="twitter:image" content="https://www.blackironathletics.com/images/social/veteran-story-share.jpg">
-    <link rel="icon" type="image/png" href="../images/anvil-favicon.png">
+    <link rel="icon" type="image/png" href="/images/anvil-favicon.png">
+    <link rel="apple-touch-icon" href="/images/anvil-favicon.png">
     <meta name="theme-color" content="#000000">
-    <link rel="apple-touch-icon" href="../images/anvil-favicon.png">
-    <link rel="preload" as="image" href="../images/team/owner-headcoach-mike.webp">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;900&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
-    <noscript><link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;900&display=swap" rel="stylesheet"></noscript>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" media="print" onload="this.media='all'">
-    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"></noscript>
-    <style>@font-face{font-family:"Font Awesome 6 Brands";font-display:swap}@font-face{font-family:"Font Awesome 6 Free";font-display:swap}</style>
-    <style>
-        body, html {
-            width: 100% !important;
-            max-width: 100% !important;
-            margin: 0 !important;
-            padding: 0 !important;
-        }
-
-        .container, .hl_page-preview--content {
-            padding: 0 !important;
-            margin: 0 !important;
-            max-width: 100% !important;
-            width: 100% !important;
-        }
-
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-
-        :root {
-            --black: #000000;
-            --dark-gray: #1a1a1a;
-            --medium-gray: #333333;
-            --light-gray: #cccccc;
-            --white: #ffffff;
-            --yellow: #FFD202;
-        }
-
-        body {
-            font-family: 'Montserrat', sans-serif;
-            font-weight: 500;
-            background: var(--black);
-            color: var(--white);
-            overflow-x: hidden;
-            line-height: 1.6;
-        }
-
-        html { scroll-behavior: smooth; }
-
-        h1, h2, h3, h4, h5, h6 {
-            font-family: 'Montserrat', sans-serif;
-            font-weight: 900;
-            line-height: 1.2;
-        }
-
-        nav {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            padding: 1.5rem 0;
-            background: var(--black);
-            z-index: 1000;
-            border-bottom: 1px solid var(--medium-gray);
-        }
-
-        .nav-container {
-            max-width: 100%;
-            margin: 0;
-            padding: 0 4rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo { height: 50px; }
-        .logo a { display: block; height: 100%; }
-        .logo img { height: 100%; width: auto; }
-
-        .nav-links { display: flex; gap: 3rem; list-style: none; align-items: center; }
-        .nav-links > li { position: relative; }
-        .nav-links a { color: var(--white); text-decoration: none; font-size: 0.95rem; font-weight: 900; transition: color 0.3s ease; text-transform: uppercase; letter-spacing: 0.5px; }
-        .nav-links > li > a:hover { color: var(--yellow); }
-
-        .submenu { display: none; position: absolute; top: 100%; left: 0; background: rgba(26, 26, 26, 0.95); backdrop-filter: blur(10px); min-width: 240px; padding: 0.5rem 0; border: 1px solid var(--medium-gray); list-style: none; }
-        .submenu li { padding: 0; }
-        .submenu a { display: block; padding: 1rem 1.5rem; font-size: 0.85rem; font-weight: 900; text-transform: uppercase; letter-spacing: 0.5px; transition: all 0.3s ease; }
-        .submenu a:hover { background: rgba(255, 210, 2, 0.1); color: var(--yellow); padding-left: 2rem; }
-        .nav-links > li:hover .submenu { display: block; }
-        .has-submenu > a::after { content: ''; display: inline-block; width: 0; height: 0; margin-left: 0.5rem; border-left: 4px solid transparent; border-right: 4px solid transparent; border-top: 5px solid var(--white); transition: all 0.3s ease; }
-        .has-submenu:hover > a::after { border-top-color: var(--yellow); transform: translateY(2px); }
-
-        .cta-btn { background: var(--yellow); color: var(--black); padding: 0.9rem 1.5rem; border-radius: 0; text-decoration: none; font-weight: 900; font-size: 0.85rem; transition: all 0.3s ease; text-transform: uppercase; letter-spacing: 0.5px; border: 2px solid var(--yellow); white-space: nowrap; }
-        .cta-btn:hover { background: var(--black); color: var(--yellow); }
-
-        /* Hero */
-        .article-hero {
-            margin-top: 0;
-            padding-top: 80px;
-            min-height: 60vh;
-            display: flex;
-            align-items: flex-end;
-            position: relative;
-            background: var(--black);
-        }
-
-        .article-hero-bg {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            opacity: 0.3;
-            z-index: 0;
-        }
-
-        .article-hero-container {
-            max-width: 100%;
-            width: 100%;
-            margin: 0;
-            padding: 4rem;
-            position: relative;
-            z-index: 1;
-        }
-
-        .breadcrumb {
-            font-size: 0.85rem;
-            color: var(--light-gray);
-            margin-bottom: 1.5rem;
-        }
-
-        .breadcrumb a {
-            color: var(--yellow);
-            text-decoration: none;
-            font-weight: 700;
-            transition: color 0.3s ease;
-        }
-
-        .breadcrumb a:hover { color: var(--white); }
-
-        .article-hero h1 {
-            font-weight: 900;
-            font-size: clamp(2rem, 5vw, 3.5rem);
-            line-height: 1.1;
-            margin-bottom: 1.5rem;
-            text-transform: uppercase;
-            max-width: 900px;
-        }
-
-        .article-meta {
-            display: flex;
-            gap: 2rem;
-            color: var(--light-gray);
-            font-size: 0.9rem;
-        }
-
-        .article-meta span { font-weight: 500; }
-        .article-meta i { margin-right: 0.5rem; color: var(--yellow); }
-
-        /* Article */
-        .article-content {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 4rem;
-        }
-
-        .back-to-blog {
-            display: inline-block;
-            color: var(--yellow);
-            text-decoration: none;
-            font-weight: 700;
-            font-size: 0.9rem;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            margin-bottom: 3rem;
-            transition: color 0.3s ease;
-        }
-
-        .back-to-blog:hover { color: var(--white); }
-
-        .article-body p {
-            font-size: 1.1rem;
-            line-height: 1.8;
-            color: var(--light-gray);
-            margin-bottom: 1.5rem;
-        }
-
-        .article-body h2 {
-            color: var(--white);
-            font-weight: 900;
-            font-size: 1.8rem;
-            text-transform: uppercase;
-            margin-top: 3rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .article-body ul, .article-body ol {
-            margin-bottom: 1.5rem;
-            padding-left: 2rem;
-        }
-
-        .article-body li {
-            font-size: 1.1rem;
-            line-height: 1.8;
-            color: var(--light-gray);
-            margin-bottom: 0.5rem;
-        }
-
-        /* CTA Box */
-        .article-cta-box {
-            background: var(--dark-gray);
-            border-left: 5px solid var(--yellow);
-            padding: 3rem;
-            margin-top: 4rem;
-        }
-
-        .article-cta-box h3 {
-            font-weight: 900;
-            font-size: 1.8rem;
-            text-transform: uppercase;
-            margin-bottom: 1rem;
-        }
-
-        .article-cta-box p {
-            color: var(--light-gray);
-            font-size: 1.1rem;
-            line-height: 1.8;
-            margin-bottom: 2rem;
-        }
-
-        .author-box {
-            display: flex;
-            align-items: center;
-            gap: 1.5rem;
-            padding: 2rem;
-            background: var(--dark-gray);
-            margin-top: 3rem;
-            border: 1px solid var(--medium-gray);
-        }
-        .author-box-image { flex-shrink: 0; }
-        .author-box-image img { width: 80px; height: 80px; border-radius: 50%; object-fit: cover; }
-        .author-box-label { display: block; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1px; color: var(--yellow); font-weight: 700; margin-bottom: 0.25rem; }
-        .author-box-name { display: block; font-weight: 900; font-size: 1.1rem; color: var(--white); text-decoration: none; transition: color 0.3s ease; }
-        .author-box-name:hover { color: var(--yellow); }
-        .author-box-bio { font-size: 0.9rem; color: var(--light-gray); line-height: 1.6; margin-top: 0.5rem; margin-bottom: 0; }
-
-        .btn-primary {
-            background: var(--yellow);
-            color: var(--black);
-            padding: 1.2rem 3rem;
-            text-decoration: none;
-            font-weight: 900;
-            font-size: 1rem;
-            transition: all 0.3s ease;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            border: 2px solid var(--yellow);
-            border-radius: 0;
-            display: inline-block;
-        }
-
-        .btn-primary:hover { background: var(--black); color: var(--yellow); }
-
-        /* Map Section */
-        .map-section { width: 100%; }
-        .map-section iframe { width: 100%; height: 400px; border: none; display: block; }
-
-        /* Footer */
-        footer { padding: 4rem 0 2rem; background: var(--black); border-top: 1px solid var(--medium-gray); width: 100%; }
-        .footer-container { max-width: 100%; margin: 0; padding: 0 4rem; display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 4rem; margin-bottom: 3rem; }
-        .footer-section h3 { font-weight: 900; margin-bottom: 1.5rem; text-transform: uppercase; font-size: 0.9rem; letter-spacing: 1px; }
-        .footer-section ul { list-style: none; }
-        .footer-section ul li { margin-bottom: 0.75rem; }
-        .footer-section a { color: var(--light-gray); text-decoration: none; transition: color 0.3s ease; font-weight: 500; }
-        .footer-section a:hover { color: var(--yellow); }
-        .footer-logo { height: 60px; margin-bottom: 1.5rem; }
-        .footer-bottom { text-align: center; padding-top: 2rem; border-top: 1px solid var(--medium-gray); color: var(--light-gray); font-size: 0.9rem; }
-
-        /* Hamburger */
-        .hamburger { display: none; flex-direction: column; justify-content: center; gap: 5px; width: 30px; height: 30px; cursor: pointer; background: none; border: none; padding: 0; z-index: 1002; }
-        .hamburger span { display: block; width: 30px; height: 3px; background: var(--white); transition: all 0.3s ease; }
-        .hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(6px, 6px); }
-        .hamburger.active span:nth-child(2) { opacity: 0; }
-        .hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(6px, -6px); }
-
-        /* Side Menu */
-        .menu-backdrop {
-            position: fixed; inset: 0; background: rgba(0,0,0,0.6); z-index: 1001;
-            opacity: 0; visibility: hidden; transition: opacity 0.3s, visibility 0.3s;
-        }
-        .menu-backdrop.open { opacity: 1; visibility: visible; }
-        .side-menu {
-            position: fixed; top: 0; right: 0; width: 300px; max-width: 85vw; height: 100%;
-            background: var(--dark-gray); z-index: 1002; transform: translateX(100%);
-            transition: transform 0.3s ease; display: flex; flex-direction: column; overflow-y: auto;
-        }
-        .side-menu.open { transform: translateX(0); }
-        .side-menu-header {
-            display: flex; align-items: center; justify-content: space-between;
-            padding: 1rem 1.5rem; border-bottom: 1px solid var(--medium-gray);
-        }
-        .side-menu-header img { height: 30px; width: auto; }
-        .side-menu-close {
-            background: none; border: none; color: var(--light-gray); font-size: 1.3rem;
-            cursor: pointer; padding: 0.25rem; transition: color 0.3s;
-        }
-        .side-menu-close:hover { color: var(--white); }
-        .side-menu-links { flex: 1; padding: 0.75rem 0; }
-        .side-menu-links a {
-            display: block; padding: 0.85rem 1.5rem; color: var(--white); text-decoration: none;
-            font-size: 1rem; font-weight: 900; text-transform: uppercase; letter-spacing: 0.5px;
-            transition: all 0.2s;
-        }
-        .side-menu-links a:hover { color: var(--yellow); background: rgba(255,255,255,0.05); }
-        .side-menu-links .sub-link {
-            font-size: 0.85rem; color: var(--light-gray); padding: 0.5rem 1.5rem 0.5rem 2.5rem;
-            font-weight: 700;
-        }
-        .side-menu-links .sub-link:hover { color: var(--yellow); }
-        .side-menu-links .menu-divider { height: 1px; background: var(--medium-gray); margin: 0.5rem 1.5rem; }
-        .side-menu-footer { border-top: 1px solid var(--medium-gray); padding: 1rem 1.5rem; }
-        .side-menu-footer a {
-            display: block; background: var(--yellow); color: var(--black); padding: 0.9rem 1.5rem;
-            text-align: center; font-weight: 900; font-size: 0.9rem; text-transform: uppercase;
-            text-decoration: none; transition: all 0.3s;
-        }
-        .side-menu-footer a:hover { background: var(--white); }
-
-        @media (max-width: 1024px) {
-            .nav-container, .article-hero-container, .footer-container { padding-left: 2rem; padding-right: 2rem; }
-            .article-content { padding: 4rem 2rem; }
-        }
-
-        @media (max-width: 768px) {
-            .hamburger { display: flex !important; }
-            .nav-links { display: none !important; }
-            .nav-container { padding: 0 1.5rem; flex-wrap: wrap; }
-            .cta-btn { order: 3; width: 100%; text-align: center; margin-top: 0.75rem; padding: 0.7rem 1rem; font-size: 0.8rem; }
-            .article-hero { padding-top: 130px; }
-            .article-hero-container { padding: 2rem 1.5rem; }
-            .article-hero h1 { font-size: clamp(1.5rem, 5vw, 2.5rem); }
-            .article-content { padding: 3rem 1.5rem; }
-            .article-body h2 { font-size: 1.4rem; }
-            .article-cta-box { padding: 2rem 1.5rem; }
-            .author-box { flex-direction: column; text-align: center; }
-            .map-section iframe { height: 250px; }
-            .footer-container { padding: 0 1.5rem; gap: 2rem; }
-            .btn-primary { padding: 0.8rem 1.5rem; font-size: 0.8rem; white-space: normal; }
-            .modal-container { max-width: calc(100% - 2rem); }
-        }
-
-        /* Skip Navigation */
-        .skip-link {
-            position: absolute;
-            top: -100%;
-            left: 50%;
-            transform: translateX(-50%);
-            background: var(--yellow);
-            color: var(--black);
-            padding: 0.75rem 1.5rem;
-            font-weight: 700;
-            z-index: 10000;
-            text-decoration: none;
-            transition: top 0.2s;
-        }
-        .skip-link:focus {
-            top: 10px;
-        }
-
-        /* Focus Visible Styles */
-        a:focus-visible,
-        button:focus-visible,
-        input:focus-visible,
-        select:focus-visible,
-        textarea:focus-visible,
-        [tabindex]:focus-visible {
-            outline: 2px solid var(--yellow);
-            outline-offset: 2px;
-        }
-
-        /* Keyboard Nav for Submenus */
-        .nav-links > li:focus-within .submenu,
-        .has-submenu.submenu-open .submenu {
-            display: block;
-        }
-        .has-submenu:focus-within > a::after {
-            border-top-color: var(--yellow);
-            transform: translateY(2px);
-        }
-    </style>
-<script defer src="/_vercel/insights/script.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&display=swap" rel="stylesheet"></noscript>
+    <link rel="stylesheet" href="/css/bia.css">
+    <script defer src="/_vercel/insights/script.js"></script>
 </head>
 <body>
     <a href="#main-content" class="skip-link">Skip to main content</a>
-    <nav>
+
+    <!-- ============ NAV (final IA — identical on every page) ============ -->
+    <nav id="nav">
         <div class="nav-container">
-            <div class="logo"><a href="../"><img src="../images/logos/logo.png" alt="Black Iron Athletics"></a></div>
+            <div class="logo">
+                <a href="/" aria-label="Black Iron Athletics home">
+                    <img src="/images/logos/logo.png" alt="Black Iron Athletics">
+                </a>
+            </div>
             <ul class="nav-links">
-                <li class="has-submenu"><a href="../about">About Us</a><ul class="submenu"><li><a href="../about#mission">Our Mission</a></li><li><a href="../about#team">Meet the Team</a></li><li><a href="../programs">Programs</a></li><li><a href="../schedule">Class Schedule</a></li></ul></li>
-                <li class="has-submenu"><a href="../getting-started">Getting Started</a><ul class="submenu"><li><a href="../getting-started#membership">Membership Options</a></li><li><a href="../getting-started#faqs">FAQs</a></li></ul></li>
-                <li><a href="../media">Media</a></li>
-                <li><a href="../blog/">Blog</a></li>
-                <li><a href="../contact">Contact</a></li>
+                <li class="has-submenu">
+                    <a href="/about">About Us</a>
+                    <ul class="submenu">
+                        <li><a href="/about">Our Mission</a></li>
+                        <li><a href="/about#team">Meet the Team</a></li>
+                        <li><a href="/media">Media</a></li>
+                    </ul>
+                </li>
+                <li><a href="/programs">Programs</a></li>
+                <li><a href="/pricing">Pricing</a></li>
+                <li class="has-submenu">
+                    <a href="/getting-started">Getting Started</a>
+                    <ul class="submenu">
+                        <li><a href="/getting-started">How it works</a></li>
+                        <li><a href="/pricing">Membership &amp; Pricing</a></li>
+                        <li><a href="/faq">FAQs</a></li>
+                    </ul>
+                </li>
+                <li><a href="/schedule">Schedule</a></li>
+                <li><a href="/blog/">Blog</a></li>
+                <li><a href="/contact">Contact</a></li>
             </ul>
-            <a href="#" onclick="openLeadModal(); return false;" class="cta-btn">Book Free Consultation</a>
-            <button class="hamburger" onclick="toggleSideMenu()" aria-label="Menu"><span></span><span></span><span></span></button>
+            <a href="#" onclick="openLeadModal(); return false;" class="cta-btn">Book a Free Consult</a>
+            <button class="hamburger" onclick="toggleSideMenu()" aria-label="Menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
         </div>
     </nav>
+
+    <!-- ============ SIDE MENU (flat mirror of the nav IA) ============ -->
     <div class="menu-backdrop" id="menuBackdrop"></div>
     <div class="side-menu" id="sideMenu">
         <div class="side-menu-header">
-            <img src="../images/logos/logo.png" alt="Black Iron Athletics">
+            <img src="/images/logos/logo.png" alt="Black Iron Athletics">
             <button class="side-menu-close" onclick="closeSideMenu()" aria-label="Close menu">&times;</button>
         </div>
         <div class="side-menu-links">
             <a href="/">Home</a>
-            <a href="about">About Us</a>
-            <a href="about#mission" class="sub-link">Our Mission</a>
-            <a href="about#team" class="sub-link">Meet the Team</a>
-            <a href="programs" class="sub-link">Programs</a>
-            <a href="schedule" class="sub-link">Class Schedule</a>
-            <a href="getting-started">Getting Started</a>
-            <a href="getting-started#membership" class="sub-link">Membership Options</a>
-            <a href="getting-started#faqs" class="sub-link">FAQs</a>
-            <a href="media">Media</a>
-            <a href="blog/">Blog</a>
-            <a href="contact">Contact</a>
+            <a href="/about">About Us</a>
+            <a href="/about" class="sub-link">Our Mission</a>
+            <a href="/about#team" class="sub-link">Meet the Team</a>
+            <a href="/media" class="sub-link">Media</a>
+            <a href="/programs">Programs</a>
+            <a href="/pricing">Pricing</a>
+            <a href="/getting-started">Getting Started</a>
+            <a href="/getting-started" class="sub-link">How it works</a>
+            <a href="/pricing" class="sub-link">Membership &amp; Pricing</a>
+            <a href="/faq" class="sub-link">FAQs</a>
+            <a href="/schedule">Schedule</a>
+            <a href="/blog/">Blog</a>
+            <a href="/contact">Contact</a>
         </div>
         <div class="side-menu-footer">
-            <a href="#" onclick="closeSideMenu(); openLeadModal(); return false;">Book Free Consultation</a>
+            <a href="#" onclick="closeSideMenu(); openLeadModal(); return false;">Book a Free Consult</a>
         </div>
     </div>
 
     <main id="main-content">
 
-    <!-- Article Hero -->
-    <section class="article-hero">
-        <img src="../images/team/owner-headcoach-mike.webp" alt="Mike Manning, Marine Corps veteran and owner of Black Iron Athletics in Frisco TX" class="article-hero-bg">
+    <!-- ============ ARTICLE HERO ============ -->
+    <section class="article-hero no-top">
         <div class="article-hero-container">
-            <div class="breadcrumb"><a href="./">Blog</a> &gt; Veteran-Owned: My Story</div>
+            <div class="breadcrumb"><a href="/">Home</a><span>/</span><a href="/blog/">Blog</a><span>/</span><span>Veteran-Owned: My Story</span></div>
             <h1>Veteran-Owned Isn&rsquo;t a Label. It&rsquo;s the Whole Story.</h1>
             <div class="article-meta">
-                <span><i class="fa-regular fa-calendar"></i> July 16, 2026</span>
-                <span><i class="fa-regular fa-clock"></i> 8 min read</span>
+                <span>July 16, 2026</span>
+                <span>8 min read</span>
+                <span>By Mike Manning</span>
             </div>
         </div>
     </section>
 
-    <!-- Article Content -->
+    <!-- ============ ARTICLE ============ -->
     <div class="article-content">
-        <a href="./" class="back-to-blog">&larr; Back to Blog</a>
-
         <div class="article-body">
-            <p>People ask what "veteran-owned" actually means at Black Iron Athletics. Most gyms that use those words put a flag on the wall and call it done. For me, the honest answer runs through Afghanistan, a broken back, a workout named after a Marine who died right behind me, and a gym on Main Street in Frisco.</p>
+            <img src="/images/team/owner-headcoach-mike.webp" alt="Mike Manning, Marine Corps veteran and owner of Black Iron Athletics in Frisco, TX" class="ph" loading="lazy">
 
-            <p>So here's the whole story. — Mike Manning, owner</p>
+            <p>People ask what &ldquo;veteran-owned&rdquo; actually means at Black Iron Athletics. Most gyms that use those words put a flag on the wall and call it done. For me, the honest answer runs through Afghanistan, a broken back, a workout named after a Marine who died right behind me, and a gym on Main Street in Frisco.</p>
+
+            <p>So here’s the whole story. — Mike Manning, owner</p>
 
             <h2>The Smallest Guy in the Room</h2>
 
-            <p>I've been an athlete my entire life — and I've been the small athlete my entire life. In high school I was a wrestler and a powerlifter, which is another way of saying I got comfortable early with being the lightest guy on the platform and making up the difference with work.</p>
+            <p>I’ve been an athlete my entire life — and I’ve been the small athlete my entire life. In high school I was a wrestler and a powerlifter, which is another way of saying I got comfortable early with being the lightest guy on the platform and making up the difference with work.</p>
 
-            <p>Shortly after high school, I joined the Marine Corps. I became a signals intelligence support team leader. If you don't know what that means: intelligence drives operations. Without it, you're fighting in the dark against an enemy you can't see. My job was to make sure my Marines never had to.</p>
+            <p>Shortly after high school, I joined the Marine Corps. I became a signals intelligence support team leader. If you don’t know what that means: intelligence drives operations. Without it, you’re fighting in the dark against an enemy you can’t see. My job was to make sure my Marines never had to.</p>
 
             <h2>Afghanistan, 2009</h2>
 
@@ -493,264 +144,276 @@
 
             <p>By the end I was beat up and broken down, weighing close to 115 pounds and carrying close to 100 pounds of gear at any given point. But the weight I actually remember carrying was my team — my Marines, and the Marines we supported. My mindset was simple: survive one more day. My job was simpler: get my guys home safely.</p>
 
-            <p>I got back, and almost immediately left for another deployment, this time to the Philippines. I was still in bad shape — physically, mentally, emotionally. I continued the mission anyway, supported my team, and pushed where I could to be the best Marine I could be. It's what I knew how to do.</p>
+            <p>I got back, and almost immediately left for another deployment, this time to the Philippines. I was still in bad shape — physically, mentally, emotionally. I continued the mission anyway, supported my team, and pushed where I could to be the best Marine I could be. It’s what I knew how to do.</p>
 
             <h2>The Body That Came Home</h2>
 
-            <p>When I got back and life settled into the normal rhythm of the fleet, I finally took stock of what those years had cost. My foot no longer worked properly because of the leg injury. My back made it difficult to walk, to run, to do much of anything. I wasn't squatting. I wasn't doing the functional movements that had defined my whole life as an athlete.</p>
+            <p>When I got back and life settled into the normal rhythm of the fleet, I finally took stock of what those years had cost. My foot no longer worked properly because of the leg injury. My back made it difficult to walk, to run, to do much of anything. I wasn’t squatting. I wasn’t doing the functional movements that had defined my whole life as an athlete.</p>
 
-            <p>I gave everything I had to healing — to recovering, recuperating, getting my body back to where the Marine Corps needed it to be. It wasn't enough. In 2012, I was medically retired, and I moved back to Texas.</p>
+            <p>I gave everything I had to healing — to recovering, recuperating, getting my body back to where the Marine Corps needed it to be. It wasn’t enough. In 2012, I was medically retired, and I moved back to Texas.</p>
 
-            <p>If you've ever lost the thing that told you who you were, you know exactly what that season felt like.</p>
+            <p>If you’ve ever lost the thing that told you who you were, you know exactly what that season felt like.</p>
 
             <h2>Learning to Be an Athlete Again</h2>
 
-            <p>While I was in, this thing called CrossFit had gotten popular. When I got out, I found something in it I didn't expect: community and camaraderie — everything I was missing from the Marine Corps. It gave me a place to start over as an athlete.</p>
+            <p>While I was in, this thing called CrossFit had gotten popular. When I got out, I found something in it I didn’t expect: community and camaraderie — everything I was missing from the Marine Corps. It gave me a place to start over as an athlete.</p>
 
             <p>And I do mean start over. I had to learn how to run, jump, and squat again — all of it, this time with the modifications and complications that come with being a medically retired combat veteran. My body was not the body that went in. But I still wanted to be an athlete. The gym was where I was happy again.</p>
 
-            <p>So I turned down a very high-paying job and went into coaching full time. People thought I was crazy. They weren't entirely wrong. But some decisions you make with a spreadsheet, and some you make because you finally feel like yourself again.</p>
+            <p>So I turned down a very high-paying job and went into coaching full time. People thought I was crazy. They weren’t entirely wrong. But some decisions you make with a spreadsheet, and some you make because you finally feel like yourself again.</p>
 
             <h2>MarineWOD and Sergeant Ryan Lane</h2>
 
-            <p>Around that time I founded a project called MarineWOD. The idea was to use storytelling to honor Marines who didn't come home — to take who they were and what they lived through, and personify it in a workout of the day. It grew nationwide. People I'd never met would reach out and ask me to write the story of a Marine they'd lost, and I'd turn their memory into something you could feel in your hands and lungs.</p>
+            <p>Around that time I founded a project called MarineWOD. The idea was to use storytelling to honor Marines who didn’t come home — to take who they were and what they lived through, and personify it in a workout of the day. It grew nationwide. People I’d never met would reach out and ask me to write the story of a Marine they’d lost, and I’d turn their memory into something you could feel in your hands and lungs.</p>
 
-            <p>The first one I ever wrote was for Sergeant Ryan Lane. He died right behind me in Afghanistan. That impact stayed with me for years, and it's still felt today. Writing his workout was the best way I knew to honor and remember him.</p>
+            <p>The first one I ever wrote was for Sergeant Ryan Lane. He died right behind me in Afghanistan. That impact stayed with me for years, and it’s still felt today. Writing his workout was the best way I knew to honor and remember him.</p>
 
             <p>The very first MarineWOD event was the Sgt Lane WOD, and we flew his mom out from Pittsburgh to be there and witness it. Every movement in that workout meant something. Burpees were hitting the deck and getting back up again. Kettlebell swings were filling a sandbag in a hole and swinging it up and out. Deadlifts were picking your buddy up and getting him to safety — even when he was heavy.</p>
 
-            <p>MarineWOD doesn't exist anymore. What it taught me does: a workout can carry a story, and a gym can carry a purpose.</p>
+            <p>MarineWOD doesn’t exist anymore. What it taught me does: a workout can carry a story, and a gym can carry a purpose.</p>
 
             <h2>Finding Black Iron</h2>
 
-            <p>MarineWOD led me to a young gym called Black Iron CrossFit, six months to a year into its life. I came on to coach, became head coach, and eventually an owner. I'd always wanted my own gym, and honestly, I thought this was a stepping stone to it.</p>
+            <p>MarineWOD led me to a young gym called Black Iron CrossFit, six months to a year into its life. I came on to coach, became head coach, and eventually an owner. I’d always wanted my own gym, and honestly, I thought this was a stepping stone to it.</p>
 
-            <p>Then I fell in love with the community. I found my place. I found my home. I found my sense of purpose again outside the Marine Corps — helping people become athletes and get through whatever challenges they're carrying, physical, mental, or emotional. This became my new mission and my ministry at the same time.</p>
+            <p>Then I fell in love with the community. I found my place. I found my home. I found my sense of purpose again outside the Marine Corps — helping people become athletes and get through whatever challenges they’re carrying, physical, mental, or emotional. This became my new mission and my ministry at the same time.</p>
 
-            <p>I eventually had the opportunity to buy out my business partners, and I've been the sole owner of what is now Black Iron Athletics since 2018. We've been going strong ever since — and we're getting ready for our next chapter: a bigger facility with a bigger focus on nutrition and recovery, built on the same core principles and methodology we've run for years. Until the day those new doors open, you'll find us where we've always been — <a href="../contact" style="color: var(--yellow); font-weight: 700;">279 Main St, Suite 122, in Frisco</a>.</p>
+            <p>I eventually had the opportunity to buy out my business partners, and I’ve been the sole owner of what is now Black Iron Athletics since 2018. We’ve been going strong ever since — and we’re getting ready for our next chapter: a bigger facility with a bigger focus on nutrition and recovery, built on the same core principles and methodology we’ve run for years. Until the day those new doors open, you’ll find us where we’ve always been — <a href="/contact">279 Main St, Suite 122, in Frisco</a>.</p>
 
             <h2>What Veteran-Owned Actually Means Here</h2>
 
-            <p>It means this gym was built by somebody who had to rebuild. Every member who walks in carrying something — an old injury, a lost identity, a body that doesn't work the way it used to — is walking into a gym owned by someone who has stood exactly there. Nobody gets written off here. Our mission is the same one I found on the other side of my own story: we help everyday people become everyday athletes. No matter where you're starting from, what you've been through, or what you're carrying, we help guide you to a happier, healthier life through movement, nutrition, community, good habits, and purpose.</p>
+            <p>It means this gym was built by somebody who had to rebuild. Every member who walks in carrying something — an old injury, a lost identity, a body that doesn’t work the way it used to — is walking into a gym owned by someone who has stood exactly there. Nobody gets written off here. Our mission is the same one I found on the other side of my own story: we help everyday people become everyday athletes. No matter where you’re starting from, what you’ve been through, or what you’re carrying, we help guide you to a happier, healthier life through movement, nutrition, community, good habits, and purpose.</p>
 
             <p>It also means two concrete things:</p>
 
             <ul>
-                <li><strong>Military, veterans, and first responders get a discount</strong> on membership. Ask your coach about it at your <a href="../getting-started" style="color: var(--yellow); font-weight: 700;">free consultation</a>.</li>
+                <li><strong>Military and first responders get 5% off any membership.</strong> Just mention your service at your <a href="/getting-started">free consultation</a>.</li>
                 <li><strong>Our adaptive athletics program is completely free.</strong> We meet every other Wednesday at 11am, and anyone is welcome — regardless of disability, ability, or ability to pay. The program is sponsored by Texas Parasport, and it exists so we stay grounded in the work that started it all.</li>
             </ul>
 
             <h2>One More Day</h2>
 
-            <p>In Afghanistan, my mindset was survive one more day. These days I ask something easier of myself, and of every member here: show up one more day. String enough of those together and you get a life back. I'm proof.</p>
+            <p>In Afghanistan, my mindset was survive one more day. These days I ask something easier of myself, and of every member here: show up one more day. String enough of those together and you get a life back. I’m proof.</p>
 
-            <p>If you're a veteran in Frisco looking for a gym where somebody understands what you're carrying, come find me — I'm on the floor most days. And if you've never served a day in your life, the invitation is exactly the same, because this place was never just for us. Book a <a href="../getting-started" style="color: var(--yellow); font-weight: 700;">free consultation</a>, or read about <a href="first-week-at-black-iron-athletics" style="color: var(--yellow); font-weight: 700;">what your first week looks like</a>. I'll see you on the floor.</p>
+            <p>If you’re a veteran in Frisco looking for a gym where somebody understands what you’re carrying, come find me — I’m on the floor most days. And if you’ve never served a day in your life, the invitation is exactly the same, because this place was never just for us. Book a <a href="/getting-started">free consultation</a>, or read about <a href="/blog/first-week-at-black-iron-athletics">what your first week looks like</a>. I’ll see you on the floor.</p>
         </div>
 
+        <!-- Author box -->
         <div class="author-box">
-            <a href="../mike-manning" class="author-box-image">
-                <img src="../images/team/owner-headcoach-mike.webp" alt="Mike Manning" loading="lazy">
-            </a>
-            <div class="author-box-info">
+            <img src="/images/team/owner-headcoach-mike.webp" alt="Mike Manning, owner and head coach of Black Iron Athletics" class="author-box-image" loading="lazy">
+            <div>
                 <span class="author-box-label">Written by</span>
-                <a href="../mike-manning" class="author-box-name">Mike Manning</a>
+                <a href="/mike-manning" class="author-box-name">Mike Manning</a>
                 <p class="author-box-bio">U.S. Marine Corps veteran, owner and head coach of Black Iron Athletics in Frisco, TX. Over 20 years of coaching experience with certifications in USA Weightlifting, personal training, and more.</p>
             </div>
         </div>
 
-        <!-- CTA Box -->
+        <!-- CTA boxes -->
         <div class="article-cta-box">
             <h3>Come Find Your Place Here</h3>
-            <p>Veteran or civilian, the invitation is the same — a free consultation, an honest conversation, and a community that builds each other up. Explore our <a href="../programs" style="color: var(--yellow); font-weight: 700;">programs</a> or see how easy it is to <a href="../getting-started" style="color: var(--yellow); font-weight: 700;">get started</a>.</p>
-            <a href="#" onclick="openLeadModal(); return false;" class="btn-primary">Book Free Consultation</a>
+            <p>Veteran or civilian, the invitation is the same — a free consultation, an honest conversation, and a community that builds each other up. Explore our <a href="/programs">programs</a> or see how easy it is to <a href="/getting-started">get started</a>.</p>
+            <a href="#" onclick="openLeadModal(); return false;" class="btn btn-y">Book a Free Consult</a>
         </div>
 
-        <div class="article-cta-box" style="margin-top: 2rem; border-left-color: var(--white);">
+        <div class="article-cta-box">
             <h3>Get Tips Like This in Your Inbox</h3>
             <p>Subscribe for weekly training, nutrition, and supplement tips from the coaches at Black Iron Athletics.</p>
-            <a href="#" onclick="openSubscribeModal(); return false;" class="btn-primary"><i class="fa-solid fa-envelope" style="margin-right: 0.5rem;"></i> Subscribe</a>
+            <a href="#" onclick="openSubscribeModal(); return false;" class="btn btn-ghost">Subscribe</a>
         </div>
-    </div>
 
-    <!-- Map Section -->
-    <div class="map-section">
-        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3344.9875647886857!2d-96.89026308820058!3d33.15034697358084!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x864c3a240f77e3f7%3A0x9f460209df528d6e!2sBlack%20Iron%20Athletics!5e0!3m2!1sen!2sus!4v1737509000000!5m2!1sen!2sus" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        <a href="/blog/" class="back-to-blog"><svg width="16" height="12" viewBox="0 0 16 12" fill="none" aria-hidden="true"><path d="M6 1L1 6l5 5M1 6h14" stroke="currentColor" stroke-width="1.5"/></svg> Back to the blog</a>
     </div>
-
-    <!-- Footer -->
 
     </main>
 
+    <!-- ============ FOOTER ============ -->
     <footer>
-        <div class="footer-container">
-            <div class="footer-section">
-                <a href="../">
-                    <img src="../images/logos/logo.png" alt="Black Iron Athletics" class="footer-logo" loading="lazy">
-                </a>
-                <p style="color: var(--light-gray); margin-bottom: 1rem;">Forging everyday people into everyday athletes through strength, community, and purpose.</p>
-                <p style="color: var(--light-gray); font-size: 0.85rem;">Proudly serving Frisco, Prosper, The Colony, Little Elm, McKinney, Plano, Celina &amp; North Dallas.</p>
-            </div>
-            <div class="footer-section">
-                <h3>Quick Links</h3>
-                <ul>
-                    <li><a href="../">Home</a></li>
-                    <li><a href="../schedule">Class Schedule</a></li>
-                    <li><a href="../faq">FAQ</a></li>
+        <div class="wrap">
+            <div class="foot-top">
+                <div>
+                    <div class="foot-brand">
+                        <img src="/images/logos/Anvil-WHITE.png" alt="Black Iron Athletics anvil mark" loading="lazy" width="88" height="88">
+                        <div>
+                            <b>Black Iron<br>Athletics</b>
+                            <p class="foot-mission">We help everyday people become everyday athletes.</p>
+                        </div>
+                    </div>
+                    <p class="foot-note">Veteran-owned &middot; Est. 2013 &middot; Serving Frisco, Prosper, The Colony, Little Elm, McKinney, Plano, Celina &amp; North Dallas.</p>
+                </div>
+                <ul class="foot-col">
+                    <li><b>Quick links</b></li>
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/pricing">Pricing</a></li>
+                    <li><a href="/schedule">Class Schedule</a></li>
+                    <li><a href="/faq">FAQ</a></li>
                     <li><a href="#" onclick="openSubscribeModal(); return false;">Subscribe</a></li>
                     <li><a href="#" onclick="openCancelModal(); return false;">Cancel Membership</a></li>
-                    <li><a href="../privacy-policy">Privacy Policy</a></li>
-                    <li><a href="../terms">Terms &amp; Conditions</a></li>
-                    <li><a href="../privacy-policy#sms-terms">SMS Terms</a></li>
+                    <li><a href="/privacy-policy">Privacy Policy</a></li>
+                    <li><a href="/terms">Terms &amp; Conditions</a></li>
+                    <li><a href="/privacy-policy#sms-terms">SMS Terms</a></li>
+                </ul>
+                <ul class="foot-col">
+                    <li><b>Find us</b></li>
+                    <li>279 Main St, Suite 122<br>Frisco, TX 75036</li>
+                    <li>Suite 110 &mdash; our new home next door &mdash; opening October 2026.</li>
+                    <li><a href="tel:+19727857036">(972) 785-7036</a></li>
+                </ul>
+                <ul class="foot-col">
+                    <li><b>Hours</b></li>
+                    <li>Open gym 7 days a week.</li>
+                    <li><a href="/schedule">See the class schedule</a></li>
                 </ul>
             </div>
-            <div class="footer-section">
-                <h3>Contact</h3>
-                <p style="color: var(--light-gray); margin-bottom: 1rem;">279 Main St #122<br>Frisco, TX 75036</p>
-                <p style="margin-bottom: 1.5rem;"><a href="tel:(972) 785-7036" style="color: var(--yellow); font-weight: 700;">(972) 785-7036</a></p>
+            <div class="foot-bottom">
+                <span>&copy; 2026 Black Iron Athletics. Veteran-owned &middot; Est. 2013.</span>
+                <span class="foot-social">
+                    <a href="https://www.instagram.com/blackiron_athletics/" target="_blank" rel="noopener" aria-label="Instagram">
+                        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="4"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="1.1" fill="currentColor" stroke="none"/></svg>
+                    </a>
+                    <a href="https://www.youtube.com/channel/UCF1XjUXEs81OWY70chem6vA" target="_blank" rel="noopener" aria-label="YouTube">
+                        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="2.5" y="5.5" width="19" height="13" rx="3"/><path d="M10 9.5v5l4.5-2.5z" fill="currentColor" stroke="none"/></svg>
+                    </a>
+                    <a href="https://www.facebook.com/BlackIronAthletics/" target="_blank" rel="noopener" aria-label="Facebook">
+                        <svg class="icon-fill" viewBox="0 0 24 24" aria-hidden="true"><path d="M13.5 21v-7h2.4l.4-3h-2.8V9.1c0-.9.3-1.5 1.6-1.5H16.6V4.9c-.3 0-1.2-.1-2.2-.1-2.2 0-3.7 1.3-3.7 3.8V11H8.3v3h2.4v7h2.8z"/></svg>
+                    </a>
+                </span>
             </div>
-            <div class="footer-section">
-                <h3>Hours</h3>
-                <p style="color: var(--light-gray); margin-bottom: 1rem;">Check our class calendar for an up to date schedule.</p>
-                <p style="color: var(--yellow); font-weight: 700;">Open Gym: 7 Days a Week</p>
-            </div>
-        </div>
-        <div class="footer-bottom">
-            <div style="margin-bottom: 1.5rem; display: flex; justify-content: center; gap: 1.5rem; font-size: 1.5rem;">
-                <a href="https://www.instagram.com/blackiron_athletics/" target="_blank" rel="noopener" style="color: var(--light-gray); transition: color 0.3s ease;" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
-                <a href="https://www.youtube.com/channel/UCF1XjUXEs81OWY70chem6vA" target="_blank" rel="noopener" style="color: var(--light-gray); transition: color 0.3s ease;" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
-                <a href="https://www.facebook.com/BlackIronAthletics/" target="_blank" rel="noopener" style="color: var(--light-gray); transition: color 0.3s ease;" aria-label="Facebook"><i class="fa-brands fa-facebook"></i></a>
-            </div>
-            <p>&copy; 2026 Black Iron Athletics. All rights reserved.</p>
         </div>
     </footer>
 
-<!-- Lead Capture Popup Modal -->
-<style>
-    .modal-overlay {
-        display: none;
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: rgba(0, 0, 0, 0.9);
-        z-index: 9999;
-        overflow-y: auto;
-        padding: 2rem;
-    }
-    .modal-overlay.active {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
-    .modal-container {
-        background: #1a1a1a;
-        border: 2px solid var(--medium-gray);
-        max-width: 600px;
-        width: 100%;
-        position: relative;
-        margin: auto;
-        animation: modalSlideIn 0.3s ease-out;
-    }
-    @keyframes modalSlideIn {
-        from { opacity: 0; transform: translateY(-50px); }
-        to { opacity: 1; transform: translateY(0); }
-    }
-    .modal-close {
-        position: absolute;
-        top: 0.5rem;
-        right: 0.5rem;
-        background: transparent;
-        border: none;
-        color: var(--light-gray);
-        font-size: 2rem;
-        cursor: pointer;
-        line-height: 1;
-        padding: 0.5rem;
-        transition: color 0.3s ease;
-        font-weight: 300;
-        z-index: 10000;
-    }
-    .modal-close:hover { color: var(--yellow); }
-    .modal-container iframe {
-        width: 100%;
-        border: none;
-        display: block;
-    }
-    @media (max-width: 768px) {
-        .modal-overlay { padding: 1rem; }
-    }
-</style>
+    <!-- CONTRACT: sticky mobile CTA on all marketing pages (shows at 640px down) -->
+    <a id="stickyMobileCta" class="mobile-cta" href="#" onclick="openLeadModal(); return false;">Book a Free Consult</a>
 
-<div class="modal-overlay" id="leadModal">
-    <div class="modal-container">
-        <button class="modal-close" onclick="closeLeadModal()">&times;</button>
-        <iframe
-            data-src="https://api.leadconnectorhq.com/widget/form/vw0hMdDkTCL6K5N3i7vF"
-            style="width:100%;height:100%;border:none;border-radius:4px"
-            id="inline-vw0hMdDkTCL6K5N3i7vF"
-            data-layout="{'id':'INLINE'}"
-            data-trigger-type="alwaysShow"
-            data-trigger-value=""
-            data-activation-type="alwaysActivated"
-            data-activation-value=""
-            data-deactivation-type="neverDeactivate"
-            data-deactivation-value=""
-            data-form-name="Form 2"
-            data-height="565"
-            data-layout-iframe-id="inline-vw0hMdDkTCL6K5N3i7vF"
-            data-form-id="vw0hMdDkTCL6K5N3i7vF"
-            title="Form 2"
-        ></iframe>
-    </div>
-</div>
+    <!-- ============ SCHEMA: BreadcrumbList ============ -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://www.blackironathletics.com/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Blog",
+            "item": "https://www.blackironathletics.com/blog/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "Veteran-Owned Isn’t a Label. It’s the Whole Story.",
+            "item": "https://www.blackironathletics.com/blog/veteran-owned-gym-frisco-tx"
+          }
+      ]
+    }
+    </script>
 
-<div class="modal-overlay" id="cancelModal">
-    <div class="modal-container">
-        <button class="modal-close" onclick="closeCancelModal()">&times;</button>
-        <iframe
-            data-src="https://api.leadconnectorhq.com/widget/form/d4jtjY9fM2Hv9zVTzLwj"
-            style="width:100%;height:100%;border:none;border-radius:4px"
-            id="inline-d4jtjY9fM2Hv9zVTzLwj"
-            data-layout="{'id':'INLINE'}"
-            data-trigger-type="alwaysShow"
-            data-trigger-value=""
-            data-activation-type="alwaysActivated"
-            data-activation-value=""
-            data-deactivation-type="neverDeactivate"
-            data-deactivation-value=""
-            data-form-name="Membership Cancellation Form"
-            data-height="787"
-            data-layout-iframe-id="inline-d4jtjY9fM2Hv9zVTzLwj"
-            data-form-id="d4jtjY9fM2Hv9zVTzLwj"
-            title="Membership Cancellation Form"
-        ></iframe>
-    </div>
-</div>
-<div class="modal-overlay" id="subscribeModal">
-    <div class="modal-container">
-        <button class="modal-close" onclick="closeSubscribeModal()">&times;</button>
-        <iframe
-            data-src="https://api.leadconnectorhq.com/widget/form/GnNJNaEX8InuIeGxWjaI"
-            style="width:100%;height:100%;border:none;border-radius:4px"
-            id="inline-GnNJNaEX8InuIeGxWjaI"
-            data-layout="{'id':'INLINE'}"
-            data-trigger-type="alwaysShow"
-            data-trigger-value=""
-            data-activation-type="alwaysActivated"
-            data-activation-value=""
-            data-deactivation-type="neverDeactivate"
-            data-deactivation-value=""
-            data-form-name="Subscribe"
-            data-height="430"
-            data-layout-iframe-id="inline-GnNJNaEX8InuIeGxWjaI"
-            data-form-id="GnNJNaEX8InuIeGxWjaI"
-            title="Subscribe"
-        ></iframe>
-    </div>
-</div>
+    <!-- ============ SCHEMA: BlogPosting ============ -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      "headline": "Veteran-Owned Isn’t a Label. It’s the Whole Story.",
+      "description": "Why Black Iron Athletics is veteran-owned — a Marine intelligence team leader’s story of Afghanistan, injury, recovery, and the Frisco, TX gym it built.",
+      "url": "https://www.blackironathletics.com/blog/veteran-owned-gym-frisco-tx",
+      "datePublished": "2026-07-16",
+      "dateModified": "2026-08-01",
+      "author": {
+        "@type": "Person",
+        "name": "Mike Manning",
+        "url": "https://www.blackironathletics.com/mike-manning"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "Black Iron Athletics",
+        "url": "https://www.blackironathletics.com",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://www.blackironathletics.com/images/logos/logo.png"
+        }
+      },
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://www.blackironathletics.com/blog/veteran-owned-gym-frisco-tx"
+      }
+    }
+    </script>
 
-<script>
+    <!-- ============ GHL MODALS (iframe blocks VERBATIM — lazy data-src, ids unchanged) ============ -->
+    <div class="modal-overlay" id="leadModal">
+        <div class="modal-container">
+            <button class="modal-close" onclick="closeLeadModal()">&times;</button>
+            <iframe
+                data-src="https://api.leadconnectorhq.com/widget/form/vw0hMdDkTCL6K5N3i7vF"
+                style="width:100%;height:100%;border:none;border-radius:4px"
+                id="inline-vw0hMdDkTCL6K5N3i7vF"
+                data-layout="{'id':'INLINE'}"
+                data-trigger-type="alwaysShow"
+                data-trigger-value=""
+                data-activation-type="alwaysActivated"
+                data-activation-value=""
+                data-deactivation-type="neverDeactivate"
+                data-deactivation-value=""
+                data-form-name="Form 2"
+                data-height="565"
+                data-layout-iframe-id="inline-vw0hMdDkTCL6K5N3i7vF"
+                data-form-id="vw0hMdDkTCL6K5N3i7vF"
+                title="Form 2"
+            ></iframe>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="cancelModal">
+        <div class="modal-container">
+            <button class="modal-close" onclick="closeCancelModal()">&times;</button>
+            <iframe
+                data-src="https://api.leadconnectorhq.com/widget/form/d4jtjY9fM2Hv9zVTzLwj"
+                style="width:100%;height:100%;border:none;border-radius:4px"
+                id="inline-d4jtjY9fM2Hv9zVTzLwj"
+                data-layout="{'id':'INLINE'}"
+                data-trigger-type="alwaysShow"
+                data-trigger-value=""
+                data-activation-type="alwaysActivated"
+                data-activation-value=""
+                data-deactivation-type="neverDeactivate"
+                data-deactivation-value=""
+                data-form-name="Membership Cancellation Form"
+                data-height="787"
+                data-layout-iframe-id="inline-d4jtjY9fM2Hv9zVTzLwj"
+                data-form-id="d4jtjY9fM2Hv9zVTzLwj"
+                title="Membership Cancellation Form"
+            ></iframe>
+        </div>
+    </div>
+    <div class="modal-overlay" id="subscribeModal">
+        <div class="modal-container">
+            <button class="modal-close" onclick="closeSubscribeModal()">&times;</button>
+            <iframe
+                data-src="https://api.leadconnectorhq.com/widget/form/GnNJNaEX8InuIeGxWjaI"
+                style="width:100%;height:100%;border:none;border-radius:4px"
+                id="inline-GnNJNaEX8InuIeGxWjaI"
+                data-layout="{'id':'INLINE'}"
+                data-trigger-type="alwaysShow"
+                data-trigger-value=""
+                data-activation-type="alwaysActivated"
+                data-activation-value=""
+                data-deactivation-type="neverDeactivate"
+                data-deactivation-value=""
+                data-form-name="Subscribe"
+                data-height="430"
+                data-layout-iframe-id="inline-GnNJNaEX8InuIeGxWjaI"
+                data-form-id="GnNJNaEX8InuIeGxWjaI"
+                title="Subscribe"
+            ></iframe>
+        </div>
+    </div>
+
+    <!-- ============ PAGE JS: modals + side menu (function names byte-identical to the live site) ============ -->
+    <script>
     function openLeadModal() {
         var modal = document.getElementById('leadModal');
         var iframe = modal.querySelector('iframe');
@@ -797,6 +460,13 @@
     document.getElementById('subscribeModal').addEventListener('click', function(e) {
         if (e.target === this) { closeSubscribeModal(); }
     });
+
+    // Sticky Mobile CTA - hide when modal is open
+    window.addEventListener('scroll', function() {
+        const stickyBar = document.getElementById('stickyMobileCta');
+        if (stickyBar) stickyBar.style.display = '';
+    });
+
     // Side Menu
     function toggleSideMenu() {
         var menu = document.getElementById('sideMenu');
@@ -824,10 +494,32 @@
     document.addEventListener('keydown', function(e) {
         if (e.key === 'Escape') closeSideMenu();
     });
-</script>
+    </script>
 
-<script src="https://link.msgsndr.com/js/form_embed.js" type="text/javascript" defer></script>
-<script src="https://widgets.leadconnectorhq.com/loader.js" data-resources-url="https://widgets.leadconnectorhq.com/chat-widget/loader.js" data-widget-id="6995d6d76e6009387f78d31e" defer></script>
+    <!-- ============ PAGE JS: nav scroll state + reveal observer ============ -->
+    <script>
+    (function(){
+        var nav = document.getElementById('nav');
+        function onScroll(){ if (nav) nav.classList.toggle('scrolled', window.scrollY > 24); }
+        window.addEventListener('scroll', onScroll, {passive:true});
+        onScroll();
+
+        var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        var items = document.querySelectorAll('.rv');
+        if (reduced || !('IntersectionObserver' in window)) {
+            items.forEach(function(el){ el.classList.add('on'); });
+            return;
+        }
+        var io = new IntersectionObserver(function(entries){
+            entries.forEach(function(e){
+                if (e.isIntersecting) { e.target.classList.add('on'); io.unobserve(e.target); }
+            });
+        }, {threshold:0.12, rootMargin:'0px 0px -40px 0px'});
+        items.forEach(function(el){ io.observe(el); });
+    })();
+    </script>
+
+<!-- ============ A11Y TAIL IIFE — copied VERBATIM from index.html. Do not edit. ============ -->
 <script>
 // ===== ACCESSIBILITY: KEYBOARD NAV & FOCUS TRAP =====
 (function() {
@@ -900,63 +592,7 @@
 })();
 </script>
 
-    <!-- BreadcrumbList Schema -->
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "BreadcrumbList",
-      "itemListElement": [
-          {
-            "@type": "ListItem",
-            "position": 1,
-            "name": "Home",
-            "item": "https://www.blackironathletics.com/"
-          },
-          {
-            "@type": "ListItem",
-            "position": 2,
-            "name": "Blog",
-            "item": "https://www.blackironathletics.com/blog/"
-          },
-          {
-            "@type": "ListItem",
-            "position": 3,
-            "name": "Veteran-Owned Isn't a Label. It's the Whole Story.",
-            "item": "https://www.blackironathletics.com/blog/veteran-owned-gym-frisco-tx"
-          }
-      ]
-    }
-    </script>
-
-    <!-- BlogPosting Schema -->
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "BlogPosting",
-      "headline": "Veteran-Owned Isn't a Label. It's the Whole Story.",
-      "description": "Why Black Iron Athletics is veteran-owned — a Marine intelligence team leader's story of Afghanistan, injury, recovery, and the Frisco, TX gym it built.",
-      "url": "https://www.blackironathletics.com/blog/veteran-owned-gym-frisco-tx",
-      "datePublished": "2026-07-16",
-      "dateModified": "2026-07-16",
-      "author": {
-        "@type": "Person",
-        "name": "Mike Manning",
-        "url": "https://www.blackironathletics.com/mike-manning"
-      },
-      "publisher": {
-        "@type": "Organization",
-        "name": "Black Iron Athletics",
-        "url": "https://www.blackironathletics.com",
-        "logo": {
-          "@type": "ImageObject",
-          "url": "https://www.blackironathletics.com/images/logos/logo.png"
-        }
-      },
-      "mainEntityOfPage": {
-        "@type": "WebPage",
-        "@id": "https://www.blackironathletics.com/blog/veteran-owned-gym-frisco-tx"
-      }
-    }
-    </script>
+<script src="https://link.msgsndr.com/js/form_embed.js" type="text/javascript" defer></script>
+<script src="https://widgets.leadconnectorhq.com/loader.js" data-resources-url="https://widgets.leadconnectorhq.com/chat-widget/loader.js" data-widget-id="6995d6d76e6009387f78d31e" defer></script>
 </body>
 </html>

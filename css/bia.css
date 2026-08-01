@@ -176,7 +176,7 @@ nav.scrolled{background:rgba(0,0,0,.92);border-bottom-color:var(--steel-line);ba
 
 .nav-links{display:flex;align-items:center;gap:26px;margin-left:auto;list-style:none}
 .nav-links>li{position:relative;display:flex;align-items:center;height:74px}
-.nav-links a{font-size:12px;font-weight:700;letter-spacing:1.8px;text-transform:uppercase;color:var(--gray);transition:color .18s ease}
+.nav-links a{font-size:12px;font-weight:700;letter-spacing:1.8px;text-transform:uppercase;color:var(--gray);transition:color .18s ease;white-space:nowrap}
 .nav-links>li>a:hover{color:var(--white)}
 
 /* Dropdown submenu (.has-submenu pattern — markup + keyboard JS
@@ -222,7 +222,7 @@ nav.scrolled{background:rgba(0,0,0,.92);border-bottom-color:var(--steel-line);ba
 .hamburger.active span:nth-child(2){opacity:0}
 .hamburger.active span:nth-child(3){transform:rotate(-45deg) translate(6px,-6px)}
 
-@media (max-width:900px){
+@media (max-width:1199px){
   .nav-links{display:none}
   .hamburger{display:flex}
   .cta-btn{margin-left:auto}
