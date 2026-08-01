@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Black Iron Athletics — Website Redesign Prototypes</title>
+    <meta name="description" content="Internal review hub for the three homepage redesign directions.">
+    <meta name="robots" content="noindex,nofollow">
+    <link rel="icon" type="image/png" href="/images/anvil-favicon.png">
+    <meta name="theme-color" content="#101010">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: #101010;
+            color: #fff;
+            line-height: 1.6;
+            min-height: 100vh;
+            padding: 4rem 1.5rem 5rem;
+        }
+        .wrap { max-width: 1060px; margin: 0 auto; }
+        .eyebrow {
+            font-size: 0.75rem; font-weight: 700; letter-spacing: 3px;
+            text-transform: uppercase; color: #FFD202; margin-bottom: 1rem;
+        }
+        h1 {
+            font-weight: 900; text-transform: uppercase; line-height: 1.05;
+            font-size: clamp(1.9rem, 5vw, 3.2rem); margin-bottom: 1rem;
+        }
+        .intro { color: #b5b5b5; max-width: 46em; margin-bottom: 0.75rem; }
+        .note { color: #777; font-size: 0.85rem; max-width: 46em; margin-bottom: 3rem; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.25rem; }
+        a.card {
+            display: block; text-decoration: none; color: #fff;
+            border: 1px solid #2c2c2c; background: #171717;
+            padding: 1.75rem 1.5rem 1.5rem; transition: transform .15s ease, border-color .15s ease;
+        }
+        a.card:hover, a.card:focus-visible { transform: translateY(-3px); border-color: #555; }
+        a.card:focus-visible { outline: 2px solid #FFD202; outline-offset: 2px; }
+        .swatches { display: flex; gap: 6px; margin-bottom: 1.1rem; }
+        .swatches span { width: 34px; height: 18px; display: block; border: 1px solid rgba(255,255,255,0.18); }
+        .dir { font-size: 0.72rem; font-weight: 700; letter-spacing: 2.5px; text-transform: uppercase; color: #8f8f8f; margin-bottom: 0.35rem; }
+        h2 { font-weight: 900; text-transform: uppercase; font-size: 1.25rem; margin-bottom: 0.6rem; }
+        .card p { color: #b5b5b5; font-size: 0.92rem; margin-bottom: 1.1rem; }
+        .open { font-weight: 700; font-size: 0.85rem; letter-spacing: 1px; text-transform: uppercase; }
+        .c1 .open { color: #F5C518; } .c2 .open { color: #FFD202; } .c3 .open { color: #C97B4A; }
+        footer { margin-top: 3.5rem; color: #666; font-size: 0.8rem; }
+        footer a { color: #999; }
+    </style>
+</head>
+<body>
+    <div class="wrap">
+        <p class="eyebrow">Internal review — not linked from the live site</p>
+        <h1>Homepage redesign<br>three directions</h1>
+        <p class="intro">Same bones on every page — hero, proof, the plan, programs, three levels, the new building, coaches, FAQ, one booking funnel. Three different visual languages. Pick the one that feels like walking into 279 Main St.</p>
+        <p class="note">Built from a deep-dive study of the highest-performing gym websites (design-award independents, premium clubs, conversion case studies, and the DFW local market). Full report shared separately. Best viewed on your phone and your laptop — the mobile experience is where most visitors will meet it.</p>
+        <div class="grid">
+            <a class="card c1" href="/redesign/direction-1.html">
+                <div class="swatches"><span style="background:#1A1D21"></span><span style="background:#F1ECE3"></span><span style="background:#B8895A"></span><span style="background:#F5C518"></span></div>
+                <div class="dir">Direction 1</div>
+                <h2>Main Street</h2>
+                <p>The locked rebrand palette — Iron, Bone, Smoked Oak, Forge. Premium editorial, alternating dark and light sections. The digital version of the new lobby.</p>
+                <span class="open">View direction 1</span>
+            </a>
+            <a class="card c2" href="/redesign/direction-2.html">
+                <div class="swatches"><span style="background:#000"></span><span style="background:#101010"></span><span style="background:#fff"></span><span style="background:#FFD202"></span></div>
+                <div class="dir">Direction 2</div>
+                <h2>Forged Bold</h2>
+                <p>Black and yellow, evolved. Huge type, strict discipline — yellow as punctuation, not a sentence. Built as a conversion machine end to end.</p>
+                <span class="open">View direction 2</span>
+            </a>
+            <a class="card c3" href="/redesign/direction-3.html">
+                <div class="swatches"><span style="background:#0B0B0C"></span><span style="background:#F4F1EA"></span><span style="background:#C97B4A"></span><span style="background:#FFD202"></span></div>
+                <div class="dir">Direction 3</div>
+                <h2>Iron &amp; Ember</h2>
+                <p>Black and yellow with a new highlight set — copper for coaching and nutrition, parchment for the brand layer. Architected for Frisco first, and a wider online reach second.</p>
+                <span class="open">View direction 3</span>
+            </a>
+        </div>
+        <footer>
+            Prototypes only — nothing here touches the live site until Michael approves a direction. Current homepage: <a href="/">blackironathletics.com</a>
+        </footer>
+    </div>
+</body>
+</html>

@@ -1,0 +1,771 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Black Iron Athletics — Redesign Prototype (Direction 2)</title>
+<meta name="description" content="Redesign prototype, Direction 2 (Forged Bold) — Black Iron Athletics, veteran-owned strength and conditioning in Frisco, TX. Coach every rep. Three levels, one floor.">
+<meta name="robots" content="noindex,nofollow">
+<meta name="theme-color" content="#000000">
+<link rel="icon" href="/images/anvil-favicon.png">
+<link rel="preload" as="image" href="/images/training/group-training.webp">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+<noscript><link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&display=swap" rel="stylesheet"></noscript>
+<style>
+/* ============================================================
+   DIRECTION 2 — FORGED BOLD
+   Black + yellow, disciplined. Yellow is punctuation, never a
+   sentence. Monochrome photography. Huge type. Steel lines.
+   ============================================================ */
+
+/* ---------- Tokens ---------- */
+:root{
+  --black:#000000;
+  --coal:#101010;
+  --steel-line:#2A2A2A;
+  --white:#FFFFFF;
+  --gray:#C7C7C7;
+  --yellow:#FFD202;
+  --font:"Montserrat",Arial,sans-serif;
+  --pad:clamp(20px,4vw,48px);
+  --sect:clamp(76px,10vw,140px);
+  --max:1240px;
+}
+
+/* ---------- Reset / base ---------- */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:96px}
+body{
+  background:var(--black);
+  color:var(--gray);
+  font-family:var(--font);
+  font-weight:400;
+  font-size:1.0625rem;
+  line-height:1.68;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+img{display:block;max-width:100%}
+a{color:var(--white);text-decoration:none}
+p a{text-decoration:underline;text-underline-offset:3px}
+ul{list-style:none}
+:focus-visible{outline:2px solid var(--yellow);outline-offset:3px}
+::selection{background:var(--white);color:var(--black)}
+
+.wrap{max-width:var(--max);margin-inline:auto;padding-inline:var(--pad)}
+
+/* ---------- Type scale ---------- */
+h1,h2,h3{color:var(--white);font-weight:900;text-transform:uppercase;line-height:.92;letter-spacing:-.02em}
+.display{font-size:clamp(3rem,8.5vw,7.5rem)}
+h2{font-size:clamp(2.1rem,5.2vw,4.25rem);margin-bottom:28px}
+h3{font-size:1.05rem;letter-spacing:.02em;line-height:1.25}
+.outline{color:transparent;-webkit-text-stroke:1px var(--white)}
+@supports not (-webkit-text-stroke:1px #fff){.outline{color:var(--gray)}}
+.eyebrow{
+  display:block;font-size:11px;font-weight:700;letter-spacing:3px;
+  text-transform:uppercase;color:var(--gray);margin-bottom:22px;
+}
+.eyebrow-y{color:var(--yellow)}
+.hl{color:var(--yellow)}
+.lead{font-size:clamp(1.05rem,1.6vw,1.25rem);max-width:60ch}
+.small{font-size:.85rem}
+
+/* ---------- Buttons ---------- */
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:10px;
+  font-family:var(--font);font-weight:700;font-size:13px;letter-spacing:1.8px;
+  text-transform:uppercase;padding:18px 34px;border:1px solid transparent;
+  cursor:pointer;transition:background .18s ease,color .18s ease,border-color .18s ease;
+}
+.btn-y{background:var(--yellow);color:var(--black)}
+.btn-y:hover{background:var(--white);color:var(--black)}
+.btn-ghost{border-color:rgba(255,255,255,.4);color:var(--white)}
+.btn-ghost:hover{background:var(--white);color:var(--black);border-color:var(--white)}
+.arrow-link{
+  display:inline-flex;align-items:center;gap:8px;font-weight:700;font-size:12px;
+  letter-spacing:2px;text-transform:uppercase;color:var(--white);
+}
+.arrow-link svg{transition:transform .18s ease}
+.arrow-link:hover svg{transform:translateX(5px)}
+
+/* ---------- Photo treatment: mono discipline ---------- */
+.ph{filter:grayscale(1) contrast(1.06) brightness(.94);transition:filter .35s ease}
+.ph-soft{filter:grayscale(.85) contrast(1.1) brightness(.82)}
+
+/* ---------- Prototype badge ---------- */
+.proto-badge{
+  position:fixed;top:0;left:0;z-index:80;background:var(--white);color:var(--black);
+  font-size:9px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;
+  padding:4px 10px;
+}
+
+/* ---------- Skip link ---------- */
+.skip{
+  position:absolute;left:-9999px;top:0;z-index:100;background:var(--white);
+  color:var(--black);padding:12px 20px;font-weight:700;
+}
+.skip:focus{left:0}
+
+/* ---------- Nav ---------- */
+.nav{
+  position:fixed;inset-inline:0;top:0;z-index:70;
+  transition:background .25s ease,border-color .25s ease;
+  border-bottom:1px solid transparent;
+}
+.nav.scrolled{background:rgba(0,0,0,.92);border-bottom-color:var(--steel-line);backdrop-filter:blur(8px)}
+.nav-in{
+  max-width:var(--max);margin-inline:auto;padding:0 var(--pad);
+  height:74px;display:flex;align-items:center;gap:28px;
+}
+.brand{display:flex;align-items:center;gap:12px;font-weight:900;color:var(--white);
+  text-transform:uppercase;letter-spacing:.04em;font-size:15px;line-height:1}
+.brand img{height:30px;width:auto}
+.brand small{display:block;font-size:8px;font-weight:700;letter-spacing:3.5px;color:var(--gray)}
+.nav-links{display:flex;gap:26px;margin-left:auto}
+.nav-links a{font-size:12px;font-weight:700;letter-spacing:1.8px;text-transform:uppercase;color:var(--gray)}
+.nav-links a:hover{color:var(--white)}
+.nav .btn{padding:13px 22px}
+@media (max-width:900px){.nav-links{display:none}.nav .btn{margin-left:auto}}
+@media (max-width:640px){.nav .btn{padding:11px 16px;font-size:11px}}
+
+/* ---------- Hero ---------- */
+.hero{position:relative;min-height:100vh;min-height:100svh;display:flex;align-items:flex-end}
+.hero-bg{position:absolute;inset:0;overflow:hidden}
+.hero-bg img{width:100%;height:100%;object-fit:cover;object-position:center 30%}
+.hero-bg::after{
+  content:"";position:absolute;inset:0;
+  background:linear-gradient(180deg,rgba(0,0,0,.62) 0%,rgba(0,0,0,.35) 40%,rgba(0,0,0,.82) 78%,#000 100%);
+}
+.hero-in{position:relative;z-index:1;width:100%;padding-block:120px clamp(56px,8vw,96px)}
+.hero p.lead{margin:30px 0 36px;color:var(--white)}
+.hero-ctas{display:flex;flex-wrap:wrap;gap:14px;margin-bottom:26px}
+.trust{display:inline-flex;align-items:center;gap:10px;font-size:.85rem;font-weight:600;color:var(--white);
+  border:1px solid var(--steel-line);background:rgba(0,0,0,.55);padding:10px 16px}
+.stars{display:inline-flex;gap:3px}
+.stars svg{width:13px;height:13px;fill:var(--yellow)}
+
+/* ---------- Stat band ---------- */
+.stats{border-top:1px solid var(--steel-line);border-bottom:1px solid var(--steel-line);background:var(--black)}
+.stats-grid{display:grid;grid-template-columns:repeat(4,1fr)}
+.stat{padding:clamp(34px,4.5vw,60px) var(--pad);border-left:1px solid var(--steel-line)}
+.stat:first-child{border-left:0}
+.stat b{display:block;color:var(--white);font-weight:900;font-size:clamp(2.6rem,6vw,5.5rem);line-height:.9;letter-spacing:-.03em}
+.stat span{display:block;margin-top:12px;font-size:11px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:var(--gray)}
+@media (max-width:760px){
+  .stats-grid{grid-template-columns:1fr 1fr}
+  .stat:nth-child(3){border-left:0}
+  .stat:nth-child(n+3){border-top:1px solid var(--steel-line)}
+}
+
+/* ---------- Marquee ---------- */
+.marquee{overflow:hidden;padding:26px 0;border-bottom:1px solid var(--steel-line);white-space:nowrap}
+.marquee-track{display:inline-flex;animation:ticker 46s linear infinite}
+.marquee:hover .marquee-track{animation-play-state:paused}
+.marquee span{
+  font-weight:900;text-transform:uppercase;font-size:clamp(1.5rem,3.6vw,2.8rem);
+  letter-spacing:.01em;color:transparent;-webkit-text-stroke:1px rgba(255,255,255,.55);
+  padding-right:.6em;
+}
+@supports not (-webkit-text-stroke:1px #fff){.marquee span{color:var(--steel-line)}}
+@keyframes ticker{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+/* ---------- Generic section ---------- */
+section{border-top:1px solid var(--steel-line)}
+.sect{padding-block:var(--sect)}
+.alt{background:var(--coal)}
+
+/* ---------- Stakes ---------- */
+.stakes-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:clamp(36px,6vw,84px);align-items:center}
+.stakes-img{aspect-ratio:4/5;overflow:hidden}
+.stakes-img img{width:100%;height:100%;object-fit:cover}
+.fears{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:44px}
+.fear{border-top:1px solid var(--steel-line);padding-top:18px}
+.fear b{display:block;color:var(--white);font-weight:900;text-transform:uppercase;font-size:.8rem;letter-spacing:1.5px;margin-bottom:8px}
+.fear p{font-size:.9rem;line-height:1.6}
+.belief{
+  margin-top:clamp(56px,7vw,90px);border-top:1px solid var(--steel-line);padding-top:clamp(40px,5vw,64px);
+}
+.belief p{
+  color:var(--white);font-weight:900;text-transform:uppercase;line-height:1.12;
+  font-size:clamp(1.5rem,3.4vw,2.7rem);letter-spacing:-.01em;max-width:22ch;
+}
+@media (max-width:860px){
+  .stakes-grid{grid-template-columns:1fr}
+  .stakes-img{order:-1;aspect-ratio:16/10}
+  .fears{grid-template-columns:1fr}
+}
+
+/* ---------- The plan ---------- */
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--steel-line);border:1px solid var(--steel-line);margin-top:22px}
+.step{background:var(--black);padding:clamp(30px,3.5vw,48px)}
+.step em{
+  display:block;font-style:normal;font-weight:900;line-height:.85;margin-bottom:22px;
+  font-size:clamp(3.4rem,6vw,5.5rem);color:transparent;-webkit-text-stroke:1px var(--white);
+}
+@supports not (-webkit-text-stroke:1px #fff){.step em{color:var(--steel-line)}}
+.step h3{margin-bottom:14px}
+.step p{font-size:.95rem}
+.plan-cta{margin-top:44px;display:flex;flex-wrap:wrap;align-items:center;gap:22px}
+.speed{font-size:.85rem;font-weight:600;color:var(--white)}
+.speed::before{content:"";display:inline-block;width:26px;height:1px;background:var(--gray);vertical-align:middle;margin-right:10px}
+@media (max-width:860px){.steps{grid-template-columns:1fr}}
+
+/* ---------- Programs ---------- */
+.prog-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:clamp(18px,2vw,28px);margin-top:14px}
+.prog{grid-column:span 2;border:1px solid var(--steel-line);background:var(--coal);display:flex;flex-direction:column}
+.prog.wide{grid-column:span 3}
+.prog figure{aspect-ratio:4/3;overflow:hidden}
+.prog img{width:100%;height:100%;object-fit:cover;transition:transform .5s ease,filter .5s ease}
+.prog:hover img{transform:scale(1.045);filter:grayscale(0) contrast(1.02) brightness(.96)}
+.prog-body{padding:26px 26px 30px;display:flex;flex-direction:column;gap:12px;flex:1}
+.prog-body p{font-size:.92rem;flex:1}
+@media (max-width:1020px){.prog,.prog.wide{grid-column:span 3}}
+@media (max-width:640px){.prog,.prog.wide{grid-column:span 6}}
+
+/* ---------- Three levels ---------- */
+.levels-intro{max-width:62ch}
+.board{
+  margin:44px 0 0;border:1px solid var(--steel-line);background:var(--black);
+  padding:clamp(26px,3.5vw,44px);
+}
+.board small{display:block;font-size:11px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:var(--gray);margin-bottom:16px}
+.board p{color:var(--white);font-weight:700;font-size:clamp(1rem,1.8vw,1.3rem);line-height:1.5}
+.lvl-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(18px,2vw,28px);margin-top:clamp(30px,3.5vw,44px)}
+.lvl{padding-top:22px}
+.lvl:nth-child(1){border-top:2px solid var(--white)}
+.lvl:nth-child(2){border-top:5px solid var(--white)}
+.lvl:nth-child(3){border-top:9px solid var(--white)}
+.lvl b{display:block;color:var(--white);font-weight:900;text-transform:uppercase;letter-spacing:.02em;font-size:1.05rem;margin-bottom:10px}
+.lvl p{font-size:.92rem}
+@media (max-width:760px){.lvl-grid{grid-template-columns:1fr}}
+
+/* ---------- Building band ---------- */
+.building{position:relative;overflow:hidden}
+.building-bg{position:absolute;inset:0}
+.building-bg img{width:100%;height:100%;object-fit:cover}
+.building-bg::after{content:"";position:absolute;inset:0;background:rgba(0,0,0,.8)}
+.building-in{position:relative;z-index:1;padding-block:clamp(90px,12vw,170px)}
+.building p{max-width:52ch;margin-top:26px;color:var(--white)}
+
+/* ---------- 23 hours ---------- */
+.h23-grid{display:grid;grid-template-columns:1fr .9fr;gap:clamp(36px,6vw,84px);align-items:start}
+.h23-rows{margin-top:34px}
+.h23-row{border-top:1px solid var(--steel-line);padding:24px 0;display:grid;grid-template-columns:150px 1fr;gap:18px}
+.h23-row:last-child{border-bottom:1px solid var(--steel-line)}
+.h23-row b{color:var(--white);font-weight:900;text-transform:uppercase;font-size:.85rem;letter-spacing:1.5px;padding-top:2px}
+.h23-row p{font-size:.95rem}
+.h23-img{aspect-ratio:3/4;overflow:hidden}
+.h23-img img{width:100%;height:100%;object-fit:cover}
+@media (max-width:860px){
+  .h23-grid{grid-template-columns:1fr}
+  .h23-img{display:none}
+  .h23-row{grid-template-columns:1fr;gap:6px}
+}
+
+/* ---------- Coaches ---------- */
+.coach-feature{display:grid;grid-template-columns:.9fr 1.1fr;gap:clamp(36px,5vw,72px);align-items:center;margin-top:14px}
+.coach-feature figure{aspect-ratio:3/4;overflow:hidden;border:1px solid var(--steel-line)}
+.coach-feature img{width:100%;height:100%;object-fit:cover}
+.coach-feature h3{font-size:clamp(1.5rem,2.6vw,2.2rem);margin-bottom:6px}
+.role{display:block;font-size:11px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:var(--gray);margin-bottom:20px}
+.coach-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:clamp(14px,1.6vw,22px);margin-top:clamp(44px,5vw,64px)}
+.coach{border:1px solid var(--steel-line);background:var(--black)}
+.coach figure{aspect-ratio:3/4;overflow:hidden}
+.coach img{width:100%;height:100%;object-fit:cover;transition:filter .35s ease}
+.coach:hover img{filter:grayscale(0) contrast(1.02)}
+.coach div{padding:14px 16px 18px}
+.coach b{display:block;color:var(--white);font-weight:900;text-transform:uppercase;font-size:.85rem;letter-spacing:.05em}
+.coach span{font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--gray)}
+@media (max-width:1020px){.coach-grid{grid-template-columns:repeat(3,1fr)}}
+@media (max-width:860px){.coach-feature{grid-template-columns:1fr}}
+@media (max-width:560px){.coach-grid{grid-template-columns:repeat(2,1fr)}}
+
+/* ---------- Proof / quotes ---------- */
+.quotes{display:grid;grid-template-columns:1fr 1fr;gap:clamp(18px,2vw,28px);margin-top:38px}
+.quote{border:1px solid var(--steel-line);background:var(--black);padding:clamp(28px,3.5vw,44px);display:flex;flex-direction:column;gap:22px}
+.quote blockquote{color:var(--white);font-weight:700;font-size:clamp(1.05rem,1.7vw,1.3rem);line-height:1.5}
+.quote cite{font-style:normal;font-size:11px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:var(--gray);margin-top:auto}
+@media (max-width:760px){.quotes{grid-template-columns:1fr}}
+
+/* ---------- FAQ + offer ---------- */
+.faq-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:clamp(36px,5vw,72px);align-items:start;margin-top:14px}
+.faq details{border-top:1px solid var(--steel-line)}
+.faq details:last-child{border-bottom:1px solid var(--steel-line)}
+.faq summary{
+  cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center;gap:20px;
+  padding:24px 0;color:var(--white);font-weight:700;font-size:1.05rem;
+}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+";font-weight:400;font-size:1.6rem;line-height:1;color:var(--gray);transition:transform .2s ease;flex:none}
+.faq details[open] summary::after{transform:rotate(45deg)}
+.faq details p{padding:0 0 26px;max-width:58ch;font-size:.95rem}
+.offer{
+  border:1px solid var(--steel-line);background:var(--coal);padding:clamp(30px,3.5vw,46px);
+  position:sticky;top:104px;
+}
+.offer .eyebrow{margin-bottom:14px}
+.offer b.price{display:block;color:var(--white);font-weight:900;text-transform:uppercase;font-size:clamp(2rem,3.6vw,3rem);line-height:1;letter-spacing:-.01em;margin-bottom:18px}
+.offer p{font-size:.95rem;margin-bottom:26px}
+@media (max-width:860px){.faq-grid{grid-template-columns:1fr}.offer{position:static}}
+
+/* ---------- Visit ---------- */
+.visit-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(36px,5vw,72px);align-items:start}
+.visit-rows{border-top:1px solid var(--steel-line)}
+.visit-row{border-bottom:1px solid var(--steel-line);padding:20px 0;display:grid;grid-template-columns:120px 1fr;gap:16px}
+.visit-row b{font-size:11px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:var(--gray);padding-top:4px}
+.visit-row p,.visit-row a{color:var(--white);font-weight:600;font-size:1rem}
+.visit-row a:hover{text-decoration:underline;text-underline-offset:3px}
+@media (max-width:860px){.visit-grid{grid-template-columns:1fr}.visit-row{grid-template-columns:110px 1fr}}
+
+/* ---------- Final CTA band ---------- */
+.final{position:relative;overflow:hidden;background:var(--coal)}
+.final-in{position:relative;z-index:1;padding-block:clamp(90px,12vw,170px);text-align:left}
+.final h2{max-width:16ch;font-size:clamp(2.4rem,6vw,5.2rem)}
+.final .lead{margin:26px 0 40px;color:var(--white)}
+.final-ctas{display:flex;flex-wrap:wrap;align-items:center;gap:22px}
+.alt-offer{font-size:.92rem;color:var(--white)}
+.alt-offer a{text-decoration:underline;text-underline-offset:3px}
+.final .speed{display:block;margin-top:30px}
+.slash{
+  position:absolute;top:-40px;right:-70px;width:340px;height:14px;background:var(--yellow);
+  transform:rotate(-32deg);transform-origin:center;z-index:0;
+}
+.slash::after{content:"";position:absolute;top:26px;left:0;width:340px;height:4px;background:var(--yellow)}
+@media (max-width:640px){.slash{width:220px;right:-90px}}
+
+/* ---------- Footer ---------- */
+footer{border-top:1px solid var(--steel-line);padding:clamp(56px,7vw,88px) 0 0}
+.foot-top{display:grid;grid-template-columns:1.2fr .8fr;gap:clamp(36px,5vw,72px);padding-bottom:clamp(40px,5vw,64px)}
+.foot-brand{display:flex;align-items:flex-start;gap:16px}
+.foot-brand img{height:44px;width:auto}
+.foot-brand b{display:block;color:var(--white);font-weight:900;text-transform:uppercase;font-size:1.2rem;line-height:1.05}
+.foot-mission{margin-top:14px;max-width:38ch;font-size:.95rem}
+.foot-links{display:flex;gap:clamp(28px,4vw,64px)}
+.foot-links ul li{margin-bottom:12px}
+.foot-links a{font-size:.9rem;color:var(--gray)}
+.foot-links a:hover{color:var(--white)}
+.foot-links b{display:block;font-size:11px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:var(--white);margin-bottom:16px}
+.foot-bottom{border-top:1px solid var(--steel-line);padding:24px 0 26px;display:flex;flex-wrap:wrap;gap:14px;justify-content:space-between;font-size:.8rem}
+.proto-note{border-top:1px solid var(--steel-line);padding:18px 0;font-size:.8rem}
+.proto-note a{text-decoration:underline;text-underline-offset:3px;color:var(--gray)}
+.proto-note a:hover{color:var(--white)}
+@media (max-width:860px){.foot-top{grid-template-columns:1fr}}
+
+/* ---------- Sticky mobile CTA ---------- */
+.mobile-cta{display:none}
+@media (max-width:640px){
+  .mobile-cta{
+    display:flex;position:fixed;bottom:0;inset-inline:0;z-index:75;
+    background:var(--yellow);color:var(--black);height:58px;align-items:center;justify-content:center;
+    font-weight:900;font-size:13px;letter-spacing:2px;text-transform:uppercase;
+    padding-bottom:env(safe-area-inset-bottom);
+  }
+  .mobile-cta:hover{background:var(--white)}
+  body{padding-bottom:calc(58px + env(safe-area-inset-bottom))}
+}
+
+/* ---------- Reveal ---------- */
+.rv{opacity:0;transform:translateY(26px);transition:opacity .7s ease,transform .7s ease}
+.rv.on{opacity:1;transform:none}
+.steps .step:nth-child(2),.prog-grid .prog:nth-child(2),.quotes .quote:nth-child(2){transition-delay:.08s}
+.steps .step:nth-child(3),.prog-grid .prog:nth-child(3){transition-delay:.16s}
+
+/* ---------- Reduced motion ---------- */
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .rv{opacity:1;transform:none;transition:none}
+  .marquee-track{animation:none}
+  .prog img,.coach img,.arrow-link svg{transition:none}
+}
+</style>
+</head>
+<body>
+
+<a class="skip" href="#main">Skip to content</a>
+<span class="proto-badge">Prototype — Direction 2</span>
+
+<header class="nav" id="nav">
+  <div class="nav-in">
+    <a class="brand" href="/" aria-label="Black Iron Athletics home">
+      <img src="/images/logos/Anvil-WHITE.png" alt="Black Iron Athletics anvil mark" width="60" height="60">
+      <span>Black Iron<small>Athletics</small></span>
+    </a>
+    <nav class="nav-links" aria-label="Primary">
+      <a href="#programs">Programs</a>
+      <a href="#plan">Foundations</a>
+      <a href="#coaches">Coaches</a>
+      <a href="#faq">FAQ</a>
+      <a href="/schedule">Schedule</a>
+    </nav>
+    <a class="btn btn-y" href="/book">Book a Free Consult</a>
+  </div>
+</header>
+
+<main id="main">
+
+
+  <section class="hero" aria-label="Black Iron Athletics" style="border-top:0">
+    <div class="hero-bg">
+      <img class="ph-soft" src="/images/training/group-training.webp" alt="Members mid-squat in a coached group class at Black Iron Athletics" fetchpriority="high">
+    </div>
+    <div class="hero-in wrap">
+      <span class="eyebrow eyebrow-y">Veteran-Owned &middot; Frisco, TX &middot; Est. 2013</span>
+      <h1 class="display">Everyday people.<br><span class="outline">Everyday athletes.</span></h1>
+      <p class="lead">We help everyday people become everyday athletes. A week of one-on-one coaching to start, three levels in every class, and a coach on every rep — built for people with real jobs, real families, and zero interest in getting hurt.</p>
+      <div class="hero-ctas">
+        <a class="btn btn-y" href="/book">Book a Free Consult</a>
+        <a class="btn btn-ghost" href="#plan">See How It Works</a>
+      </div>
+      <p class="trust"><span class="stars" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 2l3 7 7 .6-5.3 4.6L18.5 22 12 18l-6.5 4 1.8-7.8L2 9.6 9 9z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3 7 7 .6-5.3 4.6L18.5 22 12 18l-6.5 4 1.8-7.8L2 9.6 9 9z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3 7 7 .6-5.3 4.6L18.5 22 12 18l-6.5 4 1.8-7.8L2 9.6 9 9z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3 7 7 .6-5.3 4.6L18.5 22 12 18l-6.5 4 1.8-7.8L2 9.6 9 9z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3 7 7 .6-5.3 4.6L18.5 22 12 18l-6.5 4 1.8-7.8L2 9.6 9 9z"/></svg></span>5.0 &middot; 68 Google reviews</p>
+    </div>
+  </section>
+
+
+  <section class="stats" aria-label="Proof">
+    <div class="stats-grid">
+      <div class="stat rv"><b>13+</b><span>Years in Frisco</span></div>
+      <div class="stat rv"><b>3,000+</b><span>Lives changed</span></div>
+      <div class="stat rv"><b>5.0</b><span>Google rating</span></div>
+      <div class="stat rv"><b>68</b><span>Five-star reviews</span></div>
+    </div>
+  </section>
+
+
+  <div class="marquee" aria-hidden="true">
+    <div class="marquee-track">
+      <span>Coach every rep — Three levels, one floor — Forge the body, guard the mind —&nbsp;</span><span>Coach every rep — Three levels, one floor — Forge the body, guard the mind —&nbsp;</span>
+    </div>
+  </div>
+
+
+  <section class="sect" id="why" style="border-top:0">
+    <div class="wrap">
+      <div class="stakes-grid">
+        <div class="rv">
+          <span class="eyebrow">Sound familiar?</span>
+          <h2>You&rsquo;re not <span class="hl">past it.</span></h2>
+          <p class="lead">Maybe you wrestled in high school. Maybe you bounced off a leaderboard culture that treated a Tuesday workout like a tryout, or a garage gym that got lonely fast. Now there&rsquo;s a job, kids, and a quiet voice saying you&rsquo;re too old to start over.</p>
+          <div class="fears">
+            <div class="fear"><b>Getting hurt</b><p>You can&rsquo;t afford a tweaked back. Picking up your kids isn&rsquo;t optional — so we coach every rep and pull you back before your ego cashes a check.</p></div>
+            <div class="fear"><b>Wasting time &amp; money</b><p>You&rsquo;ve paid for memberships that went nowhere. Here the programming is cycled, planned, and measured — nothing random, nothing wasted.</p></div>
+            <div class="fear"><b>Aging out</b><p>Longevity is the backbone of everything we program. We train people to love this for decades, not to survive a six-week challenge.</p></div>
+          </div>
+        </div>
+        <figure class="stakes-img rv">
+          <img class="ph" src="/images/training/overhead-press-bw.webp" alt="Member pressing a barbell overhead under coaching at Black Iron Athletics" loading="lazy" width="1024" height="683">
+        </figure>
+      </div>
+      <div class="belief rv">
+        <p>&ldquo;Your best years aren&rsquo;t behind you. You just haven&rsquo;t been trained properly yet. We fix the belief, then we forge the body.&rdquo;</p>
+      </div>
+    </div>
+  </section>
+
+
+  <section class="sect alt" id="plan">
+    <div class="wrap">
+      <span class="eyebrow rv">The plan</span>
+      <h2 class="rv">Three steps.<br><span class="outline">No guesswork.</span></h2>
+      <div class="steps">
+        <div class="step rv">
+          <em>01</em>
+          <h3>Book a free consult</h3>
+          <p>Thirty minutes with a coach. We talk goals, history, and what your week actually looks like. No sales pitch — if we&rsquo;re not the right fit, we&rsquo;ll say so.</p>
+        </div>
+        <div class="step rv">
+          <em>02</em>
+          <h3>Do your Foundations week</h3>
+          <p>A week of one-on-one coaching. Learn the basics, set a baseline, understand your body. Every member starts here. It&rsquo;s non-negotiable, and it&rsquo;s why nobody gets thrown into the deep end.</p>
+        </div>
+        <div class="step rv">
+          <em>03</em>
+          <h3>Train with your people</h3>
+          <p>Group classes with three levels on one floor, coached every rep. Beginners next to 10-year athletes, nobody compromising, good people on every side of you.</p>
+        </div>
+      </div>
+      <div class="plan-cta rv">
+        <a class="btn btn-y" href="/book">Book a Free Consult</a>
+        <p class="speed">We reply the same day. A real coach, not a bot.</p>
+      </div>
+    </div>
+  </section>
+
+
+  <section class="sect" id="programs">
+    <div class="wrap">
+      <span class="eyebrow rv">Programs</span>
+      <h2 class="rv">Everything we coach.</h2>
+      <div class="prog-grid">
+        <article class="prog rv">
+          <figure><img class="ph" src="/images/training/group-warmup.webp" alt="Group class warming up together on the training floor" loading="lazy" width="1200" height="800"></figure>
+          <div class="prog-body">
+            <h3>Group Strength &amp; Conditioning</h3>
+            <p>Programmed, not random. Cycled progressions, planned intensity, and strength balanced with conditioning every single week.</p>
+            <a class="arrow-link" href="/book">Book a consult <svg width="16" height="12" viewBox="0 0 16 12" fill="none" aria-hidden="true"><path d="M10 1l5 5-5 5M15 6H1" stroke="currentColor" stroke-width="1.5"/></svg></a>
+          </div>
+        </article>
+        <article class="prog rv">
+          <figure><img class="ph" src="/images/members/member-coaching.webp" alt="Coach working one-on-one with a smiling member" loading="lazy" width="1200" height="800"></figure>
+          <div class="prog-body">
+            <h3>Foundations</h3>
+            <p>Your first week: one-on-one with a coach. Baseline, basics, body. How every single member starts — no exceptions.</p>
+            <a class="arrow-link" href="#plan">Start here <svg width="16" height="12" viewBox="0 0 16 12" fill="none" aria-hidden="true"><path d="M10 1l5 5-5 5M15 6H1" stroke="currentColor" stroke-width="1.5"/></svg></a>
+          </div>
+        </article>
+        <article class="prog rv">
+          <figure><img class="ph" src="/images/training/squat-tattooed.webp" alt="Member back-squatting with focused coaching attention" loading="lazy" width="1200" height="800"></figure>
+          <div class="prog-body">
+            <h3>Personal Training</h3>
+            <p>One coach, one plan, your schedule. For specific goals, a comeback from injury, or a fully private track.</p>
+            <a class="arrow-link" href="/book">Talk to a coach <svg width="16" height="12" viewBox="0 0 16 12" fill="none" aria-hidden="true"><path d="M10 1l5 5-5 5M15 6H1" stroke="currentColor" stroke-width="1.5"/></svg></a>
+          </div>
+        </article>
+        <article class="prog wide rv">
+          <figure><img class="ph" src="/images/members/member-laughing.webp" alt="Member laughing on the gym floor after a session" loading="lazy" width="1200" height="800"></figure>
+          <div class="prog-body">
+            <h3>Nutrition Coaching</h3>
+            <p>A real human coach for the eating part — weekly check-ins, honest feedback, adjustments as life happens. Powered by <a href="https://fuelpath.app">FuelPath</a>, run by our own coaches.</p>
+            <a class="arrow-link" href="/book">Ask about coaching <svg width="16" height="12" viewBox="0 0 16 12" fill="none" aria-hidden="true"><path d="M10 1l5 5-5 5M15 6H1" stroke="currentColor" stroke-width="1.5"/></svg></a>
+          </div>
+        </article>
+        <article class="prog wide rv">
+          <figure><img class="ph" src="/images/training/outdoor-run.webp" alt="Members running outdoors during training" loading="lazy" width="1200" height="800"></figure>
+          <div class="prog-body">
+            <h3>Open Gym &amp; HYROX</h3>
+            <p>Open gym seven days a week, with HYROX training built into it — plus Olympic weightlifting for the barbell-obsessed.</p>
+            <a class="arrow-link" href="/schedule">See the schedule <svg width="16" height="12" viewBox="0 0 16 12" fill="none" aria-hidden="true"><path d="M10 1l5 5-5 5M15 6H1" stroke="currentColor" stroke-width="1.5"/></svg></a>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+
+  <section class="sect alt" id="levels">
+    <div class="wrap">
+      <span class="eyebrow rv">Three levels, one floor</span>
+      <h2 class="rv">One class.<br><span class="outline">Three ways to do it.</span></h2>
+      <p class="lead levels-intro rv">Every class is programmed at three levels. Same movement pattern, same clock, different target — so a first-month beginner and a 10-year athlete train side by side without either one compromising. The system flexes so the member doesn&rsquo;t have to.</p>
+      <div class="board rv">
+        <small>A real day on our whiteboard</small>
+        <p>Back squat. Level 1 — 5-rep max. Level 2 — 3-rep max. Level 3 — 1-rep max.<br>Same bar. Same coaching. Your number.</p>
+      </div>
+      <div class="lvl-grid">
+        <div class="lvl rv"><b>Level 1 &middot; Learn it</b><p>New, or coming back after years off. Own the movement before you load it. Nobody rushes you.</p></div>
+        <div class="lvl rv"><b>Level 2 &middot; Build it</b><p>Solid mechanics, growing engine. Where most members live — and get strong for years.</p></div>
+        <div class="lvl rv"><b>Level 3 &middot; Test it</b><p>For the seasoned athlete chasing an edge. Bigger loads, same standard, a coach watching anyway.</p></div>
+      </div>
+    </div>
+  </section>
+
+
+  <section class="building" aria-label="The new building">
+    <div class="building-bg">
+      <img class="ph" src="/images/heroes/hero-about.webp" alt="Members on rowers inside Black Iron Athletics, gym name painted on the wall" loading="lazy" width="1024" height="683">
+    </div>
+    <div class="building-in wrap">
+      <span class="eyebrow rv">The new building &middot; Opened summer 2026</span>
+      <h2 class="display rv">279 Main St.<br><span class="outline">Built for the next decade.</span></h2>
+      <p class="lead rv">After 13 years in Frisco, we built the gym a brand-new home in the heart of town — 279 Main St, Suite 122. More floor, more racks, the same good people. Come see it.</p>
+    </div>
+  </section>
+
+
+  <section class="sect" id="hours">
+    <div class="wrap">
+      <div class="h23-grid">
+        <div>
+          <span class="eyebrow rv">The 23 hours</span>
+          <h2 class="rv">Training is one hour.<br><span class="outline">We coach the other 23.</span></h2>
+          <p class="lead rv">What you do between sessions decides most of your results. So our coaching doesn&rsquo;t stop at the whiteboard.</p>
+          <div class="h23-rows rv">
+            <div class="h23-row"><b>Nutrition</b><p>Real human nutrition coaching — a coach who knows your name, checks in weekly, and adjusts as life happens. Powered by <a href="https://fuelpath.app">FuelPath</a>, not another app you&rsquo;ll ignore by March.</p></div>
+            <div class="h23-row"><b>Sleep</b><p>Recovery is where the work pays off. We help you protect it — because a strong week starts the night before.</p></div>
+            <div class="h23-row"><b>Habits</b><p>Small daily wins, stacked for years. That&rsquo;s the whole secret, and it&rsquo;s why our members are still here a decade later.</p></div>
+          </div>
+        </div>
+        <figure class="h23-img rv">
+          <img class="ph" src="/images/training/snatch-action.webp" alt="Member mid-lift with a barbell during a coached session" loading="lazy" width="1024" height="1536">
+        </figure>
+      </div>
+    </div>
+  </section>
+
+
+  <section class="sect alt" id="coaches">
+    <div class="wrap">
+      <span class="eyebrow rv">The coaches</span>
+      <h2 class="rv">Real coaches.<br><span class="outline">Every rep.</span></h2>
+      <div class="coach-feature">
+        <figure class="rv"><img class="ph" src="/images/team/owner-headcoach-mike.webp" alt="Mike Manning, owner and head coach of Black Iron Athletics" loading="lazy" width="1340" height="2010"></figure>
+        <div class="rv">
+          <h3>Mike Manning</h3>
+          <span class="role">Owner &amp; Head Coach &middot; Veteran</span>
+          <p class="lead">Coaching in Frisco since 2013. Mike built Black Iron on a simple idea: everyday people deserve real coaching too — programmed training, honest standards, and a floor where person comes first, athlete second.</p>
+        </div>
+      </div>
+      <div class="coach-grid">
+        <article class="coach rv"><figure><img class="ph" src="/images/team/general-manager-caoch-kristin.webp" alt="Coach Kristin, general manager at Black Iron Athletics" loading="lazy" width="800" height="1067"></figure><div><b>Kristin</b><span>General Manager &middot; Coach</span></div></article>
+        <article class="coach rv"><figure><img class="ph" src="/images/team/coach-aileen.webp" alt="Coach Aileen at Black Iron Athletics" loading="lazy" width="800" height="1067"></figure><div><b>Aileen</b><span>Coach</span></div></article>
+        <article class="coach rv"><figure><img class="ph" src="/images/team/coach-amber.webp" alt="Coach Amber at Black Iron Athletics" loading="lazy" width="800" height="1067"></figure><div><b>Amber</b><span>Coach</span></div></article>
+        <article class="coach rv"><figure><img class="ph" src="/images/team/coach-emily.webp" alt="Coach Emily at Black Iron Athletics" loading="lazy" width="800" height="1067"></figure><div><b>Emily</b><span>Coach</span></div></article>
+        <article class="coach rv"><figure><img class="ph" src="/images/team/coach-evan.webp" alt="Coach Evan at Black Iron Athletics" loading="lazy" width="800" height="1067"></figure><div><b>Evan</b><span>Coach</span></div></article>
+      </div>
+    </div>
+  </section>
+
+
+  <section class="sect" id="proof">
+    <div class="wrap">
+      <span class="eyebrow rv">Member proof</span>
+      <h2 class="rv">Don&rsquo;t take our word for it.</h2>
+      <p class="trust rv"><span class="stars" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 2l3 7 7 .6-5.3 4.6L18.5 22 12 18l-6.5 4 1.8-7.8L2 9.6 9 9z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3 7 7 .6-5.3 4.6L18.5 22 12 18l-6.5 4 1.8-7.8L2 9.6 9 9z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3 7 7 .6-5.3 4.6L18.5 22 12 18l-6.5 4 1.8-7.8L2 9.6 9 9z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3 7 7 .6-5.3 4.6L18.5 22 12 18l-6.5 4 1.8-7.8L2 9.6 9 9z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3 7 7 .6-5.3 4.6L18.5 22 12 18l-6.5 4 1.8-7.8L2 9.6 9 9z"/></svg></span>5.0 &middot; 68 Google reviews</p>
+      <div class="quotes">
+        <div class="quote rv">
+          <blockquote>&ldquo;Fell in love with moving my body, and setting goals for myself&hellip; it was the first thing that was for ME&rdquo;</blockquote>
+          <cite>&mdash; Ashley Kim, member</cite>
+        </div>
+        <div class="quote rv">
+          <blockquote>&ldquo;I&rsquo;ve lost 30 lbs, I have more energy than I&rsquo;ve had in years, and I actually look forward to working out. I wish I started sooner.&rdquo;</blockquote>
+          <cite>&mdash; Marcus, member</cite>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <section class="sect alt" id="faq">
+    <div class="wrap">
+      <span class="eyebrow rv">FAQ</span>
+      <h2 class="rv">Asked every week.</h2>
+      <div class="faq-grid">
+        <div class="faq rv">
+          <details>
+            <summary>I&rsquo;m not in shape enough to start.</summary>
+            <p>That&rsquo;s exactly what Foundations is for. Your first week is one-on-one with a coach — no class to keep up with, no crowd. We meet you at your baseline and build from there. In 13 years, nobody has ever been too out of shape to start properly.</p>
+          </details>
+          <details>
+            <summary>Will I get hurt?</summary>
+            <p>Our whole system is built around not getting you hurt. A coach on every rep. Three levels, so you&rsquo;re never pushed past what you&rsquo;re ready for. Programming that plans intensity instead of chasing exhaustion. And when you&rsquo;re getting ahead of yourself, we pull you back — that&rsquo;s part of the job.</p>
+          </details>
+          <details>
+            <summary>What does it cost?</summary>
+            <p>Honest answer: memberships are custom to your goals, so we don&rsquo;t post one-size-fits-all pricing. The consult is free and there&rsquo;s no pressure in it. If you&rsquo;d rather test the floor first, a day pass is $30 — credited toward your first month if you join.</p>
+          </details>
+          <details>
+            <summary>I bounced off CrossFit and big gyms before.</summary>
+            <p>So did a lot of our members. There&rsquo;s no leaderboard culture here — three levels in every class means Tuesday isn&rsquo;t a tryout. Person first, athlete second. You&rsquo;ll work hard, and nobody will make it weird.</p>
+          </details>
+        </div>
+        <aside class="offer rv" aria-label="Day pass offer">
+          <span class="eyebrow">No-pressure option</span>
+          <b class="price">Try it for <span class="hl">$30</span></b>
+          <p>One day pass. A full class, real coaching, the actual floor — credited toward your first month if you join. If it&rsquo;s not your place, you&rsquo;re out one workout and thirty bucks.</p>
+          <a class="btn btn-y" href="/book">Get a Day Pass</a>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+
+  <section class="sect" id="visit">
+    <div class="wrap">
+      <div class="visit-grid">
+        <div class="rv">
+          <span class="eyebrow">Visit</span>
+          <h2>Come see<br><span class="outline">the floor.</span></h2>
+          <p class="lead">Five minutes on the floor tells you more than any website. Stop by, watch a class, meet the coaches.</p>
+        </div>
+        <div class="visit-rows rv">
+          <div class="visit-row"><b>Address</b><p>279 Main St, Suite 122<br>Frisco, TX 75036</p></div>
+          <div class="visit-row"><b>Phone</b><p><a href="tel:+19727857036">(972) 785-7036</a></p></div>
+          <div class="visit-row"><b>Hours</b><p>Open gym 7 days a week. Classes morning and evening — <a href="/schedule">see the full schedule</a>.</p></div>
+          <div class="visit-row"><b>Area</b><p>Serving Frisco, Prosper, The Colony, Little Elm, McKinney, Plano, Celina &amp; North Dallas.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <section class="final" aria-label="Book a free consult">
+    <div class="slash" aria-hidden="true"></div>
+    <div class="final-in wrap">
+      <h2 class="rv">Your best years<br><span class="outline">aren&rsquo;t behind you.</span></h2>
+      <p class="lead rv">You just haven&rsquo;t been trained properly yet. We fix the belief, then we forge the body.</p>
+      <div class="final-ctas rv">
+        <a class="btn btn-y" href="/book">Book a Free Consult</a>
+        <p class="alt-offer">Or just try it — <a href="/book">$30 day pass</a>, credited toward your first month.</p>
+      </div>
+      <p class="speed rv">We reply the same day. A real coach, not a bot.</p>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-top">
+      <div>
+        <div class="foot-brand">
+          <img src="/images/logos/Anvil-WHITE.png" alt="Black Iron Athletics anvil mark" loading="lazy" width="88" height="88">
+          <div>
+            <b>Black Iron<br>Athletics</b>
+            <p class="foot-mission">We help everyday people become everyday athletes.</p>
+          </div>
+        </div>
+      </div>
+      <div class="foot-links">
+        <ul>
+          <li><b>Gym</b></li>
+          <li><a href="/">Home</a></li>
+          <li><a href="/schedule">Schedule</a></li>
+          <li><a href="/getting-started">Getting Started</a></li>
+          <li><a href="/faq">FAQ</a></li>
+          <li><a href="/contact">Contact</a></li>
+        </ul>
+        <ul>
+          <li><b>Find us</b></li>
+          <li>279 Main St, Suite 122</li>
+          <li>Frisco, TX 75036</li>
+          <li><a href="tel:+19727857036">(972) 785-7036</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="proto-note">
+      Reviewing the redesign: <a href="/redesign/direction-1.html">Direction 1</a> &middot; Direction 2 (this page) &middot; <a href="/redesign/direction-3.html">Direction 3</a> &middot; <a href="/redesign/">All directions</a>
+    </div>
+    <div class="foot-bottom">
+      <span>&copy; 2026 Black Iron Athletics. Veteran-owned &middot; Est. 2013.</span>
+      <span>Frisco, TX</span>
+    </div>
+  </div>
+</footer>
+
+<a class="mobile-cta" href="/book">Book a Free Consult</a>
+
+<script>
+(function(){
+  var nav=document.getElementById('nav');
+  function onScroll(){nav.classList.toggle('scrolled',window.scrollY>24);}
+  window.addEventListener('scroll',onScroll,{passive:true});
+  onScroll();
+
+  var reduced=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var items=document.querySelectorAll('.rv');
+  if(reduced||!('IntersectionObserver' in window)){
+    items.forEach(function(el){el.classList.add('on');});
+    return;
+  }
+  var io=new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(e.isIntersecting){e.target.classList.add('on');io.unobserve(e.target);}
+    });
+  },{threshold:0.12,rootMargin:'0px 0px -40px 0px'});
+  items.forEach(function(el){io.observe(el);});
+})();
+</script>
+
+</body>
+</html>
