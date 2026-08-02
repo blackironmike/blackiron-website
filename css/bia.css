@@ -996,7 +996,11 @@ footer{border-top:1px solid var(--steel-line);padding:clamp(56px,7vw,88px) 0 0}
 .step em{--olr:1.5px}
 .error-code{--olr:1.5px}
 .marquee span{--olc:rgba(255,255,255,.55)}
-@media (min-width:761px){.outline{--olr:1.5px}}
+/* Rim weight scales with the type: .027em reads heavy at display
+   sizes (about 3.2px on a 120px headline), floored at 1.5px so a
+   phone keeps a crisp rim instead of a hairline, capped so it can
+   never close the counters. Owner picked the heavier rim 2026-08-02. */
+.outline{--olr:clamp(1.5px,.027em,3.6px)}
 
 /* Photo-backed surfaces (hero, building band): the letter interior
    is TRANSPARENT so the photograph reads through the letterform.
@@ -1010,50 +1014,8 @@ footer{border-top:1px solid var(--steel-line);padding:clamp(56px,7vw,88px) 0 0}
    The @supports guard matters: without -webkit-text-stroke a
    transparent fill would render the headline invisible, so any
    browser lacking it keeps the opaque-interior fallback below. */
-.hero .outline,.building .outline{--hole:#000;--olr:1.5px}
+.hero .outline,.building .outline{--hole:#000}
 
-/* SEE-THROUGH DISPLAY TYPE (hero + building bands only)
-   ----------------------------------------------------
-   The letter interior is the photograph. That rules out the halo
-   build, which needs an opaque interior to mask its stacked copies,
-   so these headlines use a real stroke.
-
-   The hard part is collision, not rendering. Montserrat Black is
-   drawn to sit tight: measured against this site's own headlines,
-   adjacent letters already overlap by up to .043em of ink at natural
-   spacing, and kerning pulls punctuation tighter still ("BY." tucks
-   the period under the Y at -.115em). A stroke sits half its width
-   outside each letter edge, so every one of those overlaps would be
-   drawn as a line through the letterform. A filled interior hides
-   this. A transparent one cannot.
-
-   So this block buys clearance rather than hoping for it:
-     font-kerning:none   removes the punctuation tuck, which would
-                         otherwise demand ~.149em of tracking
-     letter-spacing      .088em. Measured worst overlap (.043em) plus
-                         stroke (.024em) sets the floor; the rest is margin
-                         proven by the collision test, which caught diagonal
-                         pairs (AY, LT) still grazing at the calculated value.
-   Verified empirically: every headline rendered with alternating
-   stroke colours, no letter's ink touches its neighbour's.
-
-   If you add a hero headline, re-run the check — a new letter pair
-   could be tighter than anything here. Do not reduce the tracking
-   or raise the stroke without re-measuring; they are a matched pair. */
-@supports (-webkit-text-stroke:1px #fff){
-  .hero .outline,.building .outline{
-    color:transparent;
-    -webkit-text-fill-color:transparent;
-    -webkit-text-stroke:.024em var(--olc,var(--white));
-    text-shadow:none;
-    paint-order:stroke fill;
-    font-kerning:none;
-    font-feature-settings:"kern" 0;
-    letter-spacing:.075em;
-    padding-right:.075em;   /* trailing tracking, so the last stroke is not clipped */
-    display:inline-block;
-  }
-}
 
 
 /* ------------------------------------------------------------
