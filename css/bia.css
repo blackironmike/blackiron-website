@@ -632,6 +632,10 @@ section{border-top:1px solid var(--steel-line)}
   transition:filter .35s ease,transform .5s ease;
 }
 .blog-card:hover .blog-card-image img{filter:grayscale(0) contrast(1.02);transform:scale(1.03)}
+/* Designed graphics (share cards, diagrams) are not photography, so they
+   opt out of the mono treatment. Brand yellow must survive. */
+.blog-card-image.is-graphic img{filter:none}
+.blog-card:hover .blog-card-image.is-graphic img{filter:none}
 .blog-card-content{padding:24px 24px 28px;display:flex;flex-direction:column;gap:12px;flex:1}
 .blog-card-content h3,.blog-card-content h2{font-size:1.05rem;line-height:1.3}
 .blog-category{font-size:10px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:var(--yellow)}
