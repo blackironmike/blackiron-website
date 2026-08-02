@@ -315,10 +315,8 @@ section{border-top:1px solid var(--steel-line)}
    type, whatever the picture is. */
 .hero-bg::after{
   content:"";position:absolute;inset:0;
-  background:linear-gradient(180deg,rgba(0,0,0,.72) 0%,rgba(0,0,0,.60) 30%,rgba(0,0,0,.86) 58%,rgba(0,0,0,.94) 80%,#000 100%);
+  background:linear-gradient(180deg,rgba(0,0,0,.62) 0%,rgba(0,0,0,.38) 34%,rgba(0,0,0,.88) 66%,rgba(0,0,0,.95) 84%,#000 100%);
 }
-.hero-bg img{filter:grayscale(1) contrast(1.04) brightness(.66)}
-.building-bg img{filter:grayscale(1) contrast(1.04) brightness(.6)}
 .hero-in{position:relative;z-index:1;width:100%;padding-block:120px clamp(56px,8vw,96px)}
 .hero p.lead{margin:30px 0 36px;color:var(--white)}
 .hero-ctas{display:flex;flex-wrap:wrap;gap:14px;margin-bottom:26px}
@@ -1013,15 +1011,6 @@ footer{border-top:1px solid var(--steel-line);padding:clamp(56px,7vw,88px) 0 0}
    transparent fill would render the headline invisible, so any
    browser lacking it keeps the opaque-interior fallback below. */
 .hero .outline,.building .outline{--hole:#000;--olr:1.5px}
-@supports (-webkit-text-stroke:1px #fff){
-  .hero .outline,.building .outline{
-    color:transparent;
-    -webkit-text-fill-color:transparent;
-    -webkit-text-stroke:.030em var(--olc,var(--white));
-    text-shadow:none;
-    paint-order:stroke fill;
-  }
-}
 
 
 /* ------------------------------------------------------------
