@@ -4,6 +4,95 @@
     <meta charset="UTF-8">
     <!-- CONTRACT: keep this exact viewport tag — inject-pixel.js insertion marker -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Meta Pixel Code -->
+    <script>
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', 'TESTPIXEL');
+    fbq('track', 'PageView');
+    // ViewContent: mid-funnel event for retargeting audiences
+    var _vcPaths = [];
+    if (_vcPaths.indexOf(window.location.pathname) > -1) {
+      fbq('track', 'ViewContent');
+    }
+    </script>
+    <noscript><img height="1" width="1" style="display:none"
+    src="https://www.facebook.com/tr?id=TESTPIXEL&ev=PageView&noscript=1"
+    /></noscript>
+    <!-- End Meta Pixel Code -->
+    <!-- Meta Pixel Funnel Events -->
+    <script>
+    // InitiateCheckout + UTM pass-through on the booking links.
+    // The consult CTAs are plain links to the booking subdomain now, so
+    // the event and the attribution ride a delegated click handler
+    // instead of the old modal wrapper. Capture phase, so it still runs
+    // if something else stops propagation.
+    document.addEventListener('click', function(e) {
+      var a = e.target.closest && e.target.closest('a[href*="book.blackironathletics.com"]');
+      if (!a) return;
+      if (typeof fbq === 'function') fbq('track', 'InitiateCheckout');
+      // Carry the stored UTMs onto the booking URL so the source of the
+      // lead survives the hop to the booking subdomain.
+      try {
+        var u = new URL(a.href);
+        ['utm_source','utm_medium','utm_campaign','utm_content'].forEach(function(k) {
+          var v = sessionStorage.getItem(k);
+          if (v && !u.searchParams.has(k)) u.searchParams.set(k, v);
+        });
+        a.href = u.toString();
+      } catch (err) {}
+    }, true);
+    </script>
+    <!-- End Meta Pixel Funnel Events -->
+    <!-- UTM Pass-Through -->
+    <script>
+    (function() {
+      var utmKeys = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content'];
+      var params = new URLSearchParams(window.location.search);
+      // Capture UTMs from the landing URL into sessionStorage
+      utmKeys.forEach(function(key) {
+        var val = params.get(key);
+        if (val) sessionStorage.setItem(key, val);
+      });
+      // Build UTM query string from stored values
+      var utmParts = [];
+      utmKeys.forEach(function(key) {
+        var val = sessionStorage.getItem(key);
+        if (val) utmParts.push(key + '=' + encodeURIComponent(val));
+      });
+      if (utmParts.length === 0) return;
+      var utmString = utmParts.join('&');
+      // Tag GHL iframes with UTMs the instant they appear in the DOM.
+      // MutationObserver fires synchronously during HTML parsing, so this
+      // runs BEFORE deferred scripts (form_embed.js) can copy data-src to src.
+      function _tagIframe(el) {
+        var ds = el.dataset && el.dataset.src;
+        if (ds && ds.indexOf('leadconnectorhq.com') > -1 && ds.indexOf('utm_') === -1) {
+          el.dataset.src = ds + (ds.indexOf('?') > -1 ? '&' : '?') + utmString;
+        }
+      }
+      var _obs = new MutationObserver(function(muts) {
+        for (var m = 0; m < muts.length; m++) {
+          for (var n = 0; n < muts[m].addedNodes.length; n++) {
+            var node = muts[m].addedNodes[n];
+            if (node.nodeType !== 1) continue;
+            if (node.tagName === 'IFRAME') _tagIframe(node);
+            var fr = node.querySelectorAll ? node.querySelectorAll('iframe') : [];
+            for (var i = 0; i < fr.length; i++) _tagIframe(fr[i]);
+          }
+        }
+      });
+      _obs.observe(document.documentElement, { childList: true, subtree: true });
+      document.addEventListener('DOMContentLoaded', function() { _obs.disconnect(); });
+    })();
+    </script>
+    <!-- End UTM Pass-Through -->
     <title>Group Training Classes in Frisco, TX | Black Iron Athletics</title>
     <meta name="description" content="Strength &amp; Conditioning classes, personal training, nutrition coaching &amp; open gym at Black Iron Athletics in Frisco, TX. Every rep coached, three levels in every class.">
     <meta name="geo.region" content="US-TX">
@@ -86,7 +175,7 @@
                 <li><a href="/blog/">Blog</a></li>
                 <li><a href="/contact">Contact</a></li>
             </ul>
-            <a href="#" onclick="openLeadModal(); return false;" class="cta-btn">Book a Free Consult</a>
+            <a href="https://book.blackironathletics.com/book" class="cta-btn">Book a Free Consult</a>
             <button class="hamburger" onclick="toggleSideMenu()" aria-label="Menu">
                 <span></span>
                 <span></span>
@@ -123,7 +212,7 @@
             <a href="/contact">Contact</a>
         </div>
         <div class="side-menu-footer">
-            <a href="#" onclick="closeSideMenu(); openLeadModal(); return false;">Book a Free Consult</a>
+            <a href="https://book.blackironathletics.com/book" onclick="closeSideMenu();">Book a Free Consult</a>
         </div>
     </div>
 
@@ -139,7 +228,7 @@
             <h1 class="display">Everything<br><span class="outline">we coach.</span></h1>
             <p class="lead">Four ways to train, one standard: a coach who knows your name. Strength &amp; Conditioning classes are the flagship. Personal training, nutrition coaching, and open gym cover the rest of your week.</p>
             <div class="hero-ctas">
-                <a class="btn btn-y" href="#" onclick="openLeadModal(); return false;">Book a Free Consult</a>
+                <a class="btn btn-y" href="https://book.blackironathletics.com/book">Book a Free Consult</a>
                 <a class="btn btn-ghost" href="/schedule">See the Schedule</a>
             </div>
         </div>
@@ -176,7 +265,7 @@
             </div>
 
             <div class="cta-row rv">
-                <a class="btn btn-y" href="#" onclick="openLeadModal(); return false;">Book a Free Consult</a>
+                <a class="btn btn-y" href="https://book.blackironathletics.com/book">Book a Free Consult</a>
                 <a class="btn btn-ghost" href="/schedule">See the Class Schedule</a>
             </div>
             <div class="quotes quotes-one rv">
@@ -283,7 +372,7 @@
             <p class="small rv" style="margin-top:18px;color:var(--gray)">Thursday is deliberately the light day. Zone 2 means you can hold a conversation the whole time &mdash; that is the point, not a suggestion.</p>
 
             <div class="cta-row rv" style="margin-top:44px">
-                <a class="btn btn-y" href="#" onclick="openLeadModal(); return false;">Book a Free Consult</a>
+                <a class="btn btn-y" href="https://book.blackironathletics.com/book">Book a Free Consult</a>
                 <a class="btn btn-ghost" href="/blog/how-we-program-strength-training-frisco-tx">Read the full method</a>
             </div>
         </div>
@@ -304,7 +393,7 @@
                         <div class="h23-row rv"><b>The price</b><p>$120&ndash;150 per hour, depending on the coach and the plan. <a href="/pricing">See pricing</a> for the full breakdown.</p></div>
                     </div>
                     <div class="cta-row rv">
-                        <a class="arrow-link" href="#" onclick="openLeadModal(); return false;">Talk to a coach <svg width="16" height="12" viewBox="0 0 16 12" fill="none" aria-hidden="true"><path d="M10 1l5 5-5 5M15 6H1" stroke="currentColor" stroke-width="1.5"/></svg></a>
+                        <a class="arrow-link" href="https://book.blackironathletics.com/book">Talk to a coach <svg width="16" height="12" viewBox="0 0 16 12" fill="none" aria-hidden="true"><path d="M10 1l5 5-5 5M15 6H1" stroke="currentColor" stroke-width="1.5"/></svg></a>
                     </div>
                 </div>
                 <figure class="h23-img rv"><img class="ph" src="/images/members/member-coaching.webp" alt="Coach working one-on-one with a member during a personal training session" loading="lazy" width="2400" height="3600"></figure>
@@ -326,7 +415,7 @@
                         <p class="rv">And because it lives on your phone, it works anywhere. You don&rsquo;t have to train at Black Iron to be coached by us.</p>
                     </div>
                     <div class="cta-row rv">
-                        <a class="btn btn-ghost" href="#" onclick="openLeadModal(); return false;">Ask About Coaching</a>
+                        <a class="btn btn-ghost" href="https://book.blackironathletics.com/book">Ask About Coaching</a>
                         <a class="arrow-link" href="https://fuelpath.app/calculator">Free macro calculator <svg width="16" height="12" viewBox="0 0 16 12" fill="none" aria-hidden="true"><path d="M10 1l5 5-5 5M15 6H1" stroke="currentColor" stroke-width="1.5"/></svg></a>
                     </div>
                 </div>
@@ -367,7 +456,7 @@
             <h2 class="rv">Not sure which<br><span class="outline">program fits?</span></h2>
             <p class="lead rv">Book a free consult. Twenty minutes with a coach, no pressure &mdash; we&rsquo;ll point you at the right program, and if we&rsquo;re not the right fit, we&rsquo;ll say so.</p>
             <div class="final-ctas rv">
-                <a class="btn btn-y" href="#" onclick="openLeadModal(); return false;">Book a Free Consult</a>
+                <a class="btn btn-y" href="https://book.blackironathletics.com/book">Book a Free Consult</a>
                 <p class="alt-offer">Or try a <a href="https://blackiron.wodify.com/OnlineSalesPage/Main?q=Classes%7COnlineMembershipId%3D235166%26LocationId%3D10409" target="_blank" rel="noopener" onclick="if(window.fbq)fbq('trackCustom','DayPassClick');">$30 day pass</a> &mdash; credited toward your first month if you join.</p>
             </div>
             <p class="speed rv">Every membership starts with a free consultation and the Foundations week.</p>
