@@ -258,7 +258,7 @@ nav.scrolled{background:rgba(0,0,0,.92);border-bottom-color:var(--steel-line);ba
   position:fixed;top:0;right:0;width:300px;max-width:85vw;height:100%;
   background:var(--coal);border-left:1px solid var(--steel-line);z-index:1002;
   transform:translateX(100%);transition:transform .3s ease;
-  display:flex;flex-direction:column;overflow-y:auto;
+  display:flex;flex-direction:column;overflow:hidden;
 }
 .side-menu.open{transform:translateX(0)}
 .side-menu-header{
@@ -271,7 +271,10 @@ nav.scrolled{background:rgba(0,0,0,.92);border-bottom-color:var(--steel-line);ba
   cursor:pointer;padding:.25rem;transition:color .2s ease;
 }
 .side-menu-close:hover{color:var(--white)}
-.side-menu-links{flex:1;padding:.75rem 0}
+.side-menu-header{flex:none}
+/* The list scrolls, not the panel, so the close button and the CTA stay put
+   no matter how many links the nav grows. min-height:0 lets it shrink. */
+.side-menu-links{flex:1;min-height:0;overflow-y:auto;-webkit-overflow-scrolling:touch;padding:.75rem 0}
 .side-menu-links a{
   display:block;padding:.85rem 1.5rem;color:var(--white);
   font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;
@@ -281,7 +284,7 @@ nav.scrolled{background:rgba(0,0,0,.92);border-bottom-color:var(--steel-line);ba
 .side-menu-links .sub-link{font-size:11px;color:var(--gray);padding:.5rem 1.5rem .5rem 2.5rem;letter-spacing:2px}
 .side-menu-links .sub-link:hover{color:var(--white)}
 .side-menu-links .menu-divider{height:1px;background:var(--steel-line);margin:.5rem 1.5rem}
-.side-menu-footer{border-top:1px solid var(--steel-line);padding:1rem 1.5rem}
+.side-menu-footer{flex:none;border-top:1px solid var(--steel-line);padding:1rem 1.5rem}
 .side-menu-footer a{
   display:block;background:var(--yellow);color:var(--black);padding:.95rem 1.5rem;
   text-align:center;font-weight:700;font-size:12px;letter-spacing:1.8px;
@@ -1186,3 +1189,10 @@ footer{border-top:1px solid var(--steel-line);padding:clamp(56px,7vw,88px) 0 0}
 .nprice-cell.next b,.nprice-cell.next p{color:var(--gray)}
 .nprice-note{margin-top:14px;font-size:.85rem;color:var(--gray)}
 @media (max-width:520px){.nprice{grid-template-columns:1fr}}
+
+
+/* Recovery room: one landscape rendering, capped so the 600px source
+   never upscales past about 3%. Same frame as .rec-grid figures. */
+.rec-solo{max-width:620px;margin:34px 0 0;border:1px solid var(--steel-line)}
+.rec-solo img{width:100%;height:auto;display:block}
+.rec-solo figcaption{padding:10px 14px;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--gray);border-top:1px solid var(--steel-line)}
