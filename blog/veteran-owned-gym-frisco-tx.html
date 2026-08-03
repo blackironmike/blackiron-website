@@ -176,6 +176,12 @@
         </div>
     </nav>
 
+    <!-- ============ THUMB BAR (mobile) ============ -->
+    <div class="thumbbar">
+        <a class="tb-call" href="tel:+19727857036" aria-label="Call Black Iron Athletics"><svg width="19" height="19" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M6.5 2.5 8.2 6l-1.7 1.6a11 11 0 0 0 4.9 4.9L13 10.8l3.5 1.7v3.2c0 .6-.5 1-1.1 1A13.6 13.6 0 0 1 2.3 3.6c0-.6.4-1.1 1-1.1h3.2Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg></a>
+        <a class="tb-book" href="https://book.blackironathletics.com/book">Book a Free Consult</a>
+    </div>
+
     <!-- ============ SIDE MENU (flat mirror of the nav IA) ============ -->
     <div class="menu-backdrop" id="menuBackdrop"></div>
     <div class="side-menu" id="sideMenu">
@@ -184,23 +190,23 @@
             <button class="side-menu-close" onclick="closeSideMenu()" aria-label="Close menu">&times;</button>
         </div>
         <div class="side-menu-links">
-            <a href="/">Home</a>
-            <a href="/about">About Us</a>
-            <a href="/about" class="sub-link">Our Mission</a>
-            <a href="/about#team" class="sub-link">Meet the Team</a>
-            <a href="/media" class="sub-link">Media</a>
-            <a href="/programs">Programs</a>
-            <a href="/programs#group-classes" class="sub-link">Strength &amp; Conditioning</a>
-            <a href="/programs#personal-training" class="sub-link">Personal Training</a>
-            <a href="/programs#nutrition-coaching" class="sub-link">Nutrition Coaching</a>
-            <a href="/programs#open-gym" class="sub-link">Open Gym</a>
-            <a href="/programs#recovery" class="sub-link">Recovery Room</a>
-            <a href="/pricing">Pricing</a>
             <a href="/getting-started">Getting Started</a>
-            <a href="/getting-started" class="sub-link">How it works</a>
-            <a href="/pricing" class="sub-link">Membership &amp; Pricing</a>
-            <a href="/faq" class="sub-link">FAQs</a>
             <a href="/schedule">Schedule</a>
+            <a href="/pricing">Pricing</a>
+            <details class="m-acc"><summary>Programs</summary>
+                <a href="/programs" class="sub-link">All programs</a>
+                <a href="/programs#group-classes" class="sub-link">Strength &amp; Conditioning</a>
+                <a href="/programs#personal-training" class="sub-link">Personal Training</a>
+                <a href="/programs#nutrition-coaching" class="sub-link">Nutrition Coaching</a>
+                <a href="/programs#open-gym" class="sub-link">Open Gym</a>
+                <a href="/programs#recovery" class="sub-link">Recovery Room</a>
+            </details>
+            <details class="m-acc"><summary>About Us</summary>
+                <a href="/about" class="sub-link">Our Mission</a>
+                <a href="/about#team" class="sub-link">Meet the Team</a>
+                <a href="/media" class="sub-link">Media</a>
+            </details>
+            <a href="/faq">FAQs</a>
             <a href="/blog/">Blog</a>
             <a href="/contact">Contact</a>
         </div>
@@ -690,5 +696,29 @@
 
 <script src="https://link.msgsndr.com/js/form_embed.js" type="text/javascript" defer></script>
 <script src="https://widgets.leadconnectorhq.com/loader.js" data-resources-url="https://widgets.leadconnectorhq.com/chat-widget/loader.js" data-widget-id="6995d6d76e6009387f78d31e" defer></script>
+    <!-- Thumb bar: reveal once the hero's own consult button has scrolled by -->
+    <script>
+    (function() {
+      var bar = document.querySelector('.thumbbar');
+      if (!bar) return;
+      bar.classList.add('tb-auto');
+      var shown = false, ticking = false;
+      function check() {
+        ticking = false;
+        var past = window.scrollY > window.innerHeight * 0.6;
+        if (past === shown) return;
+        shown = past;
+        bar.classList.toggle('tb-show', past);
+      }
+      function onScroll() {
+        if (ticking) return;
+        ticking = true;
+        window.requestAnimationFrame(check);
+      }
+      window.addEventListener('scroll', onScroll, { passive: true });
+      window.addEventListener('resize', onScroll, { passive: true });
+      check();
+    })();
+    </script>
 </body>
 </html>

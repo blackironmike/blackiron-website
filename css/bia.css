@@ -223,25 +223,21 @@ nav.scrolled{background:rgba(0,0,0,.92);border-bottom-color:var(--steel-line);ba
 
 @media (max-width:1199px){
   .nav-links{display:none}
-  .hamburger{display:flex}
-  .cta-btn{margin-left:auto}
+  .hamburger{display:flex;margin-left:auto}
+  /* The consult CTA lives in the thumb bar at the bottom of the screen
+     now, so the header is only the wordmark and the menu. This is what
+     lets the logo keep its full size on a phone. */
+  nav .cta-btn{display:none}
 }
 @media (max-width:640px){
-  /* The row is logo + CTA + hamburger. Below ~430px the default 28px
-     gaps push the hamburger past the viewport (clipped, and hidden by
-     body overflow-x). Tighten the row so all three always fit. */
   .nav-container{gap:14px}
-  .cta-btn{padding:11px 14px;font-size:11px;letter-spacing:1.2px}
-  .logo img{height:32px}
-}
-@media (max-width:400px){
-  .nav-container{gap:10px;padding-inline:14px}
-  .cta-btn{padding:10px 11px;font-size:10px;letter-spacing:.9px}
+  /* 44x44 is the minimum tap target in both the Apple HIG and WCAG 2.5.5.
+     The negative margin keeps the bars optically flush with the edge. */
+  .hamburger{width:44px;height:44px;align-items:center;margin-right:-9px}
 }
 @media (max-width:345px){
-  .nav-container{gap:8px;padding-inline:11px}
-  .cta-btn{padding:9px 9px;font-size:9.5px;letter-spacing:.4px}
-  .logo img{height:28px}
+  .nav-container{gap:10px;padding-inline:14px}
+  .logo img{height:34px}
 }
 
 
@@ -291,6 +287,63 @@ nav.scrolled{background:rgba(0,0,0,.92);border-bottom-color:var(--steel-line);ba
   text-transform:uppercase;transition:background .18s ease;
 }
 .side-menu-footer a:hover{background:var(--white)}
+
+
+/* ------------------------------------------------------------
+   8b. THUMB BAR (mobile booking + call, bottom of the screen)
+   ------------------------------------------------------------
+   Sits below the menu backdrop (1001) and the side menu (1002) so an
+   open menu covers it. Above ordinary content, below the nav. */
+.thumbbar{display:none}
+@media (max-width:1199px){
+  .thumbbar{
+    position:fixed;inset-inline:0;bottom:0;z-index:999;display:flex;gap:10px;
+    padding:10px var(--pad) calc(10px + env(safe-area-inset-bottom));
+    background:rgba(0,0,0,.94);border-top:1px solid var(--steel-line);
+  }
+  /* Progressive enhancement: the bar is visible by default, so it still
+     works with JavaScript off. The script adds .tb-auto, which tucks it
+     away until you scroll past the hero, so it never doubles up with the
+     hero's own consult button on first paint. */
+  .thumbbar.tb-auto{transform:translateY(115%);transition:transform .3s ease}
+  .thumbbar.tb-auto.tb-show{transform:none}
+  @supports (backdrop-filter:blur(10px)){.thumbbar{backdrop-filter:blur(10px)}}
+  .tb-call{
+    flex:none;display:flex;align-items:center;justify-content:center;
+    width:52px;border:1px solid var(--steel-line);color:var(--white);
+    transition:border-color .18s ease,color .18s ease;
+  }
+  .tb-call:hover{border-color:var(--white)}
+  .tb-book{
+    flex:1;display:flex;align-items:center;justify-content:center;
+    background:var(--yellow);color:var(--black);border:1px solid var(--yellow);
+    font-weight:700;font-size:12.5px;letter-spacing:1.6px;text-transform:uppercase;
+    padding:15px 10px;text-align:center;
+  }
+  .tb-book:hover{background:var(--white);border-color:var(--white)}
+  /* Clear the bar (74px tall) so the last of the footer is never trapped
+     under it, plus a little breathing room. */
+  body{padding-bottom:calc(86px + env(safe-area-inset-bottom))}
+  /* Third-party GHL chat bubble: lift it clear of the bar. Inert if their
+     host element is not positioned, so it can never break their widget. */
+  chat-widget{bottom:calc(80px + env(safe-area-inset-bottom)) !important}
+}
+
+/* Collapsible groups inside the side menu. <details> carries the state,
+   so this needs no JavaScript. */
+.side-menu-links .m-acc summary{
+  display:block;padding:.85rem 1.5rem;color:var(--white);cursor:pointer;list-style:none;
+  font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;position:relative;
+}
+.side-menu-links .m-acc summary::-webkit-details-marker{display:none}
+.side-menu-links .m-acc summary::after{
+  content:"";position:absolute;right:1.5rem;top:50%;width:7px;height:7px;
+  border-right:2px solid var(--gray);border-bottom:2px solid var(--gray);
+  transform:translateY(-70%) rotate(45deg);transition:transform .2s ease;
+}
+.side-menu-links .m-acc[open] summary::after{transform:translateY(-30%) rotate(-135deg)}
+.side-menu-links .m-acc summary:hover{color:var(--yellow)}
+.side-menu-links .m-acc summary:focus-visible{outline:2px solid var(--yellow);outline-offset:-2px}
 
 
 /* ------------------------------------------------------------
@@ -972,6 +1025,8 @@ footer{border-top:1px solid var(--steel-line);padding:clamp(56px,7vw,88px) 0 0}
   .marquee-track{animation:none}
   .modal-container{animation:none}
   .prog img,.coach img,.blog-card-image img,.arrow-link svg,.blog-read-more svg{transition:none}
+  /* The thumb bar still appears and disappears, it just does not slide. */
+  .thumbbar.tb-auto{transition:none}
 }
 
 
