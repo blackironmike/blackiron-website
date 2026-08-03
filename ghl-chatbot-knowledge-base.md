@@ -42,7 +42,7 @@ Our coaching staff includes Mike Manning (Owner and Head Coach), Kristin (Genera
 
 ## What programs do you offer?
 
-We offer Group Training (Strength and Conditioning), Personal Training, Nutrition Coaching, and Open Gym access. Olympic weightlifting classes are currently paused — the lifts still live in our programming and in open gym. HYROX-style training is available self-guided during open gym.
+We offer Group Training (Strength and Conditioning), Personal Training, Nutrition Coaching, and Open Gym access. The Olympic lifts are in our programming year-round, and the dedicated weightlifting block is a seasonal specialty that runs a few times a year. HYROX affiliate programming runs in open gym seven days a week.
 
 ## What is Group Training?
 
@@ -50,11 +50,11 @@ High-energy, coach-led classes for all fitness levels. Every class includes stru
 
 ## What is Olympic Weightlifting?
 
-Olympic weightlifting classes are currently paused. The barbell and Olympic lifts — snatch, clean and jerk — still live in our regular programming, and open gym members can train them anytime. Classes may return.
+The snatch, clean and jerk, and the barbell work behind them are in our programming year-round, and open gym members can train them anytime. The dedicated weightlifting block is a seasonal specialty — it runs a few times a year and it goes fast. Ask when the next one opens.
 
 ## What is HYROX Training?
 
-HYROX training at Black Iron is self-guided during open gym — it is not a class. Open gym members can run HYROX-style sessions on their own schedule, with full access to sleds, rowers, ski ergs, and our structured programming.
+Black Iron is a HYROX affiliate. The programming comes straight from HYROX HQ, the same race prep their competitive athletes follow, and it runs in open gym seven days a week. There is no HYROX class on the schedule, so you run it on your own time with full access to sleds, rowers, ski ergs, and sandbags.
 
 ## What is Personal Training?
 
