@@ -509,6 +509,7 @@ section{border-top:1px solid var(--steel-line)}
 .quote{border:1px solid var(--steel-line);background:var(--black);padding:clamp(28px,3.5vw,44px);display:flex;flex-direction:column;gap:22px}
 .quote blockquote{color:var(--white);font-weight:700;font-size:clamp(1.05rem,1.7vw,1.3rem);line-height:1.5}
 .quote cite{font-style:normal;font-size:11px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:var(--gray);margin-top:auto}
+.quotes-one{grid-template-columns:1fr;max-width:760px}
 @media (max-width:760px){.quotes{grid-template-columns:1fr}}
 
 
@@ -1128,3 +1129,43 @@ footer{border-top:1px solid var(--steel-line);padding:clamp(56px,7vw,88px) 0 0}
   text-transform:uppercase;color:var(--gray);line-height:1.35;
 }
 @media (max-width:520px){.shots{gap:8px}.shots figcaption{font-size:9px;letter-spacing:.6px}}
+
+
+/* ------------------------------------------------------------
+   MEMBER QUOTE MARQUEE
+   Replaces the third-party reviews widget. Two identical tracks
+   scroll as one belt; the second is aria-hidden so the duplicate
+   quotes are never read out twice. Pauses on hover and on focus
+   within, so a keyboard user can actually read a card.
+   ------------------------------------------------------------ */
+.tmarquee{
+  display:flex;gap:18px;overflow:hidden;margin-top:36px;
+  -webkit-mask-image:linear-gradient(90deg,transparent,#000 5%,#000 95%,transparent);
+          mask-image:linear-gradient(90deg,transparent,#000 5%,#000 95%,transparent);
+}
+.tmarquee-track{display:flex;gap:18px;flex:none;animation:qbelt 64s linear infinite}
+.tmarquee:hover .tmarquee-track,
+.tmarquee:focus-within .tmarquee-track{animation-play-state:paused}
+@keyframes qbelt{from{transform:translateX(0)}to{transform:translateX(calc(-100% - 18px))}}
+
+.tcard{
+  width:330px;flex:none;margin:0;background:var(--coal);
+  border:1px solid var(--steel-line);padding:26px 24px;
+  display:flex;flex-direction:column;gap:14px;
+}
+.tcard blockquote{margin:0;color:var(--white);font-size:.97rem;line-height:1.62}
+.tcard figcaption{
+  margin-top:auto;color:var(--gray);font-size:11px;font-weight:700;
+  letter-spacing:1.6px;text-transform:uppercase;
+}
+.tcard .stars{display:flex;gap:3px}
+.tcard .stars svg{width:14px;height:14px;fill:var(--yellow)}
+
+/* Reduced motion: no belt. It becomes an ordinary swipeable row. */
+@media (prefers-reduced-motion:reduce){
+  .tmarquee{overflow-x:auto;scroll-snap-type:x mandatory;-webkit-mask-image:none;mask-image:none}
+  .tmarquee-track{animation:none}
+  .tmarquee-track[aria-hidden="true"]{display:none}
+  .tcard{scroll-snap-align:start}
+}
+@media (max-width:640px){.tcard{width:270px;padding:22px 20px}}
