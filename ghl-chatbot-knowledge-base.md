@@ -62,11 +62,15 @@ HYROX training at Black Iron is self-guided during open gym — it is not a clas
 
 ## Do you offer nutrition coaching?
 
-Yes. Our nutrition coaching program includes personalized macro targets, the FuelPath food tracking tool, barcode scanning, daily compliance tracking, and ongoing coach support. We also offer a free Macro Calculator at https://www.blackironathletics.com/macro-calculator.
+Yes. You work with a real human coach: weekly check-ins, honest feedback, and targets that adjust as life happens. It runs on FuelPath, the nutrition app our own team built, which helps you track what you eat, learn what your body needs, and see your progress, while keeping your coach in the loop. We also offer a free Macro Calculator at https://www.blackironathletics.com/macro-calculator.
+
+## How much does nutrition coaching cost?
+
+Nutrition coaching is $200 a month at the founding rate, which is open now while the founding group fills. After that it goes to $250 a month. It runs month to month, with or without a gym membership.
 
 ## Can I do nutrition coaching without a gym membership?
 
-Yes, nutrition coaching is available as a standalone service.
+Yes, nutrition coaching is available as a standalone service. It works anywhere, so you do not have to train at Black Iron to be coached by us.
 
 ## What membership options do you offer?
 

@@ -1169,3 +1169,20 @@ footer{border-top:1px solid var(--steel-line);padding:clamp(56px,7vw,88px) 0 0}
   .tcard{scroll-snap-align:start}
 }
 @media (max-width:640px){.tcard{width:270px;padding:22px 20px}}
+
+
+/* Nutrition coaching: founding rate against the standard rate */
+.nprice{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--steel-line);border:1px solid var(--steel-line);margin-top:34px}
+.nprice-cell{background:var(--black);padding:24px 22px}
+.nprice-cell.now{background:var(--coal)}
+.nprice-tag{
+  display:block;font-size:10px;font-weight:700;letter-spacing:1.8px;
+  text-transform:uppercase;color:var(--gray);margin-bottom:12px;
+}
+.nprice-cell.now .nprice-tag{color:var(--yellow)}
+.nprice-cell b{display:block;color:var(--white);font-weight:900;font-size:clamp(1.9rem,3.4vw,2.6rem);line-height:1}
+.nprice-cell b span{font-size:.9rem;font-weight:700;color:var(--gray);margin-left:3px}
+.nprice-cell p{margin-top:11px;font-size:.9rem;line-height:1.5}
+.nprice-cell.next b,.nprice-cell.next p{color:var(--gray)}
+.nprice-note{margin-top:14px;font-size:.85rem;color:var(--gray)}
+@media (max-width:520px){.nprice{grid-template-columns:1fr}}
