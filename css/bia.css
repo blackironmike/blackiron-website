@@ -920,9 +920,9 @@ footer{border-top:1px solid var(--steel-line);padding:clamp(56px,7vw,88px) 0 0}
   gap:clamp(32px,4vw,56px);padding-bottom:clamp(40px,5vw,64px);
 }
 .foot-brand{display:flex;align-items:flex-start;gap:16px}
-.foot-brand img{height:44px;width:auto}
+.foot-brand img{height:2.52rem;width:auto;flex:none}
 .foot-brand b{display:block;color:var(--white);font-weight:900;text-transform:uppercase;font-size:1.2rem;line-height:1.05}
-.foot-mission{margin-top:14px;max-width:38ch;font-size:.95rem}
+.foot-mission{margin-top:16px;max-width:34ch;font-size:.95rem}
 .foot-note{margin-top:12px;font-size:.82rem;color:var(--gray)}
 .foot-col li{margin-bottom:12px;font-size:.9rem;color:var(--gray)}
 .foot-col a{font-size:.9rem;color:var(--gray)}
