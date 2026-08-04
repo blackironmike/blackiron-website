@@ -1,0 +1,1254 @@
+/* ============================================================
+   BLACK IRON ATHLETICS — bia.css
+   Shared design system for the site-wide rebuild.
+   Source design: redesign/direction-2.html ("Forged Bold").
+
+   Language: black + #FFD202, Montserrat, outline display type,
+   1px steel rules, square corners, monochrome photography.
+   Yellow is punctuation, never a sentence — roughly a dozen
+   yellow moments per page, max.
+
+   Usage: every page loads this file. Per-page <style> blocks are
+   for page-unique components only, written in the same tokens.
+
+   Icons: no icon fonts. Small inline SVGs in markup:
+     <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">…</svg>
+   .icon = stroked (stroke:currentColor, fill:none)
+   .icon-fill = filled (fill:currentColor, no stroke)
+   Decorative icons always get aria-hidden="true".
+
+   Class-name policy:
+   - Shell / behavioral components keep the LIVE site's class
+     names so existing JS and the a11y IIFE keep working:
+     skip-link, nav-container, logo, nav-links, has-submenu,
+     submenu, cta-btn, hamburger, menu-backdrop, side-menu*,
+     modal-overlay, modal-container, modal-close,
+   - Design components use Direction 2 names: wrap, sect, alt,
+     eyebrow, display, outline, lead, btn, btn-y, btn-ghost, rv…
+   ============================================================ */
+
+
+/* ------------------------------------------------------------
+   1. TOKENS
+   ------------------------------------------------------------ */
+:root{
+  --black:#000000;
+  --coal:#101010;
+  --steel-line:#2A2A2A;
+  --white:#FFFFFF;
+  --gray:#C7C7C7;
+  --yellow:#FFD202;
+  --font:"Montserrat",Arial,sans-serif;
+  --pad:clamp(20px,4vw,48px);
+  --sect:clamp(76px,10vw,140px);
+  --max:1240px;
+  /* Legacy aliases — old inline styles and carried-over snippets
+     reference these names. Do not use them in new CSS. */
+  --dark-gray:var(--coal);
+  --medium-gray:var(--steel-line);
+  --light-gray:var(--gray);
+}
+
+
+/* ------------------------------------------------------------
+   2. RESET / BASE
+   ------------------------------------------------------------ */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:96px}
+body{
+  background:var(--black);
+  color:var(--gray);
+  font-family:var(--font);
+  font-weight:400;
+  font-size:1.0625rem;
+  line-height:1.68;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+img{display:block;max-width:100%;height:auto}
+a{color:var(--white);text-decoration:none}
+p a{text-decoration:underline;text-underline-offset:3px}
+ul{list-style:none}
+button,input,select,textarea{font-family:var(--font)}
+:focus-visible{outline:2px solid var(--yellow);outline-offset:3px}
+::selection{background:var(--white);color:var(--black)}
+
+.wrap{max-width:var(--max);margin-inline:auto;padding-inline:var(--pad)}
+
+/* Utilities */
+.center{text-align:center}
+.no-top{border-top:0!important}
+.sr-only{
+  position:absolute;width:1px;height:1px;padding:0;margin:-1px;
+  overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0;
+}
+
+/* Icons (inline SVG only — see header comment) */
+.icon{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round;flex:none}
+.icon-fill{width:22px;height:22px;fill:currentColor;stroke:none;flex:none}
+
+
+/* ------------------------------------------------------------
+   3. TYPE SCALE
+   ------------------------------------------------------------ */
+h1,h2,h3{color:var(--white);font-weight:900;text-transform:uppercase;line-height:.92;letter-spacing:-.02em}
+.display{font-size:clamp(3rem,8.5vw,7.5rem)}
+h2{font-size:clamp(2.1rem,5.2vw,4.25rem);margin-bottom:28px}
+h3{font-size:1.05rem;letter-spacing:.02em;line-height:1.25}
+h4{color:var(--white);font-weight:700;font-size:.95rem;text-transform:uppercase;letter-spacing:.05em}
+
+/* Outline type — the signature accent device */
+/* .outline is defined in the CLEAN OUTLINE block at the end of this file. */
+
+.eyebrow{
+  display:block;font-size:11px;font-weight:700;letter-spacing:3px;
+  text-transform:uppercase;color:var(--gray);margin-bottom:22px;
+}
+.eyebrow-y{color:var(--yellow)}
+.hl{color:var(--yellow)}
+.lead{font-size:clamp(1.05rem,1.6vw,1.25rem);max-width:60ch}
+.small{font-size:.85rem}
+
+
+/* ------------------------------------------------------------
+   4. BUTTONS + LINKS
+   ------------------------------------------------------------ */
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:10px;
+  font-family:var(--font);font-weight:700;font-size:13px;letter-spacing:1.8px;
+  text-transform:uppercase;padding:18px 34px;border:1px solid transparent;
+  cursor:pointer;transition:background .18s ease,color .18s ease,border-color .18s ease;
+}
+.btn-y{background:var(--yellow);color:var(--black)}
+.btn-y:hover{background:var(--white);color:var(--black)}
+.btn-ghost{border-color:rgba(255,255,255,.4);color:var(--white);background:transparent}
+.btn-ghost:hover{background:var(--white);color:var(--black);border-color:var(--white)}
+
+.arrow-link{
+  display:inline-flex;align-items:center;gap:8px;font-weight:700;font-size:12px;
+  letter-spacing:2px;text-transform:uppercase;color:var(--white);
+}
+.arrow-link svg{transition:transform .18s ease}
+.arrow-link:hover svg{transform:translateX(5px)}
+
+
+/* ------------------------------------------------------------
+   5. PHOTO TREATMENT — mono discipline
+   Grayscale by default. Color returns only on hover where a
+   component asks for it.
+   ------------------------------------------------------------ */
+.ph{filter:grayscale(1) contrast(1.06) brightness(.94);transition:filter .35s ease}
+.ph-soft{filter:grayscale(.85) contrast(1.1) brightness(.82)}
+
+
+/* ------------------------------------------------------------
+   6. SKIP LINK (live class name — do not rename)
+   ------------------------------------------------------------ */
+.skip-link{
+  position:absolute;left:-9999px;top:0;z-index:2000;background:var(--white);
+  color:var(--black);padding:12px 20px;font-weight:700;
+}
+.skip-link:focus{left:0}
+
+
+/* ------------------------------------------------------------
+   7. FIXED TOP NAV (live class names + a11y IIFE contract)
+   Transparent at page top; the shell JS toggles .scrolled which
+   fills it in. First block of any page must clear ~74px of nav
+   (full-bleed heroes flow under it; .page-header and
+   .article-hero carry their own top padding).
+   ------------------------------------------------------------ */
+nav{
+  position:fixed;inset-inline:0;top:0;z-index:1000;
+  border-bottom:1px solid transparent;
+  transition:background .25s ease,border-color .25s ease;
+}
+nav.scrolled{background:rgba(0,0,0,.92);border-bottom-color:var(--steel-line);backdrop-filter:blur(8px)}
+
+.nav-container{
+  max-width:var(--max);margin-inline:auto;padding:0 var(--pad);
+  height:74px;display:flex;align-items:center;gap:28px;
+}
+.logo{flex:none}
+.logo a{display:flex;align-items:center}
+.logo img{height:40px;width:auto;flex:none;max-width:none}
+
+.nav-links{display:flex;align-items:center;gap:26px;margin-left:auto;list-style:none}
+.nav-links>li{position:relative;display:flex;align-items:center;height:74px}
+.nav-links a{font-size:12px;font-weight:700;letter-spacing:1.8px;text-transform:uppercase;color:var(--gray);transition:color .18s ease;white-space:nowrap}
+.nav-links>li>a:hover{color:var(--white)}
+
+/* Dropdown submenu (.has-submenu pattern — markup + keyboard JS
+   from the live site; only the look changes) */
+.submenu{
+  display:none;position:absolute;top:100%;left:-20px;min-width:240px;
+  padding:8px 0;background:rgba(10,10,10,.97);border:1px solid var(--steel-line);
+  list-style:none;
+}
+.nav-links>li:hover .submenu{display:block}
+/* Keyboard / focus states — selectors the a11y IIFE depends on */
+.nav-links>li:focus-within .submenu,
+.has-submenu.submenu-open .submenu{display:block}
+.submenu li{padding:0}
+.submenu a{display:block;padding:13px 20px;font-size:11px;color:var(--gray)}
+.submenu a:hover{color:var(--white);background:rgba(255,255,255,.04)}
+.has-submenu>a::after{
+  content:"";display:inline-block;width:0;height:0;margin-left:8px;
+  border-left:4px solid transparent;border-right:4px solid transparent;
+  border-top:5px solid var(--gray);vertical-align:2px;
+  transition:transform .2s ease,border-top-color .2s ease;
+}
+.has-submenu:hover>a::after,
+.has-submenu:focus-within>a::after{border-top-color:var(--yellow);transform:translateY(2px)}
+
+/* Nav CTA (live class name; used by every page) */
+.cta-btn{
+  display:inline-flex;align-items:center;justify-content:center;
+  background:var(--yellow);color:var(--black);border:1px solid var(--yellow);
+  font-weight:700;font-size:12px;letter-spacing:1.8px;text-transform:uppercase;
+  padding:13px 22px;white-space:nowrap;cursor:pointer;
+  transition:background .18s ease,border-color .18s ease;
+}
+.cta-btn:hover{background:var(--white);border-color:var(--white);color:var(--black)}
+
+/* Hamburger (live class name + .active state from live JS) */
+.hamburger{
+  display:none;flex-direction:column;justify-content:center;gap:6px;
+  width:30px;height:30px;background:none;border:0;padding:0;cursor:pointer;z-index:1002;
+}
+.hamburger span{display:block;width:26px;height:2px;background:var(--white);transition:transform .25s ease,opacity .25s ease}
+.hamburger.active span:nth-child(1){transform:rotate(45deg) translate(6px,6px)}
+.hamburger.active span:nth-child(2){opacity:0}
+.hamburger.active span:nth-child(3){transform:rotate(-45deg) translate(6px,-6px)}
+
+@media (max-width:1199px){
+  .nav-links{display:none}
+  .hamburger{display:flex;margin-left:auto}
+  /* The consult CTA lives in the thumb bar at the bottom of the screen
+     now, so the header is only the wordmark and the menu. This is what
+     lets the logo keep its full size on a phone. */
+  nav .cta-btn{display:none}
+}
+@media (max-width:640px){
+  .nav-container{gap:14px}
+  /* 44x44 is the minimum tap target in both the Apple HIG and WCAG 2.5.5.
+     The negative margin keeps the bars optically flush with the edge. */
+  .hamburger{width:44px;height:44px;align-items:center;margin-right:-9px}
+}
+@media (max-width:345px){
+  .nav-container{gap:10px;padding-inline:14px}
+  .logo img{height:34px}
+}
+
+
+/* ------------------------------------------------------------
+   8. SIDE MENU + BACKDROP (live class names + live JS)
+   ------------------------------------------------------------ */
+.menu-backdrop{
+  position:fixed;inset:0;background:rgba(0,0,0,.72);z-index:1001;
+  opacity:0;visibility:hidden;transition:opacity .3s ease,visibility .3s ease;
+}
+.menu-backdrop.open{opacity:1;visibility:visible}
+
+.side-menu{
+  position:fixed;top:0;right:0;width:300px;max-width:85vw;height:100%;
+  background:var(--coal);border-left:1px solid var(--steel-line);z-index:1002;
+  transform:translateX(100%);visibility:hidden;
+  transition:transform .3s ease,visibility .3s ease;
+  display:flex;flex-direction:column;overflow:hidden;
+}
+.side-menu.open{transform:translateX(0);visibility:visible}
+.side-menu-header{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:1rem 1.5rem;border-bottom:1px solid var(--steel-line);
+}
+.side-menu-header img{height:30px;width:auto}
+.side-menu-close{
+  background:none;border:0;color:var(--gray);font-size:1.5rem;line-height:1;
+  cursor:pointer;padding:.25rem;transition:color .2s ease;
+}
+.side-menu-close:hover{color:var(--white)}
+.side-menu-header{flex:none}
+/* The list scrolls, not the panel, so the close button and the CTA stay put
+   no matter how many links the nav grows. min-height:0 lets it shrink. */
+.side-menu-links{flex:1;min-height:0;overflow-y:auto;-webkit-overflow-scrolling:touch;padding:.75rem 0}
+.side-menu-links a{
+  display:block;padding:.85rem 1.5rem;color:var(--white);
+  font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;
+  transition:background .18s ease,color .18s ease;
+}
+.side-menu-links a:hover{color:var(--yellow);background:rgba(255,255,255,.04)}
+.side-menu-links .sub-link{font-size:11px;color:var(--gray);padding:.5rem 1.5rem .5rem 2.5rem;letter-spacing:2px}
+.side-menu-links .sub-link:hover{color:var(--white)}
+.side-menu-links .menu-divider{height:1px;background:var(--steel-line);margin:.5rem 1.5rem}
+.side-menu-footer{flex:none;border-top:1px solid var(--steel-line);padding:1rem 1.5rem}
+.side-menu-footer a{
+  display:block;background:var(--yellow);color:var(--black);padding:.95rem 1.5rem;
+  text-align:center;font-weight:700;font-size:12px;letter-spacing:1.8px;
+  text-transform:uppercase;transition:background .18s ease;
+}
+.side-menu-footer a:hover{background:var(--white)}
+
+
+/* ------------------------------------------------------------
+   8b. THUMB BAR (mobile booking + call, bottom of the screen)
+   ------------------------------------------------------------
+   Sits below the menu backdrop (1001) and the side menu (1002) so an
+   open menu covers it. Above ordinary content, below the nav. */
+.thumbbar{display:none}
+@media (max-width:1199px){
+  .thumbbar{
+    position:fixed;inset-inline:0;bottom:0;z-index:999;display:flex;gap:10px;
+    padding:10px var(--pad) calc(10px + env(safe-area-inset-bottom));
+    background:rgba(0,0,0,.94);border-top:1px solid var(--steel-line);
+  }
+  /* Progressive enhancement: the bar is visible by default, so it still
+     works with JavaScript off. The script adds .tb-auto, which tucks it
+     away until you scroll past the hero, so it never doubles up with the
+     hero's own consult button on first paint. */
+  .thumbbar.tb-auto{transform:translateY(115%);transition:transform .3s ease}
+  .thumbbar.tb-auto.tb-show{transform:none}
+  @supports (backdrop-filter:blur(10px)){.thumbbar{backdrop-filter:blur(10px)}}
+  .tb-call{
+    flex:none;display:flex;align-items:center;justify-content:center;
+    width:52px;border:1px solid var(--steel-line);color:var(--white);
+    transition:border-color .18s ease,color .18s ease;
+  }
+  .tb-call:hover{border-color:var(--white)}
+  .tb-book{
+    flex:1;display:flex;align-items:center;justify-content:center;
+    background:var(--yellow);color:var(--black);border:1px solid var(--yellow);
+    font-weight:700;font-size:12.5px;letter-spacing:1.6px;text-transform:uppercase;
+    padding:15px 10px;text-align:center;
+  }
+  .tb-book:hover{background:var(--white);border-color:var(--white)}
+  /* Clear the bar (74px tall) so the last of the footer is never trapped
+     under it, plus a little breathing room. */
+  body{padding-bottom:calc(86px + env(safe-area-inset-bottom))}
+  /* Third-party GHL chat bubble: lift it clear of the bar. Inert if their
+     host element is not positioned, so it can never break their widget. */
+  chat-widget{bottom:calc(80px + env(safe-area-inset-bottom)) !important}
+}
+
+/* Collapsible groups inside the side menu. <details> carries the state,
+   so this needs no JavaScript. */
+.side-menu-links .m-acc summary{
+  display:block;padding:.85rem 1.5rem;color:var(--white);cursor:pointer;list-style:none;
+  font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;position:relative;
+}
+.side-menu-links .m-acc summary::-webkit-details-marker{display:none}
+.side-menu-links .m-acc summary::after{
+  content:"";position:absolute;right:1.5rem;top:50%;width:7px;height:7px;
+  border-right:2px solid var(--gray);border-bottom:2px solid var(--gray);
+  transform:translateY(-70%) rotate(45deg);transition:transform .2s ease;
+}
+.side-menu-links .m-acc[open] summary::after{transform:translateY(-30%) rotate(-135deg)}
+.side-menu-links .m-acc summary:hover{color:var(--yellow)}
+.side-menu-links .m-acc summary:focus-visible{outline:2px solid var(--yellow);outline-offset:-2px}
+
+
+/* ------------------------------------------------------------
+   9. SECTION RHYTHM
+   Every section carries a 1px steel top rule. Use .no-top on a
+   section that opens the page (hero, page-header).
+   ------------------------------------------------------------ */
+section{border-top:1px solid var(--steel-line)}
+.sect{padding-block:var(--sect)}
+.alt{background:var(--coal)}
+
+
+/* ------------------------------------------------------------
+   10. HERO (full-bleed) + PAGE HEADER (interior pages)
+   ------------------------------------------------------------ */
+.hero{position:relative;min-height:100vh;min-height:100svh;display:flex;align-items:flex-end}
+.hero-short{min-height:68svh}
+.hero-bg{position:absolute;inset:0;overflow:hidden}
+.hero-bg img{width:100%;height:100%;object-fit:cover;object-position:center 30%}
+/* The scrim carries the transparent letterforms. Because the letter
+   interior is now the photograph itself, a bright subject behind a
+   headline (a whiteboard, a window) washes the strokes out and the
+   type reads broken. The mid stop is deepened and the image itself
+   darkened so every hero photo presents a dark field behind the
+   type, whatever the picture is. */
+.hero-bg::after{
+  content:"";position:absolute;inset:0;
+  background:linear-gradient(180deg,rgba(0,0,0,.62) 0%,rgba(0,0,0,.38) 34%,rgba(0,0,0,.88) 66%,rgba(0,0,0,.95) 84%,#000 100%);
+}
+.hero-in{position:relative;z-index:1;width:100%;padding-block:120px clamp(56px,8vw,96px)}
+.hero p.lead{margin:30px 0 36px;color:var(--white)}
+.hero-ctas{display:flex;flex-wrap:wrap;gap:14px;margin-bottom:26px}
+
+/* Google-rating trust chip */
+.trust{
+  display:inline-flex;align-items:center;gap:10px;font-size:.85rem;font-weight:600;color:var(--white);
+  border:1px solid var(--steel-line);background:rgba(0,0,0,.55);padding:10px 16px;
+}
+.stars{display:inline-flex;gap:3px}
+.stars svg{width:13px;height:13px;fill:var(--yellow)}
+
+/* Simple header for interior pages (legal, blog index, schedule…) */
+.page-header{padding:clamp(150px,18vw,200px) 0 clamp(44px,6vw,72px);border-bottom:1px solid var(--steel-line)}
+.page-header h1{font-size:clamp(2.4rem,6vw,4.6rem)}
+.page-header .lead{margin-top:22px}
+
+
+/* ------------------------------------------------------------
+   11. STAT BAND
+   ------------------------------------------------------------ */
+.stats{border-top:1px solid var(--steel-line);border-bottom:1px solid var(--steel-line);background:var(--black)}
+.stats-grid{display:grid;grid-template-columns:repeat(4,1fr)}
+.stat{padding:clamp(34px,4.5vw,60px) var(--pad);border-left:1px solid var(--steel-line)}
+.stat:first-child{border-left:0}
+.stat b{display:block;color:var(--white);font-weight:900;font-size:clamp(2.6rem,6vw,5.5rem);line-height:.9;letter-spacing:-.03em}
+.stat span{display:block;margin-top:12px;font-size:11px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:var(--gray)}
+@media (max-width:760px){
+  .stats-grid{grid-template-columns:1fr 1fr}
+  .stat:nth-child(3){border-left:0}
+  .stat:nth-child(n+3){border-top:1px solid var(--steel-line)}
+}
+
+
+/* ------------------------------------------------------------
+   12. MARQUEE
+   ------------------------------------------------------------ */
+.marquee{overflow:hidden;padding:26px 0;border-bottom:1px solid var(--steel-line);white-space:nowrap}
+.marquee-track{display:inline-flex;animation:ticker 46s linear infinite}
+.marquee:hover .marquee-track{animation-play-state:paused}
+.marquee span{
+  font-weight:900;text-transform:uppercase;font-size:clamp(1.5rem,3.6vw,2.8rem);
+  letter-spacing:.01em;
+  padding-right:.6em;
+}
+@keyframes ticker{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+
+/* ------------------------------------------------------------
+   13. STAKES / FEARS / BELIEF PULL-QUOTE
+   ------------------------------------------------------------ */
+.stakes-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:clamp(36px,6vw,84px);align-items:center}
+.stakes-img{aspect-ratio:4/5;overflow:hidden}
+.stakes-img img{width:100%;height:100%;object-fit:cover}
+.fears{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:44px}
+.fear{border-top:1px solid var(--steel-line);padding-top:18px}
+.fear b{display:block;color:var(--white);font-weight:900;text-transform:uppercase;font-size:.8rem;letter-spacing:1.5px;margin-bottom:8px}
+.fear p{font-size:.9rem;line-height:1.6}
+.belief{margin-top:clamp(56px,7vw,90px);border-top:1px solid var(--steel-line);padding-top:clamp(40px,5vw,64px)}
+.belief p{
+  color:var(--white);font-weight:900;text-transform:uppercase;line-height:1.12;
+  font-size:clamp(1.5rem,3.4vw,2.7rem);letter-spacing:-.01em;max-width:22ch;
+}
+@media (max-width:860px){
+  .stakes-grid{grid-template-columns:1fr}
+  .stakes-img{order:-1;aspect-ratio:16/10}
+  .fears{grid-template-columns:1fr}
+}
+
+
+/* ------------------------------------------------------------
+   14. NUMBERED STEPS
+   ------------------------------------------------------------ */
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--steel-line);border:1px solid var(--steel-line);margin-top:22px}
+.step{background:var(--black);padding:clamp(30px,3.5vw,48px)}
+.step em{
+  display:block;font-style:normal;font-weight:900;line-height:.85;margin-bottom:22px;
+  font-size:clamp(3.4rem,6vw,5.5rem);
+}
+.step h3{margin-bottom:14px}
+.step p{font-size:.95rem}
+.plan-cta{margin-top:44px;display:flex;flex-wrap:wrap;align-items:center;gap:22px}
+.speed{font-size:.85rem;font-weight:600;color:var(--white)}
+.speed::before{content:"";display:inline-block;width:26px;height:1px;background:var(--gray);vertical-align:middle;margin-right:10px}
+@media (max-width:860px){.steps{grid-template-columns:1fr}}
+
+
+/* ------------------------------------------------------------
+   15. PROGRAM CARDS
+   ------------------------------------------------------------ */
+.prog-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:clamp(18px,2vw,28px);margin-top:14px}
+.prog{grid-column:span 2;border:1px solid var(--steel-line);background:var(--coal);display:flex;flex-direction:column}
+.prog.wide{grid-column:span 3}
+.prog figure{aspect-ratio:4/3;overflow:hidden}
+.prog img{width:100%;height:100%;object-fit:cover;transition:transform .5s ease,filter .5s ease}
+.prog:hover img{transform:scale(1.045);filter:grayscale(0) contrast(1.02) brightness(.96)}
+.prog-body{padding:26px 26px 30px;display:flex;flex-direction:column;gap:12px;flex:1}
+.prog-body p{font-size:.92rem;flex:1}
+@media (max-width:1020px){.prog,.prog.wide{grid-column:span 3}}
+@media (max-width:640px){.prog,.prog.wide{grid-column:span 6}}
+
+
+/* ------------------------------------------------------------
+   16. THREE LEVELS + WHITEBOARD
+   ------------------------------------------------------------ */
+.levels-intro{max-width:62ch}
+.board{margin:44px 0 0;border:1px solid var(--steel-line);background:var(--black);padding:clamp(26px,3.5vw,44px)}
+.board small{display:block;font-size:11px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:var(--gray);margin-bottom:16px}
+.board p{color:var(--white);font-weight:700;font-size:clamp(1rem,1.8vw,1.3rem);line-height:1.5}
+.lvl-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(18px,2vw,28px);margin-top:clamp(30px,3.5vw,44px)}
+.lvl{padding-top:22px}
+.lvl:nth-child(1){border-top:2px solid var(--white)}
+.lvl:nth-child(2){border-top:5px solid var(--white)}
+.lvl:nth-child(3){border-top:9px solid var(--white)}
+.lvl b{display:block;color:var(--white);font-weight:900;text-transform:uppercase;letter-spacing:.02em;font-size:1.05rem;margin-bottom:10px}
+.lvl p{font-size:.92rem}
+@media (max-width:760px){.lvl-grid{grid-template-columns:1fr}}
+
+
+/* ------------------------------------------------------------
+   17. FULL-BLEED IMAGE BAND (building / location)
+   ------------------------------------------------------------ */
+.building{position:relative;overflow:hidden}
+.building-bg{position:absolute;inset:0}
+.building-bg img{width:100%;height:100%;object-fit:cover}
+.building-bg::after{content:"";position:absolute;inset:0;background:rgba(0,0,0,.9)}
+.building-in{position:relative;z-index:1;padding-block:clamp(90px,12vw,170px)}
+.building p{max-width:52ch;margin-top:26px;color:var(--white)}
+
+/* Rendering pair (recovery room tease). Always caption renderings
+   "Rendering — details may change." */
+.rec-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:34px}
+.rec-grid figure{border:1px solid var(--steel-line);margin:0}
+.rec-grid img{width:100%;height:auto;display:block}
+.rec-grid figcaption{padding:10px 14px;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--gray);border-top:1px solid var(--steel-line)}
+.rec-note{margin-top:14px;font-size:13px;color:var(--gray)}
+@media (max-width:720px){.rec-grid{grid-template-columns:1fr}}
+
+
+/* ------------------------------------------------------------
+   18. LABEL + TEXT ROWS (the 23 hours pattern)
+   ------------------------------------------------------------ */
+.h23-grid{display:grid;grid-template-columns:1fr .9fr;gap:clamp(36px,6vw,84px);align-items:start}
+.h23-rows{margin-top:34px}
+.h23-row{border-top:1px solid var(--steel-line);padding:24px 0;display:grid;grid-template-columns:150px 1fr;gap:18px}
+.h23-row:last-child{border-bottom:1px solid var(--steel-line)}
+.h23-row b{color:var(--white);font-weight:900;text-transform:uppercase;font-size:.85rem;letter-spacing:1.5px;padding-top:2px}
+.h23-row p{font-size:.95rem}
+.h23-img{aspect-ratio:3/4;overflow:hidden}
+.h23-img img{width:100%;height:100%;object-fit:cover}
+@media (max-width:860px){
+  .h23-grid{grid-template-columns:1fr}
+  .h23-img{display:none}
+  .h23-row{grid-template-columns:1fr;gap:6px}
+}
+
+
+/* ------------------------------------------------------------
+   19. COACHES
+   Lawrence has no headshot yet: use .coach-initial (monochrome
+   initial tile) instead of an <img> — never stock imagery.
+   ------------------------------------------------------------ */
+.coach-feature{display:grid;grid-template-columns:.9fr 1.1fr;gap:clamp(36px,5vw,72px);align-items:center;margin-top:14px}
+.coach-feature figure{aspect-ratio:3/4;overflow:hidden;border:1px solid var(--steel-line)}
+.coach-feature img{width:100%;height:100%;object-fit:cover}
+.coach-feature h3{font-size:clamp(1.5rem,2.6vw,2.2rem);margin-bottom:6px}
+.role{display:block;font-size:11px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:var(--gray);margin-bottom:20px}
+.coach-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:clamp(14px,1.6vw,22px);margin-top:clamp(44px,5vw,64px)}
+.coach{border:1px solid var(--steel-line);background:var(--black)}
+.coach figure{aspect-ratio:3/4;overflow:hidden}
+.coach img{width:100%;height:100%;object-fit:cover;transition:filter .35s ease}
+.coach:hover img{filter:grayscale(0) contrast(1.02)}
+.coach div{padding:14px 16px 18px}
+.coach b{display:block;color:var(--white);font-weight:900;text-transform:uppercase;font-size:.85rem;letter-spacing:.05em}
+.coach span{font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--gray)}
+.coach-initial{
+  aspect-ratio:3/4;display:flex;align-items:center;justify-content:center;
+  background:var(--coal);
+  font-weight:900;font-size:clamp(3rem,6vw,5rem);text-transform:uppercase;
+}
+@media (max-width:1020px){.coach-grid{grid-template-columns:repeat(3,1fr)}}
+@media (max-width:860px){.coach-feature{grid-template-columns:1fr}}
+@media (max-width:560px){.coach-grid{grid-template-columns:repeat(2,1fr)}}
+
+
+/* ------------------------------------------------------------
+   20. QUOTES (real member quotes only)
+   ------------------------------------------------------------ */
+.quotes{display:grid;grid-template-columns:1fr 1fr;gap:clamp(18px,2vw,28px);margin-top:38px}
+.quote{border:1px solid var(--steel-line);background:var(--black);padding:clamp(28px,3.5vw,44px);display:flex;flex-direction:column;gap:22px}
+.quote blockquote{color:var(--white);font-weight:700;font-size:clamp(1.05rem,1.7vw,1.3rem);line-height:1.5}
+.quote cite{font-style:normal;font-size:11px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:var(--gray);margin-top:auto}
+.quotes-one{grid-template-columns:1fr;max-width:760px}
+@media (max-width:760px){.quotes{grid-template-columns:1fr}}
+
+
+/* ------------------------------------------------------------
+   21. PRICING
+   ------------------------------------------------------------ */
+.price-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--steel-line);border:1px solid var(--steel-line);margin-top:38px}
+.pcard{position:relative;background:var(--black);padding:clamp(26px,3vw,36px);display:flex;flex-direction:column}
+.pcard .tag{position:absolute;top:0;right:0;background:var(--yellow);color:var(--black);font-size:9px;font-weight:900;letter-spacing:2px;text-transform:uppercase;padding:6px 10px}
+.pcard.pop{box-shadow:inset 0 0 0 1px var(--white)}
+.pnum{display:block;color:var(--white);font-weight:900;font-size:clamp(2.4rem,3.4vw,3.4rem);line-height:.9;letter-spacing:-.03em;margin:20px 0 24px}
+.pnum.rng{font-size:clamp(1.8rem,2.4vw,2.35rem)}
+.pnum span{font-size:.85rem;font-weight:700;letter-spacing:1px;color:var(--gray);margin-left:4px}
+.pcard ul{flex:1}
+.pcard li{border-top:1px solid var(--steel-line);padding:11px 0;font-size:.88rem;line-height:1.55}
+
+/* Inverted day-pass band */
+.pass{margin-top:clamp(18px,2.4vw,28px);background:var(--white);color:var(--black);padding:clamp(26px,3.5vw,44px);display:grid;grid-template-columns:auto 1fr auto;gap:clamp(22px,3.5vw,52px);align-items:center}
+.pass-num{font-weight:900;font-size:clamp(2.8rem,5.5vw,4.6rem);line-height:.85;letter-spacing:-.03em;color:var(--black)}
+.pass-title{display:block;font-weight:900;text-transform:uppercase;font-size:1.05rem;letter-spacing:.02em;color:var(--black);margin-bottom:8px}
+.pass p{font-size:.95rem;color:rgba(0,0,0,.72);max-width:52ch}
+.pass .arrow-link{color:var(--black)}
+
+.price-notes{margin-top:clamp(34px,4vw,52px)}
+.price-notes p{border-top:1px solid var(--steel-line);padding:14px 0;font-size:.9rem;max-width:76ch}
+.price-notes b{color:var(--white);font-weight:700}
+.price-grid .pcard:nth-child(2){transition-delay:.08s}
+.price-grid .pcard:nth-child(3){transition-delay:.16s}
+.price-grid .pcard:nth-child(4){transition-delay:.24s}
+@media (max-width:1020px){.price-grid{grid-template-columns:1fr 1fr}}
+@media (max-width:860px){.pass{grid-template-columns:1fr;gap:14px}}
+@media (max-width:640px){.price-grid{grid-template-columns:1fr}}
+
+
+/* ------------------------------------------------------------
+   22. FAQ ACCORDION + STICKY OFFER CARD
+   ------------------------------------------------------------ */
+.faq-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:clamp(36px,5vw,72px);align-items:start;margin-top:14px}
+.faq details{border-top:1px solid var(--steel-line)}
+.faq details:last-child{border-bottom:1px solid var(--steel-line)}
+.faq summary{
+  cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center;gap:20px;
+  padding:24px 0;color:var(--white);font-weight:700;font-size:1.05rem;
+}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+";font-weight:400;font-size:1.6rem;line-height:1;color:var(--gray);transition:transform .2s ease;flex:none}
+.faq details[open] summary::after{transform:rotate(45deg)}
+.faq details p{padding:0 0 26px;max-width:58ch;font-size:.95rem}
+.offer{border:1px solid var(--steel-line);background:var(--coal);padding:clamp(30px,3.5vw,46px);position:sticky;top:104px}
+.offer .eyebrow{margin-bottom:14px}
+.offer b.price{display:block;color:var(--white);font-weight:900;text-transform:uppercase;font-size:clamp(2rem,3.6vw,3rem);line-height:1;letter-spacing:-.01em;margin-bottom:18px}
+.offer p{font-size:.95rem;margin-bottom:26px}
+@media (max-width:860px){.faq-grid{grid-template-columns:1fr}.offer{position:static}}
+
+
+/* ------------------------------------------------------------
+   23. VISIT ROWS (address / phone / hours / area)
+   ------------------------------------------------------------ */
+.visit-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(36px,5vw,72px);align-items:start}
+.visit-ctas{display:flex;flex-wrap:wrap;gap:14px;margin-top:32px}
+.visit-ctas+.speed{margin-top:20px}
+@media (max-width:520px){.visit-ctas .btn{width:100%}}
+.visit-rows{border-top:1px solid var(--steel-line)}
+.visit-row{border-bottom:1px solid var(--steel-line);padding:20px 0;display:grid;grid-template-columns:120px 1fr;gap:16px}
+.visit-row b{font-size:11px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:var(--gray);padding-top:4px}
+.visit-row p,.visit-row a{color:var(--white);font-weight:600;font-size:1rem}
+.visit-row a:hover{text-decoration:underline;text-underline-offset:3px}
+@media (max-width:860px){.visit-grid{grid-template-columns:1fr}.visit-row{grid-template-columns:110px 1fr}}
+
+
+/* ------------------------------------------------------------
+   24. FINAL CTA BAND + YELLOW SLASH
+   ------------------------------------------------------------ */
+.final{position:relative;overflow:hidden;background:var(--black)}
+.final-in{position:relative;z-index:1;padding-block:clamp(90px,12vw,170px);text-align:left}
+.final h2{max-width:16ch;font-size:clamp(2.4rem,6vw,5.2rem)}
+.final .lead{margin:26px 0 40px;color:var(--white)}
+.final-ctas{display:flex;flex-wrap:wrap;align-items:center;gap:22px}
+.alt-offer{font-size:.92rem;color:var(--white)}
+.alt-offer a{text-decoration:underline;text-underline-offset:3px}
+.final .speed{display:block;margin-top:30px}
+.slash{
+  position:absolute;top:-40px;right:-70px;width:340px;height:14px;background:var(--yellow);
+  transform:rotate(-32deg);transform-origin:center;z-index:0;
+}
+.slash::after{content:"";position:absolute;top:26px;left:0;width:340px;height:4px;background:var(--yellow)}
+@media (max-width:640px){.slash{width:220px;right:-90px}}
+
+
+/* ------------------------------------------------------------
+   25. BLOG INDEX — cards, search, category filters
+   ------------------------------------------------------------ */
+.blog-toolbar{display:flex;flex-wrap:wrap;gap:18px;align-items:center;justify-content:space-between;margin-bottom:clamp(28px,4vw,44px)}
+.blog-search-bar{position:relative;flex:1;min-width:240px;max-width:420px}
+.blog-search-bar input{
+  width:100%;background:var(--black);border:1px solid var(--steel-line);color:var(--white);
+  font-size:.95rem;padding:14px 18px 14px 46px;transition:border-color .18s ease;
+}
+.blog-search-bar input::placeholder{color:rgba(199,199,199,.55)}
+.blog-search-bar input:focus{border-color:var(--white)}
+.blog-search-bar .search-icon{
+  position:absolute;left:16px;top:50%;transform:translateY(-50%);
+  width:18px;height:18px;color:var(--gray);pointer-events:none;
+}
+.blog-filter-buttons{display:flex;flex-wrap:wrap;gap:10px}
+.blog-filter-btn{
+  background:transparent;border:1px solid var(--steel-line);color:var(--gray);
+  font-weight:700;font-size:11px;letter-spacing:1.5px;text-transform:uppercase;
+  padding:12px 18px;cursor:pointer;transition:border-color .18s ease,color .18s ease,background .18s ease;
+}
+.blog-filter-btn:hover{border-color:var(--white);color:var(--white)}
+.blog-filter-btn.active{background:var(--yellow);border-color:var(--yellow);color:var(--black)}
+
+.blog-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(18px,2vw,28px)}
+.blog-card{border:1px solid var(--steel-line);background:var(--coal);display:flex;flex-direction:column;transition:border-color .25s ease}
+.blog-card:hover{border-color:rgba(255,255,255,.45)}
+.blog-card-image{aspect-ratio:16/9;overflow:hidden}
+.blog-card-image img{
+  width:100%;height:100%;object-fit:cover;
+  filter:grayscale(1) contrast(1.06) brightness(.94);
+  transition:filter .35s ease,transform .5s ease;
+}
+.blog-card:hover .blog-card-image img{filter:grayscale(0) contrast(1.02);transform:scale(1.03)}
+/* Designed graphics (share cards, diagrams) are not photography, so they
+   opt out of the mono treatment. Brand yellow must survive. */
+.blog-card-image.is-graphic img{filter:none}
+.blog-card:hover .blog-card-image.is-graphic img{filter:none}
+.blog-card-content{padding:24px 24px 28px;display:flex;flex-direction:column;gap:12px;flex:1}
+.blog-card-content h3,.blog-card-content h2{font-size:1.05rem;line-height:1.3}
+.blog-category{font-size:10px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:var(--yellow)}
+.blog-meta{display:flex;gap:14px;font-size:.8rem;color:var(--gray)}
+.blog-date{font-weight:600}
+.blog-excerpt{font-size:.92rem;flex:1}
+.blog-read-more{
+  display:inline-flex;align-items:center;gap:8px;font-weight:700;font-size:12px;
+  letter-spacing:2px;text-transform:uppercase;color:var(--white);
+}
+.blog-read-more svg{transition:transform .18s ease}
+.blog-card:hover .blog-read-more svg{transform:translateX(5px)}
+.blog-no-results{border:1px solid var(--steel-line);background:var(--coal);padding:clamp(32px,5vw,56px);text-align:center;color:var(--gray)}
+@media (max-width:1020px){.blog-grid{grid-template-columns:1fr 1fr}}
+@media (max-width:640px){.blog-grid{grid-template-columns:1fr}}
+
+
+/* ------------------------------------------------------------
+   26. ARTICLE + LEGAL TYPOGRAPHY
+   .article-body = blog posts; .policy-section = privacy/terms.
+   Both share the long-form text treatment.
+   ------------------------------------------------------------ */
+.article-hero{padding:clamp(140px,16vw,190px) 0 clamp(40px,6vw,64px);border-bottom:1px solid var(--steel-line)}
+.article-hero-container,.article-content,.policy-container{max-width:840px;margin-inline:auto;padding-inline:var(--pad)}
+.article-hero h1{font-size:clamp(2rem,4.5vw,3.4rem);line-height:1.02}
+.breadcrumb{display:flex;flex-wrap:wrap;gap:8px;font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--gray);margin-bottom:22px}
+.breadcrumb a{color:var(--gray)}
+.breadcrumb a:hover{color:var(--white)}
+.article-meta{display:flex;flex-wrap:wrap;gap:16px;margin-top:20px;font-size:.85rem;color:var(--gray)}
+.article-content{padding-block:clamp(40px,6vw,72px)}
+.policy-container{padding-block:clamp(40px,6vw,72px)}
+
+.article-body h2,.policy-section h2{
+  font-size:clamp(1.4rem,2.6vw,2rem);line-height:1.08;margin:44px 0 16px;
+}
+.article-body h2:first-child,.policy-section h2:first-child{margin-top:0}
+.article-body h3,.policy-section h3{margin:32px 0 12px}
+.article-body p,.policy-section p{margin-bottom:18px;max-width:70ch}
+.article-body ul,.policy-section ul{margin:0 0 22px;max-width:70ch}
+.article-body ul li,.policy-section ul li{position:relative;padding-left:26px;margin-bottom:10px;font-size:.98rem}
+.article-body ul li::before,.policy-section ul li::before{
+  content:"";position:absolute;left:0;top:.72em;width:14px;height:1px;background:var(--gray);
+}
+.article-body ol,.policy-section ol{margin:0 0 22px;padding-left:22px;max-width:68ch;list-style:decimal}
+.article-body ol li,.policy-section ol li{margin-bottom:10px;font-size:.98rem}
+.article-body ol li::marker,.policy-section ol li::marker{color:var(--white);font-weight:700}
+.article-body strong,.policy-section strong{color:var(--white);font-weight:700}
+.article-body blockquote{
+  border-left:2px solid var(--yellow);padding:6px 0 6px 22px;margin:28px 0;
+  color:var(--white);font-weight:700;font-size:1.1rem;line-height:1.5;
+}
+.article-body img{border:1px solid var(--steel-line);margin:28px 0}
+.policy-section{margin-bottom:clamp(28px,4vw,44px)}
+
+.author-box{
+  display:grid;grid-template-columns:72px 1fr;gap:20px;align-items:start;
+  border:1px solid var(--steel-line);background:var(--coal);padding:24px;
+  margin-top:clamp(40px,5vw,56px);
+}
+.author-box-image{width:72px;height:72px;object-fit:cover;filter:grayscale(1)}
+.author-box-label{display:block;font-size:10px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:var(--gray);margin-bottom:4px}
+.author-box-name{display:block;color:var(--white);font-weight:900;text-transform:uppercase;font-size:1rem;margin-bottom:8px}
+.author-box-bio{font-size:.9rem}
+@media (max-width:560px){.author-box{grid-template-columns:1fr}}
+
+.article-cta-box{
+  border:1px solid var(--steel-line);background:var(--coal);
+  padding:clamp(28px,4vw,40px);margin-top:clamp(40px,5vw,56px);
+}
+.article-cta-box h3{margin-bottom:12px}
+.article-cta-box p{margin-bottom:24px}
+.back-to-blog{
+  display:inline-flex;align-items:center;gap:8px;margin-top:clamp(32px,4vw,44px);
+  font-weight:700;font-size:12px;letter-spacing:2px;text-transform:uppercase;color:var(--gray);
+}
+.back-to-blog:hover{color:var(--white)}
+
+
+/* ------------------------------------------------------------
+   27. SCHEDULE CALENDAR
+   Live class names kept; recolored to the monochrome language.
+   Coding: S&C = white rule (the class product) · open gym =
+   dimmed steel · weightlifting = defined but unused (classes
+   paused) · HYROX renders like open gym (never a class).
+   The one yellow moment on the calendar is "today".
+   Desktop shows the 7-column weekly grid; mobile shows the
+   tabbed day cards (page JS switches the active day).
+   ------------------------------------------------------------ */
+.schedule-legend{display:flex;gap:1.5rem;margin-bottom:2rem;flex-wrap:wrap}
+.legend-item{display:flex;align-items:center;gap:.5rem;font-size:.85rem;color:var(--gray);font-weight:600}
+.legend-dot{width:12px;height:12px;border-radius:0;flex:none}
+.legend-dot.dot-sc{background:var(--white)}
+.legend-dot.dot-og{background:var(--black);border:1px solid var(--gray)}
+.legend-dot.dot-wl{background:var(--gray)}
+.legend-dot.dot-hyrox{background:var(--black);border:1px solid var(--gray)}
+
+/* Weekly grid (desktop) */
+.schedule-weekly{display:grid;grid-template-columns:repeat(7,1fr);border:1px solid var(--steel-line)}
+.schedule-weekly-col{border-right:1px solid var(--steel-line)}
+.schedule-weekly-col:last-child{border-right:0}
+.schedule-weekly-header{
+  background:var(--coal);color:var(--gray);font-weight:700;text-transform:uppercase;
+  text-align:center;padding:1rem .5rem;font-size:.8rem;letter-spacing:1.5px;
+  border-bottom:1px solid var(--steel-line);
+}
+.schedule-weekly-col.today .schedule-weekly-header{background:var(--yellow);color:var(--black);font-weight:900}
+.schedule-weekly-classes{padding:.5rem;display:flex;flex-direction:column;gap:.5rem;min-height:400px}
+.weekly-class{padding:.7rem .75rem;border-left:2px solid var(--white);background:rgba(255,255,255,.03);transition:background .2s ease}
+.weekly-class:hover{background:rgba(255,255,255,.07)}
+.weekly-class-time{font-weight:800;font-size:.82rem;color:var(--white);margin-bottom:.15rem}
+.weekly-class-name{font-weight:600;font-size:.68rem;color:var(--gray);text-transform:uppercase;letter-spacing:.5px}
+.weekly-class.open-gym,.weekly-class.type-hyrox{border-left-color:var(--steel-line)}
+.weekly-class.open-gym .weekly-class-time,.weekly-class.type-hyrox .weekly-class-time{color:var(--gray)}
+.weekly-class.type-weightlifting{border-left-color:var(--gray)} /* defined, unused while classes are paused */
+
+/* Day tabs + day cards (mobile) */
+.schedule-tabs{
+  display:none;gap:0;margin-bottom:1.5rem;border:1px solid var(--steel-line);
+  overflow-x:auto;-webkit-overflow-scrolling:touch;
+}
+.schedule-tab{
+  flex:1;padding:.9rem 1.1rem;background:var(--coal);color:var(--gray);border:0;
+  border-right:1px solid var(--steel-line);font-weight:700;font-size:.8rem;
+  text-transform:uppercase;letter-spacing:1px;cursor:pointer;white-space:nowrap;
+  transition:background .2s ease,color .2s ease;
+}
+.schedule-tab:last-child{border-right:0}
+.schedule-tab:hover{color:var(--white)}
+.schedule-tab.active{background:var(--yellow);color:var(--black);font-weight:900}
+.schedule-day{display:none}
+.schedule-day.active{display:block}
+.schedule-list{display:flex;flex-direction:column;gap:.75rem}
+.schedule-card{
+  display:flex;align-items:center;gap:1.1rem;background:var(--coal);
+  border:1px solid var(--steel-line);border-left:3px solid var(--white);
+  padding:1.1rem 1.35rem;transition:border-color .2s ease;
+}
+.schedule-card:hover{border-color:rgba(255,255,255,.45);border-left-color:var(--white)}
+.schedule-card.stack-time{flex-direction:column;align-items:flex-start;gap:.35rem}
+.schedule-time{font-weight:900;font-size:1.05rem;color:var(--white);min-width:110px;white-space:nowrap}
+.schedule-class-name{font-weight:700;font-size:.95rem;color:var(--white);text-transform:uppercase;letter-spacing:.5px}
+.schedule-duration{font-size:.82rem;color:var(--gray);margin-top:.2rem}
+.schedule-card.open-gym,.schedule-card.type-hyrox{border-left-color:var(--steel-line)}
+.schedule-card.open-gym .schedule-time,.schedule-card.type-hyrox .schedule-time,
+.schedule-time.open-gym{color:var(--gray)}
+.schedule-card.type-weightlifting{border-left-color:var(--gray)} /* defined, unused while classes are paused */
+
+/* Class-type chips */
+.type-tag{
+  display:inline-block;font-size:.62rem;font-weight:700;padding:.18rem .5rem;margin-left:.7rem;
+  text-transform:uppercase;letter-spacing:.5px;vertical-align:middle;
+  border:1px solid var(--steel-line);color:var(--gray);background:transparent;
+}
+.type-tag.tag-sc{border-color:rgba(255,255,255,.45);color:var(--white)}
+.type-tag.tag-wl,.type-tag.tag-hyrox{border-color:var(--steel-line);color:var(--gray)}
+
+@media (max-width:900px){
+  .schedule-weekly{display:none}
+  .schedule-tabs{display:flex}
+}
+@media (min-width:901px){
+  .schedule-tabs,.schedule-day,.schedule-day.active{display:none}
+}
+
+
+/* ------------------------------------------------------------
+   28. GALLERY (grid + carousel, media page)
+   ------------------------------------------------------------ */
+.gallery-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(12px,1.6vw,20px)}
+.gallery-grid img{
+  width:100%;aspect-ratio:4/3;object-fit:cover;border:1px solid var(--steel-line);
+  filter:grayscale(1) contrast(1.06) brightness(.94);transition:filter .35s ease;
+}
+.gallery-grid img:hover{filter:grayscale(0) contrast(1.02)}
+@media (max-width:900px){.gallery-grid{grid-template-columns:1fr 1fr}}
+@media (max-width:560px){.gallery-grid{grid-template-columns:1fr}}
+
+.gallery-carousel-wrapper{position:relative}
+.gallery-carousel{display:flex;gap:14px;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+.gallery-carousel::-webkit-scrollbar{display:none}
+.gallery-item{flex:0 0 min(72vw,520px);scroll-snap-align:start;border:1px solid var(--steel-line)}
+.gallery-item img{width:100%;height:100%;object-fit:cover;filter:grayscale(1) contrast(1.06) brightness(.94)}
+.carousel-arrow{
+  position:absolute;top:50%;transform:translateY(-50%);z-index:2;
+  width:44px;height:44px;display:flex;align-items:center;justify-content:center;
+  background:rgba(0,0,0,.8);border:1px solid var(--steel-line);color:var(--white);
+  cursor:pointer;transition:border-color .2s ease,color .2s ease;
+}
+.carousel-arrow:hover{border-color:var(--yellow);color:var(--yellow)}
+.gallery-prev{left:8px}
+.gallery-next{right:8px}
+
+.youtube-video{border:1px solid var(--steel-line);aspect-ratio:16/9;overflow:hidden}
+.youtube-video iframe{display:block;width:100%;height:100%;border:0}
+
+
+/* ------------------------------------------------------------
+   29. GHL EMBEDS (forms, calendars, maps)
+   Iframes stay exactly as GHL emits them; the container does
+   the design work. Give calendar embeds room to breathe.
+   ------------------------------------------------------------ */
+.embed-box,.booking-embed,.contact-form-container{border:1px solid var(--steel-line);background:var(--coal);padding:clamp(6px,1vw,10px)}
+.embed-box iframe,.booking-embed iframe,.contact-form-container iframe{display:block;width:100%;border:0}
+.booking-embed iframe{min-height:700px}
+.map-section iframe{display:block;width:100%;height:420px;border:0;filter:grayscale(1) contrast(1.05)}
+
+
+/* ------------------------------------------------------------
+   30. MODAL SHELL (live class names — existing JS depends on
+   .modal-overlay/.active, .modal-container, .modal-close)
+   ------------------------------------------------------------ */
+.modal-overlay{
+  display:none;position:fixed;top:0;left:0;width:100%;height:100%;
+  background:rgba(0,0,0,.92);z-index:9999;overflow-y:auto;padding:2rem;
+}
+.modal-overlay.active{display:flex;align-items:center;justify-content:center}
+.modal-container{
+  background:var(--coal);border:1px solid var(--steel-line);
+  max-width:600px;width:100%;position:relative;margin:auto;
+  animation:modalSlideIn .3s ease-out;
+}
+@keyframes modalSlideIn{from{opacity:0;transform:translateY(-40px)}to{opacity:1;transform:translateY(0)}}
+.modal-close{
+  position:absolute;top:.5rem;right:.5rem;background:transparent;border:0;
+  color:var(--gray);font-size:2rem;line-height:1;padding:.5rem;cursor:pointer;
+  font-weight:300;z-index:10000;transition:color .2s ease;
+}
+.modal-close:hover{color:var(--yellow)}
+.modal-container iframe{width:100%;border:none;display:block}
+@media (max-width:768px){.modal-overlay{padding:1rem}}
+
+
+/* ------------------------------------------------------------
+   31. THANK-YOU / CONFIRMATION
+   ------------------------------------------------------------ */
+.confirmation-hero{min-height:82svh;display:flex;align-items:center;padding:140px 0 var(--sect)}
+.confirmation-container{max-width:820px;margin-inline:auto;padding-inline:var(--pad);text-align:center}
+.checkmark-circle{
+  width:88px;height:88px;margin:0 auto 32px;display:flex;align-items:center;justify-content:center;
+  border:1px solid var(--yellow);color:var(--yellow);
+}
+.checkmark-circle svg{width:38px;height:38px}
+.expect-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--steel-line);border:1px solid var(--steel-line);margin-top:clamp(32px,4vw,48px);text-align:left}
+.expect-card{background:var(--black);padding:clamp(24px,3vw,36px)}
+.expect-icon{width:28px;height:28px;color:var(--white);margin-bottom:16px}
+.expect-card h3{margin-bottom:10px}
+.expect-card p{font-size:.92rem}
+@media (max-width:760px){.expect-grid{grid-template-columns:1fr}}
+
+
+/* ------------------------------------------------------------
+   32. 404
+   ------------------------------------------------------------ */
+.error-container{
+  min-height:100vh;min-height:100svh;display:flex;flex-direction:column;
+  align-items:center;justify-content:center;text-align:center;
+  padding:120px var(--pad) 80px;
+}
+.error-logo{height:64px;width:auto;margin-bottom:32px}
+.error-code{
+  font-weight:900;font-size:clamp(6rem,22vw,14rem);line-height:.85;letter-spacing:-.02em;
+
+}
+.error-title{margin-top:20px;font-size:clamp(1.6rem,3.5vw,2.6rem)}
+.error-text{margin-top:14px;max-width:46ch;color:var(--gray)}
+.error-links{margin-top:34px;display:flex;flex-wrap:wrap;gap:14px;justify-content:center}
+.error-btn{
+  display:inline-flex;align-items:center;justify-content:center;
+  font-weight:700;font-size:13px;letter-spacing:1.8px;text-transform:uppercase;
+  padding:16px 30px;border:1px solid rgba(255,255,255,.4);color:var(--white);
+  transition:background .18s ease,color .18s ease,border-color .18s ease;
+}
+.error-btn:hover{background:var(--white);color:var(--black);border-color:var(--white)}
+
+
+/* ------------------------------------------------------------
+   33. FOOTER
+   ------------------------------------------------------------ */
+footer{border-top:1px solid var(--steel-line);padding:clamp(56px,7vw,88px) 0 0}
+.foot-top{
+  display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;
+  gap:clamp(32px,4vw,56px);padding-bottom:clamp(40px,5vw,64px);
+}
+.foot-brand{display:flex;align-items:flex-start;gap:16px}
+.foot-brand img{height:2.52rem;width:auto;flex:none}
+.foot-brand b{display:block;color:var(--white);font-weight:900;text-transform:uppercase;font-size:1.2rem;line-height:1.05}
+.foot-mission{margin-top:16px;max-width:34ch;font-size:.95rem}
+.foot-note{margin-top:12px;font-size:.82rem;color:var(--gray)}
+.foot-col li{margin-bottom:12px;font-size:.9rem;color:var(--gray)}
+.foot-col a{font-size:.9rem;color:var(--gray)}
+.foot-col a:hover{color:var(--white)}
+.foot-col b{display:block;font-size:11px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:var(--white);margin-bottom:16px}
+.foot-social{display:flex;gap:16px;align-items:center}
+.foot-social a{color:var(--gray);display:flex;transition:color .2s ease}
+.foot-social a:hover{color:var(--white)}
+.foot-bottom{
+  border-top:1px solid var(--steel-line);padding:24px 0 26px;
+  display:flex;flex-wrap:wrap;gap:14px 24px;justify-content:space-between;align-items:center;
+  font-size:.8rem;
+}
+@media (max-width:1020px){.foot-top{grid-template-columns:1fr 1fr}}
+@media (max-width:640px){.foot-top{grid-template-columns:1fr}}
+
+
+
+
+/* ------------------------------------------------------------
+   35. REVEAL ON SCROLL
+   Add .rv to elements; the shell JS flips them to .on when they
+   enter the viewport. Stagger with .rv-d1/.rv-d2/.rv-d3 or the
+   built-in nth-child delays below.
+   ------------------------------------------------------------ */
+.rv{opacity:0;transform:translateY(26px);transition:opacity .7s ease,transform .7s ease}
+.rv.on{opacity:1;transform:none}
+.rv-d1{transition-delay:.08s}
+.rv-d2{transition-delay:.16s}
+.rv-d3{transition-delay:.24s}
+.steps .step:nth-child(2),.prog-grid .prog:nth-child(2),.quotes .quote:nth-child(2),
+.expect-grid .expect-card:nth-child(2),.coach-grid .coach:nth-child(2){transition-delay:.08s}
+.steps .step:nth-child(3),.prog-grid .prog:nth-child(3),
+.expect-grid .expect-card:nth-child(3),.coach-grid .coach:nth-child(3){transition-delay:.16s}
+
+
+/* ------------------------------------------------------------
+   36. REDUCED MOTION
+   ------------------------------------------------------------ */
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .rv{opacity:1;transform:none;transition:none}
+  .marquee-track{animation:none}
+  .modal-container{animation:none}
+  .prog img,.coach img,.blog-card-image img,.arrow-link svg,.blog-read-more svg{transition:none}
+  /* The thumb bar still appears and disappears, it just does not slide. */
+  .thumbbar.tb-auto{transition:none}
+}
+
+
+/* ------------------------------------------------------------
+   CLEAN OUTLINE (final cascade layer — keep at end of file)
+   The outline device is built from a layered text-shadow halo
+   instead of -webkit-text-stroke: compositing has no miter
+   joins, so Montserrat's sharp corners render clean at every
+   size. The glyph interior fills with the surface color via
+   --hole (default black; .sect.alt provides coal). Photo-backed
+   surfaces (hero, building band) keep the stroke build at
+   display sizes and a solid ghost on phones.
+   ------------------------------------------------------------ */
+.outline,.step em,.coach-initial,.error-code,.marquee span{
+  color:var(--hole,var(--black));
+  -webkit-text-stroke:0;
+  text-shadow:
+    var(--olr,1px) 0 0 var(--olc,var(--white)),
+    calc(var(--olr,1px)*-1) 0 0 var(--olc,var(--white)),
+    0 var(--olr,1px) 0 var(--olc,var(--white)),
+    0 calc(var(--olr,1px)*-1) 0 var(--olc,var(--white)),
+    calc(var(--olr,1px)*.7) calc(var(--olr,1px)*.7) 0 var(--olc,var(--white)),
+    calc(var(--olr,1px)*-.7) calc(var(--olr,1px)*.7) 0 var(--olc,var(--white)),
+    calc(var(--olr,1px)*.7) calc(var(--olr,1px)*-.7) 0 var(--olc,var(--white)),
+    calc(var(--olr,1px)*-.7) calc(var(--olr,1px)*-.7) 0 var(--olc,var(--white));
+}
+.sect.alt{--hole:var(--coal)}
+.step{--hole:var(--black)}          /* step cards are black even inside alt sections */
+.coach-initial{--hole:var(--coal);--olr:1.5px}
+.step em{--olr:1.5px}
+.error-code{--olr:1.5px}
+.marquee span{--olc:rgba(255,255,255,.55)}
+/* Rim weight scales with the type: .027em reads heavy at display
+   sizes (about 3.2px on a 120px headline), floored at 1.5px so a
+   phone keeps a crisp rim instead of a hairline, capped so it can
+   never close the counters. Owner picked the heavier rim 2026-08-02. */
+.outline{--olr:clamp(1.5px,.027em,3.6px)}
+
+/* Photo-backed surfaces (hero, building band): the letter interior
+   is TRANSPARENT so the photograph reads through the letterform.
+   The halo technique cannot do this (it needs an opaque interior to
+   mask the stacked copies), so these two surfaces use a real stroke
+   instead. Montserrat Black's corners stay sharp at display sizes.
+   The stroke is set in em so it scales with the type and reads at
+   the same weight on a phone as on a desktop; .030em matches the
+   weight of the halo build it replaces. Owner-picked 2026-08-01.
+
+   The @supports guard matters: without -webkit-text-stroke a
+   transparent fill would render the headline invisible, so any
+   browser lacking it keeps the opaque-interior fallback below. */
+.hero .outline,.building .outline{--hole:#000}
+
+
+
+/* ------------------------------------------------------------
+   PROGRAMMING: CYCLE TIMELINE + WEEK STRUCTURE
+   Phase colors are DATA colors, not brand colors — they encode
+   the training block (intro / test / build / deload / retest) the
+   way the coaches' own cycle sheet does. Owner-approved exception
+   to the no-green/blue/red rule, 2026-08-01. Never use these as
+   decoration; only to label a training phase.
+   ------------------------------------------------------------ */
+:root{
+  --ph-intro:#4A9EFF;
+  --ph-test:#FF4B4B;
+  --ph-build:#35D06A;
+  --ph-deload:#9B5DE5;
+}
+
+.cycle-head{display:flex;flex-wrap:wrap;align-items:center;gap:16px;margin-bottom:26px}
+.cycle-tag{
+  border:1px solid var(--yellow);color:var(--yellow);font-size:11px;font-weight:700;
+  letter-spacing:2.5px;text-transform:uppercase;padding:9px 16px;
+}
+.cycle-span{
+  border:1px solid var(--steel-line);color:var(--gray);font-size:11px;font-weight:700;
+  letter-spacing:2px;text-transform:uppercase;padding:9px 16px;margin-left:auto;
+}
+@media (max-width:640px){.cycle-span{margin-left:0}}
+
+.cycle{display:grid;grid-template-columns:repeat(10,1fr);gap:8px;margin-top:24px}
+.cyc{background:var(--coal);border:1px solid var(--steel-line);border-top:4px solid var(--wk,var(--gray));padding:18px 10px 16px;text-align:center}
+.cyc.intro{--wk:var(--ph-intro)} .cyc.test{--wk:var(--ph-test)}
+.cyc.build{--wk:var(--ph-build)} .cyc.deload{--wk:var(--ph-deload)}
+.cyc b{display:block;color:var(--white);font-weight:900;font-size:clamp(1.05rem,1.6vw,1.5rem);line-height:1}
+.cyc .cyc-ph{display:block;color:var(--wk);font-weight:700;font-size:10px;letter-spacing:1.6px;text-transform:uppercase;margin-top:9px}
+.cyc .wknote{display:block;color:var(--gray);font-size:11px;margin-top:10px;line-height:1.35}
+@media (max-width:1000px){.cycle{grid-template-columns:repeat(5,1fr)}}
+@media (max-width:560px){.cycle{grid-template-columns:repeat(2,1fr)}}
+
+.cycle-note{margin-top:22px;color:var(--gray);font-size:.95rem;max-width:70ch}
+.cycle-key{display:flex;flex-wrap:wrap;gap:18px;margin-top:20px;font-size:11px;letter-spacing:1.4px;text-transform:uppercase;color:var(--gray)}
+.cycle-key span{display:inline-flex;align-items:center;gap:8px}
+.cycle-key i{width:14px;height:3px;display:block;background:var(--k)}
+
+/* A week at a glance — same shape every week of the cycle */
+.wkgrid{display:grid;grid-template-columns:repeat(6,1fr);gap:1px;background:var(--steel-line);border:1px solid var(--steel-line);margin-top:26px}
+.wkday{background:var(--black);padding:20px 16px;display:flex;flex-direction:column;gap:14px}
+.wkday header b{display:block;color:var(--white);font-weight:900;font-size:13px;letter-spacing:2px;text-transform:uppercase}
+.wkday header span{display:block;color:var(--yellow);font-size:10px;font-weight:700;letter-spacing:1.4px;text-transform:uppercase;margin-top:6px}
+.blk{border-top:1px solid var(--steel-line);padding-top:11px}
+.blk:first-of-type{border-top:0;padding-top:0}
+.blk em{display:block;font-style:normal;color:var(--gray);font-size:9.5px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase}
+.blk p{color:var(--white);font-size:.86rem;line-height:1.45;margin-top:5px}
+.blk .mins{color:var(--gray);font-size:.78rem}
+@media (max-width:1100px){.wkgrid{grid-template-columns:repeat(3,1fr)}}
+@media (max-width:680px){.wkgrid{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:430px){.wkgrid{grid-template-columns:1fr}}
+
+.deload-note{border-left:3px solid var(--yellow);background:var(--coal);padding:24px 26px;margin-top:34px;max-width:78ch}
+.deload-note p{color:var(--white)}
+
+/* Named in-house benchmark cards */
+.bench-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--steel-line);border:1px solid var(--steel-line);margin:30px 0}
+.bench{background:var(--black);padding:24px 22px}
+.bench b{display:block;color:var(--white);font-weight:900;font-size:1.05rem;text-transform:uppercase;letter-spacing:.01em}
+.bench span{display:block;color:var(--yellow);font-size:10px;font-weight:700;letter-spacing:1.6px;text-transform:uppercase;margin:8px 0 12px}
+.bench p{color:var(--gray);font-size:.92rem;line-height:1.55;margin:0}
+@media (max-width:760px){.bench-grid{grid-template-columns:1fr}}
+
+
+/* ------------------------------------------------------------
+   ARTICLE: MEASURED COMPARISON TABLE + COMPACT SHOT ROW
+   Deltas stay in brand palette (yellow accent, white, gray).
+   Deliberately no green/red arrows: this is editorial data in an
+   article, not the training-phase coding on the Programs page.
+   ------------------------------------------------------------ */
+.comp{border:1px solid var(--steel-line);margin:30px 0 10px}
+.comp-head,.comp-row{display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:10px;align-items:center;padding:13px 16px}
+.comp-head{
+  border-bottom:1px solid var(--steel-line);background:var(--coal);
+  font-size:10px;font-weight:700;letter-spacing:1.6px;text-transform:uppercase;color:var(--gray);
+}
+.comp-row{border-bottom:1px solid rgba(255,255,255,.06);font-size:.95rem}
+.comp-row:last-child{border-bottom:0}
+.comp-row.hi{background:rgba(245,197,24,.05)}
+.comp-k{color:var(--white);font-weight:700}
+.comp-a{color:var(--gray)}
+.comp-b{color:var(--white);font-weight:700}
+.comp-d{color:var(--yellow);font-weight:700;text-align:right;font-variant-numeric:tabular-nums}
+.comp-note{font-size:.82rem;color:var(--gray);margin-bottom:26px}
+@media (max-width:600px){
+  .comp-head{display:none}
+  .comp-row{grid-template-columns:1fr auto;gap:4px 12px;padding:14px 14px}
+  .comp-k{grid-column:1/-1;font-size:.9rem}
+  .comp-a::before{content:"was ";color:var(--gray)}
+  .comp-b::before{content:"now ";color:var(--gray);font-weight:400}
+  .comp-a,.comp-b{font-size:.88rem}
+  .comp-d{grid-column:2;grid-row:2/4;align-self:center}
+}
+
+/* Three phone screenshots in one stretch, deliberately small */
+.shots{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:28px 0 8px}
+.shots figure{margin:0}
+.shots img{width:100%;height:auto;border:1px solid var(--steel-line);display:block}
+.shots figcaption{
+  margin-top:9px;font-size:10px;font-weight:700;letter-spacing:1.1px;
+  text-transform:uppercase;color:var(--gray);line-height:1.35;
+}
+@media (max-width:520px){.shots{gap:8px}.shots figcaption{font-size:9px;letter-spacing:.6px}}
+
+
+/* ------------------------------------------------------------
+   MEMBER QUOTE MARQUEE
+   Replaces the third-party reviews widget. Two identical tracks
+   scroll as one belt; the second is aria-hidden so the duplicate
+   quotes are never read out twice. Pauses on hover and on focus
+   within, so a keyboard user can actually read a card.
+   ------------------------------------------------------------ */
+.tmarquee{
+  display:flex;gap:18px;overflow:hidden;margin-top:36px;
+  -webkit-mask-image:linear-gradient(90deg,transparent,#000 5%,#000 95%,transparent);
+          mask-image:linear-gradient(90deg,transparent,#000 5%,#000 95%,transparent);
+}
+.tmarquee-track{display:flex;gap:18px;flex:none;animation:qbelt 64s linear infinite}
+.tmarquee:hover .tmarquee-track,
+.tmarquee:focus-within .tmarquee-track{animation-play-state:paused}
+@keyframes qbelt{from{transform:translateX(0)}to{transform:translateX(calc(-100% - 18px))}}
+
+.tcard{
+  width:330px;flex:none;margin:0;background:var(--coal);
+  border:1px solid var(--steel-line);padding:26px 24px;
+  display:flex;flex-direction:column;gap:14px;
+}
+.tcard blockquote{margin:0;color:var(--white);font-size:.97rem;line-height:1.62}
+.tcard figcaption{
+  margin-top:auto;color:var(--gray);font-size:11px;font-weight:700;
+  letter-spacing:1.6px;text-transform:uppercase;
+}
+.tcard .stars{display:flex;gap:3px}
+.tcard .stars svg{width:14px;height:14px;fill:var(--yellow)}
+
+/* Reduced motion: no belt. It becomes an ordinary swipeable row. */
+@media (prefers-reduced-motion:reduce){
+  .tmarquee{overflow-x:auto;scroll-snap-type:x mandatory;-webkit-mask-image:none;mask-image:none}
+  .tmarquee-track{animation:none}
+  .tmarquee-track[aria-hidden="true"]{display:none}
+  .tcard{scroll-snap-align:start}
+}
+@media (max-width:640px){.tcard{width:270px;padding:22px 20px}}
+
+
+/* Nutrition coaching: founding rate against the standard rate */
+.nprice{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--steel-line);border:1px solid var(--steel-line);margin-top:34px}
+.nprice-cell{background:var(--black);padding:24px 22px}
+.nprice-cell.now{background:var(--coal)}
+.nprice-tag{
+  display:block;font-size:10px;font-weight:700;letter-spacing:1.8px;
+  text-transform:uppercase;color:var(--gray);margin-bottom:12px;
+}
+.nprice-cell.now .nprice-tag{color:var(--yellow)}
+.nprice-cell b{display:block;color:var(--white);font-weight:900;font-size:clamp(1.9rem,3.4vw,2.6rem);line-height:1}
+.nprice-cell b span{font-size:.9rem;font-weight:700;color:var(--gray);margin-left:3px}
+.nprice-cell p{margin-top:11px;font-size:.9rem;line-height:1.5}
+.nprice-cell.next b,.nprice-cell.next p{color:var(--gray)}
+.nprice-note{margin-top:14px;font-size:.85rem;color:var(--gray)}
+@media (max-width:520px){.nprice{grid-template-columns:1fr}}
+
+
+/* Recovery room: one landscape rendering, capped so the 600px source
+   never upscales past about 3%. Same frame as .rec-grid figures. */
+.rec-solo{max-width:620px;margin:34px 0 0;border:1px solid var(--steel-line)}
+.rec-solo img{width:100%;height:auto;display:block}
+.rec-solo figcaption{padding:10px 14px;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--gray);border-top:1px solid var(--steel-line)}

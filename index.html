@@ -2,16 +2,17 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <!-- CONTRACT: keep this exact viewport tag — inject-pixel.js insertion marker -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Black Iron Athletics | Best Gym in Frisco, TX</title>
-    <meta name="description" content="Veteran-owned gym in Frisco, TX. Group training, Olympic weightlifting, HYROX training, personal training & open gym. 3,000+ lives changed since 2013.">
+    <meta name="description" content="Veteran-owned gym in Frisco, TX. Coached strength &amp; conditioning classes, personal training, nutrition coaching &amp; open gym 7 days a week. 3,000+ lives changed since 2013.">
     <meta name="geo.region" content="US-TX">
     <meta name="geo.placename" content="Frisco">
-    <meta name="geo.position" content="33.1503;-96.8236">
+    <meta name="geo.position" content="33.15035;-96.89026">
     <link rel="canonical" href="https://www.blackironathletics.com/">
     <!-- Open Graph -->
     <meta property="og:title" content="Black Iron Athletics | Best Gym in Frisco, TX">
-    <meta property="og:description" content="Frisco's top veteran-owned gym and best CrossFit alternative. Functional fitness, HIIT, strength & conditioning, personal training & open gym. HYROX training available during open gym. 3000+ lives changed since 2013.">
+    <meta property="og:description" content="Veteran-owned gym in Frisco, TX. Coached strength &amp; conditioning classes, personal training, nutrition coaching &amp; open gym 7 days a week. 3,000+ lives changed since 2013.">
     <meta property="og:url" content="https://www.blackironathletics.com/">
     <meta property="og:image" content="https://www.blackironathletics.com/images/social-share.png">
     <meta property="og:type" content="website">
@@ -19,1089 +20,115 @@
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Black Iron Athletics | Best Gym in Frisco, TX">
-    <meta name="twitter:description" content="Frisco's top veteran-owned gym and best CrossFit alternative. Functional fitness, HIIT, strength & conditioning, personal training & open gym. HYROX training available during open gym. 3000+ lives changed since 2013.">
+    <meta name="twitter:description" content="Veteran-owned gym in Frisco, TX. Coached strength &amp; conditioning classes, personal training, nutrition coaching &amp; open gym 7 days a week. 3,000+ lives changed since 2013.">
     <meta name="twitter:image" content="https://www.blackironathletics.com/images/social-share.png">
-    <link rel="icon" type="image/png" href="images/anvil-favicon.png">
+    <link rel="icon" type="image/png" href="/images/anvil-favicon.png">
+    <link rel="apple-touch-icon" href="/images/anvil-favicon.png">
     <meta name="theme-color" content="#000000">
-    <link rel="apple-touch-icon" href="images/anvil-favicon.png">
-    <link rel="preload" as="image" href="images/heroes/hero-main.webp">
+    <link rel="preload" as="image" href="/images/training/group-training.webp">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;900&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
-    <noscript><link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;900&display=swap" rel="stylesheet"></noscript>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" media="print" onload="this.media='all'">
-    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"></noscript>
-    <style>@font-face{font-family:"Font Awesome 6 Brands";font-display:swap}@font-face{font-family:"Font Awesome 6 Free";font-display:swap}</style>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&display=swap" rel="stylesheet"></noscript>
+    <link rel="stylesheet" href="/css/bia.css">
     <style>
-        /* Force full width - override GHL container */
-        body, html {
-            width: 100% !important;
-            max-width: 100% !important;
-            margin: 0 !important;
-            padding: 0 !important;
-        }
-
-        /* Remove GHL's default container padding */
-        .container, .hl_page-preview--content {
-            padding: 0 !important;
-            margin: 0 !important;
-            max-width: 100% !important;
-            width: 100% !important;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        :root {
-            --black: #000000;
-            --dark-gray: #1a1a1a;
-            --medium-gray: #333333;
-            --light-gray: #cccccc;
-            --white: #ffffff;
-            --yellow: #FFD202;
-        }
-
-        body {
-            font-family: 'Montserrat', sans-serif;
-            font-weight: 500;
-            background: var(--black);
-            color: var(--white);
-            overflow-x: hidden;
-            line-height: 1.6;
-            margin: 0;
-            padding: 0;
-        }
-
-        html {
-            margin: 0;
-            padding: 0;
-            scroll-behavior: smooth;
-        }
-
-        /* Anchor offset for fixed nav */
-        #programs,
-        #testimonials,
-        #contact {
-            scroll-margin-top: 100px;
-        }
-
-        /* All headings use Montserrat Black */
-        h1, h2, h3, h4, h5, h6 {
-            font-family: 'Montserrat', sans-serif;
-            font-weight: 900;
-            line-height: 1.2;
-        }
-
-        nav {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            padding: 1.5rem 0;
-            background: var(--black);
-            z-index: 1000;
-            border-bottom: 1px solid var(--medium-gray);
-        }
-
-        .nav-container {
-            max-width: 100%;
-            margin: 0;
-            padding: 0 4rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            height: 50px;
-        }
-
-        .logo a {
-            display: block;
-            height: 100%;
-        }
-
-        .logo img {
-            height: 100%;
-            width: auto;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 3rem;
-            list-style: none;
-            align-items: center;
-        }
-
-        .nav-links > li {
-            position: relative;
-        }
-
-        .nav-links a {
-            color: var(--white);
-            text-decoration: none;
-            font-size: 0.95rem;
-            font-weight: 900;
-            transition: color 0.3s ease;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-
-        .nav-links > li > a:hover {
-            color: var(--yellow);
-        }
-
-        /* Dropdown Submenu */
-        .submenu {
-            display: none;
-            position: absolute;
-            top: 100%;
-            left: 0;
-            background: rgba(26, 26, 26, 0.95);
-            backdrop-filter: blur(10px);
-            min-width: 240px;
-            padding: 0.5rem 0;
-            border: 1px solid var(--medium-gray);
-            list-style: none;
-        }
-
-        .submenu li {
-            padding: 0;
-        }
-
-        .submenu a {
-            display: block;
-            padding: 1rem 1.5rem;
-            font-size: 0.85rem;
-            font-weight: 900;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            transition: all 0.3s ease;
-        }
-
-        .submenu a:hover {
-            background: rgba(255, 210, 2, 0.1);
-            color: var(--yellow);
-            padding-left: 2rem;
-        }
-
-        .nav-links > li:hover .submenu {
-            display: block;
-        }
-
-        .has-submenu > a::after {
-            content: '';
-            display: inline-block;
-            width: 0;
-            height: 0;
-            margin-left: 0.5rem;
-            border-left: 4px solid transparent;
-            border-right: 4px solid transparent;
-            border-top: 5px solid var(--white);
-            transition: all 0.3s ease;
-        }
-
-        .has-submenu:hover > a::after {
-            border-top-color: var(--yellow);
-            transform: translateY(2px);
-        }
-
-        .cta-btn {
-            background: var(--yellow);
-            color: var(--black);
-            padding: 0.9rem 1.5rem;
-            border-radius: 0;
-            text-decoration: none;
-            font-weight: 900;
-            font-size: 0.85rem;
-            transition: all 0.3s ease;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            border: 2px solid var(--yellow);
-            white-space: nowrap;
-        }
-
-        .cta-btn:hover {
-            background: var(--black);
-            color: var(--yellow);
-        }
-
-        .hero {
-            margin-top: 0;
-            padding-top: 80px;
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            position: relative;
-            background: var(--black);
-        }
-
-        .hero-bg {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            opacity: 0.3;
-            z-index: 0;
-        }
-
-        .hero-container {
-            max-width: 100%;
-            width: 100%;
-            margin: 0;
-            padding: 4rem;
-            position: relative;
-            z-index: 1;
-        }
-
-        .hero-content {
-            max-width: 800px;
-        }
-
-        .hero-subtitle {
-            font-size: 0.9rem;
-            font-weight: 700;
-            color: var(--yellow);
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            margin-bottom: 1.5rem;
-        }
-
-        .hero-content h1 {
-            font-weight: 900;
-            font-size: clamp(2.5rem, 5vw, 4.5rem);
-            line-height: 1;
-            margin-bottom: 2rem;
-            text-transform: uppercase;
-        }
-
-        .hero-content p {
-            font-size: 1.3rem;
-            color: var(--light-gray);
-            margin-bottom: 3rem;
-            font-weight: 500;
-            max-width: 600px;
-            line-height: 1.8;
-        }
-
-        .hero-buttons {
-            display: flex;
-            gap: 1.5rem;
-            flex-wrap: wrap;
-        }
-
-        .btn-primary {
-            background: var(--yellow);
-            color: var(--black);
-            padding: 1.2rem 3rem;
-            text-decoration: none;
-            font-weight: 900;
-            font-size: 1rem;
-            transition: all 0.3s ease;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            border: 2px solid var(--yellow);
-            border-radius: 0;
-            display: inline-block;
-        }
-
-        .btn-primary:hover {
-            background: var(--black);
-            color: var(--yellow);
-        }
-
-        .btn-secondary {
-            background: transparent;
-            color: var(--white);
-            padding: 1.2rem 3rem;
-            text-decoration: none;
-            font-weight: 900;
-            font-size: 1rem;
-            transition: all 0.3s ease;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            border: 2px solid var(--white);
-            border-radius: 0;
-        }
-
-        .btn-secondary:hover {
-            background: var(--white);
-            color: var(--black);
-        }
-
-        .stats-bar {
-            background: var(--yellow);
-            padding: 3rem 0;
-            width: 100%;
-        }
-
-        .stats-container {
-            max-width: 100%;
-            margin: 0;
-            padding: 0 4rem;
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 3rem;
-        }
-
-        .stat-item {
-            text-align: center;
-        }
-
-        .stat-number {
-            font-weight: 900;
-            font-size: 3.5rem;
-            color: var(--black);
-            line-height: 1;
-            margin-bottom: 0.5rem;
-        }
-
-        .stat-label {
-            font-size: 0.9rem;
-            font-weight: 700;
-            color: var(--black);
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .stat-google-stars {
-            font-size: 2rem;
-            line-height: 1;
-            margin-bottom: 0.25rem;
-            letter-spacing: 2px;
-        }
-
-        .section {
-            padding: 6rem 0;
-            background: var(--black);
-            width: 100%;
-        }
-
-        .section-alt {
-            background: var(--dark-gray);
-        }
-
-        .section-container {
-            max-width: 100%;
-            margin: 0;
-            padding: 0 4rem;
-        }
-
-        .section-header {
-            text-align: center;
-            margin-bottom: 4rem;
-        }
-
-        .section-subtitle {
-            font-size: 0.85rem;
-            font-weight: 700;
-            color: var(--yellow);
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            margin-bottom: 1rem;
-        }
-
-        .section-title {
-            font-weight: 900;
-            font-size: clamp(2.5rem, 5vw, 4rem);
-            margin-bottom: 1.5rem;
-            text-transform: uppercase;
-        }
-
-        .section-description {
-            font-size: 1.2rem;
-            color: var(--light-gray);
-            max-width: 800px;
-            margin: 0 auto;
-            font-weight: 500;
-        }
-
-        /* Problem Section - Enhanced */
-        .problem-section {
-            padding: 6rem 0;
-            background: var(--black);
-        }
-
-        .problem-section .section-title {
-            font-weight: 900;
-            text-align: center;
-        }
-
-        .problem-section .section-description {
-            text-align: center;
-            margin-bottom: 4rem;
-        }
-
-        .problem-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
-        }
-
-        .problem-card {
-            background: var(--dark-gray);
-            padding: 2.5rem;
-            border: 2px solid var(--medium-gray);
-            border-left: 5px solid var(--yellow);
-            transition: all 0.3s ease;
-            position: relative;
-        }
-
-        .problem-card:hover {
-            border-color: var(--yellow);
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(255, 210, 2, 0.2);
-        }
-
-        .problem-card h3 {
-            font-weight: 900;
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-        }
-
-        .problem-icon {
-            font-size: 2rem;
-        }
-
-        .problem-card p {
-            color: var(--light-gray);
-            line-height: 1.8;
-            font-size: 1rem;
-        }
-
-
-        /* Getting Started Section */
-        .getting-started {
-            background: var(--black);
-            padding: 6rem 0;
-        }
-
-        .getting-started-content {
-            max-width: 100%;
-            margin: 0;
-            padding: 0 4rem;
-        }
-
-        .getting-started h2 {
-            font-weight: 900;
-            text-align: center;
-            font-size: clamp(2.5rem, 5vw, 4rem);
-            margin-bottom: 1rem;
-            text-transform: uppercase;
-        }
-
-        .getting-started-subtitle {
-            font-size: 1.2rem;
-            color: var(--light-gray);
-            text-align: center;
-            margin-bottom: 4rem;
-        }
-
-        .steps-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-bottom: 3rem;
-        }
-
-        .step-card {
-            background: var(--dark-gray);
-            padding: 2.5rem;
-            border: 2px solid var(--medium-gray);
-            transition: all 0.3s ease;
-            text-align: center;
-        }
-
-        .step-card:hover {
-            border-color: var(--yellow);
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(255, 210, 2, 0.2);
-        }
-
-        .step-number {
-            background: var(--yellow);
-            color: var(--black);
-            width: 60px;
-            height: 60px;
-            border-radius: 0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 2rem;
-            font-weight: 900;
-            margin: 0 auto 1.5rem;
-        }
-
-        .step-card h3 {
-            font-weight: 900;
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-        }
-
-        .step-card p {
-            color: var(--light-gray);
-            line-height: 1.8;
-        }
-
-        .cta-center {
-            text-align: center;
-            margin-top: 3rem;
-        }
-
-        /* Programs Section */
-        .programs-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 2rem;
-            margin-top: 4rem;
-        }
-
-        .program-card {
-            background: var(--black);
-            overflow: hidden;
-            transition: all 0.3s ease;
-            border: 2px solid var(--medium-gray);
-        }
-
-        .program-card:hover {
-            border-color: var(--yellow);
-            transform: translateY(-5px);
-        }
-
-        .program-image {
-            width: 100%;
-            height: 300px;
-            object-fit: cover;
-        }
-
-        .program-content {
-            padding: 2.5rem;
-        }
-
-        .program-title {
-            font-weight: 900;
-            font-size: 1.8rem;
-            margin-bottom: 1rem;
-            text-transform: uppercase;
-        }
-
-        .program-description {
-            color: var(--light-gray);
-            margin-bottom: 2rem;
-            line-height: 1.8;
-        }
-
-        .program-link {
-            color: var(--yellow);
-            text-decoration: none;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            font-size: 0.9rem;
-            transition: color 0.3s ease;
-        }
-
-        .program-link:hover {
-            color: var(--white);
-        }
-
-        /* Testimonial Feature Section */
-        .testimonial-feature {
-            background: var(--dark-gray);
-            padding: 6rem 0;
-        }
-
-        .testimonial-feature h2 {
-            font-weight: 900;
-            text-align: center;
-            font-size: clamp(2.5rem, 5vw, 4rem);
-            color: var(--yellow);
-            margin-bottom: 3rem;
-            text-transform: uppercase;
-        }
-
-        .testimonial-content {
-            max-width: 100%;
-            margin: 0;
-            padding: 0 4rem;
-        }
-
-        .reviews-rating {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 1.5rem;
-            margin-bottom: 3rem;
-        }
-
-        .rating-number {
-            font-size: 3rem;
-            font-weight: 900;
-            color: var(--white);
-        }
-
-        .rating-stars {
-            color: var(--yellow);
-            font-size: 1.5rem;
-        }
-
-        .rating-count {
-            color: var(--light-gray);
-            font-size: 0.9rem;
-        }
-
-
-
-        /* Final CTA Section */
-        .cta-section {
-            background: var(--black);
-            padding: 8rem 4rem;
-            text-align: center;
-            width: 100%;
-        }
-
-        .cta-container {
-            max-width: 100%;
-            margin: 0 auto;
-            padding: 0 2rem;
-        }
-
-        .cta-title {
-            font-weight: 900;
-            font-size: clamp(2.5rem, 5vw, 4.5rem);
-            margin-bottom: 1.5rem;
-            text-transform: uppercase;
-        }
-
-        .cta-subtitle {
-            font-size: 1.2rem;
-            color: var(--light-gray);
-            margin-bottom: 3rem;
-        }
-
-        /* Map Section */
-        .map-section {
-            width: 100%;
-        }
-
-        .map-section iframe {
-            width: 100%;
-            height: 400px;
-            border: none;
-            display: block;
-        }
-
-        /* Footer */
-        footer {
-            padding: 4rem 0 2rem;
-            background: var(--black);
-            border-top: 1px solid var(--medium-gray);
-            width: 100%;
-        }
-
-        .footer-container {
-            max-width: 100%;
-            margin: 0;
-            padding: 0 4rem;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 4rem;
-            margin-bottom: 3rem;
-        }
-
-        .footer-section h3 {
-            font-weight: 900;
-            margin-bottom: 1.5rem;
-            text-transform: uppercase;
-            font-size: 0.9rem;
-            letter-spacing: 1px;
-        }
-
-        .footer-section ul {
-            list-style: none;
-        }
-
-        .footer-section ul li {
-            margin-bottom: 0.75rem;
-        }
-
-        .footer-section a {
-            color: var(--light-gray);
-            text-decoration: none;
-            transition: color 0.3s ease;
-            font-weight: 500;
-        }
-
-        .footer-section a:hover {
-            color: var(--yellow);
-        }
-
-        .footer-logo {
-            height: 60px;
-            margin-bottom: 1.5rem;
-        }
-
-        .footer-bottom {
-            text-align: center;
-            padding-top: 2rem;
-            border-top: 1px solid var(--medium-gray);
-            color: var(--light-gray);
-            font-size: 0.9rem;
-        }
-
-        /* ===== SCROLL REVEAL ===== */
-        .reveal {
-            opacity: 0;
-            transform: translateY(40px);
-            transition: opacity 0.7s ease, transform 0.7s ease;
-        }
-
-        .reveal.revealed {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .reveal-scale {
-            opacity: 0;
-            transform: scale(0.9);
-            transition: opacity 0.7s ease, transform 0.7s ease;
-        }
-
-        .reveal-scale.revealed {
-            opacity: 1;
-            transform: scale(1);
-        }
-
-        .reveal-stagger > .reveal {
-            transition-delay: calc(var(--reveal-index, 0) * 0.1s);
-        }
-
-        @media (prefers-reduced-motion: reduce) {
-            .reveal,
-            .reveal-scale {
-                opacity: 1;
-                transform: none;
-                transition: none;
-            }
-            .reveal-stagger > .reveal {
-                transition-delay: 0s;
-            }
-        }
-
-        @media (max-width: 1024px) {
-            .nav-container,
-            .hero-container,
-            .section-container,
-            .getting-started-content,
-            .testimonial-content,
-            .footer-container {
-                padding-left: 2rem;
-                padding-right: 2rem;
-            }
-
-            .stats-bar {
-                padding: 3rem 2rem;
-            }
-
-            .stats-container {
-                padding: 0 2rem;
-            }
-        }
-
-        /* Hamburger Menu */
-        .hamburger {
-            display: none;
-            flex-direction: column;
-            justify-content: center;
-            gap: 5px;
-            width: 30px;
-            height: 30px;
-            cursor: pointer;
-            background: none;
-            border: none;
-            padding: 0;
-            z-index: 1002;
-        }
-
-        .hamburger span {
-            display: block;
-            width: 30px;
-            height: 3px;
-            background: var(--white);
-            transition: all 0.3s ease;
-        }
-
-        .hamburger.active span:nth-child(1) {
-            transform: rotate(45deg) translate(6px, 6px);
-        }
-
-        .hamburger.active span:nth-child(2) {
-            opacity: 0;
-        }
-
-        .hamburger.active span:nth-child(3) {
-            transform: rotate(-45deg) translate(6px, -6px);
-        }
-
-        /* Side Menu */
-        .menu-backdrop {
-            position: fixed; inset: 0; background: rgba(0,0,0,0.6); z-index: 1001;
-            opacity: 0; visibility: hidden; transition: opacity 0.3s, visibility 0.3s;
-        }
-        .menu-backdrop.open { opacity: 1; visibility: visible; }
-        .side-menu {
-            position: fixed; top: 0; right: 0; width: 300px; max-width: 85vw; height: 100%;
-            background: var(--dark-gray); z-index: 1002; transform: translateX(100%);
-            transition: transform 0.3s ease; display: flex; flex-direction: column; overflow-y: auto;
-        }
-        .side-menu.open { transform: translateX(0); }
-        .side-menu-header {
-            display: flex; align-items: center; justify-content: space-between;
-            padding: 1rem 1.5rem; border-bottom: 1px solid var(--medium-gray);
-        }
-        .side-menu-header img { height: 30px; width: auto; }
-        .side-menu-close {
-            background: none; border: none; color: var(--light-gray); font-size: 1.3rem;
-            cursor: pointer; padding: 0.25rem; transition: color 0.3s;
-        }
-        .side-menu-close:hover { color: var(--white); }
-        .side-menu-links { flex: 1; padding: 0.75rem 0; }
-        .side-menu-links a {
-            display: block; padding: 0.85rem 1.5rem; color: var(--white); text-decoration: none;
-            font-size: 1rem; font-weight: 900; text-transform: uppercase; letter-spacing: 0.5px;
-            transition: all 0.2s;
-        }
-        .side-menu-links a:hover { color: var(--yellow); background: rgba(255,255,255,0.05); }
-        .side-menu-links .sub-link {
-            font-size: 0.85rem; color: var(--light-gray); padding: 0.5rem 1.5rem 0.5rem 2.5rem;
-            font-weight: 700;
-        }
-        .side-menu-links .sub-link:hover { color: var(--yellow); }
-        .side-menu-links .menu-divider { height: 1px; background: var(--medium-gray); margin: 0.5rem 1.5rem; }
-        .side-menu-footer { border-top: 1px solid var(--medium-gray); padding: 1rem 1.5rem; }
-        .side-menu-footer a {
-            display: block; background: var(--yellow); color: var(--black); padding: 0.9rem 1.5rem;
-            text-align: center; font-weight: 900; font-size: 0.9rem; text-transform: uppercase;
-            text-decoration: none; transition: all 0.3s;
-        }
-        .side-menu-footer a:hover { background: var(--white); }
-
-        @media (max-width: 768px) {
-            .hamburger {
-                display: flex !important;
-            }
-
-            .nav-links {
-                display: none !important;
-            }
-
-            .nav-container {
-                padding: 0 1.5rem;
-                flex-wrap: wrap;
-            }
-
-            .cta-btn {
-                order: 3;
-                width: 100%;
-                text-align: center;
-                margin-top: 0.75rem;
-                padding: 0.7rem 1rem;
-                font-size: 0.8rem;
-            }
-
-            .hero {
-                min-height: 80vh;
-                padding-top: 130px;
-            }
-
-            .hero-container {
-                padding: 2rem 1.5rem;
-            }
-
-            .hero-content h1 {
-                font-size: clamp(2rem, 6vw, 3rem);
-            }
-
-            .hero-content p {
-                font-size: 1.1rem;
-                margin-bottom: 2rem;
-            }
-
-            .hero-buttons {
-                flex-direction: column;
-            }
-
-            .hero-buttons .btn-primary,
-            .hero-buttons .btn-secondary {
-                text-align: center;
-                width: 100%;
-            }
-
-            .btn-primary,
-            .btn-secondary {
-                padding: 0.8rem 1.5rem;
-                font-size: 0.8rem;
-                white-space: normal;
-            }
-
-            .stats-container {
-                padding: 0 1.5rem;
-                grid-template-columns: repeat(2, 1fr);
-                gap: 1.5rem;
-            }
-
-            .stat-number {
-                font-size: 2rem;
-            }
-
-            .stat-label {
-                font-size: 0.75rem;
-            }
-
-            .section-container,
-            .getting-started-content,
-            .testimonial-content {
-                padding: 0 1.5rem;
-            }
-
-            .section-title {
-                font-size: clamp(1.8rem, 5vw, 2.5rem);
-            }
-
-            .section-header {
-                margin-bottom: 2rem;
-            }
-
-            .problem-grid,
-            .steps-grid,
-            .programs-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .problem-card,
-            .step-card {
-                padding: 1.5rem;
-            }
-
-            .program-content {
-                padding: 1.5rem;
-            }
-
-            .program-image {
-                height: 200px;
-            }
-
-            .section {
-                padding: 4rem 0;
-            }
-
-            .cta-section {
-                padding: 4rem 1.5rem;
-            }
-
-            .cta-title {
-                font-size: clamp(1.8rem, 5vw, 2.5rem);
-            }
-
-            .cta-section .btn-primary {
-                display: block;
-                width: 100%;
-            }
-
-            .map-section iframe {
-                height: 250px;
-            }
-
-            .footer-container {
-                padding: 0 1.5rem;
-                gap: 2rem;
-            }
-
-            .modal-container {
-                max-width: calc(100% - 2rem);
-            }
-        }
-
-        /* Skip Navigation */
-        .skip-link {
-            position: absolute;
-            top: -100%;
-            left: 50%;
-            transform: translateX(-50%);
-            background: var(--yellow);
-            color: var(--black);
-            padding: 0.75rem 1.5rem;
-            font-weight: 700;
-            z-index: 10000;
-            text-decoration: none;
-            transition: top 0.2s;
-        }
-        .skip-link:focus {
-            top: 10px;
-        }
-
-        /* Focus Visible Styles */
-        a:focus-visible,
-        button:focus-visible,
-        input:focus-visible,
-        select:focus-visible,
-        textarea:focus-visible,
-        [tabindex]:focus-visible {
-            outline: 2px solid var(--yellow);
-            outline-offset: 2px;
-        }
-
-        /* Keyboard Nav for Submenus */
-        .nav-links > li:focus-within .submenu,
-        .has-submenu.submenu-open .submenu {
-            display: block;
-        }
-        .has-submenu:focus-within > a::after {
-            border-top-color: var(--yellow);
-            transform: translateY(2px);
-        }
+    /* Page-unique components — homepage only, same token language as bia.css */
+
+    /* Next-door device: Suite 122 to Suite 110 */
+    .nextdoor{
+      display:grid;grid-template-columns:1fr auto 1fr;gap:clamp(14px,2.5vw,28px);
+      align-items:stretch;margin-top:clamp(34px,5vw,52px);max-width:760px;
+    }
+    .nd-door{
+      border:1px solid var(--steel-line);background:var(--black);
+      padding:clamp(22px,3vw,34px) clamp(18px,2.5vw,28px);text-align:center;
+    }
+    .nd-door small{
+      display:block;font-size:10px;font-weight:700;letter-spacing:2.5px;
+      text-transform:uppercase;color:var(--gray);margin-bottom:14px;
+    }
+    .nd-num{
+      display:block;font-weight:900;line-height:.9;letter-spacing:-.02em;
+      font-size:clamp(2.2rem,4.5vw,3.6rem);
+    }
+    .nd-now .nd-num{
+      color:var(--black);-webkit-text-stroke:0;
+      text-shadow:1.5px 0 0 var(--white),-1.5px 0 0 var(--white),0 1.5px 0 var(--white),0 -1.5px 0 var(--white),
+        1.05px 1.05px 0 var(--white),-1.05px 1.05px 0 var(--white),1.05px -1.05px 0 var(--white),-1.05px -1.05px 0 var(--white);
+    }
+    .nd-next .nd-num{color:var(--white)}
+    .nd-tag{
+      display:inline-block;margin-top:14px;font-size:10px;font-weight:900;
+      letter-spacing:2px;text-transform:uppercase;padding:6px 10px;
+    }
+    .nd-now .nd-tag{border:1px solid var(--steel-line);color:var(--gray)}
+    .nd-next .nd-tag{background:var(--yellow);color:var(--black)}
+    .nd-arrow{display:flex;align-items:center;justify-content:center;color:var(--yellow)}
+    .nd-arrow svg{width:clamp(30px,4vw,46px);height:auto}
+    .nd-note{margin-top:16px;font-size:.9rem;color:var(--gray);max-width:56ch}
+    @media (max-width:560px){
+      .nextdoor{grid-template-columns:1fr}
+      .nd-arrow{transform:rotate(90deg);padding:2px 0}
+    }
+
+    /* Coaches grid holds six tiles on this page */
+    .coach-grid{grid-template-columns:repeat(6,1fr)}
+    @media (max-width:1020px){.coach-grid{grid-template-columns:repeat(3,1fr)}}
+    @media (max-width:560px){.coach-grid{grid-template-columns:repeat(2,1fr)}}
+
+    /* Proof section extras */
+    .proof-video{max-width:880px;margin-top:38px}
+    .reviews-embed{margin-top:clamp(36px,5vw,56px)}
+
+    /* Map inside the visit section */
+    .visit-map{margin-top:clamp(36px,5vw,64px);border:1px solid var(--steel-line)}
     </style>
-<script defer src="/_vercel/insights/script.js"></script>
+    <script defer src="/_vercel/insights/script.js"></script>
 </head>
 <body>
     <a href="#main-content" class="skip-link">Skip to main content</a>
-    <nav>
+
+    <!-- ============ NAV ============ -->
+    <nav id="nav">
         <div class="nav-container">
             <div class="logo">
-                <a href="/">
-                    <img src="images/logos/logo.png" alt="Black Iron Athletics">
+                <a href="/" aria-label="Black Iron Athletics home">
+                    <img src="/images/logos/logo.png" alt="Black Iron Athletics">
                 </a>
             </div>
             <ul class="nav-links">
                 <li class="has-submenu">
-                    <a href="about">About Us</a>
+                    <a href="/about">About Us</a>
                     <ul class="submenu">
-                        <li><a href="about#mission">Our Mission</a></li>
-                        <li><a href="about#team">Meet the Team</a></li>
-                        <li><a href="programs">Programs</a></li>
-                        <li><a href="schedule">Class Schedule</a></li>
+                        <li><a href="/about">Our Mission</a></li>
+                        <li><a href="/about#team">Meet the Team</a></li>
+                        <li><a href="/media">Media</a></li>
                     </ul>
                 </li>
                 <li class="has-submenu">
-                    <a href="getting-started">Getting Started</a>
+                    <a href="/programs">Programs</a>
                     <ul class="submenu">
-                        <li><a href="getting-started#membership">Membership Options</a></li>
-                        <li><a href="getting-started#faqs">FAQs</a></li>
+                        <li><a href="/programs#group-classes">Strength &amp; Conditioning</a></li>
+                        <li><a href="/programs#personal-training">Personal Training</a></li>
+                        <li><a href="/programs#nutrition-coaching">Nutrition Coaching</a></li>
+                        <li><a href="/programs#open-gym">Open Gym</a></li>
+                        <li><a href="/programs#recovery">Recovery Room</a></li>
                     </ul>
                 </li>
-                <li><a href="media">Media</a></li>
-                <li><a href="blog/">Blog</a></li>
-                <li><a href="contact">Contact</a></li>
+                <li><a href="/pricing">Pricing</a></li>
+                <li class="has-submenu">
+                    <a href="/getting-started">Getting Started</a>
+                    <ul class="submenu">
+                        <li><a href="/getting-started">How it works</a></li>
+                        <li><a href="/pricing">Membership &amp; Pricing</a></li>
+                        <li><a href="/faq">FAQs</a></li>
+                    </ul>
+                </li>
+                <li><a href="/schedule">Schedule</a></li>
+                <li><a href="/blog">Blog</a></li>
+                <li><a href="/contact">Contact</a></li>
             </ul>
-            <a href="#" onclick="openLeadModal(); return false;" class="cta-btn">Book Free Consultation</a>
+            <a href="https://book.blackironathletics.com/book" class="cta-btn">Book a Free Consult</a>
             <button class="hamburger" onclick="toggleSideMenu()" aria-label="Menu">
                 <span></span>
                 <span></span>
@@ -1110,316 +137,568 @@
         </div>
     </nav>
 
+    <!-- ============ THUMB BAR (mobile) ============ -->
+    <div class="thumbbar">
+        <a class="tb-call" href="tel:+19727857036" aria-label="Call Black Iron Athletics"><svg width="19" height="19" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M6.5 2.5 8.2 6l-1.7 1.6a11 11 0 0 0 4.9 4.9L13 10.8l3.5 1.7v3.2c0 .6-.5 1-1.1 1A13.6 13.6 0 0 1 2.3 3.6c0-.6.4-1.1 1-1.1h3.2Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg></a>
+        <a class="tb-book" href="https://book.blackironathletics.com/book">Book a Free Consult</a>
+    </div>
+
+    <!-- ============ SIDE MENU ============ -->
     <div class="menu-backdrop" id="menuBackdrop"></div>
     <div class="side-menu" id="sideMenu">
         <div class="side-menu-header">
-            <img src="images/logos/logo.png" alt="Black Iron Athletics">
+            <img src="/images/logos/logo.png" alt="Black Iron Athletics">
             <button class="side-menu-close" onclick="closeSideMenu()" aria-label="Close menu">&times;</button>
         </div>
         <div class="side-menu-links">
-            <a href="/">Home</a>
-            <a href="about">About Us</a>
-            <a href="about#mission" class="sub-link">Our Mission</a>
-            <a href="about#team" class="sub-link">Meet the Team</a>
-            <a href="programs" class="sub-link">Programs</a>
-            <a href="schedule" class="sub-link">Class Schedule</a>
-            <a href="getting-started">Getting Started</a>
-            <a href="getting-started#membership" class="sub-link">Membership Options</a>
-            <a href="getting-started#faqs" class="sub-link">FAQs</a>
-            <a href="media">Media</a>
-            <a href="blog/">Blog</a>
-            <a href="contact">Contact</a>
+            <a href="/getting-started">Getting Started</a>
+            <a href="/schedule">Schedule</a>
+            <a href="/pricing">Pricing</a>
+            <details class="m-acc"><summary>Programs</summary>
+                <a href="/programs" class="sub-link">All programs</a>
+                <a href="/programs#group-classes" class="sub-link">Strength &amp; Conditioning</a>
+                <a href="/programs#personal-training" class="sub-link">Personal Training</a>
+                <a href="/programs#nutrition-coaching" class="sub-link">Nutrition Coaching</a>
+                <a href="/programs#open-gym" class="sub-link">Open Gym</a>
+                <a href="/programs#recovery" class="sub-link">Recovery Room</a>
+            </details>
+            <details class="m-acc"><summary>About Us</summary>
+                <a href="/about" class="sub-link">Our Mission</a>
+                <a href="/about#team" class="sub-link">Meet the Team</a>
+                <a href="/media" class="sub-link">Media</a>
+            </details>
+            <a href="/faq">FAQs</a>
+            <a href="/blog">Blog</a>
+            <a href="/contact">Contact</a>
         </div>
         <div class="side-menu-footer">
-            <a href="#" onclick="closeSideMenu(); openLeadModal(); return false;">Book Free Consultation</a>
+            <a href="https://book.blackironathletics.com/book" onclick="closeSideMenu();">Book a Free Consult</a>
         </div>
     </div>
 
     <main id="main-content">
 
-    <section class="hero">
-        <img src="images/heroes/hero-main.webp" alt="Training at Black Iron Athletics" class="hero-bg" fetchpriority="high">
-        <div class="hero-container">
-            <div class="hero-content">
-                <p style="font-size: 0.85rem; color: var(--yellow); font-weight: 700; margin-bottom: 1.5rem; letter-spacing: 2px; text-transform: uppercase;">VETERAN-OWNED &middot; FRISCO, TX &middot; EST. 2013</p>
-                <h1>Your Best Years Aren&rsquo;t Behind You.</h1>
-                <h2 style="font-size: clamp(1.3rem, 3vw, 2rem); font-weight: 700; color: var(--light-gray); margin-bottom: 2rem; text-transform: none; line-height: 1.4;">You just haven&rsquo;t been trained properly yet.</h2>
-                <p>We help everyday people become everyday athletes. Expert coaching, programmed strength and conditioning, and a community that won&rsquo;t let you quit. Serving Frisco, Prosper, The Colony, Little Elm, McKinney, and North Dallas since 2013.</p>
-                <div class="hero-buttons">
-                    <a href="#" onclick="openLeadModal(); return false;" class="btn-primary">Book Free Consultation</a>
-                    <a href="#programs" class="btn-secondary">How We Train</a>
-                </div>
+    <!-- ============ HERO ============ -->
+    <section class="hero no-top" aria-label="Black Iron Athletics">
+        <div class="hero-bg">
+            <img class="ph-soft" src="/images/training/group-training.webp" alt="Members mid-squat in a coached group class at Black Iron Athletics" fetchpriority="high" width="1024" height="683">
+        </div>
+        <div class="hero-in wrap">
+            <span class="eyebrow eyebrow-y">Veteran-Owned &middot; Frisco, TX &middot; Est. 2013</span>
+            <h1 class="display">Everyday people.<br><span class="outline">Everyday athletes.</span></h1>
+            <p class="lead">We help everyday people become everyday athletes. A week of one-on-one coaching to start, three levels in every class, and a coach on every rep &mdash; built for people with real jobs, real families, and zero interest in getting hurt.</p>
+            <div class="hero-ctas">
+                <a class="btn btn-y" href="https://book.blackironathletics.com/book">Book a Free Consult</a>
+                <a class="btn btn-ghost" href="#plan">See How It Works</a>
             </div>
+            <p class="trust"><span class="stars" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 2l3 7 7 .6-5.3 4.6L18.5 22 12 18l-6.5 4 1.8-7.8L2 9.6 9 9z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3 7 7 .6-5.3 4.6L18.5 22 12 18l-6.5 4 1.8-7.8L2 9.6 9 9z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3 7 7 .6-5.3 4.6L18.5 22 12 18l-6.5 4 1.8-7.8L2 9.6 9 9z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3 7 7 .6-5.3 4.6L18.5 22 12 18l-6.5 4 1.8-7.8L2 9.6 9 9z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3 7 7 .6-5.3 4.6L18.5 22 12 18l-6.5 4 1.8-7.8L2 9.6 9 9z"/></svg></span>5.0 on Google</p>
         </div>
     </section>
 
-    <div class="stats-bar reveal">
-        <div class="stats-container">
-            <div class="stat-item">
-                <div class="stat-number">13+</div>
-                <div class="stat-label">Years Strong</div>
-            </div>
-            <div class="stat-item">
-                <div class="stat-number">3000+</div>
-                <div class="stat-label">Lives Changed</div>
-            </div>
-            <div class="stat-item">
-                <div class="stat-number">100%</div>
-                <div class="stat-label">Results Driven</div>
-            </div>
-            <div class="stat-item">
-                <div class="stat-number">5.0</div>
-                <div class="stat-google-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-                <div class="stat-label">on Google</div>
-            </div>
+    <!-- ============ STAT BAND ============ -->
+    <section class="stats" aria-label="Proof">
+        <div class="stats-grid">
+            <div class="stat rv"><b>13+</b><span>Years in Frisco</span></div>
+            <div class="stat rv"><b>3,000+</b><span>Lives changed</span></div>
+            <div class="stat rv"><b>5.0</b><span>Google rating</span></div>
+            <div class="stat rv"><b>3</b><span>Levels in every class</span></div>
+        </div>
+    </section>
+
+    <!-- ============ MARQUEE ============ -->
+    <div class="marquee" aria-hidden="true">
+        <div class="marquee-track">
+            <span>Coached every rep — Three levels, one floor — Forge the body, guard the mind —&nbsp;</span><span>Coached every rep — Three levels, one floor — Forge the body, guard the mind —&nbsp;</span>
         </div>
     </div>
 
-    <!-- Problem Section -->
-    <section class="problem-section">
-        <div class="section-container">
-            <div class="reveal">
-                <h2 class="section-title">We&rsquo;ve Heard It All Before</h2>
+    <!-- ============ STAKES ============ -->
+    <section class="sect no-top" id="why">
+        <div class="wrap">
+            <div class="stakes-grid">
+                <div class="rv">
+                    <span class="eyebrow">Sound familiar?</span>
+                    <h2>You&rsquo;re not <span class="hl">past it.</span></h2>
+                    <p class="lead">Maybe you wrestled in high school. Maybe you bounced off a leaderboard culture that treated a Tuesday workout like a tryout, or a garage gym that got lonely fast. Now there&rsquo;s a job, kids, and a quiet voice saying you&rsquo;re too old to start over.</p>
+                    <div class="fears">
+                        <div class="fear"><b>Getting hurt</b><p>You can&rsquo;t afford a tweaked back. Picking up your kids isn&rsquo;t optional &mdash; so we coach every rep and pull you back before your ego cashes a check.</p></div>
+                        <div class="fear"><b>Wasting time &amp; money</b><p>You&rsquo;ve paid for memberships that went nowhere. Here the programming is cycled, planned, and measured &mdash; nothing random, nothing wasted.</p></div>
+                        <div class="fear"><b>Aging out</b><p>Longevity is the backbone of everything we program. We train people to love this for decades, not to survive a six-week challenge.</p></div>
+                    </div>
+                </div>
+                <figure class="stakes-img rv">
+                    <img class="ph" src="/images/training/overhead-press-bw.webp" alt="Member pressing a barbell overhead under coaching at Black Iron Athletics" loading="lazy" width="1024" height="683">
+                </figure>
             </div>
-
-            <div class="problem-grid reveal-stagger">
-                <div class="problem-card reveal">
-                    <h3>I don&rsquo;t know where to start.</h3>
-                    <p>Conflicting advice everywhere. You need a clear path, not more confusion. That&rsquo;s exactly what Foundations is for.</p>
-                </div>
-
-                <div class="problem-card reveal">
-                    <h3>I&rsquo;m worried about getting hurt.</h3>
-                    <p>You want results, not injury. We program strength and conditioning together, every week, so you build a body that holds up.</p>
-                </div>
-
-                <div class="problem-card reveal">
-                    <h3>Going it alone gets old.</h3>
-                    <p>Consistency is hard solo. You need accountability, real coaching, and a room full of people who actually know your name.</p>
-                </div>
+            <div class="belief rv">
+                <p>&ldquo;Your best years aren&rsquo;t behind you. You just haven&rsquo;t been trained properly yet. We fix the belief, then we forge the body.&rdquo;</p>
             </div>
         </div>
     </section>
 
-    <!-- What Our Members Say - Social Proof -->
-    <section class="testimonial-feature" id="testimonials">
-        <div class="testimonial-content">
-            <h2 class="reveal">Take Their Word For It</h2>
-
-            <div style="max-width: 900px; margin: 0 auto 3rem;">
-                <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
-                    <iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/orPYVQKohc0?si=5VByhNwt8GtMyZdf" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen loading="lazy" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 2px solid var(--medium-gray);"></iframe>
+    <!-- ============ THE PLAN ============ -->
+    <section class="sect alt" id="plan">
+        <div class="wrap">
+            <span class="eyebrow rv">The plan</span>
+            <h2 class="rv">Three steps.<br><span class="outline">No guesswork.</span></h2>
+            <div class="steps">
+                <div class="step rv">
+                    <em>01</em>
+                    <h3>Book a free consult</h3>
+                    <p>Twenty minutes with a coach. We talk goals, history, and what your week actually looks like. No sales pitch &mdash; if we&rsquo;re not the right fit, we&rsquo;ll say so.</p>
                 </div>
-                <p style="font-size: 1.3rem; line-height: 1.8; font-style: italic; margin-top: 2rem; text-align: center; color: var(--white);">"Fell in love with moving my body, and setting goals for myself... it was the first thing that was for ME"</p>
-                <p style="font-weight: 700; color: var(--yellow); text-align: center; margin-top: 0.75rem;">— Ashley Kim</p>
+                <div class="step rv">
+                    <em>02</em>
+                    <h3>Do your Foundations week</h3>
+                    <p>A week of one-on-one coaching. Learn the basics, set a baseline, understand your body. Every member starts here. It&rsquo;s non-negotiable, and it&rsquo;s why nobody gets thrown into the deep end.</p>
+                </div>
+                <div class="step rv">
+                    <em>03</em>
+                    <h3>Train with your people</h3>
+                    <p>Group classes with three levels on one floor, coached every rep. Beginners next to 10-year athletes, nobody compromising, good people on every side of you.</p>
+                </div>
             </div>
+            <div class="plan-cta rv">
+                <a class="btn btn-y" href="https://book.blackironathletics.com/book">Book a Free Consult</a>
+                <p class="speed">We reply the same day. A real coach, not a bot.</p>
+            </div>
+        </div>
+    </section>
 
-            <div class="reviews-rating">
-                <div class="rating-number">5.0</div>
+    <!-- ============ PROGRAMS ============ -->
+    <section class="sect" id="programs">
+        <div class="wrap">
+            <span class="eyebrow rv">Programs</span>
+            <h2 class="rv">Everything we coach.</h2>
+            <div class="prog-grid">
+                <article class="prog rv">
+                    <figure><img class="ph" src="/images/training/group-warmup.webp" alt="Group class warming up together on the training floor" loading="lazy" width="1200" height="800"></figure>
+                    <div class="prog-body">
+                        <h3>Strength &amp; Conditioning Classes</h3>
+                        <p>The main event. Programmed, not random &mdash; cycled progressions, planned intensity, and strength balanced with conditioning every single week.</p>
+                        <a class="arrow-link" href="/programs#group-classes">How classes work <svg width="16" height="12" viewBox="0 0 16 12" fill="none" aria-hidden="true"><path d="M10 1l5 5-5 5M15 6H1" stroke="currentColor" stroke-width="1.5"/></svg></a>
+                    </div>
+                </article>
+                <article class="prog rv">
+                    <figure><img class="ph" src="/images/members/member-coaching.webp" alt="Coach working one-on-one with a smiling member" loading="lazy" width="1200" height="800"></figure>
+                    <div class="prog-body">
+                        <h3>Foundations</h3>
+                        <p>Your first week: one-on-one with a coach. Baseline, basics, body. How every single member starts &mdash; no exceptions.</p>
+                        <a class="arrow-link" href="/getting-started">Start here <svg width="16" height="12" viewBox="0 0 16 12" fill="none" aria-hidden="true"><path d="M10 1l5 5-5 5M15 6H1" stroke="currentColor" stroke-width="1.5"/></svg></a>
+                    </div>
+                </article>
+                <article class="prog rv">
+                    <figure><img class="ph" src="/images/training/squat-tattooed.webp" alt="Member back-squatting with focused coaching attention" loading="lazy" width="1200" height="800"></figure>
+                    <div class="prog-body">
+                        <h3>Personal Training</h3>
+                        <p>One coach, one plan, your schedule. For specific goals, a comeback from injury, or a fully private track.</p>
+                        <a class="arrow-link" href="/programs#personal-training">Talk to a coach <svg width="16" height="12" viewBox="0 0 16 12" fill="none" aria-hidden="true"><path d="M10 1l5 5-5 5M15 6H1" stroke="currentColor" stroke-width="1.5"/></svg></a>
+                    </div>
+                </article>
+                <article class="prog wide rv">
+                    <figure><img class="ph" src="/images/members/member-laughing.webp" alt="Member laughing on the gym floor after a session" loading="lazy" width="1200" height="800"></figure>
+                    <div class="prog-body">
+                        <h3>Nutrition Coaching</h3>
+                        <p>A real human coach for the eating part &mdash; weekly check-ins, honest feedback, adjustments as life happens. Powered by <a href="https://fuelpath.app">FuelPath</a>, run by our own coaches.</p>
+                        <a class="arrow-link" href="/programs#nutrition-coaching">Coaching outside the gym <svg width="16" height="12" viewBox="0 0 16 12" fill="none" aria-hidden="true"><path d="M10 1l5 5-5 5M15 6H1" stroke="currentColor" stroke-width="1.5"/></svg></a>
+                    </div>
+                </article>
+                <article class="prog wide rv">
+                    <figure><img class="ph" src="/images/training/outdoor-run.webp" alt="Members running outdoors during training" loading="lazy" width="1200" height="800"></figure>
+                    <div class="prog-body">
+                        <h3>Open Gym, Seven Days</h3>
+                        <p>Self-directed training between classes and after hours, with access to all our programming. The barbells and Olympic lifts live here too &mdash; and so does official HYROX affiliate programming, seven days a week.</p>
+                        <a class="arrow-link" href="/programs#open-gym">Hours and access <svg width="16" height="12" viewBox="0 0 16 12" fill="none" aria-hidden="true"><path d="M10 1l5 5-5 5M15 6H1" stroke="currentColor" stroke-width="1.5"/></svg></a>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============ THREE LEVELS ============ -->
+    <section class="sect alt" id="levels">
+        <div class="wrap">
+            <span class="eyebrow rv">Three levels, one floor</span>
+            <h2 class="rv">One class.<br><span class="outline">Three ways to do it.</span></h2>
+            <p class="lead levels-intro rv">Every class is programmed at three levels. Same movement pattern, same clock, different target &mdash; so a first-month beginner and a 10-year athlete train side by side without either one compromising. The system flexes so the member doesn&rsquo;t have to.</p>
+            <div class="board rv">
+                <small>A real day on our whiteboard</small>
+                <p>Back squat. Level 1 &mdash; five sets of five, light to moderate. Level 2 &mdash; build to a heavy triple for the day. Level 3 &mdash; one-rep max.<br>Same bar. Same coaching. Nobody maxes out before they are ready for it.</p>
+            </div>
+            <div class="lvl-grid">
+                <div class="lvl rv"><b>Level 1 &middot; Learn it</b><p>New, or coming back after years off. Own the movement before you load it. Nobody rushes you.</p></div>
+                <div class="lvl rv"><b>Level 2 &middot; Build it</b><p>Solid mechanics, growing engine. Where most members live &mdash; and get strong for years.</p></div>
+                <div class="lvl rv"><b>Level 3 &middot; Test it</b><p>For the seasoned athlete chasing an edge. Bigger loads, same standard, a coach watching anyway.</p></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============ THE NEW BUILDING ============ -->
+    <section class="building" aria-label="The new building">
+        <div class="building-bg">
+            <img class="ph" src="/images/heroes/hero-about.webp" alt="Members on rowers inside Black Iron Athletics, gym name painted on the wall" loading="lazy" width="1024" height="683">
+        </div>
+        <div class="building-in wrap">
+            <span class="eyebrow rv">The next chapter &middot; Opening October 2026</span>
+            <h2 class="display rv">279 Main St, Suite 110.<br><span class="outline">Built for the next decade.</span></h2>
+            <p class="lead rv">After 13 years in Frisco, we&rsquo;re building the gym a bigger, better home &mdash; one door down from where we train today. More space, more amenities, more toys, and a recovery room. The same good people. Nothing pauses while we build it.</p>
+            <div class="nextdoor rv" role="img" aria-label="We train at Suite 122 today and move next door to Suite 110 in October 2026">
+                <div class="nd-door nd-now">
+                    <small>Where we train today</small>
+                    <b class="nd-num">Suite 122</b>
+                    <span class="nd-tag">Open until moving day</span>
+                </div>
+                <div class="nd-arrow" aria-hidden="true">
+                    <svg viewBox="0 0 46 24" fill="none"><path d="M32 3l10 9-10 9M42 12H2" stroke="currentColor" stroke-width="2"/></svg>
+                </div>
+                <div class="nd-door nd-next">
+                    <small>Our new home next door</small>
+                    <b class="nd-num">Suite 110</b>
+                    <span class="nd-tag">Opening October 2026</span>
+                </div>
+            </div>
+            <p class="nd-note rv">We&rsquo;re not moving far &mdash; just next door, with a big step up in space and amenities. Same address, same coaches, same community we&rsquo;ve served since 2013.</p>
+        </div>
+    </section>
+
+    <!-- ============ RECOVERY ROOM TEASE ============ -->
+    <section class="sect alt" id="recovery">
+        <div class="wrap">
+            <span class="eyebrow rv">Coming with the new space</span>
+            <h2 class="rv">The recovery room.<br><span class="outline">Opening October 2026.</span></h2>
+            <p class="lead rv">Two cold plunges. A five-person sauna with infrared and red light therapy &mdash; still a traditional heat sauna, so it still gets hot. Recovery gets a room of its own at Suite 110, because the work only counts if you keep showing up for it.</p>
+            <div class="rec-grid rv">
+                <figure><img src="/images/renderings/2026-08-01-recovery-room-rendering.jpg" alt="Rendering of the new recovery room with two cold plunges and a five-person sauna" loading="lazy" width="600" height="335"><figcaption>The recovery room &middot; Rendering &mdash; details may change</figcaption></figure>
+                <figure><img src="/images/renderings/2026-08-01-new-gym-floor-rendering.jpg" alt="Rendering of the new training floor at 279 Main St, Suite 110" loading="lazy" width="600" height="335"><figcaption>The new floor &middot; Rendering &mdash; details may change</figcaption></figure>
+            </div>
+            <p class="rec-note rv">Renderings of the new build at 279 Main St, Suite 110 &mdash; right next door to where we train today.</p>
+        </div>
+    </section>
+
+    <!-- ============ THE 23 HOURS ============ -->
+    <section class="sect" id="hours">
+        <div class="wrap">
+            <div class="h23-grid">
                 <div>
-                    <div class="rating-stars">★★★★★</div>
-                    <div class="rating-count">68 reviews</div>
-                </div>
-            </div>
-
-            <!-- Elfsight Google Reviews Widget -->
-            <div style="margin-top: 3rem; margin-bottom: 3rem;">
-                <script src="https://elfsightcdn.com/platform.js" async></script>
-                <div class="elfsight-app-e9950e9a-90e9-4e39-9489-c4082001e747" data-elfsight-app-lazy></div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Getting Started Section -->
-    <section class="getting-started">
-        <div class="getting-started-content">
-            <div class="reveal">
-                <h2>Getting Started Is Easy</h2>
-                <p class="getting-started-subtitle">Foundations is how every member starts.</p>
-            </div>
-
-            <div class="steps-grid reveal-stagger">
-                <div class="step-card reveal">
-                    <div class="step-number">1</div>
-                    <h3>Book a Free Consultation</h3>
-                    <p>We talk about your goals, your concerns, and what&rsquo;s worked or hasn&rsquo;t in the past. No pressure, no sales pitch. Just an honest conversation.</p>
-                </div>
-
-                <div class="step-card reveal">
-                    <div class="step-number">2</div>
-                    <h3>Lay the Foundation</h3>
-                    <p>A week of one-on-one coaching to learn the basics, set your baseline, and understand how your body actually moves. Non-negotiable. Every member starts here.</p>
-                </div>
-
-                <div class="step-card reveal">
-                    <div class="step-number">3</div>
-                    <h3>Train With Your People</h3>
-                    <p>Join group classes built so beginners and advanced athletes train side by side. Three levels, one floor. We coach every rep.</p>
-                </div>
-            </div>
-            
-            <div class="cta-center">
-                <a href="#" onclick="openLeadModal(); return false;" class="btn-primary">Book Free Consultation</a>
-            </div>
-        </div>
-    </section>
-
-    <section class="section section-alt" id="programs">
-        <div class="section-container">
-            <div class="section-header reveal">
-                <div class="section-subtitle">What We Offer</div>
-                <h2 class="section-title">Four Things. Done Right.</h2>
-            </div>
-
-            <div class="programs-grid reveal-stagger">
-                <div class="program-card reveal">
-                    <img src="images/training/group-training.webp" alt="Group class at Black Iron Athletics" class="program-image" loading="lazy">
-                    <div class="program-content">
-                        <h3 class="program-title">Three Levels, One Floor</h3>
-                        <p class="program-description">Group classes programmed so a beginner and a ten-year athlete train side by side without compromise. The system flexes so you don&rsquo;t have to.</p>
-                        <a href="programs#group-classes" class="program-link">How classes work &rarr;</a>
+                    <span class="eyebrow rv">The 23 hours</span>
+                    <h2 class="rv">Training is one hour.<br><span class="outline">We coach the other 23.</span></h2>
+                    <p class="lead rv">What you do between sessions decides most of your results. So our coaching doesn&rsquo;t stop at the whiteboard.</p>
+                    <div class="h23-rows rv">
+                        <div class="h23-row"><b>Nutrition</b><p>Real human nutrition coaching &mdash; a coach who knows your name, checks in weekly, and adjusts as life happens. Powered by <a href="https://fuelpath.app">FuelPath</a>, not another app you&rsquo;ll ignore by March.</p></div>
+                        <div class="h23-row"><b>Sleep</b><p>Recovery is where the work pays off. We help you protect it &mdash; because a strong week starts the night before.</p></div>
+                        <div class="h23-row"><b>Habits</b><p>Small daily wins, stacked for years. That&rsquo;s the whole secret, and it&rsquo;s why our members are still here a decade later.</p></div>
                     </div>
                 </div>
+                <figure class="h23-img rv">
+                    <img class="ph" src="/images/training/snatch-action.webp" alt="Member mid-lift with a barbell during a coached session" loading="lazy" width="1024" height="1536">
+                </figure>
+            </div>
+        </div>
+    </section>
 
-                <div class="program-card reveal">
-                    <img src="images/training/barbell-overhead.webp" alt="One-on-one Foundations coaching" class="program-image" loading="lazy">
-                    <div class="program-content">
-                        <h3 class="program-title">Foundations</h3>
-                        <p class="program-description">Every member starts with a week of one-on-one coaching. We teach you to move, set your baseline, and build trust before you ever step into a class.</p>
-                        <a href="programs#personal-training" class="program-link">Learn about Foundations &rarr;</a>
-                    </div>
+    <!-- ============ COACHES ============ -->
+    <section class="sect alt" id="coaches">
+        <div class="wrap">
+            <span class="eyebrow rv">The coaches</span>
+            <h2 class="rv">Real coaches.<br><span class="outline">Every rep.</span></h2>
+            <div class="coach-feature">
+                <figure class="rv"><img class="ph" src="/images/team/owner-headcoach-mike.webp" alt="Mike Manning, owner and head coach of Black Iron Athletics" loading="lazy" width="1340" height="2010"></figure>
+                <div class="rv">
+                    <h3>Mike Manning</h3>
+                    <span class="role">Owner &amp; Head Coach &middot; Veteran</span>
+                    <p class="lead">Coaching in Frisco since 2014, sole owner since 2018. Mike runs Black Iron on a simple idea: everyday people deserve real coaching too &mdash; programmed training, honest standards, and a floor where person comes first, athlete second.</p>
                 </div>
+            </div>
+            <div class="coach-grid">
+                <article class="coach rv"><figure><img class="ph" src="/images/team/general-manager-caoch-kristin.webp" alt="Coach Kristin, general manager at Black Iron Athletics" loading="lazy" width="800" height="1067"></figure><div><b>Kristin</b><span>General Manager &middot; Coach</span></div></article>
+                <article class="coach rv"><figure><img class="ph" src="/images/team/coach-aileen.webp" alt="Coach Aileen at Black Iron Athletics" loading="lazy" width="800" height="1067"></figure><div><b>Aileen</b><span>Coach</span></div></article>
+                <article class="coach rv"><figure><img class="ph" src="/images/team/coach-amber.webp" alt="Coach Amber at Black Iron Athletics" loading="lazy" width="800" height="1067"></figure><div><b>Amber</b><span>Coach</span></div></article>
+                <article class="coach rv"><figure><img class="ph" src="/images/team/coach-emily.webp" alt="Coach Emily at Black Iron Athletics" loading="lazy" width="800" height="1067"></figure><div><b>Emily</b><span>Coach</span></div></article>
+                <article class="coach rv"><figure><img class="ph" src="/images/team/coach-evan.webp" alt="Coach Evan at Black Iron Athletics" loading="lazy" width="800" height="1067"></figure><div><b>Evan</b><span>Coach</span></div></article>
+                <article class="coach rv"><figure><img class="ph" src="/images/team/coach-lawrence.webp" alt="Coach Lawrence at Black Iron Athletics" loading="lazy" width="800" height="1067"></figure><div><b>Lawrence</b><span>Coach</span></div></article>
+            </div>
+        </div>
+    </section>
 
-                <div class="program-card reveal">
-                    <img src="images/members/member-blessed.webp" alt="Nutrition and lifestyle coaching" class="program-image" loading="lazy">
-                    <div class="program-content">
-                        <h3 class="program-title">The 23 Hours</h3>
-                        <p class="program-description">The hour in the gym matters. The 23 hours outside it matter more. Nutrition coaching, sleep guidance, and habit work that actually fits your life.</p>
-                        <a href="programs#nutrition-coaching" class="program-link">Coaching outside the gym &rarr;</a>
-                    </div>
+    <!-- ============ MEMBER PROOF ============ -->
+    <section class="sect" id="testimonials">
+        <div class="wrap">
+            <span class="eyebrow rv">Member proof</span>
+            <h2 class="rv">Don&rsquo;t take our word for it.</h2>
+            <p class="trust rv"><span class="stars" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 2l3 7 7 .6-5.3 4.6L18.5 22 12 18l-6.5 4 1.8-7.8L2 9.6 9 9z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3 7 7 .6-5.3 4.6L18.5 22 12 18l-6.5 4 1.8-7.8L2 9.6 9 9z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3 7 7 .6-5.3 4.6L18.5 22 12 18l-6.5 4 1.8-7.8L2 9.6 9 9z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3 7 7 .6-5.3 4.6L18.5 22 12 18l-6.5 4 1.8-7.8L2 9.6 9 9z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3 7 7 .6-5.3 4.6L18.5 22 12 18l-6.5 4 1.8-7.8L2 9.6 9 9z"/></svg></span>5.0 on Google</p>
+            <div class="proof-video rv">
+                <div class="youtube-video">
+                    <iframe src="https://www.youtube-nocookie.com/embed/orPYVQKohc0?si=5VByhNwt8GtMyZdf" title="Ashley K.&rsquo;s member story at Black Iron Athletics" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen loading="lazy"></iframe>
                 </div>
-
-                <div class="program-card reveal">
-                    <img src="images/training/barbell-curl.webp" alt="Open gym training" class="program-image" loading="lazy">
-                    <div class="program-content">
-                        <h3 class="program-title">Open Gym, Seven Days</h3>
-                        <p class="program-description">Train on your own time, between classes and after hours. Open gym is included with every membership.</p>
-                        <a href="programs#open-gym" class="program-link">Hours and access &rarr;</a>
-                    </div>
+            </div>
+            <div class="quotes quotes-one">
+                <div class="quote rv">
+                    <blockquote>&ldquo;Fell in love with moving my body, and setting goals for myself&hellip; it was the first thing that was for ME&rdquo;</blockquote>
+                    <cite>&mdash; Ashley K., member</cite>
+                </div>
+            </div>
+            <div class="tmarquee rv" aria-label="What members say">
+                <div class="tmarquee-track">
+                    <figure class="tcard">
+                        <span class="stars" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 2l3 7 7 .6-5.3 4.6L18.5 22 12 18l-6.5 4 1.8-7.8L2 9.6 9 9z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3 7 7 .6-5.3 4.6L18.5 22 12 18l-6.5 4 1.8-7.8L2 9.6 9 9z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3 7 7 .6-5.3 4.6L18.5 22 12 18l-6.5 4 1.8-7.8L2 9.6 9 9z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3 7 7 .6-5.3 4.6L18.5 22 12 18l-6.5 4 1.8-7.8L2 9.6 9 9z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3 7 7 .6-5.3 4.6L18.5 22 12 18l-6.5 4 1.8-7.8L2 9.6 9 9z"/></svg></span>
+                        <blockquote>&ldquo;Black Iron Athletics is by far the best. The community is what really sets it apart &mdash; everyone is supportive, encouraging, and genuinely wants to see each other succeed.&rdquo;</blockquote>
+                        <figcaption>&mdash; Eric D., member</figcaption>
+                    </figure>
+                    <figure class="tcard">
+                        <span class="stars" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 2l3 7 7 .6-5.3 4.6L18.5 22 12 18l-6.5 4 1.8-7.8L2 9.6 9 9z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3 7 7 .6-5.3 4.6L18.5 22 12 18l-6.5 4 1.8-7.8L2 9.6 9 9z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3 7 7 .6-5.3 4.6L18.5 22 12 18l-6.5 4 1.8-7.8L2 9.6 9 9z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3 7 7 .6-5.3 4.6L18.5 22 12 18l-6.5 4 1.8-7.8L2 9.6 9 9z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3 7 7 .6-5.3 4.6L18.5 22 12 18l-6.5 4 1.8-7.8L2 9.6 9 9z"/></svg></span>
+                        <blockquote>&ldquo;The programming is well thought out, challenging, and scalable for all fitness levels, so you&rsquo;re always making progress.&rdquo;</blockquote>
+                        <figcaption>&mdash; Christopher P., member</figcaption>
+                    </figure>
+                    <figure class="tcard">
+                        <span class="stars" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 2l3 7 7 .6-5.3 4.6L18.5 22 12 18l-6.5 4 1.8-7.8L2 9.6 9 9z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3 7 7 .6-5.3 4.6L18.5 22 12 18l-6.5 4 1.8-7.8L2 9.6 9 9z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3 7 7 .6-5.3 4.6L18.5 22 12 18l-6.5 4 1.8-7.8L2 9.6 9 9z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3 7 7 .6-5.3 4.6L18.5 22 12 18l-6.5 4 1.8-7.8L2 9.6 9 9z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3 7 7 .6-5.3 4.6L18.5 22 12 18l-6.5 4 1.8-7.8L2 9.6 9 9z"/></svg></span>
+                        <blockquote>&ldquo;Black Iron quite literally changed my life. I wouldn&rsquo;t be as healthy or as strong as I am without their amazing fitness programs and incredible coaching.&rdquo;</blockquote>
+                        <figcaption>&mdash; Brian A., member</figcaption>
+                    </figure>
+                    <figure class="tcard">
+                        <span class="stars" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 2l3 7 7 .6-5.3 4.6L18.5 22 12 18l-6.5 4 1.8-7.8L2 9.6 9 9z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3 7 7 .6-5.3 4.6L18.5 22 12 18l-6.5 4 1.8-7.8L2 9.6 9 9z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3 7 7 .6-5.3 4.6L18.5 22 12 18l-6.5 4 1.8-7.8L2 9.6 9 9z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3 7 7 .6-5.3 4.6L18.5 22 12 18l-6.5 4 1.8-7.8L2 9.6 9 9z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3 7 7 .6-5.3 4.6L18.5 22 12 18l-6.5 4 1.8-7.8L2 9.6 9 9z"/></svg></span>
+                        <blockquote>&ldquo;It&rsquo;s where I go when I&rsquo;m feeling strong, when I&rsquo;m struggling, when I need to clear my head, or when I simply want to invest in becoming a better version of myself.&rdquo;</blockquote>
+                        <figcaption>&mdash; Asher B., member</figcaption>
+                    </figure>
+                    <figure class="tcard">
+                        <span class="stars" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 2l3 7 7 .6-5.3 4.6L18.5 22 12 18l-6.5 4 1.8-7.8L2 9.6 9 9z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3 7 7 .6-5.3 4.6L18.5 22 12 18l-6.5 4 1.8-7.8L2 9.6 9 9z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3 7 7 .6-5.3 4.6L18.5 22 12 18l-6.5 4 1.8-7.8L2 9.6 9 9z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3 7 7 .6-5.3 4.6L18.5 22 12 18l-6.5 4 1.8-7.8L2 9.6 9 9z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3 7 7 .6-5.3 4.6L18.5 22 12 18l-6.5 4 1.8-7.8L2 9.6 9 9z"/></svg></span>
+                        <blockquote>&ldquo;Self improvement is guaranteed and will show with time. Honestly the best gym in the entire world!&rdquo;</blockquote>
+                        <figcaption>&mdash; Christopher S., member</figcaption>
+                    </figure>
+                    <figure class="tcard">
+                        <span class="stars" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 2l3 7 7 .6-5.3 4.6L18.5 22 12 18l-6.5 4 1.8-7.8L2 9.6 9 9z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3 7 7 .6-5.3 4.6L18.5 22 12 18l-6.5 4 1.8-7.8L2 9.6 9 9z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3 7 7 .6-5.3 4.6L18.5 22 12 18l-6.5 4 1.8-7.8L2 9.6 9 9z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3 7 7 .6-5.3 4.6L18.5 22 12 18l-6.5 4 1.8-7.8L2 9.6 9 9z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3 7 7 .6-5.3 4.6L18.5 22 12 18l-6.5 4 1.8-7.8L2 9.6 9 9z"/></svg></span>
+                        <blockquote>&ldquo;I&rsquo;ve lost 30 lbs, I have more energy than I&rsquo;ve had in years, and I actually look forward to working out. I wish I started sooner.&rdquo;</blockquote>
+                        <figcaption>&mdash; Marcus C., member</figcaption>
+                    </figure>
+                </div>
+                <div class="tmarquee-track" aria-hidden="true">
+                    <figure class="tcard">
+                        <span class="stars" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 2l3 7 7 .6-5.3 4.6L18.5 22 12 18l-6.5 4 1.8-7.8L2 9.6 9 9z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3 7 7 .6-5.3 4.6L18.5 22 12 18l-6.5 4 1.8-7.8L2 9.6 9 9z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3 7 7 .6-5.3 4.6L18.5 22 12 18l-6.5 4 1.8-7.8L2 9.6 9 9z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3 7 7 .6-5.3 4.6L18.5 22 12 18l-6.5 4 1.8-7.8L2 9.6 9 9z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3 7 7 .6-5.3 4.6L18.5 22 12 18l-6.5 4 1.8-7.8L2 9.6 9 9z"/></svg></span>
+                        <blockquote>&ldquo;Black Iron Athletics is by far the best. The community is what really sets it apart &mdash; everyone is supportive, encouraging, and genuinely wants to see each other succeed.&rdquo;</blockquote>
+                        <figcaption>&mdash; Eric D., member</figcaption>
+                    </figure>
+                    <figure class="tcard">
+                        <span class="stars" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 2l3 7 7 .6-5.3 4.6L18.5 22 12 18l-6.5 4 1.8-7.8L2 9.6 9 9z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3 7 7 .6-5.3 4.6L18.5 22 12 18l-6.5 4 1.8-7.8L2 9.6 9 9z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3 7 7 .6-5.3 4.6L18.5 22 12 18l-6.5 4 1.8-7.8L2 9.6 9 9z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3 7 7 .6-5.3 4.6L18.5 22 12 18l-6.5 4 1.8-7.8L2 9.6 9 9z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3 7 7 .6-5.3 4.6L18.5 22 12 18l-6.5 4 1.8-7.8L2 9.6 9 9z"/></svg></span>
+                        <blockquote>&ldquo;The programming is well thought out, challenging, and scalable for all fitness levels, so you&rsquo;re always making progress.&rdquo;</blockquote>
+                        <figcaption>&mdash; Christopher P., member</figcaption>
+                    </figure>
+                    <figure class="tcard">
+                        <span class="stars" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 2l3 7 7 .6-5.3 4.6L18.5 22 12 18l-6.5 4 1.8-7.8L2 9.6 9 9z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3 7 7 .6-5.3 4.6L18.5 22 12 18l-6.5 4 1.8-7.8L2 9.6 9 9z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3 7 7 .6-5.3 4.6L18.5 22 12 18l-6.5 4 1.8-7.8L2 9.6 9 9z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3 7 7 .6-5.3 4.6L18.5 22 12 18l-6.5 4 1.8-7.8L2 9.6 9 9z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3 7 7 .6-5.3 4.6L18.5 22 12 18l-6.5 4 1.8-7.8L2 9.6 9 9z"/></svg></span>
+                        <blockquote>&ldquo;Black Iron quite literally changed my life. I wouldn&rsquo;t be as healthy or as strong as I am without their amazing fitness programs and incredible coaching.&rdquo;</blockquote>
+                        <figcaption>&mdash; Brian A., member</figcaption>
+                    </figure>
+                    <figure class="tcard">
+                        <span class="stars" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 2l3 7 7 .6-5.3 4.6L18.5 22 12 18l-6.5 4 1.8-7.8L2 9.6 9 9z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3 7 7 .6-5.3 4.6L18.5 22 12 18l-6.5 4 1.8-7.8L2 9.6 9 9z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3 7 7 .6-5.3 4.6L18.5 22 12 18l-6.5 4 1.8-7.8L2 9.6 9 9z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3 7 7 .6-5.3 4.6L18.5 22 12 18l-6.5 4 1.8-7.8L2 9.6 9 9z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3 7 7 .6-5.3 4.6L18.5 22 12 18l-6.5 4 1.8-7.8L2 9.6 9 9z"/></svg></span>
+                        <blockquote>&ldquo;It&rsquo;s where I go when I&rsquo;m feeling strong, when I&rsquo;m struggling, when I need to clear my head, or when I simply want to invest in becoming a better version of myself.&rdquo;</blockquote>
+                        <figcaption>&mdash; Asher B., member</figcaption>
+                    </figure>
+                    <figure class="tcard">
+                        <span class="stars" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 2l3 7 7 .6-5.3 4.6L18.5 22 12 18l-6.5 4 1.8-7.8L2 9.6 9 9z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3 7 7 .6-5.3 4.6L18.5 22 12 18l-6.5 4 1.8-7.8L2 9.6 9 9z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3 7 7 .6-5.3 4.6L18.5 22 12 18l-6.5 4 1.8-7.8L2 9.6 9 9z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3 7 7 .6-5.3 4.6L18.5 22 12 18l-6.5 4 1.8-7.8L2 9.6 9 9z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3 7 7 .6-5.3 4.6L18.5 22 12 18l-6.5 4 1.8-7.8L2 9.6 9 9z"/></svg></span>
+                        <blockquote>&ldquo;Self improvement is guaranteed and will show with time. Honestly the best gym in the entire world!&rdquo;</blockquote>
+                        <figcaption>&mdash; Christopher S., member</figcaption>
+                    </figure>
+                    <figure class="tcard">
+                        <span class="stars" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 2l3 7 7 .6-5.3 4.6L18.5 22 12 18l-6.5 4 1.8-7.8L2 9.6 9 9z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3 7 7 .6-5.3 4.6L18.5 22 12 18l-6.5 4 1.8-7.8L2 9.6 9 9z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3 7 7 .6-5.3 4.6L18.5 22 12 18l-6.5 4 1.8-7.8L2 9.6 9 9z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3 7 7 .6-5.3 4.6L18.5 22 12 18l-6.5 4 1.8-7.8L2 9.6 9 9z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3 7 7 .6-5.3 4.6L18.5 22 12 18l-6.5 4 1.8-7.8L2 9.6 9 9z"/></svg></span>
+                        <blockquote>&ldquo;I&rsquo;ve lost 30 lbs, I have more energy than I&rsquo;ve had in years, and I actually look forward to working out. I wish I started sooner.&rdquo;</blockquote>
+                        <figcaption>&mdash; Marcus C., member</figcaption>
+                    </figure>
                 </div>
             </div>
         </div>
     </section>
 
-
-    <!-- From the Blog -->
-    <section class="section">
-        <div class="section-container">
-            <div class="section-header reveal">
-                <div class="section-subtitle">From the Blog</div>
-                <h2 class="section-title">Latest Articles</h2>
+    <!-- ============ PRICING ============ -->
+    <section class="sect alt" id="pricing">
+        <div class="wrap">
+            <span class="eyebrow rv">Membership</span>
+            <h2 class="rv">What it costs.<br><span class="outline">In writing.</span></h2>
+            <p class="lead rv">We publish our prices because we&rsquo;re proud of what they buy. Coaching is the product &mdash; a coach who knows your name, programming that&rsquo;s planned, and a floor where you belong. If you&rsquo;re comparing us to a $10 big-box, we&rsquo;re not it. On purpose.</p>
+            <div class="price-grid">
+                <article class="pcard rv">
+                    <h3>Standard</h3>
+                    <b class="pnum">$200<span>/mo</span></b>
+                    <ul>
+                        <li>3 coached Strength &amp; Conditioning classes per week</li>
+                        <li>Monthly body-composition scan</li>
+                        <li>Community events</li>
+                    </ul>
+                </article>
+                <article class="pcard pop rv">
+                    <span class="tag">Most Popular</span>
+                    <h3>Unlimited + Open Gym</h3>
+                    <b class="pnum">$240<span>/mo</span></b>
+                    <ul>
+                        <li>Unlimited coached classes</li>
+                        <li>Everything in Standard</li>
+                        <li>Open gym 7 days a week</li>
+                    </ul>
+                </article>
+                <article class="pcard rv">
+                    <h3>Open Gym Only</h3>
+                    <b class="pnum">$50<span>/mo</span></b>
+                    <ul>
+                        <li>Self-directed training</li>
+                        <li>Access to all our programming</li>
+                        <li>Open gym 7 days a week</li>
+                    </ul>
+                </article>
+                <article class="pcard rv">
+                    <h3>Personal Training</h3>
+                    <b class="pnum rng">$120&ndash;150<span>/hour</span></b>
+                    <ul>
+                        <li>One coach, one plan</li>
+                        <li>Customized programming</li>
+                        <li>Individual accountability</li>
+                        <li>Nutrition guidance</li>
+                    </ul>
+                </article>
             </div>
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem;" class="reveal-stagger">
-                <a href="blog/what-is-xenom-decathlon-of-fitness" class="reveal" style="background: var(--dark-gray); border: 2px solid var(--medium-gray); padding: 2rem; text-decoration: none; color: var(--white); transition: all 0.3s ease;">
-                    <div style="color: var(--yellow); font-size: 0.8rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 0.75rem;">Training</div>
-                    <h3 style="font-size: 1.3rem; font-weight: 900; margin-bottom: 0.75rem; line-height: 1.3;">What Is XENOM? The Decathlon of Fitness</h3>
-                    <p style="color: var(--light-gray); font-size: 0.95rem; line-height: 1.6;">A coach's breakdown of the new 10-event fitness competition launching at The Star in Frisco.</p>
-                </a>
-                <a href="blog/crossfit-alternative-frisco-tx" class="reveal" style="background: var(--dark-gray); border: 2px solid var(--medium-gray); padding: 2rem; text-decoration: none; color: var(--white); transition: all 0.3s ease;">
-                    <div style="color: var(--yellow); font-size: 0.8rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 0.75rem;">Training</div>
-                    <h3 style="font-size: 1.3rem; font-weight: 900; margin-bottom: 0.75rem; line-height: 1.3;">Best CrossFit Alternative in Frisco, TX</h3>
-                    <p style="color: var(--light-gray); font-size: 0.95rem; line-height: 1.6;">Why Black Iron Athletics evolved beyond CrossFit and what that means for your training.</p>
-                </a>
-                <a href="blog/strength-training-for-beginners" class="reveal" style="background: var(--dark-gray); border: 2px solid var(--medium-gray); padding: 2rem; text-decoration: none; color: var(--white); transition: all 0.3s ease;">
-                    <div style="color: var(--yellow); font-size: 0.8rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 0.75rem;">Beginners</div>
-                    <h3 style="font-size: 1.3rem; font-weight: 900; margin-bottom: 0.75rem; line-height: 1.3;">Strength Training for Beginners</h3>
-                    <p style="color: var(--light-gray); font-size: 0.95rem; line-height: 1.6;">Everything you need to know to start your strength training journey with confidence.</p>
-                </a>
+            <aside class="pass rv" aria-label="Day pass offer">
+                <b class="pass-num">$30</b>
+                <div>
+                    <b class="pass-title">One day pass. Any class.</b>
+                    <p>Try the floor with real coaching. If you join, the $30 is credited toward your first month.</p>
+                </div>
+                <a class="arrow-link" href="https://blackiron.wodify.com/OnlineSalesPage/Main?q=Classes%7COnlineMembershipId%3D235166%26LocationId%3D10409" target="_blank" rel="noopener" onclick="if(window.fbq)fbq('trackCustom','DayPassClick');">Get a Day Pass <svg width="16" height="12" viewBox="0 0 16 12" fill="none" aria-hidden="true"><path d="M10 1l5 5-5 5M15 6H1" stroke="currentColor" stroke-width="1.5"/></svg></a>
+            </aside>
+            <div class="price-notes rv">
+                <p><b>Military &amp; first responders:</b> 5% off any membership. Veteran-owned, and proud of it.</p>
+                <p><b>Every membership starts the same way:</b> a free consultation and the Foundations week. That part isn&rsquo;t optional, and it&rsquo;s why this works.</p>
+                <p><b>Commitment:</b> memberships start with 90 days &mdash; change takes time, and we&rsquo;d rather have people who are giving it a real shot. After that it&rsquo;s month to month: cancel with 30 days&rsquo; notice.</p>
             </div>
-            <div style="text-align: center; margin-top: 3rem;" class="reveal">
-                <a href="blog/" style="color: var(--yellow); text-decoration: none; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; font-size: 0.95rem;">View All Articles &rarr;</a>
+            <div class="plan-cta rv">
+                <a class="btn btn-y" href="https://book.blackironathletics.com/book">Book a Free Consult</a>
+                <a class="btn btn-ghost" href="/pricing">See Full Pricing</a>
             </div>
         </div>
     </section>
 
-    <section class="cta-section" id="contact">
-        <div class="cta-container reveal-scale">
-            <h2 class="cta-title">We Help Everyday People Become Everyday Athletes.</h2>
-            <p class="cta-subtitle">3,000+ members since 2013. Frisco, Prosper, The Colony, Little Elm, McKinney, Plano, Celina, North Dallas. Your turn.</p>
-            <a href="#" onclick="openLeadModal(); return false;" class="btn-primary">Book Free Consultation</a>
+    <!-- ============ FAQ ============ -->
+    <section class="sect" id="faq">
+        <div class="wrap">
+            <span class="eyebrow rv">FAQ</span>
+            <h2 class="rv">Asked every week.</h2>
+            <div class="faq-grid">
+                <div class="faq rv">
+                    <details>
+                        <summary>I&rsquo;m not in shape enough to start.</summary>
+                        <p>That&rsquo;s exactly what Foundations is for. Your first week is one-on-one with a coach &mdash; no class to keep up with, no crowd. We meet you at your baseline and build from there. In 13 years, nobody has ever been too out of shape to start properly.</p>
+                    </details>
+                    <details>
+                        <summary>Will I get hurt?</summary>
+                        <p>Our whole system is built around not getting you hurt. A coach on every rep. Three levels, so you&rsquo;re never pushed past what you&rsquo;re ready for. Programming that plans intensity instead of chasing exhaustion. And when you&rsquo;re getting ahead of yourself, we pull you back &mdash; that&rsquo;s part of the job.</p>
+                    </details>
+                    <details>
+                        <summary>What does it cost?</summary>
+                        <p>Standard is $200 a month, Unlimited with open gym is $240, open gym only is $50, and personal training runs $120&ndash;150 an hour. Prices are <a href="/pricing">in writing</a> because we don&rsquo;t do games. Want to try first? A $30 day pass covers any class, credited toward your first month if you join.</p>
+                    </details>
+                    <details>
+                        <summary>I bounced off CrossFit and big gyms before.</summary>
+                        <p>So did a lot of our members. There&rsquo;s no leaderboard culture here &mdash; three levels in every class means Tuesday isn&rsquo;t a tryout. Person first, athlete second. You&rsquo;ll work hard, and nobody will make it weird.</p>
+                    </details>
+                    <p style="margin-top:26px"><a class="arrow-link" href="/faq">All the questions we get <svg width="16" height="12" viewBox="0 0 16 12" fill="none" aria-hidden="true"><path d="M10 1l5 5-5 5M15 6H1" stroke="currentColor" stroke-width="1.5"/></svg></a></p>
+                </div>
+                <aside class="offer rv" aria-label="Day pass offer">
+                    <span class="eyebrow">No-pressure option</span>
+                    <b class="price">Try it for <span class="hl">$30</span></b>
+                    <p>One day pass. A full class, real coaching, the actual floor &mdash; credited toward your first month if you join. If it&rsquo;s not your place, you&rsquo;re out one workout and thirty bucks.</p>
+                    <a class="btn btn-y" href="https://blackiron.wodify.com/OnlineSalesPage/Main?q=Classes%7COnlineMembershipId%3D235166%26LocationId%3D10409" target="_blank" rel="noopener" onclick="if(window.fbq)fbq('trackCustom','DayPassClick');">Get a Day Pass</a>
+                </aside>
+            </div>
         </div>
     </section>
 
-    <!-- Map Section -->
-    <div class="map-section">
-        <iframe
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3344.9875647886857!2d-96.89026308820058!3d33.15034697358084!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x864c3a240f77e3f7%3A0x9f460209df528d6e!2sBlack%20Iron%20Athletics!5e0!3m2!1sen!2sus!4v1737509000000!5m2!1sen!2sus"
-            title="Black Iron Athletics location on Google Maps"
-            allowfullscreen=""
-            loading="lazy"
-            referrerpolicy="no-referrer-when-downgrade">
-        </iframe>
-    </div>
+    <!-- ============ VISIT ============ -->
+    <section class="sect alt" id="contact">
+        <div class="wrap">
+            <div class="visit-grid">
+                <div class="rv">
+                    <span class="eyebrow">Visit</span>
+                    <h2>Come see<br><span class="outline">the floor.</span></h2>
+                    <p class="lead">Five minutes on the floor tells you more than any website. Stop by, watch a class, meet the coaches.</p>
+                    <div class="visit-ctas">
+                        <a class="btn btn-y" href="https://book.blackironathletics.com/book">Book a Free Consult</a>
+                        <a class="btn btn-ghost" href="https://blackiron.wodify.com/OnlineSalesPage/Main?q=Classes%7COnlineMembershipId%3D235166%26LocationId%3D10409" target="_blank" rel="noopener" onclick="if(window.fbq)fbq('trackCustom','DayPassClick');">Buy a $30 Day Pass</a>
+                    </div>
+                    <p class="speed">We reply the same day. A real coach, not a bot.</p>
+                </div>
+                <div class="visit-rows rv">
+                    <div class="visit-row"><b>Address</b><p>279 Main St, Suite 122<br>Frisco, TX 75036<br><span class="small">Suite 110 &mdash; our new home next door &mdash; opening October 2026.</span></p></div>
+                    <div class="visit-row"><b>Phone</b><p><a href="tel:+19727857036">(972) 785-7036</a></p></div>
+                    <div class="visit-row"><b>Hours</b><p>Classes morning through evening &mdash; <a href="/schedule">see the full schedule</a>. Open gym for members 7 days a week, between classes and after hours.</p></div>
+                    <div class="visit-row"><b>Area</b><p>Serving Frisco, Prosper, The Colony, Little Elm, McKinney, Plano, Celina &amp; North Dallas.</p></div>
+                </div>
+            </div>
+            <div class="map-section visit-map rv">
+                <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3344.9875647886857!2d-96.89026308820058!3d33.15034697358084!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x864c3a240f77e3f7%3A0x9f460209df528d6e!2sBlack%20Iron%20Athletics!5e0!3m2!1sen!2sus!4v1737509000000!5m2!1sen!2sus"
+                    title="Black Iron Athletics location on Google Maps"
+                    allowfullscreen=""
+                    loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade">
+                </iframe>
+            </div>
+        </div>
+    </section>
 
-    <!-- Footer -->
 
     </main>
 
+    <!-- ============ FOOTER ============ -->
     <footer>
-        <div class="footer-container">
-            <div class="footer-section">
-                <a href="/">
-                    <img src="images/logos/logo.png" alt="Black Iron Athletics" class="footer-logo" loading="lazy">
-                </a>
-                <p style="color: var(--light-gray); margin-bottom: 1rem;">We help everyday people become everyday athletes. Veteran-owned. Frisco, TX. Since 2013.</p>
-                <p style="color: var(--light-gray); font-size: 0.85rem;">Proudly serving Frisco, Prosper, The Colony, Little Elm, McKinney, Plano, Celina & North Dallas.</p>
-            </div>
-
-            <div class="footer-section">
-                <h3>Quick Links</h3>
-                <ul>
+        <div class="wrap">
+            <div class="foot-top">
+                <div>
+                    <div class="foot-brand">
+                        <img src="/images/logos/Anvil-WHITE.png" alt="Black Iron Athletics anvil mark" loading="lazy" width="88" height="58">
+                        <div>
+                            <b>Black Iron<br>Athletics</b>
+                        </div>
+                    </div>
+                    <p class="foot-mission">We help everyday people become everyday athletes.</p>
+                    <p class="foot-note">Veteran-owned &middot; Est. 2013 &middot; Serving Frisco, Prosper, The Colony, Little Elm, McKinney, Plano, Celina &amp; North Dallas.</p>
+                </div>
+                <ul class="foot-col">
+                    <li><b>Quick links</b></li>
                     <li><a href="/">Home</a></li>
-                    <li><a href="schedule">Class Schedule</a></li>
-                    <li><a href="faq">FAQ</a></li>
+                    <li><a href="/pricing">Pricing</a></li>
+                    <li><a href="/schedule">Class Schedule</a></li>
+                    <li><a href="/faq">FAQ</a></li>
                     <li><a href="#" onclick="openSubscribeModal(); return false;">Subscribe</a></li>
                     <li><a href="#" onclick="openCancelModal(); return false;">Cancel Membership</a></li>
-                    <li><a href="privacy-policy">Privacy Policy</a></li>
-                    <li><a href="terms">Terms &amp; Conditions</a></li>
-                    <li><a href="privacy-policy#sms-terms">SMS Terms</a></li>
+                    <li><a href="/privacy-policy">Privacy Policy</a></li>
+                    <li><a href="/terms">Terms &amp; Conditions</a></li>
+                    <li><a href="/privacy-policy#sms-terms">SMS Terms</a></li>
+                </ul>
+                <ul class="foot-col">
+                    <li><b>Find us</b></li>
+                    <li>279 Main St, Suite 122<br>Frisco, TX 75036</li>
+                    <li>Suite 110 &mdash; our new home next door &mdash; opening October 2026.</li>
+                    <li><a href="tel:+19727857036">(972) 785-7036</a></li>
+                </ul>
+                <ul class="foot-col">
+                    <li><b>Hours</b></li>
+                    <li>Open gym 7 days a week.</li>
+                    <li><a href="/schedule">See the class schedule</a></li>
                 </ul>
             </div>
-
-            <div class="footer-section">
-                <h3>Contact</h3>
-                <p style="color: var(--light-gray); margin-bottom: 1rem;">
-                    279 Main St #122<br>
-                    Frisco, TX 75036
-                </p>
-                <p style="margin-bottom: 1.5rem;">
-                    <a href="tel:(972) 785-7036" style="color: var(--yellow); font-weight: 700;">(972) 785-7036</a>
-                </p>
+            <div class="foot-bottom">
+                <span>&copy; 2026 Black Iron Athletics. Veteran-owned &middot; Est. 2013.</span>
+                <span class="foot-social">
+                    <a href="https://www.instagram.com/blackiron_athletics/" target="_blank" rel="noopener" aria-label="Instagram">
+                        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="4"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="1.1" fill="currentColor" stroke="none"/></svg>
+                    </a>
+                    <a href="https://www.youtube.com/channel/UCF1XjUXEs81OWY70chem6vA" target="_blank" rel="noopener" aria-label="YouTube">
+                        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="2.5" y="5.5" width="19" height="13" rx="3"/><path d="M10 9.5v5l4.5-2.5z" fill="currentColor" stroke="none"/></svg>
+                    </a>
+                    <a href="https://www.facebook.com/BlackIronAthletics/" target="_blank" rel="noopener" aria-label="Facebook">
+                        <svg class="icon-fill" viewBox="0 0 24 24" aria-hidden="true"><path d="M13.5 21v-7h2.4l.4-3h-2.8V9.1c0-.9.3-1.5 1.6-1.5H16.6V4.9c-.3 0-1.2-.1-2.2-.1-2.2 0-3.7 1.3-3.7 3.8V11H8.3v3h2.4v7h2.8z"/></svg>
+                    </a>
+                </span>
             </div>
-
-            <div class="footer-section">
-                <h3>Hours</h3>
-                <p style="color: var(--light-gray); margin-bottom: 1rem;">
-                    Check our class calendar for an up to date schedule.
-                </p>
-                <p style="color: var(--yellow); font-weight: 700;">
-                    Open Gym: 7 Days a Week
-                </p>
-            </div>
-        </div>
-
-        <div class="footer-bottom">
-            <div style="margin-bottom: 1.5rem; display: flex; justify-content: center; gap: 1.5rem; font-size: 1.5rem;">
-                <a href="https://www.instagram.com/blackiron_athletics/" target="_blank" rel="noopener" style="color: var(--light-gray); transition: color 0.3s ease;" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
-                <a href="https://www.youtube.com/channel/UCF1XjUXEs81OWY70chem6vA" target="_blank" rel="noopener" style="color: var(--light-gray); transition: color 0.3s ease;" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
-                <a href="https://www.facebook.com/BlackIronAthletics/" target="_blank" rel="noopener" style="color: var(--light-gray); transition: color 0.3s ease;" aria-label="Facebook"><i class="fa-brands fa-facebook"></i></a>
-            </div>
-            <p>&copy; 2026 Black Iron Athletics. All rights reserved.</p>
         </div>
     </footer>
+
+    <!-- CONTRACT: sticky mobile CTA on all marketing pages (shows at 640px down) -->
 
     <!-- Schema Markup for SEO -->
     <script type="application/ld+json">
@@ -1427,7 +706,7 @@
       "@context": "https://schema.org",
       "@type": "GymAndHealthClub",
       "name": "Black Iron Athletics",
-      "description": "Veteran-owned gym in Frisco, TX specializing in strength & conditioning, Olympic weightlifting, personal training, and nutrition coaching. HYROX training available during open gym. Serving Frisco, Prosper, McKinney, Plano & surrounding areas since 2013.",
+      "description": "Veteran-owned gym in Frisco, TX. Coached Strength & Conditioning classes, personal training, nutrition coaching, and open gym for members seven days a week, between classes and after hours. Every membership starts with a free consultation and the one-on-one Foundations week. Training at 279 Main St, Suite 122 today; our new home at 279 Main St, Suite 110 — right next door — opens October 2026 with a recovery room featuring two cold plunges and a five-person sauna with infrared and red light therapy. Serving Frisco, Prosper, The Colony, Little Elm, McKinney, Plano, Celina and North Dallas since 2013.",
       "image": "https://www.blackironathletics.com/images/logos/logo.png",
       "address": {
         "@type": "PostalAddress",
@@ -1439,36 +718,36 @@
       },
       "geo": {
         "@type": "GeoCoordinates",
-        "latitude": "33.1507",
-        "longitude": "-96.8236"
+        "latitude": "33.15035",
+        "longitude": "-96.89026"
       },
       "telephone": "(972) 785-7036",
-      "openingHours": "Mo-Su 00:00-23:59",
       "priceRange": "$$",
       "url": "https://www.blackironathletics.com",
-      "founder": {
-        "@type": "Person",
-        "name": "Mike Manning",
-        "jobTitle": "Owner & Head Coach"
-      },
       "foundingDate": "2013",
+      "additionalProperty": {
+        "@type": "PropertyValue",
+        "name": "New location",
+        "value": "279 Main St, Suite 110, Frisco, TX 75036 — next door to the current space — opening October 2026"
+      },
       "areaServed": [
         {"@type": "City", "name": "Frisco", "containedInPlace": {"@type": "State", "name": "Texas"}},
-        {"@type": "City", "name": "McKinney", "containedInPlace": {"@type": "State", "name": "Texas"}},
         {"@type": "City", "name": "Prosper", "containedInPlace": {"@type": "State", "name": "Texas"}},
-        {"@type": "City", "name": "Little Elm", "containedInPlace": {"@type": "State", "name": "Texas"}},
         {"@type": "City", "name": "The Colony", "containedInPlace": {"@type": "State", "name": "Texas"}},
-        {"@type": "City", "name": "Allen", "containedInPlace": {"@type": "State", "name": "Texas"}},
+        {"@type": "City", "name": "Little Elm", "containedInPlace": {"@type": "State", "name": "Texas"}},
+        {"@type": "City", "name": "McKinney", "containedInPlace": {"@type": "State", "name": "Texas"}},
         {"@type": "City", "name": "Plano", "containedInPlace": {"@type": "State", "name": "Texas"}},
-        {"@type": "City", "name": "Celina", "containedInPlace": {"@type": "State", "name": "Texas"}}
+        {"@type": "City", "name": "Celina", "containedInPlace": {"@type": "State", "name": "Texas"}},
+        {"@type": "Place", "name": "North Dallas"}
       ],
       "amenityFeature": [
-        {"@type": "LocationFeatureSpecification", "name": "Open Gym Access", "value": true},
+        {"@type": "LocationFeatureSpecification", "name": "Open Gym Access (7 days a week, between classes and after hours)", "value": true},
         {"@type": "LocationFeatureSpecification", "name": "Free Parking", "value": true},
         {"@type": "LocationFeatureSpecification", "name": "Certified Coaches", "value": true},
-        {"@type": "LocationFeatureSpecification", "name": "Climate Controlled", "value": true}
+        {"@type": "LocationFeatureSpecification", "name": "Climate Controlled", "value": true},
+        {"@type": "LocationFeatureSpecification", "name": "Monthly Body Composition Scans", "value": true}
       ],
-      "knowsAbout": ["Strength Training", "Strength and Conditioning", "Functional Fitness", "CrossFit Alternative", "HIIT", "HYROX Training (Open Gym)", "Group Training", "Personal Training", "Nutrition Coaching", "Olympic Weightlifting", "Metabolic Conditioning", "AMRAP", "EMOM", "WOD", "Body Composition Analysis"],
+      "knowsAbout": ["Strength Training", "Strength and Conditioning", "Functional Fitness", "CrossFit Alternative", "HIIT", "HYROX Affiliate Programming", "Group Training", "Personal Training", "Nutrition Coaching", "Olympic Weightlifting", "Metabolic Conditioning", "Body Composition Analysis"],
       "sameAs": [
         "https://www.instagram.com/blackiron_athletics/",
         "https://www.youtube.com/channel/UCF1XjUXEs81OWY70chem6vA",
@@ -1476,195 +755,143 @@
       ],
       "hasOfferCatalog": {
         "@type": "OfferCatalog",
-        "name": "Fitness Programs",
+        "name": "Memberships & Training",
         "itemListElement": [
           {
             "@type": "Offer",
+            "name": "Standard Membership",
+            "price": "200",
+            "priceCurrency": "USD",
             "itemOffered": {
               "@type": "Service",
-              "name": "Strength & Conditioning Classes",
-              "description": "Expert-coached group classes combining strength training, conditioning, and functional fitness for all levels."
+              "name": "Standard Membership",
+              "description": "$200 per month. 3 coached Strength & Conditioning classes per week, a monthly body-composition scan, and community events."
             }
           },
           {
             "@type": "Offer",
+            "name": "Unlimited + Open Gym Membership",
+            "price": "240",
+            "priceCurrency": "USD",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Unlimited + Open Gym Membership",
+              "description": "$240 per month. Unlimited coached classes, everything in Standard, and open gym access 7 days a week between classes and after hours."
+            }
+          },
+          {
+            "@type": "Offer",
+            "name": "Open Gym Only Membership",
+            "price": "50",
+            "priceCurrency": "USD",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Open Gym Only Membership",
+              "description": "$50 per month. Self-directed training with access to all Black Iron programming, 7 days a week between classes and after hours."
+            }
+          },
+          {
+            "@type": "Offer",
+            "name": "Personal Training",
+            "priceSpecification": {
+              "@type": "PriceSpecification",
+              "minPrice": "120",
+              "maxPrice": "150",
+              "priceCurrency": "USD"
+            },
             "itemOffered": {
               "@type": "Service",
               "name": "Personal Training",
-              "description": "1-on-1 coaching tailored to your unique goals."
+              "description": "$120-150 per hour. One coach, one plan: customized programming, individual accountability, and nutrition guidance."
             }
           },
           {
             "@type": "Offer",
+            "name": "Day Pass",
+            "price": "30",
+            "priceCurrency": "USD",
             "itemOffered": {
               "@type": "Service",
-              "name": "Nutrition Coaching",
-              "description": "Personalized nutrition plans and ongoing support."
-            }
-          },
-          {
-            "@type": "Offer",
-            "itemOffered": {
-              "@type": "Service",
-              "name": "HYROX Training (Open Gym)",
-              "description": "Self-guided HYROX race preparation available during open gym hours. Facility equipped with running stations and functional fitness equipment."
-            }
-          },
-          {
-            "@type": "Offer",
-            "itemOffered": {
-              "@type": "Service",
-              "name": "Olympic Weightlifting",
-              "description": "Olympic lifting classes focused on snatch, clean & jerk technique and strength development."
-            }
-          },
-          {
-            "@type": "Offer",
-            "itemOffered": {
-              "@type": "Service",
-              "name": "Open Gym",
-              "description": "Round-the-clock access to barbells, dumbbells, kettlebells, squat racks, rowers, bikes, and more."
+              "name": "Day Pass",
+              "description": "$30 for one day pass, any class — credited toward your first month if you join."
             }
           }
         ]
-      },
-      "aggregateRating": {
-        "@type": "AggregateRating",
-        "ratingValue": "5.0",
-        "bestRating": "5",
-        "worstRating": "1",
-        "ratingCount": "50",
-        "reviewCount": "50"
       }
     }
     </script>
-<!-- Lead Capture Popup Modal -->
-<style>
-    .modal-overlay {
-        display: none;
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: rgba(0, 0, 0, 0.9);
-        z-index: 9999;
-        overflow-y: auto;
-        padding: 2rem;
-    }
-    .modal-overlay.active {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
-    .modal-container {
-        background: #1a1a1a;
-        border: 2px solid var(--medium-gray);
-        max-width: 600px;
-        width: 100%;
-        position: relative;
-        margin: auto;
-        animation: modalSlideIn 0.3s ease-out;
-    }
-    @keyframes modalSlideIn {
-        from { opacity: 0; transform: translateY(-50px); }
-        to { opacity: 1; transform: translateY(0); }
-    }
-    .modal-close {
-        position: absolute;
-        top: 0.5rem;
-        right: 0.5rem;
-        background: transparent;
-        border: none;
-        color: var(--light-gray);
-        font-size: 2rem;
-        cursor: pointer;
-        line-height: 1;
-        padding: 0.5rem;
-        transition: color 0.3s ease;
-        font-weight: 300;
-        z-index: 10000;
-    }
-    .modal-close:hover { color: var(--yellow); }
-    .modal-container iframe {
-        width: 100%;
-        border: none;
-        display: block;
-    }
-    @media (max-width: 768px) {
-        .modal-overlay { padding: 1rem; }
-    }
-</style>
 
-<div class="modal-overlay" id="leadModal">
-    <div class="modal-container">
-        <button class="modal-close" onclick="closeLeadModal()">&times;</button>
-        <iframe
-            data-src="https://api.leadconnectorhq.com/widget/form/vw0hMdDkTCL6K5N3i7vF"
-            style="width:100%;height:100%;border:none;border-radius:4px"
-            id="inline-vw0hMdDkTCL6K5N3i7vF"
-            data-layout="{'id':'INLINE'}"
-            data-trigger-type="alwaysShow"
-            data-trigger-value=""
-            data-activation-type="alwaysActivated"
-            data-activation-value=""
-            data-deactivation-type="neverDeactivate"
-            data-deactivation-value=""
-            data-form-name="Form 2"
-            data-height="565"
-            data-layout-iframe-id="inline-vw0hMdDkTCL6K5N3i7vF"
-            data-form-id="vw0hMdDkTCL6K5N3i7vF"
-            title="Form 2"
-        ></iframe>
+    <!-- ============ GHL MODALS (iframe blocks VERBATIM — lazy data-src, ids unchanged) ============ -->
+    <div class="modal-overlay" id="leadModal">
+        <div class="modal-container">
+            <button class="modal-close" onclick="closeLeadModal()">&times;</button>
+            <iframe
+                data-src="https://api.leadconnectorhq.com/widget/form/vw0hMdDkTCL6K5N3i7vF"
+                style="width:100%;height:100%;border:none;border-radius:4px"
+                id="inline-vw0hMdDkTCL6K5N3i7vF"
+                data-layout="{'id':'INLINE'}"
+                data-trigger-type="alwaysShow"
+                data-trigger-value=""
+                data-activation-type="alwaysActivated"
+                data-activation-value=""
+                data-deactivation-type="neverDeactivate"
+                data-deactivation-value=""
+                data-form-name="Form 2"
+                data-height="565"
+                data-layout-iframe-id="inline-vw0hMdDkTCL6K5N3i7vF"
+                data-form-id="vw0hMdDkTCL6K5N3i7vF"
+                title="Form 2"
+            ></iframe>
+        </div>
     </div>
-</div>
 
-<div class="modal-overlay" id="cancelModal">
-    <div class="modal-container">
-        <button class="modal-close" onclick="closeCancelModal()">&times;</button>
-        <iframe
-            data-src="https://api.leadconnectorhq.com/widget/form/d4jtjY9fM2Hv9zVTzLwj"
-            style="width:100%;height:100%;border:none;border-radius:4px"
-            id="inline-d4jtjY9fM2Hv9zVTzLwj"
-            data-layout="{'id':'INLINE'}"
-            data-trigger-type="alwaysShow"
-            data-trigger-value=""
-            data-activation-type="alwaysActivated"
-            data-activation-value=""
-            data-deactivation-type="neverDeactivate"
-            data-deactivation-value=""
-            data-form-name="Membership Cancellation Form"
-            data-height="787"
-            data-layout-iframe-id="inline-d4jtjY9fM2Hv9zVTzLwj"
-            data-form-id="d4jtjY9fM2Hv9zVTzLwj"
-            title="Membership Cancellation Form"
-        ></iframe>
+    <div class="modal-overlay" id="cancelModal">
+        <div class="modal-container">
+            <button class="modal-close" onclick="closeCancelModal()">&times;</button>
+            <iframe
+                data-src="https://api.leadconnectorhq.com/widget/form/d4jtjY9fM2Hv9zVTzLwj"
+                style="width:100%;height:100%;border:none;border-radius:4px"
+                id="inline-d4jtjY9fM2Hv9zVTzLwj"
+                data-layout="{'id':'INLINE'}"
+                data-trigger-type="alwaysShow"
+                data-trigger-value=""
+                data-activation-type="alwaysActivated"
+                data-activation-value=""
+                data-deactivation-type="neverDeactivate"
+                data-deactivation-value=""
+                data-form-name="Membership Cancellation Form"
+                data-height="787"
+                data-layout-iframe-id="inline-d4jtjY9fM2Hv9zVTzLwj"
+                data-form-id="d4jtjY9fM2Hv9zVTzLwj"
+                title="Membership Cancellation Form"
+            ></iframe>
+        </div>
     </div>
-</div>
-<div class="modal-overlay" id="subscribeModal">
-    <div class="modal-container">
-        <button class="modal-close" onclick="closeSubscribeModal()">&times;</button>
-        <iframe
-            data-src="https://api.leadconnectorhq.com/widget/form/GnNJNaEX8InuIeGxWjaI"
-            style="width:100%;height:100%;border:none;border-radius:4px"
-            id="inline-GnNJNaEX8InuIeGxWjaI"
-            data-layout="{'id':'INLINE'}"
-            data-trigger-type="alwaysShow"
-            data-trigger-value=""
-            data-activation-type="alwaysActivated"
-            data-activation-value=""
-            data-deactivation-type="neverDeactivate"
-            data-deactivation-value=""
-            data-form-name="Subscribe"
-            data-height="430"
-            data-layout-iframe-id="inline-GnNJNaEX8InuIeGxWjaI"
-            data-form-id="GnNJNaEX8InuIeGxWjaI"
-            title="Subscribe"
-        ></iframe>
+    <div class="modal-overlay" id="subscribeModal">
+        <div class="modal-container">
+            <button class="modal-close" onclick="closeSubscribeModal()">&times;</button>
+            <iframe
+                data-src="https://api.leadconnectorhq.com/widget/form/GnNJNaEX8InuIeGxWjaI"
+                style="width:100%;height:100%;border:none;border-radius:4px"
+                id="inline-GnNJNaEX8InuIeGxWjaI"
+                data-layout="{'id':'INLINE'}"
+                data-trigger-type="alwaysShow"
+                data-trigger-value=""
+                data-activation-type="alwaysActivated"
+                data-activation-value=""
+                data-deactivation-type="neverDeactivate"
+                data-deactivation-value=""
+                data-form-name="Subscribe"
+                data-height="430"
+                data-layout-iframe-id="inline-GnNJNaEX8InuIeGxWjaI"
+                data-form-id="GnNJNaEX8InuIeGxWjaI"
+                title="Subscribe"
+            ></iframe>
+        </div>
     </div>
-</div>
 
-<script>
+    <!-- ============ PAGE JS: modals + side menu (function names byte-identical to the live site) ============ -->
+    <script>
     function openLeadModal() {
         var modal = document.getElementById('leadModal');
         var iframe = modal.querySelector('iframe');
@@ -1712,12 +939,6 @@
         if (e.target === this) { closeSubscribeModal(); }
     });
 
-    // Sticky Mobile CTA - hide when modal is open
-    window.addEventListener('scroll', function() {
-        const stickyBar = document.getElementById('stickyMobileCta');
-        if (stickyBar) stickyBar.style.display = '';
-    });
-
     // Side Menu
     function toggleSideMenu() {
         var menu = document.getElementById('sideMenu');
@@ -1745,35 +966,32 @@
     document.addEventListener('keydown', function(e) {
         if (e.key === 'Escape') closeSideMenu();
     });
-</script>
+    </script>
 
-<script src="https://link.msgsndr.com/js/form_embed.js" type="text/javascript" defer></script>
-<script src="https://widgets.leadconnectorhq.com/loader.js" data-resources-url="https://widgets.leadconnectorhq.com/chat-widget/loader.js" data-widget-id="6995d6d76e6009387f78d31e" defer></script>
-<script>
-// ===== SCROLL REVEAL =====
-(function() {
-    var staggerParents = document.querySelectorAll('.reveal-stagger');
-    staggerParents.forEach(function(parent) {
-        var children = parent.querySelectorAll('.reveal');
-        children.forEach(function(child, i) {
-            child.style.setProperty('--reveal-index', i);
-        });
-    });
+    <!-- ============ PAGE JS: nav scroll state + reveal observer ============ -->
+    <script>
+    (function(){
+        var nav = document.getElementById('nav');
+        function onScroll(){ if (nav) nav.classList.toggle('scrolled', window.scrollY > 24); }
+        window.addEventListener('scroll', onScroll, {passive:true});
+        onScroll();
 
-    var observer = new IntersectionObserver(function(entries) {
-        entries.forEach(function(entry) {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('revealed');
-                observer.unobserve(entry.target);
-            }
-        });
-    }, { threshold: 0.15, rootMargin: '-50px' });
+        var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        var items = document.querySelectorAll('.rv');
+        if (reduced || !('IntersectionObserver' in window)) {
+            items.forEach(function(el){ el.classList.add('on'); });
+            return;
+        }
+        var io = new IntersectionObserver(function(entries){
+            entries.forEach(function(e){
+                if (e.isIntersecting) { e.target.classList.add('on'); io.unobserve(e.target); }
+            });
+        }, {threshold:0.12, rootMargin:'0px 0px -40px 0px'});
+        items.forEach(function(el){ io.observe(el); });
+    })();
+    </script>
 
-    document.querySelectorAll('.reveal, .reveal-scale').forEach(function(el) {
-        observer.observe(el);
-    });
-})();
-</script>
+<!-- ============ A11Y TAIL IIFE — copied VERBATIM from index.html. Do not edit. ============ -->
 <script>
 // ===== ACCESSIBILITY: KEYBOARD NAV & FOCUS TRAP =====
 (function() {
@@ -1845,5 +1063,32 @@
     });
 })();
 </script>
+
+<script src="https://link.msgsndr.com/js/form_embed.js" type="text/javascript" defer></script>
+<script src="https://widgets.leadconnectorhq.com/loader.js" data-resources-url="https://widgets.leadconnectorhq.com/chat-widget/loader.js" data-widget-id="6995d6d76e6009387f78d31e" defer></script>
+    <!-- Thumb bar: reveal once the hero's own consult button has scrolled by -->
+    <script>
+    (function() {
+      var bar = document.querySelector('.thumbbar');
+      if (!bar) return;
+      bar.classList.add('tb-auto');
+      var shown = false, ticking = false;
+      function check() {
+        ticking = false;
+        var past = window.scrollY > window.innerHeight * 0.6;
+        if (past === shown) return;
+        shown = past;
+        bar.classList.toggle('tb-show', past);
+      }
+      function onScroll() {
+        if (ticking) return;
+        ticking = true;
+        window.requestAnimationFrame(check);
+      }
+      window.addEventListener('scroll', onScroll, { passive: true });
+      window.addEventListener('resize', onScroll, { passive: true });
+      check();
+    })();
+    </script>
 </body>
 </html>

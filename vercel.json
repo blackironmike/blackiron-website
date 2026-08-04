@@ -38,7 +38,6 @@
     },
     { "source": "/book", "destination": "https://book.blackironathletics.com/book", "permanent": true },
     { "source": "/free-consultation", "destination": "https://book.blackironathletics.com/book", "permanent": true },
-    { "source": "/pricing", "destination": "/getting-started#membership", "permanent": true },
     { "source": "/group-training", "destination": "/programs#group-classes", "permanent": true },
     { "source": "/personal-training", "destination": "/programs#personal-training", "permanent": true },
     { "source": "/nutrition-coaching", "destination": "/programs#nutrition-coaching", "permanent": true },
@@ -59,6 +58,7 @@
     { "source": "/blueprint", "destination": "/fuelpath", "permanent": true },
 
     { "source": "/macro-calculator", "destination": "https://fuelpath.app/calculator", "permanent": true },
+    { "source": "/fuelpath", "destination": "https://fuelpath.app", "permanent": true },
     { "source": "/fuelpath-dashboard", "destination": "https://fuelpath.app/app", "permanent": true },
     { "source": "/fuelpath-tracker", "destination": "https://fuelpath.app/app/food-log", "permanent": true },
     { "source": "/fuelpath-admin", "destination": "https://fuelpath.app/app/coach", "permanent": true },

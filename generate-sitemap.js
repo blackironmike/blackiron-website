@@ -27,6 +27,7 @@ const EXCLUDED_FILES = new Set([
   'personal-training.html',
   // Redirected off-site via vercel.json — must not appear in the sitemap
   'macro-calculator.html',
+  'fuelpath.html',
   'fuelpath-admin.html',
   'fuelpath-dashboard.html',
   'fuelpath-calendar.html',
@@ -46,7 +47,6 @@ const EXCLUDED_FILES = new Set([
 const URL_CONFIG = {
   '/':                                          { priority: '1.0', changefreq: 'weekly' },
   '/getting-started':                           { priority: '0.9', changefreq: 'monthly' },
-  '/fuelpath':                                  { priority: '0.9', changefreq: 'monthly' },
   '/about':                                     { priority: '0.8', changefreq: 'monthly' },
   '/programs':                                  { priority: '0.8', changefreq: 'monthly' },
   '/schedule':                                  { priority: '0.8', changefreq: 'weekly' },
@@ -59,7 +59,7 @@ const URL_CONFIG = {
   '/blog/strength-training-over-40':            { priority: '0.8', changefreq: 'monthly' },
   '/blog/veteran-owned-gym-frisco-tx':          { priority: '0.8', changefreq: 'monthly' },
   '/blog/early-morning-gym-classes-frisco-tx':  { priority: '0.8', changefreq: 'monthly' },
-  '/blog/':                                     { priority: '0.7', changefreq: 'weekly' },
+  '/blog':                                     { priority: '0.7', changefreq: 'weekly' },
   '/mike-manning':                              { priority: '0.7', changefreq: 'monthly' },
   '/blog/calisthenics-training-frisco-tx':      { priority: '0.7', changefreq: 'monthly' },
   '/privacy-policy':                            { priority: '0.3', changefreq: 'yearly' },
@@ -75,8 +75,9 @@ function findHtmlFiles(dir, rootDir) {
   for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
     const fullPath = path.join(dir, entry.name);
     if (entry.isDirectory()) {
-      // Skip hidden dirs, node_modules, learn, and internal email templates
-      if (entry.name.startsWith('.') || entry.name === 'node_modules' || entry.name === 'learn' || entry.name === 'nurture-campaign') continue;
+      // Skip hidden dirs, node_modules, learn, internal email templates,
+      // and the redesign prototype/reference pages (noindex, review-only)
+      if (entry.name.startsWith('.') || entry.name === 'node_modules' || entry.name === 'learn' || entry.name === 'nurture-campaign' || entry.name === 'redesign') continue;
       results = results.concat(findHtmlFiles(fullPath, rootDir));
     } else if (entry.isFile() && entry.name.endsWith('.html')) {
       results.push(path.relative(rootDir, fullPath).replace(/\\/g, '/'));
@@ -94,7 +95,7 @@ function findHtmlFiles(dir, rootDir) {
 function fileToUrlPath(filePath) {
   if (filePath === 'index.html') return '/';
   if (filePath.endsWith('/index.html')) {
-    return '/' + filePath.replace('/index.html', '/');
+    return '/' + filePath.replace('/index.html', '');
   }
   return '/' + filePath.replace(/\.html$/, '');
 }

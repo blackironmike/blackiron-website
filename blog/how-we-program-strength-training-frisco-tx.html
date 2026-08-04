@@ -1,0 +1,776 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <!-- CONTRACT: keep this exact viewport tag — inject-pixel.js insertion marker -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How We Program Strength Training in Frisco, TX | Black Iron</title>
+    <meta name="description" content="Strength training programming in Frisco, TX: inside our 10-week cycle — linear progression, periodization, deloads, retests, and why nothing is random.">
+    <meta name="geo.region" content="US-TX">
+    <meta name="geo.placename" content="Frisco">
+    <meta name="geo.position" content="33.15035;-96.89026">
+    <link rel="canonical" href="https://www.blackironathletics.com/blog/how-we-program-strength-training-frisco-tx">
+    <!-- Open Graph -->
+    <meta property="og:title" content="How We Program Strength Training in Frisco, TX | Black Iron">
+    <meta property="og:description" content="Ten weeks at a time, written in advance. Inside the cycle we run at Black Iron Athletics: linear progression, periodization, deloads, and honest retests.">
+    <meta property="og:url" content="https://www.blackironathletics.com/blog/how-we-program-strength-training-frisco-tx">
+    <meta property="og:image" content="https://www.blackironathletics.com/images/social-share.png">
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="Black Iron Athletics">
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="How We Program Strength Training in Frisco, TX | Black Iron">
+    <meta name="twitter:description" content="Ten weeks at a time, written in advance. Inside the cycle we run at Black Iron Athletics: linear progression, periodization, deloads, and honest retests.">
+    <meta name="twitter:image" content="https://www.blackironathletics.com/images/social-share.png">
+    <link rel="icon" type="image/png" href="/images/anvil-favicon.png">
+    <link rel="apple-touch-icon" href="/images/anvil-favicon.png">
+    <meta name="theme-color" content="#000000">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&display=swap" rel="stylesheet"></noscript>
+    <link rel="stylesheet" href="/css/bia.css">
+    <style>
+        /* Page-unique only. Cycle + week-grid components live in /css/bia.css. */
+        .figure-wide{margin:34px 0}
+        @media (min-width:1180px){
+            .figure-wide{width:min(1080px,calc(100vw - 96px));margin-left:50%;transform:translateX(-50%)}
+        }
+        .article-body .blk p{margin-bottom:0}
+        .post-cta-row{display:flex;flex-wrap:wrap;align-items:center;gap:14px}
+    </style>
+    <script defer src="/_vercel/insights/script.js"></script>
+</head>
+<body>
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
+    <!-- ============ NAV (final IA — identical on every page) ============ -->
+    <nav id="nav">
+        <div class="nav-container">
+            <div class="logo">
+                <a href="/" aria-label="Black Iron Athletics home">
+                    <img src="/images/logos/logo.png" alt="Black Iron Athletics">
+                </a>
+            </div>
+            <ul class="nav-links">
+                <li class="has-submenu">
+                    <a href="/about">About Us</a>
+                    <ul class="submenu">
+                        <li><a href="/about">Our Mission</a></li>
+                        <li><a href="/about#team">Meet the Team</a></li>
+                        <li><a href="/media">Media</a></li>
+                    </ul>
+                </li>
+                <li class="has-submenu">
+                    <a href="/programs">Programs</a>
+                    <ul class="submenu">
+                        <li><a href="/programs#group-classes">Strength &amp; Conditioning</a></li>
+                        <li><a href="/programs#personal-training">Personal Training</a></li>
+                        <li><a href="/programs#nutrition-coaching">Nutrition Coaching</a></li>
+                        <li><a href="/programs#open-gym">Open Gym</a></li>
+                        <li><a href="/programs#recovery">Recovery Room</a></li>
+                    </ul>
+                </li>
+                <li><a href="/pricing">Pricing</a></li>
+                <li class="has-submenu">
+                    <a href="/getting-started">Getting Started</a>
+                    <ul class="submenu">
+                        <li><a href="/getting-started">How it works</a></li>
+                        <li><a href="/pricing">Membership &amp; Pricing</a></li>
+                        <li><a href="/faq">FAQs</a></li>
+                    </ul>
+                </li>
+                <li><a href="/schedule">Schedule</a></li>
+                <li><a href="/blog">Blog</a></li>
+                <li><a href="/contact">Contact</a></li>
+            </ul>
+            <a href="https://book.blackironathletics.com/book" class="cta-btn">Book a Free Consult</a>
+            <button class="hamburger" onclick="toggleSideMenu()" aria-label="Menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- ============ THUMB BAR (mobile) ============ -->
+    <div class="thumbbar">
+        <a class="tb-call" href="tel:+19727857036" aria-label="Call Black Iron Athletics"><svg width="19" height="19" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M6.5 2.5 8.2 6l-1.7 1.6a11 11 0 0 0 4.9 4.9L13 10.8l3.5 1.7v3.2c0 .6-.5 1-1.1 1A13.6 13.6 0 0 1 2.3 3.6c0-.6.4-1.1 1-1.1h3.2Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg></a>
+        <a class="tb-book" href="https://book.blackironathletics.com/book">Book a Free Consult</a>
+    </div>
+
+    <!-- ============ SIDE MENU (flat mirror of the nav IA) ============ -->
+    <div class="menu-backdrop" id="menuBackdrop"></div>
+    <div class="side-menu" id="sideMenu">
+        <div class="side-menu-header">
+            <img src="/images/logos/logo.png" alt="Black Iron Athletics">
+            <button class="side-menu-close" onclick="closeSideMenu()" aria-label="Close menu">&times;</button>
+        </div>
+        <div class="side-menu-links">
+            <a href="/getting-started">Getting Started</a>
+            <a href="/schedule">Schedule</a>
+            <a href="/pricing">Pricing</a>
+            <details class="m-acc"><summary>Programs</summary>
+                <a href="/programs" class="sub-link">All programs</a>
+                <a href="/programs#group-classes" class="sub-link">Strength &amp; Conditioning</a>
+                <a href="/programs#personal-training" class="sub-link">Personal Training</a>
+                <a href="/programs#nutrition-coaching" class="sub-link">Nutrition Coaching</a>
+                <a href="/programs#open-gym" class="sub-link">Open Gym</a>
+                <a href="/programs#recovery" class="sub-link">Recovery Room</a>
+            </details>
+            <details class="m-acc"><summary>About Us</summary>
+                <a href="/about" class="sub-link">Our Mission</a>
+                <a href="/about#team" class="sub-link">Meet the Team</a>
+                <a href="/media" class="sub-link">Media</a>
+            </details>
+            <a href="/faq">FAQs</a>
+            <a href="/blog">Blog</a>
+            <a href="/contact">Contact</a>
+        </div>
+        <div class="side-menu-footer">
+            <a href="https://book.blackironathletics.com/book" onclick="closeSideMenu();">Book a Free Consult</a>
+        </div>
+    </div>
+
+    <main id="main-content">
+
+    <!-- ============ ARTICLE HERO ============ -->
+    <section class="article-hero no-top">
+        <div class="article-hero-container">
+            <div class="breadcrumb"><a href="/">Home</a><span>/</span><a href="/blog">Blog</a><span>/</span><span>How We Program</span></div>
+            <h1>How We Program Strength Training in Frisco, TX</h1>
+            <div class="article-meta">
+                <span>August 1, 2026</span>
+                <span>8 min read</span>
+                <span>By Mike Manning</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============ ARTICLE ============ -->
+    <div class="article-content">
+        <div class="article-body">
+            <img src="/images/training/barbell-overhead.webp" alt="Athlete pressing a barbell overhead during a coached strength block at Black Iron Athletics in Frisco, TX" class="ph" loading="lazy">
+
+            <p>Ask a gym what you are doing on Thursday. If the honest answer is that nobody knows yet, because a coach will write it Wednesday night, you have learned everything you need to know about your next six months. Some days hard, some days easy, all of it pointed at nothing in particular.</p>
+
+            <p>Here is our answer to that question. Everything that goes on the board at Black Iron Athletics has a purpose and a design behind it. Nothing is random. We write ten weeks at a time, and I can tell you today what the shape of week nine looks like.</p>
+
+            <p>This is the long version of how we program strength training here in Frisco. The short version, with the same cycle map, lives on our <a href="/programs#programming">programs page</a>.</p>
+
+            <div class="article-cta-box">
+                <h3>Want to See the Current Cycle?</h3>
+                <p>Book a free consult and we&rsquo;ll walk you through exactly where the gym is in its ten weeks, and where you&rsquo;d step in. No pressure, no hard sell.</p>
+                <div class="post-cta-row">
+                    <a href="https://book.blackironathletics.com/book" class="btn btn-y">Book a Free Consult</a>
+                    <a href="https://blackiron.wodify.com/OnlineSalesPage/Main?q=Classes%7COnlineMembershipId%3D235166%26LocationId%3D10409" target="_blank" rel="noopener" onclick="if(window.fbq)fbq('trackCustom','DayPassClick');" class="btn btn-ghost">Try a $30 Day Pass</a>
+                </div>
+            </div>
+
+            <h2>The trap of never repeating a workout</h2>
+
+            <p>There is an old-school idea in this industry that variety is the product. Something different every day. Never the same workout twice. It sounds exciting, it fills a room, and it is a mistake.</p>
+
+            <p>Your body adapts to what it sees repeatedly. If the stimulus changes every single day, there is nothing to adapt to. You get sore, you get tired, you get a workout &mdash; and six months later your squat is the same number it was in January. Worse, you have nothing to compare it against. No lift you have done often enough to know whether it actually moved.</p>
+
+            <p>The other ditch is just as real. Run the same five lifts on the same days forever and people get bored and quit. We spent more than a decade as a CrossFit affiliate before we built our own system, and <a href="/blog/crossfit-alternative-frisco-tx">the reason we moved on</a> was not that the training was bad. It was that we wanted control over the design.</p>
+
+            <p>The balance between repetition and variety is the whole craft. That is the job.</p>
+
+            <h2>Linear progression vs periodization, and why we use both</h2>
+
+            <p>Linear progression is the simple one. Add a little weight to the bar each week, hold the reps steady, get stronger in a straight line. It works beautifully &mdash; right up until it doesn&rsquo;t. Every lifter eventually runs out of straight line.</p>
+
+            <p>Periodization is the grown-up version. You plan in waves. Volume and intensity rise and fall on purpose across a block of weeks, with lighter weeks built in before you need them instead of after you break. It is how people keep progressing for years instead of months.</p>
+
+            <p>We are not picking a side. A cycle here progresses linearly inside each wave, is periodized across the ten weeks, and carries enough variety in the conditioning and accessory work that you never dread the drive over.</p>
+
+            <p><strong>Repetition with intent</strong> is how I explain it to new members. We repeat the lifts and we repeat the tests, so you get a real chance to adapt to something. Things are not constantly changing on you. You learn the movement, you build appropriately, you adapt appropriately, and you see progress week after week.</p>
+
+            <h2>Progress you can see is what keeps you showing up</h2>
+
+            <p>That last part matters more than any percentage on a spreadsheet. When you can see the number move, motivation stays high. When motivation stays high, you keep showing up. Showing up is what actually produces results.</p>
+
+            <p>Falling off is the real enemy. Not a suboptimal set-and-rep scheme. A good program you run for two years beats a perfect program you abandon in six weeks, every time. So we design against the two things that actually break people: boredom on one side, burnout on the other. If the barbell is new to you, start with our <a href="/blog/strength-training-for-beginners">beginner guide to strength training</a>.</p>
+
+            <h2>What a ten-week cycle actually looks like</h2>
+
+            <p>Here is the shape of a recent cycle. We called it Last Rep. The week numbers are the point, not the calendar &mdash; every cycle we write follows this arc.</p>
+
+            <div class="figure-wide">
+                <div class="cycle-head">
+                    <span class="cycle-tag">A recent cycle &middot; &ldquo;Last Rep&rdquo;</span>
+                    <span class="cycle-span">10 weeks &middot; Test &rarr; Build &rarr; Deload &rarr; Build &rarr; Retest</span>
+                </div>
+
+                <div class="cycle">
+                    <div class="cyc intro"><b>W1</b><span class="cyc-ph">Intro</span><span class="wknote">Learn the lifts</span></div>
+                    <div class="cyc test"><b>W2</b><span class="cyc-ph">Test</span><span class="wknote">Set your numbers</span></div>
+                    <div class="cyc build"><b>W3</b><span class="cyc-ph">Build</span><span class="wknote">5s</span></div>
+                    <div class="cyc build"><b>W4</b><span class="cyc-ph">Build</span><span class="wknote">3s</span></div>
+                    <div class="cyc build"><b>W5</b><span class="cyc-ph">Build</span><span class="wknote">5/3/1</span></div>
+                    <div class="cyc deload"><b>W6</b><span class="cyc-ph">Deload</span><span class="wknote">Back to school</span></div>
+                    <div class="cyc build"><b>W7</b><span class="cyc-ph">Build</span><span class="wknote">5s &middot; +5%</span></div>
+                    <div class="cyc build"><b>W8</b><span class="cyc-ph">Build</span><span class="wknote">3s &middot; +5%</span></div>
+                    <div class="cyc build"><b>W9</b><span class="cyc-ph">Build</span><span class="wknote">5/3/1 &middot; +5%</span></div>
+                    <div class="cyc test"><b>W10</b><span class="cyc-ph">Retest</span><span class="wknote">Beat week 2</span></div>
+                </div>
+
+                <div class="cycle-key">
+                    <span><i style="--k:var(--ph-intro)"></i> Intro</span>
+                    <span><i style="--k:var(--ph-test)"></i> Test &amp; retest</span>
+                    <span><i style="--k:var(--ph-build)"></i> Build</span>
+                    <span><i style="--k:var(--ph-deload)"></i> Deload</span>
+                </div>
+            </div>
+
+            <p>Week one is intro week. You learn the lifts, and coaches watch how you move before anything gets heavy. Week two is test week. You find your numbers on every main lift and run the benchmark workouts we come back to at the end.</p>
+
+            <p>From there, everything runs off your <strong>training max</strong>, which is ninety percent of what you tested. Not your true max. Ninety percent of it, and it stays the same for all ten weeks.</p>
+
+            <p>Why lower it on purpose? Because a max you hit once on a good day is not a weight you can train on. The training max is a number you can hit for reps on a Tuesday, after a bad night of sleep, with your form still intact. It is the difference between training and testing, and confusing the two is how people get hurt.</p>
+
+            <p>Weeks three through five build in waves: fives, then threes, then the 5/3/1 wave. A strength block reads something like 65 percent for five, 75 percent for five, then 85 percent for a push set &mdash; max quality reps, one or two left in the tank. Never grinding. If your bar speed drops, the weight is too heavy. That is a rule, not a suggestion, and it is what your coach is watching from across the floor.</p>
+
+            <p>Week six deloads. Weeks seven through nine run the same wave again with every percentage five points heavier than the first pass. Week ten retests every lift and all three benchmarks against week two &mdash; same movements, same standards, same order &mdash; so the comparison is honest.</p>
+
+            <h2>The deload is planned around your life, not just your training</h2>
+
+            <p>This is the part of the cycle I am proudest of, and it is the part most gyms never think about.</p>
+
+            <div class="deload-note">
+                <span class="eyebrow eyebrow-y" style="margin-bottom:12px">Why the deload lands where it does</span>
+                <p>Week six of that cycle was back-to-school week. That was not an accident. We plan the lighter week for the week your life gets heavier &mdash; so nothing gets missed, nothing gets skipped, and you come back in week seven ready to push instead of digging out of a hole.</p>
+            </div>
+
+            <p>We look at the calendar before we write the cycle. Back-to-school week in Frisco is chaos in a lot of houses. New schedules, new practices, forms to sign, a kid who needs picking up at a time that did not exist last week. Something has to give, and for most people the thing that gives is the gym.</p>
+
+            <p>So we made the gym the easy thing that week. You still come in. You still keep the habit. The loads are just lighter and the sessions are shorter on purpose. Then week seven arrives and you are ready to push, instead of trying to remember where you left off.</p>
+
+            <p>That is what I mean when I say we program for our athletes&rsquo; lives outside the gym, not just the hour inside it. When you miss a week, you do not really lose the week. You lose the momentum, and momentum is the expensive part.</p>
+
+            <h2>Every week has the same shape</h2>
+
+            <p>Inside the cycle, the weekly rhythm repeats. The lifts and the conditioning change. The shape does not, so you always know what you are walking into.</p>
+
+            <div class="figure-wide">
+                <div class="wkgrid">
+                    <div class="wkday">
+                        <header><b>Mon</b><span>Olympic lifting</span></header>
+                        <div class="blk"><em>Warm-up</em><p class="mins">10 min</p></div>
+                        <div class="blk"><em>Skill</em><p>Clean progressions <span class="mins">&middot; 6 min</span></p></div>
+                        <div class="blk"><em>Strength</em><p>Clean &amp; jerk, wave sets <span class="mins">&middot; 30 min</span></p></div>
+                        <div class="blk"><em>Conditioning</em><p>Short AMRAP <span class="mins">&middot; 10 min</span></p></div>
+                    </div>
+                    <div class="wkday">
+                        <header><b>Tue</b><span>Gymnastics</span></header>
+                        <div class="blk"><em>Warm-up</em><p class="mins">10 min</p></div>
+                        <div class="blk"><em>Gymnastics</em><p>Pulling strength, midline <span class="mins">&middot; 20 min</span></p></div>
+                        <div class="blk"><em>Conditioning</em><p>Intervals, work-to-rest <span class="mins">&middot; 18 min</span></p></div>
+                    </div>
+                    <div class="wkday">
+                        <header><b>Wed</b><span>Upper body strength</span></header>
+                        <div class="blk"><em>Warm-up</em><p class="mins">10 min</p></div>
+                        <div class="blk"><em>Strength</em><p>Bench press, wave sets <span class="mins">&middot; 25 min</span></p></div>
+                        <div class="blk"><em>Conditioning</em><p>EMOM <span class="mins">&middot; 16 min</span></p></div>
+                    </div>
+                    <div class="wkday">
+                        <header><b>Thu</b><span>Muscle &amp; aerobic</span></header>
+                        <div class="blk"><em>Warm-up</em><p class="mins">4 min</p></div>
+                        <div class="blk"><em>Gymnastics</em><p>Handstand work <span class="mins">&middot; 12 min</span></p></div>
+                        <div class="blk"><em>Body building</em><p>Accessory volume <span class="mins">&middot; 20 min</span></p></div>
+                        <div class="blk"><em>Conditioning</em><p>Zone 2, conversational <span class="mins">&middot; 15 min</span></p></div>
+                    </div>
+                    <div class="wkday">
+                        <header><b>Fri</b><span>Squat</span></header>
+                        <div class="blk"><em>Warm-up</em><p class="mins">10 min</p></div>
+                        <div class="blk"><em>Strength</em><p>Front squat, wave sets <span class="mins">&middot; 25 min</span></p></div>
+                        <div class="blk"><em>Conditioning</em><p>Rounds for effort <span class="mins">&middot; 15 min</span></p></div>
+                    </div>
+                    <div class="wkday">
+                        <header><b>Sat</b><span>Partner day</span></header>
+                        <div class="blk"><em>Warm-up</em><p class="mins">10 min</p></div>
+                        <div class="blk"><em>Strength</em><p>Pressing <span class="mins">&middot; 20 min</span></p></div>
+                        <div class="blk"><em>Conditioning</em><p>Long partner workout <span class="mins">&middot; 16&ndash;45 min</span></p></div>
+                    </div>
+                </div>
+            </div>
+
+            <p>Monday&rsquo;s strength work is built on the Olympic lifts. Tuesday is gymnastics and pulling. Wednesday presses. Friday squats. Saturday is the long partner workout, which is the day the room feels most like a room full of your people.</p>
+
+            <p>Thursday is deliberately the light day, and it is the one people question most. Handstand work, accessory volume for the muscle you want, and then Zone 2 aerobic work at a conversational pace. Conversational means you can talk the entire time. That is the point of the session, not a suggestion to go easy on yourself. Easy aerobic work is what lets the heavy days stay heavy.</p>
+
+            <h2>Inside a single session</h2>
+
+            <p>Every class runs the same anatomy: warm-up, then skill or gymnastics, then strength, then conditioning. Each block is on a clock.</p>
+
+            <p>The time caps are not about tidiness. They protect the intent of each piece. Strength does not get squeezed into the last eight minutes because the warm-up ran long. Conditioning stays conditioning instead of turning into a second strength session at half speed. And class starts and finishes when it says it will, which matters when you have a call at eight.</p>
+
+            <h2>Three levels, one floor</h2>
+
+            <p>Every session is written with three levels. Level 1 is <strong>Learn it</strong>. Level 2 is <strong>Build it</strong>. Level 3 is <strong>Test it</strong>. Same session, same clock, same coaching, three honest doors into it.</p>
+
+            <p>That is how a first-timer and someone with ten years of barbell work train side by side without either one compromising. The system flexes so you do not have to.</p>
+
+            <p>Your levels get locked in during intro week, once you have felt the movements out with a coach watching. They are not a permanent label, either. You can be a Level 3 on the squat and a Level 1 on gymnastics in the same week, and most people are. See how it plays out in <a href="/programs#group-classes">our group classes</a>, and if you are training past 40, read <a href="/blog/strength-training-over-40">why the approach changes</a>.</p>
+
+            <h2>Our benchmarks are ours</h2>
+
+            <p>The three tests we run in week two and again in week ten are Black Iron originals. We wrote them. You will not find them in anyone else&rsquo;s program, and we do not borrow someone else&rsquo;s hero workout and call it a test.</p>
+
+            <div class="bench-grid">
+                <div class="bench">
+                    <b>Humble Beginnings</b>
+                    <span>Descending ladder</span>
+                    <p>Dumbbell thrusters, box jump overs, pull-ups. The reps come down as the fatigue goes up. It is named for what it does to your ego in week two.</p>
+                </div>
+                <div class="bench">
+                    <b>Forged in Fire</b>
+                    <span>Ascending ladder</span>
+                    <p>Rower calories and burpees, climbing every round. A pacing test. Go out hot and the last round teaches you something.</p>
+                </div>
+                <div class="bench">
+                    <b>Breaking Ground</b>
+                    <span>Heavy plus skill</span>
+                    <p>Deadlifts, double unders, handstand push-ups, five rounds. Strength under fatigue, with a skill that falls apart first when you are tired.</p>
+                </div>
+            </div>
+
+            <p>They are named, written down, and repeated on purpose. We do not invent a fresh test at the end of the cycle and call it progress. Same workout, same standards, same movements, ten weeks apart.</p>
+
+            <p>That is how progress stops being a feeling and becomes a number. You either did more work in the same time or you did not, and either answer tells your coach something useful about the next ten weeks.</p>
+
+            <h2>&ldquo;What if I join in week six?&rdquo;</h2>
+
+            <p>Then you join in week six. This is the question we get most, and the answer is boring on purpose.</p>
+
+            <p>Everyone starts the same way: a free consult, then Foundations, a week of one-on-one coaching where you learn the basics, set a baseline, and get your levels sorted. After that you step into the cycle wherever it happens to be. If that is a deload week, you learn the movements at a sane load, which is a fine way to begin. If it is week nine, you follow the same percentages off your own numbers.</p>
+
+            <p>The three levels handle the rest, and a new cycle comes around every ten weeks, so a full one is never far off. Waiting for a clean start date is how six months disappear.</p>
+
+            <p>If you want to see the whole thing before you decide, <a href="/getting-started">here is how getting started works</a>, the <a href="/schedule">class schedule</a> is public, and <a href="/pricing">our pricing</a> is in writing with no calls required.</p>
+
+            <h2>Come see it on a Tuesday</h2>
+
+            <p>We help everyday people become everyday athletes. The programming is how we keep that promise for people who have jobs, kids, and a body they need to keep in one piece &mdash; members who drive in from Frisco, Prosper, The Colony, Little Elm, McKinney, Plano, Celina, and across North Dallas.</p>
+
+            <p>You do not have to take my word for any of it. Come stand in the back of a class, read the board, and ask a coach why week six is light. You will get a real answer.</p>
+        </div>
+
+        <!-- Author box -->
+        <div class="author-box">
+            <img src="/images/team/owner-headcoach-mike.webp" alt="Mike Manning, owner and head coach of Black Iron Athletics" class="author-box-image" loading="lazy">
+            <div>
+                <span class="author-box-label">Written by</span>
+                <a href="/mike-manning" class="author-box-name">Mike Manning</a>
+                <p class="author-box-bio">U.S. Marine Corps veteran, owner and head coach of Black Iron Athletics in Frisco, TX. Over 20 years of coaching experience with certifications in USA Weightlifting, personal training, and more.</p>
+            </div>
+        </div>
+
+        <!-- CTA boxes -->
+        <div class="article-cta-box">
+            <h3>Start Where the Cycle Is</h3>
+            <p>Book your free consult and we&rsquo;ll show you the current ten weeks, set your levels, and get your Foundations week on the calendar. Or come train on a $30 day pass first and see the programming for yourself &mdash; it&rsquo;s credited toward your first month, and <a href="/pricing">the rest of our pricing</a> is in writing.</p>
+            <div class="post-cta-row">
+                <a href="https://book.blackironathletics.com/book" class="btn btn-y">Book a Free Consult</a>
+                <a href="https://blackiron.wodify.com/OnlineSalesPage/Main?q=Classes%7COnlineMembershipId%3D235166%26LocationId%3D10409" target="_blank" rel="noopener" onclick="if(window.fbq)fbq('trackCustom','DayPassClick');" class="btn btn-ghost">Try a $30 Day Pass</a>
+            </div>
+        </div>
+
+        <div class="article-cta-box">
+            <h3>Get Tips Like This in Your Inbox</h3>
+            <p>Subscribe for weekly training, nutrition, and supplement tips from the coaches at Black Iron Athletics.</p>
+            <a href="#" onclick="openSubscribeModal(); return false;" class="btn btn-ghost">Subscribe</a>
+        </div>
+
+        <a href="/blog" class="back-to-blog"><svg width="16" height="12" viewBox="0 0 16 12" fill="none" aria-hidden="true"><path d="M6 1L1 6l5 5M1 6h14" stroke="currentColor" stroke-width="1.5"/></svg> Back to the blog</a>
+    </div>
+
+    </main>
+
+    <!-- ============ FOOTER ============ -->
+    <footer>
+        <div class="wrap">
+            <div class="foot-top">
+                <div>
+                    <div class="foot-brand">
+                        <img src="/images/logos/Anvil-WHITE.png" alt="Black Iron Athletics anvil mark" loading="lazy" width="88" height="58">
+                        <div>
+                            <b>Black Iron<br>Athletics</b>
+                        </div>
+                    </div>
+                    <p class="foot-mission">We help everyday people become everyday athletes.</p>
+                    <p class="foot-note">Veteran-owned &middot; Est. 2013 &middot; Serving Frisco, Prosper, The Colony, Little Elm, McKinney, Plano, Celina &amp; North Dallas.</p>
+                </div>
+                <ul class="foot-col">
+                    <li><b>Quick links</b></li>
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/pricing">Pricing</a></li>
+                    <li><a href="/schedule">Class Schedule</a></li>
+                    <li><a href="/faq">FAQ</a></li>
+                    <li><a href="#" onclick="openSubscribeModal(); return false;">Subscribe</a></li>
+                    <li><a href="#" onclick="openCancelModal(); return false;">Cancel Membership</a></li>
+                    <li><a href="/privacy-policy">Privacy Policy</a></li>
+                    <li><a href="/terms">Terms &amp; Conditions</a></li>
+                    <li><a href="/privacy-policy#sms-terms">SMS Terms</a></li>
+                </ul>
+                <ul class="foot-col">
+                    <li><b>Find us</b></li>
+                    <li>279 Main St, Suite 122<br>Frisco, TX 75036</li>
+                    <li>Suite 110 &mdash; our new home next door &mdash; opening October 2026.</li>
+                    <li><a href="tel:+19727857036">(972) 785-7036</a></li>
+                </ul>
+                <ul class="foot-col">
+                    <li><b>Hours</b></li>
+                    <li>Open gym 7 days a week.</li>
+                    <li><a href="/schedule">See the class schedule</a></li>
+                </ul>
+            </div>
+            <div class="foot-bottom">
+                <span>&copy; 2026 Black Iron Athletics. Veteran-owned &middot; Est. 2013.</span>
+                <span class="foot-social">
+                    <a href="https://www.instagram.com/blackiron_athletics/" target="_blank" rel="noopener" aria-label="Instagram">
+                        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="4"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="1.1" fill="currentColor" stroke="none"/></svg>
+                    </a>
+                    <a href="https://www.youtube.com/channel/UCF1XjUXEs81OWY70chem6vA" target="_blank" rel="noopener" aria-label="YouTube">
+                        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="2.5" y="5.5" width="19" height="13" rx="3"/><path d="M10 9.5v5l4.5-2.5z" fill="currentColor" stroke="none"/></svg>
+                    </a>
+                    <a href="https://www.facebook.com/BlackIronAthletics/" target="_blank" rel="noopener" aria-label="Facebook">
+                        <svg class="icon-fill" viewBox="0 0 24 24" aria-hidden="true"><path d="M13.5 21v-7h2.4l.4-3h-2.8V9.1c0-.9.3-1.5 1.6-1.5H16.6V4.9c-.3 0-1.2-.1-2.2-.1-2.2 0-3.7 1.3-3.7 3.8V11H8.3v3h2.4v7h2.8z"/></svg>
+                    </a>
+                </span>
+            </div>
+        </div>
+    </footer>
+
+    <!-- CONTRACT: sticky mobile CTA on all marketing pages (shows at 640px down) -->
+
+    <!-- ============ SCHEMA: BreadcrumbList ============ -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://www.blackironathletics.com/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Blog",
+            "item": "https://www.blackironathletics.com/blog/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "How We Program Strength Training in Frisco, TX",
+            "item": "https://www.blackironathletics.com/blog/how-we-program-strength-training-frisco-tx"
+          }
+      ]
+    }
+    </script>
+
+    <!-- ============ SCHEMA: BlogPosting ============ -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      "headline": "How We Program Strength Training in Frisco, TX",
+      "description": "Inside the 10-week strength training cycle at Black Iron Athletics in Frisco, TX: linear progression, periodization, training maxes, planned deloads, and honest retests.",
+      "url": "https://www.blackironathletics.com/blog/how-we-program-strength-training-frisco-tx",
+      "datePublished": "2026-08-01",
+      "author": {
+        "@type": "Person",
+        "name": "Mike Manning",
+        "url": "https://www.blackironathletics.com/mike-manning"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "Black Iron Athletics",
+        "url": "https://www.blackironathletics.com",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://www.blackironathletics.com/images/logos/logo.png"
+        }
+      },
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://www.blackironathletics.com/blog/how-we-program-strength-training-frisco-tx"
+      }
+    }
+    </script>
+
+    <!-- ============ GHL MODALS (iframe blocks VERBATIM — lazy data-src, ids unchanged) ============ -->
+    <div class="modal-overlay" id="leadModal">
+        <div class="modal-container">
+            <button class="modal-close" onclick="closeLeadModal()">&times;</button>
+            <iframe
+                data-src="https://api.leadconnectorhq.com/widget/form/vw0hMdDkTCL6K5N3i7vF"
+                style="width:100%;height:100%;border:none;border-radius:4px"
+                id="inline-vw0hMdDkTCL6K5N3i7vF"
+                data-layout="{'id':'INLINE'}"
+                data-trigger-type="alwaysShow"
+                data-trigger-value=""
+                data-activation-type="alwaysActivated"
+                data-activation-value=""
+                data-deactivation-type="neverDeactivate"
+                data-deactivation-value=""
+                data-form-name="Form 2"
+                data-height="565"
+                data-layout-iframe-id="inline-vw0hMdDkTCL6K5N3i7vF"
+                data-form-id="vw0hMdDkTCL6K5N3i7vF"
+                title="Form 2"
+            ></iframe>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="cancelModal">
+        <div class="modal-container">
+            <button class="modal-close" onclick="closeCancelModal()">&times;</button>
+            <iframe
+                data-src="https://api.leadconnectorhq.com/widget/form/d4jtjY9fM2Hv9zVTzLwj"
+                style="width:100%;height:100%;border:none;border-radius:4px"
+                id="inline-d4jtjY9fM2Hv9zVTzLwj"
+                data-layout="{'id':'INLINE'}"
+                data-trigger-type="alwaysShow"
+                data-trigger-value=""
+                data-activation-type="alwaysActivated"
+                data-activation-value=""
+                data-deactivation-type="neverDeactivate"
+                data-deactivation-value=""
+                data-form-name="Membership Cancellation Form"
+                data-height="787"
+                data-layout-iframe-id="inline-d4jtjY9fM2Hv9zVTzLwj"
+                data-form-id="d4jtjY9fM2Hv9zVTzLwj"
+                title="Membership Cancellation Form"
+            ></iframe>
+        </div>
+    </div>
+    <div class="modal-overlay" id="subscribeModal">
+        <div class="modal-container">
+            <button class="modal-close" onclick="closeSubscribeModal()">&times;</button>
+            <iframe
+                data-src="https://api.leadconnectorhq.com/widget/form/GnNJNaEX8InuIeGxWjaI"
+                style="width:100%;height:100%;border:none;border-radius:4px"
+                id="inline-GnNJNaEX8InuIeGxWjaI"
+                data-layout="{'id':'INLINE'}"
+                data-trigger-type="alwaysShow"
+                data-trigger-value=""
+                data-activation-type="alwaysActivated"
+                data-activation-value=""
+                data-deactivation-type="neverDeactivate"
+                data-deactivation-value=""
+                data-form-name="Subscribe"
+                data-height="430"
+                data-layout-iframe-id="inline-GnNJNaEX8InuIeGxWjaI"
+                data-form-id="GnNJNaEX8InuIeGxWjaI"
+                title="Subscribe"
+            ></iframe>
+        </div>
+    </div>
+
+    <!-- ============ PAGE JS: modals + side menu (function names byte-identical to the live site) ============ -->
+    <script>
+    function openLeadModal() {
+        var modal = document.getElementById('leadModal');
+        var iframe = modal.querySelector('iframe');
+        if (iframe && !iframe.src && iframe.dataset.src) { iframe.src = iframe.dataset.src; }
+        modal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    }
+    function closeLeadModal() {
+        document.getElementById('leadModal').classList.remove('active');
+        document.body.style.overflow = '';
+    }
+    document.getElementById('leadModal').addEventListener('click', function(e) {
+        if (e.target === this) { closeLeadModal(); }
+    });
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') { closeLeadModal(); closeCancelModal(); closeSubscribeModal(); }
+    });
+
+    function openCancelModal() {
+        var modal = document.getElementById('cancelModal');
+        var iframe = modal.querySelector('iframe');
+        if (iframe && !iframe.src && iframe.dataset.src) { iframe.src = iframe.dataset.src; }
+        modal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    }
+    function closeCancelModal() {
+        document.getElementById('cancelModal').classList.remove('active');
+        document.body.style.overflow = '';
+    }
+    document.getElementById('cancelModal').addEventListener('click', function(e) {
+        if (e.target === this) { closeCancelModal(); }
+    });
+    function openSubscribeModal() {
+        var modal = document.getElementById('subscribeModal');
+        var iframe = modal.querySelector('iframe');
+        if (iframe && !iframe.src && iframe.dataset.src) { iframe.src = iframe.dataset.src; }
+        modal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    }
+    function closeSubscribeModal() {
+        document.getElementById('subscribeModal').classList.remove('active');
+        document.body.style.overflow = '';
+    }
+    document.getElementById('subscribeModal').addEventListener('click', function(e) {
+        if (e.target === this) { closeSubscribeModal(); }
+    });
+
+    // Side Menu
+    function toggleSideMenu() {
+        var menu = document.getElementById('sideMenu');
+        var backdrop = document.getElementById('menuBackdrop');
+        var hamburger = document.querySelector('.hamburger');
+        var isOpen = menu.classList.contains('open');
+        if (isOpen) { closeSideMenu(); }
+        else {
+            menu.classList.add('open');
+            backdrop.classList.add('open');
+            hamburger.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+    }
+    function closeSideMenu() {
+        var menu = document.getElementById('sideMenu');
+        var backdrop = document.getElementById('menuBackdrop');
+        var hamburger = document.querySelector('.hamburger');
+        menu.classList.remove('open');
+        backdrop.classList.remove('open');
+        hamburger.classList.remove('active');
+        document.body.style.overflow = '';
+    }
+    document.getElementById('menuBackdrop').addEventListener('click', closeSideMenu);
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') closeSideMenu();
+    });
+    </script>
+
+    <!-- ============ PAGE JS: nav scroll state + reveal observer ============ -->
+    <script>
+    (function(){
+        var nav = document.getElementById('nav');
+        function onScroll(){ if (nav) nav.classList.toggle('scrolled', window.scrollY > 24); }
+        window.addEventListener('scroll', onScroll, {passive:true});
+        onScroll();
+
+        var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        var items = document.querySelectorAll('.rv');
+        if (reduced || !('IntersectionObserver' in window)) {
+            items.forEach(function(el){ el.classList.add('on'); });
+            return;
+        }
+        var io = new IntersectionObserver(function(entries){
+            entries.forEach(function(e){
+                if (e.isIntersecting) { e.target.classList.add('on'); io.unobserve(e.target); }
+            });
+        }, {threshold:0.12, rootMargin:'0px 0px -40px 0px'});
+        items.forEach(function(el){ io.observe(el); });
+    })();
+    </script>
+
+<!-- ============ A11Y TAIL IIFE — copied VERBATIM from index.html. Do not edit. ============ -->
+<script>
+// ===== ACCESSIBILITY: KEYBOARD NAV & FOCUS TRAP =====
+(function() {
+    // --- Keyboard Navigation for Submenus ---
+    document.querySelectorAll('.has-submenu').forEach(function(item) {
+        var link = item.querySelector('a');
+        var sub = item.querySelector('.submenu');
+        if (!link || !sub) return;
+        link.setAttribute('aria-haspopup', 'true');
+        link.setAttribute('aria-expanded', 'false');
+        function openSub() { item.classList.add('submenu-open'); link.setAttribute('aria-expanded', 'true'); }
+        function closeSub() { item.classList.remove('submenu-open'); link.setAttribute('aria-expanded', 'false'); }
+        link.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                if (link.getAttribute('aria-expanded') === 'true') { closeSub(); }
+                else { openSub(); var f = sub.querySelector('a'); if (f) f.focus(); }
+            }
+            if (e.key === 'ArrowDown') { e.preventDefault(); openSub(); var f = sub.querySelector('a'); if (f) f.focus(); }
+        });
+        sub.addEventListener('keydown', function(e) {
+            var links = sub.querySelectorAll('a');
+            var idx = Array.prototype.indexOf.call(links, document.activeElement);
+            if (e.key === 'Escape') { closeSub(); link.focus(); }
+            if (e.key === 'ArrowDown' && idx < links.length - 1) { e.preventDefault(); links[idx + 1].focus(); }
+            if (e.key === 'ArrowUp') { e.preventDefault(); if (idx > 0) links[idx - 1].focus(); else { closeSub(); link.focus(); } }
+        });
+        item.addEventListener('focusout', function() {
+            setTimeout(function() { if (!item.contains(document.activeElement)) closeSub(); }, 0);
+        });
+    });
+
+    // --- Hamburger aria-expanded ---
+    var hamburger = document.querySelector('.hamburger');
+    if (hamburger) {
+        hamburger.setAttribute('aria-expanded', 'false');
+        var sm = document.getElementById('sideMenu');
+        if (sm) new MutationObserver(function() {
+            hamburger.setAttribute('aria-expanded', sm.classList.contains('open') ? 'true' : 'false');
+        }).observe(sm, { attributes: true, attributeFilter: ['class'] });
+    }
+
+    // --- Modal Focus Trapping ---
+    var prevFocus = null;
+    function trapFocus(modal) {
+        prevFocus = document.activeElement;
+        var els = modal.querySelectorAll('button, a[href], iframe, input, select, textarea, [tabindex]:not([tabindex="-1"])');
+        if (!els.length) return;
+        var first = els[0], last = els[els.length - 1];
+        modal._focusTrap = function(e) {
+            if (e.key !== 'Tab') return;
+            if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+            else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+        };
+        modal.addEventListener('keydown', modal._focusTrap);
+        first.focus();
+    }
+    function releaseFocus(modal) {
+        if (modal._focusTrap) { modal.removeEventListener('keydown', modal._focusTrap); delete modal._focusTrap; }
+        if (prevFocus) { prevFocus.focus(); prevFocus = null; }
+    }
+    document.querySelectorAll('.modal-overlay').forEach(function(modal) {
+        modal.setAttribute('role', 'dialog');
+        modal.setAttribute('aria-modal', 'true');
+        new MutationObserver(function() {
+            if (modal.classList.contains('active')) trapFocus(modal);
+            else releaseFocus(modal);
+        }).observe(modal, { attributes: true, attributeFilter: ['class'] });
+    });
+})();
+</script>
+
+<script src="https://link.msgsndr.com/js/form_embed.js" type="text/javascript" defer></script>
+<script src="https://widgets.leadconnectorhq.com/loader.js" data-resources-url="https://widgets.leadconnectorhq.com/chat-widget/loader.js" data-widget-id="6995d6d76e6009387f78d31e" defer></script>
+    <!-- Thumb bar: reveal once the hero's own consult button has scrolled by -->
+    <script>
+    (function() {
+      var bar = document.querySelector('.thumbbar');
+      if (!bar) return;
+      bar.classList.add('tb-auto');
+      var shown = false, ticking = false;
+      function check() {
+        ticking = false;
+        var past = window.scrollY > window.innerHeight * 0.6;
+        if (past === shown) return;
+        shown = past;
+        bar.classList.toggle('tb-show', past);
+      }
+      function onScroll() {
+        if (ticking) return;
+        ticking = true;
+        window.requestAnimationFrame(check);
+      }
+      window.addEventListener('scroll', onScroll, { passive: true });
+      window.addEventListener('resize', onScroll, { passive: true });
+      check();
+    })();
+    </script>
+</body>
+</html>

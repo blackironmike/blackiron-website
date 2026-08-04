@@ -1,1029 +1,93 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <!-- CONTRACT: keep this exact viewport tag — inject-pixel.js insertion marker -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Group Training Classes in Frisco, TX | Black Iron Athletics</title>
-    <meta name="description" content="Group classes, Olympic weightlifting, personal training & open gym at Black Iron Athletics in Frisco, TX. All fitness levels welcome.">
+    <meta name="description" content="Strength &amp; Conditioning classes, personal training, nutrition coaching &amp; open gym at Black Iron Athletics in Frisco, TX. Every rep coached, three levels in every class.">
     <meta name="geo.region" content="US-TX">
     <meta name="geo.placename" content="Frisco">
+    <meta name="geo.position" content="33.15035;-96.89026">
     <link rel="canonical" href="https://www.blackironathletics.com/programs">
     <!-- Open Graph -->
-    <meta property="og:title" content="Strength & Conditioning & Weightlifting | Black Iron Athletics | Frisco, TX">
-    <meta property="og:description" content="The best CrossFit alternative in Frisco, TX. Functional fitness, HIIT, WODs, strength & conditioning, Olympic weightlifting, personal training & open gym.">
+    <meta property="og:title" content="Group Training Classes in Frisco, TX | Black Iron Athletics">
+    <meta property="og:description" content="Strength &amp; Conditioning classes, personal training, nutrition coaching &amp; open gym at Black Iron Athletics in Frisco, TX. Every rep coached, three levels in every class.">
     <meta property="og:url" content="https://www.blackironathletics.com/programs">
     <meta property="og:image" content="https://www.blackironathletics.com/images/social-share.png">
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="Black Iron Athletics">
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Strength & Conditioning & Weightlifting | Black Iron Athletics | Frisco, TX">
-    <meta name="twitter:description" content="The best CrossFit alternative in Frisco, TX. Functional fitness, HIIT, WODs, strength & conditioning, Olympic weightlifting, personal training & open gym.">
+    <meta name="twitter:title" content="Group Training Classes in Frisco, TX | Black Iron Athletics">
+    <meta name="twitter:description" content="Strength &amp; Conditioning classes, personal training, nutrition coaching &amp; open gym at Black Iron Athletics in Frisco, TX. Every rep coached, three levels in every class.">
     <meta name="twitter:image" content="https://www.blackironathletics.com/images/social-share.png">
-    <link rel="icon" type="image/png" href="images/anvil-favicon.png">
+    <link rel="icon" type="image/png" href="/images/anvil-favicon.png">
+    <link rel="apple-touch-icon" href="/images/anvil-favicon.png">
     <meta name="theme-color" content="#000000">
-    <link rel="apple-touch-icon" href="images/anvil-favicon.png">
-    <link rel="preload" as="image" href="images/training/group-training.webp">
+    <link rel="preload" as="image" href="/images/team/coach-briefing.webp">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;900&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
-    <noscript><link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;900&display=swap" rel="stylesheet"></noscript>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" media="print" onload="this.media='all'">
-    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"></noscript>
-    <style>@font-face{font-family:"Font Awesome 6 Brands";font-display:swap}@font-face{font-family:"Font Awesome 6 Free";font-display:swap}</style>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&display=swap" rel="stylesheet"></noscript>
+    <link rel="stylesheet" href="/css/bia.css">
     <style>
-        /* Force full width - override GHL container */
-        body, html {
-            width: 100% !important;
-            max-width: 100% !important;
-            margin: 0 !important;
-            padding: 0 !important;
-        }
-
-        /* Remove GHL's default container padding */
-        .container, .hl_page-preview--content {
-            padding: 0 !important;
-            margin: 0 !important;
-            max-width: 100% !important;
-            width: 100% !important;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        :root {
-            --black: #000000;
-            --dark-gray: #1a1a1a;
-            --medium-gray: #333333;
-            --light-gray: #cccccc;
-            --white: #ffffff;
-            --yellow: #FFD202;
-        }
-
-        body {
-            font-family: 'Montserrat', sans-serif;
-            font-weight: 500;
-            background: var(--black);
-            color: var(--white);
-            overflow-x: hidden;
-            line-height: 1.6;
-            margin: 0;
-            padding: 0;
-        }
-
-        html {
-            margin: 0;
-            padding: 0;
-            scroll-behavior: smooth;
-        }
-
-        /* Anchor offset for fixed nav */
-        #group-classes,
-        #personal-training,
-        #nutrition-coaching,
-        #open-gym {
-            scroll-margin-top: 100px;
-        }
-
-        /* All headings use Montserrat Black */
-        h1, h2, h3, h4, h5, h6 {
-            font-family: 'Montserrat', sans-serif;
-            font-weight: 900;
-            line-height: 1.2;
-        }
-
-        nav {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            padding: 1.5rem 0;
-            background: var(--black);
-            z-index: 1000;
-            border-bottom: 1px solid var(--medium-gray);
-        }
-
-        .nav-container {
-            max-width: 100%;
-            margin: 0;
-            padding: 0 4rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            height: 50px;
-        }
-
-        .logo a {
-            display: block;
-            height: 100%;
-        }
-
-        .logo img {
-            height: 100%;
-            width: auto;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 3rem;
-            list-style: none;
-            align-items: center;
-        }
-
-        .nav-links > li {
-            position: relative;
-        }
-
-        .nav-links a {
-            color: var(--white);
-            text-decoration: none;
-            font-size: 0.95rem;
-            font-weight: 900;
-            transition: color 0.3s ease;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-
-        .nav-links > li > a:hover {
-            color: var(--yellow);
-        }
-
-        /* Dropdown Submenu */
-        .submenu {
-            display: none;
-            position: absolute;
-            top: 100%;
-            left: 0;
-            background: rgba(26, 26, 26, 0.95);
-            backdrop-filter: blur(10px);
-            min-width: 240px;
-            padding: 0.5rem 0;
-            border: 1px solid var(--medium-gray);
-            list-style: none;
-        }
-
-        .submenu li {
-            padding: 0;
-        }
-
-        .submenu a {
-            display: block;
-            padding: 1rem 1.5rem;
-            font-size: 0.85rem;
-            font-weight: 900;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            transition: all 0.3s ease;
-        }
-
-        .submenu a:hover {
-            background: rgba(255, 210, 2, 0.1);
-            color: var(--yellow);
-            padding-left: 2rem;
-        }
-
-        .nav-links > li:hover .submenu {
-            display: block;
-        }
-
-        .has-submenu > a::after {
-            content: '';
-            display: inline-block;
-            width: 0;
-            height: 0;
-            margin-left: 0.5rem;
-            border-left: 4px solid transparent;
-            border-right: 4px solid transparent;
-            border-top: 5px solid var(--white);
-            transition: all 0.3s ease;
-        }
-
-        .has-submenu:hover > a::after {
-            border-top-color: var(--yellow);
-            transform: translateY(2px);
-        }
-
-        .cta-btn {
-            background: var(--yellow);
-            color: var(--black);
-            padding: 0.9rem 1.5rem;
-            border-radius: 0;
-            text-decoration: none;
-            font-weight: 900;
-            font-size: 0.85rem;
-            transition: all 0.3s ease;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            border: 2px solid var(--yellow);
-            white-space: nowrap;
-        }
-
-        .cta-btn:hover {
-            background: var(--black);
-            color: var(--yellow);
-        }
-
-        /* Hero Section */
-        .hero {
-            margin-top: 0;
-            padding-top: 80px;
-            min-height: 60vh;
-            display: flex;
-            align-items: center;
-            position: relative;
-            background: var(--black);
-        }
-
-        .hero-bg {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            opacity: 0.3;
-            z-index: 0;
-        }
-
-        .hero-container {
-            max-width: 100%;
-            width: 100%;
-            margin: 0;
-            padding: 4rem;
-            position: relative;
-            z-index: 1;
-        }
-
-        .hero-content {
-            max-width: 900px;
-        }
-
-        .hero-subtitle {
-            font-size: 0.9rem;
-            font-weight: 700;
-            color: var(--yellow);
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            margin-bottom: 1.5rem;
-        }
-
-        .hero-content h1 {
-            font-weight: 900;
-            font-size: clamp(2.5rem, 6vw, 4.5rem);
-            line-height: 1.1;
-            margin-bottom: 2rem;
-            text-transform: uppercase;
-        }
-
-        .hero-content p {
-            font-size: 1.3rem;
-            color: var(--light-gray);
-            margin-bottom: 3rem;
-            font-weight: 500;
-            line-height: 1.6;
-            max-width: 600px;
-        }
-
-        /* Section Styles */
-        .section {
-            padding: 6rem 0;
-            background: var(--black);
-            width: 100%;
-        }
-
-        .section-alt {
-            background: var(--dark-gray);
-        }
-
-        .section-container {
-            max-width: 100%;
-            margin: 0;
-            padding: 0 4rem;
-        }
-
-        .section-header {
-            text-align: center;
-            margin-bottom: 4rem;
-        }
-
-        .section-subtitle {
-            font-size: 0.85rem;
-            font-weight: 700;
-            color: var(--yellow);
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            margin-bottom: 1rem;
-        }
-
-        .section-title {
-            font-weight: 900;
-            font-size: clamp(2.5rem, 5vw, 4rem);
-            margin-bottom: 1.5rem;
-            text-transform: uppercase;
-        }
-
-        .section-description {
-            font-size: 1.2rem;
-            color: var(--light-gray);
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        /* Content Block */
-        .content-block {
-            max-width: 900px;
-            margin: 0 auto;
-        }
-
-        .content-block p {
-            font-size: 1.1rem;
-            line-height: 1.8;
-            color: var(--light-gray);
-            margin-bottom: 1.5rem;
-        }
-
-        /* Feature Cards - used in Group Classes & Open Gym */
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 0;
-            margin-top: 4rem;
-        }
-
-        .feature-card {
-            padding: 3rem;
-            background: var(--dark-gray);
-            border: 1px solid var(--medium-gray);
-            transition: all 0.3s ease;
-        }
-
-        .feature-card:hover {
-            background: var(--medium-gray);
-            border-color: var(--yellow);
-        }
-
-        .feature-icon {
-            font-size: 2.5rem;
-            margin-bottom: 1.5rem;
-            color: var(--yellow);
-        }
-
-        .feature-title {
-            font-weight: 900;
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-            text-transform: uppercase;
-        }
-
-        .feature-description {
-            color: var(--light-gray);
-            line-height: 1.8;
-        }
-
-        /* Class Type Cards (Group Classes) */
-        .class-types-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 2rem;
-            margin-top: 4rem;
-        }
-
-        .class-type-card {
-            background: var(--dark-gray);
-            padding: 2.5rem;
-            border: 2px solid var(--medium-gray);
-            transition: all 0.3s ease;
-            text-align: center;
-        }
-
-        .class-type-card:hover {
-            border-color: var(--yellow);
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(255, 210, 2, 0.2);
-        }
-
-        .class-type-card.type-sc {
-            border-top: 4px solid var(--yellow);
-        }
-        .class-type-card.type-weightlifting {
-            border-top: 4px solid #ff0003;
-        }
-        .class-type-card.type-weightlifting .class-type-icon {
-            color: #ff0003;
-        }
-        .class-type-card.type-weightlifting:hover {
-            border-color: #ff0003;
-            box-shadow: 0 10px 30px rgba(255, 0, 3, 0.2);
-        }
-        .class-type-card.type-hyrox {
-            border-top: 4px solid #1c94d9;
-        }
-        .class-type-card.type-hyrox .class-type-icon {
-            color: #1c94d9;
-        }
-        .class-type-card.type-hyrox:hover {
-            border-color: #1c94d9;
-            box-shadow: 0 10px 30px rgba(28, 148, 217, 0.2);
-        }
-
-        .class-type-icon {
-            font-size: 3rem;
-            color: var(--yellow);
-            margin-bottom: 1.5rem;
-        }
-
-        .class-type-card h3 {
-            font-weight: 900;
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-            text-transform: uppercase;
-        }
-
-        .class-type-card p {
-            color: var(--light-gray);
-            line-height: 1.8;
-        }
-
-        /* Feature Cards - centered variant for PT/Nutrition/Open Gym */
-        .feature-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-top: 4rem;
-        }
-
-        .feature-card-centered {
-            background: var(--dark-gray);
-            padding: 2.5rem;
-            border: 2px solid var(--medium-gray);
-            transition: all 0.3s ease;
-            text-align: center;
-        }
-
-        .feature-card-centered:hover {
-            border-color: var(--yellow);
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(255, 210, 2, 0.2);
-        }
-
-        .feature-card-centered.type-pt {
-            border-top: 4px solid #9b59b6;
-        }
-        .feature-card-centered.type-pt .feature-icon {
-            color: #9b59b6;
-        }
-        .feature-card-centered.type-pt:hover {
-            border-color: #9b59b6;
-            box-shadow: 0 10px 30px rgba(155, 89, 182, 0.2);
-        }
-        .feature-card-centered.type-nutrition {
-            border-top: 4px solid #22c55e;
-        }
-        .feature-card-centered.type-nutrition .feature-icon {
-            color: #22c55e;
-        }
-        .feature-card-centered.type-nutrition:hover {
-            border-color: #22c55e;
-            box-shadow: 0 10px 30px rgba(34, 197, 94, 0.2);
-        }
-
-        .feature-card-centered h3 {
-            font-weight: 900;
-            font-size: 1.3rem;
-            margin-bottom: 1rem;
-            text-transform: uppercase;
-        }
-
-        .feature-card-centered p {
-            color: var(--light-gray);
-            line-height: 1.8;
-        }
-
-        /* Steps Grid */
-        .steps-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            margin-top: 4rem;
-        }
-
-        .step-card {
-            background: var(--black);
-            padding: 3rem 2rem;
-            border: 2px solid var(--medium-gray);
-            transition: all 0.3s ease;
-            text-align: center;
-        }
-
-        .step-card:hover {
-            border-color: var(--yellow);
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(255, 210, 2, 0.2);
-        }
-
-        .step-number {
-            background: var(--yellow);
-            color: var(--black);
-            width: 60px;
-            height: 60px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 2rem;
-            font-weight: 900;
-            margin: 0 auto 1.5rem;
-        }
-
-        .step-card h3 {
-            font-weight: 900;
-            font-size: 1.5rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .step-duration {
-            color: var(--yellow);
-            font-weight: 700;
-            font-size: 0.9rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-bottom: 1rem;
-        }
-
-        .step-card p {
-            color: var(--light-gray);
-            line-height: 1.8;
-        }
-
-        /* Callout Block */
-        .callout-block {
-            max-width: 900px;
-            margin: 4rem auto 0;
-            padding: 3rem;
-            border-left: 5px solid var(--yellow);
-            background: var(--black);
-            font-style: italic;
-        }
-
-        .callout-block p {
-            font-size: 1.2rem;
-            line-height: 1.8;
-            color: var(--light-gray);
-            margin: 0;
-        }
-
-        .btn-primary {
-            background: var(--yellow);
-            color: var(--black);
-            padding: 1.2rem 3rem;
-            text-decoration: none;
-            font-weight: 900;
-            font-size: 1rem;
-            transition: all 0.3s ease;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            border: 2px solid var(--yellow);
-            border-radius: 0;
-            display: inline-block;
-        }
-
-        .btn-primary:hover {
-            background: var(--black);
-            color: var(--yellow);
-        }
-
-        .btn-secondary {
-            background: transparent;
-            color: var(--white);
-            padding: 1.2rem 3rem;
-            text-decoration: none;
-            font-weight: 900;
-            font-size: 1rem;
-            transition: all 0.3s ease;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            border: 2px solid var(--white);
-            border-radius: 0;
-            display: inline-block;
-        }
-
-        .btn-secondary:hover {
-            background: var(--white);
-            color: var(--black);
-        }
-
-        /* CTA Section */
-        .cta-section {
-            background: var(--black);
-            padding: 8rem 4rem;
-            text-align: center;
-            width: 100%;
-        }
-
-        .cta-title {
-            font-weight: 900;
-            font-size: clamp(2.5rem, 5vw, 4.5rem);
-            margin-bottom: 1.5rem;
-            text-transform: uppercase;
-        }
-
-        .cta-subtitle {
-            font-size: 1.2rem;
-            color: var(--light-gray);
-            margin-bottom: 3rem;
-        }
-
-        /* Map Section */
-        .map-section {
-            width: 100%;
-        }
-
-        .map-section iframe {
-            width: 100%;
-            height: 400px;
-            border: none;
-            display: block;
-        }
-
-        /* Footer */
-        footer {
-            padding: 4rem 0 2rem;
-            background: var(--black);
-            border-top: 1px solid var(--medium-gray);
-            width: 100%;
-        }
-
-        .footer-container {
-            max-width: 100%;
-            margin: 0;
-            padding: 0 4rem;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 4rem;
-            margin-bottom: 3rem;
-        }
-
-        .footer-section h3 {
-            font-weight: 900;
-            margin-bottom: 1.5rem;
-            text-transform: uppercase;
-            font-size: 0.9rem;
-            letter-spacing: 1px;
-        }
-
-        .footer-section ul {
-            list-style: none;
-        }
-
-        .footer-section ul li {
-            margin-bottom: 0.75rem;
-        }
-
-        .footer-section a {
-            color: var(--light-gray);
-            text-decoration: none;
-            transition: color 0.3s ease;
-            font-weight: 500;
-        }
-
-        .footer-section a:hover {
-            color: var(--yellow);
-        }
-
-        .footer-logo {
-            height: 60px;
-            margin-bottom: 1.5rem;
-        }
-
-        .footer-bottom {
-            text-align: center;
-            padding-top: 2rem;
-            border-top: 1px solid var(--medium-gray);
-            color: var(--light-gray);
-            font-size: 0.9rem;
-        }
-
-        /* ===== SCROLL REVEAL ===== */
-        .reveal {
-            opacity: 0;
-            transform: translateY(40px);
-            transition: opacity 0.7s ease, transform 0.7s ease;
-        }
-
-        .reveal.revealed {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .reveal-scale {
-            opacity: 0;
-            transform: scale(0.9);
-            transition: opacity 0.7s ease, transform 0.7s ease;
-        }
-
-        .reveal-scale.revealed {
-            opacity: 1;
-            transform: scale(1);
-        }
-
-        .reveal-stagger > .reveal {
-            transition-delay: calc(var(--reveal-index, 0) * 0.1s);
-        }
-
-        @media (prefers-reduced-motion: reduce) {
-            .reveal,
-            .reveal-scale {
-                opacity: 1;
-                transform: none;
-                transition: none;
-            }
-            .reveal-stagger > .reveal {
-                transition-delay: 0s;
-            }
-        }
-
-        @media (max-width: 1024px) {
-            .nav-container,
-            .hero-container,
-            .section-container,
-            .footer-container {
-                padding-left: 2rem;
-                padding-right: 2rem;
-            }
-
-            .cta-section {
-                padding-left: 2rem;
-                padding-right: 2rem;
-            }
-        }
-
-        /* Hamburger Menu */
-        .hamburger {
-            display: none;
-            flex-direction: column;
-            justify-content: center;
-            gap: 5px;
-            width: 30px;
-            height: 30px;
-            cursor: pointer;
-            background: none;
-            border: none;
-            padding: 0;
-            z-index: 1002;
-        }
-
-        .hamburger span {
-            display: block;
-            width: 30px;
-            height: 3px;
-            background: var(--white);
-            transition: all 0.3s ease;
-        }
-
-        .hamburger.active span:nth-child(1) {
-            transform: rotate(45deg) translate(6px, 6px);
-        }
-
-        .hamburger.active span:nth-child(2) {
-            opacity: 0;
-        }
-
-        .hamburger.active span:nth-child(3) {
-            transform: rotate(-45deg) translate(6px, -6px);
-        }
-
-        /* Side Menu */
-        .menu-backdrop {
-            position: fixed; inset: 0; background: rgba(0,0,0,0.6); z-index: 1001;
-            opacity: 0; visibility: hidden; transition: opacity 0.3s, visibility 0.3s;
-        }
-        .menu-backdrop.open { opacity: 1; visibility: visible; }
-        .side-menu {
-            position: fixed; top: 0; right: 0; width: 300px; max-width: 85vw; height: 100%;
-            background: var(--dark-gray); z-index: 1002; transform: translateX(100%);
-            transition: transform 0.3s ease; display: flex; flex-direction: column; overflow-y: auto;
-        }
-        .side-menu.open { transform: translateX(0); }
-        .side-menu-header {
-            display: flex; align-items: center; justify-content: space-between;
-            padding: 1rem 1.5rem; border-bottom: 1px solid var(--medium-gray);
-        }
-        .side-menu-header img { height: 30px; width: auto; }
-        .side-menu-close {
-            background: none; border: none; color: var(--light-gray); font-size: 1.3rem;
-            cursor: pointer; padding: 0.25rem; transition: color 0.3s;
-        }
-        .side-menu-close:hover { color: var(--white); }
-        .side-menu-links { flex: 1; padding: 0.75rem 0; }
-        .side-menu-links a {
-            display: block; padding: 0.85rem 1.5rem; color: var(--white); text-decoration: none;
-            font-size: 1rem; font-weight: 900; text-transform: uppercase; letter-spacing: 0.5px;
-            transition: all 0.2s;
-        }
-        .side-menu-links a:hover { color: var(--yellow); background: rgba(255,255,255,0.05); }
-        .side-menu-links .sub-link {
-            font-size: 0.85rem; color: var(--light-gray); padding: 0.5rem 1.5rem 0.5rem 2.5rem;
-            font-weight: 700;
-        }
-        .side-menu-links .sub-link:hover { color: var(--yellow); }
-        .side-menu-links .menu-divider { height: 1px; background: var(--medium-gray); margin: 0.5rem 1.5rem; }
-        .side-menu-footer { border-top: 1px solid var(--medium-gray); padding: 1rem 1.5rem; }
-        .side-menu-footer a {
-            display: block; background: var(--yellow); color: var(--black); padding: 0.9rem 1.5rem;
-            text-align: center; font-weight: 900; font-size: 0.9rem; text-transform: uppercase;
-            text-decoration: none; transition: all 0.3s;
-        }
-        .side-menu-footer a:hover { background: var(--white); }
-
-        @media (max-width: 768px) {
-            .hamburger {
-                display: flex !important;
-            }
-
-            .nav-links {
-                display: none !important;
-            }
-
-            .nav-container {
-                padding: 0 1.5rem;
-                flex-wrap: wrap;
-            }
-
-            .cta-btn {
-                order: 3;
-                width: 100%;
-                text-align: center;
-                margin-top: 0.75rem;
-                padding: 0.7rem 1rem;
-                font-size: 0.8rem;
-            }
-
-            .hero {
-                padding-top: 130px;
-            }
-
-            .hero-container {
-                padding: 2rem 1.5rem;
-            }
-
-            .hero-content h1 {
-                font-size: clamp(2rem, 6vw, 3rem);
-            }
-
-            .hero-content p {
-                font-size: 1.1rem;
-                margin-bottom: 2rem;
-            }
-
-            .section-container {
-                padding: 0 1.5rem;
-            }
-
-            .section-title {
-                font-size: clamp(1.8rem, 5vw, 2.5rem);
-            }
-
-            .section-header {
-                margin-bottom: 2rem;
-            }
-
-            .section {
-                padding: 4rem 0;
-            }
-
-            .features-grid,
-            .feature-grid,
-            .steps-grid,
-            .class-types-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .feature-card {
-                padding: 2rem 1.5rem;
-            }
-
-            .class-type-card {
-                padding: 2rem 1.5rem;
-            }
-
-            .feature-card-centered {
-                padding: 2rem 1.5rem;
-            }
-
-            .step-card {
-                padding: 2rem 1.5rem;
-            }
-
-            .callout-block {
-                padding: 2rem 1.5rem;
-                margin-top: 2rem;
-            }
-
-            .cta-section {
-                padding: 4rem 1.5rem;
-            }
-
-            .cta-title {
-                font-size: clamp(1.8rem, 5vw, 2.5rem);
-            }
-
-            .map-section iframe {
-                height: 250px;
-            }
-
-            .footer-container {
-                padding: 0 1.5rem;
-                gap: 2rem;
-            }
-
-            .btn-primary,
-            .btn-secondary {
-                padding: 0.8rem 1.5rem;
-                font-size: 0.8rem;
-                white-space: normal;
-            }
-
-            .modal-container {
-                max-width: calc(100% - 2rem);
-            }
-        }
-
-        /* Skip Navigation */
-        .skip-link {
-            position: absolute;
-            top: -100%;
-            left: 50%;
-            transform: translateX(-50%);
-            background: var(--yellow);
-            color: var(--black);
-            padding: 0.75rem 1.5rem;
-            font-weight: 700;
-            z-index: 10000;
-            text-decoration: none;
-            transition: top 0.2s;
-        }
-        .skip-link:focus {
-            top: 10px;
-        }
-
-        /* Focus Visible Styles */
-        a:focus-visible,
-        button:focus-visible,
-        input:focus-visible,
-        select:focus-visible,
-        textarea:focus-visible,
-        [tabindex]:focus-visible {
-            outline: 2px solid var(--yellow);
-            outline-offset: 2px;
-        }
-
-        /* Keyboard Nav for Submenus */
-        .nav-links > li:focus-within .submenu,
-        .has-submenu.submenu-open .submenu {
-            display: block;
-        }
-        .has-submenu:focus-within > a::after {
-            border-top-color: var(--yellow);
-            transform: translateY(2px);
-        }
+        /* programs-page-only glue — same token language as bia.css */
+        .prose p{margin-top:18px;max-width:60ch}
+        .prose p:first-child{margin-top:0}
+        .cta-row{display:flex;flex-wrap:wrap;align-items:center;gap:18px;margin-top:clamp(30px,4vw,44px)}
+        .price-line{margin-top:26px;border-top:1px solid var(--steel-line);padding-top:16px;font-size:.95rem;max-width:60ch}
+        .price-line b{color:var(--white);font-weight:700}
+        .levels-block{margin-top:clamp(44px,6vw,72px)}
+        /* Anchor offset for the fixed nav */
+        #group-classes,#personal-training,#nutrition-coaching,#open-gym{scroll-margin-top:96px}
     </style>
-<script defer src="/_vercel/insights/script.js"></script>
+    <script defer src="/_vercel/insights/script.js"></script>
 </head>
 <body>
     <a href="#main-content" class="skip-link">Skip to main content</a>
-    <nav>
+
+    <!-- ============ NAV (final IA — identical on every page) ============ -->
+    <nav id="nav">
         <div class="nav-container">
             <div class="logo">
-                <a href="/">
-                    <img src="images/logos/logo.png" alt="Black Iron Athletics">
+                <a href="/" aria-label="Black Iron Athletics home">
+                    <img src="/images/logos/logo.png" alt="Black Iron Athletics">
                 </a>
             </div>
             <ul class="nav-links">
                 <li class="has-submenu">
-                    <a href="about">About Us</a>
+                    <a href="/about">About Us</a>
                     <ul class="submenu">
-                        <li><a href="about#mission">Our Mission</a></li>
-                        <li><a href="about#team">Meet the Team</a></li>
-                        <li><a href="programs">Programs</a></li>
-                        <li><a href="schedule">Class Schedule</a></li>
+                        <li><a href="/about">Our Mission</a></li>
+                        <li><a href="/about#team">Meet the Team</a></li>
+                        <li><a href="/media">Media</a></li>
                     </ul>
                 </li>
                 <li class="has-submenu">
-                    <a href="getting-started">Getting Started</a>
+                    <a href="/programs">Programs</a>
                     <ul class="submenu">
-                        <li><a href="getting-started#membership">Membership Options</a></li>
-                        <li><a href="getting-started#faqs">FAQs</a></li>
+                        <li><a href="/programs#group-classes">Strength &amp; Conditioning</a></li>
+                        <li><a href="/programs#personal-training">Personal Training</a></li>
+                        <li><a href="/programs#nutrition-coaching">Nutrition Coaching</a></li>
+                        <li><a href="/programs#open-gym">Open Gym</a></li>
+                        <li><a href="/programs#recovery">Recovery Room</a></li>
                     </ul>
                 </li>
-                <li><a href="media">Media</a></li>
-                <li><a href="blog/">Blog</a></li>
-                <li><a href="contact">Contact</a></li>
+                <li><a href="/pricing">Pricing</a></li>
+                <li class="has-submenu">
+                    <a href="/getting-started">Getting Started</a>
+                    <ul class="submenu">
+                        <li><a href="/getting-started">How it works</a></li>
+                        <li><a href="/pricing">Membership &amp; Pricing</a></li>
+                        <li><a href="/faq">FAQs</a></li>
+                    </ul>
+                </li>
+                <li><a href="/schedule">Schedule</a></li>
+                <li><a href="/blog">Blog</a></li>
+                <li><a href="/contact">Contact</a></li>
             </ul>
-            <a href="#" onclick="openLeadModal(); return false;" class="cta-btn">Book Free Consultation</a>
+            <a href="https://book.blackironathletics.com/book" class="cta-btn">Book a Free Consult</a>
             <button class="hamburger" onclick="toggleSideMenu()" aria-label="Menu">
                 <span></span>
                 <span></span>
@@ -1032,212 +96,329 @@
         </div>
     </nav>
 
+    <!-- ============ THUMB BAR (mobile) ============ -->
+    <div class="thumbbar">
+        <a class="tb-call" href="tel:+19727857036" aria-label="Call Black Iron Athletics"><svg width="19" height="19" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M6.5 2.5 8.2 6l-1.7 1.6a11 11 0 0 0 4.9 4.9L13 10.8l3.5 1.7v3.2c0 .6-.5 1-1.1 1A13.6 13.6 0 0 1 2.3 3.6c0-.6.4-1.1 1-1.1h3.2Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg></a>
+        <a class="tb-book" href="https://book.blackironathletics.com/book">Book a Free Consult</a>
+    </div>
+
+    <!-- ============ SIDE MENU (flat mirror of the nav IA) ============ -->
     <div class="menu-backdrop" id="menuBackdrop"></div>
     <div class="side-menu" id="sideMenu">
         <div class="side-menu-header">
-            <img src="images/logos/logo.png" alt="Black Iron Athletics">
+            <img src="/images/logos/logo.png" alt="Black Iron Athletics">
             <button class="side-menu-close" onclick="closeSideMenu()" aria-label="Close menu">&times;</button>
         </div>
         <div class="side-menu-links">
-            <a href="/">Home</a>
-            <a href="about">About Us</a>
-            <a href="about#mission" class="sub-link">Our Mission</a>
-            <a href="about#team" class="sub-link">Meet the Team</a>
-            <a href="programs" class="sub-link">Programs</a>
-            <a href="schedule" class="sub-link">Class Schedule</a>
-            <a href="getting-started">Getting Started</a>
-            <a href="getting-started#membership" class="sub-link">Membership Options</a>
-            <a href="getting-started#faqs" class="sub-link">FAQs</a>
-            <a href="media">Media</a>
-            <a href="blog/">Blog</a>
-            <a href="contact">Contact</a>
+            <a href="/getting-started">Getting Started</a>
+            <a href="/schedule">Schedule</a>
+            <a href="/pricing">Pricing</a>
+            <details class="m-acc"><summary>Programs</summary>
+                <a href="/programs" class="sub-link">All programs</a>
+                <a href="/programs#group-classes" class="sub-link">Strength &amp; Conditioning</a>
+                <a href="/programs#personal-training" class="sub-link">Personal Training</a>
+                <a href="/programs#nutrition-coaching" class="sub-link">Nutrition Coaching</a>
+                <a href="/programs#open-gym" class="sub-link">Open Gym</a>
+                <a href="/programs#recovery" class="sub-link">Recovery Room</a>
+            </details>
+            <details class="m-acc"><summary>About Us</summary>
+                <a href="/about" class="sub-link">Our Mission</a>
+                <a href="/about#team" class="sub-link">Meet the Team</a>
+                <a href="/media" class="sub-link">Media</a>
+            </details>
+            <a href="/faq">FAQs</a>
+            <a href="/blog">Blog</a>
+            <a href="/contact">Contact</a>
         </div>
         <div class="side-menu-footer">
-            <a href="#" onclick="closeSideMenu(); openLeadModal(); return false;">Book Free Consultation</a>
+            <a href="https://book.blackironathletics.com/book" onclick="closeSideMenu();">Book a Free Consult</a>
         </div>
     </div>
 
     <main id="main-content">
 
-    <!-- Hero Section -->
-    <section class="hero">
-        <img src="images/training/group-training.webp" alt="Programs at Black Iron Athletics" class="hero-bg" fetchpriority="high">
-        <div class="hero-container">
-            <div class="hero-content">
-                <div class="hero-subtitle">Black Iron Athletics</div>
-                <h1>Our Programs in Frisco, TX</h1>
-                <p>From coach-led group classes to 1-on-1 personal training, nutrition coaching, and open gym access -- we have everything you need to reach your goals.</p>
+    <!-- ============ HERO ============ -->
+    <section class="hero hero-short no-top" aria-label="Programs at Black Iron Athletics">
+        <div class="hero-bg">
+            <img class="ph-soft" src="/images/team/coach-briefing.webp" alt="Coach briefing a group class on the training floor at Black Iron Athletics" fetchpriority="high">
+        </div>
+        <div class="hero-in wrap">
+            <span class="eyebrow eyebrow-y">Programs &middot; Frisco, TX</span>
+            <h1 class="display">Everything<br><span class="outline">we coach.</span></h1>
+            <p class="lead">Four ways to train, one standard: a coach who knows your name. Strength &amp; Conditioning classes are the flagship. Personal training, nutrition coaching, and open gym cover the rest of your week. A recovery room opens with the new building in October 2026.</p>
+            <div class="hero-ctas">
+                <a class="btn btn-y" href="https://book.blackironathletics.com/book">Book a Free Consult</a>
+                <a class="btn btn-ghost" href="/schedule">See the Schedule</a>
             </div>
         </div>
     </section>
 
-    <!-- ========== GROUP CLASSES ========== -->
-    <section id="group-classes" class="section">
-        <div class="section-container">
-            <div class="section-header reveal">
-                <div class="section-subtitle">Coach-Led Classes</div>
-                <h2 class="section-title">Group Classes</h2>
-            </div>
-
-            <div class="content-block">
-                <p>Coach-led group classes are the heart of Black Iron Athletics. After over a decade as a CrossFit affiliate, we evolved our programming into something better -- taking the best elements of functional fitness and combining them with smarter structure, more predictable results, and less wear and tear on the body. Every class is led by a certified coach, scales to every fitness level, and is designed to build real-world strength, endurance, and community. If you are looking for a CrossFit alternative in Frisco that delivers the same intensity and camaraderie without the affiliation, you have found it.</p>
-            </div>
-
-            <!-- Class Type Highlight Cards -->
-            <div class="class-types-grid reveal-stagger">
-                <div class="class-type-card type-sc reveal">
-                    <div class="class-type-icon"><i class="fa-solid fa-weight-hanging"></i></div>
-                    <h3>Strength &amp; Conditioning</h3>
-                    <p>Our mainstay program. Built from over a decade of CrossFit coaching experience with a modern approach. Each 60-minute session includes functional strength work, HIIT-style metabolic conditioning (metcons), and skill development. Think AMRAPs, EMOMs, and workout-of-the-day style programming -- all with smarter structure and expert coaching.</p>
+    <!-- ============ GROUP CLASSES ============ -->
+    <section id="group-classes" class="sect alt">
+        <div class="wrap">
+            <span class="eyebrow rv">The flagship</span>
+            <h2 class="rv">Strength &amp; Conditioning.<br><span class="outline">Coached every rep.</span></h2>
+            <div class="stakes-grid">
+                <div>
+                    <div class="prose">
+                        <p class="lead rv">One hour, programmed weeks ahead. Cycled strength progressions, planned intensity, and conditioning balanced against the barbell work &mdash; never a random workout of the day.</p>
+                        <p class="rv">We spent over a decade as a CrossFit affiliate before we built something better. The intensity and the camaraderie stayed. The randomness and the wear-and-tear didn&rsquo;t. If you&rsquo;ve been searching for a CrossFit alternative in Frisco, this is the class.</p>
+                    </div>
+                    <div class="fears">
+                        <div class="fear rv"><b>Programmed, not random</b><p>Strength and conditioning balanced every single week, on a plan you can see coming.</p></div>
+                        <div class="fear rv"><b>A coach on every rep</b><p>Form first, load second. We push when you need it and pull you back when you&rsquo;re getting ahead of yourself.</p></div>
+                        <div class="fear rv"><b>Built for decades</b><p>Longevity is the backbone. You&rsquo;re here to pick up your kids at 60, not to get hurt at 35.</p></div>
+                    </div>
                 </div>
-                <div class="class-type-card type-weightlifting reveal">
-                    <div class="class-type-icon"><i class="fa-solid fa-dumbbell"></i></div>
-                    <h3>Weightlifting</h3>
-                    <p>Olympic weightlifting focused on improving your lifts and maximizing your potential with a barbell. Whether you're learning the clean &amp; jerk for the first time or chasing a new PR, this class is built for progress.</p>
-                </div>
-                <div class="class-type-card type-hyrox reveal">
-                    <div class="class-type-icon"><i class="fa-solid fa-person-running"></i></div>
-                    <h3>Hyrox (Open Gym)</h3>
-                    <p>Available during open gym hours for self-guided training. Our facility is equipped with everything you need to prepare for Hyrox competition including running stations and functional fitness equipment. Train at your own pace using our structured programming or create your own workouts.</p>
+                <figure class="stakes-img rv"><img class="ph" src="/images/training/group-warmup.webp" alt="Group class warming up together on the training floor" loading="lazy" width="3600" height="2400"></figure>
+            </div>
+
+            <div class="levels-block">
+                <span class="eyebrow rv">Three levels, one floor</span>
+                <p class="lead levels-intro rv">Every class is programmed at three levels. Same movement pattern, same clock, different target &mdash; so a first-month beginner and a 10-year athlete train side by side without either one compromising. The system flexes so the member doesn&rsquo;t have to.</p>
+                <div class="lvl-grid">
+                    <div class="lvl rv"><b>Level 1 &middot; Learn it</b><p>New, or coming back after years off. Own the movement before you load it. Nobody rushes you.</p></div>
+                    <div class="lvl rv"><b>Level 2 &middot; Build it</b><p>Solid mechanics, growing engine. Where most members live &mdash; and get strong for years.</p></div>
+                    <div class="lvl rv"><b>Level 3 &middot; Test it</b><p>For the seasoned athlete chasing an edge. Bigger loads, same standard, a coach watching anyway.</p></div>
                 </div>
             </div>
 
-            <!-- Philosophy Callout -->
-            <div class="callout-block reveal">
-                <p>"All movement is good movement. We offer different classes because people have different passions — but the mission never changes: sweat together, grow together, and enjoy the process."</p>
+            <div class="cta-row rv">
+                <a class="btn btn-y" href="https://book.blackironathletics.com/book">Book a Free Consult</a>
+                <a class="btn btn-ghost" href="/schedule">See the Class Schedule</a>
             </div>
-
-            <div style="text-align: center; margin-top: 4rem; display: flex; gap: 1.5rem; justify-content: center; flex-wrap: wrap;">
-                <a href="schedule" class="btn-secondary">View Class Schedule</a>
-                <a href="#" onclick="openLeadModal(); return false;" class="btn-primary">Book Free Consultation</a>
+            <div class="quotes quotes-one rv">
+                <div class="quote">
+                    <blockquote>&ldquo;It&rsquo;s where I go when I&rsquo;m feeling strong, when I&rsquo;m struggling, when I need to clear my head, or when I simply want to invest in becoming a better version of myself.&rdquo;</blockquote>
+                    <cite>&mdash; Asher B., member</cite>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- ========== PERSONAL TRAINING ========== -->
-    <section id="personal-training" class="section section-alt">
-        <div class="section-container">
-            <div class="section-header reveal">
-                <div class="section-subtitle">1-on-1 Coaching</div>
-                <h2 class="section-title">Personal Training</h2>
+    <!-- ============ HOW WE PROGRAM ============
+         EVERGREEN by design: no calendar dates, so this never goes
+         stale. Update only if the cycle STRUCTURE changes. -->
+    <section id="programming" class="sect">
+        <div class="wrap">
+            <span class="eyebrow rv">How we program</span>
+            <h2 class="rv">Programmed.<br><span class="outline">Not random.</span></h2>
+            <p class="lead rv">Most gyms write a workout the night before. We write ten weeks at a time. You repeat the lifts long enough to actually adapt to them, and you retest at the end so the progress is a number, not a feeling.</p>
+
+            <div class="cycle-head rv" style="margin-top:46px">
+                <span class="cycle-tag">A recent cycle &middot; &ldquo;Last Rep&rdquo;</span>
+                <span class="cycle-span">10 weeks &middot; Test &rarr; Build &rarr; Deload &rarr; Build &rarr; Retest</span>
             </div>
 
-            <div class="content-block">
-                <p>Personal training at Black Iron Athletics is dedicated 1-on-1 time with a certified coach who designs everything around YOU. Every session, every rep, every program detail is built specifically for your body, your goals, and your timeline. Your programs are customized, progressive, and data-driven so you always know where you stand and exactly what comes next.</p>
+            <div class="cycle rv">
+                <div class="cyc intro"><b>W1</b><span class="cyc-ph">Intro</span><span class="wknote">Learn the lifts</span></div>
+                <div class="cyc test"><b>W2</b><span class="cyc-ph">Test</span><span class="wknote">Set your numbers</span></div>
+                <div class="cyc build"><b>W3</b><span class="cyc-ph">Build</span><span class="wknote">5s</span></div>
+                <div class="cyc build"><b>W4</b><span class="cyc-ph">Build</span><span class="wknote">3s</span></div>
+                <div class="cyc build"><b>W5</b><span class="cyc-ph">Build</span><span class="wknote">5/3/1</span></div>
+                <div class="cyc deload"><b>W6</b><span class="cyc-ph">Deload</span><span class="wknote">Back to school</span></div>
+                <div class="cyc build"><b>W7</b><span class="cyc-ph">Build</span><span class="wknote">5s &middot; +5%</span></div>
+                <div class="cyc build"><b>W8</b><span class="cyc-ph">Build</span><span class="wknote">3s &middot; +5%</span></div>
+                <div class="cyc build"><b>W9</b><span class="cyc-ph">Build</span><span class="wknote">5/3/1 &middot; +5%</span></div>
+                <div class="cyc test"><b>W10</b><span class="cyc-ph">Retest</span><span class="wknote">Beat week 2</span></div>
             </div>
 
-            <div class="feature-grid reveal-stagger">
-                <div class="feature-card-centered type-pt reveal" style="background: var(--black);">
-                    <div class="feature-icon"><i class="fa-solid fa-clipboard-list"></i></div>
-                    <h3>Custom Programming</h3>
-                    <p>Every program is built specifically for your goals -- no cookie-cutter templates.</p>
-                </div>
-
-                <div class="feature-card-centered type-pt reveal" style="background: var(--black);">
-                    <div class="feature-icon"><i class="fa-solid fa-user-shield"></i></div>
-                    <h3>1-on-1 Coaching</h3>
-                    <p>Undivided attention every session, focused entirely on you.</p>
-                </div>
-
-                <div class="feature-card-centered type-pt reveal" style="background: var(--black);">
-                    <div class="feature-icon"><i class="fa-solid fa-bullseye"></i></div>
-                    <h3>Form &amp; Technique</h3>
-                    <p>Detailed movement correction so you move better and lift safer.</p>
-                </div>
+            <div class="cycle-key rv">
+                <span><i style="--k:var(--ph-intro)"></i> Intro</span>
+                <span><i style="--k:var(--ph-test)"></i> Test &amp; retest</span>
+                <span><i style="--k:var(--ph-build)"></i> Build</span>
+                <span><i style="--k:var(--ph-deload)"></i> Deload</span>
             </div>
 
-            <div style="text-align: center; margin-top: 4rem;">
-                <a href="#" onclick="openLeadModal(); return false;" class="btn-primary">Book Free Consultation</a>
+            <p class="cycle-note rv">Your training max stays the same all ten weeks. The second wave runs every percentage five points heavier than the first. Week ten retests every lift and all three benchmarks against the numbers you set in week two &mdash; same movements, same standards, so the comparison is honest.</p>
+
+            <div class="deload-note rv">
+                <span class="eyebrow eyebrow-y" style="margin-bottom:12px">Why the deload lands where it does</span>
+                <p>Week six of that cycle was back-to-school week. That was not an accident. We plan the lighter week for the week your life gets heavier &mdash; so nothing gets missed, nothing gets skipped, and you come back in week seven ready to push instead of digging out of a hole.</p>
+            </div>
+
+            <h3 class="rv" style="margin-top:56px;font-size:1.35rem">Three tests. Ours. Same ones, every cycle.</h3>
+            <p class="rv" style="margin-top:14px;max-width:64ch">Written in house, run in week two, run again in week ten. Your only competition is the number you set eight weeks earlier.</p>
+            <div class="bench-grid rv">
+                <div class="bench"><b>Humble Beginnings</b><span>Descending ladder</span><p>Dumbbell thrusters, box jump overs, pull-ups. The reps come down as the fatigue climbs.</p></div>
+                <div class="bench"><b>Forged in Fire</b><span>Ascending ladder</span><p>Rower calories and burpees, climbing every round. A pacing test, start to finish.</p></div>
+                <div class="bench"><b>Breaking Ground</b><span>Heavy plus skill</span><p>Deadlifts, double unders, handstand push-ups. Strength held together under fatigue.</p></div>
+            </div>
+
+            <h3 class="rv" style="margin-top:56px;font-size:1.35rem">Every week has the same shape</h3>
+            <p class="rv" style="margin-top:14px;max-width:64ch">The lifts and the conditioning change. The rhythm does not. You always know what you are walking into.</p>
+
+            <div class="wkgrid rv">
+                <div class="wkday">
+                    <header><b>Mon</b><span>Olympic lifting</span></header>
+                    <div class="blk"><em>Warm-up</em><p class="mins">10 min</p></div>
+                    <div class="blk"><em>Skill</em><p>Clean progressions <span class="mins">&middot; 6 min</span></p></div>
+                    <div class="blk"><em>Strength</em><p>Clean &amp; jerk, wave sets <span class="mins">&middot; 30 min</span></p></div>
+                    <div class="blk"><em>Conditioning</em><p>Short AMRAP <span class="mins">&middot; 10 min</span></p></div>
+                </div>
+                <div class="wkday">
+                    <header><b>Tue</b><span>Gymnastics</span></header>
+                    <div class="blk"><em>Warm-up</em><p class="mins">10 min</p></div>
+                    <div class="blk"><em>Gymnastics</em><p>Pulling strength, midline <span class="mins">&middot; 20 min</span></p></div>
+                    <div class="blk"><em>Conditioning</em><p>Intervals, work-to-rest <span class="mins">&middot; 18 min</span></p></div>
+                </div>
+                <div class="wkday">
+                    <header><b>Wed</b><span>Upper body strength</span></header>
+                    <div class="blk"><em>Warm-up</em><p class="mins">10 min</p></div>
+                    <div class="blk"><em>Strength</em><p>Bench press, wave sets <span class="mins">&middot; 25 min</span></p></div>
+                    <div class="blk"><em>Conditioning</em><p>EMOM <span class="mins">&middot; 16 min</span></p></div>
+                </div>
+                <div class="wkday">
+                    <header><b>Thu</b><span>Muscle &amp; aerobic</span></header>
+                    <div class="blk"><em>Warm-up</em><p class="mins">4 min</p></div>
+                    <div class="blk"><em>Gymnastics</em><p>Handstand work <span class="mins">&middot; 12 min</span></p></div>
+                    <div class="blk"><em>Body building</em><p>Accessory volume <span class="mins">&middot; 20 min</span></p></div>
+                    <div class="blk"><em>Conditioning</em><p>Zone 2, conversational <span class="mins">&middot; 15 min</span></p></div>
+                </div>
+                <div class="wkday">
+                    <header><b>Fri</b><span>Squat</span></header>
+                    <div class="blk"><em>Warm-up</em><p class="mins">10 min</p></div>
+                    <div class="blk"><em>Strength</em><p>Front squat, wave sets <span class="mins">&middot; 25 min</span></p></div>
+                    <div class="blk"><em>Conditioning</em><p>Rounds for effort <span class="mins">&middot; 15 min</span></p></div>
+                </div>
+                <div class="wkday">
+                    <header><b>Sat</b><span>Partner day</span></header>
+                    <div class="blk"><em>Warm-up</em><p class="mins">10 min</p></div>
+                    <div class="blk"><em>Strength</em><p>Pressing <span class="mins">&middot; 20 min</span></p></div>
+                    <div class="blk"><em>Conditioning</em><p>Long partner workout <span class="mins">&middot; 16&ndash;45 min</span></p></div>
+                </div>
+            </div>
+            <p class="small rv" style="margin-top:18px;color:var(--gray)">Thursday is deliberately the light day. Zone 2 means you can hold a conversation the whole time &mdash; that is the point, not a suggestion.</p>
+
+            <div class="cta-row rv" style="margin-top:44px">
+                <a class="btn btn-y" href="https://book.blackironathletics.com/book">Book a Free Consult</a>
+                <a class="btn btn-ghost" href="/blog/how-we-program-strength-training-frisco-tx">Read the full method</a>
             </div>
         </div>
     </section>
 
-    <!-- ========== NUTRITION COACHING ========== -->
-    <section id="nutrition-coaching" class="section">
-        <div class="section-container">
-            <div class="section-header reveal">
-                <div class="section-subtitle">Fuel Your Results</div>
-                <h2 class="section-title">Nutrition Coaching</h2>
-            </div>
-
-            <div class="content-block">
-                <p>Nutrition coaching at Black Iron Athletics is a sustainable, personalized approach to fueling your body the right way. You'll work 1-on-1 with a dedicated coach who builds a nutrition strategy designed specifically for you -- whether that means tracking macros, intuitive eating, or something in between. No guilt, no gimmicks, just a clear plan and real results that last.</p>
-            </div>
-
-            <div class="feature-grid reveal-stagger">
-                <div class="feature-card-centered type-nutrition reveal">
-                    <div class="feature-icon"><i class="fa-solid fa-apple-whole"></i></div>
-                    <h3>Personalized Meal Planning</h3>
-                    <p>Custom nutrition plans built around your lifestyle and food preferences.</p>
+    <!-- ============ PERSONAL TRAINING ============ -->
+    <section id="personal-training" class="sect alt">
+        <div class="wrap">
+            <div class="h23-grid">
+                <div>
+                    <span class="eyebrow rv">One-on-one</span>
+                    <h2 class="rv">Personal training.<br><span class="outline">One coach, one plan.</span></h2>
+                    <p class="lead rv">Dedicated one-on-one time with a coach who writes every session for your body, your goals, and your calendar.</p>
+                    <div class="h23-rows">
+                        <div class="h23-row rv"><b>Your program</b><p>Customized, progressive programming &mdash; written for you, rewritten as you progress. No templates.</p></div>
+                        <div class="h23-row rv"><b>Accountability</b><p>One coach who knows your numbers, tracks your progress, and notices when you go quiet.</p></div>
+                        <div class="h23-row rv"><b>Nutrition</b><p>Guidance on the eating part comes with it, so the training and the fuel pull in the same direction.</p></div>
+                        <div class="h23-row rv"><b>The price</b><p>$120&ndash;150 per hour, depending on the coach and the plan. <a href="/pricing">See pricing</a> for the full breakdown.</p></div>
+                    </div>
+                    <div class="cta-row rv">
+                        <a class="arrow-link" href="https://book.blackironathletics.com/book">Talk to a coach <svg width="16" height="12" viewBox="0 0 16 12" fill="none" aria-hidden="true"><path d="M10 1l5 5-5 5M15 6H1" stroke="currentColor" stroke-width="1.5"/></svg></a>
+                    </div>
                 </div>
-
-                <div class="feature-card-centered type-nutrition reveal">
-                    <div class="feature-icon"><i class="fa-solid fa-clipboard-list"></i></div>
-                    <h3>1-on-1 Coaching</h3>
-                    <p>Regular check-ins to review progress, make adjustments, and keep you on track.</p>
-                </div>
-
-                <div class="feature-card-centered type-nutrition reveal">
-                    <div class="feature-icon"><i class="fa-solid fa-seedling"></i></div>
-                    <h3>Habit-Based Approach</h3>
-                    <p>Sustainable habits that stick -- not crash diets that burn out.</p>
-                </div>
-            </div>
-
-            <div style="text-align: center; margin-top: 4rem; display: flex; justify-content: center; gap: 1.5rem; flex-wrap: wrap;">
-                <a href="#" onclick="openLeadModal(); return false;" class="btn-primary">Book Free Consultation</a>
-                <a href="fuelpath" class="btn-secondary">Nutrition Coaching</a>
-                <a href="macro-calculator" class="btn-secondary" style="border-color: var(--yellow); color: var(--yellow);">Free Macro Calculator</a>
+                <figure class="h23-img rv"><img class="ph" src="/images/members/member-coaching.webp" alt="Coach working one-on-one with a member during a personal training session" loading="lazy" width="2400" height="3600"></figure>
             </div>
         </div>
     </section>
 
-    <!-- ========== OPEN GYM ========== -->
-    <section id="open-gym" class="section section-alt">
-        <div class="section-container">
-            <div class="section-header reveal">
-                <div class="section-subtitle">Train on Your Schedule</div>
-                <h2 class="section-title">Open Gym</h2>
-            </div>
-
-            <div class="content-block">
-                <p>Open Gym gives you access to the Black Iron Athletics facility between classes and after hours, 7 days a week. It's the ultimate flexibility for athletes who want to train on their own schedule. Entry is simple and secure with key fob access, and the facility is climate-controlled and well-maintained. You can also follow our structured programming at your own pace.</p>
-            </div>
-
-            <div class="class-types-grid reveal-stagger">
-                <div class="class-type-card reveal" style="background: var(--black);">
-                    <div class="class-type-icon"><i class="fa-solid fa-clock"></i></div>
-                    <h3>7-Day Access</h3>
-                    <p>Train between classes and after hours — the gym is always open for you.</p>
+    <!-- ============ NUTRITION COACHING ============ -->
+    <section id="nutrition-coaching" class="sect">
+        <div class="wrap">
+            <div class="stakes-grid">
+                <div>
+                    <span class="eyebrow rv">The other 23 hours</span>
+                    <h2 class="rv">Nutrition coaching.<br><span class="outline">A real coach. Our own app.</span></h2>
+                    <div class="prose">
+                        <p class="lead rv">Training is one hour. What you do with the other 23 decides most of your results.</p>
+                        <p class="rv">You get a real human coach: weekly check-ins, honest feedback, and targets that adjust as life happens. Not a plan emailed once and never mentioned again.</p>
+                        <p class="rv">You also get <a href="https://fuelpath.app">FuelPath</a>, the nutrition app our own team built. It helps you track what you eat, learn what your body actually needs, and see your progress as it happens. It keeps your coach in the loop too, so they can see how your week went and step in where it helps. The app does the legwork. The coach does the coaching.</p>
+                        <p class="rv">And because it lives on your phone, it works anywhere. You don&rsquo;t have to train at Black Iron to be coached by us.</p>
+                    </div>
+                    <div class="nprice rv">
+                        <div class="nprice-cell now">
+                            <span class="nprice-tag">Founding rate</span>
+                            <b>$200<span>/mo</span></b>
+                            <p>Open now, while the founding group fills.</p>
+                        </div>
+                        <div class="nprice-cell next">
+                            <span class="nprice-tag">After that</span>
+                            <b>$250<span>/mo</span></b>
+                            <p>What nutrition coaching goes to next.</p>
+                        </div>
+                    </div>
+                    <p class="nprice-note rv">Coaching runs month to month, with or without a gym membership.</p>
+                    <div class="cta-row rv">
+                        <a class="btn btn-ghost" href="https://book.blackironathletics.com/book">Ask About Coaching</a>
+                        <a class="arrow-link" href="https://fuelpath.app/calculator">Free macro calculator <svg width="16" height="12" viewBox="0 0 16 12" fill="none" aria-hidden="true"><path d="M10 1l5 5-5 5M15 6H1" stroke="currentColor" stroke-width="1.5"/></svg></a>
+                    </div>
                 </div>
-                <div class="class-type-card reveal" style="background: var(--black);">
-                    <div class="class-type-icon"><i class="fa-solid fa-dumbbell"></i></div>
-                    <h3>Full Equipment Access</h3>
-                    <p>Barbells, dumbbells, rigs, cardio machines, and more.</p>
-                </div>
-                <div class="class-type-card reveal" style="background: var(--black);">
-                    <div class="class-type-icon"><i class="fa-solid fa-clipboard-list"></i></div>
-                    <h3>Access to Programming</h3>
-                    <p>Follow expert-designed workouts at your own pace.</p>
-                </div>
-            </div>
-
-            <div style="text-align: center; margin-top: 4rem;">
-                <a href="#" onclick="openLeadModal(); return false;" class="btn-primary">Book Free Consultation</a>
+                <figure class="stakes-img rv"><img class="ph" src="/images/members/member-laughing.webp" alt="Member laughing on the gym floor after a session" loading="lazy" width="1024" height="1536"></figure>
             </div>
         </div>
     </section>
 
-    <!-- ========== FINAL CTA ========== -->
-    <section class="cta-section">
-        <div class="reveal-scale" style="max-width: 100%; margin: 0 auto; padding: 0 2rem;">
-            <h2 class="cta-title">Ready to Get Started?</h2>
-            <p class="cta-subtitle">Book your free consultation and find the program that fits your goals.</p>
-            <a href="#" onclick="openLeadModal(); return false;" class="btn-primary">Book Free Consultation</a>
+    <!-- ============ OPEN GYM ============ -->
+    <section id="open-gym" class="sect alt">
+        <div class="wrap">
+            <div class="h23-grid">
+                <div>
+                    <span class="eyebrow rv">On your schedule</span>
+                    <h2 class="rv">Open gym.<br><span class="outline">Seven days a week.</span></h2>
+                    <p class="lead rv">The floor is yours between classes and after hours, seven days a week. Self-directed training with the whole facility behind it.</p>
+                    <div class="h23-rows">
+                        <div class="h23-row rv"><b>Access</b><p>Seven days a week, between classes and after hours. Key fob entry, climate-controlled, no front desk to wait on.</p></div>
+                        <div class="h23-row rv"><b>Programming</b><p>Every open gym member gets our full structured programming. Follow it at your own pace, or run your own plan.</p></div>
+                        <div class="h23-row rv"><b>Olympic weightlifting &middot; seasonal</b><p>Snatch, clean &amp; jerk, and the barbell work behind them are in our programming year-round. The dedicated weightlifting block is a seasonal specialty &mdash; it runs a few times a year, and it goes fast. Ask when the next one opens.</p></div>
+                        <div class="h23-row rv"><b>HYROX affiliate programming</b><p>Official HYROX programming, straight from HYROX HQ &mdash; the same race-day prep their competitive athletes run. It is in our programming continuously, seven days a week on the open gym floor.</p></div>
+                    </div>
+                    <p class="price-line rv"><b>Open Gym Only is $50 a month.</b> Or pair open gym with unlimited classes for $240. <a href="/pricing">See pricing</a>.</p>
+                    <div class="cta-row rv">
+                        <a class="arrow-link" href="/schedule">See open gym hours <svg width="16" height="12" viewBox="0 0 16 12" fill="none" aria-hidden="true"><path d="M10 1l5 5-5 5M15 6H1" stroke="currentColor" stroke-width="1.5"/></svg></a>
+                    </div>
+                </div>
+                <figure class="h23-img rv"><img class="ph" src="/images/training/snatch-action.webp" alt="Member mid-snatch during open gym at Black Iron Athletics" loading="lazy" width="1024" height="1536"></figure>
+            </div>
         </div>
     </section>
 
-    <!-- Map Section -->
+    <!-- ============ RECOVERY ROOM ============ -->
+    <section id="recovery" class="sect">
+        <div class="wrap">
+            <span class="eyebrow eyebrow-y rv">Opening October 2026</span>
+            <h2 class="rv">Recovery.<br><span class="outline">A room of its own.</span></h2>
+            <p class="lead rv">Most gyms fit recovery in wherever there&rsquo;s space left over. In the new building it gets its own room.</p>
+            <div class="h23-rows">
+                <div class="h23-row rv"><b>Cold plunges</b><p>Two of them, so nobody&rsquo;s standing around waiting a turn after class lets out.</p></div>
+                <div class="h23-row rv"><b>The sauna</b><p>One sauna, five seats. Infrared and red light therapy are built in, and it&rsquo;s still a traditional heat sauna &mdash; so it does get hot.</p></div>
+                <div class="h23-row rv"><b>Opening</b><p>It opens with the new gym in October 2026 at 279 Main St, Suite 110, one door down from where we train today. Nothing pauses while we build it.</p></div>
+                <div class="h23-row rv"><b>Pricing</b><p>Not set yet. We&rsquo;ll publish it closer to opening day.</p></div>
+            </div>
+            <figure class="rec-solo rv">
+                <img src="/images/renderings/2026-08-01-recovery-room-rendering.jpg" alt="Rendering of the new recovery room at Suite 110, with two cold plunges and a five-person sauna" loading="lazy" width="600" height="335">
+                <figcaption>The recovery room &middot; Rendering &mdash; details may change</figcaption>
+            </figure>
+            <p class="rec-note rv">The 23 hours matter more than the one. This is part of that.</p>
+            <div class="cta-row rv">
+                <a class="arrow-link" href="/contact">See the new space <svg width="16" height="12" viewBox="0 0 16 12" fill="none" aria-hidden="true"><path d="M10 1l5 5-5 5M15 6H1" stroke="currentColor" stroke-width="1.5"/></svg></a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============ FINAL CTA ============ -->
+    <section class="final" aria-label="Get started">
+        <div class="slash" aria-hidden="true"></div>
+        <div class="final-in wrap">
+            <span class="eyebrow rv">Start here</span>
+            <h2 class="rv">Not sure which<br><span class="outline">program fits?</span></h2>
+            <p class="lead rv">Book a free consult. Twenty minutes with a coach, no pressure &mdash; we&rsquo;ll point you at the right program, and if we&rsquo;re not the right fit, we&rsquo;ll say so.</p>
+            <div class="final-ctas rv">
+                <a class="btn btn-y" href="https://book.blackironathletics.com/book">Book a Free Consult</a>
+                <p class="alt-offer">Or try a <a href="https://blackiron.wodify.com/OnlineSalesPage/Main?q=Classes%7COnlineMembershipId%3D235166%26LocationId%3D10409" target="_blank" rel="noopener" onclick="if(window.fbq)fbq('trackCustom','DayPassClick');">$30 day pass</a> &mdash; credited toward your first month if you join.</p>
+            </div>
+            <p class="speed rv">Every membership starts with a free consultation and the Foundations week.</p>
+        </div>
+    </section>
+
+    <!-- ============ MAP ============ -->
     <div class="map-section">
         <iframe
             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3344.9875647886857!2d-96.89026308820058!3d33.15034697358084!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x864c3a240f77e3f7%3A0x9f460209df528d6e!2sBlack%20Iron%20Athletics!5e0!3m2!1sen!2sus!4v1737509000000!5m2!1sen!2sus"
@@ -1248,65 +429,64 @@
         </iframe>
     </div>
 
-    <!-- Footer -->
-
     </main>
 
+    <!-- ============ FOOTER (identical on every page) ============ -->
     <footer>
-        <div class="footer-container">
-            <div class="footer-section">
-                <a href="/">
-                    <img src="images/logos/logo.png" alt="Black Iron Athletics" class="footer-logo" loading="lazy">
-                </a>
-                <p style="color: var(--light-gray); margin-bottom: 1rem;">Forging everyday people into everyday athletes through strength, community, and purpose.</p>
-                <p style="color: var(--light-gray); font-size: 0.85rem;">Proudly serving Frisco, Prosper, The Colony, Little Elm, McKinney, Plano, Celina &amp; North Dallas.</p>
-            </div>
-
-            <div class="footer-section">
-                <h3>Quick Links</h3>
-                <ul>
+        <div class="wrap">
+            <div class="foot-top">
+                <div>
+                    <div class="foot-brand">
+                        <img src="/images/logos/Anvil-WHITE.png" alt="Black Iron Athletics anvil mark" loading="lazy" width="88" height="58">
+                        <div>
+                            <b>Black Iron<br>Athletics</b>
+                        </div>
+                    </div>
+                    <p class="foot-mission">We help everyday people become everyday athletes.</p>
+                    <p class="foot-note">Veteran-owned &middot; Est. 2013 &middot; Serving Frisco, Prosper, The Colony, Little Elm, McKinney, Plano, Celina &amp; North Dallas.</p>
+                </div>
+                <ul class="foot-col">
+                    <li><b>Quick links</b></li>
                     <li><a href="/">Home</a></li>
-                    <li><a href="schedule">Class Schedule</a></li>
-                    <li><a href="faq">FAQ</a></li>
+                    <li><a href="/pricing">Pricing</a></li>
+                    <li><a href="/schedule">Class Schedule</a></li>
+                    <li><a href="/faq">FAQ</a></li>
                     <li><a href="#" onclick="openSubscribeModal(); return false;">Subscribe</a></li>
                     <li><a href="#" onclick="openCancelModal(); return false;">Cancel Membership</a></li>
-                    <li><a href="privacy-policy">Privacy Policy</a></li>
-                    <li><a href="terms">Terms &amp; Conditions</a></li>
-                    <li><a href="privacy-policy#sms-terms">SMS Terms</a></li>
+                    <li><a href="/privacy-policy">Privacy Policy</a></li>
+                    <li><a href="/terms">Terms &amp; Conditions</a></li>
+                    <li><a href="/privacy-policy#sms-terms">SMS Terms</a></li>
+                </ul>
+                <ul class="foot-col">
+                    <li><b>Find us</b></li>
+                    <li>279 Main St, Suite 122<br>Frisco, TX 75036</li>
+                    <li>Suite 110 &mdash; our new home next door &mdash; opening October 2026.</li>
+                    <li><a href="tel:+19727857036">(972) 785-7036</a></li>
+                </ul>
+                <ul class="foot-col">
+                    <li><b>Hours</b></li>
+                    <li>Open gym 7 days a week.</li>
+                    <li><a href="/schedule">See the class schedule</a></li>
                 </ul>
             </div>
-
-            <div class="footer-section">
-                <h3>Contact</h3>
-                <p style="color: var(--light-gray); margin-bottom: 1rem;">
-                    279 Main St #122<br>
-                    Frisco, TX 75036
-                </p>
-                <p style="margin-bottom: 1.5rem;">
-                    <a href="tel:(972) 785-7036" style="color: var(--yellow); font-weight: 700;">(972) 785-7036</a>
-                </p>
+            <div class="foot-bottom">
+                <span>&copy; 2026 Black Iron Athletics. Veteran-owned &middot; Est. 2013.</span>
+                <span class="foot-social">
+                    <a href="https://www.instagram.com/blackiron_athletics/" target="_blank" rel="noopener" aria-label="Instagram">
+                        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="4"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="1.1" fill="currentColor" stroke="none"/></svg>
+                    </a>
+                    <a href="https://www.youtube.com/channel/UCF1XjUXEs81OWY70chem6vA" target="_blank" rel="noopener" aria-label="YouTube">
+                        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="2.5" y="5.5" width="19" height="13" rx="3"/><path d="M10 9.5v5l4.5-2.5z" fill="currentColor" stroke="none"/></svg>
+                    </a>
+                    <a href="https://www.facebook.com/BlackIronAthletics/" target="_blank" rel="noopener" aria-label="Facebook">
+                        <svg class="icon-fill" viewBox="0 0 24 24" aria-hidden="true"><path d="M13.5 21v-7h2.4l.4-3h-2.8V9.1c0-.9.3-1.5 1.6-1.5H16.6V4.9c-.3 0-1.2-.1-2.2-.1-2.2 0-3.7 1.3-3.7 3.8V11H8.3v3h2.4v7h2.8z"/></svg>
+                    </a>
+                </span>
             </div>
-
-            <div class="footer-section">
-                <h3>Hours</h3>
-                <p style="color: var(--light-gray); margin-bottom: 1rem;">
-                    Check our class calendar for an up to date schedule.
-                </p>
-                <p style="color: var(--yellow); font-weight: 700;">
-                    Open Gym: 7 Days a Week
-                </p>
-            </div>
-        </div>
-
-        <div class="footer-bottom">
-            <div style="margin-bottom: 1.5rem; display: flex; justify-content: center; gap: 1.5rem; font-size: 1.5rem;">
-                <a href="https://www.instagram.com/blackiron_athletics/" target="_blank" rel="noopener" style="color: var(--light-gray); transition: color 0.3s ease;" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
-                <a href="https://www.youtube.com/channel/UCF1XjUXEs81OWY70chem6vA" target="_blank" rel="noopener" style="color: var(--light-gray); transition: color 0.3s ease;" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
-                <a href="https://www.facebook.com/BlackIronAthletics/" target="_blank" rel="noopener" style="color: var(--light-gray); transition: color 0.3s ease;" aria-label="Facebook"><i class="fa-brands fa-facebook"></i></a>
-            </div>
-            <p>&copy; 2026 Black Iron Athletics. All rights reserved.</p>
         </div>
     </footer>
+
+    <!-- CONTRACT: sticky mobile CTA on all marketing pages (shows at 640px down) -->
 
     <!-- Schema Markup: Service -->
     <script type="application/ld+json">
@@ -1314,11 +494,12 @@
       "@context": "https://schema.org",
       "@type": "Service",
       "name": "Fitness Programs",
-      "description": "Explore all programs at Black Iron Athletics in Frisco, TX — group classes, personal training, nutrition coaching, and open gym access.",
+      "description": "Programs at Black Iron Athletics in Frisco, TX: Strength and Conditioning group classes, personal training, nutrition coaching, and open gym access 7 days a week.",
       "url": "https://www.blackironathletics.com/programs",
       "provider": {
         "@type": "GymAndHealthClub",
         "name": "Black Iron Athletics",
+        "description": "Veteran-owned gym in Frisco, TX, established 2013. Training at 279 Main St, Suite 122 today; our new home at Suite 110 next door opens October 2026.",
         "telephone": "(972) 785-7036",
         "address": {
           "@type": "PostalAddress",
@@ -1343,16 +524,23 @@
             "@type": "Offer",
             "itemOffered": {
               "@type": "Service",
-              "name": "Group Classes",
-              "description": "Coach-led group fitness classes including Strength & Conditioning, Weightlifting, and Hyrox."
+              "name": "Strength & Conditioning Group Classes",
+              "description": "Coach-led Strength and Conditioning classes with cycled progressions, planned intensity, and three levels in every class."
             }
           },
           {
             "@type": "Offer",
+            "priceSpecification": {
+              "@type": "UnitPriceSpecification",
+              "minPrice": 120,
+              "maxPrice": 150,
+              "priceCurrency": "USD",
+              "unitText": "hour"
+            },
             "itemOffered": {
               "@type": "Service",
               "name": "Personal Training",
-              "description": "1-on-1 personal training with custom programming, form correction, and accountability."
+              "description": "One-on-one personal training with customized progressive programming, individual accountability, and nutrition guidance."
             }
           },
           {
@@ -1360,15 +548,17 @@
             "itemOffered": {
               "@type": "Service",
               "name": "Nutrition Coaching",
-              "description": "Personalized nutrition coaching with custom meal plans, coaching calls, and habit-based approach."
+              "description": "One-on-one nutrition coaching with a real human coach, weekly check-ins, and honest feedback, supported by FuelPath, the nutrition app built by our own team."
             }
           },
           {
             "@type": "Offer",
+            "price": 50,
+            "priceCurrency": "USD",
             "itemOffered": {
               "@type": "Service",
               "name": "Open Gym",
-              "description": "Round-the-clock gym access with full equipment and structured programming."
+              "description": "Open gym access 7 days a week, between classes and after hours, with structured programming included."
             }
           }
         ]
@@ -1384,133 +574,99 @@
     }
     </script>
 
-<!-- Lead Capture Popup Modal -->
-<style>
-    .modal-overlay {
-        display: none;
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: rgba(0, 0, 0, 0.9);
-        z-index: 9999;
-        overflow-y: auto;
-        padding: 2rem;
+    <!-- BreadcrumbList Schema -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://www.blackironathletics.com/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Programs",
+            "item": "https://www.blackironathletics.com/programs"
+          }
+      ]
     }
-    .modal-overlay.active {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
-    .modal-container {
-        background: #1a1a1a;
-        border: 2px solid var(--medium-gray);
-        max-width: 600px;
-        width: 100%;
-        position: relative;
-        margin: auto;
-        animation: modalSlideIn 0.3s ease-out;
-    }
-    @keyframes modalSlideIn {
-        from { opacity: 0; transform: translateY(-50px); }
-        to { opacity: 1; transform: translateY(0); }
-    }
-    .modal-close {
-        position: absolute;
-        top: 0.5rem;
-        right: 0.5rem;
-        background: transparent;
-        border: none;
-        color: var(--light-gray);
-        font-size: 2rem;
-        cursor: pointer;
-        line-height: 1;
-        padding: 0.5rem;
-        transition: color 0.3s ease;
-        font-weight: 300;
-        z-index: 10000;
-    }
-    .modal-close:hover { color: var(--yellow); }
-    .modal-container iframe {
-        width: 100%;
-        border: none;
-        display: block;
-    }
-    @media (max-width: 768px) {
-        .modal-overlay { padding: 1rem; }
-    }
-</style>
+    </script>
 
-<div class="modal-overlay" id="leadModal">
-    <div class="modal-container">
-        <button class="modal-close" onclick="closeLeadModal()">&times;</button>
-        <iframe
-            data-src="https://api.leadconnectorhq.com/widget/form/vw0hMdDkTCL6K5N3i7vF"
-            style="width:100%;height:100%;border:none;border-radius:4px"
-            id="inline-vw0hMdDkTCL6K5N3i7vF"
-            data-layout="{'id':'INLINE'}"
-            data-trigger-type="alwaysShow"
-            data-trigger-value=""
-            data-activation-type="alwaysActivated"
-            data-activation-value=""
-            data-deactivation-type="neverDeactivate"
-            data-deactivation-value=""
-            data-form-name="Form 2"
-            data-height="565"
-            data-layout-iframe-id="inline-vw0hMdDkTCL6K5N3i7vF"
-            data-form-id="vw0hMdDkTCL6K5N3i7vF"
-            title="Form 2"
-        ></iframe>
+    <!-- ============ GHL MODALS (iframe blocks VERBATIM — lazy data-src, ids unchanged) ============ -->
+    <div class="modal-overlay" id="leadModal">
+        <div class="modal-container">
+            <button class="modal-close" onclick="closeLeadModal()">&times;</button>
+            <iframe
+                data-src="https://api.leadconnectorhq.com/widget/form/vw0hMdDkTCL6K5N3i7vF"
+                style="width:100%;height:100%;border:none;border-radius:4px"
+                id="inline-vw0hMdDkTCL6K5N3i7vF"
+                data-layout="{'id':'INLINE'}"
+                data-trigger-type="alwaysShow"
+                data-trigger-value=""
+                data-activation-type="alwaysActivated"
+                data-activation-value=""
+                data-deactivation-type="neverDeactivate"
+                data-deactivation-value=""
+                data-form-name="Form 2"
+                data-height="565"
+                data-layout-iframe-id="inline-vw0hMdDkTCL6K5N3i7vF"
+                data-form-id="vw0hMdDkTCL6K5N3i7vF"
+                title="Form 2"
+            ></iframe>
+        </div>
     </div>
-</div>
 
-<div class="modal-overlay" id="cancelModal">
-    <div class="modal-container">
-        <button class="modal-close" onclick="closeCancelModal()">&times;</button>
-        <iframe
-            data-src="https://api.leadconnectorhq.com/widget/form/d4jtjY9fM2Hv9zVTzLwj"
-            style="width:100%;height:100%;border:none;border-radius:4px"
-            id="inline-d4jtjY9fM2Hv9zVTzLwj"
-            data-layout="{'id':'INLINE'}"
-            data-trigger-type="alwaysShow"
-            data-trigger-value=""
-            data-activation-type="alwaysActivated"
-            data-activation-value=""
-            data-deactivation-type="neverDeactivate"
-            data-deactivation-value=""
-            data-form-name="Membership Cancellation Form"
-            data-height="787"
-            data-layout-iframe-id="inline-d4jtjY9fM2Hv9zVTzLwj"
-            data-form-id="d4jtjY9fM2Hv9zVTzLwj"
-            title="Membership Cancellation Form"
-        ></iframe>
+    <div class="modal-overlay" id="cancelModal">
+        <div class="modal-container">
+            <button class="modal-close" onclick="closeCancelModal()">&times;</button>
+            <iframe
+                data-src="https://api.leadconnectorhq.com/widget/form/d4jtjY9fM2Hv9zVTzLwj"
+                style="width:100%;height:100%;border:none;border-radius:4px"
+                id="inline-d4jtjY9fM2Hv9zVTzLwj"
+                data-layout="{'id':'INLINE'}"
+                data-trigger-type="alwaysShow"
+                data-trigger-value=""
+                data-activation-type="alwaysActivated"
+                data-activation-value=""
+                data-deactivation-type="neverDeactivate"
+                data-deactivation-value=""
+                data-form-name="Membership Cancellation Form"
+                data-height="787"
+                data-layout-iframe-id="inline-d4jtjY9fM2Hv9zVTzLwj"
+                data-form-id="d4jtjY9fM2Hv9zVTzLwj"
+                title="Membership Cancellation Form"
+            ></iframe>
+        </div>
     </div>
-</div>
-<div class="modal-overlay" id="subscribeModal">
-    <div class="modal-container">
-        <button class="modal-close" onclick="closeSubscribeModal()">&times;</button>
-        <iframe
-            data-src="https://api.leadconnectorhq.com/widget/form/GnNJNaEX8InuIeGxWjaI"
-            style="width:100%;height:100%;border:none;border-radius:4px"
-            id="inline-GnNJNaEX8InuIeGxWjaI"
-            data-layout="{'id':'INLINE'}"
-            data-trigger-type="alwaysShow"
-            data-trigger-value=""
-            data-activation-type="alwaysActivated"
-            data-activation-value=""
-            data-deactivation-type="neverDeactivate"
-            data-deactivation-value=""
-            data-form-name="Subscribe"
-            data-height="430"
-            data-layout-iframe-id="inline-GnNJNaEX8InuIeGxWjaI"
-            data-form-id="GnNJNaEX8InuIeGxWjaI"
-            title="Subscribe"
-        ></iframe>
+    <div class="modal-overlay" id="subscribeModal">
+        <div class="modal-container">
+            <button class="modal-close" onclick="closeSubscribeModal()">&times;</button>
+            <iframe
+                data-src="https://api.leadconnectorhq.com/widget/form/GnNJNaEX8InuIeGxWjaI"
+                style="width:100%;height:100%;border:none;border-radius:4px"
+                id="inline-GnNJNaEX8InuIeGxWjaI"
+                data-layout="{'id':'INLINE'}"
+                data-trigger-type="alwaysShow"
+                data-trigger-value=""
+                data-activation-type="alwaysActivated"
+                data-activation-value=""
+                data-deactivation-type="neverDeactivate"
+                data-deactivation-value=""
+                data-form-name="Subscribe"
+                data-height="430"
+                data-layout-iframe-id="inline-GnNJNaEX8InuIeGxWjaI"
+                data-form-id="GnNJNaEX8InuIeGxWjaI"
+                title="Subscribe"
+            ></iframe>
+        </div>
     </div>
-</div>
 
-<script>
+    <!-- ============ PAGE JS: modals + side menu (function names byte-identical to the live site) ============ -->
+    <script>
     function openLeadModal() {
         var modal = document.getElementById('leadModal');
         var iframe = modal.querySelector('iframe');
@@ -1585,36 +741,32 @@
     document.addEventListener('keydown', function(e) {
         if (e.key === 'Escape') closeSideMenu();
     });
-</script>
+    </script>
 
-<script src="https://link.msgsndr.com/js/form_embed.js" type="text/javascript" defer></script>
-<script src="https://widgets.leadconnectorhq.com/loader.js" data-resources-url="https://widgets.leadconnectorhq.com/chat-widget/loader.js" data-widget-id="6995d6d76e6009387f78d31e" defer></script>
+    <!-- ============ PAGE JS: nav scroll state + reveal observer ============ -->
+    <script>
+    (function(){
+        var nav = document.getElementById('nav');
+        function onScroll(){ if (nav) nav.classList.toggle('scrolled', window.scrollY > 24); }
+        window.addEventListener('scroll', onScroll, {passive:true});
+        onScroll();
 
-<script>
-// ===== SCROLL REVEAL =====
-(function() {
-    var staggerParents = document.querySelectorAll('.reveal-stagger');
-    staggerParents.forEach(function(parent) {
-        var children = parent.querySelectorAll('.reveal');
-        children.forEach(function(child, i) {
-            child.style.setProperty('--reveal-index', i);
-        });
-    });
+        var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        var items = document.querySelectorAll('.rv');
+        if (reduced || !('IntersectionObserver' in window)) {
+            items.forEach(function(el){ el.classList.add('on'); });
+            return;
+        }
+        var io = new IntersectionObserver(function(entries){
+            entries.forEach(function(e){
+                if (e.isIntersecting) { e.target.classList.add('on'); io.unobserve(e.target); }
+            });
+        }, {threshold:0.12, rootMargin:'0px 0px -40px 0px'});
+        items.forEach(function(el){ io.observe(el); });
+    })();
+    </script>
 
-    var observer = new IntersectionObserver(function(entries) {
-        entries.forEach(function(entry) {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('revealed');
-                observer.unobserve(entry.target);
-            }
-        });
-    }, { threshold: 0.15, rootMargin: '-50px' });
-
-    document.querySelectorAll('.reveal, .reveal-scale').forEach(function(el) {
-        observer.observe(el);
-    });
-})();
-</script>
+<!-- ============ A11Y TAIL IIFE — copied VERBATIM from index.html. Do not edit. ============ -->
 <script>
 // ===== ACCESSIBILITY: KEYBOARD NAV & FOCUS TRAP =====
 (function() {
@@ -1687,26 +839,31 @@
 })();
 </script>
 
-    <!-- BreadcrumbList Schema -->
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "BreadcrumbList",
-      "itemListElement": [
-          {
-            "@type": "ListItem",
-            "position": 1,
-            "name": "Home",
-            "item": "https://www.blackironathletics.com/"
-          },
-          {
-            "@type": "ListItem",
-            "position": 2,
-            "name": "Programs",
-            "item": "https://www.blackironathletics.com/programs.html"
-          }
-      ]
-    }
+<script src="https://link.msgsndr.com/js/form_embed.js" type="text/javascript" defer></script>
+<script src="https://widgets.leadconnectorhq.com/loader.js" data-resources-url="https://widgets.leadconnectorhq.com/chat-widget/loader.js" data-widget-id="6995d6d76e6009387f78d31e" defer></script>
+    <!-- Thumb bar: reveal once the hero's own consult button has scrolled by -->
+    <script>
+    (function() {
+      var bar = document.querySelector('.thumbbar');
+      if (!bar) return;
+      bar.classList.add('tb-auto');
+      var shown = false, ticking = false;
+      function check() {
+        ticking = false;
+        var past = window.scrollY > window.innerHeight * 0.6;
+        if (past === shown) return;
+        shown = past;
+        bar.classList.toggle('tb-show', past);
+      }
+      function onScroll() {
+        if (ticking) return;
+        ticking = true;
+        window.requestAnimationFrame(check);
+      }
+      window.addEventListener('scroll', onScroll, { passive: true });
+      window.addEventListener('resize', onScroll, { passive: true });
+      check();
+    })();
     </script>
 </body>
 </html>

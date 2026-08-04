@@ -2,7 +2,7 @@
 
 ## What is Black Iron Athletics?
 
-Black Iron Athletics is a veteran-owned gym located in Frisco, TX, founded in 2013 by Mike Manning. We offer coach-led group training, Olympic weightlifting, HYROX training, personal training, nutrition coaching, and open gym access. Over 3,000 members have trained here and we hold a 5.0 star Google rating.
+Black Iron Athletics is a veteran-owned gym located in Frisco, TX, founded in 2013. Mike Manning came on board in 2014 and has been sole owner since 2018. We offer coach-led Strength and Conditioning classes, personal training, nutrition coaching, and open gym access. Over 3,000 members have trained here and we hold a 5.0 star Google rating.
 
 ## Is Black Iron Athletics a CrossFit gym?
 
@@ -34,15 +34,15 @@ No. Open Gym is available 7 days a week, but only between classes and after hour
 
 ## Who is the owner?
 
-Mike Manning is the Owner and Head Coach. He founded Black Iron Athletics in 2013 because he missed the feeling of being part of a team and community that pushed each other to show up and be better. The gym is veteran-owned.
+Mike Manning is the Owner and Head Coach. He came to Black Iron Athletics in 2014 and bought out his partners in 2018, becoming sole owner. He stayed because he missed the feeling of being part of a team and community that pushed each other to show up and be better. The gym is veteran-owned.
 
 ## Who are the coaches?
 
-Our coaching staff includes Mike Manning (Owner and Head Coach), Kristin (General Manager), Aileen, Evan, Amber, and Emily.
+Our coaching staff includes Mike Manning (Owner and Head Coach), Kristin (General Manager), Aileen, Evan, Amber, Emily, and Lawrence.
 
 ## What programs do you offer?
 
-We offer Group Training (Strength and Conditioning), Olympic Weightlifting, HYROX Training, Personal Training, Nutrition Coaching, and Open Gym access.
+We offer Group Training (Strength and Conditioning), Personal Training, Nutrition Coaching, and Open Gym access. The Olympic lifts are in our programming year-round, and the dedicated weightlifting block is a seasonal specialty that runs a few times a year. HYROX affiliate programming runs in open gym seven days a week.
 
 ## What is Group Training?
 
@@ -50,11 +50,11 @@ High-energy, coach-led classes for all fitness levels. Every class includes stru
 
 ## What is Olympic Weightlifting?
 
-Dedicated classes focused on the snatch, clean and jerk. Technique-focused coaching for beginners through advanced lifters.
+The snatch, clean and jerk, and the barbell work behind them are in our programming year-round, and open gym members can train them anytime. The dedicated weightlifting block is a seasonal specialty — it runs a few times a year and it goes fast. Ask when the next one opens.
 
 ## What is HYROX Training?
 
-Specialized training for HYROX race preparation. Combines functional fitness with race-specific conditioning.
+Black Iron is a HYROX affiliate. The programming comes straight from HYROX HQ, the same race prep their competitive athletes follow, and it runs in open gym seven days a week. There is no HYROX class on the schedule, so you run it on your own time with full access to sleds, rowers, ski ergs, and sandbags.
 
 ## What is Personal Training?
 
@@ -62,43 +62,47 @@ Specialized training for HYROX race preparation. Combines functional fitness wit
 
 ## Do you offer nutrition coaching?
 
-Yes. Our nutrition coaching program includes personalized macro targets, the FuelPath food tracking tool, barcode scanning, daily compliance tracking, and ongoing coach support. We also offer a free Macro Calculator at https://www.blackironathletics.com/macro-calculator.
+Yes. You work with a real human coach: weekly check-ins, honest feedback, and targets that adjust as life happens. It runs on FuelPath, the nutrition app our own team built, which helps you track what you eat, learn what your body needs, and see your progress, while keeping your coach in the loop. We also offer a free Macro Calculator at https://fuelpath.app/calculator.
+
+## How much does nutrition coaching cost?
+
+Nutrition coaching is $200 a month at the founding rate, which is open now while the founding group fills. After that it goes to $250 a month. It runs month to month, with or without a gym membership.
 
 ## Can I do nutrition coaching without a gym membership?
 
-Yes, nutrition coaching is available as a standalone service.
+Yes, nutrition coaching is available as a standalone service. It works anywhere, so you do not have to train at Black Iron to be coached by us.
 
 ## What membership options do you offer?
 
-We offer four plans: Standard (3x/week), Unlimited + Open Gym (most popular), Personal Training, and Open Gym Only. Visit https://www.blackironathletics.com/getting-started for details.
+We offer four plans: Standard ($200/month, 3 classes a week), Unlimited + Open Gym ($240/month, most popular), Open Gym Only ($50/month), and Personal Training ($120–150/hour). Visit https://www.blackironathletics.com/getting-started for details.
 
 ## What is the Standard membership?
 
-The Standard plan includes 3 coach-led classes per week in Strength and Conditioning, Olympic Weightlifting, and HYROX, plus a monthly body composition scan and community events.
+The Standard plan is $200 a month. It includes 3 coach-led Strength and Conditioning classes per week, a monthly body composition scan, and community events.
 
 ## What is the Unlimited + Open Gym membership?
 
-Our most popular plan. It includes unlimited coach-led classes, Open Gym access 7 days a week between classes and after hours, private gym access, all class types, monthly body composition scans, and community events.
+Our most popular plan, at $240 a month. It includes unlimited coach-led classes, Open Gym access 7 days a week between classes and after hours, private gym access, monthly body composition scans, and community events.
 
 ## What is the Open Gym Only membership?
 
-Open Gym access 7 days a week between classes and after hours, private gym access, and access to all our structured programming for self-directed training.
+The Open Gym Only plan is $50 a month. It includes Open Gym access 7 days a week between classes and after hours, private gym access, and access to all our structured programming for self-directed training.
 
 ## What is the Personal Training membership?
 
-1-on-1 coaching sessions with customized programming, individual accountability, nutrition guidance, monthly body composition scans, and community events.
+Personal Training runs $120–150 per hour. One coach, one plan: 1-on-1 sessions with customized programming, individual accountability, nutrition guidance, monthly body composition scans, and community events.
 
 ## How much does a membership cost?
 
-Pricing is personalized based on your goals and selected plan. Book a free consultation to discuss options: https://www.blackironathletics.com/book
+Standard is $200 a month (3 classes a week). Unlimited + Open Gym is $240 a month — our most popular plan. Open Gym Only is $50 a month. Personal Training runs $120–150 per hour. Every membership starts with a free consultation and the Foundations week, and a $30 day pass is credited toward your first month if you join. Book your free consultation at https://book.blackironathletics.com/book or buy a day pass online at https://blackiron.wodify.com/OnlineSalesPage/Main?q=Classes%7COnlineMembershipId%3D235166%26LocationId%3D10409
 
 ## How do I get started?
 
-Three easy steps: 1) Book a free consultation to meet with a coach and discuss your goals (20 minutes, no pressure). 2) We build a custom plan based on your fitness level and goals. 3) Start classes with full coaching support from day one. Book here: https://www.blackironathletics.com/book
+Three easy steps: 1) Book a free consultation to meet with a coach and discuss your goals (20 minutes, no pressure). 2) We build a custom plan based on your fitness level and goals. 3) Start classes with full coaching support from day one. Book here: https://book.blackironathletics.com/book
 
 ## How do I book a consultation?
 
-You can book a free consultation at https://www.blackironathletics.com/book. It takes about 20 minutes and there is no pressure to sign up.
+You can book a free consultation at https://book.blackironathletics.com/book. It takes about 20 minutes and there is no pressure to sign up.
 
 ## Is Black Iron Athletics beginner-friendly?
 
@@ -122,7 +126,7 @@ Every session is coach-led with real programming, not random workouts. We combin
 
 ## Do you offer a day pass?
 
-Yes! For $30 you can try any class you would like before joining. If you sign up, we will credit that towards your first month.
+Yes. For $30 you can try any class you would like before joining. If you sign up, we will credit that towards your first month. You can buy your day pass and sign the waiver online here: https://blackiron.wodify.com/OnlineSalesPage/Main?q=Classes%7COnlineMembershipId%3D235166%26LocationId%3D10409
 
 ## What is your cancellation policy?
 
@@ -130,7 +134,7 @@ We require 30 days written notice to cancel your membership.
 
 ## Do you offer military or first responder discounts?
 
-Yes! As a veteran-owned gym, we proudly support those who serve. Ask us about our military and first responder pricing.
+Yes. Military and first responders get 5% off any membership. We are veteran-owned and proud of it — supporting those who serve is part of who we are.
 
 ## Is the gym climate controlled?
 
@@ -144,13 +148,21 @@ Yes, free parking is available right outside our facility.
 
 Full range: barbells, dumbbells, kettlebells, squat racks, rigs, rowers, bikes, ski ergs, and more.
 
+## Do you have a sauna or a cold plunge?
+
+Not yet, but they are coming. The recovery room opens with our new space at 279 Main St, Suite 110 in October 2026. It will have two cold plunges and one sauna that seats five, with infrared and red light therapy built in. It is still a traditional heat sauna, so it does get hot.
+
+## How much will the recovery room cost?
+
+Pricing is not set yet. We will announce it closer to opening in October 2026. You can read what is going in the room at https://www.blackironathletics.com/programs#recovery
+
 ## What are macros?
 
 Macronutrients: protein, carbohydrates, and fat. Tracking macros gives you more control over body composition than tracking calories alone.
 
 ## What is TDEE?
 
-Total Daily Energy Expenditure. It is the total number of calories your body burns in a day, including exercise. Our free Macro Calculator helps you estimate your TDEE and set macro targets: https://www.blackironathletics.com/macro-calculator
+Total Daily Energy Expenditure. It is the total number of calories your body burns in a day, including exercise. Our free Macro Calculator helps you estimate your TDEE and set macro targets: https://fuelpath.app/calculator
 
 ## Do you track progress?
 
@@ -170,7 +182,7 @@ You can view our current class schedule at https://www.blackironathletics.com/sc
 
 ## Do you have a blog?
 
-Yes! We publish fitness and nutrition articles at https://www.blackironathletics.com/blog
+Yes. We publish fitness and nutrition articles at https://www.blackironathletics.com/blog
 
 ## How can I contact you?
 
@@ -194,7 +206,7 @@ Yes. Creatine monohydrate is the most researched supplement in sports nutrition.
 
 ## What is the FuelPath supplement protocol?
 
-FuelPath uses a 4-phase annual nutrition cycle with phase-specific supplement adjustments. Phases 1 and 3 (Baseline and Maintain): Follow the foundation stack as-is with creatine at 5g daily. Phase 2 (Cut): Stop creatine (it causes water retention that masks fat loss) and add Thorne Weight Management Stack. Phase 4 (Build): Restart creatine at 10g daily and add Glutamine 5g daily for recovery. Learn more at https://www.blackironathletics.com/fuelpath-supplements
+Supplements shift with your phase. In Fuel, run the foundation stack with creatine at 5g daily. In Cut, creatine is usually paused because the water retention masks fat loss on the scale. In Build, creatine goes back in and recovery support matters more. Your coach adjusts it with your phase. You can shop our recommended Thorne supplements at https://www.thorne.com/u/blackiron
 
 ## What supplements should I take during a cut?
 
@@ -210,19 +222,19 @@ Every Thorne product is NSF Certified for Sport, meaning it has been independent
 
 ## Where can I buy supplements?
 
-You can shop our recommended Thorne supplements at https://www.thorne.com/u/blackiron. All products are NSF Certified for Sport. You can also find specific product recommendations on our supplements page at https://www.blackironathletics.com/fuelpath-supplements
+You can shop our recommended Thorne supplements at https://www.thorne.com/u/blackiron. All products are NSF Certified for Sport. You can also find specific product recommendations on our supplements page at https://www.thorne.com/u/blackiron
 
-## What is the FuelPath 4-Phase system?
+## What is the FuelPath phase system?
 
-FuelPath is our annual nutrition framework with 4 phases: Phase 1 Baseline (Jan-Mar) establishes your maintenance calories, Phase 2 Cut (Apr-Jun) creates a caloric deficit for fat loss, Phase 3 Maintain (Jul-Sep) locks in your new body composition, and Phase 4 Build (Oct-Dec) adds a caloric surplus for muscle growth. Each phase has specific macro targets, supplement adjustments, and hydration protocols. Learn more at https://www.blackironathletics.com/fuelpath
+FuelPath is our nutrition system, built around three phases. Fuel means eating at your real measured burn to build the base, or to hold a new composition after a cut or a build. Cut is a controlled deficit to strip body fat while holding strength. Build is a controlled surplus to add muscle. Your coach builds the order and the length of each phase around you — it is not a fixed calendar. Learn more at https://fuelpath.app
 
 ## How much water should I drink?
 
-Hydration needs vary by phase and activity level. Electrolytes (sodium, potassium, and magnesium) are just as important as water volume, especially during cutting phases when overall food and mineral intake is lower. If you feel flat, crampy, or low energy despite drinking enough water, electrolytes are the first thing to check. Details at https://www.blackironathletics.com/fuelpath-supplements
+Hydration needs vary by phase and activity level. Electrolytes (sodium, potassium, and magnesium) are just as important as water volume, especially during cutting phases when overall food and mineral intake is lower. If you feel flat, crampy, or low energy despite drinking enough water, electrolytes are the first thing to check. Details at https://www.thorne.com/u/blackiron
 
 ## Do you have a macro calculator?
 
-Yes! Our free Macro Calculator helps you estimate your TDEE and set personalized macro targets for protein, carbs, and fat based on your goals. Try it at https://www.blackironathletics.com/macro-calculator
+Yes. Our free Macro Calculator helps you estimate your TDEE and set personalized macro targets for protein, carbs, and fat based on your goals. Try it at https://fuelpath.app/calculator
 
 ## What is the best protein powder?
 
@@ -246,7 +258,7 @@ Every class is about 60 minutes and follows a structured format: warm-up, skill 
 
 ## Can I bring a friend to try a class?
 
-Yes! Guests are welcome to try a class with a $30 day pass. If they sign up for a membership, we credit that $30 towards their first month.
+Yes. Guests are welcome to try a class with a $30 day pass. If they sign up for a membership, we credit that $30 towards their first month. They can pay and sign the waiver online here: https://blackiron.wodify.com/OnlineSalesPage/Main?q=Classes%7COnlineMembershipId%3D235166%26LocationId%3D10409
 
 ## How big are your classes?
 
@@ -282,7 +294,7 @@ Monthly body composition scans are included with all memberships. They measure y
 
 ## Do you have a referral program?
 
-Yes! We have a referral program for current members. Ask us for details.
+Yes. We have a referral program for current members. Ask us for details.
 
 ## What community events do you host?
 
@@ -330,11 +342,11 @@ Owner Mike Manning is a medically retired Marine Corps combat veteran. He served
 
 ## Are you moving to a new location?
 
-We are getting ready for our next chapter — a bigger facility with a larger focus on nutrition and recovery. Until those new doors open, you will find us where we have always been: 279 Main St #122, Frisco, TX 75036.
+Yes — right next door. We train at 279 Main St, Suite 122 today, and our new, bigger space at Suite 110 opens October 2026. It includes a recovery room with two cold plunges and a five-person sauna that runs infrared and red light on top of traditional heat. Same street, same parking, same good people.
 
 ## How much do gyms in Frisco cost?
 
-Gym prices in Frisco range from about $10 a month at big-box gyms to $200 or more at boutique studios. We wrote an honest breakdown at https://www.blackironathletics.com/blog/gym-membership-cost-frisco-tx. Our own pricing is personalized by plan, and we will walk you through every number at your free consultation — zero pressure.
+Gym prices in Frisco range from about $10 a month at big-box gyms to $200 or more at boutique studios. We wrote an honest breakdown at https://www.blackironathletics.com/blog/gym-membership-cost-frisco-tx. Our own numbers: Standard is $200 a month, Unlimited + Open Gym is $240 a month, Open Gym Only is $50 a month, and Personal Training runs $120–150 per hour. A free consultation walks you through what fits — zero pressure.
 
 ## I am nervous about starting
 
