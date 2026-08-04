@@ -27,6 +27,7 @@ const EXCLUDED_FILES = new Set([
   'personal-training.html',
   // Redirected off-site via vercel.json — must not appear in the sitemap
   'macro-calculator.html',
+  'fuelpath.html',
   'fuelpath-admin.html',
   'fuelpath-dashboard.html',
   'fuelpath-calendar.html',
@@ -46,7 +47,6 @@ const EXCLUDED_FILES = new Set([
 const URL_CONFIG = {
   '/':                                          { priority: '1.0', changefreq: 'weekly' },
   '/getting-started':                           { priority: '0.9', changefreq: 'monthly' },
-  '/fuelpath':                                  { priority: '0.9', changefreq: 'monthly' },
   '/about':                                     { priority: '0.8', changefreq: 'monthly' },
   '/programs':                                  { priority: '0.8', changefreq: 'monthly' },
   '/schedule':                                  { priority: '0.8', changefreq: 'weekly' },

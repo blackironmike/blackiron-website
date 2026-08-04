@@ -58,6 +58,7 @@
     { "source": "/blueprint", "destination": "/fuelpath", "permanent": true },
 
     { "source": "/macro-calculator", "destination": "https://fuelpath.app/calculator", "permanent": true },
+    { "source": "/fuelpath", "destination": "https://fuelpath.app", "permanent": true },
     { "source": "/fuelpath-dashboard", "destination": "https://fuelpath.app/app", "permanent": true },
     { "source": "/fuelpath-tracker", "destination": "https://fuelpath.app/app/food-log", "permanent": true },
     { "source": "/fuelpath-admin", "destination": "https://fuelpath.app/app/coach", "permanent": true },
