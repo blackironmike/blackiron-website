@@ -62,7 +62,7 @@ Black Iron is a HYROX affiliate. The programming comes straight from HYROX HQ, t
 
 ## Do you offer nutrition coaching?
 
-Yes. You work with a real human coach: weekly check-ins, honest feedback, and targets that adjust as life happens. It runs on FuelPath, the nutrition app our own team built, which helps you track what you eat, learn what your body needs, and see your progress, while keeping your coach in the loop. We also offer a free Macro Calculator at https://www.blackironathletics.com/macro-calculator.
+Yes. You work with a real human coach: weekly check-ins, honest feedback, and targets that adjust as life happens. It runs on FuelPath, the nutrition app our own team built, which helps you track what you eat, learn what your body needs, and see your progress, while keeping your coach in the loop. We also offer a free Macro Calculator at https://fuelpath.app/calculator.
 
 ## How much does nutrition coaching cost?
 
@@ -94,15 +94,15 @@ Personal Training runs $120–150 per hour. One coach, one plan: 1-on-1 sessions
 
 ## How much does a membership cost?
 
-Standard is $200 a month (3 classes a week). Unlimited + Open Gym is $240 a month — our most popular plan. Open Gym Only is $50 a month. Personal Training runs $120–150 per hour. Every membership starts with a free consultation and the Foundations week, and a $30 day pass is credited toward your first month if you join. Book your free consultation at https://www.blackironathletics.com/book or buy a day pass online at https://blackiron.wodify.com/OnlineSalesPage/Main?q=Classes%7COnlineMembershipId%3D235166%26LocationId%3D10409
+Standard is $200 a month (3 classes a week). Unlimited + Open Gym is $240 a month — our most popular plan. Open Gym Only is $50 a month. Personal Training runs $120–150 per hour. Every membership starts with a free consultation and the Foundations week, and a $30 day pass is credited toward your first month if you join. Book your free consultation at https://book.blackironathletics.com/book or buy a day pass online at https://blackiron.wodify.com/OnlineSalesPage/Main?q=Classes%7COnlineMembershipId%3D235166%26LocationId%3D10409
 
 ## How do I get started?
 
-Three easy steps: 1) Book a free consultation to meet with a coach and discuss your goals (20 minutes, no pressure). 2) We build a custom plan based on your fitness level and goals. 3) Start classes with full coaching support from day one. Book here: https://www.blackironathletics.com/book
+Three easy steps: 1) Book a free consultation to meet with a coach and discuss your goals (20 minutes, no pressure). 2) We build a custom plan based on your fitness level and goals. 3) Start classes with full coaching support from day one. Book here: https://book.blackironathletics.com/book
 
 ## How do I book a consultation?
 
-You can book a free consultation at https://www.blackironathletics.com/book. It takes about 20 minutes and there is no pressure to sign up.
+You can book a free consultation at https://book.blackironathletics.com/book. It takes about 20 minutes and there is no pressure to sign up.
 
 ## Is Black Iron Athletics beginner-friendly?
 
@@ -162,7 +162,7 @@ Macronutrients: protein, carbohydrates, and fat. Tracking macros gives you more 
 
 ## What is TDEE?
 
-Total Daily Energy Expenditure. It is the total number of calories your body burns in a day, including exercise. Our free Macro Calculator helps you estimate your TDEE and set macro targets: https://www.blackironathletics.com/macro-calculator
+Total Daily Energy Expenditure. It is the total number of calories your body burns in a day, including exercise. Our free Macro Calculator helps you estimate your TDEE and set macro targets: https://fuelpath.app/calculator
 
 ## Do you track progress?
 
@@ -206,7 +206,7 @@ Yes. Creatine monohydrate is the most researched supplement in sports nutrition.
 
 ## What is the FuelPath supplement protocol?
 
-FuelPath uses a 4-phase annual nutrition cycle with phase-specific supplement adjustments. Phases 1 and 3 (Baseline and Maintain): Follow the foundation stack as-is with creatine at 5g daily. Phase 2 (Cut): Stop creatine (it causes water retention that masks fat loss) and add Thorne Weight Management Stack. Phase 4 (Build): Restart creatine at 10g daily and add Glutamine 5g daily for recovery. Learn more at https://www.blackironathletics.com/fuelpath-supplements
+Supplements shift with your phase. In Fuel, run the foundation stack with creatine at 5g daily. In Cut, creatine is usually paused because the water retention masks fat loss on the scale. In Build, creatine goes back in and recovery support matters more. Your coach adjusts it with your phase. You can shop our recommended Thorne supplements at https://www.thorne.com/u/blackiron
 
 ## What supplements should I take during a cut?
 
@@ -222,19 +222,19 @@ Every Thorne product is NSF Certified for Sport, meaning it has been independent
 
 ## Where can I buy supplements?
 
-You can shop our recommended Thorne supplements at https://www.thorne.com/u/blackiron. All products are NSF Certified for Sport. You can also find specific product recommendations on our supplements page at https://www.blackironathletics.com/fuelpath-supplements
+You can shop our recommended Thorne supplements at https://www.thorne.com/u/blackiron. All products are NSF Certified for Sport. You can also find specific product recommendations on our supplements page at https://www.thorne.com/u/blackiron
 
-## What is the FuelPath 4-Phase system?
+## What is the FuelPath phase system?
 
-FuelPath is our annual nutrition framework with 4 phases: Phase 1 Baseline (Jan-Mar) establishes your maintenance calories, Phase 2 Cut (Apr-Jun) creates a caloric deficit for fat loss, Phase 3 Maintain (Jul-Sep) locks in your new body composition, and Phase 4 Build (Oct-Dec) adds a caloric surplus for muscle growth. Each phase has specific macro targets, supplement adjustments, and hydration protocols. Learn more at https://www.blackironathletics.com/fuelpath
+FuelPath is our nutrition system, built around three phases. Fuel means eating at your real measured burn to build the base, or to hold a new composition after a cut or a build. Cut is a controlled deficit to strip body fat while holding strength. Build is a controlled surplus to add muscle. Your coach builds the order and the length of each phase around you — it is not a fixed calendar. Learn more at https://fuelpath.app
 
 ## How much water should I drink?
 
-Hydration needs vary by phase and activity level. Electrolytes (sodium, potassium, and magnesium) are just as important as water volume, especially during cutting phases when overall food and mineral intake is lower. If you feel flat, crampy, or low energy despite drinking enough water, electrolytes are the first thing to check. Details at https://www.blackironathletics.com/fuelpath-supplements
+Hydration needs vary by phase and activity level. Electrolytes (sodium, potassium, and magnesium) are just as important as water volume, especially during cutting phases when overall food and mineral intake is lower. If you feel flat, crampy, or low energy despite drinking enough water, electrolytes are the first thing to check. Details at https://www.thorne.com/u/blackiron
 
 ## Do you have a macro calculator?
 
-Yes. Our free Macro Calculator helps you estimate your TDEE and set personalized macro targets for protein, carbs, and fat based on your goals. Try it at https://www.blackironathletics.com/macro-calculator
+Yes. Our free Macro Calculator helps you estimate your TDEE and set personalized macro targets for protein, carbs, and fat based on your goals. Try it at https://fuelpath.app/calculator
 
 ## What is the best protein powder?
 

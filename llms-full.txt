@@ -48,7 +48,7 @@ Specialized training for HYROX race preparation. Combines functional fitness wit
 1-on-1 coaching with customized programming, individual accountability, nutrition guidance, and monthly body composition scans.
 
 ### Nutrition Coaching
-Macro-based nutrition coaching. Includes personalized macro targets, the FuelPath food tracking tool, barcode scanning, daily compliance tracking, and ongoing coach support. The gym provides a free Macro Calculator at https://www.blackironathletics.com/macro-calculator.
+Macro-based nutrition coaching. Includes personalized macro targets, the FuelPath food tracking tool, barcode scanning, daily compliance tracking, and ongoing coach support. The gym provides a free Macro Calculator at https://fuelpath.app/calculator.
 
 ### Open Gym
 Access to all equipment for self-directed training between classes and after hours, 7 days a week. Available with Unlimited and Open Gym memberships.
@@ -86,7 +86,7 @@ Included with all memberships. Track progress with accurate body composition dat
 - Access to all programming
 - Self-directed training
 
-Membership pricing is personalized based on goals and selected plan. Book a free consultation to discuss options: https://www.blackironathletics.com/book
+Membership pricing is published: Standard $200/mo, Unlimited + Open Gym $240/mo, Open Gym Only $50/mo, Personal Training $120-150/hour, Nutrition Coaching $200/mo founding rate. Memberships open with a 90-day commitment, then go month to month. Book a free consultation: https://book.blackironathletics.com/book
 
 ## Getting Started Process
 
@@ -107,7 +107,7 @@ Membership pricing is personalized based on goals and selected plan. Book a free
 Yes. Every workout is scaled to your ability. Coaches are present in every class to guide your movements and modify exercises. Many members start with zero gym experience.
 
 ### What types of classes do you offer?
-Group Training (Strength & Conditioning), Olympic Weightlifting, and HYROX Training. All classes are coach-led with structured programming.
+Coach-led Group Training (Strength & Conditioning) is the scheduled class. The Olympic lifts are in the programming year-round and the dedicated weightlifting block runs seasonally. Black Iron is a HYROX affiliate — that programming comes from HYROX HQ and runs in open gym seven days a week; there is no HYROX class on the schedule.
 
 ### What's included in my membership?
 All memberships include coach-led classes, monthly body composition scans, and community events. Unlimited memberships add open gym access 7 days a week. Personal Training adds 1-on-1 coaching and nutrition guidance.
@@ -131,7 +131,7 @@ Macronutrients: protein, carbohydrates, and fat. Tracking macros gives you more 
 Yes. Nutrition coaching is available as part of the training approach. The gym provides a free Macro Calculator and the FuelPath food tracking system for daily compliance tracking.
 
 ### How much does a membership cost?
-Pricing is personalized based on your goals and selected plan. Book a free consultation to discuss: https://www.blackironathletics.com/book
+Standard $200/mo (3 classes a week), Unlimited + Open Gym $240/mo, Open Gym Only $50/mo, Personal Training $120-150/hour, Nutrition Coaching $200/mo founding rate. Every membership starts with a free consultation and the Foundations week, and memberships open with a 90-day commitment, then go month to month. Book a free consultation: https://book.blackironathletics.com/book
 
 ### Where is Black Iron Athletics located?
 279 Main St #122, Frisco, TX 75036. The gym serves Frisco, Prosper, The Colony, Little Elm, McKinney, Plano, Celina, and North Dallas.
@@ -141,9 +141,9 @@ Open Gym is available 7 days a week, between classes and after hours. Coach-led 
 
 ## Tools & Resources
 
-- Macro Calculator: https://www.blackironathletics.com/macro-calculator
-- FuelPath Nutrition Tracker: https://www.blackironathletics.com/fuelpath-tracker
-- FuelPath Philosophy: https://www.blackironathletics.com/fuelpath-philosophy
+- Macro Calculator: https://fuelpath.app/calculator
+- FuelPath Nutrition Tracker: https://fuelpath.app
+- FuelPath Philosophy: https://fuelpath.app
 - Blog: https://www.blackironathletics.com/blog/
 
 ## Social Media
@@ -157,7 +157,7 @@ Open Gym is available 7 days a week, between classes and after hours. Coach-led 
 - Homepage: https://www.blackironathletics.com
 - About Us: https://www.blackironathletics.com/about
 - Getting Started: https://www.blackironathletics.com/getting-started
-- Book Consultation: https://www.blackironathletics.com/book
+- Book Consultation: https://book.blackironathletics.com/book
 - Programs: https://www.blackironathletics.com/programs
 - Class Schedule: https://www.blackironathletics.com/schedule
 - FAQ: https://www.blackironathletics.com/faq
