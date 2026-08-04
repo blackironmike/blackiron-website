@@ -59,7 +59,7 @@ const URL_CONFIG = {
   '/blog/strength-training-over-40':            { priority: '0.8', changefreq: 'monthly' },
   '/blog/veteran-owned-gym-frisco-tx':          { priority: '0.8', changefreq: 'monthly' },
   '/blog/early-morning-gym-classes-frisco-tx':  { priority: '0.8', changefreq: 'monthly' },
-  '/blog/':                                     { priority: '0.7', changefreq: 'weekly' },
+  '/blog':                                     { priority: '0.7', changefreq: 'weekly' },
   '/mike-manning':                              { priority: '0.7', changefreq: 'monthly' },
   '/blog/calisthenics-training-frisco-tx':      { priority: '0.7', changefreq: 'monthly' },
   '/privacy-policy':                            { priority: '0.3', changefreq: 'yearly' },
@@ -95,7 +95,7 @@ function findHtmlFiles(dir, rootDir) {
 function fileToUrlPath(filePath) {
   if (filePath === 'index.html') return '/';
   if (filePath.endsWith('/index.html')) {
-    return '/' + filePath.replace('/index.html', '/');
+    return '/' + filePath.replace('/index.html', '');
   }
   return '/' + filePath.replace(/\.html$/, '');
 }
