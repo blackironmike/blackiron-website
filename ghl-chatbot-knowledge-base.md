@@ -2,7 +2,7 @@
 
 ## What is Black Iron Athletics?
 
-Black Iron Athletics is a veteran-owned gym located in Frisco, TX, founded in 2013 by Mike Manning. We offer coach-led Strength and Conditioning classes, personal training, nutrition coaching, and open gym access. Over 3,000 members have trained here and we hold a 5.0 star Google rating.
+Black Iron Athletics is a veteran-owned gym located in Frisco, TX, founded in 2013. Mike Manning came on board in 2014 and has been sole owner since 2018. We offer coach-led Strength and Conditioning classes, personal training, nutrition coaching, and open gym access. Over 3,000 members have trained here and we hold a 5.0 star Google rating.
 
 ## Is Black Iron Athletics a CrossFit gym?
 
@@ -34,7 +34,7 @@ No. Open Gym is available 7 days a week, but only between classes and after hour
 
 ## Who is the owner?
 
-Mike Manning is the Owner and Head Coach. He founded Black Iron Athletics in 2013 because he missed the feeling of being part of a team and community that pushed each other to show up and be better. The gym is veteran-owned.
+Mike Manning is the Owner and Head Coach. He came to Black Iron Athletics in 2014 and bought out his partners in 2018, becoming sole owner. He stayed because he missed the feeling of being part of a team and community that pushed each other to show up and be better. The gym is veteran-owned.
 
 ## Who are the coaches?
 
