@@ -1066,18 +1066,16 @@ footer{border-top:1px solid var(--steel-line);padding:clamp(56px,7vw,88px) 0 0}
    never close the counters. Owner picked the heavier rim 2026-08-02. */
 .outline{--olr:clamp(1.5px,.027em,3.6px)}
 
-/* Photo-backed surfaces (hero, building band): the letter interior
-   is TRANSPARENT so the photograph reads through the letterform.
-   The halo technique cannot do this (it needs an opaque interior to
-   mask the stacked copies), so these two surfaces use a real stroke
-   instead. Montserrat Black's corners stay sharp at display sizes.
-   The stroke is set in em so it scales with the type and reads at
-   the same weight on a phone as on a desktop; .030em matches the
-   weight of the halo build it replaces. Owner-picked 2026-08-01.
+/* Photo-backed surfaces (hero, building band) pin the interior to
+   pure black rather than inheriting the section's --hole, so the
+   rim reads at full contrast over a photograph.
 
-   The @supports guard matters: without -webkit-text-stroke a
-   transparent fill would render the headline invisible, so any
-   browser lacking it keeps the opaque-interior fallback below. */
+   A transparent interior was considered here, to let the photo read
+   through the letterform. It is NOT what ships and should not be
+   reintroduced: it needs -webkit-text-stroke instead of the halo,
+   and at Montserrat Black's tracking the strokes of adjacent
+   letters collide and close the counters. The opaque interior is
+   the whole reason the stacked-shadow halo stays clean. */
 .hero .outline,.building .outline{--hole:#000}
 
 

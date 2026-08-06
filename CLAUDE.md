@@ -129,19 +129,44 @@ If you encounter the logo and aren't sure which version to use, ask. Don't gener
 
 ### Colors
 
-The locked five-color palette. Use hex codes verbatim in CSS.
+Two palettes, one brand. The spatial palette is for the physical space. The
+digital palette is what ships on screen. Don't mix them — a wood tone on a web
+page reads as an accident, and pure black in a lobby reads as a void.
+
+**Digital palette — screen, social, print collateral.**
+This is what `css/bia.css` ships and what every website page, share card, and
+social asset uses. Use hex codes verbatim.
+
+| Name | Hex | Role | CSS token |
+|------|-----|------|-----------|
+| Black | `#000000` | Primary ground. | `--black` |
+| Coal | `#101010` | Alternating sections, raised cards. | `--coal` |
+| Steel | `#2A2A2A` | 1px rules and borders. | `--steel-line` |
+| White | `#FFFFFF` | Headlines and display type. | `--white` |
+| Grey | `#C7C7C7` | Body copy on dark. | `--gray` |
+| Forge | `#FFD202` | Accent only. CTAs, key highlights. Use sparingly. | `--yellow` |
+
+**Spatial palette — the building, furniture, signage, physical print.**
+From the Spatial Brand Brief. These do not appear in `css/bia.css` and should
+not be used on screen.
 
 | Name | Hex | Role |
 |------|-----|------|
-| Iron | `#1A1D21` | Primary. Backgrounds, dark surfaces, headings on light backgrounds. |
-| Forge | `#F5C518` | Accent only. CTAs, key highlights. Use sparingly. |
-| Smoked Oak | `#B8895A` | Warmth. Wood-tone accents in imagery and limited UI. |
-| Bone | `#F1ECE3` | Soft neutral. Body backgrounds, soft sections. |
-| Worn Leather | `#6B4226` | Furniture and soft goods only — not a UI color. Avoid in web. |
+| Iron | `#1A1D21` | Primary. Dark surfaces and structure. |
+| Smoked Oak | `#B8895A` | Warmth. Wood tones. |
+| Bone | `#F1ECE3` | Soft neutral. Walls and soft surfaces. |
+| Worn Leather | `#6B4226` | Furniture and soft goods only. |
 
-**Dominance rule:** Roughly 60% Iron, 25% Bone, 10% Smoked Oak, 5% Forge. If a page or asset feels like it's "shouting yellow," the ratio is wrong. Forge is a punctuation mark, not a sentence.
+**Dominance rule:** on screen, roughly 90% black and coal, 8% white and grey,
+2% Forge. If a page or asset feels like it's "shouting yellow," the ratio is
+wrong. Forge is a punctuation mark, not a sentence — about a dozen yellow
+moments per page, maximum.
 
-**Greens, blues, reds, oranges:** Not in the palette. Don't introduce new colors without explicit approval. If a stock photo or member photo contains green plants or a blue sky, that's fine — those are environmental, not brand colors.
+**Greens, blues, reds, oranges:** Not in the palette. Don't introduce new colors
+without explicit approval. The one standing exception is the cycle phase colors
+in `css/bia.css`, which are data colors labelling a training block, never
+decoration. If a stock photo or member photo contains green plants or a blue
+sky, that's fine — those are environmental, not brand colors.
 
 ### Typography
 
@@ -153,6 +178,26 @@ The locked five-color palette. Use hex codes verbatim in CSS.
 - **Italics:** Use sparingly. Almost never in headlines.
 
 Web font load: Use Google Fonts or self-hosted Montserrat. Do not substitute with Helvetica, Arial, or system fonts unless I explicitly approve a fallback.
+
+**Outline type — the signature display device.** Every headline pairs a solid
+line with an outlined line. The outline is built the one specific way, and it
+matters: a **solid black interior** plus a white rim drawn as eight stacked
+`text-shadow` copies. It is defined once as `.outline` in `css/bia.css` and used
+about 67 times across the site — never rebuild it inline.
+
+Do **not** build it with `color:transparent` and `-webkit-text-stroke`. A
+transparent interior lets adjacent letters show through each other, and at the
+tight tracking Montserrat Black uses, the strokes collide and the counters fill
+in. The rule sets `-webkit-text-stroke:0` on purpose. The opaque interior is
+what masks the stacked copies.
+
+Two custom properties tune it per surface: `--hole` (the interior color, so the
+device works on black and on the coal alternating sections) and `--olc` (the rim
+color). Rim weight is `--olr`, which scales with the type so a phone gets the
+same visual weight as a desktop.
+
+This applies anywhere the brand appears, not just the site — social graphics,
+screen content, print.
 
 ### Imagery
 
