@@ -129,44 +129,42 @@ If you encounter the logo and aren't sure which version to use, ask. Don't gener
 
 ### Colors
 
-Two palettes, one brand. The spatial palette is for the physical space. The
-digital palette is what ships on screen. Don't mix them — a wood tone on a web
-page reads as an accident, and pure black in a lobby reads as a void.
-
-**Digital palette — screen, social, print collateral.**
-This is what `css/bia.css` ships and what every website page, share card, and
-social asset uses. Use hex codes verbatim.
-
-| Name | Hex | Role | CSS token |
-|------|-----|------|-----------|
-| Black | `#000000` | Primary ground. | `--black` |
-| Coal | `#101010` | Alternating sections, raised cards. | `--coal` |
-| Steel | `#2A2A2A` | 1px rules and borders. | `--steel-line` |
-| White | `#FFFFFF` | Headlines and display type. | `--white` |
-| Grey | `#C7C7C7` | Body copy on dark. | `--gray` |
-| Forge | `#FFD202` | Accent only. CTAs, key highlights. Use sparingly. | `--yellow` |
-
-**Spatial palette — the building, furniture, signage, physical print.**
-From the Spatial Brand Brief. These do not appear in `css/bia.css` and should
-not be used on screen.
+The locked five-color palette. Use hex codes verbatim in CSS.
 
 | Name | Hex | Role |
 |------|-----|------|
-| Iron | `#1A1D21` | Primary. Dark surfaces and structure. |
-| Smoked Oak | `#B8895A` | Warmth. Wood tones. |
-| Bone | `#F1ECE3` | Soft neutral. Walls and soft surfaces. |
-| Worn Leather | `#6B4226` | Furniture and soft goods only. |
+| Iron | `#1A1D21` | Primary. Backgrounds, dark surfaces, headings on light backgrounds. |
+| Forge | `#FFD202` | Accent only. CTAs, key highlights. Use sparingly. |
+| Smoked Oak | `#B8895A` | Warmth. Wood-tone accents in imagery and limited UI. |
+| Bone | `#F1ECE3` | Soft neutral. Body backgrounds, soft sections. |
+| Worn Leather | `#6B4226` | Furniture and soft goods only — not a UI color. Avoid in web. |
 
-**Dominance rule:** on screen, roughly 90% black and coal, 8% white and grey,
-2% Forge. If a page or asset feels like it's "shouting yellow," the ratio is
-wrong. Forge is a punctuation mark, not a sentence — about a dozen yellow
-moments per page, maximum.
+**Dominance rule:** Roughly 60% Iron, 25% Bone, 10% Smoked Oak, 5% Forge. If a page or asset feels like it's "shouting yellow," the ratio is wrong. Forge is a punctuation mark, not a sentence.
 
-**Greens, blues, reds, oranges:** Not in the palette. Don't introduce new colors
-without explicit approval. The one standing exception is the cycle phase colors
-in `css/bia.css`, which are data colors labelling a training block, never
-decoration. If a stock photo or member photo contains green plants or a blue
-sky, that's fine — those are environmental, not brand colors.
+**Greens, blues, reds, oranges:** Not in the palette. Don't introduce new colors without explicit approval. If a stock photo or member photo contains green plants or a blue sky, that's fine — those are environmental, not brand colors.
+
+> **UNRESOLVED — awaiting Michael's ruling. Do not edit this section until then.**
+>
+> Forge was `#F5C518` in this table until 2026-08-06, when Michael asked for it to
+> be corrected. `images/logos/logo.png` is exactly `#FFD202` with zero pixels of
+> `#F5C518`, and `#FFD202` ships in 162 places against one. That single change is
+> authorized; nothing else in this table is.
+>
+> The open conflict: the website does not use this palette. `css/bia.css` ships
+> black / coal / steel / white / grey plus Forge, and Iron, Bone, Smoked Oak and
+> Worn Leather appear in zero shipped pages. `redesign/direction-1.html` was a
+> complete prototype of this palette and Michael chose Direction 2 on 2026-08-01,
+> though `redesign/research-notes.md` records eleven decisions from that session
+> and none of them mention color.
+>
+> A previous session (commit `0d17f09`, authored by Claude) rewrote this section
+> into two palettes and deleted both "The locked five-color palette" and Worn
+> Leather's "not a UI color. Avoid in web." That was not authorized and has been
+> reverted here. Do not repeat it. Michael decides color (Section 7).
+>
+> Also missing and needed before the October building opens: there is no Pantone,
+> CMYK or paint spec anywhere in the repo, and the Spatial Brand Brief that this
+> palette comes from is not in the repo either.
 
 ### Typography
 
