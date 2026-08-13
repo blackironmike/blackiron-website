@@ -129,42 +129,41 @@ If you encounter the logo and aren't sure which version to use, ask. Don't gener
 
 ### Colors
 
-The locked five-color palette. Use hex codes verbatim in CSS.
+The locked palette. Use hex codes verbatim, and prefer the CSS token over the
+raw hex — each one is defined once in `css/bia.css` so a future reskin is a
+six-line change rather than a search-and-replace.
 
-| Name | Hex | Role |
-|------|-----|------|
-| Iron | `#1A1D21` | Primary. Backgrounds, dark surfaces, headings on light backgrounds. |
-| Forge | `#FFD202` | Accent only. CTAs, key highlights. Use sparingly. |
-| Smoked Oak | `#B8895A` | Warmth. Wood-tone accents in imagery and limited UI. |
-| Bone | `#F1ECE3` | Soft neutral. Body backgrounds, soft sections. |
-| Worn Leather | `#6B4226` | Furniture and soft goods only — not a UI color. Avoid in web. |
+| Name | Hex | Role | Token |
+|------|-----|------|-------|
+| Black | `#000000` | Primary ground. Almost everything sits on this. | `--black` |
+| Coal | `#101010` | Alternating sections, raised cards. | `--coal` |
+| Steel | `#2A2A2A` | 1px rules and borders. | `--steel-line` |
+| White | `#FFFFFF` | Headlines and display type. | `--white` |
+| Grey | `#C7C7C7` | Body copy on dark. | `--gray` |
+| Forge | `#FFD202` | Accent only. CTAs, key highlights. Use sparingly. | `--yellow` |
 
-**Dominance rule:** Roughly 60% Iron, 25% Bone, 10% Smoked Oak, 5% Forge. If a page or asset feels like it's "shouting yellow," the ratio is wrong. Forge is a punctuation mark, not a sentence.
+This is the palette everywhere: website, social, share cards, ads, email,
+print. One palette, no second set.
 
-**Greens, blues, reds, oranges:** Not in the palette. Don't introduce new colors without explicit approval. If a stock photo or member photo contains green plants or a blue sky, that's fine — those are environmental, not brand colors.
+**Dominance rule:** roughly 90% black and coal, 8% white and grey, 2% Forge. If
+a page or asset feels like it's "shouting yellow," the ratio is wrong. Forge is
+a punctuation mark, not a sentence — about a dozen yellow moments per page,
+maximum.
 
-> **UNRESOLVED — awaiting Michael's ruling. Do not edit this section until then.**
->
-> Forge was `#F5C518` in this table until 2026-08-06, when Michael asked for it to
-> be corrected. `images/logos/logo.png` is exactly `#FFD202` with zero pixels of
-> `#F5C518`, and `#FFD202` ships in 162 places against one. That single change is
-> authorized; nothing else in this table is.
->
-> The open conflict: the website does not use this palette. `css/bia.css` ships
-> black / coal / steel / white / grey plus Forge, and Iron, Bone, Smoked Oak and
-> Worn Leather appear in zero shipped pages. `redesign/direction-1.html` was a
-> complete prototype of this palette and Michael chose Direction 2 on 2026-08-01,
-> though `redesign/research-notes.md` records eleven decisions from that session
-> and none of them mention color.
->
-> A previous session (commit `0d17f09`, authored by Claude) rewrote this section
-> into two palettes and deleted both "The locked five-color palette" and Worn
-> Leather's "not a UI color. Avoid in web." That was not authorized and has been
-> reverted here. Do not repeat it. Michael decides color (Section 7).
->
-> Also missing and needed before the October building opens: there is no Pantone,
-> CMYK or paint spec anywhere in the repo, and the Spatial Brand Brief that this
-> palette comes from is not in the repo either.
+**Greens, blues, reds, oranges:** Not in the palette. Don't introduce new colors
+without explicit approval. The one standing exception is the cycle phase colors
+in `css/bia.css`, which label a training block the way the coaches' own cycle
+sheet does — data colors, never decoration. If a member photo has green plants
+or a blue sky in it, that's fine; that's the world, not the brand.
+
+> **Decided 2026-08-13 by Michael.** This replaces the earlier five-color
+> palette (Iron `#1A1D21`, Smoked Oak `#B8895A`, Bone `#F1ECE3`, Worn Leather
+> `#6B4226`), which was written in May 2026 and never shipped — those four
+> appeared in zero live pages, against 917 references to the palette above.
+> Direction 1 in `redesign/` was a full working prototype of that palette and
+> was set aside on 2026-08-01. Forge moved from `#F5C518` to `#FFD202` at the
+> same time; `images/logos/logo.png` is pixel-exact `#FFD202`, so the mark and
+> every CTA beside it now agree. The question is closed — don't reopen it.
 
 ### Typography
 
