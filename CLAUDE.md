@@ -97,7 +97,10 @@ Banned list. Do not use these in any draft, on any platform, for any reason:
 
 ### Punctuation rules
 
-- **Em dashes** — yes, like this. Always a real em dash character (—), never two hyphens (--).
+- **Em dashes.** Two different rules depending on who is speaking.
+  - **Anything written as Michael — blog posts, captions, ad copy, emails, social, any first-person piece: none.** Not one. They read as machine-written now, and the whole point of a post under his name is that a person wrote it. Rewrite the sentence instead of swapping the dash for a comma; usually it wants to be two sentences, and it reads better as two.
+  - **Site copy and UI** can use them in moderation, where the sentence genuinely needs the break. Existing pages are full of them and that is fine, no sweep needed.
+  - When one is used, always a real em dash character (—), never two hyphens (--).
 - **Apostrophes:** typographic curly only ('), never straight ('). Same for quotes (" ").
 - **Ellipses:** real ellipsis character (…), not three periods.
 - **No emojis.** Not in body copy. Not in headings. Not on social. Not in email. Not anywhere. We're a thoughtful gym.
