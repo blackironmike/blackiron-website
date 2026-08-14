@@ -304,14 +304,28 @@ Going forward, all non-trivial changes go through a branch and a Vercel preview 
 2. Create or check out the appropriate branch.
 3. Make changes, commit with descriptive messages.
 4. Show Michael the diff in the chat.
-5. Michael pushes the branch.
-6. Vercel auto-generates a preview URL.
-7. Michael reviews the preview, requests changes if needed.
-8. Once approved, Michael merges to `main`. Production deploys automatically.
+5. Push the branch. Vercel auto-generates a preview URL.
+6. Michael reviews the preview, requests changes if needed.
+7. Ask whether to merge. Once he says yes, merge to `main` and push. Production
+   deploys automatically.
 
-**You do not push to remote.** Michael pushes. You commit locally and tell him what you committed.
+**Pushing a branch is yours. Merging to `main` needs a yes, every time.**
 
-**You do not merge to `main`.** Michael merges.
+You can push feature branches without asking; that only builds a preview.
+`main` is the live site, so it works differently:
+
+- **Ask before every merge to `main`.** Not once per project, once per merge.
+  Say what is in it and what it changes on the live site, then wait.
+- **Permission is granted here, in the chat, and it is good for that merge
+  only.** A yes on Tuesday does not carry to Thursday, and a yes for the blog
+  post does not cover the landing page that happens to be on the same branch.
+- **Anything you would not want to explain after the fact, do not merge.**
+  When in doubt, ask a second time. The cost is a sentence.
+- **If something is wrong on `main`,** fix forward on a branch and ask, the
+  same as anything else. Do not force-push `main` or rewrite its history.
+
+Michael can still push and merge himself whenever he prefers. This changes who
+is allowed to run the command, not who decides.
 
 ### Commit messages
 
@@ -414,7 +428,7 @@ When Michael is ready to migrate to this structure, you'll help.
 
 - **You decide:** Code style within established conventions. Variable names. Whether to break a function into smaller pieces. Internal refactors that don't change behavior or output.
 - **Michael decides:** Brand voice. Copy that ships. Color choices. Image selection. Page structure. Whether to add a new page or feature. Whether to publish anything public-facing.
-- **Always confirm before:** Adding npm packages. Changing build or deploy config. Touching files outside the scope of the current task. Pushing to a new branch. Making any change that affects the live site.
+- **Always confirm before:** Merging to `main`, every single time. Adding npm packages. Changing build or deploy config. Touching files outside the scope of the current task. Making any change that affects the live site.
 
 ### When you're not sure
 
@@ -422,7 +436,7 @@ Default to asking. The cost of one extra question is small. The cost of shipping
 
 ### Approval, draft, and posting
 
-- **Code changes:** You commit, Michael pushes and merges.
+- **Code changes:** You commit and push the branch. You merge to `main` only after asking and getting a yes.
 - **Copy:** You draft, Michael edits, Michael publishes.
 - **Social media posts:** You draft, Michael reviews, Michael posts. **You never post.**
 - **Email content:** You draft, Michael reviews, Michael sends.
