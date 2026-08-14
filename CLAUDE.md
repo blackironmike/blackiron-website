@@ -205,6 +205,76 @@ screen content, print.
 - **No before-and-after weight loss photos.** Ever.
 - The cover photo of any page should feature a member or coach mid-action, not equipment alone.
 
+### Blog header cards
+
+**Every blog post gets a designed 1200×630 header card.** Not a photo pulled from
+`images/`. One card serves three placements — the lead image inside the article,
+the `og:image` share preview, and the blog index thumbnail — so the post looks
+the same wherever someone meets it. The template comes from
+`images/social/2026-08-02-start-over-share-a.png`, the card for "I Own a Gym. I
+Still Had to Start Over."
+
+Build it with `tools/blog-header.py`. Don't hand-place the elements; the whole
+point is that a column of cards on `/blog` reads as a set.
+
+```
+python3 tools/blog-header.py \
+    --slug 2026-08-13-back-to-school-header \
+    --line "The kids got theirs. Now get yours." \
+    --photo images/members/members-laughing.webp --photo-fy .30
+```
+
+**The layout, which does not move post to post.** Eyebrow at the top left, the
+BLACK IRON ATHLETICS lockup in Forge. Headline below it in Montserrat Black,
+white, all caps, inside a fixed 636px box. Byline under that — Mike's face,
+his name, his role. A short Forge rule under the byline. Two Forge slashes
+bleeding off the top right corner.
+
+**Two grounds.** Solid black is the default and the right call for an argument or
+an explainer. Pass `--photo` for the second: a monochrome photo cut hard into the
+right third. Use it when a real face or a real barbell earns its place. There is
+no third option, and no post gets a full-bleed photo behind the type.
+
+**The card line is not the headline.** It is the headline compressed to something
+readable at thumbnail size. Target 42 characters, hard stop 45. The tool sizes
+type down a fixed ladder (96 / 84 / 76 / 68 / 62px) and takes the first size that
+fits in three lines — if nothing fits, it refuses to build rather than shrinking
+past the floor. That refusal is the feature. Shorten the line.
+
+**Forge stays under 2% of the card**, and the tool fails the build above it. Only
+the eyebrow, the slashes and the rule are yellow. If a card feels like it is
+shouting yellow, something is wrong with it.
+
+**What never goes on a header card**, because these are the things that make a
+gym look like it is selling something:
+
+- Before-and-after, or anything implying a transformation
+- A number as the hook — pounds lost, weeks, percentages
+- Body-part crops
+- Stock photography or AI-generated people
+- A face beside a name that is not that person
+- Arrows, starbursts, circled faces, shocked expressions, or any of the other
+  persuasion furniture that thumbnails collect
+- A curiosity gap. Say what the post is about.
+
+**Wiring it into the post**, all three placements:
+
+1. Lead image, first thing in `.article-body`, `class="article-hero-image"`,
+   `loading="eager"`, `width="1200" height="630"`. **Not `class="ph"`** — that
+   applies `grayscale(1)` and would kill the Forge.
+2. `og:image`, `twitter:image`, and JSON-LD `image`. Update `og:image:alt` to
+   describe the card, not the old photo.
+3. The `blog/index.html` card, as `<div class="blog-card-image is-graphic">`.
+   The `is-graphic` class is the opt-out from the index grayscale filter. Forget
+   it and the card goes grey on the index and colour on hover.
+
+Name the file `YYYY-MM-DD-topic-header.jpg` in `images/social/`. Ground A saves
+as `.png` since it is flat colour and compresses better that way.
+
+**Fonts.** The tool needs Montserrat 400, 700 and 900 as TTFs in `tools/fonts/`.
+They are gitignored, so a fresh clone needs them dropped in once. Free from
+Google Fonts, OFL licensed.
+
 ---
 
 ## Section 5: Tech Stack and Repo Conventions
