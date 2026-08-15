@@ -59,6 +59,12 @@ PITCH = 1.085
 BYLINE = ("images/team/owner-headcoach-mike.webp", "Mike Manning",
           "Owner & Head Coach  ·  20 years coaching")
 
+# The byline photo is a full-length portrait, so the circle needs a real crop
+# box, not just a vertical offset: (side as a fraction of image width, centre x,
+# centre y). Tuned so the circle is head and shoulders, which is the only thing
+# readable at blog-index thumbnail size. Re-tune if the portrait is replaced.
+AVATAR_CROP = (0.45, 0.50, 0.37)
+
 
 def F(weight, size):
     path = os.path.join(FONT_DIR, f"mont-{weight}.ttf")
@@ -145,9 +151,20 @@ def _corner(im):
         d.polygon([(x * S, y * S) for x, y in pts], fill=FORGE)
 
 
-def _circle(path, dia, fy):
+def _circle(path, dia, crop):
+    """Crop a square from the portrait, then mask it to a circle.
+
+    crop is (side, cx, cy) as fractions. Cropping first is the point: a plain
+    cover-fill of a full-length portrait puts the subject's whole torso in a
+    92px circle, which reads as a smudge at thumbnail size."""
     px = dia * S
-    im = cover(path, px, px, 0.5, fy, bw=True)
+    src = Image.open(os.path.join(REPO, path)).convert("L").convert("RGB")
+    W0, H0 = src.size
+    side, cx, cy = crop
+    b = int(W0 * side)
+    l = max(0, min(int(W0 * cx - b / 2), W0 - b))
+    t = max(0, min(int(H0 * cy - b / 2), H0 - b))
+    im = src.crop((l, t, l + b, t + b)).resize((px, px), Image.LANCZOS)
     m = Image.new("L", (px * 4, px * 4), 0)
     ImageDraw.Draw(m).ellipse((0, 0, px * 4 - 1, px * 4 - 1), fill=255)
     m = m.resize((px, px), Image.LANCZOS)
@@ -157,7 +174,7 @@ def _circle(path, dia, fy):
 
 
 def build(slug, card_line, *, eyebrow_tail="FRISCO, TX", photo=None, photo_fy=.30,
-          byline=BYLINE, avatar_fy=.08, out_dir=OUT_DIR):
+          byline=BYLINE, avatar_crop=AVATAR_CROP, out_dir=OUT_DIR):
     im = Image.new("RGB", (W * S, H * S), BLACK)
     probe = ImageDraw.Draw(im)
 
@@ -180,7 +197,7 @@ def build(slug, card_line, *, eyebrow_tail="FRISCO, TX", photo=None, photo_fy=.3
     rule_y = RULE[1]
     if byline:
         path, name, role = byline
-        av, mask = _circle(path, AVATAR_D, avatar_fy)
+        av, mask = _circle(path, AVATAR_D, avatar_crop)
         im.paste(av, ((AVATAR_C[0] - AVATAR_D // 2) * S,
                       (AVATAR_C[1] - AVATAR_D // 2) * S), mask)
         _baseline(d, (NAME_X, NAME_BASE), name, F(700, 26), WHITE)
@@ -217,8 +234,7 @@ if __name__ == "__main__":
     ap.add_argument("--eyebrow", default="FRISCO, TX", help="text after the BLACK IRON ATHLETICS lockup")
     ap.add_argument("--photo", help="repo-relative image for the right panel (ground B)")
     ap.add_argument("--photo-fy", type=float, default=.30, help="vertical crop focus, 0 top to 1 bottom")
-    ap.add_argument("--avatar-fy", type=float, default=.08, help="vertical crop focus for the byline avatar")
     ap.add_argument("--no-byline", action="store_true", help="drop the byline for a non-Mike post")
     a = ap.parse_args()
     build(a.slug, a.line, eyebrow_tail=a.eyebrow, photo=a.photo, photo_fy=a.photo_fy,
-          avatar_fy=a.avatar_fy, byline=None if a.no_byline else BYLINE)
+          byline=None if a.no_byline else BYLINE)

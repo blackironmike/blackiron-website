@@ -7,3 +7,4 @@ learn/
 # Montserrat TTFs for tools/blog-header.py — see CLAUDE.md Section 4.
 # Not committed yet; ask Michael before adding 1.1 MB of font binaries.
 tools/fonts/
+tools/__pycache__/

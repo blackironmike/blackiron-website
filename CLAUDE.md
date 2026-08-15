@@ -232,10 +232,17 @@ white, all caps, inside a fixed 636px box. Byline under that — Mike's face,
 his name, his role. A short Forge rule under the byline. Two Forge slashes
 bleeding off the top right corner.
 
-**Two grounds.** Solid black is the default and the right call for an argument or
-an explainer. Pass `--photo` for the second: a monochrome photo cut hard into the
-right third. Use it when a real face or a real barbell earns its place. There is
-no third option, and no post gets a full-bleed photo behind the type.
+**Two grounds, and a rare third.** Solid black is the default and the right call
+for an argument or an explainer. Pass `--photo` for the second: a monochrome
+photo cut hard into the right third. Use it when a real face or a real barbell
+earns its place. The third is a supporting graphic in that same right third,
+used only when the post is *about* a thing you can show — the FuelPath card on
+"I Own a Gym. I Still Had to Start Over." is the one example. That one is
+hand-placed, not generated. No post gets a full-bleed photo behind the type.
+
+**Don't put Mike in the panel.** His face is already in the byline circle, so a
+portrait beside it reads as a duplication rather than a portrait card. Personal
+posts go on black and let the byline do the work.
 
 **The card line is not the headline.** It is the headline compressed to something
 readable at thumbnail size. Target 42 characters, hard stop 45. The tool sizes
