@@ -22,8 +22,9 @@
         .nav-phone:hover{color:var(--yellow)}
         .nav-phone .icon{width:18px;height:18px}
         .confirmation-container h1{font-size:clamp(2.6rem,7vw,4.8rem)}
-        .thanks-map{border:1px solid var(--steel-line);min-height:380px}
-        .thanks-map iframe{display:block;width:100%;height:100%;min-height:380px;border:0;filter:grayscale(1) contrast(1.05)}
+        /* Google's frame paints white before it draws, so hold black under it. */
+        .thanks-map{border:1px solid var(--steel-line);min-height:380px;margin-top:34px;background:var(--black)}
+        .thanks-map iframe{display:block;width:100%;height:100%;min-height:380px;border:0;background:var(--black);filter:grayscale(1) contrast(1.05)}
         @media (max-width:860px){.thanks-map,.thanks-map iframe{min-height:280px}}
     </style>
     <script defer src="/_vercel/insights/script.js"></script>
@@ -104,6 +105,14 @@
                     <p>Suite 122.</p>
                     <p class="ty-sub">279 Main St, Frisco, TX 75036. Walk in and someone will be expecting you.</p>
                 </div>
+            </div>
+            <div class="thanks-map rv rv-d3" aria-label="Our location on Google Maps">
+                <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3344.9875647886857!2d-96.89026308820058!3d33.15034697358084!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x864c3a240f77e3f7%3A0x9f460209df528d6e!2sBlack%20Iron%20Athletics!5e0!3m2!1sen!2sus!4v1737509000000!5m2!1sen!2sus"
+                    title="Black Iron Athletics location on Google Maps"
+                    allowfullscreen=""
+                    loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade"></iframe>
             </div>
         </div>
     </section>
@@ -221,12 +230,21 @@
   if (window.top !== window.self) {
     try { window.top.location.href = window.location.href; return; } catch (e) {}
   }
+  var sent = false;
   function fire() {
-    if (typeof fbq !== 'function') return;
+    if (sent || typeof fbq !== 'function') return;
+    sent = true;
     fbq('track', 'Schedule');
     fbq('track', 'Lead');
   }
-  if (typeof fbq === 'function') fire(); else window.addEventListener('load', fire);
+  /* The fallback listens on DOMContentLoaded as well as load, because `load`
+     waits on every subresource and this page now embeds a Google Maps frame.
+     The guard above keeps the pair from double-counting a booking. */
+  if (typeof fbq === 'function') fire();
+  else {
+    document.addEventListener('DOMContentLoaded', fire);
+    window.addEventListener('load', fire);
+  }
 
   /* GHL can append booking details to the redirect. Show the real time when
      it arrives and stay quiet when it does not, so the page never displays
