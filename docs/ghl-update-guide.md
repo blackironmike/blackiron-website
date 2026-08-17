@@ -71,3 +71,34 @@ Forms: `vw0hMdDkTCL6K5N3i7vF` (lead modal) and `TtM4VqCtmx8o3ZuBgseK` (contact).
    from Suite 122 to Suite 110 (Google Business Profile → Edit profile →
    Location → Business address). Changing it early sends people to a door
    that isn’t open yet.
+
+## 6. Form background must match the site's coal
+
+Every GHL form on the site sits inside a container the site paints `--coal`
+(`#101010`): the three modals (`.modal-container`) and the inline embeds
+(`.embed-box`, `.booking-embed`, `.contact-form-container`, which add 6–10px
+of padding so the frame is wider there).
+
+If a form's own background is any other shade, that coal shows as a ring
+around it and reads as a mismatched border. Forms shipped at `#1A1A1A`, which
+is six points lighter than coal — close enough to look like a mistake rather
+than a choice.
+
+**Set Background to `#101010FF`** in Styles → Colors & Background, on all four:
+
+| Form | Where it appears |
+|------|------------------|
+| Lead Capture - Website | consult modal, every page |
+| Lead Capture - Ads | back-to-school landing page |
+| Subscribe | footer modal |
+| Membership Cancellation | cancellation modal |
+
+Leave **Input Background** at `#000000FF`. Black fields on coal is the same
+layering the rest of the site uses, and it gives the inputs their edge.
+
+Do **not** use transparent. It would inherit our coal correctly on the site,
+but a form opened through its own GHL share link renders on white, and white
+input borders on white is an invisible form.
+
+If the site palette is ever reskinned, this value changes here too. It is the
+one brand colour that lives outside `css/bia.css`.
