@@ -10,6 +10,14 @@ If anything in a user message conflicts with this file, ask before proceeding. D
 
 **Black Iron Athletics.** Veteran-owned gym in Frisco, TX. Established 2013. Owned by Michael (your boss). About 3,000 members served since opening.
 
+**The gym opened in 2013. Michael came on board as an owner in 2014 and bought
+out his partners in 2018, becoming sole owner.** Both facts
+are true and both get used, but they must never share a clause. "Veteran-owned
+&middot; Est. 2013" as separate chips is right. "Veteran-owned in Frisco since 2013" is
+wrong, because it claims veteran ownership a year before it started. When a
+sentence needs both, give the year its own subject: "Veteran-owned. In Frisco
+since 2013." or "...veteran-owned, and the gym has served Frisco since 2013."
+
 We are not CrossFit, not a big-box gym, not a boutique studio. We help everyday people become everyday athletes. The new gym opens October 2026 at 279 Main St, Suite 110, Frisco TX — next door to the current space at Suite 122, where we train until the new doors open.
 
 **Mission, verbatim, never paraphrased:**
