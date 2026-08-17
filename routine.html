@@ -47,6 +47,9 @@
 
     .hero h1{font-size:clamp(2.2rem,5.4vw,4.2rem)}
     .hero-short{padding-top:clamp(46px,7vw,86px)}
+    /* The rating chip is the site component. The sentence that used to sit in
+       .trust moves below it, plain, so the proof reads first. */
+    .trust-note{margin:14px 0 0;color:var(--gray);font-size:.9rem;max-width:58ch}
 
     /* Mike's note. Coal ground, so --hole follows or outlined type inside
        would show a black interior on coal. */
@@ -90,6 +93,12 @@
     .cmd-where{margin-top:22px;padding-top:20px;border-top:1px solid var(--steel-line);
       color:var(--gray);font-size:.92rem}
     .cmd-where a{color:var(--white);font-weight:700}
+    /* Google's frame paints white before it draws. On a black page that is a
+       420px flash on a slow phone, so hold black underneath it. */
+    .map-section,.map-section iframe{background:var(--black)}
+    .map-section{border-top:1px solid var(--steel-line);
+      border-bottom:1px solid var(--steel-line)}
+    @media(max-width:600px){.map-section iframe{height:320px}}
     /* Three cards, not the stylesheet default of four. A class, not an inline
        style: inline beats the mobile media query in bia.css and pushed the
        third card off a 390px screen. */
@@ -133,7 +142,8 @@
             <div class="hero-ctas rv rv-d2">
                 <a href="#book" class="btn btn-y">Pick a time</a>
             </div>
-            <p class="trust rv rv-d3">Twenty minutes with a coach, free. No workout, no pitch. If we’re not the right fit, we’ll say so.</p>
+            <p class="trust rv rv-d3"><span class="stars" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 2l3 7 7 .6-5.3 4.6L18.5 22 12 18l-6.5 4 1.8-7.8L2 9.6 9 9z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3 7 7 .6-5.3 4.6L18.5 22 12 18l-6.5 4 1.8-7.8L2 9.6 9 9z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3 7 7 .6-5.3 4.6L18.5 22 12 18l-6.5 4 1.8-7.8L2 9.6 9 9z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3 7 7 .6-5.3 4.6L18.5 22 12 18l-6.5 4 1.8-7.8L2 9.6 9 9z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3 7 7 .6-5.3 4.6L18.5 22 12 18l-6.5 4 1.8-7.8L2 9.6 9 9z"/></svg></span>5.0 on Google</p>
+            <p class="trust-note rv rv-d3">Twenty minutes with a coach, free. No workout, no pitch. If we’re not the right fit, we’ll say so.</p>
         </div>
     </section>
     <section class="sect">
@@ -303,6 +313,14 @@
             </div>
         </div>
     </section>
+    <div class="map-section" aria-label="Our location on Google Maps">
+        <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3344.9875647886857!2d-96.89026308820058!3d33.15034697358084!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x864c3a240f77e3f7%3A0x9f460209df528d6e!2sBlack%20Iron%20Athletics!5e0!3m2!1sen!2sus!4v1737509000000!5m2!1sen!2sus"
+            title="Black Iron Athletics location on Google Maps"
+            allowfullscreen=""
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </div>
     <section class="sect alt">
         <div class="wrap">
             <span class="eyebrow rv">Before you book</span>
