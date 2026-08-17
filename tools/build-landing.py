@@ -15,6 +15,8 @@ CAL = "https://api.leadconnectorhq.com/widget/booking/aOyy4UPbwziVvHz35TCU"
 
 # Deck key -> live slug. Anything not listed builds as an lp-* draft.
 SLUGS = {"laser-1": "back-to-school", "shotgun-2": "routine"}
+
+BAND = '    <div class="marquee" aria-hidden="true">\n        <div class="marquee-track">\n            <span>Coached every rep &mdash; Three levels, one floor &mdash; Forge the body, guard the mind &mdash;&nbsp;</span><span>Coached every rep &mdash; Three levels, one floor &mdash; Forge the body, guard the mind &mdash;&nbsp;</span>\n        </div>\n    </div>\n    <div class="stats-grid">\n        <div class="stat rv"><b>13+</b><span>Years in Frisco</span></div>\n        <div class="stat rv"><b>3,000+</b><span>Lives changed</span></div>\n        <div class="stat rv"><b>5.0</b><span>Google rating</span></div>\n        <div class="stat rv"><b>3</b><span>Levels in every class</span></div>\n    </div>\n'
 PHONE_TRACK = "onclick=\"if(window.fbq)fbq('trackCustom','PhoneClick');\""
 
 # The site's Google-rating chip, copied verbatim from index.html so the landing
@@ -111,6 +113,13 @@ HEAD = '''<!DOCTYPE html>
     @media(max-width:420px){{.lp-call span{{display:none}}}}
 
     .hero h1{{font-size:clamp(2.2rem,5.4vw,4.2rem)}}
+    /* The review is the proof that travels furthest, so it is sized to be seen. */
+    .trust-lg{{gap:14px;padding:15px 22px;font-size:1.3rem}}
+    .trust-lg .stars svg{{width:25px;height:25px}}
+    .trust-lg b{{font-weight:900}}
+    .trust-lg span{{font-weight:600;color:var(--gray);font-size:1rem}}
+    @media(max-width:400px){{.trust-lg{{font-size:1.15rem;padding:13px 18px}}
+      .trust-lg .stars svg{{width:21px;height:21px}}}}
     .hero-short{{padding-top:clamp(46px,7vw,86px)}}
     /* The rating chip is the site component. The sentence that used to sit in
        .trust moves below it, plain, so the proof reads first. */
@@ -269,7 +278,7 @@ PRICING = '''
         <div class="wrap">
             <span class="eyebrow rv">Membership</span>
             <h2 class="rv">What it costs.<br><span class="outline">In writing.</span></h2>
-            <p class="lead rv rv-d1">No discount, no promotion, no price that changes if you hesitate. Here is the whole thing, including the part most gyms leave until you are standing in the lobby.</p>
+            <p class="lead rv rv-d1">No discount, no promotion, no price that changes if you hesitate.</p>
             <div class="price-grid three rv rv-d2">
                 <div class="pcard start">
                     <span class="tag">Start here</span>
@@ -278,8 +287,7 @@ PRICING = '''
                     <ul>
                         <li>One-on-one with a coach before any class</li>
                         <li>Body composition scan and movement analysis</li>
-                        <li>$360 for the one-week track, three sessions</li>
-                        <li>$720 for the two-week track, six sessions</li>
+                        <li>One week and three sessions, or two weeks and six</li>
                         <li>Your coach recommends which at the consult</li>
                     </ul>
                 </div>
@@ -305,9 +313,9 @@ PRICING = '''
                 </div>
             </div>
             <div class="price-notes rv rv-d3">
-                <p><b>Military, first responders and teachers:</b> 5% off any membership. Veteran-owned, and we know who holds a town together.</p>
-                <p><b>Foundations is once.</b> It is how everybody starts, it is what keeps people from getting hurt in week one, and you never pay it again.</p>
-                <p><b>Commitment:</b> memberships start with 90 days, because change takes longer than a month. After that it is month to month, cancel with 30 days notice.</p>
+                <p><b>Military, first responders and teachers:</b> 5% off any membership.</p>
+                <p><b>Foundations is once.</b> It is how everybody starts, and you never pay it again.</p>
+                <p><b>Commitment:</b> 90 days to start, then month to month, cancel with 30 days notice.</p>
             </div>
         </div>
     </section>
@@ -335,11 +343,14 @@ def build(slug, c, share, note_paras):
             <div class="hero-ctas rv rv-d2">
                 <a href="#book" class="btn btn-y">{e(c["hero_cta"])}</a>
             </div>
-            <p class="trust rv rv-d3">{STARS}5.0 on Google</p>
+            <p class="trust trust-lg rv rv-d3">{STARS}<b>5.0</b> <span>on Google</span></p>
             <p class="trust-note rv rv-d3">{e(c["hero_trust"])}</p>
         </div>
     </section>
 ''')
+
+    # ── the homepage band: proof and rhythm before the first block of prose ──
+    P.append(BAND)
 
     # ── S: situation ──────────────────────────────────────────────────
     sit = "".join(f'            <p class="lead rv rv-d1">{e(x)}</p>\n'

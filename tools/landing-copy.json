@@ -6,28 +6,28 @@
     "hero_cta": "Book your free consult",
     "hero_trust": "Veteran-owned in Frisco since 2013. About 3,000 people trained. Sixty minute coached classes, six times a day Monday through Friday.",
     "situation_h2": "You spent the summer taking care of everybody else.",
-    "situation_body": "Camps, practices, rides, meals, somebody always needed something. For three months your day belonged to your kids. That’s the job and you did it.\n\nThe kids are back in school now, and there’s time in the middle of your day that nobody has claimed. Work and errands will take it if nothing else does. One hour of it could be yours.",
+    "situation_body": "For three months your day belonged to your kids. Camps, practices, rides, meals. That’s the job and you did it. Now they’re back in school and there’s an hour in the middle of your day nobody has claimed. Work will take it if you don’t.",
     "mission_h2": "Spend one hour, three days a week, on getting stronger.",
-    "mission_body": "Here’s the objective, and it belongs to you, not to us. Three hours a week, on the calendar, while the kids are in school. Not to make up for the summer and not to get ready for anything. Just so you’re stronger, you move better, and you have something left at the end of the day for the people waiting at home. We handle the program, the coaching and the schedule. You show up.",
+    "mission_body": "Three hours a week, on the calendar, while the kids are in school. Not to make up for the summer. Just so you’re stronger, and you’ve got something left at the end of the day for the people at home. We handle the program. You show up.",
     "mission_points": [
       "An hour of the day that’s yours",
       "Noticeably stronger by the holidays",
       "Energy left at the end of the day"
     ],
     "execution_h2": "How the training actually works here",
-    "execution_body": "Classes run sixty minutes and a coach is on the floor the whole hour. The strength and conditioning is programmed in cycles and planned weeks ahead, not made up that morning. Every class is written at three levels, so somebody in their first month and somebody in their tenth year train in the same room and both get the right workout. We coach every rep. Six class times a day Monday through Friday, plus Saturday at 9:30.",
+    "execution_body": "Sixty minutes, with a coach on the floor the whole hour. Programmed in cycles and planned weeks ahead, never invented that morning. Every class is written three ways, so a beginner and a ten-year veteran train in the same room. Six times a day, Monday through Friday.",
     "execution_pillars": [
       {
         "title": "Everybody starts with Foundations",
-        "body": "Before your first group class you train one-on-one with a coach. You learn the movements, we set your baseline, and you find out how your body is working right now. One week and three sessions, or two weeks and six sessions. You pay for it one time and never again."
+        "body": "Before your first group class you train one-on-one with a coach. You learn the movements and we set your baseline. One week and three sessions, or two weeks and six. You pay once and never again."
       },
       {
         "title": "Three levels, one floor",
-        "body": "Every class is written three ways. You do the version that fits the body you have today, in the same hour and the same room as everyone else. The program flexes so you don’t have to."
+        "body": "Every class is written three ways. You do the version that fits the body you have today, in the same room as everyone else."
       },
       {
         "title": "A coach is watching you",
-        "body": "No leaderboard and no last one standing. We push when you’re ready for it and we pull you back when you’re getting ahead of yourself. You have people at home who need you healthy, so we train that way."
+        "body": "No leaderboard and no last one standing. We push when you’re ready and pull you back when you’re not. You have people at home who need you healthy."
       }
     ],
     "consult_h2": "What the free consult looks like, step by step",
@@ -35,61 +35,49 @@
     "consult_steps": [
       {
         "title": "1. We sit down and talk",
-        "body": "You tell us where you’re starting, what hurts, what you’ve tried before, and what you want back. We ask questions and we listen. Nobody here thinks you’re behind."
+        "body": "You tell us where you’re starting, what hurts, and what you want back. We listen. Nobody here thinks you’re behind."
       },
       {
         "title": "2. We walk you through the gym",
-        "body": "You see the floor, the equipment and the class times. We explain what Foundations covers and what a normal training week here looks like."
+        "body": "You see the floor, the equipment and the class times, and what a normal training week here looks like."
       },
       {
         "title": "3. You get the prices and you decide",
-        "body": "We give you the numbers in writing and answer whatever’s left. If it fits, we book your Foundations right there. If it doesn’t, you leave with a straight answer and we don’t chase you."
+        "body": "Numbers in writing, and whatever’s left answered. If it fits, we book your Foundations right there. If it doesn’t, we don’t chase you."
       }
     ],
     "waiting_h2": "What it costs to wait until January",
-    "waiting_lead": "This is the honest part. There are about twenty weeks between now and January 1st. That’s more than a third of the year. You can use them, or you can spend them and try to make it up with a resolution.",
+    "waiting_lead": "About twenty weeks between now and January 1st. More than a third of the year. Use them, or spend them and try to make it up with a resolution.",
     "waiting_points": [
       {
         "title": "You stay the same",
-        "body": "Twenty weeks is enough time to get noticeably stronger. It’s also enough time for nothing to change. Same body, same energy, same aches, and a new date on the calendar."
+        "body": "Twenty weeks is enough time to get noticeably stronger."
       },
       {
         "title": "You start over in January with everyone else",
-        "body": "January is full of people starting from zero. You could walk in that same week already four months in, coached, and knowing exactly what you’re doing."
+        "body": "January is full of people starting from zero."
       },
       {
         "title": "You keep feeling like you’re falling behind",
-        "body": "That feeling doesn’t come from a number on the scale. It comes from taking care of everyone else all year and never getting to yourself. Twenty weeks of training changes that. Twenty more weeks of thinking about it doesn’t."
+        "body": "That feeling doesn’t come from a number on the scale."
       }
     ],
     "command_h2": "Who you’re dealing with and where to find us",
-    "command_body": "I’m Mike Manning. I own Black Iron Athletics and I coach here. I’m a Marine, I’ve been doing this in Frisco since 2013, and about 3,000 people have trained with us in that time. I have a two year old and a five year old at home, so I know what your summer looked like.\n\nWhen you come in, you’re talking to me or one of my coaches, not a salesperson you’ll never see again. We’re at 279 Main St, Suite 122 in Frisco. Ask the hard questions and we’ll give you straight answers.",
+    "command_body": "I’m Mike Manning. I own Black Iron Athletics and I coach here. Marine, in Frisco since 2013, about 3,000 people trained. I’ve got a two year old and a five year old at home, so I know what your summer looked like. You’ll talk to me or one of my coaches, not a salesperson.",
     "faq_h2": "Questions people ask before they book",
     "faq": [
       {
-        "q": "What does it cost?",
-        "a": "Foundations is $360 for the one week, three session track, or $720 for the two week, six session track. That’s one time and you never pay it again. Membership after that is $200 a month for three classes a week, or $240 a month for unlimited, which includes open gym seven days. Military, first responders and teachers take 5% off."
-      },
-      {
         "q": "I haven’t trained in years. Is that a problem?",
-        "a": "That’s most of the people who walk in the door, and it’s the reason Foundations exists. You get one-on-one coaching before you’re ever in a group class, and every class is written at three levels, so you’re never trying to keep up with somebody who’s been here a decade."
-      },
-      {
-        "q": "Am I locked into a contract?",
-        "a": "There’s a 90 day initial commitment, then month to month with 30 days notice. Ninety days is about how long it takes to feel the difference. After that you stay because you want to."
-      },
-      {
-        "q": "Will the class times work with the school day?",
-        "a": "There are six coached class times a day Monday through Friday, plus Saturday at 9:30, and classes run sixty minutes. We’ll pull up the full schedule at your consult and find the one that fits between drop-off and pick-up."
+        "a": "That’s most of the people who walk in the door, and it’s why Foundations exists. One-on-one coaching first, then classes written at three levels, so you’re never trying to keep up."
       },
       {
         "q": "I can’t afford to get hurt. How do you handle that?",
-        "a": "Our job is to keep you training for decades, not to smoke you in week one. We coach every rep, we push when you’re ready and we pull you back when you’re getting ahead of yourself. Person first, athlete second."
+        "a": "Our job is to keep you training for decades, not to smoke you in week one. We coach every rep and pull you back when you’re getting ahead of yourself. Person first, athlete second."
       }
     ],
     "final_h2_line1": "The time is there.",
     "final_h2_line2": "Use an hour of it.",
-    "final_lead": "Twenty minutes, free, no workout. You’ll leave knowing what Foundations covers, what training here costs, and whether this is the right gym for you. If it isn’t, we’ll tell you that too.",
+    "final_lead": "Twenty minutes, free, no workout. You’ll leave knowing what Foundations covers, what it costs, and whether this is the right gym for you.",
     "booking_head": "Book your free twenty minute consult",
     "booking_sub": "Pick a time that fits the school day and we’ll take it from there. 279 Main St, Suite 122, Frisco TX.",
     "meta_title": "Take An Hour Back | Black Iron Athletics, Frisco TX",
@@ -296,32 +284,32 @@
   "shotgun-2": {
     "hero_h1_line1": "You’ve started before and it didn’t hold.",
     "hero_h1_line2": "This time you get a coach.",
-    "hero_lead": "There are about twenty weeks between now and January 1st. You can spend them the way you spent the last stretch, or you can get on a program somebody else already wrote, with a coach who notices when you’re not there. Start with a free twenty minute consult.",
+    "hero_lead": "About twenty weeks between now and January 1st. Spend them the way you spent the last stretch, or get on a program somebody else already wrote, with a coach who notices when you’re not there.",
     "hero_cta": "Pick a time",
     "hero_trust": "Twenty minutes with a coach, free. No workout, no pitch. If we’re not the right fit, we’ll say so.",
     "situation_h2": "There are twenty weeks left in the year, and you’ve been here before.",
-    "situation_body": "About twenty weeks stand between now and January 1st. That’s more than a third of the year, and you already know how it goes if nothing changes, because you’ve watched this stretch go by before.\n\nIt isn’t that you didn’t try. There was a membership you paid for and stopped using, or an app, or a January that felt different for about five weeks. You meant it every time. There just wasn’t a plan you didn’t have to write yourself, and nobody noticed when you stopped coming.",
+    "situation_body": "You’ve been here before. There was a membership you paid for and stopped using, or an app, or a January that felt different for about five weeks. You meant it every time. There just wasn’t a plan you didn’t have to write yourself, and nobody noticed when you stopped coming.",
     "mission_h2": "Start one more time, with a plan and a coach, and stay in it.",
-    "mission_body": "Here’s the objective, and it’s yours, not ours. Get on a program somebody else already wrote. Train with a coach who knows your name, your bad shoulder, and what you’re working toward. Then stay in it long enough that training is something you do instead of something you’re trying. We would rather coach you for the next ten years than give you a great six weeks.",
+    "mission_body": "Get on a program somebody else already wrote. Train with a coach who knows your name, your bad shoulder, and what you’re working toward. Then stay in it long enough that training is something you do, not something you’re trying.",
     "mission_points": [
       "A plan you didn’t have to write",
       "A coach who knows your name",
       "A week you can actually repeat"
     ],
     "execution_h2": "What holds it together",
-    "execution_body": "Every class is sixty minutes and coached the whole way through. The strength and conditioning is planned in cycles weeks ahead, so the hard days and the easier days land on purpose instead of by mood. You don’t design anything and you don’t guess. You show up, a coach tells you what to do, and then watches you do it. Six class times a day Monday through Friday, plus Saturday at 9:30.",
+    "execution_body": "Sixty minutes, coached the whole way through. Planned in cycles weeks ahead, so the hard days and the easy days land on purpose instead of by mood. You don’t design anything and you don’t guess. Six times a day, Monday through Friday.",
     "execution_pillars": [
       {
         "title": "Programmed, not random",
-        "body": "Cycled progressions, planned intensity, strength and conditioning balanced every week. That’s why month four still moves you forward instead of just making you tired."
+        "body": "Cycled progressions and planned intensity, balanced every week. That’s why month four still moves you forward instead of just making you tired."
       },
       {
         "title": "Three levels, one floor",
-        "body": "Every class runs at three levels. Same movement, same hour, different target. Somebody in their first month trains beside somebody in their tenth year and neither one gets shortchanged. No leaderboard."
+        "body": "Same movement, same hour, different target. Somebody in their first month trains beside somebody in their tenth year and neither gets shortchanged."
       },
       {
         "title": "Foundations before any class",
-        "body": "Every member starts one-on-one with a coach. One week and three sessions, or two weeks and six sessions. You learn the movements and we set a baseline before a group is ever involved. You pay for it once and never again."
+        "body": "Every member starts one-on-one with a coach. One week and three sessions, or two weeks and six. You pay once and never again."
       }
     ],
     "consult_h2": "What the free consult actually looks like",
@@ -329,15 +317,15 @@
     "consult_steps": [
       {
         "title": "1. Sit down with a coach",
-        "body": "Twenty minutes at the gym. We talk about your training history, what your week honestly looks like, and what happened the last few times you started. Wear normal clothes. There’s no workout and no test."
+        "body": "Twenty minutes at the gym. We talk about your history, what your week honestly looks like, and what happened the last few times you started."
       },
       {
         "title": "2. See the plan and the price",
-        "body": "We walk you through Foundations, the class schedule, and what it costs, written down in front of you. Ask anything. Nothing is saved for the end."
+        "body": "Foundations, the class schedule, and what it costs, written down in front of you. Nothing saved for the end."
       },
       {
         "title": "3. Decide when you’re ready",
-        "body": "Nobody signs on the spot unless they want to. If we’re not the right place for you, we’ll tell you that and point you somewhere that is."
+        "body": "Nobody signs on the spot unless they want to. If we’re not the right place, we’ll say so and point you somewhere that is."
       }
     ],
     "waiting_h2": "What waiting until January costs",
@@ -345,40 +333,28 @@
     "waiting_points": [
       {
         "title": "You stay the same",
-        "body": "Twenty weeks from now it’s the same body, the same week, and the same plan to start soon. Waiting never feels like a decision, so it’s easy to keep making it."
+        "body": "Twenty weeks from now it’s the same body and the same plan to start soon."
       },
       {
         "title": "You start over in January with everyone else",
-        "body": "Start now and you’re four months in by New Year’s. Wait, and January is day one again, in the busiest month of the year, with more ground to cover than you have today."
+        "body": "Start now and you’re four months in by New Year’s."
       },
       {
         "title": "You keep feeling like you’re falling behind",
-        "body": "Every start that doesn’t hold makes the next one harder to believe in. That’s the real cost, and it’s the part we’re set up to fix."
+        "body": "Every start that doesn’t hold makes the next one harder to believe in."
       }
     ],
     "command_h2": "Who you’re dealing with, and where to find us",
-    "command_body": "I’m Mike Manning. I own Black Iron Athletics and I coach on the floor. I’m a Marine, we opened in 2013, and about 3,000 people have trained with us since. Plenty of them had started over more than once before they got here, and I’ve never thought that was a character problem. They were doing it alone.\n\nWe’re at 279 Main St, Suite 122 in Frisco, and the phone gets answered by somebody who works here. Come in for twenty minutes and talk to me. Worst case, you leave knowing more about your own training than you did this morning.",
+    "command_body": "I’m Mike Manning. I own Black Iron Athletics and I coach on the floor. Marine, opened in 2013, about 3,000 people trained since. Plenty of them had started over more than once before they got here. I’ve never thought that was a character problem. They were doing it alone.",
     "faq_h2": "What people ask before they start",
     "faq": [
       {
         "q": "I’ve quit gyms before. Why would this one hold?",
-        "a": "Because the two things that were missing are the two things we do. Your training is programmed for you, so there’s nothing to figure out on a tired day. And a coach knows your name, so a missed week gets a text instead of silence. Most people don’t quit from lack of will. They quit from being on their own."
-      },
-      {
-        "q": "What does it cost?",
-        "a": "Foundations is $360 for the one week, three session track, or $720 for the two week, six session track. That’s one time, never again. Membership is $200 a month for three classes a week, or $240 a month unlimited, which includes open gym seven days. Military, first responders and teachers get 5% off."
+        "a": "The two things that were missing are the two things we do. Your training is programmed, so there’s nothing to figure out on a tired day. And a coach knows your name, so a missed week gets a text instead of silence."
       },
       {
         "q": "I haven’t trained in years. Is that a problem?",
-        "a": "No, and it’s the most common thing we hear. Foundations exists for exactly this. One-on-one with a coach, no class to keep up with, nobody watching. Members are 16 and up and they’re everyday people with jobs."
-      },
-      {
-        "q": "How much time does this actually take?",
-        "a": "Sixty minutes, door to door. Six coached class times a day Monday through Friday, plus Saturday at 9:30. Pick a time you can make on a busy week, not just a good one."
-      },
-      {
-        "q": "What if I have to stop?",
-        "a": "Memberships start with 90 days, because real change takes longer than a month and we’d rather say that up front. After that it’s month to month, cancel with 30 days notice."
+        "a": "It’s the most common thing we hear, and Foundations exists for exactly this. One-on-one with a coach, no class to keep up with, nobody watching."
       }
     ],
     "final_h2_line1": "One more start.",

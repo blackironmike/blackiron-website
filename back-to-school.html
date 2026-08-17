@@ -46,6 +46,13 @@
     @media(max-width:420px){.lp-call span{display:none}}
 
     .hero h1{font-size:clamp(2.2rem,5.4vw,4.2rem)}
+    /* The review is the proof that travels furthest, so it is sized to be seen. */
+    .trust-lg{gap:14px;padding:15px 22px;font-size:1.3rem}
+    .trust-lg .stars svg{width:25px;height:25px}
+    .trust-lg b{font-weight:900}
+    .trust-lg span{font-weight:600;color:var(--gray);font-size:1rem}
+    @media(max-width:400px){.trust-lg{font-size:1.15rem;padding:13px 18px}
+      .trust-lg .stars svg{width:21px;height:21px}}
     .hero-short{padding-top:clamp(46px,7vw,86px)}
     /* The rating chip is the site component. The sentence that used to sit in
        .trust moves below it, plain, so the proof reads first. */
@@ -142,23 +149,33 @@
             <div class="hero-ctas rv rv-d2">
                 <a href="#book" class="btn btn-y">Book your free consult</a>
             </div>
-            <p class="trust rv rv-d3"><span class="stars" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 2l3 7 7 .6-5.3 4.6L18.5 22 12 18l-6.5 4 1.8-7.8L2 9.6 9 9z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3 7 7 .6-5.3 4.6L18.5 22 12 18l-6.5 4 1.8-7.8L2 9.6 9 9z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3 7 7 .6-5.3 4.6L18.5 22 12 18l-6.5 4 1.8-7.8L2 9.6 9 9z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3 7 7 .6-5.3 4.6L18.5 22 12 18l-6.5 4 1.8-7.8L2 9.6 9 9z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3 7 7 .6-5.3 4.6L18.5 22 12 18l-6.5 4 1.8-7.8L2 9.6 9 9z"/></svg></span>5.0 on Google</p>
+            <p class="trust trust-lg rv rv-d3"><span class="stars" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 2l3 7 7 .6-5.3 4.6L18.5 22 12 18l-6.5 4 1.8-7.8L2 9.6 9 9z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3 7 7 .6-5.3 4.6L18.5 22 12 18l-6.5 4 1.8-7.8L2 9.6 9 9z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3 7 7 .6-5.3 4.6L18.5 22 12 18l-6.5 4 1.8-7.8L2 9.6 9 9z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3 7 7 .6-5.3 4.6L18.5 22 12 18l-6.5 4 1.8-7.8L2 9.6 9 9z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3 7 7 .6-5.3 4.6L18.5 22 12 18l-6.5 4 1.8-7.8L2 9.6 9 9z"/></svg></span><b>5.0</b> <span>on Google</span></p>
             <p class="trust-note rv rv-d3">Veteran-owned in Frisco since 2013. About 3,000 people trained. Sixty minute coached classes, six times a day Monday through Friday.</p>
         </div>
     </section>
+    <div class="marquee" aria-hidden="true">
+        <div class="marquee-track">
+            <span>Coached every rep &mdash; Three levels, one floor &mdash; Forge the body, guard the mind &mdash;&nbsp;</span><span>Coached every rep &mdash; Three levels, one floor &mdash; Forge the body, guard the mind &mdash;&nbsp;</span>
+        </div>
+    </div>
+    <div class="stats-grid">
+        <div class="stat rv"><b>13+</b><span>Years in Frisco</span></div>
+        <div class="stat rv"><b>3,000+</b><span>Lives changed</span></div>
+        <div class="stat rv"><b>5.0</b><span>Google rating</span></div>
+        <div class="stat rv"><b>3</b><span>Levels in every class</span></div>
+    </div>
     <section class="sect">
         <div class="wrap">
             <span class="eyebrow rv">Where you are</span>
             <h2 class="rv">You spent the summer taking care of everybody else.</h2>
-            <p class="lead rv rv-d1">Camps, practices, rides, meals, somebody always needed something. For three months your day belonged to your kids. That’s the job and you did it.</p>
-            <p class="lead rv rv-d1">The kids are back in school now, and there’s time in the middle of your day that nobody has claimed. Work and errands will take it if nothing else does. One hour of it could be yours.</p>
+            <p class="lead rv rv-d1">For three months your day belonged to your kids. Camps, practices, rides, meals. That’s the job and you did it. Now they’re back in school and there’s an hour in the middle of your day nobody has claimed. Work will take it if you don’t.</p>
         </div>
     </section>
     <section class="sect alt">
         <div class="wrap">
             <span class="eyebrow rv">The mission</span>
             <h2 class="rv">Spend one hour, three days a week, on getting stronger.</h2>
-            <p class="lead rv rv-d1">Here’s the objective, and it belongs to you, not to us. Three hours a week, on the calendar, while the kids are in school. Not to make up for the summer and not to get ready for anything. Just so you’re stronger, you move better, and you have something left at the end of the day for the people waiting at home. We handle the program, the coaching and the schedule. You show up.</p>
+            <p class="lead rv rv-d1">Three hours a week, on the calendar, while the kids are in school. Not to make up for the summer. Just so you’re stronger, and you’ve got something left at the end of the day for the people at home. We handle the program. You show up.</p>
             <ul class="mission-list rv rv-d2">
                 <li>An hour of the day that’s yours</li>
                 <li>Noticeably stronger by the holidays</li>
@@ -170,19 +187,19 @@
         <div class="wrap">
             <span class="eyebrow rv">How it works</span>
             <h2 class="rv">How the training actually works here</h2>
-            <p class="lead rv rv-d1">Classes run sixty minutes and a coach is on the floor the whole hour. The strength and conditioning is programmed in cycles and planned weeks ahead, not made up that morning. Every class is written at three levels, so somebody in their first month and somebody in their tenth year train in the same room and both get the right workout. We coach every rep. Six class times a day Monday through Friday, plus Saturday at 9:30.</p>
+            <p class="lead rv rv-d1">Sixty minutes, with a coach on the floor the whole hour. Programmed in cycles and planned weeks ahead, never invented that morning. Every class is written three ways, so a beginner and a ten-year veteran train in the same room. Six times a day, Monday through Friday.</p>
             <div class="lvl-grid rv rv-d2">
                 <div class="lvl">
                     <h3>Everybody starts with Foundations</h3>
-                    <p>Before your first group class you train one-on-one with a coach. You learn the movements, we set your baseline, and you find out how your body is working right now. One week and three sessions, or two weeks and six sessions. You pay for it one time and never again.</p>
+                    <p>Before your first group class you train one-on-one with a coach. You learn the movements and we set your baseline. One week and three sessions, or two weeks and six. You pay once and never again.</p>
                 </div>
                 <div class="lvl">
                     <h3>Three levels, one floor</h3>
-                    <p>Every class is written three ways. You do the version that fits the body you have today, in the same hour and the same room as everyone else. The program flexes so you don’t have to.</p>
+                    <p>Every class is written three ways. You do the version that fits the body you have today, in the same room as everyone else.</p>
                 </div>
                 <div class="lvl">
                     <h3>A coach is watching you</h3>
-                    <p>No leaderboard and no last one standing. We push when you’re ready for it and we pull you back when you’re getting ahead of yourself. You have people at home who need you healthy, so we train that way.</p>
+                    <p>No leaderboard and no last one standing. We push when you’re ready and pull you back when you’re not. You have people at home who need you healthy.</p>
                 </div>
             </div>
         </div>
@@ -196,17 +213,17 @@
                 <div class="step">
                     <em>01</em>
                     <h3>1. We sit down and talk</h3>
-                    <p>You tell us where you’re starting, what hurts, what you’ve tried before, and what you want back. We ask questions and we listen. Nobody here thinks you’re behind.</p>
+                    <p>You tell us where you’re starting, what hurts, and what you want back. We listen. Nobody here thinks you’re behind.</p>
                 </div>
                 <div class="step">
                     <em>02</em>
                     <h3>2. We walk you through the gym</h3>
-                    <p>You see the floor, the equipment and the class times. We explain what Foundations covers and what a normal training week here looks like.</p>
+                    <p>You see the floor, the equipment and the class times, and what a normal training week here looks like.</p>
                 </div>
                 <div class="step">
                     <em>03</em>
                     <h3>3. You get the prices and you decide</h3>
-                    <p>We give you the numbers in writing and answer whatever’s left. If it fits, we book your Foundations right there. If it doesn’t, you leave with a straight answer and we don’t chase you.</p>
+                    <p>Numbers in writing, and whatever’s left answered. If it fits, we book your Foundations right there. If it doesn’t, we don’t chase you.</p>
                 </div>
             </div>
             <div class="bookwrap rv rv-d2" id="book">
@@ -226,7 +243,7 @@
         <div class="wrap">
             <span class="eyebrow rv">Membership</span>
             <h2 class="rv">What it costs.<br><span class="outline">In writing.</span></h2>
-            <p class="lead rv rv-d1">No discount, no promotion, no price that changes if you hesitate. Here is the whole thing, including the part most gyms leave until you are standing in the lobby.</p>
+            <p class="lead rv rv-d1">No discount, no promotion, no price that changes if you hesitate.</p>
             <div class="price-grid three rv rv-d2">
                 <div class="pcard start">
                     <span class="tag">Start here</span>
@@ -235,8 +252,7 @@
                     <ul>
                         <li>One-on-one with a coach before any class</li>
                         <li>Body composition scan and movement analysis</li>
-                        <li>$360 for the one-week track, three sessions</li>
-                        <li>$720 for the two-week track, six sessions</li>
+                        <li>One week and three sessions, or two weeks and six</li>
                         <li>Your coach recommends which at the consult</li>
                     </ul>
                 </div>
@@ -262,9 +278,9 @@
                 </div>
             </div>
             <div class="price-notes rv rv-d3">
-                <p><b>Military, first responders and teachers:</b> 5% off any membership. Veteran-owned, and we know who holds a town together.</p>
-                <p><b>Foundations is once.</b> It is how everybody starts, it is what keeps people from getting hurt in week one, and you never pay it again.</p>
-                <p><b>Commitment:</b> memberships start with 90 days, because change takes longer than a month. After that it is month to month, cancel with 30 days notice.</p>
+                <p><b>Military, first responders and teachers:</b> 5% off any membership.</p>
+                <p><b>Foundations is once.</b> It is how everybody starts, and you never pay it again.</p>
+                <p><b>Commitment:</b> 90 days to start, then month to month, cancel with 30 days notice.</p>
             </div>
         </div>
     </section>
@@ -272,19 +288,19 @@
         <div class="wrap">
             <span class="eyebrow rv">The other price</span>
             <h2 class="rv">What it costs to wait until January</h2>
-            <p class="lead rv rv-d1">This is the honest part. There are about twenty weeks between now and January 1st. That’s more than a third of the year. You can use them, or you can spend them and try to make it up with a resolution.</p>
+            <p class="lead rv rv-d1">About twenty weeks between now and January 1st. More than a third of the year. Use them, or spend them and try to make it up with a resolution.</p>
             <div class="stake-grid rv rv-d2">
                 <div class="stake">
                     <h3>You stay the same</h3>
-                    <p>Twenty weeks is enough time to get noticeably stronger. It’s also enough time for nothing to change. Same body, same energy, same aches, and a new date on the calendar.</p>
+                    <p>Twenty weeks is enough time to get noticeably stronger.</p>
                 </div>
                 <div class="stake">
                     <h3>You start over in January with everyone else</h3>
-                    <p>January is full of people starting from zero. You could walk in that same week already four months in, coached, and knowing exactly what you’re doing.</p>
+                    <p>January is full of people starting from zero.</p>
                 </div>
                 <div class="stake">
                     <h3>You keep feeling like you’re falling behind</h3>
-                    <p>That feeling doesn’t come from a number on the scale. It comes from taking care of everyone else all year and never getting to yourself. Twenty weeks of training changes that. Twenty more weeks of thinking about it doesn’t.</p>
+                    <p>That feeling doesn’t come from a number on the scale.</p>
                 </div>
             </div>
         </div>
@@ -298,8 +314,7 @@
                     <img src="/images/team/owner-headcoach-mike.webp" alt="Mike Manning, owner and head coach of Black Iron Athletics" loading="lazy" width="240" height="360">
                 </div>
                 <div class="note-body rv rv-d1">
-                    <p>I’m Mike Manning. I own Black Iron Athletics and I coach here. I’m a Marine, I’ve been doing this in Frisco since 2013, and about 3,000 people have trained with us in that time. I have a two year old and a five year old at home, so I know what your summer looked like.</p>
-                    <p>When you come in, you’re talking to me or one of my coaches, not a salesperson you’ll never see again. We’re at 279 Main St, Suite 122 in Frisco. Ask the hard questions and we’ll give you straight answers.</p>
+                    <p>I’m Mike Manning. I own Black Iron Athletics and I coach here. Marine, in Frisco since 2013, about 3,000 people trained. I’ve got a two year old and a five year old at home, so I know what your summer looked like. You’ll talk to me or one of my coaches, not a salesperson.</p>
                     <span class="note-sig">Mike Manning, owner and head coach</span>
                     <p class="cmd-where">279 Main St, Suite 122, Frisco, TX 75036<br>
                        Free parking directly out front &middot;
@@ -322,24 +337,12 @@
             <h2 class="rv">Questions people ask before they book</h2>
             <div class="faq rv rv-d1">
                 <details>
-                    <summary>What does it cost?</summary>
-                    <p>Foundations is $360 for the one week, three session track, or $720 for the two week, six session track. That’s one time and you never pay it again. Membership after that is $200 a month for three classes a week, or $240 a month for unlimited, which includes open gym seven days. Military, first responders and teachers take 5% off.</p>
-                </details>
-                <details>
                     <summary>I haven’t trained in years. Is that a problem?</summary>
-                    <p>That’s most of the people who walk in the door, and it’s the reason Foundations exists. You get one-on-one coaching before you’re ever in a group class, and every class is written at three levels, so you’re never trying to keep up with somebody who’s been here a decade.</p>
-                </details>
-                <details>
-                    <summary>Am I locked into a contract?</summary>
-                    <p>There’s a 90 day initial commitment, then month to month with 30 days notice. Ninety days is about how long it takes to feel the difference. After that you stay because you want to.</p>
-                </details>
-                <details>
-                    <summary>Will the class times work with the school day?</summary>
-                    <p>There are six coached class times a day Monday through Friday, plus Saturday at 9:30, and classes run sixty minutes. We’ll pull up the full schedule at your consult and find the one that fits between drop-off and pick-up.</p>
+                    <p>That’s most of the people who walk in the door, and it’s why Foundations exists. One-on-one coaching first, then classes written at three levels, so you’re never trying to keep up.</p>
                 </details>
                 <details>
                     <summary>I can’t afford to get hurt. How do you handle that?</summary>
-                    <p>Our job is to keep you training for decades, not to smoke you in week one. We coach every rep, we push when you’re ready and we pull you back when you’re getting ahead of yourself. Person first, athlete second.</p>
+                    <p>Our job is to keep you training for decades, not to smoke you in week one. We coach every rep and pull you back when you’re getting ahead of yourself. Person first, athlete second.</p>
                 </details>
             </div>
         </div>
@@ -347,7 +350,7 @@
     <section class="final">
         <div class="final-in wrap">
             <h2 class="rv" style="text-align:center">The time is there.<br><span class="outline">Use an hour of it.</span></h2>
-            <p class="lead rv rv-d1" style="text-align:center">Twenty minutes, free, no workout. You’ll leave knowing what Foundations covers, what training here costs, and whether this is the right gym for you. If it isn’t, we’ll tell you that too.</p>
+            <p class="lead rv rv-d1" style="text-align:center">Twenty minutes, free, no workout. You’ll leave knowing what Foundations covers, what it costs, and whether this is the right gym for you.</p>
             <div class="bookwrap rv rv-d2" id="book-close">
                 <span class="book-head">Book your free twenty minute consult</span>
                 <p class="book-sub">Pick a time that fits the school day and we’ll take it from there. 279 Main St, Suite 122, Frisco TX.</p>
