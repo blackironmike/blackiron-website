@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <!-- CONTRACT: keep this exact viewport tag — inject-pixel.js insertion marker -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>You&rsquo;re All Set | Black Iron Athletics | Frisco, TX</title>
+    <title>You&rsquo;re Booked | Black Iron Athletics | Frisco, TX</title>
     <meta name="description" content="Your consultation is booked at Black Iron Athletics in Frisco, TX. Here&rsquo;s what to expect for your visit.">
     <meta name="robots" content="noindex">
     <link rel="icon" type="image/png" href="/images/anvil-favicon.png">
@@ -27,6 +27,24 @@
         @media (max-width:860px){.thanks-map,.thanks-map iframe{min-height:280px}}
     </style>
     <script defer src="/_vercel/insights/script.js"></script>
+    <style>
+    .ty-grid{display:grid;gap:1px;background:var(--steel-line);border:1px solid var(--steel-line);
+      grid-template-columns:1fr}
+    @media(min-width:760px){.ty-grid{grid-template-columns:repeat(3,1fr)}}
+    .ty-item{background:var(--black);padding:30px 26px}
+    .ty-lab{display:block;font-size:.7rem;font-weight:700;letter-spacing:.16em;
+      text-transform:uppercase;color:var(--yellow);margin-bottom:12px}
+    .ty-item p{margin:0 0 8px;color:var(--white);font-weight:700}
+    .ty-item .ty-sub{color:var(--gray);font-weight:400;font-size:.92rem;margin:0}
+    .ty-steps{list-style:none;margin:38px 0 0;padding:0;display:grid;gap:1px;
+      background:var(--steel-line);border:1px solid var(--steel-line)}
+    @media(min-width:820px){.ty-steps{grid-template-columns:repeat(3,1fr)}}
+    .ty-steps li{background:var(--coal);padding:32px 28px}
+    .ty-steps em{display:block;font-style:normal;font-weight:900;font-size:.8rem;
+      letter-spacing:.14em;color:var(--yellow);margin-bottom:14px}
+    .ty-steps h3{margin:0 0 10px;font-size:1.15rem}
+    .ty-steps p{margin:0;color:var(--gray);font-size:.95rem}
+    </style>
 </head>
 <body>
     <a href="#main-content" class="skip-link">Skip to main content</a>
@@ -46,114 +64,62 @@
         </div>
     </nav>
 
-    <main id="main-content">
+        <main id="main-content">
 
-    <!-- ============ CONFIRMATION HERO ============ -->
     <section class="confirmation-hero no-top">
-        <div class="confirmation-container">
-            <div class="checkmark-circle rv">
-                <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 12.5l5.5 5.5L20 6.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            </div>
-            <span class="eyebrow eyebrow-y rv">Consultation requested</span>
-            <h1 class="rv">You&rsquo;re <span class="outline">all set.</span></h1>
-            <p class="lead rv" style="margin:26px auto 0;max-width:56ch">We&rsquo;ve got your request. Check your email for the confirmation &mdash; a real coach will follow up the same day to lock in your time.</p>
+        <div class="wrap center">
+            <span class="eyebrow eyebrow-y rv">Consult booked</span>
+            <h1 class="rv">You&rsquo;re <span class="outline">on the calendar.</span></h1>
+            <p class="lead rv rv-d1" id="booked-when-wrap" hidden>Your time: <b id="booked-when"></b></p>
+            <p class="lead rv rv-d1">Check your email. The confirmation has your time and a calendar invite. Here is exactly what happens when you get here.</p>
         </div>
     </section>
 
-    <!-- ============ WELCOME VIDEO ============ -->
     <section class="sect alt">
         <div class="wrap">
-            <span class="eyebrow rv">While you wait</span>
-            <h2 class="rv">A quick message<br><span class="outline">from Mike.</span></h2>
-            <!-- Welcome video hidden until the real video ID exists. To enable:
-                 swap VIDEO_ID_HERE for the YouTube ID and remove this wrapper comment.
-            <div class="youtube-video rv" style="max-width:900px">
-                <iframe src="https://www.youtube-nocookie.com/embed/VIDEO_ID_HERE" title="Welcome message from Mike" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen loading="lazy"></iframe>
-            </div>
-            -->
-
+            <h2 class="rv">The twenty minutes</h2>
+            <ol class="ty-steps">
+                <li class="rv"><em>01</em><h3>We talk first</h3><p>What you want, what you have tried, what your week actually looks like. No forms, no assessment, just a conversation.</p></li>
+                <li class="rv rv-d1"><em>02</em><h3>We show you the floor</h3><p>A walk through the gym so the room stops being an unknown. You will see a class running if one is on.</p></li>
+                <li class="rv rv-d2"><em>03</em><h3>We tell you the truth</h3><p>If we are a fit, we will show you where you would start. If we are not, we will say so and point you somewhere better.</p></li>
+            </ol>
         </div>
     </section>
 
-    <!-- ============ WHAT TO EXPECT ============ -->
     <section class="sect">
         <div class="wrap">
-            <span class="eyebrow rv">Be prepared</span>
-            <h2 class="rv">What to <span class="outline">expect.</span></h2>
-            <div class="expect-grid">
-                <div class="expect-card rv">
-                    <svg class="expect-icon icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 3l4 2 4-2 4 4-3 3v11H7V10L4 7z"/></svg>
-                    <h3>What to wear</h3>
-                    <p>Comfortable athletic clothes, athletic shoes, and a water bottle. No special gear required &mdash; just come ready to look around.</p>
+            <div class="ty-grid">
+                <div class="ty-item rv">
+                    <span class="ty-lab">What to wear</span>
+                    <p>Whatever you have on.</p>
+                    <p class="ty-sub">You are not training that day. Come straight from work if that is easiest.</p>
                 </div>
-                <div class="expect-card rv">
-                    <svg class="expect-icon icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="4" width="14" height="17" rx="1"/><path d="M9 4V2.5h6V4M9 10h6M9 14h6M9 18h4"/></svg>
-                    <h3>What we&rsquo;ll cover</h3>
-                    <p>A full tour of the gym, a conversation about your goals, a look at how the programs work, and a plan matched to your level and your schedule.</p>
+                <div class="ty-item rv rv-d1">
+                    <span class="ty-lab">Where to park</span>
+                    <p>Right out front.</p>
+                    <p class="ty-sub">Free parking in the Main Street shopping center, directly in front of the building.</p>
                 </div>
-                <div class="expect-card rv">
-                    <svg class="expect-icon icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/></svg>
-                    <h3>Timing</h3>
-                    <p>Plan for 20 minutes. No obligation, zero pressure. We&rsquo;ll answer every question and make sure you&rsquo;re completely comfortable.</p>
+                <div class="ty-item rv rv-d2">
+                    <span class="ty-lab">Where to go</span>
+                    <p>Suite 122.</p>
+                    <p class="ty-sub">279 Main St, Frisco, TX 75036. Walk in and someone will be expecting you.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- ============ LOCATION ============ -->
-    <section class="sect alt">
-        <div class="wrap">
-            <span class="eyebrow rv">Find us</span>
-            <h2 class="rv">Where <span class="outline">we are.</span></h2>
-            <div class="visit-grid">
-                <div class="visit-rows rv">
-                    <div class="visit-row">
-                        <b>Address</b>
-                        <p>279 Main St, Suite 122<br>Frisco, TX 75036</p>
-                    </div>
-                    <div class="visit-row">
-                        <b>Phone</b>
-                        <p><a href="tel:+19727857036">(972) 785-7036</a></p>
-                    </div>
-                    <div class="visit-row">
-                        <b>Parking</b>
-                        <p>Free parking directly in front of the building, in the Main Street shopping center.</p>
-                    </div>
-                    <div class="visit-row">
-                        <b>Look for</b>
-                        <p>The Black Iron Athletics sign. Walk right in &mdash; we&rsquo;ll greet you at the front desk.</p>
-                    </div>
-                    <div class="visit-row">
-                        <b>Heads up</b>
-                        <p>We train at Suite 122 until our new home at Suite 110 &mdash; right next door &mdash; opens in October 2026.</p>
-                    </div>
-                </div>
-                <div class="thanks-map rv">
-                    <iframe
-                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3344.9875647886857!2d-96.89026308820058!3d33.15034697358084!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x864c3a240f77e3f7%3A0x9f460209df528d6e!2sBlack%20Iron%20Athletics!5e0!3m2!1sen!2sus!4v1737509000000!5m2!1sen!2sus"
-                        title="Black Iron Athletics location on Google Maps"
-                        allowfullscreen=""
-                        loading="lazy"
-                        referrerpolicy="no-referrer-when-downgrade">
-                    </iframe>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ============ QUESTIONS CTA ============ -->
-    <section class="final" aria-label="Questions before your visit">
-        <div class="slash" aria-hidden="true"></div>
-        <div class="final-in wrap">
-            <h2 class="rv">Questions before<br>you come in?</h2>
-            <p class="lead rv">Give us a call. A real coach picks up &mdash; not a call center.</p>
-            <div class="final-ctas rv">
-                <a class="btn btn-y" href="tel:+19727857036">Call (972) 785-7036</a>
+    <section class="final">
+        <div class="final-in wrap center">
+            <h2 class="rv">Something came up?</h2>
+            <p class="lead rv rv-d1">Call and we will move it. We would rather reschedule than have you skip it.</p>
+            <div class="final-ctas rv rv-d2">
+                <a href="tel:+19727857036" onclick="if(window.fbq)fbq('trackCustom','PhoneClick');" class="btn btn-y">(972) 785-7036</a>
             </div>
         </div>
     </section>
 
     </main>
+
 
     <!-- ============ MINIMAL FOOTER (no modal links on this page) ============ -->
     <footer>
@@ -236,5 +202,54 @@
         items.forEach(function(el){ io.observe(el); });
     })();
     </script>
+<script>
+/* ── Booked-confirmation page ────────────────────────────────────────────
+   Two jobs, both easy to get wrong.
+
+   1. BREAK OUT OF THE IFRAME. The booking calendar is embedded on
+      /back-to-school, so GHL's redirect lands this page INSIDE that iframe,
+      about 400px wide in the middle of a landing page. Escaping to the top
+      window is what makes it read as a real confirmation, and it also fires
+      the conversion event at top level where Meta expects it.
+
+   2. FIRE THE CONVERSION. This page is only ever reached by completing a
+      booking, so a plain page load IS the signal. That is far more reliable
+      than sniffing postMessages from a cross-origin widget, and it is why
+      the redirect is worth setting up at all.
+   ------------------------------------------------------------------- */
+(function () {
+  if (window.top !== window.self) {
+    try { window.top.location.href = window.location.href; return; } catch (e) {}
+  }
+  function fire() {
+    if (typeof fbq !== 'function') return;
+    fbq('track', 'Schedule');
+    fbq('track', 'Lead');
+  }
+  if (typeof fbq === 'function') fire(); else window.addEventListener('load', fire);
+
+  /* GHL can append booking details to the redirect. Show the real time when
+     it arrives and stay quiet when it does not, so the page never displays
+     an empty slot where a date should be. */
+  var q = new URLSearchParams(window.location.search);
+  var when = q.get('start_time') || q.get('startTime') || q.get('event_start_time') ||
+             q.get('appointment_start_time') || q.get('date');
+  if (!when) return;
+  var d = new Date(when);
+  if (isNaN(d)) return;
+  var el = document.getElementById('booked-when');
+  if (!el) return;
+  /* Pinned to gym time, not the visitor's device time. Everyone booking this
+     is within ten miles of Frisco, and the confirmation email states Central,
+     so a device set to another zone must not show a different hour here. */
+  el.textContent = d.toLocaleString('en-US', {
+    weekday: 'long', month: 'long', day: 'numeric',
+    hour: 'numeric', minute: '2-digit',
+    timeZone: 'America/Chicago', timeZoneName: 'short'
+  });
+  var wrap = document.getElementById('booked-when-wrap');
+  if (wrap) wrap.hidden = false;
+})();
+</script>
 </body>
 </html>
