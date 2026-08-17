@@ -5,25 +5,23 @@
     <!-- CONTRACT: keep this exact viewport tag — inject-pixel.js insertion marker -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="robots" content="noindex,follow">
-    <title>Back to School | Black Iron Athletics — Frisco, TX</title>
-    <meta name="description" content="The kids went back. Your mornings just changed. Six coached class times a day in Frisco, Monday through Friday, sixty minutes each, three levels in every class. Free twenty-minute consult.">
+    <title>Take An Hour Back | Black Iron Athletics, Frisco TX</title>
+    <meta name="description" content="You spent the summer being mom or dad. The kids are back in school and there’s time in your day again. Coached sixty minute classes, three levels, veteran-owned in Frisco since 2013. Free twenty minute consult.">
     <meta name="geo.region" content="US-TX">
     <meta name="geo.placename" content="Frisco">
     <meta name="geo.position" content="33.15035;-96.89026">
-    <!-- Open Graph -->
-    <meta property="og:title" content="The kids went back. Your mornings just changed.">
-    <meta property="og:description" content="Six coached class times a day in Frisco, Monday through Friday. Sixty minutes, three levels, a coach on every rep. Start with a free twenty-minute consult.">
+    <meta property="og:title" content="The kids are back in school. Take an hour back for you.">
+    <meta property="og:description" content="You spent the summer being mom or dad. The kids are back in school and there’s time in your day again. Coached sixty minute classes, three levels, veteran-owned in Frisco since 2013. Free twenty minute consult.">
     <meta property="og:url" content="https://www.blackironathletics.com/back-to-school">
     <meta property="og:image" content="https://www.blackironathletics.com/images/social/2026-08-13-back-to-school-header.jpg">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
-    <meta property="og:image:alt" content="Black Iron Athletics, Frisco TX. Headline: The kids got theirs. Now get yours.">
+    <meta property="og:image:alt" content="Black Iron Athletics, Frisco TX.">
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="Black Iron Athletics">
-    <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="The kids went back. Your mornings just changed.">
-    <meta name="twitter:description" content="Six coached class times a day in Frisco, Monday through Friday. Sixty minutes, three levels, a coach on every rep.">
+    <meta name="twitter:title" content="The kids are back in school. Take an hour back for you.">
+    <meta name="twitter:description" content="You spent the summer being mom or dad. The kids are back in school and there’s time in your day again. Coached sixty minute classes, three levels, veteran-owned in Frisco since 2013. Free twenty minute consult.">
     <meta name="twitter:image" content="https://www.blackironathletics.com/images/social/2026-08-13-back-to-school-header.jpg">
     <link rel="icon" type="image/png" href="/images/anvil-favicon.png">
     <link rel="apple-touch-icon" href="/images/anvil-favicon.png">
@@ -34,795 +32,385 @@
     <noscript><link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&display=swap" rel="stylesheet"></noscript>
     <link rel="stylesheet" href="/css/bia.css">
     <style>
-    /* Back-to-school campaign page — page-unique components, same token language. */
+    /* ── Landing page chrome. Deliberately not the site nav: this page has
+          no menu, no hamburger and no thumb bar, so the only exits are
+          booking, calling, or closing the tab. ─────────────────────────── */
+    .lp-bar{position:sticky;top:0;z-index:60;background:rgba(0,0,0,.92);
+      backdrop-filter:blur(8px);border-bottom:1px solid var(--steel-line)}
+    .lp-bar-in{display:flex;align-items:center;justify-content:space-between;
+      gap:16px;padding:14px clamp(16px,4vw,40px);max-width:1240px;margin:0 auto}
+    .lp-bar img{height:34px;width:auto;display:block}
+    .lp-call{display:inline-flex;align-items:center;gap:9px;color:var(--white);
+      font-weight:900;font-size:.86rem;letter-spacing:.06em;white-space:nowrap}
+    .lp-call svg{flex:0 0 auto}
+    @media(max-width:420px){.lp-call span{display:none}}
 
-    /* This headline is long, so it sits deliberately between h2 and .display
-       rather than inheriting a browser default. */
-    .hero h1{font-size:clamp(2.3rem,5.2vw,4.4rem)}
+    .hero h1{font-size:clamp(2.2rem,5.4vw,4.2rem)}
+    .hero-short{padding-top:clamp(46px,7vw,86px)}
 
-    /* Michael's own note. Coal ground, so --hole has to follow or the
-       outlined type inside it would show a black interior on coal. */
+    /* Mike's note. Coal ground, so --hole follows or outlined type inside
+       would show a black interior on coal. */
     .note{background:var(--coal);--hole:var(--coal)}
-    .note-in{display:grid;gap:34px;align-items:center;grid-template-columns:1fr}
-    @media(min-width:820px){.note-in{grid-template-columns:260px 1fr;gap:46px}}
-    .note-img img{width:100%;max-width:260px;border:1px solid var(--steel-line)}
-    .note-body p{margin-bottom:16px;max-width:60ch}
-    .note-body p:last-child{margin-bottom:0}
-    .note-sig{display:block;margin-top:22px;font-weight:900;font-size:.9rem;
+    .note-in{display:grid;gap:30px;align-items:center;grid-template-columns:1fr}
+    @media(min-width:820px){.note-in{grid-template-columns:240px 1fr;gap:44px}}
+    .note-img img{width:100%;max-width:240px;border:1px solid var(--steel-line);
+      filter:grayscale(1) contrast(1.06) brightness(.94)}
+    .note-body p{margin-bottom:15px;max-width:62ch}
+    .note-body p:last-of-type{margin-bottom:0}
+    .note-sig{display:block;margin-top:20px;font-weight:900;font-size:.88rem;
       letter-spacing:.06em;text-transform:uppercase;color:var(--yellow)}
 
-    /* Class times. Not a schedule — a proof that one of them fits. */
-    .slots{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;
-      background:var(--steel-line);border:1px solid var(--steel-line);margin-top:38px}
-    @media(min-width:760px){.slots{grid-template-columns:repeat(3,1fr)}}
-    .slot{background:var(--black);padding:26px 20px;text-align:center}
-    .slot b{display:block;font-size:1.55rem;font-weight:900;letter-spacing:-.02em;line-height:1}
-    .slot span{display:block;margin-top:9px;font-size:.72rem;font-weight:700;
-      letter-spacing:.14em;text-transform:uppercase;color:var(--gray)}
-    .slot.hi{background:var(--coal)}
-    .slot.hi b{color:var(--yellow)}
-    .slots-note{margin-top:20px;font-size:.9rem;color:var(--gray)}
+    /* Stakes. What it costs to do nothing, stated once and quietly. */
+    .stake-grid{display:grid;gap:1px;background:var(--steel-line);
+      border:1px solid var(--steel-line);margin-top:34px;grid-template-columns:1fr}
+    @media(min-width:780px){.stake-grid{grid-template-columns:repeat(3,1fr)}}
+    .stake{background:var(--black);padding:30px 26px}
+    .stake h3{margin:0 0 10px;font-size:1.06rem}
+    .stake p{margin:0;color:var(--gray);font-size:.95rem}
 
-    /* Booking calendar, embedded rather than linked. The whole point is that
-       nobody has to leave the page to pick a time, so this has to look like
-       part of the page and not a bolted-on widget. */
+    /* Booking calendar. Full width and tall: the owner found the first pass
+       cramped, and this is the only thing on the page that has a job. */
     .bookwrap{border:1px solid var(--steel-line);background:var(--coal);
-      padding:clamp(18px,3vw,30px);margin-top:34px}
-    .bookwrap .book-head{display:block;font-size:.72rem;font-weight:700;
-      letter-spacing:.16em;text-transform:uppercase;color:var(--yellow);
-      margin-bottom:6px}
-    .bookwrap .book-sub{margin:0 0 20px;font-size:.92rem;color:var(--gray)}
-    /* min-height holds the space before form_embed.js reports the real height,
-       so the page does not jump under someone mid-scroll. */
-    .bookwrap iframe{display:block;width:100%;min-height:720px;border:0;
-      background:var(--black)}
-    @media(max-width:600px){.bookwrap iframe{min-height:820px}}
-    .book-fallback{margin:16px 0 0;font-size:.86rem;color:var(--gray)}
-    .final .bookwrap{text-align:left;max-width:760px;margin-left:auto;margin-right:auto}
+      padding:clamp(18px,3vw,34px);margin-top:36px}
+    .bookwrap .book-head{display:block;font-size:.74rem;font-weight:700;
+      letter-spacing:.16em;text-transform:uppercase;color:var(--yellow);margin-bottom:8px}
+    .bookwrap .book-sub{margin:0 0 22px;font-size:.96rem;color:var(--gray);max-width:60ch}
+    .bookwrap iframe{display:block;width:100%;min-height:900px;border:0;background:var(--black)}
+    @media(max-width:600px){.bookwrap iframe{min-height:1000px}}
+    .book-fallback{margin:16px 0 0;font-size:.88rem;color:var(--gray)}
+    .final .bookwrap{text-align:left;max-width:none}
+
+    .mission-list{list-style:none;margin:30px 0 0;padding:0;display:grid;gap:1px;
+      background:var(--steel-line);border:1px solid var(--steel-line)}
+    @media(min-width:780px){.mission-list{grid-template-columns:repeat(3,1fr)}}
+    .mission-list li{background:var(--black);padding:26px 24px;color:var(--white);
+      font-weight:700;font-size:1.02rem}
+    .mission-list li::before{content:"";display:block;width:26px;height:3px;
+      background:var(--yellow);margin-bottom:14px}
+    .cmd-where{margin-top:22px;padding-top:20px;border-top:1px solid var(--steel-line);
+      color:var(--gray);font-size:.92rem}
+    .cmd-where a{color:var(--white);font-weight:700}
+    /* Three cards, not the stylesheet default of four. A class, not an inline
+       style: inline beats the mobile media query in bia.css and pushed the
+       third card off a 390px screen. */
+    .price-grid.three{grid-template-columns:repeat(3,1fr)}
+    @media(max-width:900px){.price-grid.three{grid-template-columns:1fr 1fr}}
+    @media(max-width:640px){.price-grid.three{grid-template-columns:1fr}}
+    .price-notes b{color:var(--white)}
+    .pcard.start{background:var(--coal)}
+    .pnum.once{font-size:clamp(2rem,2.8vw,2.7rem)}
+    .pnum.once small{display:block;font-size:.8rem;font-weight:700;letter-spacing:.1em;
+      text-transform:uppercase;color:var(--gray);margin-top:8px}
+
+    /* Landing footer. Address, phone, and the legal links ad platforms
+       expect. No navigation. */
+    .lp-foot{border-top:1px solid var(--steel-line);background:var(--black);
+      padding:44px clamp(16px,4vw,40px) 56px;text-align:center}
+    .lp-foot p{margin:0 0 10px;color:var(--gray);font-size:.9rem}
+    .lp-foot a{color:var(--gray)}
+    .lp-foot .lp-foot-legal{margin-top:18px;font-size:.8rem;color:var(--gray)}
     </style>
     <script defer src="/_vercel/insights/script.js"></script>
 </head>
 <body>
     <a href="#main-content" class="skip-link">Skip to main content</a>
 
-    <!-- ============ NAV (final IA — identical on every page) ============ -->
-    <nav id="nav">
-        <div class="nav-container">
-            <div class="logo">
-                <a href="/" aria-label="Black Iron Athletics home">
-                    <img src="/images/logos/logo.png" alt="Black Iron Athletics">
-                </a>
-            </div>
-            <ul class="nav-links">
-                <li class="has-submenu">
-                    <a href="/about">About Us</a>
-                    <ul class="submenu">
-                        <li><a href="/about">Our Mission</a></li>
-                        <li><a href="/about#team">Meet the Team</a></li>
-                        <li><a href="/media">Media</a></li>
-                    </ul>
-                </li>
-                <li class="has-submenu">
-                    <a href="/programs">Programs</a>
-                    <ul class="submenu">
-                        <li><a href="/programs#group-classes">Strength &amp; Conditioning</a></li>
-                        <li><a href="/programs#personal-training">Personal Training</a></li>
-                        <li><a href="/programs#nutrition-coaching">Nutrition Coaching</a></li>
-                        <li><a href="/programs#open-gym">Open Gym</a></li>
-                        <li><a href="/programs#recovery">Recovery Room</a></li>
-                    </ul>
-                </li>
-                <li><a href="/pricing">Pricing</a></li>
-                <li class="has-submenu">
-                    <a href="/getting-started">Getting Started</a>
-                    <ul class="submenu">
-                        <li><a href="/getting-started">How it works</a></li>
-                        <li><a href="/pricing">Membership &amp; Pricing</a></li>
-                        <li><a href="/faq">FAQs</a></li>
-                    </ul>
-                </li>
-                <li><a href="/schedule">Schedule</a></li>
-                <li><a href="/blog">Blog</a></li>
-                <li><a href="/contact">Contact</a></li>
-            </ul>
-            <a href="#book" class="cta-btn">Book a Free Consult</a>
-            <button class="hamburger" onclick="toggleSideMenu()" aria-label="Menu">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
+    <header class="lp-bar">
+        <div class="lp-bar-in">
+            <img src="/images/logos/logo.png" alt="Black Iron Athletics" width="150" height="34">
+            <a class="lp-call" href="tel:+19727857036" onclick="if(window.fbq)fbq('trackCustom','PhoneClick');"><svg width="17" height="17" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M6.5 2.5 8.2 6l-1.7 1.6a11 11 0 0 0 4.9 4.9L13 10.8l3.5 1.7v3.2c0 .6-.5 1-1.1 1A13.6 13.6 0 0 1 2.3 3.6c0-.6.4-1.1 1-1.1h3.2Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg><span>(972) 785-7036</span></a>
         </div>
-    </nav>
-
-    <!-- ============ THUMB BAR (mobile) ============ -->
-    <div class="thumbbar">
-        <a class="tb-call" href="tel:+19727857036" onclick="if(window.fbq)fbq('trackCustom','PhoneClick');" aria-label="Call Black Iron Athletics"><svg width="19" height="19" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M6.5 2.5 8.2 6l-1.7 1.6a11 11 0 0 0 4.9 4.9L13 10.8l3.5 1.7v3.2c0 .6-.5 1-1.1 1A13.6 13.6 0 0 1 2.3 3.6c0-.6.4-1.1 1-1.1h3.2Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg></a>
-        <a class="tb-book" href="#book">Book a Free Consult</a>
-    </div>
-
-    <!-- ============ SIDE MENU (flat mirror of the nav IA) ============ -->
-    <div class="menu-backdrop" id="menuBackdrop"></div>
-    <div class="side-menu" id="sideMenu">
-        <div class="side-menu-header">
-            <img src="/images/logos/logo.png" alt="Black Iron Athletics">
-            <button class="side-menu-close" onclick="closeSideMenu()" aria-label="Close menu">&times;</button>
-        </div>
-        <div class="side-menu-links">
-            <a href="/getting-started">Getting Started</a>
-            <a href="/schedule">Schedule</a>
-            <a href="/pricing">Pricing</a>
-            <details class="m-acc"><summary>Programs</summary>
-                <a href="/programs" class="sub-link">All programs</a>
-                <a href="/programs#group-classes" class="sub-link">Strength &amp; Conditioning</a>
-                <a href="/programs#personal-training" class="sub-link">Personal Training</a>
-                <a href="/programs#nutrition-coaching" class="sub-link">Nutrition Coaching</a>
-                <a href="/programs#open-gym" class="sub-link">Open Gym</a>
-                <a href="/programs#recovery" class="sub-link">Recovery Room</a>
-            </details>
-            <details class="m-acc"><summary>About Us</summary>
-                <a href="/about" class="sub-link">Our Mission</a>
-                <a href="/about#team" class="sub-link">Meet the Team</a>
-                <a href="/media" class="sub-link">Media</a>
-            </details>
-            <a href="/faq">FAQs</a>
-            <a href="/blog">Blog</a>
-            <a href="/contact">Contact</a>
-        </div>
-        <div class="side-menu-footer">
-            <a href="#book" onclick="closeSideMenu();">Book a Free Consult</a>
-        </div>
-    </div>
-
+    </header>
     <main id="main-content">
-
-    <!-- ============ HERO ============ -->
     <section class="hero hero-short">
         <div class="hero-bg">
             <img class="ph-soft" src="/images/training/group-training.webp" alt="A coach working with members on the floor at Black Iron Athletics in Frisco" fetchpriority="high" width="1024" height="683">
         </div>
         <div class="hero-in wrap">
             <span class="eyebrow eyebrow-y rv">Frisco, TX &middot; Veteran-owned &middot; Est. 2013</span>
-            <h1 class="rv">The kids went back.<br><span class="outline">Your mornings just changed.</span></h1>
-            <p class="lead rv rv-d1">Six coached class times a day, Monday through Friday. Sixty minutes each, three levels in every class, a coach on every rep. One of them fits the week you actually live.</p>
+            <h1 class="rv">The kids are back in school.<br><span class="outline">Take an hour back for you.</span></h1>
+            <p class="lead rv rv-d1">You spent the whole summer being mom or being dad. The kids are back in class and there’s time in your day again. Spend an hour of it getting strong. Start with a free twenty minute consult.</p>
             <div class="hero-ctas rv rv-d2">
-                <a href="#book" class="btn btn-y">Pick a time</a>
-                <a href="#how" class="btn btn-ghost">See how it works</a>
+                <a href="#book" class="btn btn-y">Book your free consult</a>
             </div>
-            <p class="trust rv rv-d3">Twenty minutes with a coach. No sales pitch &mdash; if we&rsquo;re not the right fit, we&rsquo;ll say so.</p>
+            <p class="trust rv rv-d3">Veteran-owned in Frisco since 2013. About 3,000 people trained. Sixty minute coached classes, six times a day Monday through Friday.</p>
         </div>
     </section>
-
-    <!-- ============ MICHAEL'S NOTE ============ -->
-    <section class="sect note">
-        <div class="wrap">
-            <div class="note-in">
-                <div class="note-img rv">
-                    <img src="/images/team/owner-headcoach-mike.webp" alt="Mike Manning, owner and head coach of Black Iron Athletics" loading="lazy" class="ph">
-                </div>
-                <div class="note-body rv rv-d1">
-                    <span class="eyebrow-y">A note from Mike</span>
-                    <p>The first day of school, I did both drop-offs by myself.</p>
-                    <p>My wife teaches elementary school, so that morning she had to be at her own building early, getting her room ready to meet her class. So the run was mine. Our two-year-old to pre-K, then our five-year-old to his first day of kindergarten. I got a taste of what her every other morning looks like, and I have a new respect for it.</p>
-                    <p>Then I drove home and the house was quiet. Not gone-for-an-hour quiet. The real kind. It had not sounded like that since May.</p>
-                    <p>Here is what I have watched happen for thirteen years. That quiet fills itself. Errands, email, the thing you have been meaning to get to. Come November you are wondering where the fall went.</p>
-                    <p>One hour of it could go to you. That is the whole pitch.</p>
-                    <span class="note-sig">Mike Manning &middot; Owner &amp; Head Coach</span>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ============ THE TIMES ============ -->
     <section class="sect">
-        <div class="wrap center">
-            <span class="eyebrow rv">Weekdays</span>
-            <h2 class="rv">Six times a day.<br><span class="outline">One of them fits.</span></h2>
-            <div class="slots rv rv-d1">
-                <div class="slot"><b>5:15 AM</b><span>Before they wake</span></div>
-                <div class="slot"><b>6:15 AM</b><span>Before the office</span></div>
-                <div class="slot hi"><b>9:30 AM</b><span>After drop-off</span></div>
-                <div class="slot hi"><b>12:00 PM</b><span>Middle of the day</span></div>
-                <div class="slot"><b>4:15 PM</b><span>Before dinner</span></div>
-                <div class="slot"><b>5:15 PM</b><span>After work</span></div>
-            </div>
-            <p class="slots-note rv rv-d2">The two in yellow sit inside the school day. Saturday is a 9:30 class. Outside class times the floor is open gym, so every hour of every day is one or the other, on the Unlimited and Open Gym memberships. <a href="/schedule">See the full schedule</a>.</p>
+        <div class="wrap">
+            <span class="eyebrow rv">Where you are</span>
+            <h2 class="rv">You spent the summer taking care of everybody else.</h2>
+            <p class="lead rv rv-d1">Camps, practices, rides, meals, somebody always needed something. For three months your day belonged to your kids. That’s the job and you did it.</p>
+            <p class="lead rv rv-d1">The kids are back in school now, and there’s time in the middle of your day that nobody has claimed. Work and errands will take it if nothing else does. One hour of it could be yours.</p>
         </div>
     </section>
-
-    <!-- ============ HOW IT WORKS ============ -->
-    <section class="sect alt" id="how">
+    <section class="sect alt">
+        <div class="wrap">
+            <span class="eyebrow rv">The mission</span>
+            <h2 class="rv">Spend one hour, three days a week, on getting stronger.</h2>
+            <p class="lead rv rv-d1">Here’s the objective, and it belongs to you, not to us. Three hours a week, on the calendar, while the kids are in school. Not to make up for the summer and not to get ready for anything. Just so you’re stronger, you move better, and you have something left at the end of the day for the people waiting at home. We handle the program, the coaching and the schedule. You show up.</p>
+            <ul class="mission-list rv rv-d2">
+                <li>An hour of the day that’s yours</li>
+                <li>Noticeably stronger by the holidays</li>
+                <li>Energy left at the end of the day</li>
+            </ul>
+        </div>
+    </section>
+    <section class="sect">
         <div class="wrap">
             <span class="eyebrow rv">How it works</span>
-            <h2 class="rv">Three steps.<br><span class="outline">No guesswork.</span></h2>
-            <div class="steps rv rv-d1">
+            <h2 class="rv">How the training actually works here</h2>
+            <p class="lead rv rv-d1">Classes run sixty minutes and a coach is on the floor the whole hour. The strength and conditioning is programmed in cycles and planned weeks ahead, not made up that morning. Every class is written at three levels, so somebody in their first month and somebody in their tenth year train in the same room and both get the right workout. We coach every rep. Six class times a day Monday through Friday, plus Saturday at 9:30.</p>
+            <div class="lvl-grid rv rv-d2">
+                <div class="lvl">
+                    <h3>Everybody starts with Foundations</h3>
+                    <p>Before your first group class you train one-on-one with a coach. You learn the movements, we set your baseline, and you find out how your body is working right now. One week and three sessions, or two weeks and six sessions. You pay for it one time and never again.</p>
+                </div>
+                <div class="lvl">
+                    <h3>Three levels, one floor</h3>
+                    <p>Every class is written three ways. You do the version that fits the body you have today, in the same hour and the same room as everyone else. The program flexes so you don’t have to.</p>
+                </div>
+                <div class="lvl">
+                    <h3>A coach is watching you</h3>
+                    <p>No leaderboard and no last one standing. We push when you’re ready for it and we pull you back when you’re getting ahead of yourself. You have people at home who need you healthy, so we train that way.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="sect alt" id="how">
+        <div class="wrap">
+            <span class="eyebrow rv">Your first twenty minutes</span>
+            <h2 class="rv">What the free consult looks like, step by step</h2>
+            <p class="lead rv rv-d1">Twenty minutes, free. No workout, no weigh-in, nothing sprung on you at the end. Here’s exactly what happens.</p>
+            <div class="steps rv rv-d2">
                 <div class="step">
                     <em>01</em>
-                    <h3>Book a free consult</h3>
-                    <p>Twenty minutes with a coach. We talk goals, training history, and what your week actually looks like now that school is back. No sales pitch &mdash; if we&rsquo;re not the right fit, we&rsquo;ll say so.</p>
+                    <h3>1. You pick a time</h3>
+                    <p>Choose a slot that fits between drop-off and pick-up. It takes twenty minutes and you stay in your street clothes.</p>
                 </div>
                 <div class="step">
                     <em>02</em>
-                    <h3>Do your Foundations week</h3>
-                    <p>One-on-one coaching before you ever join a class. Learn the basics, set a baseline, understand your body. Every member starts here &mdash; no exceptions, no shortcuts.</p>
+                    <h3>2. We sit down and talk</h3>
+                    <p>You tell us where you’re starting, what hurts, what you’ve tried before, and what you want back. We ask questions and we listen. Nobody here thinks you’re behind.</p>
                 </div>
                 <div class="step">
                     <em>03</em>
-                    <h3>Pick your hour</h3>
-                    <p>Group classes with three levels on one floor, coached every rep. Beginners next to ten-year athletes, nobody compromising.</p>
+                    <h3>3. We walk you through the gym</h3>
+                    <p>You see the floor, the equipment and the class times. We explain what Foundations covers and what a normal training week here looks like.</p>
+                </div>
+                <div class="step">
+                    <em>04</em>
+                    <h3>4. You get the prices and you decide</h3>
+                    <p>We give you the numbers in writing and answer whatever’s left. If it fits, we book your Foundations right there. If it doesn’t, you leave with a straight answer and we don’t chase you.</p>
                 </div>
             </div>
             <div class="bookwrap rv rv-d2" id="book">
-                <span class="book-head">Pick a time</span>
-                <p class="book-sub">Twenty minutes with a coach, free. Pick a slot that works and you are done. Nothing to fill in afterward.</p>
+                <span class="book-head">Book your free twenty minute consult</span>
+                <p class="book-sub">Pick a time that fits the school day and we’ll take it from there. 279 Main St, Suite 122, Frisco TX.</p>
                 <iframe
                     data-src="https://api.leadconnectorhq.com/widget/booking/aOyy4UPbwziVvHz35TCU"
                     id="aOyy4UPbwziVvHz35TCU_bts1"
                     title="Book a free consult at Black Iron Athletics"
-                    loading="lazy"
-                    scrolling="no"
-                    allow="payment"></iframe>
-                <p class="book-fallback">Calendar not loading? <a href="https://book.blackironathletics.com/book">Open it in a new tab</a> or call <a href="tel:+19727857036" onclick="if(window.fbq)fbq('trackCustom','PhoneClick');">(972) 785-7036</a>.</p>
-            </div>
-            <p class="speed rv rv-d3">We reply the same day. A real coach, not a bot.</p>
-        </div>
-    </section>
-
-    <!-- ============ THREE LEVELS ============ -->
-    <section class="sect">
-        <div class="wrap">
-            <span class="eyebrow rv">The part people worry about</span>
-            <h2 class="rv">You don&rsquo;t need to be<br><span class="outline">in shape first.</span></h2>
-            <p class="lead rv rv-d1">Every class runs at three levels. Same movement, same clock, different target. It&rsquo;s why a first-month beginner can train next to a ten-year athlete without getting hurt or left behind.</p>
-            <div class="lvl-grid rv rv-d2">
-                <div class="lvl">
-                    <h3>Level 1 &middot; Learn it</h3>
-                    <p>New, or coming back after years off. Own the movement before you load it. Nobody rushes you.</p>
-                </div>
-                <div class="lvl">
-                    <h3>Level 2 &middot; Build it</h3>
-                    <p>Solid mechanics, growing engine. Where most members live &mdash; and get strong for years.</p>
-                </div>
-                <div class="lvl">
-                    <h3>Level 3 &middot; Test it</h3>
-                    <p>For the seasoned athlete chasing an edge. Bigger loads, same standard, a coach watching anyway.</p>
-                </div>
+                    loading="lazy" scrolling="no" allow="payment"></iframe>
+                <p class="book-fallback">Calendar not loading? <a href="tel:+19727857036" onclick="if(window.fbq)fbq('trackCustom','PhoneClick');">Call (972) 785-7036</a>.</p>
             </div>
         </div>
     </section>
 
-    <!-- ============ PRICING ============ -->
     <section class="sect alt">
         <div class="wrap">
             <span class="eyebrow rv">Membership</span>
             <h2 class="rv">What it costs.<br><span class="outline">In writing.</span></h2>
-            <p class="lead rv rv-d1">No back-to-school discount on memberships. We publish our prices because we&rsquo;re proud of what they buy.</p>
-            <div class="price-grid rv rv-d2">
+            <p class="lead rv rv-d1">No discount, no promotion, no price that changes if you hesitate. Here is the whole thing, including the part most gyms leave until you are standing in the lobby.</p>
+            <div class="price-grid three rv rv-d2">
+                <div class="pcard start">
+                    <span class="tag">Start here</span>
+                    <h3>Foundations</h3>
+                    <div class="pnum once">$360<span>&nbsp;or&nbsp;$720</span><small>One time, never again</small></div>
+                    <ul>
+                        <li>One-on-one with a coach before any class</li>
+                        <li>Body composition scan and movement analysis</li>
+                        <li>$360 for the one-week track, three sessions</li>
+                        <li>$720 for the two-week track, six sessions</li>
+                        <li>Your coach recommends which at the consult</li>
+                    </ul>
+                </div>
                 <div class="pcard">
                     <h3>Standard</h3>
                     <div class="pnum">$200<span>/mo</span></div>
                     <ul>
                         <li>3 Strength &amp; Conditioning classes per week</li>
                         <li>A coach on every rep</li>
-                        <li>Monthly body-comp scan</li>
+                        <li>Monthly body composition scan</li>
                         <li>Community events</li>
                     </ul>
                 </div>
                 <div class="pcard pop">
-                    <span class="tag">Most Popular</span>
-                    <h3>Unlimited + Open Gym</h3>
+                    <span class="tag">Most popular</span>
+                    <h3>Unlimited</h3>
                     <div class="pnum">$240<span>/mo</span></div>
                     <ul>
                         <li>Unlimited Strength &amp; Conditioning classes</li>
                         <li>Everything in Standard</li>
-                        <li>Open gym access 7 days a week</li>
-                    </ul>
-                </div>
-                <div class="pcard">
-                    <h3>Open Gym Only</h3>
-                    <div class="pnum">$50<span>/mo</span></div>
-                    <ul>
-                        <li>Self-directed training</li>
-                        <li>Access to all our programming</li>
-                        <li>Open gym 7 days a week</li>
-                    </ul>
-                </div>
-                <div class="pcard">
-                    <h3>Personal Training</h3>
-                    <div class="pnum rng">$120&ndash;150<span>/hour</span></div>
-                    <ul>
-                        <li>One coach, one plan</li>
-                        <li>Customized programming</li>
-                        <li>Individual accountability</li>
+                        <li>Open gym access seven days a week</li>
                     </ul>
                 </div>
             </div>
             <div class="price-notes rv rv-d3">
-                <p><b>Military &amp; first responders:</b> 5% off any membership. Veteran-owned, and proud of it.</p>
-                <p>Every membership starts the same way: a free consultation and the Foundations week. That part isn&rsquo;t optional, and it&rsquo;s why this works.</p>
-                <p><b>Commitment:</b> memberships start with 90 days &mdash; change takes time, and we&rsquo;d rather have people who are giving it a real shot. After that it&rsquo;s month to month: cancel with 30 days&rsquo; notice.</p>
+                <p><b>Military, first responders and teachers:</b> 5% off any membership. Veteran-owned, and we know who holds a town together.</p>
+                <p><b>Foundations is once.</b> It is how everybody starts, it is what keeps people from getting hurt in week one, and you never pay it again.</p>
+                <p><b>Commitment:</b> memberships start with 90 days, because change takes longer than a month. After that it is month to month, cancel with 30 days notice.</p>
             </div>
         </div>
     </section>
-
-    <!-- ============ FAQ ============ -->
     <section class="sect">
         <div class="wrap">
+            <span class="eyebrow rv">The other price</span>
+            <h2 class="rv">What it costs to wait until January</h2>
+            <p class="lead rv rv-d1">This is the honest part. There are about twenty weeks between now and January 1st. That’s more than a third of the year. You can use them, or you can spend them and try to make it up with a resolution.</p>
+            <div class="stake-grid rv rv-d2">
+                <div class="stake">
+                    <h3>You stay the same</h3>
+                    <p>Twenty weeks is enough time to get noticeably stronger. It’s also enough time for nothing to change. Same body, same energy, same aches, and a new date on the calendar.</p>
+                </div>
+                <div class="stake">
+                    <h3>You start over in January with everyone else</h3>
+                    <p>January is full of people starting from zero. You could walk in that same week already four months in, coached, and knowing exactly what you’re doing.</p>
+                </div>
+                <div class="stake">
+                    <h3>You keep feeling like you’re falling behind</h3>
+                    <p>That feeling doesn’t come from a number on the scale. It comes from taking care of everyone else all year and never getting to yourself. Twenty weeks of training changes that. Twenty more weeks of thinking about it doesn’t.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="sect note">
+        <div class="wrap">
+            <span class="eyebrow rv">Who you are dealing with</span>
+            <h2 class="rv">Who you’re dealing with and where to find us</h2>
+            <div class="note-in" style="margin-top:30px">
+                <div class="note-img rv">
+                    <img src="/images/team/owner-headcoach-mike.webp" alt="Mike Manning, owner and head coach of Black Iron Athletics" loading="lazy" width="240" height="360">
+                </div>
+                <div class="note-body rv rv-d1">
+                    <p>I’m Mike Manning. I own Black Iron Athletics and I coach here. I’m a Marine, I’ve been doing this in Frisco since 2013, and about 3,000 people have trained with us in that time. I have a two year old and a five year old at home, so I know what your summer looked like.</p>
+                    <p>When you come in, you’re talking to me or one of my coaches, not a salesperson you’ll never see again. We’re at 279 Main St, Suite 122 in Frisco. Ask the hard questions and we’ll give you straight answers.</p>
+                    <span class="note-sig">Mike Manning, owner and head coach</span>
+                    <p class="cmd-where">279 Main St, Suite 122, Frisco, TX 75036<br>
+                       Free parking directly out front &middot;
+                       <a href="tel:+19727857036" onclick="if(window.fbq)fbq('trackCustom','PhoneClick');">(972) 785-7036</a></p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="sect alt">
+        <div class="wrap">
             <span class="eyebrow rv">Before you book</span>
-            <h2 class="rv">The questions<br><span class="outline">parents ask.</span></h2>
+            <h2 class="rv">Questions people ask before they book</h2>
             <div class="faq rv rv-d1">
                 <details>
-                    <summary>I haven&rsquo;t trained in years. Is that a problem?</summary>
-                    <p>No, and it&rsquo;s the most common thing we hear. Foundations exists for exactly this &mdash; one-on-one with a coach, no class to keep up with, no crowd watching. In thirteen years, nobody has ever been too out of shape to start properly.</p>
+                    <summary>What does it cost?</summary>
+                    <p>Foundations is $360 for the one week, three session track, or $720 for the two week, six session track. That’s one time and you never pay it again. Membership after that is $200 a month for three classes a week, or $240 a month for unlimited, which includes open gym seven days. Military, first responders and teachers take 5% off.</p>
                 </details>
                 <details>
-                    <summary>How long am I actually here?</summary>
-                    <p>Sixty minutes, door to door. The 9:30 class ends at 10:30. If you need to be somewhere at eleven, you will be.</p>
+                    <summary>I haven’t trained in years. Is that a problem?</summary>
+                    <p>That’s most of the people who walk in the door, and it’s the reason Foundations exists. You get one-on-one coaching before you’re ever in a group class, and every class is written at three levels, so you’re never trying to keep up with somebody who’s been here a decade.</p>
                 </details>
                 <details>
-                    <summary>What if my schedule changes mid-semester?</summary>
-                    <p>Six class times a day, Monday through Friday, plus a 9:30 on Saturday, and open gym seven days a week on the Unlimited and Open Gym memberships. Most people move between times as the season changes. Nobody is locked to one hour.</p>
+                    <summary>Am I locked into a contract?</summary>
+                    <p>There’s a 90 day initial commitment, then month to month with 30 days notice. Ninety days is about how long it takes to feel the difference. After that you stay because you want to.</p>
                 </details>
                 <details>
-                    <summary>Am I going to get hurt?</summary>
-                    <p>That&rsquo;s the fear we take most seriously, because picking up your kids isn&rsquo;t optional. We coach every rep, we scale to your level, and we pull you back when your ego is writing checks. Longevity is the point.</p>
+                    <summary>Will the class times work with the school day?</summary>
+                    <p>There are six coached class times a day Monday through Friday, plus Saturday at 9:30, and classes run sixty minutes. We’ll pull up the full schedule at your consult and find the one that fits between drop-off and pick-up.</p>
                 </details>
                 <details>
-                    <summary>Can I try one class first?</summary>
-                    <p>Yes. A $30 day pass covers any class, and it&rsquo;s credited toward your first month if you join. The consultation itself is free.</p>
-                </details>
-                <details>
-                    <summary>Is this CrossFit?</summary>
-                    <p>No. We ran as an affiliate for a decade and stepped away from the brand. What we do now is programmed strength and conditioning in planned cycles &mdash; no leaderboard culture, no treating a Tuesday workout like a tryout.</p>
+                    <summary>I can’t afford to get hurt. How do you handle that?</summary>
+                    <p>Our job is to keep you training for decades, not to smoke you in week one. We coach every rep, we push when you’re ready and we pull you back when you’re getting ahead of yourself. Person first, athlete second.</p>
                 </details>
             </div>
         </div>
     </section>
-
-    <!-- ============ FINAL ============ -->
     <section class="final">
-        <div class="final-in wrap center">
-            <h2 class="rv">The first two weeks<br><span class="outline">are when it sticks.</span></h2>
-            <p class="lead rv rv-d1">A new routine sets in the window where everything else is already changing. That window is open right now, and it closes on its own by about October.</p>
+        <div class="final-in wrap">
+            <h2 class="rv" style="text-align:center">The time is there.<br><span class="outline">Use an hour of it.</span></h2>
+            <p class="lead rv rv-d1" style="text-align:center">Twenty minutes, free, no workout. You’ll leave knowing what Foundations covers, what training here costs, and whether this is the right gym for you. If it isn’t, we’ll tell you that too.</p>
             <div class="bookwrap rv rv-d2" id="book-close">
-                <span class="book-head">Pick a time</span>
-                <p class="book-sub">Same twenty minutes, same calendar. Grab the slot that fits your week.</p>
+                <span class="book-head">Book your free twenty minute consult</span>
+                <p class="book-sub">Pick a time that fits the school day and we’ll take it from there. 279 Main St, Suite 122, Frisco TX.</p>
                 <iframe
                     data-src="https://api.leadconnectorhq.com/widget/booking/aOyy4UPbwziVvHz35TCU"
                     id="aOyy4UPbwziVvHz35TCU_bts2"
                     title="Book a free consult at Black Iron Athletics"
-                    loading="lazy"
-                    scrolling="no"
-                    allow="payment"></iframe>
-                <p class="book-fallback">Would you rather talk to someone first? Call <a href="tel:+19727857036" onclick="if(window.fbq)fbq('trackCustom','PhoneClick');">(972) 785-7036</a>.</p>
+                    loading="lazy" scrolling="no" allow="payment"></iframe>
+                <p class="book-fallback">Calendar not loading? <a href="tel:+19727857036" onclick="if(window.fbq)fbq('trackCustom','PhoneClick');">Call (972) 785-7036</a>.</p>
             </div>
-            <p class="alt-offer rv rv-d3">279 Main St, Suite 122, Frisco TX &middot; free parking right outside</p>
         </div>
     </section>
 
     </main>
 
-    <!-- ============ FOOTER (identical on every page) ============ -->
-    <footer>
-        <div class="wrap">
-            <div class="foot-top">
-                <div>
-                    <div class="foot-brand">
-                        <img src="/images/logos/Anvil-WHITE.png" alt="Black Iron Athletics anvil mark" loading="lazy" width="88" height="58">
-                        <div>
-                            <b>Black Iron<br>Athletics</b>
-                        </div>
-                    </div>
-                    <p class="foot-mission">We help everyday people become everyday athletes.</p>
-                    <p class="foot-note">Veteran-owned &middot; Est. 2013 &middot; Serving Frisco, Prosper, The Colony, Little Elm, McKinney, Plano, Celina &amp; North Dallas.</p>
-                </div>
-                <ul class="foot-col">
-                    <li><b>Quick links</b></li>
-                    <li><a href="/">Home</a></li>
-                    <li><a href="/pricing">Pricing</a></li>
-                    <li><a href="/schedule">Class Schedule</a></li>
-                    <li><a href="/faq">FAQ</a></li>
-                    <li><a href="#" onclick="openSubscribeModal(); return false;">Subscribe</a></li>
-                    <li><a href="#" onclick="openCancelModal(); return false;">Cancel Membership</a></li>
-                    <li><a href="/privacy-policy">Privacy Policy</a></li>
-                    <li><a href="/terms">Terms &amp; Conditions</a></li>
-                    <li><a href="/privacy-policy#sms-terms">SMS Terms</a></li>
-                </ul>
-                <ul class="foot-col">
-                    <li><b>Find us</b></li>
-                    <li>279 Main St, Suite 122<br>Frisco, TX 75036</li>
-                    <li>Suite 110 &mdash; our new home next door &mdash; opening October 2026.</li>
-                    <li><a href="tel:+19727857036" onclick="if(window.fbq)fbq('trackCustom','PhoneClick');">(972) 785-7036</a></li>
-                </ul>
-                <ul class="foot-col">
-                    <li><b>Hours</b></li>
-                    <li>Open gym 7 days a week.</li>
-                    <li><a href="/schedule">See the class schedule</a></li>
-                </ul>
-            </div>
-            <div class="foot-bottom">
-                <span>&copy; 2026 Black Iron Athletics. Veteran-owned &middot; Est. 2013.</span>
-                <span class="foot-social">
-                    <a href="https://www.instagram.com/blackiron_athletics/" target="_blank" rel="noopener" aria-label="Instagram">
-                        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="4"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="1.1" fill="currentColor" stroke="none"/></svg>
-                    </a>
-                    <a href="https://www.youtube.com/channel/UCF1XjUXEs81OWY70chem6vA" target="_blank" rel="noopener" aria-label="YouTube">
-                        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="2.5" y="5.5" width="19" height="13" rx="3"/><path d="M10 9.5v5l4.5-2.5z" fill="currentColor" stroke="none"/></svg>
-                    </a>
-                    <a href="https://www.facebook.com/BlackIronAthletics/" target="_blank" rel="noopener" aria-label="Facebook">
-                        <svg class="icon-fill" viewBox="0 0 24 24" aria-hidden="true"><path d="M13.5 21v-7h2.4l.4-3h-2.8V9.1c0-.9.3-1.5 1.6-1.5H16.6V4.9c-.3 0-1.2-.1-2.2-.1-2.2 0-3.7 1.3-3.7 3.8V11H8.3v3h2.4v7h2.8z"/></svg>
-                    </a>
-                </span>
-            </div>
-        </div>
+    <footer class="lp-foot">
+        <p><b style="color:var(--white)">Black Iron Athletics</b></p>
+        <p>279 Main St, Suite 122, Frisco, TX 75036</p>
+        <p><a href="tel:+19727857036" onclick="if(window.fbq)fbq('trackCustom','PhoneClick');">(972) 785-7036</a></p>
+        <p class="lp-foot-legal">Veteran-owned &middot; Est. 2013 &middot;
+           <a href="/privacy">Privacy</a> &middot; <a href="/terms">Terms</a></p>
     </footer>
 
-    <!-- CONTRACT: sticky mobile CTA on all marketing pages (shows at 640px down) -->
-
-    <!-- ============ GHL MODALS (iframe blocks VERBATIM — lazy data-src, ids unchanged) ============ -->
-    <div class="modal-overlay" id="leadModal">
-        <div class="modal-container">
-            <button class="modal-close" onclick="closeLeadModal()">&times;</button>
-            <iframe
-                data-src="https://api.leadconnectorhq.com/widget/form/vw0hMdDkTCL6K5N3i7vF"
-                style="width:100%;height:100%;border:none;border-radius:4px"
-                id="inline-vw0hMdDkTCL6K5N3i7vF"
-                data-layout="{'id':'INLINE'}"
-                data-trigger-type="alwaysShow"
-                data-trigger-value=""
-                data-activation-type="alwaysActivated"
-                data-activation-value=""
-                data-deactivation-type="neverDeactivate"
-                data-deactivation-value=""
-                data-form-name="Form 2"
-                data-height="565"
-                data-layout-iframe-id="inline-vw0hMdDkTCL6K5N3i7vF"
-                data-form-id="vw0hMdDkTCL6K5N3i7vF"
-                title="Form 2"
-            ></iframe>
-        </div>
-    </div>
-
-    <div class="modal-overlay" id="cancelModal">
-        <div class="modal-container">
-            <button class="modal-close" onclick="closeCancelModal()">&times;</button>
-            <iframe
-                data-src="https://api.leadconnectorhq.com/widget/form/d4jtjY9fM2Hv9zVTzLwj"
-                style="width:100%;height:100%;border:none;border-radius:4px"
-                id="inline-d4jtjY9fM2Hv9zVTzLwj"
-                data-layout="{'id':'INLINE'}"
-                data-trigger-type="alwaysShow"
-                data-trigger-value=""
-                data-activation-type="alwaysActivated"
-                data-activation-value=""
-                data-deactivation-type="neverDeactivate"
-                data-deactivation-value=""
-                data-form-name="Membership Cancellation Form"
-                data-height="787"
-                data-layout-iframe-id="inline-d4jtjY9fM2Hv9zVTzLwj"
-                data-form-id="d4jtjY9fM2Hv9zVTzLwj"
-                title="Membership Cancellation Form"
-            ></iframe>
-        </div>
-    </div>
-    <div class="modal-overlay" id="subscribeModal">
-        <div class="modal-container">
-            <button class="modal-close" onclick="closeSubscribeModal()">&times;</button>
-            <iframe
-                data-src="https://api.leadconnectorhq.com/widget/form/GnNJNaEX8InuIeGxWjaI"
-                style="width:100%;height:100%;border:none;border-radius:4px"
-                id="inline-GnNJNaEX8InuIeGxWjaI"
-                data-layout="{'id':'INLINE'}"
-                data-trigger-type="alwaysShow"
-                data-trigger-value=""
-                data-activation-type="alwaysActivated"
-                data-activation-value=""
-                data-deactivation-type="neverDeactivate"
-                data-deactivation-value=""
-                data-form-name="Subscribe"
-                data-height="430"
-                data-layout-iframe-id="inline-GnNJNaEX8InuIeGxWjaI"
-                data-form-id="GnNJNaEX8InuIeGxWjaI"
-                title="Subscribe"
-            ></iframe>
-        </div>
-    </div>
-
-    <!-- ============ PAGE JS: modals + side menu (function names byte-identical to the live site) ============ -->
-    <script>
-    function openLeadModal() {
-        var modal = document.getElementById('leadModal');
-        var iframe = modal.querySelector('iframe');
-        if (iframe && !iframe.src && iframe.dataset.src) { iframe.src = iframe.dataset.src; }
-        modal.classList.add('active');
-        document.body.style.overflow = 'hidden';
-    }
-    function closeLeadModal() {
-        document.getElementById('leadModal').classList.remove('active');
-        document.body.style.overflow = '';
-    }
-    document.getElementById('leadModal').addEventListener('click', function(e) {
-        if (e.target === this) { closeLeadModal(); }
-    });
-    document.addEventListener('keydown', function(e) {
-        if (e.key === 'Escape') { closeLeadModal(); closeCancelModal(); closeSubscribeModal(); }
-    });
-
-    function openCancelModal() {
-        var modal = document.getElementById('cancelModal');
-        var iframe = modal.querySelector('iframe');
-        if (iframe && !iframe.src && iframe.dataset.src) { iframe.src = iframe.dataset.src; }
-        modal.classList.add('active');
-        document.body.style.overflow = 'hidden';
-    }
-    function closeCancelModal() {
-        document.getElementById('cancelModal').classList.remove('active');
-        document.body.style.overflow = '';
-    }
-    document.getElementById('cancelModal').addEventListener('click', function(e) {
-        if (e.target === this) { closeCancelModal(); }
-    });
-    function openSubscribeModal() {
-        var modal = document.getElementById('subscribeModal');
-        var iframe = modal.querySelector('iframe');
-        if (iframe && !iframe.src && iframe.dataset.src) { iframe.src = iframe.dataset.src; }
-        modal.classList.add('active');
-        document.body.style.overflow = 'hidden';
-    }
-    function closeSubscribeModal() {
-        document.getElementById('subscribeModal').classList.remove('active');
-        document.body.style.overflow = '';
-    }
-    document.getElementById('subscribeModal').addEventListener('click', function(e) {
-        if (e.target === this) { closeSubscribeModal(); }
-    });
-
-    // Side Menu
-    function toggleSideMenu() {
-        var menu = document.getElementById('sideMenu');
-        var backdrop = document.getElementById('menuBackdrop');
-        var hamburger = document.querySelector('.hamburger');
-        var isOpen = menu.classList.contains('open');
-        if (isOpen) { closeSideMenu(); }
-        else {
-            menu.classList.add('open');
-            backdrop.classList.add('open');
-            hamburger.classList.add('active');
-            document.body.style.overflow = 'hidden';
-        }
-    }
-    function closeSideMenu() {
-        var menu = document.getElementById('sideMenu');
-        var backdrop = document.getElementById('menuBackdrop');
-        var hamburger = document.querySelector('.hamburger');
-        menu.classList.remove('open');
-        backdrop.classList.remove('open');
-        hamburger.classList.remove('active');
-        document.body.style.overflow = '';
-    }
-    document.getElementById('menuBackdrop').addEventListener('click', closeSideMenu);
-    document.addEventListener('keydown', function(e) {
-        if (e.key === 'Escape') closeSideMenu();
-    });
-    </script>
-
-    <!-- ============ PAGE JS: nav scroll state + reveal observer ============ -->
-    <script>
-    (function(){
-        var nav = document.getElementById('nav');
-        function onScroll(){ if (nav) nav.classList.toggle('scrolled', window.scrollY > 24); }
-        window.addEventListener('scroll', onScroll, {passive:true});
-        onScroll();
-
-        var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-        var items = document.querySelectorAll('.rv');
-        if (reduced || !('IntersectionObserver' in window)) {
-            items.forEach(function(el){ el.classList.add('on'); });
-            return;
-        }
-        var io = new IntersectionObserver(function(entries){
-            entries.forEach(function(e){
-                if (e.isIntersecting) { e.target.classList.add('on'); io.unobserve(e.target); }
-            });
-        }, {threshold:0.12, rootMargin:'0px 0px -40px 0px'});
-        items.forEach(function(el){ io.observe(el); });
-    })();
-    </script>
-
-<!-- ============ A11Y TAIL IIFE — copied VERBATIM from index.html. Do not edit. ============ -->
 <script>
-// ===== ACCESSIBILITY: KEYBOARD NAV & FOCUS TRAP =====
-(function() {
-    // --- Keyboard Navigation for Submenus ---
-    document.querySelectorAll('.has-submenu').forEach(function(item) {
-        var link = item.querySelector('a');
-        var sub = item.querySelector('.submenu');
-        if (!link || !sub) return;
-        link.setAttribute('aria-haspopup', 'true');
-        link.setAttribute('aria-expanded', 'false');
-        function openSub() { item.classList.add('submenu-open'); link.setAttribute('aria-expanded', 'true'); }
-        function closeSub() { item.classList.remove('submenu-open'); link.setAttribute('aria-expanded', 'false'); }
-        link.addEventListener('keydown', function(e) {
-            if (e.key === 'Enter' || e.key === ' ') {
-                e.preventDefault();
-                if (link.getAttribute('aria-expanded') === 'true') { closeSub(); }
-                else { openSub(); var f = sub.querySelector('a'); if (f) f.focus(); }
-            }
-            if (e.key === 'ArrowDown') { e.preventDefault(); openSub(); var f = sub.querySelector('a'); if (f) f.focus(); }
-        });
-        sub.addEventListener('keydown', function(e) {
-            var links = sub.querySelectorAll('a');
-            var idx = Array.prototype.indexOf.call(links, document.activeElement);
-            if (e.key === 'Escape') { closeSub(); link.focus(); }
-            if (e.key === 'ArrowDown' && idx < links.length - 1) { e.preventDefault(); links[idx + 1].focus(); }
-            if (e.key === 'ArrowUp') { e.preventDefault(); if (idx > 0) links[idx - 1].focus(); else { closeSub(); link.focus(); } }
-        });
-        item.addEventListener('focusout', function() {
-            setTimeout(function() { if (!item.contains(document.activeElement)) closeSub(); }, 0);
-        });
-    });
-
-    // --- Hamburger aria-expanded ---
-    var hamburger = document.querySelector('.hamburger');
-    if (hamburger) {
-        hamburger.setAttribute('aria-expanded', 'false');
-        var sm = document.getElementById('sideMenu');
-        if (sm) new MutationObserver(function() {
-            hamburger.setAttribute('aria-expanded', sm.classList.contains('open') ? 'true' : 'false');
-        }).observe(sm, { attributes: true, attributeFilter: ['class'] });
-    }
-
-    // --- Modal Focus Trapping ---
-    var prevFocus = null;
-    function trapFocus(modal) {
-        prevFocus = document.activeElement;
-        var els = modal.querySelectorAll('button, a[href], iframe, input, select, textarea, [tabindex]:not([tabindex="-1"])');
-        if (!els.length) return;
-        var first = els[0], last = els[els.length - 1];
-        modal._focusTrap = function(e) {
-            if (e.key !== 'Tab') return;
-            if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
-            else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
-        };
-        modal.addEventListener('keydown', modal._focusTrap);
-        first.focus();
-    }
-    function releaseFocus(modal) {
-        if (modal._focusTrap) { modal.removeEventListener('keydown', modal._focusTrap); delete modal._focusTrap; }
-        if (prevFocus) { prevFocus.focus(); prevFocus = null; }
-    }
-    document.querySelectorAll('.modal-overlay').forEach(function(modal) {
-        modal.setAttribute('role', 'dialog');
-        modal.setAttribute('aria-modal', 'true');
-        new MutationObserver(function() {
-            if (modal.classList.contains('active')) trapFocus(modal);
-            else releaseFocus(modal);
-        }).observe(modal, { attributes: true, attributeFilter: ['class'] });
-    });
+/* Reveal-on-scroll, matched to the site's own .rv/.on behaviour. */
+(function(){
+  var els=document.querySelectorAll('.rv');
+  if(!('IntersectionObserver' in window)){els.forEach(function(e){e.classList.add('on');});return;}
+  var io=new IntersectionObserver(function(en){en.forEach(function(x){
+    if(x.isIntersecting){x.target.classList.add('on');io.unobserve(x.target);}});},
+    {rootMargin:'0px 0px -8% 0px'});
+  els.forEach(function(e){io.observe(e);});
 })();
 </script>
-
 <script>
-/* ── Embedded booking calendar ──────────────────────────────────────────
-   Two things this has to do, because the outbound "Book a Free Consult"
-   links are gone from this page:
-
-   1. Load the iframes lazily. A GHL booking widget is not cheap and this
-      page is nearly all mobile paid traffic. data-src (not src) is also
-      what the UTM pass-through in inject-pixel.js looks for, so the
-      calendar inherits utm_content and the booking is attributable to
-      the ad set that earned it. Do not change these to plain src.
-
-   2. Replace the funnel events. InitiateCheckout used to fire on the
-      click that left for book.blackironathletics.com. Nothing leaves
-      now, so it has to come from the iframe itself.
-   ------------------------------------------------------------------- */
+/* Booking calendar: lazy load, and rebuild the funnel events that the
+   outbound booking link used to fire. data-src (not src) is what the UTM
+   pass-through in inject-pixel.js looks for, so the booking stays
+   attributable to the ad set that earned it. Do not change it to src. */
 (function () {
   var frames = [].slice.call(document.querySelectorAll('.bookwrap iframe[data-src]'));
   if (!frames.length) return;
   var fired = {};
-  function once(name, kind) {
-    if (fired[name]) return;
-    fired[name] = true;
-    if (typeof fbq === 'function') {
-      if (kind === 'custom') fbq('trackCustom', name); else fbq('track', name);
-    }
+  function once(n, custom) {
+    if (fired[n]) return; fired[n] = true;
+    if (typeof fbq === 'function') fbq(custom ? 'trackCustom' : 'track', n);
   }
-
-  // Load a calendar shortly before it reaches the viewport.
-  function activate(f) {
-    if (f.src || !f.dataset.src) return;
-    f.src = f.dataset.src;
-    f.dataset.loadedAt = String(Date.now());
-  }
+  function activate(f) { if (!f.src && f.dataset.src) { f.src = f.dataset.src; f.dataset.loadedAt = String(Date.now()); } }
   if ('IntersectionObserver' in window) {
-    var io = new IntersectionObserver(function (entries) {
-      entries.forEach(function (e) {
-        if (!e.isIntersecting) return;
-        activate(e.target);
-        io.unobserve(e.target);
-      });
+    var io = new IntersectionObserver(function (en) {
+      en.forEach(function (x) { if (x.isIntersecting) { activate(x.target); io.unobserve(x.target); } });
     }, { rootMargin: '400px 0px' });
     frames.forEach(function (f) { io.observe(f); });
-  } else {
-    frames.forEach(activate);
-  }
-
-  // Seeing the calendar is weaker intent than the old button click, so it
-  // gets its own name rather than borrowing InitiateCheckout's meaning.
-  if ('IntersectionObserver' in window) {
-    var seen = new IntersectionObserver(function (entries) {
-      entries.forEach(function (e) {
-        if (e.isIntersecting && e.intersectionRatio >= 0.4) {
-          once('CalendarView', 'custom');
-          seen.unobserve(e.target);
-        }
-      });
+    var seen = new IntersectionObserver(function (en) {
+      en.forEach(function (x) { if (x.isIntersecting && x.intersectionRatio >= 0.4) {
+        once('CalendarView', true); seen.unobserve(x.target); } });
     }, { threshold: [0.4] });
     frames.forEach(function (f) { seen.observe(f); });
-  }
-
-  /* GHL posts messages to the parent for iframe resizing, so messages alone
-     do not mean interaction. The settle window filters out the initial
-     layout chatter; anything after that is the user moving through the
-     calendar, which is what InitiateCheckout used to mean.
-
-     The completion shapes below are a best guess at GHL's contract and are
-     NOT verified against a live booking. Everything that arrives is logged
-     under fpBookingMessages so the real shape can be read off one test
-     booking and pinned down properly. */
-  var SETTLE_MS = 2500;
+  } else { frames.forEach(activate); }
   window.fpBookingMessages = [];
   window.addEventListener('message', function (ev) {
-    if (!/(^|\.)leadconnectorhq\.com$|(^|\.)msgsndr\.com$/.test(
-          (function () { try { return new URL(ev.origin).hostname; } catch (e) { return ''; } })()
-        )) return;
-
+    var host = ''; try { host = new URL(ev.origin).hostname; } catch (e) { return; }
+    if (!/(^|\.)leadconnectorhq\.com$|(^|\.)msgsndr\.com$/.test(host)) return;
     window.fpBookingMessages.push({ t: Date.now(), origin: ev.origin, data: ev.data });
-
-    var raw = '';
-    try {
-      raw = typeof ev.data === 'string' ? ev.data : JSON.stringify(ev.data);
-    } catch (e) { raw = ''; }
-
+    var raw = ''; try { raw = typeof ev.data === 'string' ? ev.data : JSON.stringify(ev.data); } catch (e) {}
     if (/appointment|booked|booking[_-]?(success|complete)|slot[_-]?selected|scheduled/i.test(raw)) {
       once('InitiateCheckout');
       if (/booked|success|complete|scheduled|confirmed/i.test(raw)) once('Schedule');
       return;
     }
-
-    var oldest = frames.reduce(function (acc, f) {
-      var v = Number(f.dataset.loadedAt || 0);
-      return v && (!acc || v < acc) ? v : acc;
-    }, 0);
-    if (oldest && Date.now() - oldest > SETTLE_MS) once('InitiateCheckout');
+    var oldest = frames.reduce(function (a, f) {
+      var v = Number(f.dataset.loadedAt || 0); return v && (!a || v < a) ? v : a; }, 0);
+    if (oldest && Date.now() - oldest > 2500) once('InitiateCheckout');
   }, false);
 })();
 </script>
 <script src="https://link.msgsndr.com/js/form_embed.js" type="text/javascript" defer></script>
-<script src="https://widgets.leadconnectorhq.com/loader.js" data-resources-url="https://widgets.leadconnectorhq.com/chat-widget/loader.js" data-widget-id="6995d6d76e6009387f78d31e" defer></script>
-    <!-- Thumb bar: reveal once the hero's own consult button has scrolled by -->
-    <script>
-    (function() {
-      var bar = document.querySelector('.thumbbar');
-      if (!bar) return;
-      bar.classList.add('tb-auto');
-      var shown = false, ticking = false;
-      function check() {
-        ticking = false;
-        var past = window.scrollY > window.innerHeight * 0.6;
-        if (past === shown) return;
-        shown = past;
-        bar.classList.toggle('tb-show', past);
-      }
-      function onScroll() {
-        if (ticking) return;
-        ticking = true;
-        window.requestAnimationFrame(check);
-      }
-      window.addEventListener('scroll', onScroll, { passive: true });
-      window.addEventListener('resize', onScroll, { passive: true });
-      check();
-    })();
-    </script>
 </body>
 </html>
