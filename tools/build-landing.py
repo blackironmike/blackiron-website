@@ -123,7 +123,6 @@ HEAD = '''<!DOCTYPE html>
     .hero-short{{padding-top:clamp(46px,7vw,86px)}}
     /* The rating chip is the site component. The sentence that used to sit in
        .trust moves below it, plain, so the proof reads first. */
-    .trust-note{{margin:14px 0 0;color:var(--gray);font-size:.9rem;max-width:58ch}}
 
     /* Mike's note. Coal ground, so --hole follows or outlined type inside
        would show a black interior on coal. */
@@ -344,7 +343,6 @@ def build(slug, c, share, note_paras):
                 <a href="#book" class="btn btn-y">{e(c["hero_cta"])}</a>
             </div>
             <p class="trust trust-lg rv rv-d3">{STARS}<b>5.0</b> <span>on Google</span></p>
-            <p class="trust-note rv rv-d3">{e(c["hero_trust"])}</p>
         </div>
     </section>
 ''')
