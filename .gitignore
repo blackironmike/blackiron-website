@@ -8,3 +8,6 @@ learn/
 # Not committed yet; ask Michael before adding 1.1 MB of font binaries.
 tools/fonts/
 tools/__pycache__/
+
+# landing-page drafts for decks that are not live (tools/build-landing.py)
+lp-*.html
