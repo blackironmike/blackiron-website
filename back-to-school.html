@@ -79,6 +79,8 @@
       letter-spacing:.16em;text-transform:uppercase;color:var(--yellow);margin-bottom:8px}
     .bookwrap .book-sub{margin:0 0 22px;font-size:.96rem;color:var(--gray);max-width:60ch}
     .bookwrap iframe{display:block;width:100%;min-height:900px;border:0;background:var(--black)}
+    .bookwrap.formwrap iframe{min-height:720px}
+    @media(max-width:600px){.bookwrap.formwrap iframe{min-height:760px}}
     @media(max-width:600px){.bookwrap iframe{min-height:1000px}}
     .book-fallback{margin:16px 0 0;font-size:.88rem;color:var(--gray)}
     .final .bookwrap{text-align:left;max-width:none}
@@ -191,38 +193,41 @@
         <div class="wrap">
             <span class="eyebrow rv">Your first twenty minutes</span>
             <h2 class="rv">What the free consult looks like, step by step</h2>
-            <p class="lead rv rv-d1">Twenty minutes, free. No workout, no weigh-in, nothing sprung on you at the end. Here’s exactly what happens.</p>
+            <p class="lead rv rv-d1">Twenty minutes, free, and you stay in your street clothes. No workout, no weigh-in, nothing sprung on you at the end. Here’s exactly what happens.</p>
             <div class="steps rv rv-d2">
                 <div class="step">
                     <em>01</em>
-                    <h3>1. You pick a time</h3>
-                    <p>Choose a slot that fits between drop-off and pick-up. It takes twenty minutes and you stay in your street clothes.</p>
-                </div>
-                <div class="step">
-                    <em>02</em>
-                    <h3>2. We sit down and talk</h3>
+                    <h3>1. We sit down and talk</h3>
                     <p>You tell us where you’re starting, what hurts, what you’ve tried before, and what you want back. We ask questions and we listen. Nobody here thinks you’re behind.</p>
                 </div>
                 <div class="step">
-                    <em>03</em>
-                    <h3>3. We walk you through the gym</h3>
+                    <em>02</em>
+                    <h3>2. We walk you through the gym</h3>
                     <p>You see the floor, the equipment and the class times. We explain what Foundations covers and what a normal training week here looks like.</p>
                 </div>
                 <div class="step">
-                    <em>04</em>
-                    <h3>4. You get the prices and you decide</h3>
+                    <em>03</em>
+                    <h3>3. You get the prices and you decide</h3>
                     <p>We give you the numbers in writing and answer whatever’s left. If it fits, we book your Foundations right there. If it doesn’t, you leave with a straight answer and we don’t chase you.</p>
                 </div>
             </div>
-            <div class="bookwrap rv rv-d2" id="book">
-                <span class="book-head">Book your free twenty minute consult</span>
-                <p class="book-sub">Pick a time that fits the school day and we’ll take it from there. 279 Main St, Suite 122, Frisco TX.</p>
+            <div class="bookwrap formwrap rv rv-d2" id="book">
+                <span class="book-head">Start with your details</span>
+                <p class="book-sub">Two steps. Tell us where to reach you, then pick a time that fits the school day.</p>
                 <iframe
-                    data-src="https://api.leadconnectorhq.com/widget/booking/aOyy4UPbwziVvHz35TCU"
-                    id="aOyy4UPbwziVvHz35TCU_bts1"
-                    title="Book a free consult at Black Iron Athletics"
-                    loading="lazy" scrolling="no" allow="payment"></iframe>
-                <p class="book-fallback">Calendar not loading? <a href="tel:+19727857036" onclick="if(window.fbq)fbq('trackCustom','PhoneClick');">Call (972) 785-7036</a>.</p>
+                    src="https://api.leadconnectorhq.com/widget/form/9bTVJ7mcDsr29X0mCJbz"
+                    id="inline-9bTVJ7mcDsr29X0mCJbz"
+                    data-layout="{'id':'INLINE'}"
+                    data-trigger-type="alwaysShow"
+                    data-activation-type="alwaysActivated"
+                    data-deactivation-type="neverDeactivate"
+                    data-form-name="Lead Capture - Ads"
+                    data-height="699"
+                    data-layout-iframe-id="inline-9bTVJ7mcDsr29X0mCJbz"
+                    data-form-id="9bTVJ7mcDsr29X0mCJbz"
+                    title="Start your free consult"
+                    scrolling="no"></iframe>
+                <p class="book-fallback">Rather just call? <a href="tel:+19727857036" onclick="if(window.fbq)fbq('trackCustom','PhoneClick');">Call (972) 785-7036</a>.</p>
             </div>
         </div>
     </section>
@@ -353,15 +358,23 @@
         <div class="final-in wrap">
             <h2 class="rv" style="text-align:center">The time is there.<br><span class="outline">Use an hour of it.</span></h2>
             <p class="lead rv rv-d1" style="text-align:center">Twenty minutes, free, no workout. You’ll leave knowing what Foundations covers, what training here costs, and whether this is the right gym for you. If it isn’t, we’ll tell you that too.</p>
-            <div class="bookwrap rv rv-d2" id="book-close">
-                <span class="book-head">Book your free twenty minute consult</span>
-                <p class="book-sub">Pick a time that fits the school day and we’ll take it from there. 279 Main St, Suite 122, Frisco TX.</p>
+            <div class="bookwrap formwrap rv rv-d2" id="book-close">
+                <span class="book-head">Start with your details</span>
+                <p class="book-sub">Two steps and about a minute. Your details, then your time. 279 Main St, Suite 122, Frisco TX.</p>
                 <iframe
-                    data-src="https://api.leadconnectorhq.com/widget/booking/aOyy4UPbwziVvHz35TCU"
-                    id="aOyy4UPbwziVvHz35TCU_bts2"
-                    title="Book a free consult at Black Iron Athletics"
-                    loading="lazy" scrolling="no" allow="payment"></iframe>
-                <p class="book-fallback">Calendar not loading? <a href="tel:+19727857036" onclick="if(window.fbq)fbq('trackCustom','PhoneClick');">Call (972) 785-7036</a>.</p>
+                    src="https://api.leadconnectorhq.com/widget/form/9bTVJ7mcDsr29X0mCJbz"
+                    id="inline-9bTVJ7mcDsr29X0mCJbz"
+                    data-layout="{'id':'INLINE'}"
+                    data-trigger-type="alwaysShow"
+                    data-activation-type="alwaysActivated"
+                    data-deactivation-type="neverDeactivate"
+                    data-form-name="Lead Capture - Ads"
+                    data-height="699"
+                    data-layout-iframe-id="inline-9bTVJ7mcDsr29X0mCJbz"
+                    data-form-id="9bTVJ7mcDsr29X0mCJbz"
+                    title="Start your free consult"
+                    scrolling="no"></iframe>
+                <p class="book-fallback">Rather just call? <a href="tel:+19727857036" onclick="if(window.fbq)fbq('trackCustom','PhoneClick');">Call (972) 785-7036</a>.</p>
             </div>
         </div>
     </section>

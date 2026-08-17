@@ -504,6 +504,19 @@
         document.getElementById('leadModal').classList.remove('active');
         document.body.style.overflow = '';
     }
+
+    /* Every "Book a Free Consult" link opens the lead form in place instead of
+       leaving for the booking subdomain. The href stays exactly as it was, so
+       cmd-click, middle-click and a JS failure all still reach the calendar,
+       and pages without the modal (404, links) keep their plain link. */
+    document.addEventListener('click', function (e) {
+        if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) { return; }
+        var t = e.target;
+        var a = t && t.closest ? t.closest('a[href*="book.blackironathletics.com"]') : null;
+        if (!a || !document.getElementById('leadModal')) { return; }
+        e.preventDefault();
+        openLeadModal();
+    });
     document.getElementById('leadModal').addEventListener('click', function(e) {
         if (e.target === this) { closeLeadModal(); }
     });
