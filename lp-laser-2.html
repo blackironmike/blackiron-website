@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <!-- CONTRACT: keep this exact viewport tag — inject-pixel.js insertion marker -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex,follow">
+    <title>School Is Back. Your Hour Is Open. | Black Iron Athletics, Frisco TX</title>
+    <meta name="description" content="Everyone in the house got a schedule handed back. You got an open hour, and it fills itself by October. Six coached class times a day in Frisco. Free twenty-minute consult.">
+    <meta name="geo.region" content="US-TX">
+    <meta name="geo.placename" content="Frisco">
+    <meta name="geo.position" content="33.15035;-96.89026">
+    <meta property="og:title" content="Everyone in the house got a schedule. You got an open hour.">
+    <meta property="og:description" content="Everyone in the house got a schedule handed back. You got an open hour, and it fills itself by October. Six coached class times a day in Frisco. Free twenty-minute consult.">
+    <meta property="og:url" content="https://www.blackironathletics.com/laser-2">
+    <meta property="og:image" content="https://www.blackironathletics.com/images/social/2026-08-13-back-to-school-header.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Black Iron Athletics, Frisco TX.">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Black Iron Athletics">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Everyone in the house got a schedule. You got an open hour.">
+    <meta name="twitter:description" content="Everyone in the house got a schedule handed back. You got an open hour, and it fills itself by October. Six coached class times a day in Frisco. Free twenty-minute consult.">
+    <meta name="twitter:image" content="https://www.blackironathletics.com/images/social/2026-08-13-back-to-school-header.jpg">
+    <link rel="icon" type="image/png" href="/images/anvil-favicon.png">
+    <link rel="apple-touch-icon" href="/images/anvil-favicon.png">
+    <meta name="theme-color" content="#000000">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&display=swap" rel="stylesheet"></noscript>
+    <link rel="stylesheet" href="/css/bia.css">
+    <style>
+    /* ── Landing page chrome. Deliberately not the site nav: this page has
+          no menu, no hamburger and no thumb bar, so the only exits are
+          booking, calling, or closing the tab. ─────────────────────────── */
+    .lp-bar{position:sticky;top:0;z-index:60;background:rgba(0,0,0,.92);
+      backdrop-filter:blur(8px);border-bottom:1px solid var(--steel-line)}
+    .lp-bar-in{display:flex;align-items:center;justify-content:space-between;
+      gap:16px;padding:14px clamp(16px,4vw,40px);max-width:1240px;margin:0 auto}
+    .lp-bar img{height:34px;width:auto;display:block}
+    .lp-call{display:inline-flex;align-items:center;gap:9px;color:var(--white);
+      font-weight:900;font-size:.86rem;letter-spacing:.06em;white-space:nowrap}
+    .lp-call svg{flex:0 0 auto}
+    @media(max-width:420px){.lp-call span{display:none}}
+
+    .hero h1{font-size:clamp(2.2rem,5.4vw,4.2rem)}
+    .hero-short{padding-top:clamp(46px,7vw,86px)}
+
+    /* Mike's note. Coal ground, so --hole follows or outlined type inside
+       would show a black interior on coal. */
+    .note{background:var(--coal);--hole:var(--coal)}
+    .note-in{display:grid;gap:30px;align-items:center;grid-template-columns:1fr}
+    @media(min-width:820px){.note-in{grid-template-columns:240px 1fr;gap:44px}}
+    .note-img img{width:100%;max-width:240px;border:1px solid var(--steel-line);
+      filter:grayscale(1) contrast(1.06) brightness(.94)}
+    .note-body p{margin-bottom:15px;max-width:62ch}
+    .note-body p:last-of-type{margin-bottom:0}
+    .note-sig{display:block;margin-top:20px;font-weight:900;font-size:.88rem;
+      letter-spacing:.06em;text-transform:uppercase;color:var(--yellow)}
+
+    /* Stakes. What it costs to do nothing, stated once and quietly. */
+    .stake-grid{display:grid;gap:1px;background:var(--steel-line);
+      border:1px solid var(--steel-line);margin-top:34px;grid-template-columns:1fr}
+    @media(min-width:780px){.stake-grid{grid-template-columns:repeat(3,1fr)}}
+    .stake{background:var(--black);padding:30px 26px}
+    .stake h3{margin:0 0 10px;font-size:1.06rem}
+    .stake p{margin:0;color:var(--gray);font-size:.95rem}
+
+    /* Booking calendar. Full width and tall: the owner found the first pass
+       cramped, and this is the only thing on the page that has a job. */
+    .bookwrap{border:1px solid var(--steel-line);background:var(--coal);
+      padding:clamp(18px,3vw,34px);margin-top:36px}
+    .bookwrap .book-head{display:block;font-size:.74rem;font-weight:700;
+      letter-spacing:.16em;text-transform:uppercase;color:var(--yellow);margin-bottom:8px}
+    .bookwrap .book-sub{margin:0 0 22px;font-size:.96rem;color:var(--gray);max-width:60ch}
+    .bookwrap iframe{display:block;width:100%;min-height:900px;border:0;background:var(--black)}
+    @media(max-width:600px){.bookwrap iframe{min-height:1000px}}
+    .book-fallback{margin:16px 0 0;font-size:.88rem;color:var(--gray)}
+    .final .bookwrap{text-align:left;max-width:none}
+
+    .price-notes b{color:var(--white)}
+    .pcard.start{background:var(--coal)}
+    .pnum.once{font-size:clamp(2rem,2.8vw,2.7rem)}
+    .pnum.once small{display:block;font-size:.8rem;font-weight:700;letter-spacing:.1em;
+      text-transform:uppercase;color:var(--gray);margin-top:8px}
+
+    /* Landing footer. Address, phone, and the legal links ad platforms
+       expect. No navigation. */
+    .lp-foot{border-top:1px solid var(--steel-line);background:var(--black);
+      padding:44px clamp(16px,4vw,40px) 56px;text-align:center}
+    .lp-foot p{margin:0 0 10px;color:var(--gray);font-size:.9rem}
+    .lp-foot a{color:var(--gray)}
+    .lp-foot .lp-foot-legal{margin-top:18px;font-size:.8rem;color:var(--gray)}
+    </style>
+    <script defer src="/_vercel/insights/script.js"></script>
+</head>
+<body>
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
+    <header class="lp-bar">
+        <div class="lp-bar-in">
+            <img src="/images/logos/logo.png" alt="Black Iron Athletics" width="150" height="34">
+            <a class="lp-call" href="tel:+19727857036" onclick="if(window.fbq)fbq('trackCustom','PhoneClick');"><svg width="17" height="17" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M6.5 2.5 8.2 6l-1.7 1.6a11 11 0 0 0 4.9 4.9L13 10.8l3.5 1.7v3.2c0 .6-.5 1-1.1 1A13.6 13.6 0 0 1 2.3 3.6c0-.6.4-1.1 1-1.1h3.2Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg><span>(972) 785-7036</span></a>
+        </div>
+    </header>
+    <main id="main-content">
+    <section class="hero hero-short">
+        <div class="hero-bg">
+            <img class="ph-soft" src="/images/training/group-training.webp" alt="A coach working with members on the floor at Black Iron Athletics in Frisco" fetchpriority="high" width="1024" height="683">
+        </div>
+        <div class="hero-in wrap">
+            <span class="eyebrow eyebrow-y rv">Frisco, TX · Veteran-owned · Est. 2013</span>
+            <h1 class="rv">Everyone in the house got a schedule.<br><span class="outline">You got an open hour.</span></h1>
+            <p class="lead rv rv-d1">Wake-ups, bells, lunch at the same time every day. They didn’t have to decide a thing. Your hour is sitting right there too, and it goes to whoever claims it first.</p>
+            <div class="hero-ctas rv rv-d2">
+                <a href="#book" class="btn btn-y">Pick a time</a>
+            </div>
+            <p class="trust rv rv-d3">Twenty minutes with a coach, free. No pitch. If we’re not the right fit, we’ll say so.</p>
+        </div>
+    </section>
+    <section class="sect">
+        <div class="wrap">
+            <h2 class="rv">An hour with no plan doesn’t stay yours.</h2>
+            <p class="lead rv rv-d1">Nobody decides to let the fall go. It goes because everything else on the calendar has a name on it, and that hour doesn’t.</p>
+            <div class="stake-grid rv rv-d2">
+                <div class="stake">
+                    <h3>It fills itself in</h3>
+                    <p>Errands. Email. The appointment you’ve been putting off since June. None of it asks permission, and none of it gives the hour back.</p>
+                </div>
+                <div class="stake">
+                    <h3>By October it’s gone</h3>
+                    <p>Practices start, the weekends fill, and the hour is spoken for. You won’t remember the day you gave it away, only that it isn’t there anymore.</p>
+                </div>
+                <div class="stake">
+                    <h3>Then you blame yourself</h3>
+                    <p>It feels like a discipline problem. It isn’t. It’s a calendar with everybody on it except the person driving.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="sect note">
+        <div class="wrap">
+            <div class="note-in">
+                <div class="note-img rv">
+                    <img src="/images/team/owner-headcoach-mike.webp" alt="Mike Manning, owner and head coach of Black Iron Athletics" loading="lazy" width="240" height="360">
+                </div>
+                <div class="note-body rv rv-d1">
+                    <p>The first day of school, I did both drop-offs by myself. My wife teaches elementary school, so that morning she had to be at her own building early to meet her class. Our two-year-old to pre-K, then our five-year-old to his first day of kindergarten.</p>
+                    <p>Then I drove home and the house was quiet. It had not sounded like that since May.</p>
+                    <p>I have owned this gym for thirteen years and I have watched that quiet fill itself every single fall. Errands, email, the thing you have been meaning to get to. So I want to be straight with you about what we do here. We coach every rep, we scale every class three ways, and nobody starts alone. That is the whole pitch.</p>
+                    <p>Twenty minutes with me, free. If we are not the right fit, I will say so and point you somewhere better.</p>
+                    <span class="note-sig">Mike Manning, owner and head coach</span>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="sect alt" id="how">
+        <div class="wrap">
+            <h2 class="rv">Claiming it takes three steps.</h2>
+            <div class="steps rv rv-d1">
+                <div class="step">
+                    <em>01</em>
+                    <h3>Book a free consult</h3>
+                    <p>Twenty minutes with a coach. We talk about your week, your training history, and what you actually want out of this. No pitch. If we’re not the right fit, we’ll tell you.</p>
+                </div>
+                <div class="step">
+                    <em>02</em>
+                    <h3>Start with Foundations</h3>
+                    <p>One-on-one coaching before you ever step into a group class. Learn the movements at your own pace, set a baseline, understand your body. Every member starts here. No exceptions.</p>
+                </div>
+                <div class="step">
+                    <em>03</em>
+                    <h3>Claim your hour</h3>
+                    <p>Six class times a day Monday to Friday, plus a 9:30 on Saturday. Two of the weekday times sit inside the school day. Pick the one that survives your worst week, not your best one.</p>
+                </div>
+            </div>
+            <div class="bookwrap rv rv-d2" id="book">
+                <span class="book-head">Pick a time</span>
+                <p class="book-sub">Twenty minutes with a coach, free. Grab the slot that fits your week and you’re done.</p>
+                <iframe
+                    data-src="https://api.leadconnectorhq.com/widget/booking/aOyy4UPbwziVvHz35TCU"
+                    id="aOyy4UPbwziVvHz35TCU_bts1"
+                    title="Book a free consult at Black Iron Athletics"
+                    loading="lazy" scrolling="no" allow="payment"></iframe>
+                <p class="book-fallback">Calendar not loading? <a href="tel:+19727857036" onclick="if(window.fbq)fbq('trackCustom','PhoneClick');">Call (972) 785-7036</a>.</p>
+            </div>
+        </div>
+    </section>
+    <section class="sect">
+        <div class="wrap">
+            <h2 class="rv">The hour stops being a negotiation.</h2>
+            <p class="lead rv rv-d1">You drop them off, you drive here, and you’re home by half past ten with the whole day still in front of you. You stop renegotiating the workout every morning, because it has a time, a place, and somebody there expecting you. You sleep better. You stop bracing for the car seat, the stairs, the third trip out to the truck.</p>
+            <p class="lead rv rv-d1">Then the new year comes and the floor fills up with people starting over. You’re four months in. You know where the chalk is, and a coach knows your name, your bad shoulder, and what you’re working toward.</p>
+        </div>
+    </section>
+
+    <section class="sect alt">
+        <div class="wrap">
+            <span class="eyebrow rv">Membership</span>
+            <h2 class="rv">What it costs.<br><span class="outline">In writing.</span></h2>
+            <p class="lead rv rv-d1">No discount, no promotion, no price that changes if you hesitate. Here is the whole thing, including the part most gyms leave until you are standing in the lobby.</p>
+            <div class="price-grid rv rv-d2" style="grid-template-columns:repeat(3,1fr)">
+                <div class="pcard start">
+                    <span class="tag">Start here</span>
+                    <h3>Foundations</h3>
+                    <div class="pnum once">$360<span>&nbsp;or&nbsp;$720</span><small>One time, never again</small></div>
+                    <ul>
+                        <li>One-on-one with a coach before any class</li>
+                        <li>Body composition scan and movement analysis</li>
+                        <li>$360 for the one-week track, three sessions</li>
+                        <li>$720 for the two-week track, six sessions</li>
+                        <li>Your coach recommends which at the consult</li>
+                    </ul>
+                </div>
+                <div class="pcard">
+                    <h3>Standard</h3>
+                    <div class="pnum">$200<span>/mo</span></div>
+                    <ul>
+                        <li>3 Strength &amp; Conditioning classes per week</li>
+                        <li>A coach on every rep</li>
+                        <li>Monthly body composition scan</li>
+                        <li>Community events</li>
+                    </ul>
+                </div>
+                <div class="pcard pop">
+                    <span class="tag">Most popular</span>
+                    <h3>Unlimited</h3>
+                    <div class="pnum">$240<span>/mo</span></div>
+                    <ul>
+                        <li>Unlimited Strength &amp; Conditioning classes</li>
+                        <li>Everything in Standard</li>
+                        <li>Open gym access seven days a week</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="price-notes rv rv-d3">
+                <p><b>Military, first responders and teachers:</b> 5% off any membership. Veteran-owned, and we know who holds a town together.</p>
+                <p><b>Foundations is once.</b> It is how everybody starts, it is what keeps people from getting hurt in week one, and you never pay it again.</p>
+                <p><b>Commitment:</b> memberships start with 90 days, because change takes longer than a month. After that it is month to month, cancel with 30 days notice.</p>
+            </div>
+        </div>
+    </section>
+    <section class="sect">
+        <div class="wrap">
+            <span class="eyebrow rv">Before you book</span>
+            <h2 class="rv">What people ask before they book.</h2>
+            <div class="faq rv rv-d1">
+                <details>
+                    <summary>I haven’t trained in years. Is that a problem?</summary>
+                    <p>No, and it’s the most common thing we hear. Foundations exists for exactly this. One-on-one with a coach, no class to keep up with, nobody watching. In thirteen years, nobody has been too out of shape to start properly.</p>
+                </details>
+                <details>
+                    <summary>Am I fit enough for a group class?</summary>
+                    <p>Every class runs at three levels. Same movement, same clock, different target. A first-month beginner trains next to a ten-year athlete and neither one compromises. Members are 16 and up.</p>
+                </details>
+                <details>
+                    <summary>How long am I actually here?</summary>
+                    <p>Sixty minutes, door to door. The 9:30 class ends at 10:30. If you need to be somewhere at eleven, you will be.</p>
+                </details>
+                <details>
+                    <summary>Am I going to get hurt?</summary>
+                    <p>That’s the fear we take most seriously, because picking your kids up isn’t optional. We coach every rep, we scale to your level, and we pull you back when your ego is writing checks. Longevity is the point.</p>
+                </details>
+                <details>
+                    <summary>What if my schedule changes mid-semester?</summary>
+                    <p>Six class times a day Monday to Friday, plus a 9:30 on Saturday. Most members move between times as the season changes. Nobody is locked to one hour.</p>
+                </details>
+            </div>
+        </div>
+    </section>
+    <section class="final">
+        <div class="final-in wrap">
+            <h2 class="rv" style="text-align:center">The hour is open right now.<br><span class="outline">It won’t be in October.</span></h2>
+            <p class="lead rv rv-d1" style="text-align:center">A new routine sets in the window where everything else is already changing. That window is open this month, and it closes on its own whether you use it or not.</p>
+            <div class="bookwrap rv rv-d2" id="book-close">
+                <span class="book-head">Pick a time</span>
+                <p class="book-sub">Twenty minutes with a coach, free. Grab the slot that fits your week and you’re done.</p>
+                <iframe
+                    data-src="https://api.leadconnectorhq.com/widget/booking/aOyy4UPbwziVvHz35TCU"
+                    id="aOyy4UPbwziVvHz35TCU_bts2"
+                    title="Book a free consult at Black Iron Athletics"
+                    loading="lazy" scrolling="no" allow="payment"></iframe>
+                <p class="book-fallback">Calendar not loading? <a href="tel:+19727857036" onclick="if(window.fbq)fbq('trackCustom','PhoneClick');">Call (972) 785-7036</a>.</p>
+            </div>
+        </div>
+    </section>
+
+    </main>
+
+    <footer class="lp-foot">
+        <p><b style="color:var(--white)">Black Iron Athletics</b></p>
+        <p>279 Main St, Suite 122, Frisco, TX 75036</p>
+        <p><a href="tel:+19727857036" onclick="if(window.fbq)fbq('trackCustom','PhoneClick');">(972) 785-7036</a></p>
+        <p class="lp-foot-legal">Veteran-owned &middot; Est. 2013 &middot;
+           <a href="/privacy">Privacy</a> &middot; <a href="/terms">Terms</a></p>
+    </footer>
+
+<script>
+/* Reveal-on-scroll, matched to the site's own .rv/.on behaviour. */
+(function(){
+  var els=document.querySelectorAll('.rv');
+  if(!('IntersectionObserver' in window)){els.forEach(function(e){e.classList.add('on');});return;}
+  var io=new IntersectionObserver(function(en){en.forEach(function(x){
+    if(x.isIntersecting){x.target.classList.add('on');io.unobserve(x.target);}});},
+    {rootMargin:'0px 0px -8% 0px'});
+  els.forEach(function(e){io.observe(e);});
+})();
+</script>
+<script>
+/* Booking calendar: lazy load, and rebuild the funnel events that the
+   outbound booking link used to fire. data-src (not src) is what the UTM
+   pass-through in inject-pixel.js looks for, so the booking stays
+   attributable to the ad set that earned it. Do not change it to src. */
+(function () {
+  var frames = [].slice.call(document.querySelectorAll('.bookwrap iframe[data-src]'));
+  if (!frames.length) return;
+  var fired = {};
+  function once(n, custom) {
+    if (fired[n]) return; fired[n] = true;
+    if (typeof fbq === 'function') fbq(custom ? 'trackCustom' : 'track', n);
+  }
+  function activate(f) { if (!f.src && f.dataset.src) { f.src = f.dataset.src; f.dataset.loadedAt = String(Date.now()); } }
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function (en) {
+      en.forEach(function (x) { if (x.isIntersecting) { activate(x.target); io.unobserve(x.target); } });
+    }, { rootMargin: '400px 0px' });
+    frames.forEach(function (f) { io.observe(f); });
+    var seen = new IntersectionObserver(function (en) {
+      en.forEach(function (x) { if (x.isIntersecting && x.intersectionRatio >= 0.4) {
+        once('CalendarView', true); seen.unobserve(x.target); } });
+    }, { threshold: [0.4] });
+    frames.forEach(function (f) { seen.observe(f); });
+  } else { frames.forEach(activate); }
+  window.fpBookingMessages = [];
+  window.addEventListener('message', function (ev) {
+    var host = ''; try { host = new URL(ev.origin).hostname; } catch (e) { return; }
+    if (!/(^|\.)leadconnectorhq\.com$|(^|\.)msgsndr\.com$/.test(host)) return;
+    window.fpBookingMessages.push({ t: Date.now(), origin: ev.origin, data: ev.data });
+    var raw = ''; try { raw = typeof ev.data === 'string' ? ev.data : JSON.stringify(ev.data); } catch (e) {}
+    if (/appointment|booked|booking[_-]?(success|complete)|slot[_-]?selected|scheduled/i.test(raw)) {
+      once('InitiateCheckout');
+      if (/booked|success|complete|scheduled|confirmed/i.test(raw)) once('Schedule');
+      return;
+    }
+    var oldest = frames.reduce(function (a, f) {
+      var v = Number(f.dataset.loadedAt || 0); return v && (!a || v < a) ? v : a; }, 0);
+    if (oldest && Date.now() - oldest > 2500) once('InitiateCheckout');
+  }, false);
+})();
+</script>
+<script src="https://link.msgsndr.com/js/form_embed.js" type="text/javascript" defer></script>
+</body>
+</html>

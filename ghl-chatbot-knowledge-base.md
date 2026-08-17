@@ -132,9 +132,9 @@ Yes. For $30 you can try any class you would like before joining. If you sign up
 
 We require 30 days written notice to cancel your membership.
 
-## Do you offer military or first responder discounts?
+## Do you offer military, first responder or teacher discounts?
 
-Yes. Military and first responders get 5% off any membership. We are veteran-owned and proud of it — supporting those who serve is part of who we are.
+Yes. Military, first responders and teachers get 5% off any membership. We are veteran-owned and proud of it, and supporting the people who hold a town together is part of who we are.
 
 ## Is the gym climate controlled?
 
