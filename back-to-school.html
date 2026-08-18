@@ -45,6 +45,15 @@
     .lp-call svg{flex:0 0 auto}
     @media(max-width:420px){.lp-call span{display:none}}
 
+    /* Warm arrival. Hidden unless the capture page sent them, so a cold
+       visitor and a no-JS visitor both see the page exactly as before. */
+    .warmbar{display:none;background:var(--coal);border-bottom:1px solid var(--steel-line)}
+    .warmbar.on{display:block}
+    .warmbar-in{display:flex;align-items:center;justify-content:space-between;gap:16px;
+      flex-wrap:wrap;padding:16px clamp(16px,4vw,40px);max-width:1240px;margin:0 auto}
+    .warmbar p{margin:0;color:var(--white);font-weight:700;font-size:.98rem}
+    .warmbar p span{display:block;font-weight:400;color:var(--gray);font-size:.9rem;margin-top:3px}
+    .warmbar .btn{flex:0 0 auto}
     .hero h1{font-size:clamp(2.2rem,5.4vw,4.2rem)}
     /* The review is the proof that travels furthest, so it is sized to be seen. */
     .trust-lg{gap:14px;padding:15px 22px;font-size:1.3rem}
@@ -137,6 +146,13 @@
         </div>
     </header>
     <main id="main-content">
+    <div class="warmbar" id="warmbar">
+        <div class="warmbar-in">
+            <p><span id="warmgreet">Got it. We have your details.</span>
+               <span>Your spot is not held yet. Pick a time to lock it in.</span></p>
+            <a href="#book" class="btn btn-y">Pick your time</a>
+        </div>
+    </div>
     <section class="hero hero-short">
         <div class="hero-bg">
             <img class="ph-soft" src="/images/training/group-training.webp" alt="A coach working with members on the floor at Black Iron Athletics in Frisco" fetchpriority="high" width="1024" height="683">
@@ -363,6 +379,26 @@
     </section>
 
     </main>
+<script>
+/* The capture page redirects here with ?s=2, so the page can tell a warm
+   arrival from a cold one. The name is optional: add &n={{contact.first_name}}
+   to the GHL redirect and it gets used, otherwise the greeting stays generic.
+   Written with textContent, never innerHTML: this value comes off the URL. */
+(function () {
+  var q = new URLSearchParams(window.location.search);
+  if (q.get('s') !== '2') { return; }
+  var bar = document.getElementById('warmbar');
+  if (!bar) { return; }
+  var raw = (q.get('n') || '').replace(/[^A-Za-z' -]/g, '').trim().slice(0, 24);
+  if (raw) {
+    var name = raw.charAt(0).toUpperCase() + raw.slice(1);
+    document.getElementById('warmgreet').textContent = 'Got it, ' + name + '. We have your details.';
+  }
+  bar.classList.add('on');
+  var cta = document.querySelector('.hero-ctas .btn');
+  if (cta) { cta.textContent = 'Pick your time'; }
+})();
+</script>
 
     <footer class="lp-foot">
         <p><b style="color:var(--white)">Black Iron Athletics</b></p>
