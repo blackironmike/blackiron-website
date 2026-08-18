@@ -399,6 +399,23 @@
   if (cta) { cta.textContent = 'Pick your time'; }
 })();
 </script>
+<script>
+/* Lead: the capture form redirects here with ?s=2, so a warm arrival means
+   the form was submitted a moment ago. The form is a cross-origin iframe, so
+   its submit cannot be hooked directly and this is the closest signal there
+   is. Fired at most once per campaign per browser: the nurture emails link
+   here with ?s=2 as well, and without the guard every click would report a
+   fresh lead and inflate the number the ad sets optimise against. */
+(function () {
+  if (new URLSearchParams(window.location.search).get('s') !== '2') { return; }
+  var k = 'bia_lead' + window.location.pathname;
+  try {
+    if (window.localStorage.getItem(k)) { return; }
+    window.localStorage.setItem(k, '1');
+  } catch (e) { /* private mode: no guard available, fire anyway */ }
+  if (typeof fbq === 'function') { fbq('track', 'Lead'); }
+})();
+</script>
 
     <footer class="lp-foot">
         <p><b style="color:var(--white)">Black Iron Athletics</b></p>

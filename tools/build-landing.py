@@ -16,6 +16,8 @@ CAL = "https://api.leadconnectorhq.com/widget/booking/aOyy4UPbwziVvHz35TCU"
 # Deck key -> live slug. Anything not listed builds as an lp-* draft.
 WARM = "<script>\n/* The capture page redirects here with ?s=2, so the page can tell a warm\n   arrival from a cold one. The name is optional: add &n={{contact.first_name}}\n   to the GHL redirect and it gets used, otherwise the greeting stays generic.\n   Written with textContent, never innerHTML: this value comes off the URL. */\n(function () {\n  var q = new URLSearchParams(window.location.search);\n  if (q.get('s') !== '2') { return; }\n  var bar = document.getElementById('warmbar');\n  if (!bar) { return; }\n  var raw = (q.get('n') || '').replace(/[^A-Za-z' -]/g, '').trim().slice(0, 24);\n  if (raw) {\n    var name = raw.charAt(0).toUpperCase() + raw.slice(1);\n    document.getElementById('warmgreet').textContent = 'Got it, ' + name + '. We have your details.';\n  }\n  bar.classList.add('on');\n  var cta = document.querySelector('.hero-ctas .btn');\n  if (cta) { cta.textContent = 'Pick your time'; }\n})();\n</script>\n"
 
+LEAD = "<script>\n/* Lead: the capture form redirects here with ?s=2, so a warm arrival means\n   the form was submitted a moment ago. The form is a cross-origin iframe, so\n   its submit cannot be hooked directly and this is the closest signal there\n   is. Fired at most once per campaign per browser: the nurture emails link\n   here with ?s=2 as well, and without the guard every click would report a\n   fresh lead and inflate the number the ad sets optimise against. */\n(function () {\n  if (new URLSearchParams(window.location.search).get('s') !== '2') { return; }\n  var k = 'bia_lead' + window.location.pathname;\n  try {\n    if (window.localStorage.getItem(k)) { return; }\n    window.localStorage.setItem(k, '1');\n  } catch (e) { /* private mode: no guard available, fire anyway */ }\n  if (typeof fbq === 'function') { fbq('track', 'Lead'); }\n})();\n</script>\n"
+
 SLUGS = {"laser-1": "back-to-school", "shotgun-2": "routine"}
 
 BAND = '    <div class="marquee" aria-hidden="true">\n        <div class="marquee-track">\n            <span>Coached every rep &mdash; Three levels, one floor &mdash; Forge the body, guard the mind &mdash;&nbsp;</span><span>Coached every rep &mdash; Three levels, one floor &mdash; Forge the body, guard the mind &mdash;&nbsp;</span>\n        </div>\n    </div>\n    <div class="stats-grid">\n        <div class="stat rv"><b>13+</b><span>Years in Frisco</span></div>\n        <div class="stat rv"><b>3,000+</b><span>Lives changed</span></div>\n        <div class="stat rv"><b>5.0</b><span>Google rating</span></div>\n        <div class="stat rv"><b>3</b><span>Levels in every class</span></div>\n    </div>\n'
@@ -502,6 +504,7 @@ def build(slug, c, share, note_paras):
     </main>
 ''')
     P.append(WARM)
+    P.append(LEAD)
     tail = FOOT.format(phone_href=PHONE_HREF, phone_text=PHONE_TEXT, phone_track=PHONE_TRACK)
     return h + "".join(P) + tail
 
