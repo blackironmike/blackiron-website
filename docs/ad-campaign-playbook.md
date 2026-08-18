@@ -64,32 +64,31 @@ touching the winner.
 
 ## 4. GHL settings that have to be right
 
-Both capture pages embed the same form: **Lead Capture - Ads**
-(`9bTVJ7mcDsr29X0mCJbz`).
+One form per campaign, so each can redirect to its own landing page. A single
+shared form could only point at one of them, which would send routine traffic
+to the back-to-school pitch.
 
-Because one form serves both campaigns, its redirect can only point at one
-landing page. Two ways to handle that, pick one:
+| Capture page | Form | Form id |
+|--------------|------|---------|
+| `/start-back-to-school` | Lead Capture - Ads | `9bTVJ7mcDsr29X0mCJbz` |
+| `/start-routine` | Lead Capture - Routine | `sKw4RYzEQvvWqnulR49N` |
 
-- **Simplest:** one form, redirect to `/back-to-school`, and accept that
-  routine traffic lands on the back-to-school pitch.
-- **Correct:** duplicate the form in GHL, one per campaign, and give each its
-  own redirect. Then swap the form id on `start-routine.html`.
+**On each form, in Settings:**
 
-The second is right if both campaigns run at once. Ask before the second
-campaign goes live and it will be handled.
+| Form | Redirect URL | Pass form data |
+|------|--------------|----------------|
+| Lead Capture - Ads | `https://www.blackironathletics.com/back-to-school` | **on** |
+| Lead Capture - Routine | `https://www.blackironathletics.com/routine` | **on** |
 
-**On the form, in Settings:**
-
-| Setting | Value |
-|---------|-------|
-| Redirect URL | the matching landing page, full https URL |
-| Pass form data to the redirect | **on** |
+The form id appears in four places in each capture page: `src`, `id`,
+`data-layout-iframe-id` and `data-form-id`. Change all four or the embed script
+will not find the frame it is meant to resize.
 
 Pass-through is not optional. If the calendar asks for name, phone and email a
 second time, two steps convert worse than one did and the whole exercise is a
 loss. Test it before spending money.
 
-**On the form, in Styles → Colors & Background:** background `#101010FF`. See
+**On both forms, in Styles → Colors & Background:** background `#101010FF`. See
 `ghl-update-guide.md` section 6 for why.
 
 ---
@@ -135,9 +134,9 @@ the GHL contact list sortable by which ad actually worked.
 
 ## 7. Before you spend money
 
-- [ ] Redirect set on Lead Capture - Ads, pointing at the right landing page
-- [ ] Pass form data to the redirect is **on**
-- [ ] Walk one lead through on a phone: capture, submit, confirm the calendar
+- [ ] Redirect set on BOTH forms, each pointing at its own landing page
+- [ ] Pass form data to the redirect is **on**, on both forms
+- [ ] Walk one lead through EACH campaign: capture, submit, confirm the calendar
       is **prefilled**, book, land on `/thank-you`
 - [ ] The test contact appears in GHL with its UTM fields populated
 - [ ] The nurture campaign fired for that contact
