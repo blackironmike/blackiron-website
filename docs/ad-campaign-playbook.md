@@ -70,14 +70,14 @@ to the back-to-school pitch.
 
 | Capture page | Form | Form id |
 |--------------|------|---------|
-| `/start-back-to-school` | Lead Capture - Ads | `9bTVJ7mcDsr29X0mCJbz` |
+| `/start-back-to-school` | Lead Capture - Back to School | `9bTVJ7mcDsr29X0mCJbz` |
 | `/start-routine` | Lead Capture - Routine | `sKw4RYzEQvvWqnulR49N` |
 
 **On each form, in Settings:**
 
 | Form | Redirect URL | Pass form data |
 |------|--------------|----------------|
-| Lead Capture - Ads | `https://www.blackironathletics.com/back-to-school` | **on** |
+| Lead Capture - Back to School | `https://www.blackironathletics.com/back-to-school` | **on** |
 | Lead Capture - Routine | `https://www.blackironathletics.com/routine` | **on** |
 
 The form id appears in four places in each capture page: `src`, `id`,

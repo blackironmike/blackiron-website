@@ -84,12 +84,13 @@ around it and reads as a mismatched border. Forms shipped at `#1A1A1A`, which
 is six points lighter than coal — close enough to look like a mistake rather
 than a choice.
 
-**Set Background to `#101010FF`** in Styles → Colors & Background, on all four:
+**Set Background to `#101010FF`** in Styles → Colors & Background, on all five:
 
 | Form | Where it appears |
 |------|------------------|
 | Lead Capture - Website | consult modal, every page |
-| Lead Capture - Ads | back-to-school landing page |
+| Lead Capture - Back to School | `/start-back-to-school` capture page |
+| Lead Capture - Routine | `/start-routine` capture page |
 | Subscribe | footer modal |
 | Membership Cancellation | cancellation modal |
 
