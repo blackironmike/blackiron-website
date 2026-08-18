@@ -14,6 +14,7 @@
  * Usage:
  *   /api/api-probe?secret=<CRON_SECRET>
  *   /api/api-probe?secret=<CRON_SECRET>&group=ghl      (or wodify)
+ *   /api/api-probe?secret=<CRON_SECRET>&detail=1       (shape trees, no values)
  *
  * Reading the results:
  *   200/201  endpoint exists and the token reaches it
@@ -51,14 +52,12 @@ function ghlProbes(loc) {
     ['users',            `/users/?locationId=${loc}`],
     ['links',            `/links/?locationId=${loc}`],
     ['businesses',       `/businesses/?locationId=${loc}`],
-    ['medias',           `/medias/files?altId=${loc}&altType=location&limit=1`],
-    ['blogs',            `/blogs/site/list?locationId=${loc}&limit=1&skip=0`],
-    ['socialPosts',      `/social-media-posting/${loc}/posts/list`],
+    ['medias',           `/medias/files?altId=${loc}&altType=location&limit=1&offset=0&sortBy=createdAt&sortOrder=desc`],
+    ['blogs',            `/blogs/site/all?locationId=${loc}&limit=1&skip=0`],
     ['knowledgeBases',   `/knowledge-bases/?locationId=${loc}`],
-    ['conversationAI',   `/conversations/providers/${loc}`],
-    ['invoices',         `/invoices/?altId=${loc}&altType=location&limit=1`],
+    ['invoices',         `/invoices/?altId=${loc}&altType=location&limit=1&offset=0`],
     ['products',         `/products/?locationId=${loc}&limit=1`],
-    ['numberPools',      `/phone-system/number-pools/${loc}`],
+    ['numberPools',      `/phone-system/number-pools?locationId=${loc}`],
   ];
 }
 
@@ -111,7 +110,30 @@ function shapeOf(body) {
   return out;
 }
 
-async function probe(label, url, headers) {
+/* Endpoints whose schema we need before we can build against them. With
+   ?detail=1 these return a shape tree: nested KEY NAMES and value TYPES only,
+   never a value. That is enough to write a client against and carries nothing
+   out of the account. */
+const DETAIL_TARGETS = new Set([
+  'ghl:forms',
+  'ghl:emailTemplates',
+  'ghl:knowledgeBases',
+  'ghl:customValues',
+  'ghl:workflows',
+]);
+
+function keysDeep(v, depth) {
+  if (depth > 3) return '...';
+  if (Array.isArray(v)) return v.length ? [keysDeep(v[0], depth + 1)] : [];
+  if (v && typeof v === 'object') {
+    const out = {};
+    for (const k of Object.keys(v).slice(0, 30)) out[k] = keysDeep(v[k], depth + 1);
+    return out;
+  }
+  return typeof v;
+}
+
+async function probe(label, url, headers, detail) {
   const ctrl = new AbortController();
   const timer = setTimeout(() => ctrl.abort(), TIMEOUT_MS);
   const started = Date.now();
@@ -119,14 +141,17 @@ async function probe(label, url, headers) {
     const res = await fetch(url, { method: 'GET', headers, signal: ctrl.signal });
     const ms = Date.now() - started;
     let shape = null;
+    let structure;
     if ((res.headers.get('content-type') || '').includes('application/json')) {
       try {
-        shape = shapeOf(await res.json());
+        const body = await res.json();
+        shape = shapeOf(body);
+        if (detail && DETAIL_TARGETS.has(label)) structure = keysDeep(body, 0);
       } catch (e) {
         shape = 'unparseable-json';
       }
     }
-    return { label, status: res.status, ok: res.ok, ms, shape };
+    return { label, status: res.status, ok: res.ok, ms, shape, ...(structure ? { structure } : {}) };
   } catch (e) {
     return {
       label,
@@ -163,6 +188,7 @@ export default async function handler(req, res) {
   if (req.method !== 'GET') return res.status(405).json({ error: 'Method not allowed' });
 
   const group = (req.query.group || 'all').toLowerCase();
+  const detail = req.query.detail === '1';
   const ghlKey = process.env.GHL_API_KEY;
   const ghlLoc = process.env.GHL_LOCATION_ID;
   const wodKey = process.env.WODIFY_API_KEY;
@@ -180,7 +206,7 @@ export default async function handler(req, res) {
         Accept: 'application/json',
       };
       for (const [label, path] of ghlProbes(ghlLoc)) {
-        jobs.push(() => probe(`ghl:${label}`, `${GHL_BASE}${path}`, h).then(r => ({ ...r, path })));
+        jobs.push(() => probe(`ghl:${label}`, `${GHL_BASE}${path}`, h, detail).then(r => ({ ...r, path })));
       }
     }
   }
@@ -191,7 +217,7 @@ export default async function handler(req, res) {
     } else {
       const h = { 'x-api-key': wodKey, Accept: 'application/json' };
       for (const [label, path] of WODIFY_PROBES) {
-        jobs.push(() => probe(`wodify:${label}`, `${WODIFY_BASE}${path}`, h).then(r => ({ ...r, path })));
+        jobs.push(() => probe(`wodify:${label}`, `${WODIFY_BASE}${path}`, h, detail).then(r => ({ ...r, path })));
       }
     }
   }
