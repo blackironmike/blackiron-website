@@ -1,16 +1,50 @@
 # GHL Update Guide — Michael’s Runbook
 
 Everything the bot knows lives in two repo files: `ghl-chatbot-knowledge-base.md`
-and `ghl-chatbot-personality.md`. GHL does not sync with the repo — whenever
-either file changes, you re-upload and re-paste by hand. Here’s how.
+and `ghl-chatbot-personality.md`. The knowledge base now pushes itself; the
+personality fields are still pasted by hand. Here’s how.
 
-## 1. Re-upload the knowledge base
+## 1. Push the knowledge base
 
-1. Log in to GHL and open the Black Iron sub-account.
-2. Go to AI Agents → Knowledge Base.
-3. Delete the old `ghl-chatbot-knowledge-base.md` upload (trash icon next to it).
-4. Upload the current `ghl-chatbot-knowledge-base.md` from the repo.
-5. Wait for it to finish processing before testing.
+One request, no clicking:
+
+```
+curl.exe -X POST -H "Authorization: Bearer YOUR_CRON_SECRET"   "https://www.blackironathletics.com/api/push-knowledge-base?apply=1"
+```
+
+Drop the `-X POST` and the `apply=1` for a dry run, which prints exactly what
+it would do and changes nothing. Always worth doing first.
+
+It reads `ghl-chatbot-knowledge-base.md` from whichever deployment you call, so
+production pushes what is on `main` and a branch preview pushes that branch.
+Every `## Question?` heading becomes one FAQ record, and the whole set is
+deleted and rewritten each run, so the base always matches the file exactly.
+
+**The knowledge base is generated. Never edit it in the GHL UI** — the next
+push wipes anything you change there. Edit the markdown, commit, push.
+
+### Why FAQ records rather than a file upload
+
+The old process uploaded the markdown as a file. The Knowledge Base API has no
+file endpoint, so an uploaded file cannot be read, replaced or deleted by API,
+which is what made the chore manual and what let it silently rot: the upload
+sitting in GHL on 2026-08-18 was from 27 July and was missing twenty-seven
+changed answers, including every membership price and the corrected ownership
+timeline.
+
+FAQ records are addressable, so each answer can be replaced individually and
+the whole set can be reconciled against the file. That is the entire reason for
+the change.
+
+### If you ever need a fresh base
+
+`?createKb=<name>` builds a new knowledge base and fills it instead of writing
+into the existing one. That exists because GHL will not delete a knowledge base
+while an agent uses it, so a clean cutover means building beside it and
+repointing the agent. `?kb=<name>` targets a specific base by name; without it
+the push goes to `Black Iron Knowledge base (synced)`.
+
+Both are guarded by `CRON_SECRET`, and a GET can never write.
 
 ## 2. Re-paste the personality fields
 
