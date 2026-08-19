@@ -235,11 +235,12 @@
     if (sent || typeof fbq !== 'function') return;
     sent = true;
     fbq('track', 'Schedule');
-    fbq('track', 'Lead');
   }
   /* The fallback listens on DOMContentLoaded as well as load, because `load`
      waits on every subresource and this page now embeds a Google Maps frame.
-     The guard above keeps the pair from double-counting a booking. */
+     The guard above keeps the two listeners from double-counting a booking.
+     Lead is deliberately not fired here. The landing pages fire it on the
+     warm arrival, and firing it again would count one person twice. */
   if (typeof fbq === 'function') fire();
   else {
     document.addEventListener('DOMContentLoaded', fire);

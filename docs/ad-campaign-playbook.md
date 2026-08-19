@@ -18,8 +18,9 @@ Meta ad  ->  capture page  ->  landing page + calendar  ->  thank you
               email)                                        + map)
 ```
 
-The capture page exists so a person who bails at step three is already in GHL
-and already in a nurture campaign. That is the whole reason for the extra step.
+The capture page exists so a person who bails at step three is already in GHL,
+with a name and a number a coach can call. That is the whole reason for the
+extra step. Follow-up is by hand, not automated.
 
 ---
 
@@ -77,8 +78,24 @@ to the back-to-school pitch.
 
 | Form | Redirect URL | Pass form data |
 |------|--------------|----------------|
-| Lead Capture - Back to School | `https://www.blackironathletics.com/back-to-school` | **on** |
-| Lead Capture - Routine | `https://www.blackironathletics.com/routine` | **on** |
+| Lead Capture - Back to School | `https://www.blackironathletics.com/back-to-school?s=2&n={{contact.first_name}}` | **on** |
+| Lead Capture - Routine | `https://www.blackironathletics.com/routine?s=2&n={{contact.first_name}}` | **on** |
+
+**The `?s=2` is not decoration and it is not optional.** It is the only thing
+that tells a landing page the visitor came through the form. Two things run off
+it, and both fail silently without it:
+
+- The warm bar, which turns the cold pitch into "Got it, we have your details."
+- The `Lead` pixel event, which is what the ad sets optimise against.
+
+Drop `?s=2` from the redirect and the page still loads, still looks right, and
+reports no leads at all. Nothing errors. That is what makes it worth checking
+first.
+
+`&n={{contact.first_name}}` is the optional half. With it the bar greets them by
+name, without it the greeting stays generic. The name is filtered to letters
+before it is written, and written as text rather than markup, so a junk value
+cannot do anything but look odd.
 
 The form id appears in four places in each capture page: `src`, `id`,
 `data-layout-iframe-id` and `data-form-id`. Change all four or the embed script
@@ -101,13 +118,31 @@ we still measure the thing that pays rent.
 | Page | Event |
 |------|-------|
 | Capture page | `ViewContent` |
-| Landing page, on arrival | `Lead` |
+| Landing page, on warm arrival (`?s=2`) | `Lead` |
 | `/thank-you` | `Schedule` |
+
+`ViewContent` is driven by the `META_VIEWCONTENT_PATHS` environment variable in
+Vercel, which holds the two capture paths and nothing else. It is a build-time
+injection, so changing the variable does nothing until a redeploy runs.
 
 `Lead` fires on arrival at the landing page rather than on form submit, because
 the form is a cross-origin iframe and its submit cannot be hooked directly.
 Arriving at step two means the form was submitted, so it is the same signal one
 moment later.
+
+Two details keep that number honest, and both matter more than they look:
+
+- **It fires only on `?s=2`,** never on a bare landing page load. Someone who
+  reaches `/routine` from a bookmark or a shared link did not fill in anything,
+  and counting them would mean paying Meta to find more people who do not
+  convert.
+- **It fires once per campaign per browser,** guarded in `localStorage`. Any
+  link a coach sends carries `?s=2`, so without the guard one lead who opens it
+  twice reports as two leads.
+
+`/thank-you` fires `Schedule` only. It used to fire `Lead` as well, back when
+nothing else did. Now that the landing page fires it, thank-you firing it too
+would count the same person twice, once for arriving and once for booking.
 
 **Optimise the ad sets for `Lead`, not `Schedule`.** An ad set needs roughly 50
 conversions a week to leave the learning phase. Bookings will not hit that at a
@@ -139,7 +174,6 @@ the GHL contact list sortable by which ad actually worked.
 - [ ] Walk one lead through EACH campaign: capture, submit, confirm the calendar
       is **prefilled**, book, land on `/thank-you`
 - [ ] The test contact appears in GHL with its UTM fields populated
-- [ ] The nurture campaign fired for that contact
 - [ ] Ads point at `/start-*`, never at the landing pages directly
 - [ ] Ad sets optimise for `Lead`
 
