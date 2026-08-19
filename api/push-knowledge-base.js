@@ -29,6 +29,13 @@
 const GHL_BASE = 'https://services.leadconnectorhq.com';
 const KB_VERSION = '2021-04-15';
 const SOURCE_FILE = '/ghl-chatbot-knowledge-base.md';
+
+/* The live knowledge base, confirmed by Michael. The location has two, and the
+   other one ("Existing knowledge base") is not what the chatbot reads. Named
+   rather than positional on purpose: taking the first of the list would send
+   ninety records somewhere nobody looks if GHL ever reorders them. Override
+   with ?kb=<name>. */
+const DEFAULT_KB_NAME = 'Black Iron Knowledge base';
 const CALL_SPACING_MS = 400;
 const MAX_ANSWER_CHARS = 2000;
 
@@ -140,12 +147,14 @@ export default async function handler(req, res) {
     if (!bases.length) {
       return res.status(200).json({ mode: 'dry-run', error: 'No knowledge base exists for this location', bases });
     }
-    const wanted = req.query.kb;
-    const target = wanted
-      ? bases.find(b => (b.name || '').toLowerCase() === wanted.toLowerCase())
-      : bases[0];
+    const wanted = req.query.kb || DEFAULT_KB_NAME;
+    const target = bases.find(b => (b.name || '').toLowerCase() === wanted.toLowerCase());
     if (!target) {
-      return res.status(200).json({ error: `No knowledge base named "${wanted}"`, available: bases.map(b => b.name) });
+      return res.status(200).json({
+        error: `No knowledge base named "${wanted}"`,
+        available: bases.map(b => b.name),
+        note: 'Refusing to guess. Pass ?kb=<name> or fix DEFAULT_KB_NAME.',
+      });
     }
 
     const existing = await listAllFaqs(key, locationId, target.id);
