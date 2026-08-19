@@ -43,7 +43,13 @@ const SOURCE_FILE = '/ghl-chatbot-knowledge-base.md';
    ninety records somewhere nobody looks if GHL ever reorders them. Override
    with ?kb=<name>. */
 const DEFAULT_KB_NAME = 'Black Iron Knowledge base';
-const CALL_SPACING_MS = 400;
+/* Ninety creates have to finish inside Vercel's function ceiling, so the
+   spacing is set from that rather than from caution. At 150ms plus request
+   latency this runs around 35 seconds and sits near 3 requests a second,
+   comfortably under GHL's burst limit of 100 per 10 seconds. Raising it much
+   past 400 risks a timeout part way through, which leaves a half-filled
+   knowledge base. */
+const CALL_SPACING_MS = 150;
 const MAX_ANSWER_CHARS = 2000;
 
 const sleep = ms => new Promise(r => setTimeout(r, ms));
