@@ -144,7 +144,13 @@ export default async function handler(req, res) {
       currentUrls: current.length,
       currentByStatus: current.reduce((a, u) => ((a[u.status || 'unknown'] = (a[u.status || 'unknown'] || 0) + 1), a), {}),
       wantedUrls: CRAWL_TARGETS.length,
-      willDiscover: missing.map(([url, option]) => `${option.padEnd(5)} ${url}`),
+      /* "Not present" rather than "to discover": a page queued a minute ago and
+         still crawling looks identical from here to one never requested, since
+         GHL only lists a URL once the crawl finishes. Re-running discover on
+         these is safe and is the intended retry, because GHL accepts a
+         discovery request, reports Processing, and then sometimes never
+         produces the page, with no error and no failed status anywhere. */
+      notPresentYet: missing.map(([url, option]) => `${option.padEnd(5)} ${url}`),
       awaitingTraining: untrained.map(u => `${u.status} ${u.url}`),
     };
 
@@ -172,7 +178,17 @@ export default async function handler(req, res) {
           failed.push({ url, error: e.message });
         }
       }
-      return res.status(200).json({ ...state, queued: queued.length, failed, rawResponses: queued.slice(0, 3) });
+      /* Every operationId is surfaced, because this response is the only place
+         one ever exists. There is no endpoint that lists operations, and the
+         status endpoint needs an operationId to tell you about an operationId.
+         Lose these and the only way to mint another is a fresh discovery. */
+      return res.status(200).json({
+        ...state,
+        queued: queued.length,
+        failed,
+        operationIds: queued.map(q => ({ url: q.url, operationId: q.response && q.response.operationId })),
+        next: 'Wait for the crawls to finish, then POST ?apply=1&step=train&operationId=<any one of the above>',
+      });
     }
 
     if (step === 'train') {
@@ -183,7 +199,18 @@ export default async function handler(req, res) {
       if (!ready.length) {
         return res.status(200).json({ ...state, trained: 0, note: 'Nothing is waiting to be trained.' });
       }
-      const operationId = req.query.operationId || ready[0].operationId || '';
+      /* GHL rejects an empty operationId but does not check that it belongs to
+         the operation these urlIds came from. It only has to be a real id, and
+         the urlIds are what actually drive the training. Pass any id from a
+         discover response. */
+      const operationId = req.query.operationId || '';
+      if (!operationId) {
+        return res.status(400).json({
+          ...state,
+          error: 'step=train needs ?operationId=<id from a discover response>',
+          why: 'GHL requires it, no endpoint lists operations, and the list endpoint does not return it.',
+        });
+      }
       const r = await ghl('/knowledge-bases/crawler/train', key, {
         method: 'POST',
         body: JSON.stringify({
