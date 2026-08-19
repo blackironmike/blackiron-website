@@ -18,8 +18,9 @@ Meta ad  ->  capture page  ->  landing page + calendar  ->  thank you
               email)                                        + map)
 ```
 
-The capture page exists so a person who bails at step three is already in GHL
-and already in a nurture campaign. That is the whole reason for the extra step.
+The capture page exists so a person who bails at step three is already in GHL,
+with a name and a number a coach can call. That is the whole reason for the
+extra step. Follow-up is by hand, not automated.
 
 ---
 
@@ -135,9 +136,9 @@ Two details keep that number honest, and both matter more than they look:
   reaches `/routine` from a bookmark or a shared link did not fill in anything,
   and counting them would mean paying Meta to find more people who do not
   convert.
-- **It fires once per campaign per browser,** guarded in `localStorage`. Every
-  nurture email and text links to the landing page with `?s=2` on it, so without
-  the guard one lead who reads four emails reports as five leads.
+- **It fires once per campaign per browser,** guarded in `localStorage`. Any
+  link a coach sends carries `?s=2`, so without the guard one lead who opens it
+  twice reports as two leads.
 
 `/thank-you` fires `Schedule` only. It used to fire `Lead` as well, back when
 nothing else did. Now that the landing page fires it, thank-you firing it too
@@ -173,7 +174,6 @@ the GHL contact list sortable by which ad actually worked.
 - [ ] Walk one lead through EACH campaign: capture, submit, confirm the calendar
       is **prefilled**, book, land on `/thank-you`
 - [ ] The test contact appears in GHL with its UTM fields populated
-- [ ] The nurture campaign fired for that contact
 - [ ] Ads point at `/start-*`, never at the landing pages directly
 - [ ] Ad sets optimise for `Lead`
 

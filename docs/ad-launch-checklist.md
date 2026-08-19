@@ -76,6 +76,11 @@ pages where the pixel fires and the calendar lives.
 a week to leave the learning phase. Bookings will not hit that at a sane budget.
 Leads will. Schedule is still tracked, it is just not what you optimise on.
 
+How the events actually fire, including the `?s=2` dependency and the
+once-per-browser guard, is documented in `ad-campaign-playbook.md` section 5.
+That is the source of truth; this file only covers what you click in Ads
+Manager.
+
 **Leave detailed targeting empty.** Interest stacking on a 10-mile radius makes
 the audience too small to optimise. Let the algorithm read the pixel.
 
