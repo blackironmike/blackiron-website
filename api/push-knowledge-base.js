@@ -19,7 +19,14 @@
  * Usage:
  *   GET  /api/push-knowledge-base                  dry run, shows the plan
  *   POST /api/push-knowledge-base?apply=1          performs it
- *   ...&kb=<name>                                  pick a knowledge base by name
+ *   ...&kb=<name>                                  target an existing base by name
+ *   ...&createKb=<name>                            create a new base, then fill it
+ *
+ * createKb exists because GHL will not let you delete a knowledge base while
+ * an agent is using it, and the old base holds a stale uploaded file that the
+ * API cannot remove. Building a clean base beside it and repointing the agent
+ * is the only cutover with no gap in what the bot knows, and it reverses by
+ * pointing the agent back.
  *
  * Note the Version header: the Knowledge Base API wants 2021-04-15, not the
  * 2021-07-28 the rest of the v2 API uses. A wrong value here reads as a
@@ -147,22 +154,61 @@ export default async function handler(req, res) {
     if (!bases.length) {
       return res.status(200).json({ mode: 'dry-run', error: 'No knowledge base exists for this location', bases });
     }
-    const wanted = req.query.kb || DEFAULT_KB_NAME;
-    const target = bases.find(b => (b.name || '').toLowerCase() === wanted.toLowerCase());
-    if (!target) {
-      return res.status(200).json({
-        error: `No knowledge base named "${wanted}"`,
-        available: bases.map(b => b.name),
-        note: 'Refusing to guess. Pass ?kb=<name> or fix DEFAULT_KB_NAME.',
-      });
+    const createName = (req.query.createKb || '').trim();
+    let target;
+    let creating = null;
+
+    if (createName) {
+      const clash = bases.find(b => (b.name || '').toLowerCase() === createName.toLowerCase());
+      if (clash) {
+        return res.status(200).json({
+          error: `A knowledge base named "${createName}" already exists`,
+          note: 'Pick a different name, or target it with ?kb= instead of creating it.',
+          available: bases.map(b => b.name),
+        });
+      }
+      if (bases.length >= 15) {
+        return res.status(200).json({ error: 'This location already has 15 knowledge bases, the GHL maximum' });
+      }
+      creating = { name: createName, existingCount: bases.length };
+      if (apply) {
+        const made = await ghl('/knowledge-bases/', key, {
+          method: 'POST',
+          body: JSON.stringify({
+            locationId,
+            name: createName,
+            description:
+              'Generated from ghl-chatbot-knowledge-base.md in the website repo. ' +
+              'Do not edit by hand: edits are overwritten on the next push.',
+          }),
+        });
+        const madeKb = (made.data && (made.data.knowledgeBase || made.data)) || made;
+        target = { id: madeKb.id, name: madeKb.name || createName };
+        creating.createdId = target.id;
+      }
+    } else {
+      const wanted = req.query.kb || DEFAULT_KB_NAME;
+      target = bases.find(b => (b.name || '').toLowerCase() === wanted.toLowerCase());
+      if (!target) {
+        return res.status(200).json({
+          error: `No knowledge base named "${wanted}"`,
+          available: bases.map(b => b.name),
+          note: 'Refusing to guess. Pass ?kb=<name> or fix DEFAULT_KB_NAME.',
+        });
+      }
     }
 
-    const existing = await listAllFaqs(key, locationId, target.id);
+    /* A base we are about to create has no FAQs yet, and does not exist at all
+       during a dry run, so there is nothing to list or delete. */
+    const existing = target ? await listAllFaqs(key, locationId, target.id) : [];
 
     const plan = {
       mode: apply ? 'APPLIED' : 'dry-run',
       source: { url: sourceUrl, bytes: md.length },
-      knowledgeBase: { id: target.id, name: target.name, of: bases.length },
+      knowledgeBase: target
+        ? { id: target.id, name: target.name, of: bases.length }
+        : { willCreate: createName, of: bases.length, existing: bases.map(b => b.name) },
+      willCreateKnowledgeBase: creating ? createName : false,
       willDelete: existing.length,
       willCreate: faqs.length,
       warnings,
