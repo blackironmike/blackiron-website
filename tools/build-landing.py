@@ -271,7 +271,12 @@ FOOT = '''
     var raw = ''; try {{ raw = typeof ev.data === 'string' ? ev.data : JSON.stringify(ev.data); }} catch (e) {{}}
     if (/appointment|booked|booking[_-]?(success|complete)|slot[_-]?selected|scheduled/i.test(raw)) {{
       once('InitiateCheckout');
-      if (/booked|success|complete|scheduled|confirmed/i.test(raw)) once('Schedule');
+      /* Schedule is NOT fired here. It used to be, and a completed booking
+         then reported it twice: once from this listener and again when the
+         calendar landed the visitor on /thank-you, which fires it too. The
+         thank-you page is the better of the two signals because it also
+         frame-busts to top, so it fires whether the calendar redirects the
+         iframe or the whole window. One booking, one Schedule. */
       return;
     }}
     var oldest = frames.reduce(function (a, f) {{
