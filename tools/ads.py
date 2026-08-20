@@ -25,14 +25,20 @@ YELLOW = (255, 210, 2)
 WHITE = (255, 255, 255)
 GRAY = (210, 210, 210)
 
-SIZES = {"feed": (1080, 1350), "story": (1080, 1920)}
+# Meta's current recommended resolutions, not the long-standing 1080 figures:
+# 1440x1800 for 4:5 feed, and 9:16 built at 1440 wide to match. Both are far
+# under the 30MB ceiling and well over the 600px minimum width.
+SIZES = {"feed": (1440, 1800), "story": (1440, 2560)}
 
-# Instagram covers roughly the top and bottom 250px of a 9:16 story with its
-# own chrome: progress bar, profile row and Sponsored label up top, the Send
-# message bar and the link sticker underneath. The first cut put the CTA at
-# y=1781 and the lockup at y=113, so both sat inside that furniture. Feed has
-# no equivalent, so only story gets pulled in.
-SAFE = {"story": dict(base_f=0.770, lock_f=0.145),
+# The 9:16 asset has to survive Reels, not just Stories, because Advantage+
+# placements buys both and Reels has the stricter chrome. Meta asks for
+# roughly 14% of the top, 35% of the bottom and 6% of each side left clear of
+# text and logos, against Stories' 14% and 20%. Building to Stories' numbers
+# put the CTA 270px inside the Reels footer, where the profile row and the
+# Send message bar would have covered it. These fractions are the Reels ones,
+# so one asset serves both. Feed has no equivalent chrome.
+REELS_TOP_F, REELS_BOT_F, REELS_SIDE_F = 0.14, 0.35, 0.06
+SAFE = {"story": dict(base_f=0.610, lock_f=0.170),
         "feed":  dict(base_f=0.885, lock_f=0.055)}
 
 
@@ -269,17 +275,26 @@ if __name__ == "__main__":
             made.append(f"{c['key']}-{kind}")
     print(f"wrote {len(made)} files to images/ads/2026-08-back-to-school")
 
-    # Safe-zone proof: no yellow inside Instagram's story chrome.
-    print("\nSTORY SAFE ZONES (need: top yellow >= 250, bottom yellow <= 1670)")
+    # Safe-zone proof against the REELS bounds, measured on the yellow marks
+    # (the lockup's second line and the CTA), which are the outermost elements.
+    W0, H0 = SIZES["story"]
+    lim_top = int(H0 * REELS_TOP_F)
+    lim_bot = int(H0 * (1 - REELS_BOT_F))
+    lim_side = int(W0 * REELS_SIDE_F)
+    print(f"\nREELS SAFE ZONE (need top >= {lim_top}, bottom <= {lim_bot}, "
+          f"sides inside {lim_side}..{W0 - lim_side})")
     ok = True
     for m in [x for x in made if x.endswith("story")]:
         im = Image.open(os.path.join(OUT, f"{m}.jpg")).convert("RGB")
         W, H = im.size
         px = im.load()
-        ys = [y for y in range(H) for x in range(0, W, 4)
-              if px[x, y][0] > 200 and 165 < px[x, y][1] < 235 and px[x, y][2] < 90]
-        top, bot = min(ys), max(ys)
-        good = top >= 250 and bot <= 1670
+        pts = [(x, y) for y in range(H) for x in range(0, W, 4)
+               if px[x, y][0] > 200 and 165 < px[x, y][1] < 235 and px[x, y][2] < 90]
+        top, bot = min(p[1] for p in pts), max(p[1] for p in pts)
+        left, right = min(p[0] for p in pts), max(p[0] for p in pts)
+        good = (top >= lim_top and bot <= lim_bot
+                and left >= lim_side and right <= W - lim_side)
         ok &= good
-        print(f"  {m:24s} top {top:4d}  bottom {bot:4d}  {'OK' if good else 'FAIL'}")
-    print("all story files inside the safe zone:", ok)
+        print(f"  {m:22s} top {top:4d}  bottom {bot:4d}  x {left:4d}-{right:4d}"
+              f"  {'OK' if good else 'FAIL'}")
+    print("every 9:16 file clears Reels and Stories:", ok)

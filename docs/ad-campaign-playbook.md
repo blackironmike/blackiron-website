@@ -57,9 +57,17 @@ Eight files, four concepts, two placements each.
 | `shotgun-women-feed` · `shotgun-women-story` | `/start-routine` |
 | `shotgun-men-feed` · `shotgun-men-story` | `/start-routine` |
 
-Men and women split at the ad, not the page. Keep the ad sets separate so the
-reporting separates itself, and so a losing audience can be turned off without
-touching the winner.
+Men and women split at the ad, not the page and not the ad set. Gender is no
+longer an audience control under Advantage+ audience, which is mandatory on the
+Leads objective, so splitting ad sets by gender buys a separation Meta is free to
+ignore while quartering the budget each ad set needs to leave the learning phase.
+Meta reports per ad, so the read survives.
+
+The feed and story files for one concept are two placements of the same ad, not
+two ads. They go in together via placement asset customization. Sizes are
+1440x1800 and 1440x2560, and the 9:16 files are built inside the Reels safe zone
+(14% top, 35% bottom, 6% sides), which is stricter than the Stories one and so
+covers both.
 
 ---
 
@@ -115,15 +123,32 @@ loss. Test it before spending money.
 One event per step, so Meta has something plentiful to optimise against while
 we still measure the thing that pays rent.
 
-| Page | Event |
-|------|-------|
-| Capture page | `ViewContent` |
-| Landing page, on warm arrival (`?s=2`) | `Lead` |
-| `/thank-you` | `Schedule` |
+| Page | Event | Fired by |
+|------|-------|----------|
+| Every page with the pixel | `PageView` | the base snippet |
+| Capture page | `ViewContent` | `META_VIEWCONTENT_PATHS` |
+| Landing page, on warm arrival (`?s=2`) | `Lead` | inline, guarded |
+| Landing page, calendar 40% in view | `CalendarView` (custom) | inline |
+| Landing page, calendar interaction | `InitiateCheckout` | inline |
+| Any click on a `book.blackironathletics.com` link | `InitiateCheckout` | injected handler |
+| Any click on a `tel:` link | `PhoneClick` (custom) | inline |
+| `/thank-you` | `Schedule` | inline |
 
-`ViewContent` is driven by the `META_VIEWCONTENT_PATHS` environment variable in
-Vercel, which holds the two capture paths and nothing else. It is a build-time
-injection, so changing the variable does nothing until a redeploy runs.
+`Schedule` fires in exactly one place. It used to fire on the landing pages too,
+via the calendar's postMessage, which double-counted every booking that then
+landed on `/thank-you`. `/thank-you` is the better of the two signals because it
+also frame-busts to top, so it fires whether the calendar redirects the iframe or
+the whole window.
+
+Both the pixel itself and `ViewContent` are build-time injections from Vercel
+environment variables, so **changing either does nothing until a redeploy runs**:
+
+- `META_PIXEL_ID` — the pixel ID. If it is unset, `inject-pixel.js` exits cleanly
+  and no pixel is injected anywhere. Currently `791983533472044`.
+- `META_VIEWCONTENT_PATHS` — must be exactly `/start-back-to-school,/start-routine`.
+  The check is an exact match against `window.location.pathname`, and `vercel.json`
+  sets `cleanUrls`, so a `.html` suffix or a trailing slash means it silently never
+  fires.
 
 `Lead` fires on arrival at the landing page rather than on form submit, because
 the form is a cross-origin iframe and its submit cannot be hooked directly.
@@ -152,10 +177,14 @@ sane budget. Leads will.
 
 ## 6. UTMs
 
-The capture pages carry hidden UTM fields, so whatever is on the ad URL is
-captured with the contact in GHL.
+UTMs land in `sessionStorage` on arrival and ride onto any booking link. They do
+**not** currently reach the GHL contact: the capture form is a cross-origin iframe
+embedded with `src=`, and the tagging in `inject-pixel.js` only rewrites iframes
+that use `data-src` (the lazy-loaded calendar). Whether GHL's own embed script
+picks up parent-page parameters is external to this repo and untested — the
+pre-launch test submission answers it.
 
-Use the standard five on every ad URL:
+Use these four on every ad URL:
 
 ```
 ?utm_source=meta&utm_medium=paid&utm_campaign=laser-bts&utm_content=women-feed
