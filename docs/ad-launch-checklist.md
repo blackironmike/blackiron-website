@@ -157,7 +157,7 @@ the 9:16 for stories and reels. One ad with two assets, not two ads.
 | Multi-advertiser ads | Off |
 | Advantage+ creative enhancements | **All off** |
 | Website URL | `https://www.blackironathletics.com/start-back-to-school` |
-| URL parameters | `utm_source=meta&utm_medium=paid&utm_campaign=laser-bts&utm_content={{ad.name}}` |
+| URL parameters | Under **Tracking**, not the URL box. `utm_source=meta&utm_medium=paid&utm_campaign=laser-bts&utm_content={{ad.name}}` |
 
 **To give feed and story different images in one ad:** in the Ad creative
 section, Add media and upload, then hover the placement group you want and click
@@ -177,9 +177,15 @@ to switch themselves back on.
 **Not dynamic or flexible creative.** Those report only in aggregate, which would
 hide which concept won.
 
-UTMs go in the **URL parameters** field, not appended to the URL. `{{ad.name}}`
-is a Meta dynamic parameter and fills itself in, so name the ads `women` and
-`men` and that is what lands in reporting.
+UTMs go in the **URL parameters** field, not appended to the URL. That field has
+moved: it is no longer under the Website URL box, it now lives in the ad's
+**Tracking** section, and Ads Manager shows a "Go to Tracking" link where it used
+to be. `{{ad.name}}` is a Meta dynamic parameter and fills itself in, so name the
+ads `women` and `men` and that is what lands in reporting.
+
+**Untick Multi-advertiser ads.** It sits under Format and is on by default. Meta's
+own description is that your creative "may be resized or cropped", which is the
+outline headline and the Forge yellow.
 
 ### The copy
 
