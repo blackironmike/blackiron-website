@@ -20,6 +20,12 @@ LEAD = "<script>\n/* Lead: the capture form redirects here with ?s=2, so a warm 
 
 SLUGS = {"laser-1": "back-to-school", "shotgun-2": "routine"}
 
+# The site default card, the same one about/contact/faq/media use. These are
+# ad pages, so the share preview should say what the gym is rather than borrow
+# a blog post's header. It used to be the back-to-school post's card, which
+# meant /routine shared a back-to-school image.
+SHARE_CARD = "2026-08-05-default-share.jpg"
+
 BAND = '    <div class="marquee" aria-hidden="true">\n        <div class="marquee-track">\n            <span>Coached every rep &mdash; Three levels, one floor &mdash; Forge the body, guard the mind &mdash;&nbsp;</span><span>Coached every rep &mdash; Three levels, one floor &mdash; Forge the body, guard the mind &mdash;&nbsp;</span>\n        </div>\n    </div>\n    <div class="stats-grid">\n        <div class="stat rv"><b>13+</b><span>Years in Frisco</span></div>\n        <div class="stat rv"><b>3,000+</b><span>Lives changed</span></div>\n        <div class="stat rv"><b>5.0</b><span>Google rating</span></div>\n        <div class="stat rv"><b>3</b><span>Levels in every class</span></div>\n    </div>\n'
 PHONE_TRACK = "onclick=\"if(window.fbq)fbq('trackCustom','PhoneClick');\""
 
@@ -87,7 +93,7 @@ HEAD = '''<!DOCTYPE html>
     <meta property="og:image" content="https://www.blackironathletics.com/images/social/{share}">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
-    <meta property="og:image:alt" content="Black Iron Athletics, Frisco TX.">
+    <meta property="og:image:alt" content="Members training on the floor at Black Iron Athletics in Frisco, Texas. We help everyday people become everyday athletes.">
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="Black Iron Athletics">
     <meta name="twitter:card" content="summary_large_image">
@@ -520,7 +526,7 @@ if __name__ == "__main__":
         # The two live ad pages own real slugs; the other decks stay drafts.
         # Passing the slug (not the deck key) keeps og:url honest.
         slug = SLUGS.get(key, f"lp-{key}")
-        out = build(slug, c, "2026-08-13-back-to-school-header.jpg", None)
+        out = build(slug, c, SHARE_CARD, None)
         p = os.path.join(REPO, f"{slug}.html")
         open(p, "w").write(out)
         print(f"  {os.path.basename(p):26s} {len(out)//1024} KB")
