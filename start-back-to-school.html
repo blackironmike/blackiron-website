@@ -230,6 +230,39 @@
   }, false);
 })();
 </script>
+<script>
+/* The capture page had no parent-side handling of its own form at all. The only
+   message listener in this codebase lives inside the booking-calendar block,
+   which returns early here because these pages have no .bookwrap, so it was
+   never installed. Everything after the submit therefore rode on form_embed.js,
+   the same third-party script whose non-execution in the Facebook and Instagram
+   in-app browsers clipped the submit button.
+
+   This records, it does not steer. It fires a FormSubmitted custom event so a
+   submit is visible in Events Manager even when the redirect afterwards fails,
+   which is the signal that was missing while 90 clicks produced 2 leads. It
+   deliberately does NOT navigate: the real shape of GHL's message cannot be
+   read from here, and a wrong guess would throw somebody out of a half-filled
+   form. Read window.fpFormMessages in a console after a real submit, then the
+   hand-off can be made to not depend on a script we do not control. */
+(function () {
+  window.fpFormMessages = [];
+  var sent = false;
+  window.addEventListener('message', function (ev) {
+    var host = '';
+    try { host = new URL(ev.origin).hostname; } catch (e) { return; }
+    if (!/(^|\.)leadconnectorhq\.com$|(^|\.)msgsndr\.com$/.test(host)) return;
+    var raw = '';
+    try { raw = typeof ev.data === 'string' ? ev.data : JSON.stringify(ev.data); } catch (e) {}
+    window.fpFormMessages.push({ t: Date.now(), origin: ev.origin, data: ev.data });
+    if (sent) return;
+    if (/submit|submission|form[_-]?complete|success|thank/i.test(raw)) {
+      sent = true;
+      if (typeof fbq === 'function') { fbq('trackCustom', 'FormSubmitted'); }
+    }
+  }, false);
+})();
+</script>
 <script src="https://link.msgsndr.com/js/form_embed.js" type="text/javascript" defer></script>
 </body>
 </html>

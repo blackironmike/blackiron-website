@@ -380,6 +380,19 @@
 
     </main>
 <script>
+/* GHL drives its own redirects, and this codebase already learned they can land
+   inside the widget iframe instead of the top window: thank-you.html carries
+   this exact guard for the booking widget. The form redirect can land here the
+   same way, which renders this whole page squeezed into the form slot back on
+   the capture page. It is same-origin, so nothing errors and nothing logs. It
+   just looks broken to somebody who did everything right. */
+(function () {
+  if (window.top !== window.self) {
+    try { window.top.location.href = window.location.href; } catch (e) {}
+  }
+})();
+</script>
+<script>
 /* The capture page redirects here with ?s=2, so the page can tell a warm
    arrival from a cold one. The name is optional: add &n={{contact.first_name}}
    to the GHL redirect and it gets used, otherwise the greeting stays generic.
