@@ -44,7 +44,16 @@
     @media(max-width:400px){.trust-big{font-size:1.2rem;padding:14px 18px}
       .trust-big .stars svg{width:22px;height:22px}}
     .cap-form{margin-top:26px}
-    .cap-form iframe{display:block;width:100%;min-height:560px;border:0}
+    /* The form must survive the resizer never running. Facebook and Instagram
+       in-app browsers, which is where most ad traffic lands, routinely fail to
+       act on the postMessage that form_embed.js uses to size this iframe. GHL
+       declares the form at 704px; at the old 560px with scrolling disabled the
+       bottom 144px was unreachable, and that is where the submit button is.
+       So: a floor taller than the form, and scrolling left on as a backstop.
+       A small gap under the form is cosmetic. A submit button nobody can reach
+       is the whole funnel. */
+    .cap-form iframe{display:block;width:100%;min-height:720px;border:0}
+    @media(max-width:600px){.cap-form iframe{min-height:820px}}
     .cap-note{margin:18px 0 0;font-size:.86rem;color:var(--gray);text-align:center}
     .cap-note a{color:var(--white);font-weight:700}
     /* ── Landing page chrome. Deliberately not the site nav: this page has
@@ -157,9 +166,9 @@
             data-trigger-type="alwaysShow" data-activation-type="alwaysActivated"
             data-deactivation-type="neverDeactivate" data-form-name="Lead Capture - Routine"
             data-height="699" data-layout-iframe-id="inline-sKw4RYzEQvvWqnulR49N"
-            data-form-id="sKw4RYzEQvvWqnulR49N" title="Start your free consult" scrolling="no"></iframe>
+            data-form-id="sKw4RYzEQvvWqnulR49N" title="Start your free consult"></iframe>
     </div>
-    <p class="cap-note">Rather just call? <a href="tel:+19727857036" onclick="if(window.fbq)fbq('trackCustom','PhoneClick');">(972) 785-7036</a></p>
+    <p class="cap-note">Form not loading, or rather just call? <a href="tel:+19727857036" onclick="if(window.fbq)fbq('trackCustom','PhoneClick');">(972) 785-7036</a></p>
 </main>
 <footer class="lp-foot">
         <p><b style="color:var(--white)">Black Iron Athletics</b></p>
