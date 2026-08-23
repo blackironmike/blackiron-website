@@ -279,18 +279,18 @@
     "rationale": "This is the calendar variant. The spine is arithmetic: twenty weeks, about sixty coached sessions at three a week, January as month five instead of day one. The hero states the fact and names what they get, with nothing to decode.\n\nEditor’s cuts: the biggest one is the waiting section. The draft opened with “You don’t hold steady, you slide,” which is both a claim we can’t back and closer to fear than to honesty. It’s now the owner’s beat, stated flat: you stay the same. The other two beats follow in his order, start over in January with everyone else, keep feeling like you’re falling behind, and the falling-behind line is written as a friend would say it rather than as pressure. Also trimmed the “the work gets bigger by waiting” line, which was starting to sound like advertising.\n\nSMEAC is separated and in order. Execution carries the coaching, the cycles, three levels, Foundations and the four literal consult steps, right down to nobody following you to the parking lot, so the unknown is gone before they book.\n\nShotgun rules held: no kids, no school, no drop-off, no family anywhere on the page, including the FAQ heading and the meta. Voice check: no em dashes, no emojis, no exclamation points, curly apostrophes, no banned words, CrossFit never named. Every heading stands alone. Facts exactly as supplied, no phone number invented."
   },
   "shotgun-2": {
-    "hero_h1_line1": "You’ve started before and it didn’t hold.",
-    "hero_h1_line2": "This time you get a coach.",
-    "hero_lead": "About twenty weeks between now and January 1st. Spend them the way you spent the last stretch, or get on a program somebody else already wrote, with a coach who notices when you’re not there.",
+    "hero_h1_line1": "You don’t need more discipline.",
+    "hero_h1_line2": "You need a community.",
+    "hero_lead": "You’ve started before. It held for a few weeks and then it didn’t, and somewhere in there you decided that was a discipline problem. It wasn’t. You were doing it alone.",
     "hero_cta": "Pick a time",
-    "situation_h2": "There are twenty weeks left in the year, and you’ve been here before.",
-    "situation_body": "You’ve been here before. There was a membership you paid for and stopped using, or an app, or a January that felt different for about five weeks. You meant it every time. There just wasn’t a plan you didn’t have to write yourself, and nobody noticed when you stopped coming.",
-    "mission_h2": "Start one more time, with a plan and a coach, and stay in it.",
-    "mission_body": "Get on a program somebody else already wrote. Train with a coach who knows your name, your bad shoulder, and what you’re working toward. Then stay in it long enough that training is something you do, not something you’re trying.",
+    "situation_h2": "You’ve been here before, and you blamed the wrong thing.",
+    "situation_body": "There was a membership you paid for and stopped using, or an app, or a January that felt different for about five weeks. You meant it every time. Nothing was missing from you. What was missing was a room that noticed when you stopped coming.",
+    "mission_h2": "Stop doing it alone.",
+    "mission_body": "Train in the same room, at the same hour, with the same people. They learn your name before you learn all of theirs. The programming is handled and a coach is on every rep, but the thing that makes it hold is that somebody is expecting you.",
     "mission_points": [
-      "A plan you didn’t have to write",
+      "The same faces every week",
       "A coach who knows your name",
-      "A week you can actually repeat"
+      "A room that notices you’re missing"
     ],
     "execution_h2": "What holds it together",
     "execution_body": "Sixty minutes, coached the whole way through. Planned in cycles weeks ahead, so the hard days and the easy days land on purpose instead of by mood. You don’t design anything and you don’t guess. Six times a day, Monday through Friday.",
@@ -353,14 +353,14 @@
         "a": "It’s the most common thing we hear, and Foundations exists for exactly this. One-on-one with a coach, no class to keep up with, nobody watching."
       }
     ],
-    "final_h2_line1": "One more start.",
-    "final_h2_line2": "With a coach this time.",
+    "final_h2_line1": "Stop doing it alone.",
+    "final_h2_line2": "Come meet your people.",
     "final_lead": "Twenty minutes with a coach, free, and a straight answer about whether this is the right place for you. That’s the entire ask.",
     "booking_head": "Pick a time",
     "booking_sub": "Twenty minutes with a coach, free. Grab the slot that fits your week and you’re done. 279 Main St, Suite 122, Frisco TX.",
-    "meta_title": "Stop Starting Over | Black Iron Athletics, Frisco TX",
-    "meta_description": "You’ve started before and it didn’t hold. Here’s the program and the coaching that make this one different. Sixty minute classes, three levels, six class times a day in Frisco. Free twenty minute consult.",
-    "og_title": "You’ve started before and it didn’t hold. This time you get a coach.",
+    "meta_title": "Stop Doing It Alone | Black Iron Athletics, Frisco TX",
+    "meta_description": "You don’t need more discipline. You need a room that notices when you’re not in it. Coached sixty minute classes, three levels, six class times a day in Frisco. Free twenty minute consult.",
+    "og_title": "You don’t need more discipline. You need a community.",
     "rationale": "Real difference from shotgun-1: that page is the calendar and the arithmetic. This one is the restart cycle. Same twenty week situation, because that’s the stated situation for both shotgun pages, but here the twenty weeks are the setup and the honest part is why the last few attempts didn’t hold. The promise is a plan you didn’t write and a coach who notices, which is the one thing that page can offer that the calendar page can’t.\n\nEditor’s cuts: added the twenty weeks into the situation so the page runs the brief’s stated S, which the draft had blurred into the restart story. Killed “Waiting never feels like a decision, and that’s exactly how it wins,” which is wordplay, and replaced it with the plain version. Cut “the two weeks of motivation” language down, cut “that’s the cycle we want to end for you,” and replaced the missing pricing question so Administration actually states the money before the cost of waiting sits under it. Consult steps are numbered to match the rest of the set.\n\nThe waiting section is empathy, not scolding. It hits the owner’s three beats in order and its hardest line is that every start that doesn’t hold makes the next one harder to believe in, which is true and is said as a friend, not a threat.\n\nShotgun rules held: no kids, no school, no family, nothing about a household anywhere, including the FAQ heading and the meta. Voice check: no em dashes, no emojis, no exclamation points, curly apostrophes, no banned words, CrossFit never named. Every heading stands alone. Facts exactly as supplied, and no phone number invented."
   }
 }
