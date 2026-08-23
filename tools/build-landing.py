@@ -14,6 +14,8 @@ PHONE_TEXT = "(972) 785-7036"
 CAL = "https://api.leadconnectorhq.com/widget/booking/aOyy4UPbwziVvHz35TCU"
 
 # Deck key -> live slug. Anything not listed builds as an lp-* draft.
+BUST = "<script>\n/* GHL drives its own redirects, and this codebase already learned they can land\n   inside the widget iframe instead of the top window: thank-you.html carries\n   this exact guard for the booking widget. The form redirect can land here the\n   same way, which renders this whole page squeezed into the form slot back on\n   the capture page. It is same-origin, so nothing errors and nothing logs. It\n   just looks broken to somebody who did everything right. */\n(function () {\n  if (window.top !== window.self) {\n    try { window.top.location.href = window.location.href; } catch (e) {}\n  }\n})();\n</script>\n"
+
 WARM = "<script>\n/* The capture page redirects here with ?s=2, so the page can tell a warm\n   arrival from a cold one. The name is optional: add &n={{contact.first_name}}\n   to the GHL redirect and it gets used, otherwise the greeting stays generic.\n   Written with textContent, never innerHTML: this value comes off the URL. */\n(function () {\n  var q = new URLSearchParams(window.location.search);\n  if (q.get('s') !== '2') { return; }\n  var bar = document.getElementById('warmbar');\n  if (!bar) { return; }\n  var raw = (q.get('n') || '').replace(/[^A-Za-z' -]/g, '').trim().slice(0, 24);\n  if (raw) {\n    var name = raw.charAt(0).toUpperCase() + raw.slice(1);\n    document.getElementById('warmgreet').textContent = 'Got it, ' + name + '. We have your details.';\n  }\n  bar.classList.add('on');\n  var cta = document.querySelector('.hero-ctas .btn');\n  if (cta) { cta.textContent = 'Pick your time'; }\n})();\n</script>\n"
 
 LEAD = "<script>\n/* Lead: the capture form redirects here with ?s=2, so a warm arrival means\n   the form was submitted a moment ago. The form is a cross-origin iframe, so\n   its submit cannot be hooked directly and this is the closest signal there\n   is. Fired at most once per campaign per browser: the nurture emails link\n   here with ?s=2 as well, and without the guard every click would report a\n   fresh lead and inflate the number the ad sets optimise against. */\n(function () {\n  if (new URLSearchParams(window.location.search).get('s') !== '2') { return; }\n  var k = 'bia_lead' + window.location.pathname;\n  try {\n    if (window.localStorage.getItem(k)) { return; }\n    window.localStorage.setItem(k, '1');\n  } catch (e) { /* private mode: no guard available, fire anyway */ }\n  if (typeof fbq === 'function') { fbq('track', 'Lead'); }\n})();\n</script>\n"
@@ -514,6 +516,7 @@ def build(slug, c, share, note_paras):
 
     </main>
 ''')
+    P.append(BUST)
     P.append(WARM)
     P.append(LEAD)
     tail = FOOT.format(phone_href=PHONE_HREF, phone_text=PHONE_TEXT, phone_track=PHONE_TRACK)
