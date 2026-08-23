@@ -269,7 +269,7 @@ CONCEPTS = [
          bw=True,   # shot monochrome; the flag keeps it that way if it is ever re-exported
          kicker="FRISCO, TX  ·  SINCE 2013",
          big="You don’t need more discipline.", outlined="You need a community.",
-         sub="Coached classes, three levels, and a plan that was written before you walked in.",
+         sub="Coached classes with the same people every week, in a room that notices you’re gone.",
          foot="BOOK A FREE CONSULT"),
 
     dict(key="shotgun-men",
@@ -277,7 +277,7 @@ CONCEPTS = [
          focus={"feed": (.50, .10), "story": (.35, .10)},
          kicker="FRISCO, TX  ·  SINCE 2013",
          big="You don’t need more discipline.", outlined="You need a community.",
-         sub="Coached classes, three levels, and a plan that was written before you walked in.",
+         sub="Coached classes with the same people every week, in a room that notices you’re gone.",
          foot="BOOK A FREE CONSULT"),
 ]
 

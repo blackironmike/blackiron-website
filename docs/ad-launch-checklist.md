@@ -203,9 +203,9 @@ Description  Frisco. Veteran-owned.
 **Routine** (destination `/start-routine`, `utm_campaign=shotgun-routine`)
 
 ```
-Primary      You’ve started before and it didn’t hold. This time you get a coach, and a plan written before you walked in.
-Headline     This time, a coach.
-Description  Frisco. Three levels.
+Primary      You’ve started before and it didn’t hold. That was never a discipline problem. You were doing it alone.
+Headline     You need a community.
+Description  Frisco. Your people.
 ```
 
 ---
