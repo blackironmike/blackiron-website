@@ -45,7 +45,19 @@ SAFE = {"story": dict(base_f=0.610, lock_f=0.170),
 # --- type helpers -----------------------------------------------------------
 
 def F(weight, size):
-    return ImageFont.truetype(os.path.join(FONTS, f"mont-{weight}.ttf"), size)
+    """Static TTF if it is there, otherwise the variable font set to the axis.
+
+    Google stopped shipping static Montserrat: ofl/montserrat now holds only
+    Montserrat[wght].ttf, so a fresh clone that follows the instructions at the
+    top of this file ends up with a variable file and nothing named mont-900.
+    Both paths render identically, and keeping the static branch first means
+    anyone who already has the old files sees no change."""
+    static = os.path.join(FONTS, f"mont-{weight}.ttf")
+    if os.path.exists(static):
+        return ImageFont.truetype(static, size)
+    f = ImageFont.truetype(os.path.join(FONTS, "mont-var.ttf"), size)
+    f.set_variation_by_axes([weight])
+    return f
 
 
 def track(d, xy, text, font, fill, sp=0):
@@ -246,13 +258,17 @@ CONCEPTS = [
          foot="BOOK A FREE CONSULT"),
 
     # -> /start-routine
-    #    "You've started before and it didn't hold. This time you get a coach."
+    #    "You don't need more discipline. You need a community."
+    #    The first line removes the blame before anything is sold: everyone in
+    #    this audience has privately decided they are the problem. Replaces
+    #    "This time, a coach", which was a fragment with no verb and stalled
+    #    exactly where it needed to land.
     dict(key="shotgun-women",
          photo="images/members/3I1A0778.jpeg",
          focus={"feed": (.50, .08), "story": (.55, .08)},
          bw=True,   # shot monochrome; the flag keeps it that way if it is ever re-exported
          kicker="FRISCO, TX  ·  SINCE 2013",
-         big="You've started before.", outlined="This time, a coach.",
+         big="You don’t need more discipline.", outlined="You need a community.",
          sub="Coached classes, three levels, and a plan that was written before you walked in.",
          foot="BOOK A FREE CONSULT"),
 
@@ -260,7 +276,7 @@ CONCEPTS = [
          photo="images/members/3I1A0188.jpeg",
          focus={"feed": (.50, .10), "story": (.35, .10)},
          kicker="FRISCO, TX  ·  SINCE 2013",
-         big="You've started before.", outlined="This time, a coach.",
+         big="You don’t need more discipline.", outlined="You need a community.",
          sub="Coached classes, three levels, and a plan that was written before you walked in.",
          foot="BOOK A FREE CONSULT"),
 ]

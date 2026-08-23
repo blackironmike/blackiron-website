@@ -240,6 +240,60 @@ cross-reference inside GHL; Meta still reports cost per lead per ad.
 
 ---
 
+## Conversions API
+
+Optional, and it fixes measurement rather than conversion. Worth doing once the
+form is proven, because the whole `Lead` signal currently rides on a browser
+firing a pixel after a cross-origin redirect, which is the most fragile
+arrangement available and the one that was already failing.
+
+CAPI sends `Lead` from GoHighLevel's server the moment the form is submitted. It
+does not care about in-app browsers, `form_embed.js`, redirects, ad blockers or
+iOS.
+
+### The two credentials, from Meta
+
+Events Manager -> Data Sources -> your dataset -> **Settings**:
+
+- **Dataset ID** is the pixel ID: `791983533472044`
+- Scroll to Conversions API -> **Generate access token** -> copy it
+
+That token is a credential. Treat it like a password: it goes in GHL and
+nowhere else, never in the repo.
+
+### The workflow, in GoHighLevel
+
+1. Automation -> Workflows -> Create Workflow
+2. Trigger: **Form Submitted**, filtered to Lead Capture - Back to School and
+   Lead Capture - Routine
+3. Action: **Meta Conversion API**
+4. Fill in Access Token, Pixel ID, and set the event to **Lead**
+5. Publish
+
+Verify with a real submission: Events Manager -> Test Events should show a
+server-sourced `Lead` within about 30 seconds.
+
+### The part that costs money if it is skipped
+
+Meta only deduplicates a browser event against a server event when both carry
+the **same `event_name` AND the same `event_id`**. Our landing pages fire
+`fbq('track','Lead')` with no event ID at all, and GHL generates its own, so the
+two will never match.
+
+Run both as they stand and every lead counts twice. The `Lead` number doubles,
+cost per lead reads half of what it really is, and the ad set optimises against
+inflated data.
+
+So CAPI takes ownership of `Lead`, and the browser-side one comes out. It is the
+better of the two anyway: it fires on the actual submission rather than on a
+redirect that has to survive an in-app browser.
+
+**Order matters.** Get CAPI live and verified first, then remove the browser
+`Lead` from `back-to-school.html` and `routine.html` (it is the small IIFE
+guarded on `?s=2`). Removing it first leaves no lead signal at all. There is a
+short window of double counting in between, which is fine and obvious: the Lead
+count roughly doubles until the browser side comes out.
+
 ## Week one
 
 Editing the ad set restarts the learning phase, and the clock runs seven days
