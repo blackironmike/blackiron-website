@@ -210,6 +210,60 @@ Description  Frisco. Your people.
 
 ---
 
+## The about-page campaign
+
+Separate from the funnel, and deliberately so. No capture page, no calendar, no
+ask. The click is an invitation to read, for the person who wants to look you
+over before they talk to anyone.
+
+Destination for all three: `https://www.blackironathletics.com/about`
+CTA button: **Learn More**. Suggested `utm_campaign=about-story`.
+
+Three creatives, 9:16 only, in `images/ads/2026-08-about`. They are three
+different bets, not three versions of one bet, so let Meta settle it rather
+than picking a favourite up front.
+
+**A. The evidence** (`about-a-whiteboard-story.jpg`)
+
+```
+Primary      Every class is written before anyone walks in. Cycled progressions, three levels, coached every rep. Have a look.
+Headline     How we actually program
+Description  Frisco. Veteran-owned.
+```
+
+**B. The people** (`about-b-people-story.jpg`)
+
+```
+Primary      Most people quit a gym because they felt like a stranger in it. Ours is built the other way. Read our story.
+Headline     An ecosystem, not strangers
+Description  Frisco. Your people.
+```
+
+**C. The argument** (`about-c-mission-story.jpg`)
+
+```
+Primary      We help everyday people become everyday athletes. Not a challenge, not a leaderboard. Veteran-owned, Frisco.
+Headline     See who we are
+Description  Frisco. Est. 2013.
+```
+
+### Two settings this campaign needs that the funnel does not
+
+**Add `/about` to `META_VIEWCONTENT_PATHS`.** It is not there, so the page fires
+PageView and nothing else. Without ViewContent there is no audience to retarget,
+and somebody who reads the whole story is the warmest cold visitor this account
+will ever produce. Losing them is the expensive part, not the click.
+
+**Optimise these ad sets for Landing Page Views, not Leads.** There is no Lead
+event on `/about` and there is not meant to be. Optimising for a conversion the
+page cannot fire gives the algorithm nothing to learn from.
+
+Judge it on landing page views, time on page and the retargeting audience it
+builds. Not on booked consults. If it is asked to produce consults directly it
+will look like a failure while doing exactly what it was built to do.
+
+---
+
 ## Verify, then spend
 
 Two notes that will save you confusing yourself:
