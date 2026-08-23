@@ -145,6 +145,11 @@ def bed(photo, W, H, fx, fy, floor, bw, lock_box):
     the yellow line all but disappears. Every other card sits under 75 and
     takes no extra passes at all.
     """
+    # A concept can decline a photo. Solid black is the right ground for a card
+    # that is making an argument rather than showing a room, and in a feed of
+    # gym photography it is the one that does not look like gym photography.
+    if not photo:
+        return Image.new("RGB", (W, H), BLACK)
     im = cover(photo, W, H, fx, fy, bw=bw)
     im = scrim(im, "bottom", 248, 0.80)
     im = scrim(im, "top", 200, 0.26)
@@ -224,7 +229,9 @@ def build(c, kind, W, H):
     track(d, (M, base + int(H * 0.020)), c["foot"], F(900, int(W * 0.0275)),
           YELLOW, sp=2.6)
 
-    im.save(os.path.join(OUT, f"{c['key']}-{kind}.jpg"), quality=92, subsampling=0)
+    out_dir = c.get("out", OUT)
+    os.makedirs(out_dir, exist_ok=True)
+    im.save(os.path.join(out_dir, f"{c['key']}-{kind}.jpg"), quality=92, subsampling=0)
 
 
 # --- the four concepts ------------------------------------------------------
@@ -279,6 +286,50 @@ CONCEPTS = [
          big="You don’t need more discipline.", outlined="You need a community.",
          sub="Coached classes with the same people every week, in a room that notices you’re gone.",
          foot="BOOK A FREE CONSULT"),
+
+    # -> /about, and deliberately outside the funnel.
+    #    No capture page, no calendar, no ask. The click is an invitation to
+    #    read, for the person who wants to research before they talk to anyone.
+    #    The headline is the about page's own line, and the photo is the reason
+    #    it works: a coach briefing a class in front of the whiteboard, with the
+    #    day's three levels on the screen behind him. The claim and the evidence
+    #    are in the same frame.
+    # A. The evidence. He is right of the copy, so the type gets a clean column
+    #    and the whiteboard behind it is the proof of the claim.
+    dict(key="about-a-whiteboard",
+         photo="images/team/coach-briefing.webp",
+         focus={"story": (.62, .42)},
+         sizes=["story"],
+         out=os.path.join(REPO, "images", "ads", "2026-08-about"),
+         bw=True,
+         kicker="OUR STORY  ·  VETERAN-OWNED  ·  EST. 2013",
+         big="Nothing on the whiteboard", outlined="is an accident.",
+         sub="Cycled progressions and three levels in every class. Have a look at how we train before you talk to anyone.",
+         foot="READ OUR STORY"),
+
+    # B. The people. Two members mid-conversation, faces high, copy below them.
+    dict(key="about-b-people",
+         photo="images/members/member-coaching.webp",
+         focus={"story": (.42, .18)},
+         sizes=["story"],
+         out=os.path.join(REPO, "images", "ads", "2026-08-about"),
+         bw=True,
+         kicker="OUR STORY  ·  VETERAN-OWNED  ·  EST. 2013",
+         big="An ecosystem,", outlined="not strangers.",
+         sub="Coaches who check in, and members who notice when you miss a week. Read our story before you talk to anyone.",
+         foot="READ OUR STORY"),
+
+    # C. The argument. No photo, so nothing competes with the mission line, and
+    #    in a feed of gym photography a black card is the one that stops a thumb.
+    dict(key="about-c-mission",
+         photo="",
+         focus={"story": (.5, .5)},
+         sizes=["story"],
+         out=os.path.join(REPO, "images", "ads", "2026-08-about"),
+         kicker="OUR STORY  ·  VETERAN-OWNED  ·  EST. 2013",
+         big="We help everyday people", outlined="become everyday athletes.",
+         sub="Veteran-owned. In Frisco since 2013. Three levels in every class, so nobody is keeping up with anybody.",
+         foot="READ OUR STORY"),
 ]
 
 
@@ -286,10 +337,14 @@ if __name__ == "__main__":
     os.makedirs(OUT, exist_ok=True)
     made = []
     for c in CONCEPTS:
-        for kind, (W, H) in SIZES.items():
+        # A concept can name its own placements. The about-page ad is 9:16 only:
+        # Michael's read is that the feed cards have not performed, and there is
+        # no reason to carry a placement nobody runs.
+        for kind in c.get("sizes", SIZES.keys()):
+            W, H = SIZES[kind]
             build(c, kind, W, H)
-            made.append(f"{c['key']}-{kind}")
-    print(f"wrote {len(made)} files to images/ads/2026-08-back-to-school")
+            made.append((f"{c['key']}-{kind}", c.get("out", OUT)))
+    print(f"wrote {len(made)} files")
 
     # Safe-zone proof against the REELS bounds, measured on the yellow marks
     # (the lockup's second line and the CTA), which are the outermost elements.
@@ -300,8 +355,8 @@ if __name__ == "__main__":
     print(f"\nREELS SAFE ZONE (need top >= {lim_top}, bottom <= {lim_bot}, "
           f"sides inside {lim_side}..{W0 - lim_side})")
     ok = True
-    for m in [x for x in made if x.endswith("story")]:
-        im = Image.open(os.path.join(OUT, f"{m}.jpg")).convert("RGB")
+    for m, where in [x for x in made if x[0].endswith("story")]:
+        im = Image.open(os.path.join(where, f"{m}.jpg")).convert("RGB")
         W, H = im.size
         px = im.load()
         pts = [(x, y) for y in range(H) for x in range(0, W, 4)
