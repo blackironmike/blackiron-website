@@ -4,44 +4,61 @@
     <meta charset="UTF-8">
     <!-- CONTRACT: keep this exact viewport tag — inject-pixel.js insertion marker -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About Us | Black Iron Athletics | Veteran-Owned Gym in Frisco, TX</title>
-    <meta name="description" content="Veteran-owned strength &amp; conditioning gym in Frisco, TX. Coaching here since 2013. 3,000+ lives changed through coached classes, Foundations, and real nutrition coaching. Moving next door to Suite 110 in October 2026.">
+    <title>Supplements We Stock | Black Iron Athletics — Frisco, TX</title>
+    <meta name="description" content="The Thorne supplements we stock and use at Black Iron Athletics in Frisco, TX. A four-part year-round stack, what changes in a cut or a build, and the pre-built athlete stacks. All NSF Certified for Sport.">
     <meta name="geo.region" content="US-TX">
     <meta name="geo.placename" content="Frisco">
     <meta name="geo.position" content="33.15035;-96.89026">
-    <link rel="canonical" href="https://www.blackironathletics.com/about">
+    <link rel="canonical" href="https://www.blackironathletics.com/supplements">
     <!-- Open Graph -->
-    <meta property="og:title" content="About Us | Black Iron Athletics | Veteran-Owned Gym in Frisco, TX">
-    <meta property="og:description" content="Veteran-owned strength &amp; conditioning gym in Frisco, TX. Coaching here since 2013. 3,000+ lives changed through coached classes, Foundations, and real nutrition coaching.">
-    <meta property="og:url" content="https://www.blackironathletics.com/about">
-    <meta property="og:image" content="https://www.blackironathletics.com/images/social/2026-08-05-default-share.jpg">
+    <meta property="og:title" content="Supplements We Stock | Black Iron Athletics — Frisco, TX">
+    <meta property="og:description" content="The Thorne supplements we stock and use at Black Iron Athletics in Frisco, TX. A four-part year-round stack, what changes in a cut or a build, and the pre-built athlete stacks. All NSF Certified for Sport.">
+    <meta property="og:url" content="https://www.blackironathletics.com/supplements">
+    <meta property="og:image" content="https://www.blackironathletics.com/images/social/og-default.jpg">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
-    <meta property="og:image:alt" content="Members training on the floor at Black Iron Athletics in Frisco, Texas. We help everyday people become everyday athletes.">
+    <meta property="og:image:alt" content="Black Iron Athletics, Frisco TX.">
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="Black Iron Athletics">
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="About Us | Black Iron Athletics | Veteran-Owned Gym in Frisco, TX">
-    <meta name="twitter:description" content="Veteran-owned strength &amp; conditioning gym in Frisco, TX. Coaching here since 2013. 3,000+ lives changed through coached classes, Foundations, and real nutrition coaching.">
-    <meta name="twitter:image" content="https://www.blackironathletics.com/images/social/2026-08-05-default-share.jpg">
+    <meta name="twitter:title" content="Supplements We Stock | Black Iron Athletics — Frisco, TX">
+    <meta name="twitter:description" content="The Thorne supplements we stock and use at Black Iron Athletics in Frisco, TX. A four-part year-round stack, what changes in a cut or a build, and the pre-built athlete stacks. All NSF Certified for Sport.">
+    <meta name="twitter:image" content="https://www.blackironathletics.com/images/social/og-default.jpg">
     <link rel="icon" type="image/png" href="/images/anvil-favicon.png">
     <link rel="apple-touch-icon" href="/images/anvil-favicon.png">
     <meta name="theme-color" content="#000000">
-    <link rel="preload" as="image" href="/images/heroes/hero-about.webp">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
     <noscript><link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&display=swap" rel="stylesheet"></noscript>
     <link rel="stylesheet" href="/css/bia.css">
     <style>
-        /* Page-unique: six coaches sit three across (two clean rows)
-           instead of the default five. Same tokens as bia.css. */
-        .coach-grid{grid-template-columns:repeat(3,1fr)}
-        @media (max-width:560px){.coach-grid{grid-template-columns:repeat(2,1fr)}}
-        /* Page-unique: six beliefs run three across on desktop. */
-        .beliefs-6{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:44px}
-        @media (max-width:860px){.beliefs-6{grid-template-columns:1fr}}
+    /* Supplements page — page-unique components, same token language */
+    .pcard .who{font-size:.85rem;color:var(--gray);line-height:1.55;margin-top:10px}
+    .pcard .pnum{margin:18px 0 20px}
+    .buy{display:inline-block;margin-top:20px;font-weight:900;font-size:.82rem;
+         letter-spacing:.12em;text-transform:uppercase;color:var(--yellow);
+         border-bottom:1px solid rgba(255,210,2,.35);padding-bottom:3px}
+    .buy:hover{border-bottom-color:var(--yellow)}
+    .disclose{background:var(--coal);border:1px solid var(--steel-line);
+              padding:clamp(20px,2.4vw,28px);margin-top:clamp(20px,2.6vw,30px);
+              font-size:.88rem;line-height:1.65;color:var(--gray);max-width:74ch}
+    .disclose b{color:var(--white)}
+    .phase-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--steel-line);
+                border:1px solid var(--steel-line);margin-top:34px}
+    .phase-col{background:var(--black);padding:clamp(26px,3.5vw,44px)}
+    .phase-col h3{margin-bottom:14px}
+    .phase-col li{border-top:1px solid var(--steel-line);padding:12px 0;font-size:.93rem;line-height:1.6}
+    @media (max-width:760px){.phase-grid{grid-template-columns:1fr}}
+    .shelf{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+           gap:1px;background:var(--steel-line);border:1px solid var(--steel-line);margin-top:34px}
+    .shelf-item{background:var(--black);padding:clamp(20px,2.4vw,28px)}
+    .shelf-item b{display:block;color:var(--white);font-weight:900;font-size:1rem;margin-bottom:6px}
+    .shelf-item .p{color:var(--yellow);font-weight:900;font-size:.95rem;margin-bottom:8px}
+    .shelf-item p{font-size:.87rem;color:var(--gray);line-height:1.55;margin-bottom:14px}
+    .fda{margin-top:clamp(26px,3vw,40px);padding-top:22px;border-top:1px solid var(--steel-line);
+         font-size:.8rem;line-height:1.7;color:var(--gray);max-width:80ch}
     </style>
     <script defer src="/_vercel/insights/script.js"></script>
 </head>
@@ -139,160 +156,191 @@
 
     <main id="main-content">
 
-    <!-- ============ HERO ============ -->
-    <section class="hero hero-short no-top" aria-label="About Black Iron Athletics">
-        <div class="hero-bg">
-            <img class="ph-soft" src="/images/heroes/hero-about.webp" alt="Members training on rowers inside Black Iron Athletics, gym name painted on the wall" fetchpriority="high">
-        </div>
-        <div class="hero-in wrap">
-            <span class="eyebrow eyebrow-y">Our story &middot; Veteran-Owned &middot; Est. 2013</span>
-            <h1 class="display">Built for people<br><span class="outline">like you.</span></h1>
-            <p class="lead">We help everyday people become everyday athletes. A coach on every rep, a plan behind every week, and a floor full of good people &mdash; in Frisco since 2013.</p>
-            <div class="hero-ctas">
-                <a class="btn btn-y" href="https://book.blackironathletics.com/book">Book a Free Consult</a>
-                <a class="btn btn-ghost" href="#team">Meet the Coaches</a>
-            </div>
-            <p class="trust"><span class="stars" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 2l3 7 7 .6-5.3 4.6L18.5 22 12 18l-6.5 4 1.8-7.8L2 9.6 9 9z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3 7 7 .6-5.3 4.6L18.5 22 12 18l-6.5 4 1.8-7.8L2 9.6 9 9z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3 7 7 .6-5.3 4.6L18.5 22 12 18l-6.5 4 1.8-7.8L2 9.6 9 9z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3 7 7 .6-5.3 4.6L18.5 22 12 18l-6.5 4 1.8-7.8L2 9.6 9 9z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3 7 7 .6-5.3 4.6L18.5 22 12 18l-6.5 4 1.8-7.8L2 9.6 9 9z"/></svg></span>5.0 on Google</p>
-        </div>
-    </section>
-
-    <!-- ============ STAT BAND ============ -->
-    <section class="stats" aria-label="Black Iron by the numbers">
-        <div class="stats-grid">
-            <div class="stat rv"><b>13+</b><span>Years in Frisco</span></div>
-            <div class="stat rv"><b>3,000+</b><span>Lives changed</span></div>
-            <div class="stat rv"><b>5.0</b><span>Google rating</span></div>
-            <div class="stat rv"><b>3</b><span>Levels in every class</span></div>
-        </div>
-    </section>
-
-    <!-- ============ MISSION (CONTRACT: id="mission") ============ -->
-    <section class="sect" id="mission">
+    <section class="hero hero-short no-top" aria-label="Supplements we stock">
         <div class="wrap">
-            <span class="eyebrow rv">Our mission</span>
-            <h2 class="rv">Why we <span class="outline">exist.</span></h2>
-            <p class="lead rv">We help everyday people become everyday athletes.</p>
-            <div class="h23-rows rv" style="max-width:76ch">
-                <div class="h23-row"><b>The idea</b><p>Black Iron opened in 2013 on a simple belief: everyday people deserve real coaching too. Not a leaderboard culture that treats a Tuesday workout like a tryout. Not a sea of machines and a keycard. A coach who knows your name, programming with a plan behind it, and good people on every side of you.</p></div>
-                <div class="h23-row"><b>The record</b><p>Thirteen years later, that idea has changed more than 3,000 lives across Frisco, Prosper, The Colony, Little Elm, McKinney, Plano, Celina, and North Dallas. Beginners, comeback stories, longtime athletes &mdash; we meet you where you are and coach every rep from there.</p></div>
-                <div class="h23-row"><b>The floor</b><p>We are not CrossFit, not a big-box gym, not a boutique studio. Every member starts with Foundations &mdash; a week of one-on-one coaching &mdash; and every class runs at three levels, so nobody compromises and nobody gets thrown into the deep end.</p></div>
-            </div>
-            <div class="belief rv">
-                <p>&ldquo;Your best years aren&rsquo;t behind you. You just haven&rsquo;t been trained properly yet. We fix the belief, then we forge the body.&rdquo;</p>
+            <span class="eyebrow">On the shelf &middot; Thorne partner</span>
+            <h1>What we stock<br><span class="outline">at the gym.</span></h1>
+            <p class="lede">We are a Thorne practitioner partner, which means every product below is
+               one we actually use and keep on the shelf. All of it is NSF Certified for Sport, so it
+               has been independently tested for purity, potency and banned substances. That matters
+               whether you compete or you just want to know what is in the tub.</p>
+
+            <div class="disclose">
+                <b>How this works.</b> The links on this page are tracked to our Thorne dispensary,
+                and we earn a commission on anything bought through them. It costs you nothing extra.
+                We list what we stock and use, and nothing gets on this page because it pays better.
             </div>
         </div>
     </section>
 
-    <!-- ============ THREE VALUES ============ -->
-    <section class="sect alt" id="values">
+    <section class="sect alt" aria-label="The year-round foundation stack">
         <div class="wrap">
-            <span class="eyebrow rv">Three values</span>
-            <h2 class="rv">What we<br><span class="outline">hold to.</span></h2>
-            <div class="steps">
-                <div class="step rv">
-                    <em>01</em>
-                    <h3>The work matters more than the clock</h3>
-                    <p>Show up, do the work, and let the calendar do its job. We measure progress in months and years &mdash; not in how wrecked you feel by noon.</p>
+            <span class="eyebrow">Start here</span>
+            <h2>The year-round<br><span class="outline">foundation stack.</span></h2>
+            <p class="lede">Four products, and they do not change with the season. If you take
+               nothing else, take these. Everything after this section is an adjustment on top.</p>
+            <div class="price-grid">
+                <article class="pcard rv">
+                    <h3>Whey Protein Isolate</h3>
+                    <p class="who">The one most people are short on. Chocolate or vanilla.</p>
+                    <b class="pnum">$65</b>
+                    <ul><li>Supports your daily protein target</li><li>Fast absorbing, post-workout or between meals</li><li>NSF Certified for Sport</li></ul>
+                    <a class="buy" href="https://s.thorne.com/gOquC" target="_blank" rel="nofollow sponsored noopener">Shop on Thorne<span aria-hidden="true">&nbsp;&rarr;</span></a>
+                </article>
+                <article class="pcard rv">
+                    <h3>Multi-Vitamin Elite</h3>
+                    <p class="who">Covers the micronutrient gaps a training diet leaves.</p>
+                    <b class="pnum">$76</b>
+                    <ul><li>Supports energy metabolism and immune function</li><li>Built for people who train, not a shelf multivitamin</li><li>NSF Certified for Sport</li></ul>
+                    <a class="buy" href="https://s.thorne.com/7qflr" target="_blank" rel="nofollow sponsored noopener">Shop on Thorne<span aria-hidden="true">&nbsp;&rarr;</span></a>
+                </article>
+                <article class="pcard rv">
+                    <h3>Amino Complex</h3>
+                    <p class="who">Aminos around training. Berry or lemon.</p>
+                    <b class="pnum">$52</b>
+                    <ul><li>Supports muscle recovery after hard sessions</li><li>Useful on days the appetite is not there</li><li>NSF Certified for Sport</li></ul>
+                    <a class="buy" href="https://s.thorne.com/4AYih" target="_blank" rel="nofollow sponsored noopener">Shop on Thorne<span aria-hidden="true">&nbsp;&rarr;</span></a>
+                </article>
+                <article class="pcard rv pop">
+                    <span class="tag">Start here</span><h3>Creatine</h3>
+                    <p class="who">Five grams a day, year round. The least glamorous, most proven.</p>
+                    <b class="pnum">$44</b>
+                    <ul><li>Supports strength, power output and muscle hydration</li><li>The most researched supplement in sport</li><li>NSF Certified for Sport</li></ul>
+                    <a class="buy" href="https://s.thorne.com/ivqHX" target="_blank" rel="nofollow sponsored noopener">Shop on Thorne<span aria-hidden="true">&nbsp;&rarr;</span></a>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <section class="sect" aria-label="What changes by training phase">
+        <div class="wrap">
+            <span class="eyebrow">By phase</span>
+            <h2>What changes<br><span class="outline">in a cut or a build.</span></h2>
+            <p class="lede">If you are running FuelPath phases with your coach, two things move.
+               Everything else in the foundation stack stays exactly where it is.</p>
+            <div class="phase-grid">
+                <div class="phase-col">
+                    <h3>In a cut</h3>
+                    <ul>
+                        <li><b>Pause the creatine.</b> It holds water, and that water hides fat loss
+                            on the scale. Nothing is lost by stopping for the block.</li>
+                        <li><b>Add the Weight Management Stack</b> for metabolic support while you
+                            are in a deficit. <a class="buy" href="https://s.thorne.com/uNZkL" target="_blank" rel="nofollow sponsored noopener">Weight Management Stack, $142<span aria-hidden="true">&nbsp;&rarr;</span></a></li>
+                        <li>Whey, multivitamin and aminos carry on unchanged.</li>
+                    </ul>
                 </div>
-                <div class="step rv">
-                    <em>02</em>
-                    <h3>Forge the body, guard the mind</h3>
-                    <p>Training builds more than muscle. Discipline, resilience, a clearer head &mdash; the mental side is half the reason the good people here keep showing up.</p>
-                </div>
-                <div class="step rv">
-                    <em>03</em>
-                    <h3>Person first, athlete second</h3>
-                    <p>You&rsquo;re a parent, a professional, a person with a full plate. The program bends around your life, and a coach pulls you back when you&rsquo;re getting ahead of yourself.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ============ SIX BELIEFS ============ -->
-    <section class="sect" id="beliefs">
-        <div class="wrap">
-            <span class="eyebrow rv">Six beliefs</span>
-            <h2 class="rv">How we run <span class="outline">the floor.</span></h2>
-            <div class="beliefs-6 rv">
-                <div class="fear"><b>Programmed, not random</b><p>Cycled progressions, planned intensity, strength and conditioning balanced every week. Nothing on the whiteboard is an accident.</p></div>
-                <div class="fear"><b>Three levels, one class</b><p>Same movement, same clock, different target. Beginners and 10-year athletes train side by side. The system flexes so the member doesn&rsquo;t have to.</p></div>
-                <div class="fear"><b>Longevity is the backbone</b><p>We train you to love this for decades &mdash; not to survive a six-week challenge.</p></div>
-                <div class="fear"><b>The 23 hours matter more than the 1</b><p>Nutrition, sleep, daily habits. What happens between sessions decides most of your results, so our coaching doesn&rsquo;t stop at the whiteboard.</p></div>
-                <div class="fear"><b>Foundations is non-negotiable</b><p>Every member starts with a week of one-on-one coaching. Basics, baseline, body. It&rsquo;s why this works.</p></div>
-                <div class="fear"><b>An ecosystem, not strangers</b><p>Coaches who check in, members who notice when you miss a week, and a community that makes showing up the easy part.</p></div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ============ VETERAN-OWNED STORY ============ -->
-    <section class="sect alt" id="veteran-owned">
-        <div class="wrap">
-            <div class="stakes-grid">
-                <div class="rv">
-                    <span class="eyebrow">Veteran-owned</span>
-                    <h2>Built by a <span class="hl">Marine.</span></h2>
-                    <p class="lead">Mike Manning is a medically retired Marine Corps combat veteran. He led a signals intelligence support team in Afghanistan, rebuilt himself as an athlete after his injuries, and came to Black Iron in 2014 for the thing he missed most from the Corps &mdash; a team that pushes each other to show up and be better. He bought out his partners in 2018 and has been sole owner since.</p>
-                    <p style="margin-top:18px;max-width:60ch">That&rsquo;s why discipline, integrity, and service run through everything here. And it&rsquo;s why military and first responders get 5% off any membership &mdash; no forms to hunt down, just tell us.</p>
-                    <p style="margin-top:26px"><a class="arrow-link" href="/mike-manning">Read Mike&rsquo;s story <svg width="16" height="12" viewBox="0 0 16 12" fill="none" aria-hidden="true"><path d="M10 1l5 5-5 5M15 6H1" stroke="currentColor" stroke-width="1.5"/></svg></a></p>
-                </div>
-                <figure class="stakes-img rv">
-                    <img class="ph" src="/images/team/coach-briefing.webp" alt="Mike Manning briefing a group class on the training floor at Black Iron Athletics" loading="lazy" width="1200" height="800">
-                </figure>
-            </div>
-        </div>
-    </section>
-
-    <!-- ============ TEAM (CONTRACT: id="team") ============ -->
-    <section class="sect" id="team">
-        <div class="wrap">
-            <span class="eyebrow rv">The team</span>
-            <h2 class="rv">Real coaches.<br><span class="outline">Every rep.</span></h2>
-            <div class="coach-feature">
-                <figure class="rv"><img class="ph" src="/images/team/owner-headcoach-mike.webp" alt="Mike Manning, owner and head coach of Black Iron Athletics" loading="lazy" width="1340" height="2010"></figure>
-                <div class="rv">
-                    <h3>Mike Manning</h3>
-                    <span class="role">Owner &amp; Head Coach &middot; Veteran</span>
-                    <p class="lead">Coaching in Frisco since 2014, sole owner since 2018. Mike runs Black Iron on a simple idea: everyday people deserve real coaching too &mdash; programmed training, honest standards, and a floor where person comes first, athlete second.</p>
-                    <p style="margin-top:22px"><a class="arrow-link" href="/mike-manning">Meet Mike <svg width="16" height="12" viewBox="0 0 16 12" fill="none" aria-hidden="true"><path d="M10 1l5 5-5 5M15 6H1" stroke="currentColor" stroke-width="1.5"/></svg></a></p>
+                <div class="phase-col">
+                    <h3>In a build</h3>
+                    <ul>
+                        <li><b>Creatine goes back in at 10g a day</b> while you are in a surplus,
+                            double the year-round dose.</li>
+                        <li><b>Add glutamine at 5g</b> to support recovery through the higher
+                            training volume. <a class="buy" href="https://s.thorne.com/nE57k" target="_blank" rel="nofollow sponsored noopener">L-Glutamine, $26<span aria-hidden="true">&nbsp;&rarr;</span></a></li>
+                        <li>Whey, multivitamin and aminos carry on unchanged.</li>
+                    </ul>
                 </div>
             </div>
-            <div class="coach-grid">
-                <article class="coach rv"><figure><img class="ph" src="/images/team/general-manager-caoch-kristin.webp" alt="Coach Kristin, general manager at Black Iron Athletics" loading="lazy" width="800" height="1067"></figure><div><b>Kristin</b><span>General Manager &middot; Coach</span></div></article>
-                <article class="coach rv"><figure><img class="ph" src="/images/team/coach-aileen.webp" alt="Coach Aileen at Black Iron Athletics" loading="lazy" width="800" height="1067"></figure><div><b>Aileen</b><span>Coach</span></div></article>
-                <article class="coach rv"><figure><img class="ph" src="/images/team/coach-amber.webp" alt="Coach Amber at Black Iron Athletics" loading="lazy" width="800" height="1067"></figure><div><b>Amber</b><span>Coach</span></div></article>
-                <article class="coach rv"><figure><img class="ph" src="/images/team/coach-emily.webp" alt="Coach Emily at Black Iron Athletics" loading="lazy" width="800" height="1067"></figure><div><b>Emily</b><span>Coach</span></div></article>
-                <article class="coach rv"><figure><img class="ph" src="/images/team/coach-evan.webp" alt="Coach Evan at Black Iron Athletics" loading="lazy" width="800" height="1067"></figure><div><b>Evan</b><span>Coach</span></div></article>
-                <article class="coach rv"><figure><img class="ph" src="/images/team/coach-lawrence.webp" alt="Coach Lawrence at Black Iron Athletics" loading="lazy" width="800" height="1067"></figure><div><b>Lawrence</b><span>Coach</span></div></article>
-            </div>
+            <p class="compare-close">Your coach sets the phase and adjusts this with you. If you are
+               not sure which one you are in, ask at the desk.</p>
         </div>
     </section>
 
-    <!-- ============ NEXT DOOR IN OCTOBER ============ -->
-    <section class="sect alt" id="next-door">
+    <section class="sect alt" aria-label="Pre-built Thorne stacks">
         <div class="wrap">
-            <span class="eyebrow eyebrow-y rv">The next chapter &middot; Opening October 2026</span>
-            <h2 class="rv">13 years here.<br><span class="outline">Next door next.</span></h2>
-            <p class="lead rv">This October we move into our new home at 279 Main St, Suite 110 &mdash; right next door to the space we train in today. Not a move across town. A big upgrade in quality, amenities, and space, built for the community we already have.</p>
-            <p class="rv" style="margin-top:18px;max-width:64ch">Until the new doors open, everything runs as usual at Suite 122. And the new space brings a recovery room of its own: two cold plunges and a five-person sauna that runs infrared and red light on top of traditional heat, so it still gets hot.</p>
-            <div class="rec-grid rv">
-                <figure><img src="/images/renderings/2026-08-01-recovery-room-rendering.jpg" alt="Rendering of the new recovery room with two cold plunges and a five-person sauna at 279 Main St, Suite 110" loading="lazy" width="600" height="335"><figcaption>The recovery room &middot; Rendering &mdash; details may change</figcaption></figure>
-                <figure><img src="/images/renderings/2026-08-01-new-gym-floor-rendering.jpg" alt="Rendering of the new training floor at 279 Main St, Suite 110" loading="lazy" width="600" height="335"><figcaption>The new floor &middot; Rendering &mdash; details may change</figcaption></figure>
+            <span class="eyebrow">Bundled</span>
+            <h2>Pre-built stacks,<br><span class="outline">if you would rather not think.</span></h2>
+            <p class="lede">Thorne bundles these themselves, and they come out cheaper than the same
+               products bought one at a time.</p>
+            <div class="price-grid">
+                <article class="pcard rv pop">
+                    <span class="tag">Best value</span><h3>Foundational Stack for Athletes</h3>
+                    <p class="who">The four above, bundled. The simplest way to start.</p>
+                    <b class="pnum">$133</b>
+                    <ul><li>Multivitamin, omega, creatine and recovery</li><li>Cheaper than the parts bought separately</li></ul>
+                    <a class="buy" href="https://s.thorne.com/cwYqr" target="_blank" rel="nofollow sponsored noopener">Shop on Thorne<span aria-hidden="true">&nbsp;&rarr;</span></a>
+                </article>
+                <article class="pcard rv">
+                    <h3>Training Stack</h3>
+                    <p class="who">For the block where volume is climbing.</p>
+                    <b class="pnum">$128</b>
+                    <ul><li>Built around performance and recovery</li><li>Berry</li></ul>
+                    <a class="buy" href="https://s.thorne.com/Uo5rW" target="_blank" rel="nofollow sponsored noopener">Shop on Thorne<span aria-hidden="true">&nbsp;&rarr;</span></a>
+                </article>
+                <article class="pcard rv">
+                    <h3>Sleep Stack for Athletes</h3>
+                    <p class="who">The 23 hours matter more than the 1.</p>
+                    <b class="pnum">$62</b>
+                    <ul><li>Supports sleep quality and overnight recovery</li><li>No morning hangover</li></ul>
+                    <a class="buy" href="https://s.thorne.com/YOVO8" target="_blank" rel="nofollow sponsored noopener">Shop on Thorne<span aria-hidden="true">&nbsp;&rarr;</span></a>
+                </article>
+                <article class="pcard rv">
+                    <h3>Joint Support Stack</h3>
+                    <p class="who">For the lifter with a knee or a shoulder that talks back.</p>
+                    <b class="pnum">$105</b>
+                    <ul><li>Supports joint comfort and connective tissue</li><li>Worth it before it becomes a problem</li></ul>
+                    <a class="buy" href="https://s.thorne.com/03HJ7" target="_blank" rel="nofollow sponsored noopener">Shop on Thorne<span aria-hidden="true">&nbsp;&rarr;</span></a>
+                </article>
             </div>
-            <p class="rec-note rv">Renderings of the new build &mdash; details may change before opening day.</p>
         </div>
     </section>
 
-    <!-- ============ FINAL CTA ============ -->
-    <section class="final" aria-label="Book a free consultation">
-        <div class="slash" aria-hidden="true"></div>
-        <div class="final-in wrap">
-            <h2 class="rv">Come see<br>for yourself.</h2>
-            <p class="lead rv">Book a free consultation &mdash; twenty minutes with a coach, zero pressure. If we&rsquo;re not the right fit, we&rsquo;ll say so.</p>
-            <div class="final-ctas rv">
-                <a class="btn btn-y" href="https://book.blackironathletics.com/book">Book a Free Consult</a>
-                <p class="alt-offer">Prefer to look around first? <a href="/getting-started">See how getting started works</a>.</p>
+    <section class="sect" aria-label="Also on the shelf">
+        <div class="wrap">
+            <span class="eyebrow">Also stocked</span>
+            <h2>The rest of<br><span class="outline">the shelf.</span></h2>
+            <div class="shelf">
+                <div class="shelf-item">
+                    <b>Daily Electrolytes</b>
+                    <div class="p">$40</div>
+                    <p>Supports hydration in a Texas summer.</p>
+                    <a class="buy" href="https://s.thorne.com/Er4TL" target="_blank" rel="nofollow sponsored noopener">Shop<span aria-hidden="true">&nbsp;&rarr;</span></a>
+                </div>
+                <div class="shelf-item">
+                    <b>Magnesium Bisglycinate</b>
+                    <div class="p">$52</div>
+                    <p>Supports sleep quality and muscle relaxation.</p>
+                    <a class="buy" href="https://s.thorne.com/L38nt" target="_blank" rel="nofollow sponsored noopener">Shop<span aria-hidden="true">&nbsp;&rarr;</span></a>
+                </div>
+                <div class="shelf-item">
+                    <b>Omega-3 with CoQ10</b>
+                    <div class="p">$55</div>
+                    <p>Supports recovery and joint comfort.</p>
+                    <a class="buy" href="https://s.thorne.com/C5q7J" target="_blank" rel="nofollow sponsored noopener">Shop<span aria-hidden="true">&nbsp;&rarr;</span></a>
+                </div>
+                <div class="shelf-item">
+                    <b>Vitamin D-1,000</b>
+                    <div class="p">$17</div>
+                    <p>Supports bone health and immune function.</p>
+                    <a class="buy" href="https://s.thorne.com/jDB7w" target="_blank" rel="nofollow sponsored noopener">Shop<span aria-hidden="true">&nbsp;&rarr;</span></a>
+                </div>
+                <div class="shelf-item">
+                    <b>Collagen Fit</b>
+                    <div class="p">$56</div>
+                    <p>Supports connective tissue and skin.</p>
+                    <a class="buy" href="https://s.thorne.com/DVvLI" target="_blank" rel="nofollow sponsored noopener">Shop<span aria-hidden="true">&nbsp;&rarr;</span></a>
+                </div>
+                <div class="shelf-item">
+                    <b>Shaker Bottle</b>
+                    <div class="p">$16</div>
+                    <p>Twenty ounces. Does what it says.</p>
+                    <a class="buy" href="https://s.thorne.com/pzsJT" target="_blank" rel="nofollow sponsored noopener">Shop<span aria-hidden="true">&nbsp;&rarr;</span></a>
+                </div>
             </div>
-            <p class="speed rv">We reply the same day. A real coach, not a bot.</p>
+
+            <p class="fda">These statements have not been evaluated by the Food and Drug
+               Administration. These products are not intended to diagnose, treat, cure or prevent
+               any disease. Supplements support a diet and a training plan; they do not replace
+               either. If you are pregnant, nursing, taking medication or managing a health
+               condition, talk to your doctor before starting anything on this page.</p>
+        </div>
+    </section>
+
+    <section class="final" aria-label="Browse the full dispensary">
+        <div class="wrap">
+            <h2>The full shelf<br><span class="outline">is bigger than this.</span></h2>
+            <p class="lede">Fifty-odd products sit in our dispensary. This page is the part we
+               actually reach for. If you want something specific, it is probably in there.</p>
+            <p><a class="btn btn-y" href="https://www.thorne.com/u/blackiron" target="_blank" rel="nofollow sponsored noopener">Browse the full dispensary</a></p>
         </div>
     </section>
 
@@ -359,50 +407,101 @@
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
-      "@type": "AboutPage",
-      "name": "About Black Iron Athletics",
-      "description": "The mission, values, beliefs, and coaches behind Black Iron Athletics, a veteran-owned gym in Frisco, TX. Helping everyday people become everyday athletes since 2013.",
-      "url": "https://www.blackironathletics.com/about",
-      "mainEntity": {
-        "@type": "GymAndHealthClub",
-        "name": "Black Iron Athletics",
-        "foundingDate": "2013",
-        "description": "Veteran-owned gym in Frisco, TX. Helping everyday people become everyday athletes since 2013. Training at 279 Main St, Suite 122 today; the new home at Suite 110 next door opens October 2026.",
-        "telephone": "(972) 785-7036",
-        "address": {
-          "@type": "PostalAddress",
-          "streetAddress": "279 Main St #122",
-          "addressLocality": "Frisco",
-          "addressRegion": "TX",
-          "postalCode": "75036",
-          "addressCountry": "US"
-        },
-        "url": "https://www.blackironathletics.com",
-        "sameAs": [
-          "https://www.instagram.com/blackiron_athletics/",
-          "https://www.youtube.com/channel/UCF1XjUXEs81OWY70chem6vA",
-          "https://www.facebook.com/BlackIronAthletics/"
-        ]
-      }
-    }
-    </script>
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "BreadcrumbList",
-      "itemListElement": [
-          {
-            "@type": "ListItem",
-            "position": 1,
-            "name": "Home",
-            "item": "https://www.blackironathletics.com/"
-          },
-          {
-            "@type": "ListItem",
-            "position": 2,
-            "name": "About Us",
-            "item": "https://www.blackironathletics.com/about"
+      "@graph": [
+        {
+          "@type": "WebPage",
+          "@id": "https://www.blackironathletics.com/pricing",
+          "url": "https://www.blackironathletics.com/pricing",
+          "name": "Membership Pricing | Black Iron Athletics — Frisco, TX",
+          "description": "Membership pricing at Black Iron Athletics in Frisco, TX: Standard $200 per month, Unlimited + Open Gym $240 per month, Open Gym Only $50 per month, personal training $120-150 per hour, and a $30 day pass credited toward the first month.",
+          "isPartOf": {
+            "@type": "WebSite",
+            "name": "Black Iron Athletics",
+            "url": "https://www.blackironathletics.com"
           }
+        },
+        {
+          "@type": "OfferCatalog",
+          "name": "Black Iron Athletics Memberships",
+          "url": "https://www.blackironathletics.com/pricing",
+          "itemListElement": [
+            {
+              "@type": "Offer",
+              "name": "Standard Membership",
+              "description": "3 Strength and Conditioning classes per week, a monthly body-composition scan, and community events.",
+              "price": "200",
+              "priceCurrency": "USD",
+              "priceSpecification": {
+                "@type": "UnitPriceSpecification",
+                "price": "200",
+                "priceCurrency": "USD",
+                "unitText": "month"
+              }
+            },
+            {
+              "@type": "Offer",
+              "name": "Unlimited + Open Gym Membership",
+              "description": "Unlimited Strength and Conditioning classes, everything in Standard, and open gym access 7 days a week.",
+              "price": "240",
+              "priceCurrency": "USD",
+              "priceSpecification": {
+                "@type": "UnitPriceSpecification",
+                "price": "240",
+                "priceCurrency": "USD",
+                "unitText": "month"
+              }
+            },
+            {
+              "@type": "Offer",
+              "name": "Open Gym Only Membership",
+              "description": "Self-directed training with access to all Black Iron programming, 7 days a week between classes and after hours.",
+              "price": "50",
+              "priceCurrency": "USD",
+              "priceSpecification": {
+                "@type": "UnitPriceSpecification",
+                "price": "50",
+                "priceCurrency": "USD",
+                "unitText": "month"
+              }
+            },
+            {
+              "@type": "Offer",
+              "name": "Personal Training",
+              "description": "One coach, one plan: customized programming, individual accountability, and nutrition guidance.",
+              "priceCurrency": "USD",
+              "priceSpecification": {
+                "@type": "PriceSpecification",
+                "minPrice": 120,
+                "maxPrice": 150,
+                "priceCurrency": "USD",
+                "unitText": "hour"
+              }
+            }
+          ]
+        },
+        {
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            {
+              "@type": "ListItem",
+              "position": 1,
+              "name": "Home",
+              "item": "https://www.blackironathletics.com/"
+            },
+            {
+              "@type": "ListItem",
+              "position": 2,
+              "name": "Getting Started",
+              "item": "https://www.blackironathletics.com/getting-started"
+            },
+            {
+              "@type": "ListItem",
+              "position": 3,
+              "name": "Membership & Pricing",
+              "item": "https://www.blackironathletics.com/pricing"
+            }
+          ]
+        }
       ]
     }
     </script>

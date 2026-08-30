@@ -190,7 +190,7 @@ You can reach us by phone at (972) 785-7036, by email at mike@blackironathletics
 
 ## Do you sell supplements?
 
-Yes. We partner with Thorne, whose products are NSF Certified for Sport. You can browse and purchase through our Thorne partner store at https://www.thorne.com/u/blackiron. We only recommend products we use and trust.
+Yes. We partner with Thorne, whose products are NSF Certified for Sport. What we stock and use is listed at https://www.blackironathletics.com/supplements, and the full catalog is at https://www.thorne.com/u/blackiron. We only recommend products we use and trust.
 
 ## What supplements do you recommend?
 
@@ -222,7 +222,7 @@ Every Thorne product is NSF Certified for Sport, meaning it has been independent
 
 ## Where can I buy supplements?
 
-You can shop our recommended Thorne supplements at https://www.thorne.com/u/blackiron. All products are NSF Certified for Sport. You can also find specific product recommendations on our supplements page at https://www.thorne.com/u/blackiron
+You can shop our recommended Thorne supplements at https://www.thorne.com/u/blackiron. All products are NSF Certified for Sport. You can also find our specific recommendations, what changes in a cut or a build, and the pre-built athlete stacks on our supplements page at https://www.blackironathletics.com/supplements
 
 ## What is the FuelPath phase system?
 
