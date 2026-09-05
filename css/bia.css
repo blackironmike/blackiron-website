@@ -107,6 +107,9 @@ h4{color:var(--white);font-weight:700;font-size:.95rem;text-transform:uppercase;
 .eyebrow-y{color:var(--yellow)}
 .hl{color:var(--yellow)}
 .lead{font-size:clamp(1.05rem,1.6vw,1.25rem);max-width:60ch}
+/* Consecutive ledes need air between them. Only fires when two sit
+   together, so single-lede sections are untouched. */
+.lead + .lead{margin-top:1.1em}
 .small{font-size:.85rem}
 
 
@@ -1029,6 +1032,50 @@ footer{border-top:1px solid var(--steel-line);padding:clamp(56px,7vw,88px) 0 0}
   /* The thumb bar still appears and disappears, it just does not slide. */
   .thumbbar.tb-auto{transition:none}
 }
+
+
+/* ------------------------------------------------------------
+   37. COMMERCE SHELF (/gear, /supplements)
+   Shared by every page that lists something we earn a commission
+   on. Lives here rather than page-local so the two pages cannot
+   drift apart. Supplements-only pieces (.nsf, .phase-*) stay in
+   tools/build-supplements.py.
+   ------------------------------------------------------------ */
+.shop-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(228px,1fr));
+           gap:1px;background:var(--steel-line);border:1px solid var(--steel-line);
+           margin-top:clamp(26px,3vw,38px)}
+.ptile{position:relative;background:var(--black);padding:0 20px 20px;display:flex;
+       flex-direction:column;transition:background .18s ease}
+.ptile:hover{background:var(--coal)}
+.ptile:hover .ptile-foot em{color:var(--yellow)}
+.ptag{position:absolute;top:0;right:0;z-index:2;background:var(--yellow);color:var(--black);
+      font-size:9px;font-weight:900;letter-spacing:2px;text-transform:uppercase;padding:6px 10px}
+.ptile-img{display:grid;place-items:center;background:var(--coal);margin:0 -20px 18px;
+           padding:20px;aspect-ratio:1/.86;overflow:hidden}
+.ptile-img img{width:auto;height:100%;max-width:100%;object-fit:contain}
+.ptile-name{display:block;color:var(--white);font-weight:900;font-size:1rem;
+            line-height:1.25;letter-spacing:-.01em;margin-bottom:8px}
+.ptile-blurb{display:block;flex:1;color:var(--gray);font-size:.84rem;line-height:1.55}
+.ptile-foot{display:flex;align-items:baseline;justify-content:space-between;gap:12px;
+            margin-top:16px;padding-top:14px;border-top:1px solid var(--steel-line)}
+.ptile-foot b{color:var(--white);font-weight:900;font-size:1.15rem;letter-spacing:-.02em}
+.ptile-foot em{font-style:normal;color:var(--gray);font-weight:900;font-size:.72rem;
+               letter-spacing:.14em;text-transform:uppercase;transition:color .18s ease}
+
+/* Commission disclosure. Sits ABOVE the products it covers, never below:
+   the FTC standard is that the disclosure and the endorsement be visible
+   at the same time. */
+.disclose{background:var(--coal);border:1px solid var(--steel-line);
+          padding:clamp(20px,2.4vw,28px);margin-top:clamp(20px,2.6vw,30px);
+          font-size:.88rem;line-height:1.65;color:var(--gray);max-width:74ch}
+.disclose b{color:var(--white)}
+.disclose-tight{margin-top:clamp(14px,1.8vw,20px);padding:14px 18px;font-size:.83rem}
+
+.fda{margin-top:clamp(26px,3vw,40px);padding-top:22px;border-top:1px solid var(--steel-line);
+     font-size:.8rem;line-height:1.7;color:var(--gray);max-width:80ch}
+
+@media (max-width:520px){.shop-grid{grid-template-columns:1fr 1fr}
+                         .ptile-blurb{display:none}}
 
 
 /* ------------------------------------------------------------

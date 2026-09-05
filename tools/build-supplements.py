@@ -117,31 +117,8 @@ def grid(items):
 
 
 PAGE_CSS = '''    <style>
-    /* Supplements — a shelf, laid out like one. Page-unique, same tokens. */
-    .shop-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(228px,1fr));
-               gap:1px;background:var(--steel-line);border:1px solid var(--steel-line);
-               margin-top:clamp(26px,3vw,38px)}
-    .ptile{position:relative;background:var(--black);padding:0 20px 20px;display:flex;
-           flex-direction:column;transition:background .18s ease}
-    .ptile:hover{background:var(--coal)}
-    .ptile:hover .ptile-foot em{color:var(--yellow)}
-    .ptag{position:absolute;top:0;right:0;z-index:2;background:var(--yellow);color:var(--black);
-          font-size:9px;font-weight:900;letter-spacing:2px;text-transform:uppercase;padding:6px 10px}
-    .ptile-img{display:grid;place-items:center;background:var(--coal);margin:0 -20px 18px;
-               padding:20px;aspect-ratio:1/.86;overflow:hidden}
-    .ptile-img img{width:auto;height:100%;max-width:100%;object-fit:contain}
-    .ptile-name{display:block;color:var(--white);font-weight:900;font-size:1rem;
-                line-height:1.25;letter-spacing:-.01em;margin-bottom:8px}
-    .ptile-blurb{display:block;flex:1;color:var(--gray);font-size:.84rem;line-height:1.55}
-    .ptile-foot{display:flex;align-items:baseline;justify-content:space-between;gap:12px;
-                margin-top:16px;padding-top:14px;border-top:1px solid var(--steel-line)}
-    .ptile-foot b{color:var(--white);font-weight:900;font-size:1.15rem;letter-spacing:-.02em}
-    .ptile-foot em{font-style:normal;color:var(--gray);font-weight:900;font-size:.72rem;
-                   letter-spacing:.14em;text-transform:uppercase;transition:color .18s ease}
-    .disclose{background:var(--coal);border:1px solid var(--steel-line);
-              padding:clamp(20px,2.4vw,28px);margin-top:clamp(20px,2.6vw,30px);
-              font-size:.88rem;line-height:1.65;color:var(--gray);max-width:74ch}
-    .disclose b{color:var(--white)}
+    /* Supplements-only. The shelf components (.shop-grid, .ptile*, .disclose,
+       .lede, .fda) live in css/bia.css section 37, shared with /gear. */
     .nsf{display:inline-block;margin-top:14px;font-size:.72rem;font-weight:900;
          letter-spacing:.14em;text-transform:uppercase;color:var(--yellow)}
     .phase-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--steel-line);
@@ -151,10 +128,6 @@ PAGE_CSS = '''    <style>
     .phase-col li{border-top:1px solid var(--steel-line);padding:12px 0;font-size:.93rem;line-height:1.6}
     .phase-col a{color:var(--yellow);font-weight:700}
     @media (max-width:760px){.phase-grid{grid-template-columns:1fr}}
-    @media (max-width:520px){.shop-grid{grid-template-columns:1fr 1fr}
-                             .ptile-blurb{display:none}}
-    .fda{margin-top:clamp(26px,3vw,40px);padding-top:22px;border-top:1px solid var(--steel-line);
-         font-size:.8rem;line-height:1.7;color:var(--gray);max-width:80ch}
     </style>'''
 
 HEAD_REPLACEMENTS = [
@@ -197,7 +170,7 @@ def build():
         <div class="wrap">
             <span class="eyebrow">On the shelf &middot; Thorne partner</span>
             <h1>What we stock<br><span class="outline">at the gym.</span></h1>
-            <p class="lede">We are a Thorne practitioner partner, which means everything below is
+            <p class="lead">We are a Thorne practitioner partner, which means everything below is
                something we actually use and keep on the shelf. All of it is NSF Certified for Sport,
                independently tested for purity, potency and banned substances. That matters whether
                you compete or you just want to know what is in the tub.</p>
@@ -215,7 +188,7 @@ def build():
         <div class="wrap">
             <span class="eyebrow">Start here</span>
             <h2>The year-round<br><span class="outline">foundation stack.</span></h2>
-            <p class="lede">Four products, and they do not change with the season. If you take
+            <p class="lead">Four products, and they do not change with the season. If you take
                nothing else, take these. Everything after this is an adjustment on top.</p>
             <div class="shop-grid">
 {grid(FOUNDATION)}
@@ -227,7 +200,7 @@ def build():
         <div class="wrap">
             <span class="eyebrow">By phase</span>
             <h2>What changes<br><span class="outline">in a cut or a build.</span></h2>
-            <p class="lede">If you are running FuelPath phases with your coach, two things move.
+            <p class="lead">If you are running FuelPath phases with your coach, two things move.
                Everything else in the foundation stack stays exactly where it is.</p>
             <div class="phase-grid">
                 <div class="phase-col">
@@ -262,7 +235,7 @@ def build():
         <div class="wrap">
             <span class="eyebrow">Bundled</span>
             <h2>Pre-built stacks,<br><span class="outline">if you would rather not think.</span></h2>
-            <p class="lede">Thorne bundles these themselves, and they come out cheaper than the same
+            <p class="lead">Thorne bundles these themselves, and they come out cheaper than the same
                products bought one at a time.</p>
             <div class="shop-grid">
 {grid(STACKS)}
@@ -289,7 +262,7 @@ def build():
     <section class="final" aria-label="Browse the full dispensary">
         <div class="wrap">
             <h2>The full shelf<br><span class="outline">is bigger than this.</span></h2>
-            <p class="lede">Fifty-odd products sit in our dispensary. This page is the part we
+            <p class="lead">Fifty-odd products sit in our dispensary. This page is the part we
                actually reach for. If you want something specific, it is probably in there.</p>
             <p><a class="btn btn-y" href="{STORE}" {REL}>Browse the full dispensary</a></p>
         </div>

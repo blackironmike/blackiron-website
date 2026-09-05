@@ -58,6 +58,7 @@ const URL_CONFIG = {
   '/programs':                                  { priority: '0.8', changefreq: 'monthly' },
   '/schedule':                                  { priority: '0.8', changefreq: 'weekly' },
   '/contact':                                   { priority: '0.8', changefreq: 'monthly' },
+  '/gear':                                      { priority: '0.6', changefreq: 'monthly' },
   '/blog/crossfit-alternative-frisco-tx':       { priority: '0.8', changefreq: 'monthly' },
   '/blog/what-is-xenom-decathlon-of-fitness':   { priority: '0.8', changefreq: 'monthly' },
   '/blog/xenom-frisco-review':                  { priority: '0.8', changefreq: 'monthly' },
