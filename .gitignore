@@ -11,3 +11,4 @@ tools/__pycache__/
 
 # landing-page drafts for decks that are not live (tools/build-landing.py)
 lp-*.html
+scripts/.indexnow-submitted.json
