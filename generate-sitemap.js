@@ -64,6 +64,7 @@ const URL_CONFIG = {
   '/blog/gym-membership-cost-frisco-tx':        { priority: '0.8', changefreq: 'monthly' },
   '/blog/first-week-at-black-iron-athletics':   { priority: '0.8', changefreq: 'monthly' },
   '/blog/strength-training-over-40':            { priority: '0.8', changefreq: 'monthly' },
+  '/blog/desk-job-back-pain':                   { priority: '0.8', changefreq: 'monthly' },
   '/blog/veteran-owned-gym-frisco-tx':          { priority: '0.8', changefreq: 'monthly' },
   '/blog/early-morning-gym-classes-frisco-tx':  { priority: '0.8', changefreq: 'monthly' },
   '/blog/getting-back-into-a-routine-after-summer-frisco-tx': { priority: '0.8', changefreq: 'monthly' },
