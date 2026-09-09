@@ -130,6 +130,51 @@ PAGE_CSS = '''    <style>
     @media (max-width:760px){.phase-grid{grid-template-columns:1fr}}
     </style>'''
 
+# The donor page (pricing.html) keeps its JSON-LD AFTER </main>, so a verbatim
+# tail copies pricing's identity and its whole membership offer catalogue onto
+# this page. Google then reads /supplements as though it were /pricing. Replace
+# the block outright rather than string-patching it.
+#
+# Deliberately NO Offer or Product markup here: we are a Thorne affiliate, we
+# do not fulfil these orders, and claiming offers we do not honour is exactly
+# what structured-data guidance exists to stop.
+PAGE_SCHEMA = """    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "WebPage",
+          "@id": "https://www.blackironathletics.com/supplements",
+          "url": "https://www.blackironathletics.com/supplements",
+          "name": "Supplements We Stock | Black Iron Athletics \u2014 Frisco, TX",
+          "description": "The Thorne supplements we stock and use at Black Iron Athletics in Frisco, TX. A four-part year-round stack, what changes in a cut or a build, and the pre-built athlete stacks. All NSF Certified for Sport.",
+          "isPartOf": {
+            "@type": "WebSite",
+            "name": "Black Iron Athletics",
+            "url": "https://www.blackironathletics.com"
+          }
+        },
+        {
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            {
+              "@type": "ListItem",
+              "position": 1,
+              "name": "Home",
+              "item": "https://www.blackironathletics.com/"
+            },
+            {
+              "@type": "ListItem",
+              "position": 2,
+              "name": "Supplements",
+              "item": "https://www.blackironathletics.com/supplements"
+            }
+          ]
+        }
+      ]
+    }
+    </script>"""
+
 HEAD_REPLACEMENTS = [
     ("Membership Pricing | Black Iron Athletics — Frisco, TX",
      "Supplements We Stock | Black Iron Athletics — Frisco, TX"),
@@ -152,6 +197,18 @@ def build():
     head = "\n".join(src[:body_i])
     nav = "\n".join(src[body_i:main_i])
     tail = "\n".join(src[endmain_i:])
+
+    # Swap the donor page's structured data for this page's own.
+    tail, n_schema = re.subn(
+        r'[ \t]*<script type="application/ld\+json">.*?</script>',
+        lambda _m: PAGE_SCHEMA,
+        tail, count=1, flags=re.S,
+    )
+    if n_schema != 1:
+        raise SystemExit(
+            "build-supplements: expected exactly one JSON-LD block after </main> "
+            f"in the skeleton, replaced {n_schema}. The donor page changed shape."
+        )
 
     for a, b in HEAD_REPLACEMENTS:
         head = head.replace(a, b)
