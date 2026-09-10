@@ -1080,6 +1080,10 @@ footer{border-top:1px solid var(--steel-line);padding:clamp(56px,7vw,88px) 0 0}
 .disclose-line{margin-top:clamp(18px,2.2vw,26px);padding-left:14px;
                border-left:2px solid var(--steel-line);font-size:.85rem;
                line-height:1.65;color:var(--gray);max-width:70ch}
+/* When it sits mid-flow rather than last in a hero, whatever follows declares
+   the matching gap, so the note is framed evenly instead of butting into the
+   next paragraph. Same value as its own top margin. */
+.disclose-line + p{margin-top:clamp(18px,2.2vw,26px)}
 
 .fda{margin-top:clamp(26px,3vw,40px);padding-top:22px;border-top:1px solid var(--steel-line);
      font-size:.8rem;line-height:1.7;color:var(--gray);max-width:80ch}
