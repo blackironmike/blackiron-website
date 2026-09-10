@@ -1044,7 +1044,12 @@ footer{border-top:1px solid var(--steel-line);padding:clamp(56px,7vw,88px) 0 0}
            gap:1px;border:1px solid transparent;margin-top:clamp(26px,3vw,38px)}
 .ptile{position:relative;background:var(--black);padding:0 20px 20px;display:flex;
        flex-direction:column;box-shadow:0 0 0 1px var(--steel-line);
-       transition:background .18s ease}
+       transition:background .18s ease;
+       /* Grid items are min-width:auto by default, so a column refuses to shrink
+          below its widest child. At 320px .ptile-name is 111px + 40px padding =
+          151px per column against a 280px grid, and the two-up rule below pushes
+          the whole thing past the viewport. */
+       min-width:0}
 .shop-grid.is-filtered .ptile{max-width:320px}
 .ptile:hover{background:var(--coal)}
 .ptile:hover .ptile-foot em{color:var(--yellow)}
@@ -1118,6 +1123,10 @@ footer{border-top:1px solid var(--steel-line);padding:clamp(56px,7vw,88px) 0 0}
 /* The pointer under a grid. Muted body text, not a .lead. */
 .shelf-more{margin-top:clamp(20px,2.4vw,28px);font-size:.9rem;color:var(--gray)}
 .shelf-more a{color:var(--yellow)}
+/* Same reason as .steps + .lead: .shelf-more declares a top margin and no bottom
+   one, so editorial copy following the grey pointer paragraph collided with it.
+   Only fires where .shelf-more is followed by copy; where it is last, untouched. */
+.shelf-more + .lead{margin-top:clamp(20px,2.4vw,28px)}
 
 @media (max-width:520px){.shop-grid{grid-template-columns:1fr 1fr}
                          .ptile-blurb{display:none}}
