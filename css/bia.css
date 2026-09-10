@@ -1075,6 +1075,11 @@ footer{border-top:1px solid var(--steel-line);padding:clamp(56px,7vw,88px) 0 0}
           font-size:.88rem;line-height:1.65;color:var(--gray);max-width:74ch}
 .disclose b{color:var(--white)}
 .disclose-tight{margin-top:clamp(20px,2.4vw,28px);padding:14px 18px;font-size:.83rem}
+/* One-line page-level variant. Same duty, no box: the boxed .disclose sits
+   beside the products it covers, this one just gets said early and gets out. */
+.disclose-line{margin-top:clamp(18px,2.2vw,26px);padding-left:14px;
+               border-left:2px solid var(--steel-line);font-size:.85rem;
+               line-height:1.65;color:var(--gray);max-width:70ch}
 
 .fda{margin-top:clamp(26px,3vw,40px);padding-top:22px;border-top:1px solid var(--steel-line);
      font-size:.8rem;line-height:1.7;color:var(--gray);max-width:80ch}
@@ -1085,13 +1090,6 @@ footer{border-top:1px solid var(--steel-line);padding:clamp(56px,7vw,88px) 0 0}
    tab order, and every tile is a link. */
 .ptile[hidden],.shop-grid[hidden],.shelf-group[hidden],.shelf-sect[hidden]{display:none}
 
-/* The finder is the shelf's control, not a subject of its own, so it runs
-   into the first shelf section: no rule between them (that section carries
-   .no-top) and only one section padding in the gap instead of two stacked.
-   Zeroing the FOLLOWING section's padding-top was tried and reverted: it left
-   the section's own hairline drawn hard against its eyebrow with all the air
-   above the line, which reads as underlining the section that just ended. */
-.finder-sect{padding-bottom:0}
 
 /* Components declare their own top gap on this site, and .finder does not,
    because on /blog it is the first thing in its section. On /gear a paragraph
