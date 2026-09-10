@@ -317,7 +317,7 @@ def build():
     </section>
 
     <section class="final" aria-label="Browse the full dispensary">
-        <div class="wrap">
+        <div class="final-in wrap">
             <h2>The full shelf<br><span class="outline">is bigger than this.</span></h2>
             <p class="lead">Fifty-odd products sit in our dispensary. This page is the part we
                actually reach for. If you want something specific, it is probably in there.</p>

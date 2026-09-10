@@ -1074,7 +1074,7 @@ footer{border-top:1px solid var(--steel-line);padding:clamp(56px,7vw,88px) 0 0}
           padding:clamp(20px,2.4vw,28px);margin-top:clamp(20px,2.6vw,30px);
           font-size:.88rem;line-height:1.65;color:var(--gray);max-width:74ch}
 .disclose b{color:var(--white)}
-.disclose-tight{margin-top:clamp(14px,1.8vw,20px);padding:14px 18px;font-size:.83rem}
+.disclose-tight{margin-top:clamp(20px,2.4vw,28px);padding:14px 18px;font-size:.83rem}
 
 .fda{margin-top:clamp(26px,3vw,40px);padding-top:22px;border-top:1px solid var(--steel-line);
      font-size:.8rem;line-height:1.7;color:var(--gray);max-width:80ch}
@@ -1085,11 +1085,22 @@ footer{border-top:1px solid var(--steel-line);padding:clamp(56px,7vw,88px) 0 0}
    tab order, and every tile is a link. */
 .ptile[hidden],.shop-grid[hidden],.shelf-group[hidden],.shelf-sect[hidden]{display:none}
 
-/* The section directly under the finder loses its top padding, because the
-   finder's own .sect block already supplies that gap. The shelf sections below
-   it keep the site's normal rhythm, or their top hairline reads as underlining
-   the section that just ended. */
-#shelf + .shelf-sect{padding-top:0}
+/* The finder is the shelf's control, not a subject of its own, so it runs
+   into the first shelf section: no rule between them (that section carries
+   .no-top) and only one section padding in the gap instead of two stacked.
+   Zeroing the FOLLOWING section's padding-top was tried and reverted: it left
+   the section's own hairline drawn hard against its eyebrow with all the air
+   above the line, which reads as underlining the section that just ended. */
+.finder-sect{padding-bottom:0}
+
+/* Components declare their own top gap on this site, and .finder does not,
+   because on /blog it is the first thing in its section. On /gear a paragraph
+   sits above it. */
+.lead + .finder{margin-top:clamp(26px,3vw,38px)}
+
+/* Same reason: .steps has a top margin and no bottom one, so a closing
+   paragraph under the three cards had nothing holding it off them. */
+.steps + .lead{margin-top:clamp(30px,3.5vw,44px)}
 
 /* Subcategory label. Nothing in the sheet sat between h2 and .eyebrow as an
    in-section subhead; this is the .visit-row hairline label reused. It wraps
