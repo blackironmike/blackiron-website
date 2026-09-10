@@ -660,29 +660,10 @@ section{border-top:1px solid var(--steel-line)}
 
 
 /* ------------------------------------------------------------
-   25. BLOG INDEX — cards, search, category filters
+   25. BLOG INDEX — cards and grid
+   The search box, category chips and empty state moved to section 38,
+   THE FINDER, because /gear uses them too.
    ------------------------------------------------------------ */
-.blog-toolbar{display:flex;flex-wrap:wrap;gap:18px;align-items:center;justify-content:space-between;margin-bottom:clamp(28px,4vw,44px)}
-.blog-search-bar{position:relative;flex:1;min-width:240px;max-width:420px}
-.blog-search-bar input{
-  width:100%;background:var(--black);border:1px solid var(--steel-line);color:var(--white);
-  font-size:.95rem;padding:14px 18px 14px 46px;transition:border-color .18s ease;
-}
-.blog-search-bar input::placeholder{color:rgba(199,199,199,.55)}
-.blog-search-bar input:focus{border-color:var(--white)}
-.blog-search-bar .search-icon{
-  position:absolute;left:16px;top:50%;transform:translateY(-50%);
-  width:18px;height:18px;color:var(--gray);pointer-events:none;
-}
-.blog-filter-buttons{display:flex;flex-wrap:wrap;gap:10px}
-.blog-filter-btn{
-  background:transparent;border:1px solid var(--steel-line);color:var(--gray);
-  font-weight:700;font-size:11px;letter-spacing:1.5px;text-transform:uppercase;
-  padding:12px 18px;cursor:pointer;transition:border-color .18s ease,color .18s ease,background .18s ease;
-}
-.blog-filter-btn:hover{border-color:var(--white);color:var(--white)}
-.blog-filter-btn.active{background:var(--yellow);border-color:var(--yellow);color:var(--black)}
-
 .blog-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(18px,2vw,28px)}
 .blog-card{border:1px solid var(--steel-line);background:var(--coal);display:flex;flex-direction:column;transition:border-color .25s ease}
 .blog-card:hover{border-color:rgba(255,255,255,.45)}
@@ -709,7 +690,6 @@ section{border-top:1px solid var(--steel-line)}
 }
 .blog-read-more svg{transition:transform .18s ease}
 .blog-card:hover .blog-read-more svg{transform:translateX(5px)}
-.blog-no-results{border:1px solid var(--steel-line);background:var(--coal);padding:clamp(32px,5vw,56px);text-align:center;color:var(--gray)}
 @media (max-width:1020px){.blog-grid{grid-template-columns:1fr 1fr}}
 @media (max-width:640px){.blog-grid{grid-template-columns:1fr}}
 
@@ -1041,15 +1021,40 @@ footer{border-top:1px solid var(--steel-line);padding:clamp(56px,7vw,88px) 0 0}
    drift apart. Supplements-only pieces (.nsf, .phase-*) stay in
    tools/build-supplements.py.
    ------------------------------------------------------------ */
-.shop-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(228px,1fr));
-           gap:1px;background:var(--steel-line);border:1px solid var(--steel-line);
-           margin-top:clamp(26px,3vw,38px)}
+/* The hairline lives on the TILES, not on the container. A grid that paints
+   its gridlines by showing a steel background through 1px gaps turns every
+   empty track into a full steel block, which is visible on /supplements today
+   between 748 and 996px and would be constant on a shelf you can filter.
+   box-shadow is layout-neutral, adjacent rings overlap inside the 1px gap and
+   read as one line, and an emptied grid now draws nothing at all.
+   auto-fit rather than auto-fill so a filtered row collapses its empty tracks
+   instead of leaving them behind.
+   The border stays, now transparent, ON PURPOSE. box-sizing is border-box, so
+   removing it would widen the content box by 2px, and at the 1240px wrap that
+   is exactly enough to cross a track threshold: the eight-tile shelf on
+   /supplements would go from four columns to five. Transparent keeps the track
+   arithmetic identical to what ships today.
+   The 320px cap applies only while a filter is running, so an unfiltered
+   shelf lays out exactly as it always has. Without it, a search matching one
+   tile renders that tile 1140px wide with a 980px-tall image well, because
+   auto-fit hands the whole row to the survivor. The filter adds .is-filtered
+   rather than the sheet using :has(), so it does not depend on a selector an
+   older engine might not support. */
+.shop-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(228px,1fr));
+           gap:1px;border:1px solid transparent;margin-top:clamp(26px,3vw,38px)}
 .ptile{position:relative;background:var(--black);padding:0 20px 20px;display:flex;
-       flex-direction:column;transition:background .18s ease}
+       flex-direction:column;box-shadow:0 0 0 1px var(--steel-line);
+       transition:background .18s ease}
+.shop-grid.is-filtered .ptile{max-width:320px}
 .ptile:hover{background:var(--coal)}
 .ptile:hover .ptile-foot em{color:var(--yellow)}
 .ptag{position:absolute;top:0;right:0;z-index:2;background:var(--yellow);color:var(--black);
       font-size:9px;font-weight:900;letter-spacing:2px;text-transform:uppercase;padding:6px 10px}
+/* .ptile has no padding-top: the image well supplies it. When an image 404s
+   the onerror handler hides the well, which drops the tile's top edge onto the
+   product name with the .ptag badge still pinned at top:0 over it. The handler
+   also marks the tile, and this gives the badge its own band. */
+.ptile.no-img{padding-top:38px}
 .ptile-img{display:grid;place-items:center;background:var(--coal);margin:0 -20px 18px;
            padding:20px;aspect-ratio:1/.86;overflow:hidden}
 .ptile-img img{width:auto;height:100%;max-width:100%;object-fit:contain}
@@ -1074,8 +1079,102 @@ footer{border-top:1px solid var(--steel-line);padding:clamp(56px,7vw,88px) 0 0}
 .fda{margin-top:clamp(26px,3vw,40px);padding-top:22px;border-top:1px solid var(--steel-line);
      font-size:.8rem;line-height:1.7;color:var(--gray);max-width:80ch}
 
+/* Filtering. .ptile sets display:flex, which is an author declaration and
+   beats the UA stylesheet's [hidden]{display:none}, so the attribute alone
+   hides nothing. display:none is also what takes a hidden tile out of the
+   tab order, and every tile is a link. */
+.ptile[hidden],.shop-grid[hidden],.shelf-group[hidden],.shelf-sect[hidden]{display:none}
+
+/* The section directly under the finder loses its top padding, because the
+   finder's own .sect block already supplies that gap. The shelf sections below
+   it keep the site's normal rhythm, or their top hairline reads as underlining
+   the section that just ended. */
+#shelf + .shelf-sect{padding-top:0}
+
+/* Subcategory label. Nothing in the sheet sat between h2 and .eyebrow as an
+   in-section subhead; this is the .visit-row hairline label reused. It wraps
+   with its grid inside .shelf-group so a heading cannot outlive its products. */
+.shelf-sub{display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 14px;
+           margin-top:clamp(30px,3.4vw,44px);padding-top:16px;
+           border-top:1px solid var(--steel-line)}
+.shelf-sub{color:var(--white);font-weight:900;font-size:.85rem;
+           letter-spacing:1.5px;text-transform:uppercase}
+.shelf-sub span{color:var(--gray);font-size:.85rem;font-weight:400;letter-spacing:0;text-transform:none}
+.shelf-sub+.shop-grid{margin-top:clamp(16px,1.8vw,22px)}
+
+/* The pointer under a grid. Muted body text, not a .lead. */
+.shelf-more{margin-top:clamp(20px,2.4vw,28px);font-size:.9rem;color:var(--gray)}
+.shelf-more a{color:var(--yellow)}
+
 @media (max-width:520px){.shop-grid{grid-template-columns:1fr 1fr}
                          .ptile-blurb{display:none}}
+
+
+/* ------------------------------------------------------------
+   38. THE FINDER — search box, category chips, empty state
+   Shared by /blog and /gear. Renamed out of section 25 rather
+   than duplicated, so tuning one toolbar cannot leave the other
+   behind. Three defects were fixed on the way across, all of
+   them live on the blog today:
+     - the input was .95rem, and html declares no font-size, so
+       it computed to 15.2px and mobile Safari zoomed the page on
+       focus. 1rem is the floor. Do NOT fix this with
+       maximum-scale on the viewport meta: it fails WCAG 1.4.4
+       and inject-pixel.js keys its insertion to that exact tag.
+     - buttons do not inherit body's line-height, so the chips
+       measured about 39px against the 44px target this sheet
+       sets for itself at .thumbbar.
+   .finder-chip.active is for the blog, whose chips are buttons
+   that filter. /gear's chips are anchors that scroll, and never
+   carry it.
+   ------------------------------------------------------------ */
+.finder{display:flex;flex-wrap:wrap;gap:18px;align-items:center;
+        justify-content:space-between;margin-bottom:clamp(28px,4vw,44px)}
+.finder-search{position:relative;flex:1;min-width:240px;max-width:420px}
+.finder-search input{
+  width:100%;background:var(--black);border:1px solid var(--steel-line);color:var(--white);
+  font-size:1rem;padding:14px 18px 14px 46px;transition:border-color .18s ease;
+}
+/* .55 computed to 4.09:1 on black, under SC 1.4.3's 4.5. .65 clears it. */
+.finder-search input::placeholder{color:rgba(199,199,199,.65)}
+.finder-search input:focus{border-color:var(--white)}
+.finder-search .search-icon{
+  position:absolute;left:16px;top:50%;transform:translateY(-50%);
+  width:18px;height:18px;color:var(--gray);pointer-events:none;
+}
+/* Do NOT build this row from a <nav> element: css/bia.css:164 styles bare
+   nav{position:fixed;inset-inline:0;top:0;z-index:1000}, so a <nav> anywhere
+   in a page leaves the flow and parks itself over the site header. Use a div
+   with role="group", the way blog/index.html already does. */
+/* The row WRAPS. A horizontal scroller was tried and reverted: at 390px the
+   blog's five chips scroll to 536px against a 362px box and the cut lands in
+   the gap after "Fitness", so Nutrition and Lifestyle vanish with nothing on
+   screen suggesting they exist. Wrapping costs one extra row on a phone and
+   hides nothing. If the category list ever outgrows two rows, come back with a
+   scroll container AND an edge affordance, never a bare one. */
+.finder-chips{display:flex;flex-wrap:wrap;gap:10px}
+.finder-chip{
+  background:transparent;border:1px solid var(--steel-line);color:var(--gray);
+  font-weight:700;font-size:11px;letter-spacing:1.5px;text-transform:uppercase;
+  padding:12px 18px;min-height:44px;white-space:nowrap;cursor:pointer;
+  display:inline-flex;align-items:center;justify-content:center;
+  transition:border-color .18s ease,color .18s ease,background .18s ease;
+}
+.finder-chip:hover{border-color:var(--white);color:var(--white)}
+.finder-chip.active{background:var(--yellow);border-color:var(--yellow);color:var(--black)}
+.finder-status{flex-basis:100%;font-size:11px;font-weight:700;letter-spacing:2.5px;
+               text-transform:uppercase;color:var(--gray)}
+.finder-status b{color:var(--white);font-weight:900}
+.finder-status button{background:none;border:0;color:var(--gray);font:inherit;
+                      cursor:pointer;padding:6px 4px 6px 12px;min-height:24px;
+                      text-decoration:underline;text-underline-offset:3px}
+.finder-status button:hover{color:var(--white)}
+.finder-empty{border:1px solid var(--steel-line);background:var(--coal);
+              padding:clamp(32px,5vw,56px);text-align:center;color:var(--gray)}
+.finder-empty b{display:block;color:var(--white);font-weight:900;font-size:1.05rem;
+                text-transform:uppercase;letter-spacing:-.01em;margin-bottom:10px}
+.finder-empty p{margin:0 auto;max-width:52ch}
+.finder-empty a{color:var(--yellow)}
 
 
 /* ------------------------------------------------------------

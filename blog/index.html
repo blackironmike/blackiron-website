@@ -141,18 +141,18 @@
     <!-- ============ POSTS: SEARCH + FILTER + GRID ============ -->
     <section class="sect no-top">
         <div class="wrap">
-            <div class="blog-toolbar">
-                <div class="blog-search-bar">
+            <div class="finder">
+                <div class="finder-search">
                     <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4.2-4.2"/></svg>
                     <label for="blogSearchInput" class="sr-only">Search articles</label>
                     <input type="text" id="blogSearchInput" placeholder="Search articles">
                 </div>
-                <div class="blog-filter-buttons" role="group" aria-label="Filter posts by category">
-                    <button class="blog-filter-btn active" data-category="all">All</button>
-                    <button class="blog-filter-btn" data-category="Training">Training</button>
-                    <button class="blog-filter-btn" data-category="Fitness">Fitness</button>
-                    <button class="blog-filter-btn" data-category="Nutrition">Nutrition</button>
-                    <button class="blog-filter-btn" data-category="Lifestyle">Lifestyle</button>
+                <div class="finder-chips" role="group" aria-label="Filter posts by category">
+                    <button class="finder-chip active" data-category="all">All</button>
+                    <button class="finder-chip" data-category="Training">Training</button>
+                    <button class="finder-chip" data-category="Fitness">Fitness</button>
+                    <button class="finder-chip" data-category="Nutrition">Nutrition</button>
+                    <button class="finder-chip" data-category="Lifestyle">Lifestyle</button>
                 </div>
             </div>
 
@@ -378,7 +378,7 @@
                 </article>
             </div>
 
-            <div class="blog-no-results" id="blogNoResults" style="display:none">
+            <div class="finder-empty" id="blogNoResults" style="display:none">
                 <h3>No articles found</h3>
                 <p>Try a different search term or category.</p>
             </div>
@@ -806,7 +806,7 @@
     <script>
     (function() {
         var searchInput = document.getElementById('blogSearchInput');
-        var filterBtns = document.querySelectorAll('.blog-filter-btn');
+        var filterBtns = document.querySelectorAll('.finder-chip');
         var cards = document.querySelectorAll('.blog-grid .blog-card');
         var noResults = document.getElementById('blogNoResults');
         var activeCategory = 'all';
