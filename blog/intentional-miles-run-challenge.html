@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <!-- CONTRACT: keep this exact viewport tag — inject-pixel.js insertion marker -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Intentional Miles | Black Iron Athletics Blog</title>
+    <meta name="description" content="A Frisco coach on the one rule in our September run challenge, why ambient steps don’t count, and the honest answer to the home treadmill question.">
+    <meta name="geo.region" content="US-TX">
+    <meta name="geo.placename" content="Frisco">
+    <meta name="geo.position" content="33.15035;-96.89026">
+    <link rel="canonical" href="https://www.blackironathletics.com/blog/intentional-miles-run-challenge">
+    <!-- Open Graph -->
+    <meta property="og:title" content="Intentional Miles: The One Rule That Makes a Step Count">
+    <meta property="og:description" content="A Frisco coach on the one rule in our September run challenge, why ambient steps don’t count, and the honest answer to the home treadmill question.">
+    <meta property="og:url" content="https://www.blackironathletics.com/blog/intentional-miles-run-challenge">
+    <meta property="og:image" content="https://www.blackironathletics.com/images/social/2026-09-15-intentional-miles-header.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Black Iron Athletics, Frisco TX. Headline: Only the miles you choose count.">
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="Black Iron Athletics">
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Intentional Miles: The One Rule That Makes a Step Count">
+    <meta name="twitter:description" content="A Frisco coach on the one rule in our September run challenge, why ambient steps don’t count, and the honest answer to the home treadmill question.">
+    <meta name="twitter:image" content="https://www.blackironathletics.com/images/social/2026-09-15-intentional-miles-header.png">
+    <link rel="icon" type="image/png" href="/images/anvil-favicon.png">
+    <link rel="apple-touch-icon" href="/images/anvil-favicon.png">
+    <meta name="theme-color" content="#000000">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&display=swap" rel="stylesheet"></noscript>
+    <link rel="stylesheet" href="/css/bia.css">
+    <script defer src="/_vercel/insights/script.js"></script>
+</head>
+<body>
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
+    <!-- ============ NAV (final IA — identical on every page) ============ -->
+    <nav id="nav">
+        <div class="nav-container">
+            <div class="logo">
+                <a href="/" aria-label="Black Iron Athletics home">
+                    <img src="/images/logos/logo.png" alt="Black Iron Athletics">
+                </a>
+            </div>
+            <ul class="nav-links">
+                <li class="has-submenu">
+                    <a href="/about">About Us</a>
+                    <ul class="submenu">
+                        <li><a href="/about">Our Mission</a></li>
+                        <li><a href="/about#team">Meet the Team</a></li>
+                        <li><a href="/media">Media</a></li>
+                    </ul>
+                </li>
+                <li class="has-submenu">
+                    <a href="/programs">Programs</a>
+                    <ul class="submenu">
+                        <li><a href="/programs#group-classes">Strength &amp; Conditioning</a></li>
+                        <li><a href="/programs#personal-training">Personal Training</a></li>
+                        <li><a href="/programs#nutrition-coaching">Nutrition Coaching</a></li>
+                        <li><a href="/programs#open-gym">Open Gym</a></li>
+                        <li><a href="/programs#recovery">Recovery Room</a></li>
+                    </ul>
+                </li>
+                <li><a href="/pricing">Pricing</a></li>
+                <li class="has-submenu">
+                    <a href="/getting-started">Getting Started</a>
+                    <ul class="submenu">
+                        <li><a href="/getting-started">How it works</a></li>
+                        <li><a href="/pricing">Membership &amp; Pricing</a></li>
+                        <li><a href="/faq">FAQs</a></li>
+                    </ul>
+                </li>
+                <li><a href="/schedule">Schedule</a></li>
+                <li><a href="/blog">Blog</a></li>
+                <li><a href="/contact">Contact</a></li>
+            </ul>
+            <a href="https://book.blackironathletics.com/book" class="cta-btn">Book a Free Consult</a>
+            <button class="hamburger" onclick="toggleSideMenu()" aria-label="Menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- ============ THUMB BAR (mobile) ============ -->
+    <div class="thumbbar">
+        <a class="tb-call" href="tel:+19727857036" aria-label="Call Black Iron Athletics"><svg width="19" height="19" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M6.5 2.5 8.2 6l-1.7 1.6a11 11 0 0 0 4.9 4.9L13 10.8l3.5 1.7v3.2c0 .6-.5 1-1.1 1A13.6 13.6 0 0 1 2.3 3.6c0-.6.4-1.1 1-1.1h3.2Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg></a>
+        <a class="tb-book" href="https://book.blackironathletics.com/book">Book a Free Consult</a>
+    </div>
+
+    <!-- ============ SIDE MENU (flat mirror of the nav IA) ============ -->
+    <div class="menu-backdrop" id="menuBackdrop"></div>
+    <div class="side-menu" id="sideMenu">
+        <div class="side-menu-header">
+            <img src="/images/logos/logo.png" alt="Black Iron Athletics">
+            <button class="side-menu-close" onclick="closeSideMenu()" aria-label="Close menu">&times;</button>
+        </div>
+        <div class="side-menu-links">
+            <a href="/getting-started">Getting Started</a>
+            <a href="/schedule">Schedule</a>
+            <a href="/pricing">Pricing</a>
+            <details class="m-acc"><summary>Programs</summary>
+                <a href="/programs" class="sub-link">All programs</a>
+                <a href="/programs#group-classes" class="sub-link">Strength &amp; Conditioning</a>
+                <a href="/programs#personal-training" class="sub-link">Personal Training</a>
+                <a href="/programs#nutrition-coaching" class="sub-link">Nutrition Coaching</a>
+                <a href="/programs#open-gym" class="sub-link">Open Gym</a>
+                <a href="/programs#recovery" class="sub-link">Recovery Room</a>
+            </details>
+            <details class="m-acc"><summary>About Us</summary>
+                <a href="/about" class="sub-link">Our Mission</a>
+                <a href="/about#team" class="sub-link">Meet the Team</a>
+                <a href="/media" class="sub-link">Media</a>
+            </details>
+            <a href="/faq">FAQs</a>
+            <a href="/blog">Blog</a>
+            <a href="/contact">Contact</a>
+        </div>
+        <div class="side-menu-footer">
+            <a href="https://book.blackironathletics.com/book" onclick="closeSideMenu();">Book a Free Consult</a>
+        </div>
+    </div>
+
+    <main id="main-content">
+
+    <!-- ============ ARTICLE HERO ============ -->
+    <section class="article-hero no-top">
+        <div class="article-hero-container">
+            <div class="breadcrumb"><a href="/">Home</a><span>/</span><a href="/blog">Blog</a><span>/</span><span>Intentional Miles</span></div>
+            <h1>Intentional Miles: The One Rule That Makes a Step Count</h1>
+            <div class="article-meta">
+                <span>September 15, 2026</span>
+                <span>5 min read</span>
+                <span>By Mike Manning</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============ ARTICLE ============ -->
+    <div class="article-content">
+        <div class="article-body">
+            <img src="/images/social/2026-09-15-intentional-miles-header.png" alt="Black Iron Athletics, Frisco TX. Headline: Only the miles you choose count." class="article-hero-image" loading="eager" width="1200" height="630">
+
+<p class="article-lead">We are running a challenge this month. Log your miles, walking, jogging or running, for all of September. One rule, and it is the rule that makes the whole thing work: the miles have to be intentional.</p>
+<p>That rule has produced more questions than anything else we have put on the board this year. So here is what it means, why we drew the line where we drew it, and what to do about the days when getting outside is not going to happen.</p>
+<h2>What Counts, and What Doesn&rsquo;t</h2>
+<p>Going for a walk counts. Getting on a treadmill counts. A slow jog around the neighborhood with the dog counts. A hard run counts.</p>
+<p>Walking from your desk to the printer does not. Laps around the kitchen while dinner cooks do not. The eleven thousand steps your watch says you took because you were on your feet at work all day do not.</p>
+<p>The test is simple. Did you go do this, or did it happen to you? If you set out to cover ground, log it. If you were living your life and the numbers piled up behind you, leave it alone.</p>
+<h2>Why We Drew the Line There</h2>
+<p>Because your daily steps are already yours. You get them whether you decide anything or not. A challenge that counted them would mostly be a contest about whose job involves more standing, and that tells us nothing about who is building something.</p>
+<p>What we are after this month is the decision. The moment you had a perfectly good out and you laced up anyway. That is the muscle worth training, and it is the one that carries into everything else we do here.</p>
+<p>There is a practical reason too. Intentional mileage is a dose you can control. You can add to it on purpose, back off it on purpose, and watch what it does to how you sleep and how you feel on the floor two days later. Ambient steps are noise. You cannot program noise.</p>
+<h2>You Do Not Have to Be Fast</h2>
+<p>Worth saying plainly, because several people have asked. This is not a running challenge that merely tolerates walkers. Walking is a real answer. Most of my own mileage this year has been slow incline walking, and my body has thanked me for it every week. If you are new, or coming back from something, or you simply do not enjoy running, walk. The board does not care how quickly you covered the ground.</p>
+<h2>When You Cannot Get Outside</h2>
+<p>Here is where it gets real. Texas in September is still hot at five in the afternoon. It is dark before some of you finish work. A few of you have kids who cannot be left alone while you disappear for forty minutes. Those are not excuses. They are logistics, and logistics beat motivation every time.</p>
+<p>So shorten the distance between deciding and moving. If a mile requires a change of clothes, a drive and a babysitter, you will skip it on a Tuesday. If it requires standing up, you will do it.</p>
+<p>That is the whole argument for having something at home. Not because a machine is better than a sidewalk, because it is not. Because a machine ten steps away gets used on the day a sidewalk twenty minutes away does not.</p>
+<h2>The Honest Gear Answer</h2>
+<p>I have been asked the same question a dozen times this month: what treadmill or walking pad should I buy for the house?</p>
+<p>I own a MERACH T12 Pro. I paid for it with my own money, it lives in my garage now after a stint under my standing desk, and I have put well over a hundred miles on it. One real problem in all that time. The belt stretched in the Texas garage heat and started skipping, which two tension screws and about ninety seconds fixed. That is the entire complaint list. The <a href="https://everydadcarry.com/gear/merach-t12-pro-treadmill" target="_blank" rel="noopener">full review lives on Every Dad Carry</a>, my gear review site, including my reasoning for deliberately buying the cheaper machine.</p>
+<p>Honest disclosure, and it goes two ways. Every Dad Carry is my site, some of the links on it are affiliate links, and I may earn a commission if you buy through one. Separately, MERACH is running a sale from September 15 through 30. The T12 I actually own is not in that sale. The walking pad that is in the sale is one I have never stood on, so I am not going to tell you how it feels underfoot.</p>
+<p>Which makes my useful answer narrower than most people want it to be. I have a hundred-plus miles on this company&rsquo;s build quality, at a price that made the bet easy, and I would buy from them again without thinking hard about it. Past that, go read reviews written by people who own the exact thing you are considering.</p>
+<h2>October Is the Real Test</h2>
+<p>The challenge ends September 30, and I want to be straight about what that date does and does not mean.</p>
+<p>It does not mean the mileage stops. September was a prompt, not a program. The month exists to get something off the ground, and what you got off the ground only matters if it is still there in the dark half of the year, when it is cold at six and nobody is posting about their miles.</p>
+<p>That is the line between people who train and people who did a challenge once. We talk about longevity here more than we talk about anything else, and not because it sounds noble. Because the point is to still be doing this in twenty years, with knees that work and a back that cooperates when your kids want to be picked up.</p>
+<h2>Log the Mile</h2>
+<p>We help everyday people become everyday athletes. An everyday athlete is not somebody who posted a fast time in September. It is somebody who chose the mile on a Tuesday when nothing about it was convenient, and then chose it again on Wednesday.</p>
+<p>There is still time on the board. Go get one.</p>
+        </div>
+
+        <!-- Author box -->
+        <div class="author-box">
+            <img src="/images/team/owner-headcoach-mike.webp" alt="Mike Manning, owner and head coach of Black Iron Athletics" class="author-box-image" loading="lazy">
+            <div>
+                <span class="author-box-label">Written by</span>
+                <a href="/mike-manning" class="author-box-name">Mike Manning</a>
+                <p class="author-box-bio">U.S. Marine Corps veteran, owner and head coach of Black Iron Athletics in Frisco, TX. Over 20 years of coaching experience with certifications in USA Weightlifting, personal training, and more.</p>
+            </div>
+        </div>
+
+        <!-- CTA boxes -->
+        <div class="article-cta-box">
+            <h3>Your Strongest Decade Can Still Be Ahead of You</h3>
+            <p>Book a free consultation and we’ll build an honest plan for it — your goals, your history, your schedule, zero pressure. Explore our <a href="/programs">programs</a> or see how easy it is to <a href="/getting-started">get started</a>.</p>
+            <a href="https://book.blackironathletics.com/book" class="btn btn-y">Book a Free Consult</a>
+        </div>
+
+        <div class="article-cta-box">
+            <h3>Get Tips Like This in Your Inbox</h3>
+            <p>Subscribe for weekly training, nutrition, and supplement tips from the coaches at Black Iron Athletics.</p>
+            <a href="#" onclick="openSubscribeModal(); return false;" class="btn btn-ghost">Subscribe</a>
+        </div>
+
+        <a href="/blog" class="back-to-blog"><svg width="16" height="12" viewBox="0 0 16 12" fill="none" aria-hidden="true"><path d="M6 1L1 6l5 5M1 6h14" stroke="currentColor" stroke-width="1.5"/></svg> Back to the blog</a>
+    </div>
+
+    </main>
+
+    <!-- ============ FOOTER ============ -->
+    <footer>
+        <div class="wrap">
+            <div class="foot-top">
+                <div>
+                    <div class="foot-brand">
+                        <img src="/images/logos/Anvil-WHITE.png" alt="Black Iron Athletics anvil mark" loading="lazy" width="88" height="58">
+                        <div>
+                            <b>Black Iron<br>Athletics</b>
+                        </div>
+                    </div>
+                    <p class="foot-mission">We help everyday people become everyday athletes.</p>
+                    <p class="foot-note">Veteran-owned &middot; Est. 2013 &middot; Serving Frisco, Prosper, The Colony, Little Elm, McKinney, Plano, Celina &amp; North Dallas.</p>
+                </div>
+                <ul class="foot-col">
+                    <li><b>Quick links</b></li>
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/pricing">Pricing</a></li>
+                    <li><a href="/schedule">Class Schedule</a></li>
+                    <li><a href="/faq">FAQ</a></li>
+                    <li><a href="/supplements">Supplements</a></li>
+                    <li><a href="#" onclick="openSubscribeModal(); return false;">Subscribe</a></li>
+                    <li><a href="#" onclick="openCancelModal(); return false;">Cancel Membership</a></li>
+                    <li><a href="/privacy-policy">Privacy Policy</a></li>
+                    <li><a href="/terms">Terms &amp; Conditions</a></li>
+                    <li><a href="/privacy-policy#sms-terms">SMS Terms</a></li>
+                </ul>
+                <ul class="foot-col">
+                    <li><b>Find us</b></li>
+                    <li>279 Main St, Suite 122<br>Frisco, TX 75036</li>
+                    <li>Suite 110 &mdash; our new home next door &mdash; opening October 2026.</li>
+                    <li><a href="tel:+19727857036">(972) 785-7036</a></li>
+                </ul>
+                <ul class="foot-col">
+                    <li><b>Hours</b></li>
+                    <li>Open gym 7 days a week.</li>
+                    <li><a href="/schedule">See the class schedule</a></li>
+                </ul>
+            </div>
+            <div class="foot-bottom">
+                <span>&copy; 2026 Black Iron Athletics. Veteran-owned &middot; Est. 2013.</span>
+                <span class="foot-social">
+                    <a href="https://www.instagram.com/blackiron_athletics/" target="_blank" rel="noopener" aria-label="Instagram">
+                        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="4"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="1.1" fill="currentColor" stroke="none"/></svg>
+                    </a>
+                    <a href="https://www.youtube.com/channel/UCF1XjUXEs81OWY70chem6vA" target="_blank" rel="noopener" aria-label="YouTube">
+                        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="2.5" y="5.5" width="19" height="13" rx="3"/><path d="M10 9.5v5l4.5-2.5z" fill="currentColor" stroke="none"/></svg>
+                    </a>
+                    <a href="https://www.facebook.com/BlackIronAthletics/" target="_blank" rel="noopener" aria-label="Facebook">
+                        <svg class="icon-fill" viewBox="0 0 24 24" aria-hidden="true"><path d="M13.5 21v-7h2.4l.4-3h-2.8V9.1c0-.9.3-1.5 1.6-1.5H16.6V4.9c-.3 0-1.2-.1-2.2-.1-2.2 0-3.7 1.3-3.7 3.8V11H8.3v3h2.4v7h2.8z"/></svg>
+                    </a>
+                </span>
+            </div>
+        </div>
+    </footer>
+
+    <!-- CONTRACT: sticky mobile CTA on all marketing pages (shows at 640px down) -->
+
+    <!-- ============ SCHEMA: BreadcrumbList ============ -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://www.blackironathletics.com/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Blog",
+            "item": "https://www.blackironathletics.com/blog/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "Intentional Miles: The One Rule That Makes a Step Count",
+            "item": "https://www.blackironathletics.com/blog/intentional-miles-run-challenge"
+          }
+      ]
+    }
+    </script>
+
+    <!-- ============ SCHEMA: BlogPosting ============ -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      "headline": "Intentional Miles: The One Rule That Makes a Step Count",
+      "image": "https://www.blackironathletics.com/images/social/2026-09-15-intentional-miles-header.png",
+      "description": "A Frisco coach on the one rule in our September run challenge, why ambient steps don’t count, and the honest answer to the home treadmill question.",
+      "url": "https://www.blackironathletics.com/blog/intentional-miles-run-challenge",
+      "datePublished": "2026-09-15",
+      "dateModified": "2026-09-15",
+      "author": {
+        "@type": "Person",
+        "name": "Mike Manning",
+        "url": "https://www.blackironathletics.com/mike-manning"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "Black Iron Athletics",
+        "url": "https://www.blackironathletics.com",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://www.blackironathletics.com/images/logos/logo.png"
+        }
+      },
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://www.blackironathletics.com/blog/intentional-miles-run-challenge"
+      }
+    }
+    </script>
+
+    <!-- ============ GHL MODALS (iframe blocks VERBATIM — lazy data-src, ids unchanged) ============ -->
+    <div class="modal-overlay" id="leadModal">
+        <div class="modal-container">
+            <button class="modal-close" onclick="closeLeadModal()">&times;</button>
+            <iframe
+                data-src="https://api.leadconnectorhq.com/widget/form/vw0hMdDkTCL6K5N3i7vF"
+                style="width:100%;height:100%;border:none;border-radius:4px"
+                id="inline-vw0hMdDkTCL6K5N3i7vF"
+                data-layout="{'id':'INLINE'}"
+                data-trigger-type="alwaysShow"
+                data-trigger-value=""
+                data-activation-type="alwaysActivated"
+                data-activation-value=""
+                data-deactivation-type="neverDeactivate"
+                data-deactivation-value=""
+                data-form-name="Form 2"
+                data-height="565"
+                data-layout-iframe-id="inline-vw0hMdDkTCL6K5N3i7vF"
+                data-form-id="vw0hMdDkTCL6K5N3i7vF"
+                title="Form 2"
+            ></iframe>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="cancelModal">
+        <div class="modal-container">
+            <button class="modal-close" onclick="closeCancelModal()">&times;</button>
+            <iframe
+                data-src="https://api.leadconnectorhq.com/widget/form/d4jtjY9fM2Hv9zVTzLwj"
+                style="width:100%;height:100%;border:none;border-radius:4px"
+                id="inline-d4jtjY9fM2Hv9zVTzLwj"
+                data-layout="{'id':'INLINE'}"
+                data-trigger-type="alwaysShow"
+                data-trigger-value=""
+                data-activation-type="alwaysActivated"
+                data-activation-value=""
+                data-deactivation-type="neverDeactivate"
+                data-deactivation-value=""
+                data-form-name="Membership Cancellation Form"
+                data-height="787"
+                data-layout-iframe-id="inline-d4jtjY9fM2Hv9zVTzLwj"
+                data-form-id="d4jtjY9fM2Hv9zVTzLwj"
+                title="Membership Cancellation Form"
+            ></iframe>
+        </div>
+    </div>
+    <div class="modal-overlay" id="subscribeModal">
+        <div class="modal-container">
+            <button class="modal-close" onclick="closeSubscribeModal()">&times;</button>
+            <iframe
+                data-src="https://api.leadconnectorhq.com/widget/form/GnNJNaEX8InuIeGxWjaI"
+                style="width:100%;height:100%;border:none;border-radius:4px"
+                id="inline-GnNJNaEX8InuIeGxWjaI"
+                data-layout="{'id':'INLINE'}"
+                data-trigger-type="alwaysShow"
+                data-trigger-value=""
+                data-activation-type="alwaysActivated"
+                data-activation-value=""
+                data-deactivation-type="neverDeactivate"
+                data-deactivation-value=""
+                data-form-name="Subscribe"
+                data-height="430"
+                data-layout-iframe-id="inline-GnNJNaEX8InuIeGxWjaI"
+                data-form-id="GnNJNaEX8InuIeGxWjaI"
+                title="Subscribe"
+            ></iframe>
+        </div>
+    </div>
+
+    <!-- ============ PAGE JS: modals + side menu (function names byte-identical to the live site) ============ -->
+    <script>
+    function openLeadModal() {
+        var modal = document.getElementById('leadModal');
+        var iframe = modal.querySelector('iframe');
+        if (iframe && !iframe.src && iframe.dataset.src) { iframe.src = iframe.dataset.src; }
+        modal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    }
+    function closeLeadModal() {
+        document.getElementById('leadModal').classList.remove('active');
+        document.body.style.overflow = '';
+    }
+
+    /* Every "Book a Free Consult" link opens the lead form in place instead of
+       leaving for the booking subdomain. The href stays exactly as it was, so
+       cmd-click, middle-click and a JS failure all still reach the calendar,
+       and pages without the modal (404, links) keep their plain link. */
+    document.addEventListener('click', function (e) {
+        if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) { return; }
+        var t = e.target;
+        var a = t && t.closest ? t.closest('a[href*="book.blackironathletics.com"]') : null;
+        if (!a || !document.getElementById('leadModal')) { return; }
+        e.preventDefault();
+        openLeadModal();
+    });
+    document.getElementById('leadModal').addEventListener('click', function(e) {
+        if (e.target === this) { closeLeadModal(); }
+    });
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') { closeLeadModal(); closeCancelModal(); closeSubscribeModal(); }
+    });
+
+    function openCancelModal() {
+        var modal = document.getElementById('cancelModal');
+        var iframe = modal.querySelector('iframe');
+        if (iframe && !iframe.src && iframe.dataset.src) { iframe.src = iframe.dataset.src; }
+        modal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    }
+    function closeCancelModal() {
+        document.getElementById('cancelModal').classList.remove('active');
+        document.body.style.overflow = '';
+    }
+    document.getElementById('cancelModal').addEventListener('click', function(e) {
+        if (e.target === this) { closeCancelModal(); }
+    });
+    function openSubscribeModal() {
+        var modal = document.getElementById('subscribeModal');
+        var iframe = modal.querySelector('iframe');
+        if (iframe && !iframe.src && iframe.dataset.src) { iframe.src = iframe.dataset.src; }
+        modal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    }
+    function closeSubscribeModal() {
+        document.getElementById('subscribeModal').classList.remove('active');
+        document.body.style.overflow = '';
+    }
+    document.getElementById('subscribeModal').addEventListener('click', function(e) {
+        if (e.target === this) { closeSubscribeModal(); }
+    });
+
+    // Side Menu
+    function toggleSideMenu() {
+        var menu = document.getElementById('sideMenu');
+        var backdrop = document.getElementById('menuBackdrop');
+        var hamburger = document.querySelector('.hamburger');
+        var isOpen = menu.classList.contains('open');
+        if (isOpen) { closeSideMenu(); }
+        else {
+            menu.classList.add('open');
+            backdrop.classList.add('open');
+            hamburger.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+    }
+    function closeSideMenu() {
+        var menu = document.getElementById('sideMenu');
+        var backdrop = document.getElementById('menuBackdrop');
+        var hamburger = document.querySelector('.hamburger');
+        menu.classList.remove('open');
+        backdrop.classList.remove('open');
+        hamburger.classList.remove('active');
+        document.body.style.overflow = '';
+    }
+    document.getElementById('menuBackdrop').addEventListener('click', closeSideMenu);
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') closeSideMenu();
+    });
+    </script>
+
+    <!-- ============ PAGE JS: nav scroll state + reveal observer ============ -->
+    <script>
+    (function(){
+        var nav = document.getElementById('nav');
+        function onScroll(){ if (nav) nav.classList.toggle('scrolled', window.scrollY > 24); }
+        window.addEventListener('scroll', onScroll, {passive:true});
+        onScroll();
+
+        var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        var items = document.querySelectorAll('.rv');
+        if (reduced || !('IntersectionObserver' in window)) {
+            items.forEach(function(el){ el.classList.add('on'); });
+            return;
+        }
+        var io = new IntersectionObserver(function(entries){
+            entries.forEach(function(e){
+                if (e.isIntersecting) { e.target.classList.add('on'); io.unobserve(e.target); }
+            });
+        }, {threshold:0.12, rootMargin:'0px 0px -40px 0px'});
+        items.forEach(function(el){ io.observe(el); });
+    })();
+    </script>
+
+<!-- ============ A11Y TAIL IIFE — copied VERBATIM from index.html. Do not edit. ============ -->
+<script>
+// ===== ACCESSIBILITY: KEYBOARD NAV & FOCUS TRAP =====
+(function() {
+    // --- Keyboard Navigation for Submenus ---
+    document.querySelectorAll('.has-submenu').forEach(function(item) {
+        var link = item.querySelector('a');
+        var sub = item.querySelector('.submenu');
+        if (!link || !sub) return;
+        link.setAttribute('aria-haspopup', 'true');
+        link.setAttribute('aria-expanded', 'false');
+        function openSub() { item.classList.add('submenu-open'); link.setAttribute('aria-expanded', 'true'); }
+        function closeSub() { item.classList.remove('submenu-open'); link.setAttribute('aria-expanded', 'false'); }
+        link.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                if (link.getAttribute('aria-expanded') === 'true') { closeSub(); }
+                else { openSub(); var f = sub.querySelector('a'); if (f) f.focus(); }
+            }
+            if (e.key === 'ArrowDown') { e.preventDefault(); openSub(); var f = sub.querySelector('a'); if (f) f.focus(); }
+        });
+        sub.addEventListener('keydown', function(e) {
+            var links = sub.querySelectorAll('a');
+            var idx = Array.prototype.indexOf.call(links, document.activeElement);
+            if (e.key === 'Escape') { closeSub(); link.focus(); }
+            if (e.key === 'ArrowDown' && idx < links.length - 1) { e.preventDefault(); links[idx + 1].focus(); }
+            if (e.key === 'ArrowUp') { e.preventDefault(); if (idx > 0) links[idx - 1].focus(); else { closeSub(); link.focus(); } }
+        });
+        item.addEventListener('focusout', function() {
+            setTimeout(function() { if (!item.contains(document.activeElement)) closeSub(); }, 0);
+        });
+    });
+
+    // --- Hamburger aria-expanded ---
+    var hamburger = document.querySelector('.hamburger');
+    if (hamburger) {
+        hamburger.setAttribute('aria-expanded', 'false');
+        var sm = document.getElementById('sideMenu');
+        if (sm) new MutationObserver(function() {
+            hamburger.setAttribute('aria-expanded', sm.classList.contains('open') ? 'true' : 'false');
+        }).observe(sm, { attributes: true, attributeFilter: ['class'] });
+    }
+
+    // --- Modal Focus Trapping ---
+    var prevFocus = null;
+    function trapFocus(modal) {
+        prevFocus = document.activeElement;
+        var els = modal.querySelectorAll('button, a[href], iframe, input, select, textarea, [tabindex]:not([tabindex="-1"])');
+        if (!els.length) return;
+        var first = els[0], last = els[els.length - 1];
+        modal._focusTrap = function(e) {
+            if (e.key !== 'Tab') return;
+            if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+            else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+        };
+        modal.addEventListener('keydown', modal._focusTrap);
+        first.focus();
+    }
+    function releaseFocus(modal) {
+        if (modal._focusTrap) { modal.removeEventListener('keydown', modal._focusTrap); delete modal._focusTrap; }
+        if (prevFocus) { prevFocus.focus(); prevFocus = null; }
+    }
+    document.querySelectorAll('.modal-overlay').forEach(function(modal) {
+        modal.setAttribute('role', 'dialog');
+        modal.setAttribute('aria-modal', 'true');
+        new MutationObserver(function() {
+            if (modal.classList.contains('active')) trapFocus(modal);
+            else releaseFocus(modal);
+        }).observe(modal, { attributes: true, attributeFilter: ['class'] });
+    });
+})();
+</script>
+
+<script src="https://link.msgsndr.com/js/form_embed.js" type="text/javascript" defer></script>
+<script src="https://widgets.leadconnectorhq.com/loader.js" data-resources-url="https://widgets.leadconnectorhq.com/chat-widget/loader.js" data-widget-id="6995d6d76e6009387f78d31e" defer></script>
+    <!-- Thumb bar: reveal once the hero's own consult button has scrolled by -->
+    <script>
+    (function() {
+      var bar = document.querySelector('.thumbbar');
+      if (!bar) return;
+      bar.classList.add('tb-auto');
+      var shown = false, ticking = false;
+      function check() {
+        ticking = false;
+        var past = window.scrollY > window.innerHeight * 0.6;
+        if (past === shown) return;
+        shown = past;
+        bar.classList.toggle('tb-show', past);
+      }
+      function onScroll() {
+        if (ticking) return;
+        ticking = true;
+        window.requestAnimationFrame(check);
+      }
+      window.addEventListener('scroll', onScroll, { passive: true });
+      window.addEventListener('resize', onScroll, { passive: true });
+      check();
+    })();
+    </script>
+</body>
+</html>
