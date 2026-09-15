@@ -150,7 +150,7 @@ Full range: barbells, dumbbells, kettlebells, squat racks, rigs, rowers, bikes, 
 
 ## Do you have a sauna or a cold plunge?
 
-Not yet, but they are coming. The recovery room opens with our new space at 279 Main St, Suite 110 later this year. It will have two cold plunges and one sauna that seats five, with infrared and red light therapy built in. It is still a traditional heat sauna, so it does get hot.
+Not yet, but they are coming. The recovery room opens with our new space at 279 Main St, Suite 110 in November. It will have two cold plunges and one sauna that seats five, with infrared and red light therapy built in. It is still a traditional heat sauna, so it does get hot.
 
 ## How much will the recovery room cost?
 
@@ -342,7 +342,7 @@ Owner Mike Manning is a medically retired Marine Corps combat veteran. He served
 
 ## Are you moving to a new location?
 
-Yes — right next door. We train at 279 Main St, Suite 122 today, and our new, bigger space at Suite 110 opens later this year. It includes a recovery room with two cold plunges and a five-person sauna that runs infrared and red light on top of traditional heat. Same street, same parking, same good people.
+Yes — right next door. We train at 279 Main St, Suite 122 today, and our new, bigger space at Suite 110 opens in November. It includes a recovery room with two cold plunges and a five-person sauna that runs infrared and red light on top of traditional heat. Same street, same parking, same good people.
 
 ## How much do gyms in Frisco cost?
 

@@ -1066,11 +1066,46 @@ footer{border-top:1px solid var(--steel-line);padding:clamp(56px,7vw,88px) 0 0}
 .ptile-name{display:block;color:var(--white);font-weight:900;font-size:1rem;
             line-height:1.25;letter-spacing:-.01em;margin-bottom:8px}
 .ptile-blurb{display:block;flex:1;color:var(--gray);font-size:.84rem;line-height:1.55}
+/* Job label under the name. Used where a tile has no price to show, so the
+   descriptor does not get jammed into .ptile-foot b, which is sized for "$44"
+   and overflows a 390px tile the moment it holds a phrase. */
+.ptile-tag{display:block;margin:-2px 0 10px;color:var(--yellow);font-size:.66rem;
+           font-weight:900;letter-spacing:.14em;text-transform:uppercase}
+.ptile.no-price .ptile-foot{justify-content:flex-end}
 .ptile-foot{display:flex;align-items:baseline;justify-content:space-between;gap:12px;
             margin-top:16px;padding-top:14px;border-top:1px solid var(--steel-line)}
 .ptile-foot b{color:var(--white);font-weight:900;font-size:1.15rem;letter-spacing:-.02em}
 .ptile-foot em{font-style:normal;color:var(--gray);font-weight:900;font-size:.72rem;
                letter-spacing:.14em;text-transform:uppercase;transition:color .18s ease}
+
+/* Full-catalog index. Used by the 1st Phorm section on /gear, where the
+   partnership gives us eighty-one products but only a handful are worth a
+   tile. The tiles above a .catalog are the recommendation; this is the index
+   for somebody who already knows the product name they came for, collapsed so
+   a link list never outweighs the coaching. Own rules rather than reusing
+   .faq details, which carries question-shaped type this list does not want. */
+.catalog{margin-top:clamp(26px,3vw,36px);border-top:1px solid var(--steel-line)}
+.catalog summary{display:flex;align-items:center;justify-content:space-between;gap:16px;
+                 padding:20px 0;cursor:pointer;list-style:none;color:var(--white);
+                 font-weight:900;font-size:1rem;letter-spacing:-.01em}
+.catalog summary::-webkit-details-marker{display:none}
+.catalog summary::after{content:"+";font-weight:400;font-size:1.5rem;line-height:1;
+                        color:var(--gray);transition:transform .2s ease;flex:none}
+.catalog[open] summary::after{transform:rotate(45deg)}
+.catalog summary:hover{color:var(--yellow)}
+.catalog summary:focus-visible{outline:2px solid var(--yellow);outline-offset:4px}
+.catalog summary span{color:var(--gray);font-weight:400;font-size:.84rem;letter-spacing:0}
+.catalog-body{padding-bottom:28px}
+.catalog-group{margin-top:26px}
+.catalog-group:first-child{margin-top:6px}
+.catalog-group h4{margin:0 0 12px;color:var(--yellow);font-size:.72rem;font-weight:900;
+                  letter-spacing:.16em;text-transform:uppercase}
+.catalog-list{margin:0;padding:0;list-style:none;columns:2;column-gap:28px}
+.catalog-list li{break-inside:avoid;margin:0 0 9px}
+.catalog-list a{color:var(--gray);font-size:.88rem;line-height:1.4;text-decoration:none;
+                border-bottom:1px solid transparent;transition:color .15s ease,border-color .15s ease}
+.catalog-list a:hover,.catalog-list a:focus-visible{color:var(--white);border-bottom-color:var(--yellow)}
+@media(max-width:640px){.catalog-list{columns:1}}
 
 /* Commission disclosure. Sits ABOVE the products it covers, never below:
    the FTC standard is that the disclosure and the endorsement be visible
