@@ -23,10 +23,10 @@
 window.TV_CONFIG = {
   // Bump this whenever you edit. It shows in the bottom-left corner of every
   // TV, so you can tell at a glance if a screen is stuck on an old version.
-  version: "2026-10-04.2",
+  version: "2026-10-04.3",
 
   timezone: "America/Chicago",
-  defaultSeconds: 12,
+  defaultSeconds: 10,
 
   /* ----------------------------------------------------------------------
      THE CYCLE
@@ -65,12 +65,12 @@ window.TV_CONFIG = {
      ---------------------------------------------------------------------- */
   deck: [
     {
-      id: "title", type: "title", seconds: 12, cycle: true, skull: "off",
+      id: "title", type: "title", seconds: 8, cycle: true, skull: "off",
       photo: { src: "/images/tv/photo-title.jpg", position: "62% 30%" }
     },
 
     {
-      id: "633-run", type: "event", seconds: 16, until: "2026-10-24",
+      id: "633-run", type: "event", seconds: 10, until: "2026-10-24",
       eyebrow: "Join the team",
       title: "633 Run",
       starts: { date: "2026-10-24", time: "08:00" },
@@ -91,7 +91,7 @@ window.TV_CONFIG = {
     },
 
     {
-      id: "timeline", type: "timeline", seconds: 16, cycle: true,
+      id: "timeline", type: "timeline", seconds: 10, cycle: true,
       eyebrow: "The timeline",
       headline: "9 Weeks",
       phases: "Foundation • Test • Build • Deload • Retest",
@@ -100,7 +100,7 @@ window.TV_CONFIG = {
     },
 
     {
-      id: "mission", type: "statement", seconds: 12,
+      id: "mission", type: "statement", seconds: 8,
       lines: ["We help *everyday*", "*people* become *everyday*", "*athletes.*"],
       sub: "Forge the body. Guard the mind.",
       photo: { src: "/images/tv/photo-mission.jpg", position: "50% 35%" },
@@ -108,7 +108,7 @@ window.TV_CONFIG = {
     },
 
     {
-      id: "focus", type: "columns", seconds: 16, cycle: true,
+      id: "focus", type: "columns", seconds: 10, cycle: true,
       title: "The Focus",
       columns: [
         { heading: "The Lifts",  items: ["Snatch / SDLHP", "Sumo Deadlift", "Back Squat"],
@@ -123,7 +123,7 @@ window.TV_CONFIG = {
     },
 
     {
-      id: "reaper", type: "benchmark", seconds: 20, cycle: true,
+      id: "reaper", type: "benchmark", seconds: 12, cycle: true,
       name: "The Reaper",
       format: ["For time", "15 min cap"],
       day: "Monday",
@@ -133,7 +133,7 @@ window.TV_CONFIG = {
     },
 
     {
-      id: "eccentric", type: "explainer", seconds: 20, cycle: true,
+      id: "eccentric", type: "explainer", seconds: 12, cycle: true,
       eyebrow: "Why we train it",
       title: ["Eccentric", "*Strength*"],
       lead: "The lowering half of the rep. The part everybody rushes.",
@@ -153,7 +153,7 @@ window.TV_CONFIG = {
     },
 
     {
-      id: "second-wind", type: "benchmark", seconds: 20, cycle: true,
+      id: "second-wind", type: "benchmark", seconds: 12, cycle: true,
       name: "Second Wind",
       format: ["1 mile for time"],
       day: "Tuesday",
@@ -163,7 +163,7 @@ window.TV_CONFIG = {
     },
 
     {
-      id: "snatch", type: "explainer", seconds: 20, cycle: true,
+      id: "snatch", type: "explainer", seconds: 12, cycle: true,
       eyebrow: "Mondays", eyebrowDay: "Monday",
       title: ["Do not be afraid", "*of the snatch*"],
       lead: "Monday is a skill day. There is an option for every person in this room.",
@@ -179,7 +179,7 @@ window.TV_CONFIG = {
     },
 
     {
-      id: "all-grit", type: "benchmark", seconds: 20, cycle: true,
+      id: "all-grit", type: "benchmark", seconds: 12, cycle: true,
       name: "All Grit, No Quit",
       format: ["3 rounds for reps"],
       day: "Friday",
@@ -191,7 +191,7 @@ window.TV_CONFIG = {
     },
 
     {
-      id: "halloween", type: "spotlight", seconds: 14, until: "2026-10-31",
+      id: "halloween", type: "spotlight", seconds: 8, until: "2026-10-31",
       chip: "Halloween Partner WOD",
       title: ["Grab a partner.", "*Bring a costume.*"],
       // No start time on the slide, so this counts down by day. Add
@@ -210,7 +210,7 @@ window.TV_CONFIG = {
     },
 
     {
-      id: "fuelpath", type: "fuelpath", seconds: 16,
+      id: "fuelpath", type: "fuelpath", seconds: 10,
       title: ["Nutrition,", "*coached.*"],
       points: ["Personal macro targets for every phase",
                "Log food • scan barcodes • build streaks",
@@ -221,7 +221,7 @@ window.TV_CONFIG = {
     },
 
     {
-      id: "programs", type: "programs", seconds: 16,
+      id: "programs", type: "programs", seconds: 10,
       chips: ["Veteran-owned", "Est. 2013", { count: 3000, suffix: "+", text: "lives changed" }],
       title: ["Black *Iron*", "Athletics"],
       mission: "We help everyday people become everyday athletes.",
@@ -240,7 +240,7 @@ window.TV_CONFIG = {
     },
 
     {
-      id: "review", type: "qr", seconds: 14,
+      id: "review", type: "qr", seconds: 8,
       title: ["Love training", "*here?*"],
       body: "Tell Google. It takes about a minute, and it helps the next person in Frisco find their gym.",
       stars: 5,
@@ -253,7 +253,7 @@ window.TV_CONFIG = {
     },
 
     {
-      id: "links", type: "qr", seconds: 14,
+      id: "links", type: "qr", seconds: 8,
       title: ["One scan.", "Everything *you*", "*need.*"],
       list: ["Book a free consultation", "Sign the waiver", "Buy a day pass",
              "Leave us a Google review", "Class schedule and more"],
@@ -266,7 +266,7 @@ window.TV_CONFIG = {
     /* DRAFT: not on the TVs until you remove `status: "draft"`.
        Shown on /tv/preview so you can see it first. */
     {
-      id: "new-gym", type: "spotlight", seconds: 14, status: "draft", cycleLabel: false,
+      id: "new-gym", type: "spotlight", seconds: 8, status: "draft", cycleLabel: false,
       chip: "Coming in November",
       title: ["The new Black Iron.", "*Right next door.*"],
       dateLine: "279 Main St • Suite 110 • Frisco",

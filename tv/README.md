@@ -56,7 +56,7 @@ Panels marked `cycle: true` only show while the cycle is running. Between cycles
 Add an object to `deck`. It plays in the order it appears.
 
 ```js
-{ id: "open-house", type: "spotlight", seconds: 14, until: "2026-12-06",
+{ id: "open-house", type: "spotlight", seconds: 8, until: "2026-12-06",
   chip: "Open house",
   title: ["Bring a friend.", "*Train free.*"],
   dateLine: "Saturday • December 6",
@@ -71,7 +71,7 @@ Fields every panel understands:
 |---|---|
 | `id` | Short unique name. Used in `/tv?panel=id` and on the preview page. |
 | `type` | Which layout (list below). |
-| `seconds` | How long it stays up. Defaults to `defaultSeconds` (12). |
+| `seconds` | How long it stays up. Defaults to `defaultSeconds` (10). Keep it at 8 or more; a panel takes about 3 seconds to build in. |
 | `from` | First day it shows, `"YYYY-MM-DD"`. |
 | `until` | Last day it shows. It is gone the next morning. |
 | `cycle` | `true` = only while the cycle is running. |
