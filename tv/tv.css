@@ -329,6 +329,26 @@ img{display:block}
 .bm-count .d.dim{color:#9A9A9A;margin-top:10px}
 
 /* ==========================================================================
+   OFFER: two services side by side, one call to action
+   ========================================================================== */
+.of{position:absolute;left:80px;top:90px;width:1246px;z-index:2}
+.of .disp{line-height:1.02;margin-top:34px}
+.of .rule{margin:28px 0 0 4px}
+.of .svcs{display:flex;margin-top:46px}
+.of .svc{flex:1 1 0;min-width:0}
+.of .svc + .svc{margin-left:46px}
+.of .svc h4{margin:0 0 16px;font:900 38px/1.05 Montserrat,sans-serif;color:var(--white);text-transform:uppercase;letter-spacing:-.005em}
+.of .svc .tick{font:500 29px/1.25 Montserrat,sans-serif;color:var(--gray);margin-bottom:12px}
+.of .svc .tick::before{top:7px;height:26px}
+.of.dense .svcs{margin-top:36px}
+.of.dense .svc h4{font-size:31px;margin-bottom:12px}
+.of.dense .svc .tick{font-size:25px;margin-bottom:8px}
+.of.dense .svc .tick::before{top:5px;height:22px}
+.of .cta{position:relative;left:auto;top:auto;display:inline-block;margin-top:34px;font-size:34px;padding:26px 84px 24px}
+.p-offer .photo.right{width:860px}
+.p-offer .photo.right img{opacity:.8}
+
+/* ==========================================================================
    EXPLAINER
    ========================================================================== */
 .ex{position:absolute;left:80px;top:90px;width:1300px;z-index:2}
