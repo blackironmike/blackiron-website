@@ -211,7 +211,8 @@
   var REQUIRED = {
     title: [], timeline: [], columns: ['title', 'columns'], benchmark: ['name', 'movements', 'day'],
     explainer: ['title', 'points'], event: ['title', 'starts'], spotlight: ['title'],
-    statement: ['lines'], fuelpath: ['title', 'points'], programs: ['title', 'cards'], qr: ['title', 'qr']
+    statement: ['lines'], fuelpath: ['title', 'points'], programs: ['title', 'cards'], qr: ['title', 'qr'],
+    offer: ['title', 'columns']
   };
   var DATE_RE = /^\d{4}-\d{2}-\d{2}$/;
   function validate() {
@@ -286,6 +287,17 @@
       (starts.time ? '' : ' data-dateonly="1"') + attr('rise', d || 0, style || '') + '>' +
       '<div class="big" data-cdbig></div><div class="hms" data-cdhms></div>' +
       (label ? '<div class="lb">' + esc(label) + '</div>' : '') + '</div>';
+  }
+  // Shrink a block that ran long so it stops above the footer line.
+  function fitBlocks(root) {
+    Array.prototype.forEach.call(root.querySelectorAll('[data-fitmax]'), function (el) {
+      el.style.transform = '';
+      var max = +el.getAttribute('data-fitmax'), top = el.offsetTop, ht = el.offsetHeight;
+      if (ht > 0 && top + ht > max) {
+        el.style.transformOrigin = '0 0';
+        el.style.transform = 'scale(' + Math.max(0.6, (max - top) / ht).toFixed(3) + ')';
+      }
+    });
   }
   function heading(lines, d0, step) {
     return lines.map(function (l, i) { return L(md(l), d0 + i * (step || 170)); }).join('');
@@ -456,6 +468,34 @@
         '<div class="cap"><b>' + p.tempo + ' second</b><br>negative</div></div>';
     }
     if (p.footer) h += footer(p.footer, 1800); else h += anvil(1800);
+    return h;
+  };
+
+  // Two services side by side with one call to action (Personal Training
+  // and Nutrition Coaching, ending on "Talk to your coach"). Longer titles and
+  // lists step the type down, and fitBlocks() shrinks the block as a last
+  // resort, so a hand edit can never push the button over the footer line.
+  RENDER.offer = function (p, secs) {
+    var h = '', cols = p.columns || [];
+    var longest = Math.max.apply(null, p.title.map(function (l) { return plain(l).length; }));
+    var size = (p.title.length >= 3 || longest > 20) ? 80 : longest > 14 ? 94 : 112;
+    var most = Math.max.apply(null, [0].concat(cols.map(function (c) { return (c.items || []).length; })));
+    var dense = cols.length > 2 || most > 3;
+    h += photo(p.photo, 'right', secs);
+    h += '<div class="of' + (dense ? ' dense' : '') + '" data-fitmax="864">';
+    if (p.eyebrow) h += '<div><span class="chip"' + attr('wipe', 100) + '>' + md(p.eyebrow) + '</span></div>';
+    h += '<h1 class="disp" style="font-size:' + size + 'px">' + heading(p.title, 260, 160) + '</h1>';
+    h += '<div class="rule"' + attr('rule', 620) + '></div>';
+    h += '<div class="svcs">' + cols.map(function (c, i) {
+      var d = 780 + i * 220;
+      return '<div class="svc"><h4' + attr('left', d) + '>' + md(c.heading || '') + '</h4>' +
+        (c.items || []).map(function (it, k) { return '<div class="tick"' + attr('left', d + 110 + k * 110) + '>' + md(it) + '</div>'; }).join('') +
+        '</div>';
+    }).join('') + '</div>';
+    if (p.cta) h += '<div class="cta"' + attr('wipe', 1600) + '>' + md(p.cta) + '</div>';
+    h += '</div>';
+    h += footer(p.footer || 'chips', 1800);
+    h += anvil(1900);
     return h;
   };
 
@@ -825,6 +865,7 @@
         stage.classList.remove('sk-right', 'sk-off', 'sk-pattern', 'sk-low');
         stage.classList.add('sk-' + skullFor(p));
         inc.classList.add('in');
+        try { fitBlocks(inc); } catch (e) {}
         runCounts(inc);
         tickCountdowns(inc);
         startTempo(inc);
@@ -1032,7 +1073,10 @@
     root.innerHTML = head + ctl + err + '<div class="pv-grid">' + items + '</div>';
     Array.prototype.forEach.call(root.querySelectorAll('.stageMini'), function (m) {
       m.style.setProperty('--wk', st.phase === 'during' ? phaseColor(st.info.phase) : 'var(--forge)');
-      runCounts(m, true); tickCountdowns(m);
+      runCounts(m, true); tickCountdowns(m); fitBlocks(m);
+    });
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(function () {
+      Array.prototype.forEach.call(root.querySelectorAll('.stageMini'), fitBlocks);
     });
     function scale() {
       Array.prototype.forEach.call(root.querySelectorAll('.pv-frame'), function (f) {

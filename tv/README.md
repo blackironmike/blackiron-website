@@ -96,6 +96,7 @@ Text shortcuts work in any text field: `*word*` turns it Forge yellow, `~word~` 
 | `fuelpath` | FuelPath, with the live phone | `title`, `points`, `ask` |
 | `programs` | Black Iron Athletics and the four programs | `chips`, `title`, `mission`, `cards: [{title, text, photo}]` |
 | `qr` | Google review, the links page | `title`, `body` or `list`, `stars`, `steps`, `qr`, `photo` |
+| `offer` | Personal Training and Nutrition Coaching, side by side | `eyebrow`, `title` (two short lines read best), `columns: [{heading, items}]` (two columns of three short items read best), `cta`, `photo`. Longer text shrinks to fit rather than covering the footer. |
 
 A brand new kind of layout is one new function in `tv.js` (`RENDER.yourtype`), registered by name. Nothing else changes.
 

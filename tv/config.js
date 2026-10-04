@@ -23,7 +23,7 @@
 window.TV_CONFIG = {
   // Bump this whenever you edit. It shows in the bottom-left corner of every
   // TV, so you can tell at a glance if a screen is stuck on an old version.
-  version: "2026-10-04.4",
+  version: "2026-10-04.5",
 
   timezone: "America/Chicago",
   defaultSeconds: 10,
@@ -104,6 +104,22 @@ window.TV_CONFIG = {
       lines: ["We help *everyday*", "*people* become *everyday*", "*athletes.*"],
       sub: "Forge the body. Guard the mind.",
       photo: { src: "/images/tv/photo-mission.jpg", position: "50% 35%" },
+      skull: "off"
+    },
+
+    {
+      id: "coaching", type: "offer", seconds: 10,
+      eyebrow: "1-on-1 coaching",
+      title: ["One coach.", "~One plan.~"],
+      columns: [
+        { heading: "Personal Training",
+          items: ["1-on-1 sessions", "Programming built around you", "Monthly body composition scans"] },
+        { heading: "Nutrition Coaching",
+          items: ["Weekly check-ins with your coach", "Honest feedback", "Targets that adjust as life happens"] }
+      ],
+      cta: "Talk to your coach",
+      photo: { src: "/images/tv/photo-coaching.jpg", position: "60% 35%" },
+      footer: "chips",
       skull: "off"
     },
 
