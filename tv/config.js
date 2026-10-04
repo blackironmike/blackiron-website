@@ -23,7 +23,7 @@
 window.TV_CONFIG = {
   // Bump this whenever you edit. It shows in the bottom-left corner of every
   // TV, so you can tell at a glance if a screen is stuck on an old version.
-  version: "2026-10-04.1",
+  version: "2026-10-04.2",
 
   timezone: "America/Chicago",
   defaultSeconds: 12,
@@ -65,17 +65,8 @@ window.TV_CONFIG = {
      ---------------------------------------------------------------------- */
   deck: [
     {
-      id: "title", type: "title", seconds: 12, cycle: true,
+      id: "title", type: "title", seconds: 12, cycle: true, skull: "off",
       photo: { src: "/images/tv/photo-title.jpg", position: "62% 30%" }
-    },
-
-    {
-      id: "timeline", type: "timeline", seconds: 16, cycle: true,
-      eyebrow: "The timeline",
-      headline: "9 Weeks",
-      phases: "Foundation • Test • Build • Deload • Retest",
-      note: ["Test in Week 2. Build for five. Deload. Then find out what changed.",
-             "All of it finished before Thanksgiving."]
     },
 
     {
@@ -83,6 +74,7 @@ window.TV_CONFIG = {
       eyebrow: "Join the team",
       title: "633 Run",
       starts: { date: "2026-10-24", time: "08:00" },
+      countLabel: "To the start line",
       when: "Saturday, October 24 • 8:00 AM",
       where: "Lobo Stadium • Little Elm",
       items: [
@@ -95,6 +87,23 @@ window.TV_CONFIG = {
       cta: "Join team “Black Iron Athletics”",
       qr: { src: "/images/tv/qr-633-run.svg", label: "Scan to sign up",
             url: "https://runsignup.com/Race/TX/LittleElm/633Run" },
+      skull: "off"
+    },
+
+    {
+      id: "timeline", type: "timeline", seconds: 16, cycle: true,
+      eyebrow: "The timeline",
+      headline: "9 Weeks",
+      phases: "Foundation • Test • Build • Deload • Retest",
+      note: ["Test in Week 2. Build for five. Deload. Then find out what changed.",
+             "All of it finished before Thanksgiving."]
+    },
+
+    {
+      id: "mission", type: "statement", seconds: 12,
+      lines: ["We help *everyday*", "*people* become *everyday*", "*athletes.*"],
+      sub: "Forge the body. Guard the mind.",
+      photo: { src: "/images/tv/photo-mission.jpg", position: "50% 35%" },
       skull: "off"
     },
 
@@ -124,36 +133,6 @@ window.TV_CONFIG = {
     },
 
     {
-      id: "second-wind", type: "benchmark", seconds: 20, cycle: true,
-      name: "Second Wind",
-      format: ["1 mile for time"],
-      day: "Tuesday",
-      movements: ["Run 1 Mile", "(or) 5km Bike"],
-      note: "Whatever you choose in Week 2 is what you repeat in Week 9.",
-      footer: "cycle"
-    },
-
-    {
-      id: "all-grit", type: "benchmark", seconds: 20, cycle: true,
-      name: "All Grit, No Quit",
-      format: ["3 rounds for reps"],
-      day: "Friday",
-      movements: ["MAX unbroken Double Unders",
-                  "MAX unbroken Wall Balls @ 20/14",
-                  "MAX unbroken KB Farmers Hold @ 53/35"],
-      note: "One round per movement. The second you stop, the round is over.",
-      footer: "cycle"
-    },
-
-    {
-      id: "mission", type: "statement", seconds: 12,
-      lines: ["We help *everyday*", "*people* become *everyday*", "*athletes.*"],
-      sub: "Forge the body. Guard the mind.",
-      photo: { src: "/images/tv/photo-mission.jpg", position: "50% 35%" },
-      skull: "off"
-    },
-
-    {
       id: "eccentric", type: "explainer", seconds: 20, cycle: true,
       eyebrow: "Why we train it",
       title: ["Eccentric", "*Strength*"],
@@ -174,19 +153,13 @@ window.TV_CONFIG = {
     },
 
     {
-      id: "halloween", type: "spotlight", seconds: 14, until: "2026-10-31",
-      chip: "Halloween Partner WOD",
-      title: ["Grab a partner.", "*Bring a costume.*"],
-      starts: { date: "2026-10-31", time: "08:00" },
-      dateLine: "Saturday morning • October 31",
-      sub: "Teams of 2. One workout. All of us.",
-      cards: [
-        { title: "Teams of 2",  text: "Pick a partner or we will pair you up" },
-        { title: "Costumes",    text: "Encouraged. Judged. Loosely." },
-        { title: "All levels",  text: "Scaled for everybody in the room" }
-      ],
-      footer: "cycle",
-      skull: "pattern"
+      id: "second-wind", type: "benchmark", seconds: 20, cycle: true,
+      name: "Second Wind",
+      format: ["1 mile for time"],
+      day: "Tuesday",
+      movements: ["Run 1 Mile", "(or) 5km Bike"],
+      note: "Whatever you choose in Week 2 is what you repeat in Week 9.",
+      footer: "cycle"
     },
 
     {
@@ -203,6 +176,37 @@ window.TV_CONFIG = {
       photo: { src: "/images/tv/photo-snatch.jpg", position: "45% 30%" },
       footer: "chips",
       skull: "off"
+    },
+
+    {
+      id: "all-grit", type: "benchmark", seconds: 20, cycle: true,
+      name: "All Grit, No Quit",
+      format: ["3 rounds for reps"],
+      day: "Friday",
+      movements: ["MAX unbroken Double Unders",
+                  "MAX unbroken Wall Balls @ 20/14",
+                  "MAX unbroken KB Farmers Hold @ 53/35"],
+      note: "One round per movement. The second you stop, the round is over.",
+      footer: "cycle"
+    },
+
+    {
+      id: "halloween", type: "spotlight", seconds: 14, until: "2026-10-31",
+      chip: "Halloween Partner WOD",
+      title: ["Grab a partner.", "*Bring a costume.*"],
+      // No start time on the slide, so this counts down by day. Add
+      // time: "09:30" (or whatever it is) to count to the minute.
+      starts: { date: "2026-10-31" },
+      countLabel: "Until the partner WOD",
+      dateLine: "Saturday morning • October 31",
+      sub: "Teams of 2. One workout. All of us.",
+      cards: [
+        { title: "Teams of 2",  text: "Pick a partner or we will pair you up" },
+        { title: "Costumes",    text: "Encouraged. Judged. Loosely." },
+        { title: "All levels",  text: "Scaled for everybody in the room" }
+      ],
+      footer: "cycle",
+      skull: "pattern"
     },
 
     {
@@ -262,7 +266,7 @@ window.TV_CONFIG = {
     /* DRAFT: not on the TVs until you remove `status: "draft"`.
        Shown on /tv/preview so you can see it first. */
     {
-      id: "new-gym", type: "spotlight", seconds: 14, status: "draft",
+      id: "new-gym", type: "spotlight", seconds: 14, status: "draft", cycleLabel: false,
       chip: "Coming in November",
       title: ["The new Black Iron.", "*Right next door.*"],
       dateLine: "279 Main St • Suite 110 • Frisco",

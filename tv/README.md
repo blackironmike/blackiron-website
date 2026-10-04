@@ -17,7 +17,11 @@ Everything you edit lives in **`tv/config.js`**. You should never need to touch 
 
 The version is printed small in the bottom-left corner of every TV. If one screen shows an old version, it is not getting updates (usually its Wi-Fi).
 
-The TV only reloads when it can reach the site, so a dropped connection never turns a screen into a browser error page. If the internet is down when a TV restarts, it boots from its saved copy and keeps looping. A small "OFFLINE" appears bottom-right while it cannot reach the site.
+The TV only reloads when it can reach the site, so a dropped connection never turns a screen into a browser error page. If the internet is down when a TV restarts, it boots from its saved copy and keeps looping. A small "OFFLINE" appears bottom-right while it cannot reach the site. The saved copy needs a browser that supports offline pages (Chrome, Edge, Fully Kiosk, and recent TV browsers do). On one that does not, a TV that restarts with no internet shows the browser's own error page until the connection is back and the page is reloaded (Fully Kiosk can do that reload for you: turn on its reload-on-network-reconnect setting).
+
+**If a push has a mistake in `config.js`,** the TVs do not reload into it. They keep playing the last good version and the corner reads `UPDATE BLOCKED: CONFIG ERROR`. Fix the file, bump `version`, push again, and they pick it up on the next check.
+
+Every TV also reloads itself once every 6 hours as a safety net, and a watchdog reloads the page if it ever stops moving for 5 minutes. Both wait until the site answers first.
 
 ## Start a new cycle
 
@@ -42,6 +46,7 @@ cycle: {
 - **You type week labels, not dates.** Week dates come from `start`, so two weeks can never land on the same Monday.
 - `phase` is one of `intro`, `test`, `build`, `deload`. It sets the phase colors, which match the cycle timeline on `/programs`.
 - `note` is the short line under a week on the timeline. Leave it out for no note.
+- Phase colors only ever appear on the timeline, the current-week chip and the benchmark chips. Every other highlight is Forge yellow.
 - Then update the benchmark, explainer and event panels in `deck` for the new cycle.
 
 Panels marked `cycle: true` only show while the cycle is running. Between cycles the TVs keep looping the brand panels (mission, programs, FuelPath, review, links) on their own.
@@ -85,7 +90,7 @@ Text shortcuts work in any text field: `*word*` turns it Forge yellow, `~word~` 
 | `columns` | The Focus | `title`, `columns: [{heading, items, foot}]`, `note`. A foot of `"@benchmarks"` counts down to the retest week on its own. |
 | `benchmark` | A tested workout | `name`, `format`, `day` ("Monday"), `movements`, `note`, optional `weeks: [2, 9]` |
 | `explainer` | Eccentric Strength, the snatch | `eyebrow`, `title`, `lead`, `points: [{title, text}]`, `close`, `photo`, `tempo` (seconds, draws a countdown ring), `eyebrowDay` (lights up as "Today" on that weekday) |
-| `event` | The 633 Run | `title`, `starts: {date, time}`, `when`, `where`, `items`, `body`, `cta`, `qr` |
+| `event` | The 633 Run | `title`, `starts: {date, time}`, `countLabel`, `when`, `where`, `items`, `body`, `cta`, `qr` |
 | `spotlight` | Halloween, centered announcements | `chip`, `title`, `starts`, `dateLine`, `sub`, `cards` or `images` |
 | `statement` | The mission | `lines`, `sub`, `photo` |
 | `fuelpath` | FuelPath, with the live phone | `title`, `points`, `ask` |
@@ -100,7 +105,7 @@ A brand new kind of layout is one new function in `tv.js` (`RENDER.yourtype`), r
 - The title card shows "Week 3 of 9 • Build" and a nine-segment bar.
 - Benchmarks count down to their test or retest day, then say "Today" on the day and "Done" after.
 - The Focus counts down the weeks to the retest.
-- Events count down live to the minute, then say "Today", then disappear after their `until` date.
+- Events with a start time (`starts: { date, time: "08:00" }`) count down live, down to the second in the last minute, then say "Today", then disappear after their `until` date. Events with only a date count whole days, then say "Today". Leave the time out rather than guessing one.
 - The snatch panel's chip turns into "Today • Monday" on Mondays.
 - The FuelPath phone shows today's date and time.
 
@@ -110,7 +115,7 @@ The QR codes are image files in `images/tv/` (`qr-633-run.svg`, `qr-google-revie
 
 ## Photos
 
-Panel photos live in `images/tv/` as black and white JPEGs. Use real members only. Images are cached on the TVs for 30 days, so give a replacement photo a **new filename** rather than overwriting the old one.
+Panel photos live in `images/tv/` as black and white JPEGs. Use real members only. Each TV keeps its own copy of every image (for up to 30 days, and longer in its offline copy), so give a replacement photo a **new filename** and point the panel at it, rather than overwriting the old file.
 
 ## Proofing
 
@@ -118,8 +123,12 @@ Panel photos live in `images/tv/` as black and white JPEGs. Use real members onl
 - Pick a date or a week at the top to see the deck the way it will look then.
 - `/tv?panel=reaper` plays a single panel on a loop.
 - `/tv?date=2026-11-16` or `/tv?week=9` plays the whole loop as of that day.
-- `/tv?speed=0.25` plays the loop four times faster.
+- `/tv?date=2026-10-24&time=07:59:30` checks a countdown at an exact moment.
+- `/tv?speed=0.25` plays the loop four times faster (it is a multiplier, so `2` is twice as slow).
 - `/tv?lite=1` drops the heavier background effects if an older TV stutters.
+- `/tv?still=1` turns off all motion, `/tv?stamp=0` hides the version line.
+
+Any of these puts a "preview" date in the corner, so you can always tell a test screen from a live one.
 
 ## Putting it on a TV
 
@@ -138,6 +147,12 @@ Put that command in the computer's startup items so it comes back by itself afte
 **Google TV or Android TV box.** The free browsers cannot launch on boot. Fully Kiosk Browser (about $10 per TV, one time) launches on boot and keeps the screen on. Set the start URL to the address above.
 
 **Not Fire TV sticks bought in 2026.** The newer sticks run Amazon's Vega OS, which cannot install a kiosk browser and switches the display off when no video is playing.
+
+**Picture size.** Most TVs crop the edges of an HDMI picture by default ("overscan"), which cuts off the footer and the version line. In the TV's picture settings, set the size to **Screen Fit** (Samsung), **Just Scan** (LG), or **Full Pixel** / **16:9 Original** (Sony and others).
+
+**Browser age.** The page needs a browser from about 2017 or later (Chrome 57 and up). Samsung TVs from 2019 on and LG TVs from 2020 on are fine. Older built-in TV browsers may show a black screen with "Black Iron TV could not start in this browser" after a minute; use a mini PC or a streaming box on that screen instead.
+
+**If the corner says STILL,** the computer has its "reduce motion" accessibility setting on, so the TV holds each panel without the animation. Turn that setting off, or open `/tv?motion=1` to keep the motion anyway.
 
 The page hides the mouse cursor and asks the browser to keep the screen awake. If a screen ever looks frozen, check the version in the bottom-left corner first.
 

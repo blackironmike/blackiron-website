@@ -52,9 +52,9 @@ img{display:block}
 @keyframes glowDrift{from{transform:translate3d(-60px,-30px,0)}to{transform:translate3d(120px,60px,0)}}
 #vignette{background:radial-gradient(ellipse at 50% 45%,rgba(0,0,0,0) 55%,rgba(0,0,0,.55) 100%);z-index:2}
 #grain{
-  z-index:31;opacity:.07;left:-200px;top:-200px;width:2320px;height:1480px;
+  z-index:31;opacity:.035;left:-200px;top:-200px;width:2320px;height:1480px;
   background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 1.4 -.25'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
-  animation:grain 1.2s steps(6) infinite;
+  animation:grain 2.4s steps(6) infinite;
 }
 @keyframes grain{
   0%{transform:translate3d(0,0,0)}20%{transform:translate3d(-60px,40px,0)}40%{transform:translate3d(50px,-70px,0)}
@@ -63,20 +63,20 @@ img{display:block}
 
 /* The skull lives outside the panels so it can glide from one position to the
    next when the panel changes, instead of popping. */
-#skullWrap{
+.skw{
   position:absolute;left:1112px;top:140px;width:768px;height:833px;z-index:1;
   transition:transform 1.6s var(--ease),opacity 1.2s ease;opacity:.14;
 }
-#skullWrap img{width:100%;height:100%;animation:skullDrift 26s ease-in-out infinite alternate}
+.skw img{width:100%;height:100%;animation:skullDrift 26s ease-in-out infinite alternate}
 @keyframes skullDrift{
   0%{transform:translate3d(0,0,0) rotate(0deg)}
   50%{transform:translate3d(-14px,10px,0) rotate(-1.4deg)}
   100%{transform:translate3d(10px,-12px,0) rotate(1deg)}
 }
-.sk-right #skullWrap{transform:translate3d(0,0,0) scale(1)}
-.sk-low #skullWrap{transform:translate3d(30px,40px,0) scale(.92);opacity:.1}
-.sk-off #skullWrap{transform:translate3d(160px,30px,0) scale(1.08);opacity:0}
-.sk-pattern #skullWrap{transform:translate3d(-300px,0,0) scale(1.4);opacity:0}
+.sk-right .skw{transform:translate3d(0,0,0) scale(1)}
+.sk-low .skw{transform:translate3d(30px,40px,0) scale(.92);opacity:.1}
+.sk-off .skw{transform:translate3d(160px,30px,0) scale(1.08);opacity:0}
+.sk-pattern .skw{transform:translate3d(-300px,0,0) scale(1.4);opacity:0}
 
 /* ---------- panel layers ---------- */
 .layer{position:absolute;left:0;top:0;width:1920px;height:1080px;z-index:5;visibility:hidden}
@@ -131,7 +131,7 @@ img{display:block}
 .w{color:var(--white)}
 .m{color:var(--muted)}
 .outline{
-  --hole:#000;--olc:var(--white);--olr:clamp(1.5px,.027em,3.6px);
+  --hole:#000;--olc:var(--white);--olr:.027em; /* older TVs: no clamp(), see @supports below */
   color:var(--hole);-webkit-text-stroke:0;
   text-shadow:
     var(--olr) 0 0 var(--olc),calc(var(--olr)*-1) 0 0 var(--olc),
@@ -214,7 +214,7 @@ img{display:block}
 .foot.chipsOnly{bottom:148px}
 
 /* photo pane, used by several panels */
-.photo{position:absolute;overflow:hidden;z-index:0}
+.photo{position:absolute;overflow:hidden;z-index:0;background:#000}
 .photo img{position:absolute;left:0;top:0;width:100%;height:100%;object-fit:cover}
 .photo .kb{animation:kb var(--dur,20s) linear both}
 @keyframes kb{from{transform:scale(1.14) translate3d(-1.2%,1%,0)}to{transform:scale(1.02) translate3d(1.2%,-1%,0)}}
@@ -228,8 +228,8 @@ img{display:block}
    TITLE
    ========================================================================== */
 .p-title .photo{right:0;top:0;width:1100px;height:1080px}
-.p-title .photo::after{background:linear-gradient(90deg,#000 0%,rgba(0,0,0,.85) 30%,rgba(0,0,0,.55) 70%,rgba(0,0,0,.65) 100%)}
-.p-title .photo img{opacity:.55}
+.p-title .photo::after{background:linear-gradient(90deg,#000 0%,rgba(0,0,0,.9) 22%,rgba(0,0,0,.35) 60%,rgba(0,0,0,.15) 100%),linear-gradient(0deg,rgba(0,0,0,.6) 0%,rgba(0,0,0,0) 40%)}
+.p-title .photo img{opacity:1}
 .p-title .mini{position:absolute;left:80px;top:142px;width:152px;height:auto}
 .p-title .h{position:absolute;left:80px;top:318px}
 .p-title .h .disp{font-size:184px;line-height:.88}
@@ -285,9 +285,9 @@ img{display:block}
 .layer.in .tl .head{animation:aFade .6s ease 2.6s both}
 .p-timeline .note{position:absolute;left:80px;top:756px;font:500 32px/1.45 Montserrat,sans-serif;color:var(--gray)}
 .p-timeline .stat{position:absolute;right:80px;top:752px;text-align:right}
-.p-timeline .stat .n{font:900 96px/.9 Montserrat,sans-serif;color:var(--white);letter-spacing:-.02em}
+.p-timeline .stat .n{font:900 96px/.9 Montserrat,sans-serif;color:var(--white);letter-spacing:-.02em;text-transform:uppercase}
 .p-timeline .stat .n small{font-size:40px;color:#9A9A9A;letter-spacing:0;margin-left:10px}
-.p-timeline .stat .l{margin-top:10px;font:800 20px/1 Montserrat,sans-serif;letter-spacing:.08em;text-transform:uppercase;color:var(--wk)}
+.p-timeline .stat .l{margin-top:10px;font:800 20px/1 Montserrat,sans-serif;letter-spacing:.08em;text-transform:uppercase;color:var(--forge)}
 
 /* ==========================================================================
    COLUMNS (The Focus)
@@ -314,18 +314,19 @@ img{display:block}
 .bm .nm{margin-top:44px;white-space:nowrap}
 .bm .meta{margin-top:22px;font:800 36px/1 Montserrat,sans-serif;text-transform:uppercase;color:var(--forge);white-space:nowrap}
 .bm .meta .dot{width:9px;height:9px;vertical-align:9px;margin:0 20px}
-.wod{position:relative;margin-top:46px;width:1300px;background:var(--card);padding:30px 40px}
+.wod{position:relative;margin-top:46px;display:inline-block;min-width:720px;max-width:1220px;background:var(--card);padding:30px 90px 30px 40px}
 .wod::before{content:"";position:absolute;left:0;top:0;bottom:0;width:9px;background:var(--forge);transform-origin:50% 0}
 .layer.in .wod::before{animation:barDown .8s var(--ease) .5s both}
 @keyframes barDown{from{transform:scaleY(0)}to{transform:scaleY(1)}}
 .wod .mv{font:600 44px/1 Montserrat,sans-serif;color:var(--white);padding:11px 0}
 .bm .note{margin-top:34px;font:400 31px/1.3 Montserrat,sans-serif;color:#9A9A9A}
-.bm-count{position:absolute;right:80px;top:384px;width:420px;text-align:right}
-.bm-count .n{font:900 190px/.82 Montserrat,sans-serif;color:var(--white);letter-spacing:-.04em}
-.bm-count .u{margin-top:20px;font:900 30px/1 Montserrat,sans-serif;letter-spacing:.06em;text-transform:uppercase;color:var(--ph-test)}
-.bm-count .word{font:900 120px/.86 Montserrat,sans-serif;color:var(--white);letter-spacing:-.03em;text-transform:uppercase}
+.bm-count{position:absolute;right:80px;top:384px;width:420px;text-align:right;z-index:1}
+.bm-count::before{content:"";position:absolute;left:-90px;right:-60px;top:-110px;bottom:-90px;background:radial-gradient(closest-side,#000 62%,rgba(0,0,0,0));z-index:-1}
+.bm-count .n{font:900 190px/.82 Montserrat,sans-serif;color:var(--white);letter-spacing:-.01em;font-variant-numeric:tabular-nums}
+.bm-count .u{margin-top:20px;font:900 30px/1 Montserrat,sans-serif;letter-spacing:.06em;text-transform:uppercase;color:var(--forge)}
+.bm-count .word{font:900 104px/.86 Montserrat,sans-serif;color:var(--white);letter-spacing:-.03em;text-transform:uppercase;white-space:nowrap}
 .bm-count .d{margin-top:14px;font:800 22px/1 Montserrat,sans-serif;letter-spacing:.06em;text-transform:uppercase;color:#9A9A9A}
-.bm-count .d.dim{color:#6E6E6E;margin-top:10px}
+.bm-count .d.dim{color:#9A9A9A;margin-top:10px}
 
 /* ==========================================================================
    EXPLAINER
@@ -342,10 +343,11 @@ img{display:block}
 .ex .close{margin-top:14px;font:600 31px/1.3 Montserrat,sans-serif;color:var(--white)}
 .tempo{position:absolute;right:120px;bottom:150px;width:230px;text-align:center;z-index:3}
 .tempo .ring{position:relative;width:200px;height:200px;margin:0 auto}
-.tempo svg{position:absolute;left:0;top:0;width:200px;height:200px;transform:rotate(-90deg)}
+.tempo .ring::before{content:"";position:absolute;left:0;top:0;right:0;bottom:0;border-radius:50%;background:rgba(0,0,0,.62)}
+.tempo svg{position:absolute;left:0;top:0;width:200px;height:200px;transform:rotate(-90deg);z-index:1}
 .tempo .trk{fill:none;stroke:rgba(255,255,255,.14);stroke-width:10}
 .tempo .arc{fill:none;stroke:var(--forge);stroke-width:10;stroke-linecap:round;stroke-dasharray:565.5;stroke-dashoffset:0}
-.tempo .num{position:absolute;left:0;right:0;top:46px;font:900 92px/1 Montserrat,sans-serif;color:var(--white)}
+.tempo .num{position:absolute;left:0;right:0;top:46px;font:900 92px/1 Montserrat,sans-serif;color:var(--white);z-index:2}
 .tempo .cap{margin-top:16px;font:800 20px/1.2 Montserrat,sans-serif;letter-spacing:.08em;text-transform:uppercase;color:var(--gray)}
 .tempo .cap b{color:var(--forge)}
 
@@ -368,13 +370,14 @@ img{display:block}
 .p-event .body{position:absolute;left:80px;top:690px;font:500 29px/1.4 Montserrat,sans-serif;color:var(--gray)}
 .cta{position:absolute;left:80px;top:786px;background:var(--forge);color:#000;font:900 30px/1 Montserrat,sans-serif;text-transform:uppercase;padding:24px 76px 22px;letter-spacing:.005em;white-space:nowrap;overflow:hidden}
 .cta::after{content:"";position:absolute;top:0;bottom:0;left:-120px;width:90px;background:linear-gradient(90deg,rgba(255,255,255,0),rgba(255,255,255,.7),rgba(255,255,255,0));transform:skewX(-18deg);opacity:0}
-.layer.in .cta::after{animation:ctaSheen 2.2s ease 2.2s infinite}
-@keyframes ctaSheen{0%{opacity:1;transform:translate3d(0,0,0) skewX(-18deg)}55%,100%{opacity:1;transform:translate3d(1100px,0,0) skewX(-18deg)}}
+.layer.in .cta::after{animation:ctaSheen 7s ease 2.2s infinite}
+@keyframes ctaSheen{0%{opacity:1;transform:translate3d(0,0,0) skewX(-18deg)}18%,100%{opacity:1;transform:translate3d(1100px,0,0) skewX(-18deg)}}
 .p-event .foot.chipsOnly{bottom:150px}
 
 /* QR card, shared */
 .qr{position:absolute;text-align:center}
-.qr .card{position:relative;background:#fff;padding:30px;box-shadow:0 30px 80px rgba(0,0,0,.6)}
+.qr .card{position:relative;background:#fff;padding:30px;box-shadow:0 20px 50px rgba(0,0,0,.5)}
+.qr .lbl,.qr .cap,.qr .above{position:relative;z-index:1}
 .qr .card img{width:100%;height:auto}
 .qr .card .beam{position:absolute;left:0;right:0;height:4px;top:0;background:var(--forge);box-shadow:0 0 22px 4px rgba(255,210,2,.8);opacity:0}
 .layer.in .qr .card .beam{animation:beam 1.3s cubic-bezier(.65,0,.35,1) .9s both}
@@ -387,22 +390,24 @@ img{display:block}
 .qr .above{margin-bottom:22px;font:900 32px/1 Montserrat,sans-serif;color:var(--forge);text-transform:uppercase}
 
 .count{position:absolute;text-align:center}
-.count .big{font:900 150px/.82 Montserrat,sans-serif;color:var(--white);letter-spacing:-.04em}
+.count .big{font:900 150px/.82 Montserrat,sans-serif;color:var(--white);letter-spacing:-.02em;text-transform:uppercase;white-space:nowrap;font-variant-numeric:tabular-nums}
+.count .big .wd{font-size:112px;letter-spacing:-.02em}
 .count .big small{font-size:46px;letter-spacing:.02em;margin-left:14px;color:var(--forge)}
 .count .hms{margin-top:14px;font:800 34px/1 Montserrat,sans-serif;color:var(--gray);letter-spacing:.06em;font-variant-numeric:tabular-nums}
 .count .hms span{display:inline-block;min-width:1.4em}
-.count .hms em{font-style:normal;font-size:16px;color:#7A7A7A;margin:0 12px 0 4px;letter-spacing:.1em}
-.count .lb{margin-top:14px;font:800 20px/1 Montserrat,sans-serif;letter-spacing:.1em;text-transform:uppercase;color:#9A9A9A}
+.count .hms em{font-style:normal;font-size:20px;color:#9A9A9A;margin:0 12px 0 4px;letter-spacing:.1em}
+.count .lb{margin-top:16px;font:800 22px/1 Montserrat,sans-serif;letter-spacing:.1em;text-transform:uppercase;color:#9A9A9A}
+.count .hms{text-transform:uppercase}
 
 /* ==========================================================================
    SPOTLIGHT (Halloween, new gym)
    ========================================================================== */
-.p-spotlight .pattern{position:absolute;left:-400px;top:-400px;width:2720px;height:1880px;z-index:0;opacity:.11;
-  background-image:url(/images/tv/skull.png);background-size:380px auto;background-repeat:repeat;
+.p-spotlight .pattern{position:absolute;left:-600px;top:-600px;width:3120px;height:2280px;z-index:0;opacity:.16;
+  background-image:url(/images/tv/skull.png);background-size:620px auto;background-repeat:repeat;
   transform:rotate(-12deg)}
 .p-spotlight .pattern.kb2{animation:pat 60s linear infinite}
-@keyframes pat{from{transform:rotate(-12deg) translate3d(0,0,0)}to{transform:rotate(-12deg) translate3d(-380px,-412px,0)}}
-.p-spotlight .shade{position:absolute;left:0;top:0;width:1920px;height:1080px;background:radial-gradient(ellipse at 50% 46%,rgba(0,0,0,.55) 0%,rgba(0,0,0,.92) 70%,#000 100%);z-index:0}
+@keyframes pat{from{transform:rotate(-12deg) translate3d(0,0,0)}to{transform:rotate(-12deg) translate3d(-620px,-672px,0)}}
+.p-spotlight .shade{position:absolute;left:0;top:0;width:1920px;height:1080px;background:radial-gradient(ellipse at 50% 46%,rgba(0,0,0,.45) 0%,rgba(0,0,0,.88) 70%,#000 100%);z-index:0}
 .p-spotlight .lock{position:absolute;left:80px;top:58px;font:900 22px/1.15 Montserrat,sans-serif;text-transform:uppercase;color:var(--white);letter-spacing:.01em}
 .p-spotlight .lock .a{font-size:34px;color:var(--forge);letter-spacing:-.005em}
 .p-spotlight .lock .c{font-size:22px;color:#9A9A9A;margin-top:6px}
@@ -469,7 +474,7 @@ img{display:block}
 .ps .hdr{position:absolute;left:22px;right:22px;top:66px;height:52px}
 .ps .hdr .fpm{position:absolute;left:4px;top:8px;width:40px;height:auto}
 .ps .hdr .an{position:absolute;left:96px;top:13px;width:46px;height:auto}
-.ps .hdr .bn{position:absolute;left:152px;top:16px;font:800 15px/1 Montserrat,sans-serif;letter-spacing:.2em;color:#cfcfcf}
+.ps .hdr .bn{position:absolute;left:150px;top:16px;font:800 15px/1 Montserrat,sans-serif;letter-spacing:.12em;color:#cfcfcf}
 .ps .hdr .ask{position:absolute;right:0;top:6px;border:2px solid rgba(255,210,2,.5);background:rgba(255,210,2,.08);color:var(--forge);border-radius:20px;padding:8px 14px;font:800 16px/1 Montserrat,sans-serif}
 .ps .dte{position:absolute;left:26px;top:140px;font:800 14px/1 Montserrat,sans-serif;letter-spacing:.12em;color:#6a6a6a}
 .ps .ttl{position:absolute;left:26px;top:162px;font:800 40px/1 Montserrat,sans-serif;color:#fff}
@@ -482,12 +487,13 @@ img{display:block}
 .ps .chips{position:absolute;left:22px;top:326px;white-space:nowrap}
 .ps .chips span{display:inline-block;border:1.5px solid rgba(255,210,2,.45);background:rgba(255,210,2,.07);color:var(--forge);border-radius:18px;padding:8px 14px;font:800 15px/1 Montserrat,sans-serif;margin-right:8px}
 .ps .rings{position:absolute;left:22px;right:22px;top:380px;height:420px;border:1.5px solid #262626;border-radius:24px;background:#121212}
-.ps .big{position:absolute;left:50%;top:26px;width:200px;height:200px;margin-left:-100px}
+.ps .big{position:absolute;left:50%;top:34px;width:170px;height:170px;margin-left:-85px}
+.ps .big svg{width:170px;height:170px}
 .ps .big svg,.ps .sm svg{transform:rotate(-90deg)}
-.ps .big .c{position:absolute;left:0;right:0;top:66px;text-align:center}
-.ps .big .c b{display:block;font:800 44px/1 Montserrat,sans-serif;color:#fff;letter-spacing:-.02em}
+.ps .big .c{position:absolute;left:0;right:0;top:54px;text-align:center}
+.ps .big .c b{display:block;font:800 38px/1 Montserrat,sans-serif;color:#fff;letter-spacing:-.02em}
 .ps .big .c span{display:block;margin-top:8px;font:500 14px/1 Montserrat,sans-serif;color:#8a8a8a}
-.ps .side{position:absolute;top:100px;width:96px;text-align:center}
+.ps .side{position:absolute;top:100px;width:80px;text-align:center}
 .ps .side b{display:block;font:800 24px/1 Montserrat,sans-serif;color:#fff}
 .ps .side span{display:block;margin-top:6px;font:500 12px/1 Montserrat,sans-serif;color:#8a8a8a}
 .ps .sm{position:absolute;top:258px;width:100px;height:100px}
@@ -515,14 +521,14 @@ img{display:block}
 .pcards .pc .top{position:absolute;left:0;right:0;top:0;height:10px;background:var(--forge);z-index:2}
 .pcards .pc h4{position:absolute;left:28px;right:20px;top:196px;margin:0;font:900 29px/1.12 Montserrat,sans-serif;color:var(--white);text-transform:uppercase}
 .pcards .pc p{position:absolute;left:28px;right:20px;bottom:30px;margin:0;font:500 27px/1.35 Montserrat,sans-serif;color:var(--gray)}
-.p-programs .foot.chipsOnly{bottom:118px;left:80px}
+.p-programs .foot.chipsOnly{bottom:84px;left:80px}
 
 /* ==========================================================================
    QR panels (review, links)
    ========================================================================== */
 .qx{position:absolute;left:80px;width:1000px;z-index:2}
-.qx.short{top:232px}
-.qx.tall{top:150px}
+.qx.short{top:200px}
+.qx.tall{top:124px}
 .qx .disp{font-size:116px;line-height:1.02}
 .qx.tall .disp{font-size:106px}
 .qx .rule{margin:30px 0 0 4px}
@@ -534,7 +540,7 @@ img{display:block}
 .qx .steps{margin-top:26px;font:900 26px/1 Montserrat,sans-serif;text-transform:uppercase;color:var(--forge);white-space:nowrap}
 .qx .steps .dot{width:7px;height:7px;vertical-align:7px;margin:0 18px}
 .qx .list{margin-top:44px}
-.qx .list .tick{font:500 37px/1 Montserrat,sans-serif;color:var(--white);margin-bottom:24px;white-space:nowrap}
+.qx .list .tick{font:500 37px/1 Montserrat,sans-serif;color:var(--white);margin-bottom:20px;white-space:nowrap}
 .qx .list .tick::before{height:32px;top:1px}
 .p-qr .photo.right img{opacity:.65}
 
@@ -585,8 +591,36 @@ body.preview{height:auto}
 .still .tl .slot.now .card{transform:translate3d(0,-16px,0);animation:none!important}
 .still .layer .chip::after,.still .layer .rule::after,.still .cta::after,.still .phone .glare,.still .qr .beam,.still .qr .ring{animation:none!important;opacity:0}
 .lite #grain,.lite #glow{display:none}
-.lite .kb,.lite .kb2,.lite #skullWrap img,.lite .float,.lite .glow{animation:none!important}
+.lite .kb,.lite .kb2,.lite .skw img,.lite .float,.lite .glow{animation:none!important}
 
-@media (prefers-reduced-motion: reduce){
-  #grain,#glow,#skullWrap img{animation:none!important}
-}
+
+/* ---------- review round 1 ---------- */
+@supports (width:clamp(1px,1em,2px)){.outline{--olr:clamp(1.5px,.027em,3.6px)}}
+.lc{text-transform:none}
+.msg{position:absolute;left:80px;right:80px;top:470px;text-align:center;font:800 40px/1.3 Montserrat,sans-serif;color:#9A9A9A}
+#bootMsg{display:none;margin-top:34px;max-width:900px;text-align:center;font:600 26px/1.4 Montserrat,Arial,sans-serif;color:#9A9A9A}
+
+/* the stinger between panels: one black bar with Forge edges sweeps across,
+   the panels swap underneath it, then it carries on off screen */
+#wipe{position:absolute;left:0;top:0;width:1920px;height:1080px;z-index:35;pointer-events:none;overflow:hidden;visibility:hidden}
+#wipe.go-in,#wipe.go-out{visibility:visible}
+#wipe i{position:absolute;top:-80px;left:-2850px;width:2700px;height:1240px;background:#000;transform:translate3d(0,0,0) skewX(-12deg)}
+#wipe i::after{content:"";position:absolute;top:0;bottom:0;right:-16px;width:16px;background:var(--forge)}
+#wipe i::before{content:"";position:absolute;top:0;bottom:0;left:0;width:6px;background:var(--forge)}
+#wipe.go-in i{animation:wipeIn .45s cubic-bezier(.7,0,.3,1) both}
+#wipe.go-out i{animation:wipeOut .5s cubic-bezier(.7,0,.3,1) both}
+@keyframes wipeIn{from{transform:translate3d(0,0,0) skewX(-12deg)}to{transform:translate3d(2450px,0,0) skewX(-12deg)}}
+@keyframes wipeOut{from{transform:translate3d(2450px,0,0) skewX(-12deg)}to{transform:translate3d(5100px,0,0) skewX(-12deg)}}
+.still #wipe,.lite #wipe{display:none}
+
+/* once a panel has built, drop the finished entrance animations so the TV's
+   GPU is not holding dozens of layers for the rest of the panel */
+.layer.settled [data-a]:not([data-a="phone"]){animation:none!important}
+.layer.settled .anvil{opacity:.95}
+
+/* still mode is fully still */
+.still #grain,.still #glow,.still .skw img,.still .kb2,.still .segs i.now::after,.still .spark.go{animation:none!important}
+.still .skw{transition:none}
+.lite .phone .glare{animation:none!important}
+
+
