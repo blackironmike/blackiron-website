@@ -37,6 +37,7 @@ const EXCLUDED_FILES = new Set([
 // Directories to skip entirely
 const EXCLUDED_DIRS = new Set([
   '.', 'node_modules', 'api', '.git', '.vercel', '.claude',
+  'tv', // the gym TV display: a screen, not a visitor
 ]);
 
 if (!PIXEL_ID && !GA4_ID) {

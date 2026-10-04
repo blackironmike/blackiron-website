@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<meta name="theme-color" content="#000000">
+<title>Black Iron TV</title>
+<!-- Watchdog. Plain old JavaScript on purpose, and before anything that
+     could block, so it still runs if tv.js fails or a font hangs. If the
+     display has not checked in for 5 minutes (or never started), it reloads
+     once the site answers. -->
+<script>
+(function () {
+  var t0 = new Date().getTime();
+  window.__tvBeat = 0;
+  function siteUp(cb) {
+    try {
+      var x = new XMLHttpRequest();
+      x.open('GET', '/tv/config.js?_=' + new Date().getTime(), true);
+      x.onreadystatechange = function () { if (x.readyState === 4 && x.status === 200) cb(); };
+      x.send();
+    } catch (e) {}
+  }
+  setInterval(function () {
+    var now = new Date().getTime(), b = window.__tvBeat;
+    if (!b && now - t0 > 60000) {
+      var m = document.getElementById('bootMsg');
+      if (m) m.style.display = 'block';
+    }
+    if ((!b && now - t0 > 180000) || (b && now - b > 300000)) siteUp(function () { location.reload(); });
+  }, 30000);
+})();
+</script>
+<link rel="icon" href="/images/anvil-favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link id="gf" rel="stylesheet" crossorigin media="print" onload="this.media='all'" href="https://fonts.googleapis.com/css2?family=Archivo:wght@800&family=Montserrat:wght@400;500;600;700;800;900&display=swap">
+<link rel="stylesheet" href="/tv/tv.css">
+</head>
+<body>
+<!-- The gym TV display. Content lives in /tv/config.js; see /tv/README.md. -->
+<div id="viewport">
+  <div id="stage" class="sk-right">
+    <div id="glow" class="amb"></div>
+    <div id="skullWrap" class="skw"><img src="/images/tv/skull.png" alt=""></div>
+    <div class="layer" id="L0"></div>
+    <div class="layer" id="L1"></div>
+    <div id="vignette" class="amb"></div>
+    <div id="grain" class="amb"></div>
+    <div id="wipe"><i></i></div>
+    <div class="bar" id="barTop"><div class="spark"></div></div>
+    <div class="bar" id="barBot"><div class="spark"></div></div>
+    <div id="dots"></div>
+    <div id="stamp"></div>
+    <div id="offline">OFFLINE</div>
+    <div id="boot"><img src="/images/tv/anvil.png" alt=""><div id="bootMsg">Black Iron TV could not start in this browser. Open this page in Chrome or Edge.</div></div>
+  </div>
+</div>
+<script src="/tv/config.js"></script>
+<script src="/tv/tv.js"></script>
+</body>
+</html>
