@@ -23,7 +23,7 @@
 window.TV_CONFIG = {
   // Bump this whenever you edit. It shows in the bottom-left corner of every
   // TV, so you can tell at a glance if a screen is stuck on an old version.
-  version: "2026-10-04.3",
+  version: "2026-10-04.4",
 
   timezone: "America/Chicago",
   defaultSeconds: 10,
@@ -194,11 +194,9 @@ window.TV_CONFIG = {
       id: "halloween", type: "spotlight", seconds: 8, until: "2026-10-31",
       chip: "Halloween Partner WOD",
       title: ["Grab a partner.", "*Bring a costume.*"],
-      // No start time on the slide, so this counts down by day. Add
-      // time: "09:30" (or whatever it is) to count to the minute.
-      starts: { date: "2026-10-31" },
+      starts: { date: "2026-10-31", time: "09:30" },
       countLabel: "Until the partner WOD",
-      dateLine: "Saturday morning • October 31",
+      dateLine: "Saturday • October 31 • 9:30 AM",
       sub: "Teams of 2. One workout. All of us.",
       cards: [
         { title: "Teams of 2",  text: "Pick a partner or we will pair you up" },
