@@ -87,7 +87,7 @@ function findHtmlFiles(dir, rootDir) {
     if (entry.isDirectory()) {
       // Skip hidden dirs, node_modules, learn, internal email templates,
       // and the redesign prototype/reference pages (noindex, review-only)
-      if (entry.name.startsWith('.') || entry.name === 'node_modules' || entry.name === 'learn' || entry.name === 'nurture-campaign' || entry.name === 'redesign') continue;
+      if (entry.name.startsWith('.') || entry.name === 'node_modules' || entry.name === 'learn' || entry.name === 'nurture-campaign' || entry.name === 'redesign' || entry.name === 'tv') continue;
       results = results.concat(findHtmlFiles(fullPath, rootDir));
     } else if (entry.isFile() && entry.name.endsWith('.html')) {
       results.push(path.relative(rootDir, fullPath).replace(/\\/g, '/'));
