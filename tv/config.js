@@ -23,10 +23,18 @@
 window.TV_CONFIG = {
   // Bump this whenever you edit. It shows in the bottom-left corner of every
   // TV, so you can tell at a glance if a screen is stuck on an old version.
-  version: "2026-10-04.5",
+  version: "2026-10-06.1",
 
   timezone: "America/Chicago",
   defaultSeconds: 10,
+
+  // A live clock in the same spot on every panel, always Frisco time.
+  //   "corner"  small, top right
+  //   "footer"  bottom center, on the footer line
+  //   "tab"     big, hanging from the top bar at top right
+  //   "off"     no clock
+  // Try one on /tv/preview with the Clock buttons, or /tv?clock=tab.
+  clock: "off",
 
   /* ----------------------------------------------------------------------
      THE CYCLE
@@ -67,6 +75,24 @@ window.TV_CONFIG = {
     {
       id: "title", type: "title", seconds: 8, cycle: true, skull: "off",
       photo: { src: "/images/tv/photo-title.jpg", position: "62% 30%" }
+    },
+
+    {
+      // The evening times changed in October 2026: 4:15 and 5:15 PM became
+      // 4:30 and 5:30, plus a new 6:30 PM on Monday, Wednesday and Friday.
+      // Today's column lights up on its own. Remove "until" to keep it up.
+      id: "evening", type: "schedule", seconds: 12, until: "2026-11-08", skull: "off",
+      eyebrow: "Now live",
+      title: ["New evening", "~class times.~"],
+      lead: "4:15 is now 4:30. 5:15 is now 5:30. And a new *6:30* on Monday, Wednesday and Friday.",
+      days: ["Mon", "Tue", "Wed", "Thu", "Fri"],
+      rows: [
+        { time: "4:30 PM" },
+        { time: "5:30 PM" },
+        { time: "6:30 PM", on: ["Mon", "Wed", "Fri"], tag: "New" }
+      ],
+      note: "Book in Wodify",
+      footer: "chips"
     },
 
     {

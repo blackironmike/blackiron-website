@@ -212,12 +212,13 @@
     title: [], timeline: [], columns: ['title', 'columns'], benchmark: ['name', 'movements', 'day'],
     explainer: ['title', 'points'], event: ['title', 'starts'], spotlight: ['title'],
     statement: ['lines'], fuelpath: ['title', 'points'], programs: ['title', 'cards'], qr: ['title', 'qr'],
-    offer: ['title', 'columns']
+    offer: ['title', 'columns'], schedule: ['title', 'rows']
   };
   var DATE_RE = /^\d{4}-\d{2}-\d{2}$/;
   function validate() {
     var errs = [], ids = {}, deck = C.deck || [], i;
     if (!deck.length) errs.push('The deck is empty.');
+    if (C.clock != null && C.clock !== 'off' && CLOCKS.indexOf(C.clock) < 0) errs.push('clock must be "corner", "footer", "tab" or "off".');
     if (C.cycle && C.cycle.weeks) for (i = 0; i < C.cycle.weeks.length; i++) {
       if (!C.cycle.weeks[i]) errs.push('cycle.weeks: week ' + (i + 1) + ' is empty (a double comma?).');
     }
@@ -239,8 +240,44 @@
         if (p.until && DATE_RE.test(p.starts.date || '') && p.until < p.starts.date) errs.push(name + ': "until" is before the event.');
       }
       if (p.type === 'benchmark' && WEEKDAY.indexOf(p.day) < 0) errs.push(name + ': "day" must be a weekday like "Monday".');
+      if (p.type === 'schedule' && p.rows) (p.rows || []).forEach(function (r, k) {
+        if (!r || !r.time) errs.push(name + ': row ' + (k + 1) + ' needs a "time".');
+        else (r.on || []).forEach(function (dd) {
+          if ((p.days || SCHED_DAYS).indexOf(dd) < 0) errs.push(name + ': row "' + r.time + '" lists "' + dd + '", which is not one of its days.');
+        });
+      });
     }
     return errs;
+  }
+
+  /* ----------------------------------------------------------------------
+     the clock: a live Frisco wall clock in the same spot on every panel.
+     C.clock (or ?clock= for a preview) picks the format; "off" hides it.
+     ---------------------------------------------------------------------- */
+  var CLOCKS = ['corner', 'footer', 'tab'];
+  function clockStyle() {
+    var q = qget('clock');
+    if (q === 'off' || CLOCKS.indexOf(q) >= 0) return q;
+    return CLOCKS.indexOf(C.clock) >= 0 ? C.clock : 'off';
+  }
+  function clockInner() {
+    return '<span class="ck-d"><span class="ck-full"></span><span class="ck-short"></span></span>' +
+      '<span class="ck-t"><b class="ck-h"></b><i class="ck-c">:</i><b class="ck-m"></b><span class="ck-ap"></span></span>';
+  }
+  function setClock(el) {
+    if (!el || !el.firstChild) return;
+    var z = zoned(now()), dn = dayNum(z.y, z.m, z.d), h = z.h % 12 || 12, ap = z.h < 12 ? 'AM' : 'PM';
+    // the colon dims on odd seconds, so the clock reads as live (held steady in still mode)
+    if (z.s % 2) el.classList.add('odd'); else el.classList.remove('odd');
+    var key = dn + ' ' + h + ':' + z.mi + ap;
+    if (el.getAttribute('data-k') === key) return;
+    el.setAttribute('data-k', key);
+    var day = fmtDayName(dn);
+    el.querySelector('.ck-full').textContent = day;
+    el.querySelector('.ck-short').textContent = day.slice(0, 3);
+    el.querySelector('.ck-h').textContent = h;
+    el.querySelector('.ck-m').textContent = pad(z.mi);
+    el.querySelector('.ck-ap').textContent = ap;
   }
 
   /* ----------------------------------------------------------------------
@@ -496,6 +533,37 @@
     h += '</div>';
     h += footer(p.footer || 'chips', 1800);
     h += anvil(1900);
+    return h;
+  };
+
+  // A weekly grid: day columns, one row per class time, with today's column lit.
+  var SCHED_DAYS = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri'];
+  RENDER.schedule = function (p) {
+    var h = '', days = p.days || SCHED_DAYS, rows = p.rows || [];
+    var todayIdx = weekdayIdx(today()), todayShort = WEEKDAY[todayIdx].slice(0, 3);
+    if (p.eyebrow) h += '<div class="eb"><span class="chip fill big"' + attr('wipe', 100) + '>' + md(p.eyebrow) + '</span></div>';
+    h += '<div class="h"><h1 class="disp">' + heading(p.title, 250, 170) + '</h1></div>';
+    if (p.lead) h += '<div class="lead"' + attr('rise', 600) + '>' + md(p.lead) + '</div>';
+    var colW = Math.floor((1760 - 340) / days.length), g = '';
+    g += '<div class="sg-head">' + days.map(function (dd, j) {
+      var on = dd === todayShort;
+      return '<div class="sg-day' + (on ? ' today' : '') + '"' + attr('fade', 760 + j * 60, 'left:' + (340 + j * colW) + 'px;width:' + colW + 'px') + '>' +
+        esc(dd) + (on ? '<span class="tdy">Today</span>' : '') + '</div>';
+    }).join('') + '</div>';
+    rows.forEach(function (r, i) {
+      var d = 900 + i * 170, on = r.on || days, isNew = !!r.tag;
+      g += '<div class="sg-row' + (isNew ? ' new' : '') + '" style="top:' + (66 + i * 112) + 'px">';
+      g += '<div class="sg-time"' + attr('left', d) + '>' + md(r.time) + (r.tag ? '<span class="chip fill sg-tag"' + attr('stamp', d + 700) + '>' + md(r.tag) + '</span>' : '') + '</div>';
+      days.forEach(function (dd, j) {
+        var has = on.indexOf(dd) >= 0, cls = 'sg-cell' + (has ? '' : ' none') + (dd === todayShort ? ' today' : '');
+        g += '<div class="' + cls + '"' + attr(has ? 'pop' : 'fade', d + 120 + j * 60, 'left:' + (340 + j * colW + 8) + 'px;width:' + (colW - 16) + 'px') + '>' +
+          (has ? esc(String(r.time).replace(/\s*(AM|PM)$/i, '')) : '<i></i>') + '</div>';
+      });
+      g += '</div>';
+    });
+    h += '<div class="sg">' + g + '</div>';
+    if (p.note) h += '<div class="note"' + attr('fade', 900 + rows.length * 170 + 400) + '>' + md(p.note) + '</div>';
+    h += footer(p.footer || 'chips', 1900);
     return h;
   };
 
@@ -999,6 +1067,15 @@
     });
     if (isStill) stage.classList.add('still');
     if (isLite) stage.classList.add('lite');
+    var ck = clockStyle(), clockEl = document.getElementById('clock');
+    if (ck !== 'off' && clockEl) {
+      stage.classList.add('ck-' + ck);
+      clockEl.innerHTML = clockInner();
+      (function clockLoop() {
+        try { setClock(clockEl); } catch (e) {}
+        setTimeout(clockLoop, 1000 - (now() % 1000) + 20);
+      })();
+    }
     var stamp = document.getElementById('stamp');
     if (stamp && qget('stamp') === '0') stamp.className = 'off';
     setStamp();
@@ -1055,7 +1132,12 @@
       '. Config v' + esc(C.version || '?') + '. <a href="/tv' + esc(qstring({})) + '">Play the loop</a></p></div>';
     var weeks = '';
     if (C.cycle && C.cycle.weeks) for (var w = 1; w <= C.cycle.weeks.length; w++) weeks += '<button data-week="' + w + '"' + (st.phase === 'during' && st.week === w ? ' class="on"' : '') + '>W' + w + '</button>';
-    var ctl = '<div class="pv-ctl">Pretend it is <input type="date" id="pvDate" value="' + isoDay(t) + '"> <button id="pvToday">Today</button> ' + weeks + '</div>';
+    var ck = clockStyle();
+    var clocks = ['off'].concat(CLOCKS).map(function (k) {
+      return '<button data-clock="' + k + '"' + (ck === k ? ' class="on"' : '') + '>' + k.charAt(0).toUpperCase() + k.slice(1) + '</button>';
+    }).join('');
+    var ctl = '<div class="pv-ctl">Pretend it is <input type="date" id="pvDate" value="' + isoDay(t) + '"> <button id="pvToday">Today</button> ' + weeks +
+      ' <span class="pv-sep">Clock</span>' + clocks + '</div>';
     var err = errs.length ? '<div class="pv-err"><b>Config problems</b><br>' + errs.map(esc).join('<br>') + '</div>' : '';
     var items = (C.deck || []).map(function (p, i) {
       if (!p) return '';
@@ -1063,17 +1145,17 @@
       try { html = RENDER[p.type] ? renderPanel(p) : '<div class="msg">Unknown type "' + esc(p.type) + '"</div>'; }
       catch (e) { broken = true; html = '<div class="msg">Failed to draw: ' + esc(e.message) + '</div>'; }
       var tag = broken ? '<span class="pv-tag off">Error</span>' : p.status === 'draft' ? '<span class="pv-tag draft">Draft</span>' : (a.on ? '<span class="pv-tag live">On air</span>' : '<span class="pv-tag off">Off</span>');
-      return '<div class="pv-item"><div class="pv-frame"><div class="stageMini sk-' + skullFor(p) + '">' +
+      return '<div class="pv-item"><div class="pv-frame"><div class="stageMini sk-' + skullFor(p) + (ck !== 'off' ? ' ck-' + ck : '') + '">' +
         '<div class="bar" style="top:0"></div><div class="bar" style="bottom:0"></div>' +
         '<div class="skw"><img src="/images/tv/skull.png" alt=""></div>' +
-        '<div class="layer in still">' + html + '</div></div></div>' +
+        '<div class="layer in still">' + html + '</div>' + (ck !== 'off' ? '<div class="clock">' + clockInner() + '</div>' : '') + '</div></div>' +
         '<div class="pv-meta">' + tag + '<b>' + esc(p.id) + '</b> · ' + esc(p.type) + ' · ' + seconds(p) + 's · ' + esc(a.why) +
         ' <a href="/tv' + esc(qstring({ panel: p.id })) + '">Play</a></div></div>';
     }).join('');
     root.innerHTML = head + ctl + err + '<div class="pv-grid">' + items + '</div>';
     Array.prototype.forEach.call(root.querySelectorAll('.stageMini'), function (m) {
       m.style.setProperty('--wk', st.phase === 'during' ? phaseColor(st.info.phase) : 'var(--forge)');
-      runCounts(m, true); tickCountdowns(m); fitBlocks(m);
+      runCounts(m, true); tickCountdowns(m); fitBlocks(m); setClock(m.querySelector('.clock'));
     });
     if (document.fonts && document.fonts.ready) document.fonts.ready.then(function () {
       Array.prototype.forEach.call(root.querySelectorAll('.stageMini'), fitBlocks);
@@ -1085,13 +1167,22 @@
       });
     }
     scale(); addEventListener('resize', scale);
-    function go(params) { location.search = params; }
+    // keep the chosen clock format while changing the date or week
+    function go(params) {
+      var c = qget('clock');
+      location.search = params + (c ? (params ? '&' : '?') + 'clock=' + encodeURIComponent(c) : '');
+    }
+    Array.prototype.forEach.call(root.querySelectorAll('[data-clock]'), function (b) {
+      b.addEventListener('click', function () { location.search = qstring({ clock: b.getAttribute('data-clock') }); });
+    });
     document.getElementById('pvDate').addEventListener('change', function (e) { go('?date=' + e.target.value); });
     document.getElementById('pvToday').addEventListener('click', function () { go(''); });
     Array.prototype.forEach.call(root.querySelectorAll('[data-week]'), function (b) {
       b.addEventListener('click', function () { go('?week=' + b.getAttribute('data-week')); });
     });
-    setInterval(function () { Array.prototype.forEach.call(root.querySelectorAll('.stageMini'), tickCountdowns); }, 1000);
+    setInterval(function () {
+      Array.prototype.forEach.call(root.querySelectorAll('.stageMini'), function (m) { tickCountdowns(m); setClock(m.querySelector('.clock')); });
+    }, 1000);
   }
 
   // exposed for tests and the preview page

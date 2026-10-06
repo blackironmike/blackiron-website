@@ -97,8 +97,22 @@ Text shortcuts work in any text field: `*word*` turns it Forge yellow, `~word~` 
 | `programs` | Black Iron Athletics and the four programs | `chips`, `title`, `mission`, `cards: [{title, text, photo}]` |
 | `qr` | Google review, the links page | `title`, `body` or `list`, `stars`, `steps`, `qr`, `photo` |
 | `offer` | Personal Training and Nutrition Coaching, side by side | `eyebrow`, `title` (two short lines read best), `columns: [{heading, items}]` (two columns of three short items read best), `cta`, `photo`. Longer text shrinks to fit rather than covering the footer. |
+| `schedule` | The new evening class times, as a week grid | `eyebrow`, `title`, `lead`, `days` (defaults to Mon to Fri), `rows: [{time, on, tag}]`, `note`. `on` lists the days a time runs (leave it out for every day). `tag` puts a chip like "New" beside the time. Today's column lights up on its own. |
 
 A brand new kind of layout is one new function in `tv.js` (`RENDER.yourtype`), registered by name. Nothing else changes.
+
+## The clock
+
+Every panel can show a live clock, always Frisco time, in the same spot. Set `clock` near the top of `config.js`:
+
+| `clock` | What it looks like |
+|---|---|
+| `"corner"` | Small, top right: day and time |
+| `"footer"` | Bottom center, on the footer line: weekday and time |
+| `"tab"` | Big, in a black tab hanging from the top bar at top right. Readable from across the room. |
+| `"off"` | No clock |
+
+Each format moves whatever it would have covered (the week chips, a countdown, the FuelPath phone) out of its way. The colon blinks once a second so you can tell the screen is live. To try a format before switching every TV, use the Clock buttons on `/tv/preview`, or open `/tv?clock=tab`.
 
 ## What updates itself
 
@@ -128,6 +142,7 @@ Panel photos live in `images/tv/` as black and white JPEGs. Use real members onl
 - `/tv?speed=0.25` plays the loop four times faster (it is a multiplier, so `2` is twice as slow).
 - `/tv?lite=1` drops the heavier background effects if an older TV stutters.
 - `/tv?still=1` turns off all motion, `/tv?stamp=0` hides the version line.
+- `/tv?clock=corner`, `footer`, `tab` or `off` overrides the clock format for that screen only.
 
 Any of these puts a "preview" date in the corner, so you can always tell a test screen from a live one.
 

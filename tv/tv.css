@@ -193,6 +193,60 @@ img{display:block}
 #offline{position:absolute;right:80px;bottom:46px;z-index:41;font:700 12px/1 Montserrat,sans-serif;letter-spacing:.12em;color:rgba(255,255,255,.35);display:none}
 #offline.on{display:block}
 
+/* ---------- the clock ----------
+   One live Frisco clock in the same spot on every panel. config.js `clock`
+   picks the format: corner (small, top right), footer (bottom center) or tab
+   (big, hanging from the top bar). Each format nudges anything it would sit on. */
+.clock{display:none;position:absolute;z-index:41;color:var(--white);white-space:nowrap;font-family:Montserrat,sans-serif;font-variant-numeric:tabular-nums;pointer-events:none}
+.clock .ck-c{display:inline-block;transition:opacity .35s ease}
+.clock.odd .ck-c{opacity:.3}
+.still .clock.odd .ck-c,.stageMini .clock.odd .ck-c{opacity:1}
+
+.ck-corner .clock,.ck-footer .clock{display:block}
+.ck-corner .clock{right:80px;top:26px;text-shadow:0 2px 16px rgba(0,0,0,.9),0 0 3px rgba(0,0,0,.6)}
+.ck-corner .clock .ck-d{font:800 22px/1 Montserrat,sans-serif;letter-spacing:.14em;text-transform:uppercase;color:var(--forge);margin-right:16px;vertical-align:8px}
+.ck-corner .clock .ck-full{display:none}
+.ck-corner .clock .ck-t{font:800 46px/1 Montserrat,sans-serif;letter-spacing:-.01em}
+.ck-corner .clock .ck-ap{font:800 22px/1 Montserrat,sans-serif;color:var(--gray);margin-left:8px;letter-spacing:.06em}
+.ck-corner .p-spotlight .count{top:104px !important}
+.ck-corner .phone{transform:scale(.94);transform-origin:50% 100%}
+
+.ck-footer .clock{left:0;right:0;bottom:22px;text-align:center}
+.ck-footer .clock .ck-d{font:800 20px/1 Montserrat,sans-serif;letter-spacing:.14em;text-transform:uppercase;color:#9A9A9A;vertical-align:5px}
+.ck-footer .clock .ck-d::after{content:"";display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--forge);margin:0 16px;vertical-align:3px}
+.ck-footer .clock .ck-short{display:none}
+.ck-footer .clock .ck-t{font:800 32px/1 Montserrat,sans-serif;letter-spacing:-.01em}
+.ck-footer .clock .ck-ap{font:800 18px/1 Montserrat,sans-serif;color:var(--gray);margin-left:6px;letter-spacing:.06em}
+
+.ck-tab .clock{display:flex;flex-direction:column-reverse;align-items:flex-end;right:80px;top:8px;background:#000;border:2px solid var(--steel);border-top:0;padding:16px 28px 18px}
+.ck-tab .clock .ck-t{font:900 72px/.9 Montserrat,sans-serif;letter-spacing:-.02em}
+.ck-tab .clock .ck-ap{font:900 26px/1 Montserrat,sans-serif;color:var(--forge);margin-left:10px;letter-spacing:.04em}
+.ck-tab .clock .ck-d{margin-top:10px;font:800 20px/1 Montserrat,sans-serif;letter-spacing:.16em;text-transform:uppercase;color:#9A9A9A}
+.ck-tab .clock .ck-short{display:none}
+.ck-tab .p-title .live,.ck-tab .p-timeline .range,.ck-tab .topRight{top:164px}
+.ck-tab .p-spotlight .count{top:164px !important}
+.ck-tab .phone{transform:scale(.88);transform-origin:50% 100%}
+
+/* ---------- schedule ---------- */
+.p-schedule .eb{position:absolute;left:80px;top:90px}
+.p-schedule .h{position:absolute;left:80px;top:166px}
+.p-schedule .h .disp{font-size:118px}
+.p-schedule .lead{position:absolute;left:80px;top:404px;font:500 36px/1.2 Montserrat,sans-serif;color:var(--gray);white-space:nowrap}
+.p-schedule .lead .f{font-weight:800}
+.sg{position:absolute;left:80px;top:478px;width:1760px;height:390px}
+.sg-day{position:absolute;top:0;height:52px;text-align:center;font:800 28px/52px Montserrat,sans-serif;letter-spacing:.1em;text-transform:uppercase;color:#9A9A9A}
+.sg-day.today{color:var(--forge)}
+.sg-day .tdy{margin-left:12px;font-size:16px;letter-spacing:.16em;vertical-align:4px}
+.sg-row{position:absolute;left:0;width:1760px;height:96px}
+.sg-time{position:absolute;left:0;top:0;height:96px;font:900 52px/96px Montserrat,sans-serif;color:var(--white);text-transform:uppercase;letter-spacing:-.01em;white-space:nowrap}
+.sg-time .sg-tag{margin-left:18px;vertical-align:9px;font-size:18px;padding:7px 11px 6px}
+.sg-cell{position:absolute;top:0;height:96px;background:var(--card);border:2px solid #262626;text-align:center;font:800 40px/92px Montserrat,sans-serif;color:var(--white);font-variant-numeric:tabular-nums}
+.sg-cell.today{background:#1C1C1C;border-color:#4A4A4A}
+.sg-row.new .sg-cell{border-color:var(--forge)}
+.sg-cell.none{background:transparent;border:2px dashed #262626}
+.sg-cell.none i{display:inline-block;width:34px;height:4px;background:#3A3A3A;vertical-align:middle}
+.p-schedule .note{position:absolute;right:80px;bottom:170px;font:800 26px/1 Montserrat,sans-serif;letter-spacing:.02em;text-transform:uppercase;color:var(--white)}
+
 /* boot curtain */
 #boot{position:absolute;left:0;top:0;width:1920px;height:1080px;z-index:60;background:#000;
   display:flex;align-items:center;justify-content:center;flex-direction:column;transition:opacity .9s ease}
