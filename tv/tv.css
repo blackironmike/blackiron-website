@@ -203,20 +203,24 @@ img{display:block}
 .still .clock.odd .ck-c,.stageMini .clock.odd .ck-c{opacity:1}
 
 .ck-corner .clock,.ck-footer .clock{display:block}
-.ck-corner .clock{right:80px;top:26px;text-shadow:0 2px 16px rgba(0,0,0,.9),0 0 3px rgba(0,0,0,.6)}
-.ck-corner .clock .ck-d{font:800 22px/1 Montserrat,sans-serif;letter-spacing:.14em;text-transform:uppercase;color:var(--forge);margin-right:16px;vertical-align:8px}
+/* Corner: the top-right mirror of the bottom-right anvil (right:80px, bottom:78px),
+   so the digits sit the same distance from the top as the anvil does from the bottom. */
+.ck-corner .clock{right:76px;top:69px;line-height:1;text-shadow:0 2px 18px rgba(0,0,0,.9),0 0 4px rgba(0,0,0,.6)}
+.ck-corner .clock .ck-d{font:800 26px/1 Montserrat,sans-serif;letter-spacing:.14em;text-transform:uppercase;color:var(--forge);margin-right:18px}
 .ck-corner .clock .ck-full{display:none}
-.ck-corner .clock .ck-t{font:800 46px/1 Montserrat,sans-serif;letter-spacing:-.01em;font-variant-numeric:tabular-nums}
-.ck-corner .clock .ck-ap{font:800 22px/1 Montserrat,sans-serif;color:var(--gray);margin-left:8px;letter-spacing:.06em}
-.ck-corner .p-spotlight .count{top:94px !important}
-/* the countdown animates its own transform, so it shrinks by type size instead */
-.ck-corner .p-spotlight .count .big{font-size:120px}
-.ck-corner .p-spotlight .count .big .wd{font-size:90px}
-.ck-corner .p-spotlight .count .big small{font-size:37px;margin-left:11px}
-.ck-corner .p-spotlight .count .hms{margin-top:11px;font-size:27px}
-.ck-corner .p-spotlight .count .hms em{font-size:16px;margin:0 10px 0 3px}
-.ck-corner .p-spotlight .count .lb{margin-top:13px;font-size:18px}
-.ck-corner .phone{transform:scale(.94);transform-origin:50% 100%}
+.ck-corner .clock .ck-t{font:800 64px/1 Montserrat,sans-serif;letter-spacing:-.01em;font-variant-numeric:tabular-nums}
+.ck-corner .clock .ck-ap{font:800 26px/1 Montserrat,sans-serif;color:var(--gray);margin-left:10px;letter-spacing:.06em}
+/* what sat in that corner moves down or aside */
+.ck-corner .p-title .live,.ck-corner .p-timeline .range,.ck-corner .topRight{top:176px}
+.ck-corner .p-spotlight .count{top:56px !important;right:560px !important}
+/* programs: its centered chip line would share the clock's row, so the header drops below it */
+.ck-corner .p-programs .chipsTop{top:150px}
+.ck-corner .p-programs .h{top:196px}
+.ck-corner .p-programs .h .disp{font-size:130px}
+.ck-corner .p-programs .ms{top:466px}
+.ck-corner .pcards{top:526px}
+.ck-corner .p-event .qr{transform:scale(.88);transform-origin:50% 100%}
+.ck-corner .phone{transform:scale(.88);transform-origin:50% 100%}
 
 .ck-footer .clock{left:0;right:0;bottom:22px;text-align:center}
 .ck-footer .clock .ck-d{font:800 20px/1 Montserrat,sans-serif;letter-spacing:.14em;text-transform:uppercase;color:#9A9A9A;vertical-align:5px}

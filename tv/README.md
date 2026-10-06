@@ -107,7 +107,7 @@ Every panel can show a live clock, always Frisco time, in the same spot. Set `cl
 
 | `clock` | What it looks like |
 |---|---|
-| `"corner"` | Small, top right: day and time |
+| `"corner"` | Top right: weekday and time, set the same distance from the top and right edges as the anvil is from the bottom and right. This is the one on the TVs. |
 | `"footer"` | Bottom center, on the footer line: weekday and time |
 | `"tab"` | Big, in a black tab hanging from the top bar at top right. Readable from across the room. |
 | `"off"` | No clock |

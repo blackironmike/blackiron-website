@@ -23,18 +23,18 @@
 window.TV_CONFIG = {
   // Bump this whenever you edit. It shows in the bottom-left corner of every
   // TV, so you can tell at a glance if a screen is stuck on an old version.
-  version: "2026-10-06.2",
+  version: "2026-10-06.3",
 
   timezone: "America/Chicago",
   defaultSeconds: 10,
 
   // A live clock in the same spot on every panel, always Frisco time.
-  //   "corner"  small, top right
+  //   "corner"  top right, mirroring the anvil in the bottom-right corner
   //   "footer"  bottom center, on the footer line
   //   "tab"     big, hanging from the top bar at top right
   //   "off"     no clock
   // Try one on /tv/preview with the Clock buttons, or /tv?clock=tab.
-  clock: "off",
+  clock: "corner",
 
   /* ----------------------------------------------------------------------
      THE CYCLE
