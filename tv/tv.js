@@ -240,12 +240,22 @@
         if (p.until && DATE_RE.test(p.starts.date || '') && p.until < p.starts.date) errs.push(name + ': "until" is before the event.');
       }
       if (p.type === 'benchmark' && WEEKDAY.indexOf(p.day) < 0) errs.push(name + ': "day" must be a weekday like "Monday".');
-      if (p.type === 'schedule' && p.rows) (p.rows || []).forEach(function (r, k) {
-        if (!r || !r.time) errs.push(name + ': row ' + (k + 1) + ' needs a "time".');
-        else (r.on || []).forEach(function (dd) {
-          if ((p.days || SCHED_DAYS).indexOf(dd) < 0) errs.push(name + ': row "' + r.time + '" lists "' + dd + '", which is not one of its days.');
-        });
-      });
+      if (p.type === 'schedule') {
+        var days = p.days == null ? SCHED_DAYS : p.days;
+        if (!Array.isArray(days)) { errs.push(name + ': "days" must be a list like ["Mon", "Tue"].'); days = SCHED_DAYS; }
+        if (p.rows != null && !Array.isArray(p.rows)) errs.push(name + ': "rows" must be a list [ ... ].');
+        else if (p.rows) {
+          if (p.rows.length > 3) errs.push(name + ': a schedule panel fits 3 rows. Put the rest on a second panel.');
+          p.rows.forEach(function (r, k) {
+            if (!r || !r.time) { errs.push(name + ': row ' + (k + 1) + ' needs a "time".'); return; }
+            if (r.on == null) return;
+            if (!Array.isArray(r.on)) { errs.push(name + ': row "' + r.time + '": "on" must be a list like ["Mon", "Wed"].'); return; }
+            r.on.forEach(function (dd) {
+              if (days.indexOf(dd) < 0) errs.push(name + ': row "' + r.time + '" lists "' + dd + '", which is not one of its days.');
+            });
+          });
+        }
+      }
     }
     return errs;
   }
@@ -539,7 +549,7 @@
   // A weekly grid: day columns, one row per class time, with today's column lit.
   var SCHED_DAYS = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri'];
   RENDER.schedule = function (p) {
-    var h = '', days = p.days || SCHED_DAYS, rows = p.rows || [];
+    var h = '', days = Array.isArray(p.days) ? p.days : SCHED_DAYS, rows = Array.isArray(p.rows) ? p.rows.filter(function (r) { return r && r.time; }) : [];
     var todayIdx = weekdayIdx(today()), todayShort = WEEKDAY[todayIdx].slice(0, 3);
     if (p.eyebrow) h += '<div class="eb"><span class="chip fill big"' + attr('wipe', 100) + '>' + md(p.eyebrow) + '</span></div>';
     h += '<div class="h"><h1 class="disp">' + heading(p.title, 250, 170) + '</h1></div>';
@@ -551,7 +561,7 @@
         esc(dd) + (on ? '<span class="tdy">Today</span>' : '') + '</div>';
     }).join('') + '</div>';
     rows.forEach(function (r, i) {
-      var d = 900 + i * 170, on = r.on || days, isNew = !!r.tag;
+      var d = 900 + i * 170, on = Array.isArray(r.on) ? r.on : days, isNew = !!r.tag;
       g += '<div class="sg-row' + (isNew ? ' new' : '') + '" style="top:' + (66 + i * 112) + 'px">';
       g += '<div class="sg-time"' + attr('left', d) + '>' + md(r.time) + (r.tag ? '<span class="chip fill sg-tag"' + attr('stamp', d + 700) + '>' + md(r.tag) + '</span>' : '') + '</div>';
       days.forEach(function (dd, j) {
@@ -1081,7 +1091,8 @@
     setStamp();
     fit();
     if (window.ResizeObserver) new ResizeObserver(fit).observe(viewport); else addEventListener('resize', fit);
-    var errs = validate();
+    var errs;
+    try { errs = validate(); } catch (e) { errs = ['The config check itself failed: ' + e.message]; }
     if (errs.length) console.warn('[tv] config problems:\n' + errs.join('\n'));
     addEventListener('error', function () {
       if (++errorCount <= 25) return;
@@ -1124,7 +1135,8 @@
   function bootPreview() {
     isStill = true;
     var root = document.getElementById('pv');
-    var errs = validate();
+    var errs;
+    try { errs = validate(); } catch (e) { errs = ['The config check itself failed: ' + e.message]; }
     var t = today(), dv = fromDayNum(t), st = cycleState();
     var head = '<div class="pv-head"><h1>Black Iron TV, every panel</h1>' +
       '<p>Showing the deck as it looks on <b style="color:#fff">' + fmtDayName(t) + ', ' + MONTH[dv.m - 1] + ' ' + dv.d + ', ' + dv.y + '</b>' +

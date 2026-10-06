@@ -206,25 +206,35 @@ img{display:block}
 .ck-corner .clock{right:80px;top:26px;text-shadow:0 2px 16px rgba(0,0,0,.9),0 0 3px rgba(0,0,0,.6)}
 .ck-corner .clock .ck-d{font:800 22px/1 Montserrat,sans-serif;letter-spacing:.14em;text-transform:uppercase;color:var(--forge);margin-right:16px;vertical-align:8px}
 .ck-corner .clock .ck-full{display:none}
-.ck-corner .clock .ck-t{font:800 46px/1 Montserrat,sans-serif;letter-spacing:-.01em}
+.ck-corner .clock .ck-t{font:800 46px/1 Montserrat,sans-serif;letter-spacing:-.01em;font-variant-numeric:tabular-nums}
 .ck-corner .clock .ck-ap{font:800 22px/1 Montserrat,sans-serif;color:var(--gray);margin-left:8px;letter-spacing:.06em}
-.ck-corner .p-spotlight .count{top:104px !important}
+.ck-corner .p-spotlight .count{top:94px !important}
+/* the countdown animates its own transform, so it shrinks by type size instead */
+.ck-corner .p-spotlight .count .big{font-size:120px}
+.ck-corner .p-spotlight .count .big .wd{font-size:90px}
+.ck-corner .p-spotlight .count .big small{font-size:37px;margin-left:11px}
+.ck-corner .p-spotlight .count .hms{margin-top:11px;font-size:27px}
+.ck-corner .p-spotlight .count .hms em{font-size:16px;margin:0 10px 0 3px}
+.ck-corner .p-spotlight .count .lb{margin-top:13px;font-size:18px}
 .ck-corner .phone{transform:scale(.94);transform-origin:50% 100%}
 
 .ck-footer .clock{left:0;right:0;bottom:22px;text-align:center}
 .ck-footer .clock .ck-d{font:800 20px/1 Montserrat,sans-serif;letter-spacing:.14em;text-transform:uppercase;color:#9A9A9A;vertical-align:5px}
 .ck-footer .clock .ck-d::after{content:"";display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--forge);margin:0 16px;vertical-align:3px}
 .ck-footer .clock .ck-short{display:none}
-.ck-footer .clock .ck-t{font:800 32px/1 Montserrat,sans-serif;letter-spacing:-.01em}
+.ck-footer .clock .ck-t{font:800 32px/1 Montserrat,sans-serif;letter-spacing:-.01em;font-variant-numeric:tabular-nums}
 .ck-footer .clock .ck-ap{font:800 18px/1 Montserrat,sans-serif;color:var(--gray);margin-left:6px;letter-spacing:.06em}
+.ck-footer .p-spotlight .foot,.ck-footer .p-spotlight .footR{bottom:84px}
+.ck-footer .p-spotlight .renders,.ck-footer .p-spotlight .scards{top:728px}
 
-.ck-tab .clock{display:flex;flex-direction:column-reverse;align-items:flex-end;right:80px;top:8px;background:#000;border:2px solid var(--steel);border-top:0;padding:16px 28px 18px}
-.ck-tab .clock .ck-t{font:900 72px/.9 Montserrat,sans-serif;letter-spacing:-.02em}
+.ck-tab .clock{display:flex;flex-direction:column-reverse;align-items:flex-end;right:80px;top:8px;min-width:336px;background:#000;border:2px solid var(--steel);border-top:0;padding:16px 28px 18px}
+.ck-tab .clock .ck-t{font:900 72px/.9 Montserrat,sans-serif;letter-spacing:-.02em;font-variant-numeric:tabular-nums}
 .ck-tab .clock .ck-ap{font:900 26px/1 Montserrat,sans-serif;color:var(--forge);margin-left:10px;letter-spacing:.04em}
 .ck-tab .clock .ck-d{margin-top:10px;font:800 20px/1 Montserrat,sans-serif;letter-spacing:.16em;text-transform:uppercase;color:#9A9A9A}
 .ck-tab .clock .ck-short{display:none}
 .ck-tab .p-title .live,.ck-tab .p-timeline .range,.ck-tab .topRight{top:164px}
-.ck-tab .p-spotlight .count{top:164px !important}
+.ck-tab .p-spotlight .count{top:40px !important;right:452px !important}
+.ck-tab .p-event .qr{transform:scale(.88);transform-origin:50% 100%}
 .ck-tab .phone{transform:scale(.88);transform-origin:50% 100%}
 
 /* ---------- schedule ---------- */
@@ -245,6 +255,7 @@ img{display:block}
 .sg-row.new .sg-cell{border-color:var(--forge)}
 .sg-cell.none{background:transparent;border:2px dashed #262626}
 .sg-cell.none i{display:inline-block;width:34px;height:4px;background:#3A3A3A;vertical-align:middle}
+.sg-row.new .sg-cell.none{border-color:#262626}
 .p-schedule .note{position:absolute;right:80px;bottom:170px;font:800 26px/1 Montserrat,sans-serif;letter-spacing:.02em;text-transform:uppercase;color:var(--white)}
 
 /* boot curtain */
