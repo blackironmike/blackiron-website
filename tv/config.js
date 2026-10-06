@@ -23,7 +23,7 @@
 window.TV_CONFIG = {
   // Bump this whenever you edit. It shows in the bottom-left corner of every
   // TV, so you can tell at a glance if a screen is stuck on an old version.
-  version: "2026-10-06.3",
+  version: "2026-10-06.4",
 
   timezone: "America/Chicago",
   defaultSeconds: 10,
