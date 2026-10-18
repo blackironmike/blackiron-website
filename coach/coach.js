@@ -9,10 +9,10 @@
      after the last class     branded centerpiece
 
    URL options (all optional):
-     ?v=1|2|3            layout version (prototype)
+     ?end=1|2|3          end-of-day screen version (prototype)
      ?date=2026-10-12    pretend it is this day
      ?time=09:29:50      pretend it is this time
-     ?mode=board|countdown|centerpiece|overview   force a screen (preview)
+     ?mode=board|countdown|centerpiece|opengym   force a screen (preview)
      ?class=9:30         with mode=board, which class
      ?section=2          with mode=board, open on this section (1-based)
      ?still=1            no animation (screenshots)
@@ -21,7 +21,7 @@
      Right / PageDown / N   next section      Left / PageUp / P   previous section
      Space / Enter / B / .  start or pause    R   reset the clock
      C   clock dashboard    A   auto clock     M   mute    F   full screen
-     W   today's workout (between classes)     Esc   close
+     W   open gym: today's workout (between classes)     Esc   close
 
    Written in plain ES5 so it runs on older TV browsers too.
    ========================================================================== */
@@ -34,7 +34,8 @@
   var MON = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
   var WEEKDAY = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
   var CLASS_MIN = P.classMinutes || 60;
-  var OVERVIEW_MS = 60 * 60 * 1000;     // "today's workout" closes itself after an hour
+  var OPEN_GYM_MS = 60 * 60 * 1000;     // an open gym session closes itself after an hour
+  var OPEN_GYM_HARD_MS = 30 * 60 * 1000; // ...or this much later if its clock is still running
   var OVERRUN_GRACE_MIN = 15;           // a running clock keeps the board up this long past class end
   var stage = document.getElementById('stage');
 
@@ -47,8 +48,8 @@
   });
   function q(k) { return Object.prototype.hasOwnProperty.call(QS, k) ? QS[k] : null; }
   var STILL = q('still') === '1';
-  var VERSION = /^[123]$/.test(q('v') || '') ? q('v') : '1';
-  stage.className = 'v' + VERSION + (STILL ? ' still' : '');
+  var END = /^[123]$/.test(q('end') || '') ? q('end') : '1';
+  stage.className = 'v1' + (STILL ? ' still' : '');
 
   /* ---------------- text ---------------- */
   function esc(s) { return String(s == null ? '' : s).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); }
@@ -116,6 +117,60 @@
     return list.map(hhmmToMin).sort(function (a, b) { return a - b; });
   }
   function programFor(n) { return (P.days || {})[isoDay(n)] || null; }
+
+  /* ---------------- the class hour: programming plus transitions ----------------
+     Every class is one hour. Whatever the programming doesn't use is split
+     evenly into transition blocks between the pieces, plus a cool-down at the
+     end, so Auto clock runs the whole class and lands on the hour. */
+  function kindOf(s) {
+    var n = (s.name || '').toLowerCase();
+    if (/warm/.test(n)) return 'warm';
+    if (/body ?build|accessor/.test(n)) return 'acc';
+    if (/strength|weightlift|lift|olympic|squat|deadlift|press|bench/.test(n)) return 'lift';
+    if (/condition|interval|engine|metcon|amrap|zone|cardio|finisher/.test(n)) return 'cond';
+    return 'other';
+  }
+  function transitionTips(prev, next) {
+    if (next.transition) return [].concat(next.transition);       // programming can write its own
+    var from = kindOf(prev), to = kindOf(next);
+    if (to === 'lift') return from === 'warm'
+      ? ['Grab your bar and plates', 'Start loading for your first set', 'Coach briefs the lift']
+      : ['Put the last setup away', 'Grab your bar and start loading', 'Coach briefs the lift'];
+    if (to === 'cond') return from === 'lift' || from === 'acc'
+      ? ['Strip your bar and put the plates away', 'Water and a bathroom break', 'Set up your station for conditioning']
+      : ['Water and a bathroom break', 'Set up your station', 'Coach walks through the workout'];
+    if (to === 'acc') return ['Put the heavy stuff away', 'Grab your dumbbells and find your space', 'Coach walks through the movements'];
+    return ['Water break', 'Set up for what’s next', 'Coach briefs the next piece'];
+  }
+  var tlCache = {};
+  function timelineFor(n) {
+    var key = isoDay(n);
+    if (tlCache[key]) return tlCache[key];
+    var p = programFor(n); if (!p) return null;
+    var main = p.sections, used = 0, out = [];
+    main.forEach(function (s) { used += Math.round(s.min * 60); });
+    var slack = CLASS_MIN * 60 - used, gaps = main.length - 1;
+    var useT = P.transitions !== false && p.transitions !== false && slack >= 60;
+    var each = useT ? Math.floor(slack / (gaps + 1) / 15) * 15 : 0;   // gaps plus the cool-down, in 15 s steps
+    if (each < 30) each = 0;
+    main.forEach(function (s, i) {
+      var m = {}; for (var k in s) m[k] = s[k];
+      m.kind = 'main'; m.n = i + 1; m.of = main.length;
+      out.push(m);
+      if (i < gaps && each) {
+        var nx = main[i + 1];
+        out.push({ kind: 'trans', name: 'Transition', min: each / 60, to: nx.name,
+          clock: { type: 'down', min: each / 60, label: 'Transition' },
+          blocks: [{ head: 'Up next: ' + nx.name, items: transitionTips(s, nx) }] });
+      }
+    });
+    var cool = useT ? slack - each * gaps : 0;
+    if (cool >= 60) out.push({ kind: 'cool', name: 'Cool down', min: cool / 60,
+      clock: { type: 'down', min: cool / 60, label: 'Cool down' },
+      blocks: [{ head: 'Nice work today', items: ['Walk it out and stretch', 'Put your equipment away', 'Log your scores'] }] });
+    var t = 0; out.forEach(function (x) { x.at = t; t += Math.round(x.min * 60); });
+    return (tlCache[key] = { week: p.week, sections: out, programmed: used });
+  }
   function nextClassAfter(n, min) {
     for (var k = 0; k < 8; k++) {
       var list = classesOn(n + k);
@@ -131,7 +186,7 @@
     }
     var next = nextClassAfter(n, min);
     var first = list.length ? list[0] : null, last = list.length ? list[list.length - 1] + CLASS_MIN : null;
-    var morning = first !== null && min < first && min >= first - (P.morningCountdownMinutes || 75);
+    var morning = first !== null && min < first && min >= first - (P.morningCountdownMinutes || 60);
     var between = first !== null && min >= first && min < last;
     if ((morning || between) && next && next.inDays === 0) return { mode: 'countdown', next: next };
     return { mode: 'centerpiece', next: next };
@@ -155,6 +210,7 @@
   function normSpec(c) {
     c = c || { type: 'up' };
     var s = { type: MODES[c.type] ? c.type : 'up' };
+    if (c.label) s.label = c.label;
     if (s.type === 'down' || s.type === 'amrap') s.total = Math.round((c.min || 10) * 60);
     if (s.type === 'up') s.cap = c.cap ? Math.round(c.cap * 60) : 0;
     if (s.type === 'emom') { s.every = c.every || 60; s.rounds = c.rounds || 10; }
@@ -187,13 +243,13 @@
   function tElapsed() { return T.state === 'run' ? T.acc + (now() - T.runStart) / 1000 * RATE : T.acc; }
   function tSet(spec) { T.spec = spec; tReset(); }
   function tReset() { T.state = 'idle'; T.acc = 0; T.lastBeep = null; drawClock(); }
-  function tToggle() {
+  function tToggle(noPrep) {
     audio();
     if (T.state === 'run') { T.acc = tElapsed(); T.state = 'paused'; }
     else if (T.state === 'prep') { T.state = 'idle'; }
     else if (T.state === 'done') { tReset(); return tToggle(); }
     else if (T.state === 'paused') { T.runStart = now(); T.state = 'run'; }
-    else if (T.prep > 0) { T.state = 'prep'; T.prepStart = now(); }
+    else if (T.prep > 0 && !noPrep) { T.state = 'prep'; T.prepStart = now(); }
     else { T.runStart = now(); T.state = 'run'; beep(true); }
     drawClock();
   }
@@ -214,7 +270,7 @@
     }
     if (total && e >= total) { e = total; r.done = true; }
     if (s.type === 'up') { r.big = fmtSecs(e); r.sub = s.cap ? 'Cap ' + fmtSecs(s.cap) : 'Count up'; }
-    if (s.type === 'down' || s.type === 'amrap') { r.big = fmtSecs(Math.ceil(total - e)); r.sub = s.type === 'amrap' ? 'AMRAP' : 'Countdown'; r.left = total - e; }
+    if (s.type === 'down' || s.type === 'amrap') { r.big = fmtSecs(Math.ceil(total - e)); r.sub = s.label || (s.type === 'amrap' ? 'AMRAP' : 'Countdown'); r.left = total - e; }
     if (s.type === 'emom') {
       var round = Math.min(s.rounds, Math.floor(e / s.every) + 1), inR = s.every - (e % s.every);
       if (r.done) inR = 0;
@@ -263,10 +319,10 @@
   function wxHtml() { return WX ? '<span class="wx"><b>' + WX.t + '°</b> ' + esc(WX.d) + '</span>' : ''; }
 
   /* ---------------- screens ---------------- */
-  var view = { mode: null, day: null, start: null, sec: 0, auto: false, overviewUntil: 0, welcomeUntil: 0, toast: null };
+  var view = { mode: null, day: null, start: null, sec: 0, auto: false, openGym: false, ogUntil: 0, ogHard: 0, welcomeUntil: 0, toast: null, centerKey: null };
 
   function show(id) {
-    ['scBoard', 'scCountdown', 'scCenter', 'scOverview'].forEach(function (s) { $(s).classList.toggle('on', s === id); });
+    ['scBoard', 'scCountdown', 'scCenter'].forEach(function (s) { $(s).classList.toggle('on', s === id); });
   }
 
   // ---- time until next class ----
@@ -280,7 +336,7 @@
         rise('<div class="cdNext"><span class="f">' + minLabel(nx.start) + '</span> class' + (p ? ' · ' + esc(P.cycle || '') + (p.week ? ', ' + esc(p.week) : '') : '') + '</div>', 240) +
         (p ? rise('<div class="cdSecs">' + p.sections.map(function (s) { return '<span>' + esc(s.name) + '</span>'; }).join('<i></i>') + '</div>', 360) : '') +
       '</div>' +
-      '<div class="cdBot">' + (programFor(todayNum()) ? '<button class="btn ghost" data-act="overview">Show today’s workout</button>' : '') + '<div class="mission">We help everyday people become everyday athletes.</div></div>';
+      '<div class="cdBot">' + ogButton() + '<div class="mission">We help everyday people become everyday athletes.</div></div>';
     view.cdTarget = epochOf(nx.day, nx.start);
     paintAmbient();
   }
@@ -291,95 +347,128 @@
   }
 
   // ---- end of day / overnight centerpiece ----
+  function ogButton() { return programFor(todayNum()) ? '<button class="btn ghost" data-act="opengym">Open gym: today’s workout</button>' : '<span></span>'; }
+  // What the centerpiece says, based on when the next class is.
+  function centerMsg(nx) {
+    var z = nowZ(), n = todayNum(), wd = fromDayNum(n).wd, min = z.h * 60 + z.mi;
+    if (!nx) return { head: 'See you soon.', sub: '', when: '' };
+    var day = WEEKDAY[fromDayNum(nx.day).wd], at = '<span class="f">' + minLabel(nx.start) + '</span>';
+    if ((wd === 6 || wd === 0) && nx.inDays > 0)
+      return { head: 'Have a great weekend.', sub: 'We’ll see you ' + day + '. Our next class is ' + day + ' at ' + at + '.', when: day + ', ' + minLabel(nx.start) };
+    if (nx.inDays === 0)
+      return { head: min < 240 ? 'Rest up.' : 'Good morning.', sub: 'First class today is at ' + at + '.', when: 'Today, ' + minLabel(nx.start) };
+    if (nx.inDays === 1)
+      return { head: 'That’s a wrap for today.', sub: 'See you tomorrow. Next class is ' + day + ' at ' + at + '.', when: 'Tomorrow, ' + minLabel(nx.start) };
+    return { head: 'See you ' + day + '.', sub: 'Our next class is ' + day + ' at ' + at + '.', when: day + ', ' + minLabel(nx.start) };
+  }
   function drawCenter(nx) {
-    var nextTxt = '';
-    if (nx) nextTxt = 'Next class ' + (nx.inDays === 0 ? 'today' : nx.inDays === 1 ? 'tomorrow' : WEEKDAY[fromDayNum(nx.day).wd]) + ', <span class="f">' + minLabel(nx.start) + '</span>';
-    $('scCenter').innerHTML =
-      '<div class="cBg"><img src="' + ANVIL + '" alt=""></div>' +
-      '<div class="cMain">' +
-        rise('<img class="cLogo" src="' + LOGO + '" alt="Black Iron Athletics">', 0) +
-        rise('<div class="cTime" id="cTime"></div>', 160) +
-        rise('<div class="cDate" id="cDate"></div>', 260) +
-        rise('<div class="cLine">Everyday people. <span class="outline">Everyday athletes.</span></div>', 380) +
-      '</div>' +
-      '<div class="cBot"><div class="cNext">' + nextTxt + '</div>' +
-        (programFor(todayNum()) ? '<button class="btn ghost" data-act="overview">Show today’s workout</button>' : '') +
-        '<div class="amb" id="ambC"></div></div>';
-    paintAmbient();
+    var m = centerMsg(nx), h;
+    view.cdTarget = null;
+    var bot = '<div class="cdBot">' + ogButton() + '<div class="mission">We help everyday people become everyday athletes.</div></div>';
+    if (END === '2') {
+      // countdown style: the hero is the time until the next class
+      h = '<div class="cdTop"><img class="logo" src="' + LOGO + '" alt="Black Iron Athletics"><div class="amb" id="ambC"></div></div>' +
+        '<div class="cdMid">' +
+          rise('<div class="eyebrow">' + esc(m.head) + '</div>', 0) +
+          (nx ? rise('<div class="cdBig eBig" id="cdBig">--:--</div>', 120) : '') +
+          rise('<div class="cdNext">Next class <span class="f">' + esc(m.when) + '</span></div>', 240) +
+        '</div>' + bot;
+      if (nx) view.cdTarget = epochOf(nx.day, nx.start);
+    } else if (END === '3') {
+      // brand style: the mark is the hero
+      h = '<div class="cBg"><img src="' + ANVIL + '" alt=""></div>' +
+        '<div class="cdTop"><span></span><div class="amb" id="ambC"></div></div>' +
+        '<div class="cdMid">' +
+          rise('<img class="eLogo" src="' + LOGO + '" alt="Black Iron Athletics">', 0) +
+          rise('<div class="eLine">Everyday people. <span class="outline">Everyday athletes.</span></div>', 160) +
+          rise('<div class="eHead">' + esc(m.head) + '</div>', 320) +
+          rise('<div class="eSub">' + m.sub + '</div>', 420) +
+        '</div>' + bot;
+    } else {
+      // clock style: the time of day is the hero
+      h = '<div class="cdTop"><img class="logo" src="' + LOGO + '" alt="Black Iron Athletics"><div class="amb" id="ambW"></div></div>' +
+        '<div class="cdMid">' +
+          rise('<div class="eyebrow">' + esc(m.head) + '</div>', 0) +
+          rise('<div class="cdBig eTime" id="cTime"></div>', 120) +
+          rise('<div class="eDate" id="cDate"></div>', 220) +
+          rise('<div class="eSub">' + m.sub + '</div>', 340) +
+        '</div>' + bot;
+    }
+    $('scCenter').innerHTML = h;
+    $('scCenter').className = 'screen on e' + END;
+    paintAmbient(); tickCountdown();
   }
 
   // ---- the ambient strip: time of day + weather ----
   function paintAmbient() {
     var z = nowZ(), f = clockFace(z), n = todayNum();
     var html = '<span class="tod">' + f.t + '<small>' + f.ap + '</small></span><span class="sep"></span><span>' + esc(dateLine(n)) + '</span>' + (WX ? '<span class="sep"></span>' + wxHtml() : '');
-    ['ambCd', 'ambC', 'ambOv'].forEach(function (id) { var el = $(id); if (el) el.innerHTML = html; });
+    ['ambCd', 'ambC'].forEach(function (id) { var el = $(id); if (el) el.innerHTML = html; });
+    var w = $('ambW'); if (w) w.innerHTML = WX ? wxHtml() : '';
     var t = $('cTime'); if (t) t.innerHTML = f.t + '<small>' + f.ap + '</small>';
-    var d = $('cDate'); if (d) d.innerHTML = esc(dateLine(n)) + (WX ? '<span class="sep"></span>' + wxHtml() : '');
-  }
-
-  // ---- today's workout (open gym) ----
-  function drawOverview() {
-    var n = todayNum(), p = programFor(n);
-    $('scOverview').innerHTML =
-      '<div class="ovTop"><div><div class="eyebrow">Today’s workout</div><h1>' + esc(dateLine(n)) + '</h1></div><div class="amb" id="ambOv"></div><button class="btn ghost" data-act="exit">Close</button></div>' +
-      '<div class="ovCols n' + (p ? p.sections.length : 0) + '">' + (p ? p.sections.map(function (s, i) {
-        return '<div class="ovCol r" style="--d:' + (i * 90) + 'ms"><div class="ovHead"><span class="num">' + (i + 1) + '</span>' + esc(s.name) + '<span class="mins">' + s.min + ' min</span></div>' + sectionBody(s, true) + '</div>';
-      }).join('') : '<p class="none">No programming loaded for today.</p>') + '</div>' +
-      '<div class="ovFoot" id="ovFoot"></div>';
-    paintAmbient();
+    var d = $('cDate'); if (d) d.innerHTML = esc(dateLine(n));
   }
 
   // ---- the coach board ----
-  function sectionBody(s, compact) {
+  function sectionBody(s) {
     var h = '';
     (s.blocks || []).forEach(function (b) {
       h += '<div class="blk">' + (b.head ? '<div class="bh">' + md(b.head) + '</div>' : '') +
         '<ul>' + (b.items || []).map(function (it) { return '<li>' + md(it) + '</li>'; }).join('') + '</ul></div>';
     });
     if (s.levels && s.levels.length) h += '<div class="lvls">' + s.levels.map(function (l) { return '<div class="lv"><span>L' + esc(l[0]) + '</span>' + md(l[1]) + '</div>'; }).join('') + '</div>';
-    if (s.notes) h += '<div class="note">' + (compact ? '' : '<b>Notes</b>') + md(s.notes) + '</div>';
+    if (s.notes) h += '<div class="note"><b>Notes</b>' + md(s.notes) + '</div>';
     return h;
   }
-  function boardData() { return programFor(view.day); }
+  function boardData() { return timelineFor(view.day); }
+  function mss(sec) { sec = Math.round(sec); return Math.floor(sec / 60) + ':' + pad(sec % 60); }
+  function minsText(m) { return m === Math.round(m) ? m + ' min' : mss(m * 60); }
+  function chipTime(x) {
+    if (view.start !== null) return minShort(view.start + Math.round(x.at / 60));
+    return x.kind === 'main' ? x.min + '′' : mss(x.min * 60);
+  }
   function drawBoard(animate) {
     var p = boardData(), secs = p ? p.sections : [], s = secs[view.sec];
-    var cls = view.start !== null ? minLabel(view.start) + ' class' : 'Today';
+    var cls = view.openGym ? 'Open gym' : view.start !== null ? minLabel(view.start) + ' class' : 'Today';
     $('bHead').innerHTML =
       '<img class="logo" src="' + LOGO + '" alt="Black Iron Athletics">' +
       '<div class="bh-mid"><span class="f">' + esc(cls) + '</span><span class="sep"></span>' + esc(dateLine(view.day)) + (p ? '<span class="sep"></span>' + esc(P.cycle || '') + (p.week ? ', ' + esc(p.week) : '') : '') + '</div>' +
       '<div class="bh-r"><span id="bTod"></span></div>';
     if (!s) {
       $('bSec').innerHTML = '<div class="empty"><div class="eyebrow">Coach board</div><h1>No programming loaded for ' + esc(dateLine(view.day)) + '.</h1><p>Send this week’s programming and it shows up here.</p></div>';
-      $('bRail').innerHTML = ''; $('bRun').innerHTML = ''; $('bNext').innerHTML = '';
+      $('bRail').innerHTML = '';
       return;
     }
-    var idx = view.sec + 1, of = secs.length;
+    var of = secs.length;
     $('bSec').innerHTML =
       '<div class="secTop' + (animate ? ' anim' : '') + '">' +
-        '<div class="secKick"><span class="num">' + idx + '<small>/' + of + '</small></span>' + esc(s.name) + '<span class="mins">' + s.min + ' min</span></div>' +
+        '<div class="secKick k-' + s.kind + '">' + (s.kind === 'main' ? '<span class="num">' + s.n + '<small>/' + s.of + '</small></span>' : '') + esc(s.name) + '<span class="mins">' + minsText(s.min) + '</span></div>' +
       '</div>' +
-      '<div class="secBody' + (animate ? ' anim' : '') + ' len' + bodyLen(s) + '">' + sectionBody(s, false) + '</div>';
+      '<div class="secBody' + (animate ? ' anim' : '') + '">' + sectionBody(s) + '</div>';
+    fitBody();
     // rail of sections
+    $('bRail').className = secs.length > 7 ? 'many' : '';
     $('bRail').innerHTML = secs.map(function (x, i) {
-      return '<button class="chip' + (i === view.sec ? ' on' : i < view.sec ? ' past' : '') + '" data-act="goto" data-i="' + i + '"><b>' + (i + 1) + '</b>' + esc(x.name) + '<span>' + x.min + '′</span></button>';
+      var st = (i === view.sec ? ' on' : i < view.sec ? ' past' : '');
+      if (x.kind === 'trans') return '<button class="chip tr' + st + '" data-act="goto" data-i="' + i + '" title="Transition"><i class="trI"></i><span>' + mss(x.min * 60) + '</span></button>';
+      return '<button class="chip k-' + x.kind + st + '" data-act="goto" data-i="' + i + '">' + (x.kind === 'main' ? '<b>' + x.n + '</b>' : '') + '<em>' + esc(x.name) + '</em><span>' + chipTime(x) + '</span></button>';
     }).join('');
-    // version 3: run of show + up next
-    var t0 = 0;
-    $('bRun').innerHTML = '<div class="runHead">Run of show</div>' + secs.map(function (x, i) {
-      var row = '<button class="run' + (i === view.sec ? ' on' : i < view.sec ? ' past' : '') + '" data-act="goto" data-i="' + i + '"><span class="rt">' + Math.floor(t0 / 60) + ':' + pad(t0 % 60) + '</span><span class="rn">' + esc(x.name) + '</span><span class="rm">' + x.min + ' min</span></button>';
-      t0 += x.min; return row;
-    }).join('') + '<div class="runTot">' + t0 + ' minutes programmed</div><div class="classClock" id="classClock"></div>';
-    var nx = secs[view.sec + 1];
-    $('bNext').innerHTML = nx ? '<div class="unLabel">Up next</div><div class="unName">' + esc(nx.name) + '</div><div class="unMeta">' + nx.min + ' min · ' + esc(specSummary(normSpec(nx.clock))) + '</div>' : '<div class="unLabel">Up next</div><div class="unName">Cool down</div><div class="unMeta">That’s the last section.</div>';
     $('btnPrev').disabled = view.sec === 0;
     $('btnNext').innerHTML = view.sec < of - 1 ? 'Next: ' + esc(secs[view.sec + 1].name) + ' <span class="arr">→</span>' : 'Finish <span class="arr">→</span>';
     if (animate && !STILL) wipe();
     drawClock();
   }
-  function bodyLen(s) {
-    var n = 0; (s.blocks || []).forEach(function (b) { n += (b.items || []).length + (b.head ? 1 : 0); });
-    n += (s.levels || []).length * 0.8 + (s.notes ? Math.ceil(s.notes.length / 70) : 0);
-    return n > 11 ? 3 : n > 7 ? 2 : 1;
+  // Size the workout text to fill the whiteboard: the largest size where every
+  // line still fits. Short sections (one movement) end up very large.
+  var FIT_MAX = 132, FIT_MIN = 24;
+  function fitBody() {
+    var box = $('bSec'), body = box && box.querySelector('.secBody'); if (!body) return;
+    function fits() { return body.offsetTop + body.offsetHeight <= box.clientHeight && body.scrollWidth <= body.clientWidth + 1; }
+    body.style.fontSize = FIT_MAX + 'px';
+    if (fits()) return;
+    var lo = FIT_MIN, hi = FIT_MAX;
+    for (var i = 0; i < 9; i++) { var mid = (lo + hi) / 2; body.style.fontSize = mid + 'px'; if (fits()) lo = mid; else hi = mid; }
+    body.style.fontSize = Math.floor(lo) + 'px';
   }
   function wipe() { var w = $('wipe'); w.classList.remove('go'); void w.offsetWidth; w.classList.add('go'); }
 
@@ -388,14 +477,15 @@
     var r = tRead(), s = T.spec;
     $('ckBig').textContent = r.big;
     $('ckSub').textContent = r.sub;
-    $('ckMode').textContent = MODES[s.type];
-    if (T.state === 'idle' && s.type !== 'tabata') $('ckSub').textContent = specSummary(s);
+    $('ckMode').textContent = s.label || MODES[s.type];
+    if (T.state === 'idle' && s.type !== 'tabata') $('ckSub').textContent = s.label ? fmtSecs(s.total) + ' ' + s.label.toLowerCase() : specSummary(s);
     var panel = $('bClock');
     panel.className = 'ck st-' + T.state + (r.phase ? ' ph-' + r.phase : '');
     $('btnPlay').innerHTML = T.state === 'run' || T.state === 'prep' ? '<i class="ic pause"></i>Pause' : T.state === 'paused' ? '<i class="ic play"></i>Resume' : T.state === 'done' ? '<i class="ic reset"></i>Again' : '<i class="ic play"></i>Start';
     $('btnAuto').classList.toggle('on', view.auto);
     $('btnAuto').innerHTML = '<i class="ic auto"></i>Auto clock' + (view.auto ? ' on' : '');
     $('btnMute').classList.toggle('on', muted);
+    $('scBoard').classList.toggle('og', !!view.openGym);
   }
 
   function gotoSection(i, opts) {
@@ -405,25 +495,37 @@
     view.sec = i;
     tSet(normSpec(p.sections[i].clock));
     drawBoard(changed || (opts && opts.force));
-    if (opts && opts.start) tToggle();
+    view.headsUp = -1;
+    if (opts && opts.start) tToggle(opts.noPrep);
   }
   function nextSection() {
     var p = boardData(); if (!p) return;
-    if (view.sec < p.sections.length - 1) gotoSection(view.sec + 1);
+    var running = T.state === 'run' || T.state === 'prep';
+    if (view.sec < p.sections.length - 1) gotoSection(view.sec + 1, { start: view.auto && running, noPrep: true });
     else toast('That’s the workout. Nice work today.', 4000);
   }
 
-  // When a section's clock finishes and Auto clock is on, roll into the next section.
+  // Auto clock: a 5-second heads-up during the end of each clock, then the
+  // next block starts the moment this one ends, so the class stays on the hour.
+  function headsUp() {
+    if (!view.auto || view.mode !== 'board' || T.state !== 'run') return;
+    var p = boardData(); if (!p) return;
+    var total = specTotal(T.spec); if (!total) return;
+    var left = Math.ceil(total - tElapsed()), nx = p.sections[view.sec + 1];
+    if (!nx || left > 5 || left < 1) return;
+    if (view.headsUp !== view.sec) { view.headsUp = view.sec; toast('Up next: <span class="f">' + esc(nx.name) + '</span> in <b id="tn">' + left + '</b>', 6000); }
+    var el = $('tn'); if (el) el.textContent = left;
+  }
   T.onDone = function () {
     if (!view.auto || view.mode !== 'board') return;
     var p = boardData(); if (!p) return;
-    if (view.sec >= p.sections.length - 1) { toast('That’s the workout. Nice work today.', 5000); return; }
-    var nx = p.sections[view.sec + 1], left = 5;
-    toast('Up next: <span class="f">' + esc(nx.name) + '</span> in <b id="tn">5</b>', 5200);
-    var iv = setInterval(function () {
-      left--; var el = $('tn'); if (el) el.textContent = left;
-      if (left <= 0) { clearInterval(iv); if (view.auto && view.mode === 'board') gotoSection(view.sec + 1, { start: true }); }
-    }, 1000);
+    if (view.sec >= p.sections.length - 1) {
+      toast('That’s the workout. Nice work today.', 6000);
+      if (view.openGym) view.ogUntil = Math.min(view.ogUntil, now() + 3 * 60000);
+      return;
+    }
+    $('toast').classList.remove('on');
+    gotoSection(view.sec + 1, { start: true, noPrep: true });
   };
 
   function toast(html, ms) {
@@ -441,17 +543,47 @@
       rise('<div class="wSub">Glad you made it. Let’s get started.</div>', 600) +
       rise('<div class="wNext">First up: <span class="f">' + esc(first ? first.name : 'Warm up') + '</span></div>', 1100) +
       '</div><div class="wBar"></div>';
-    w.classList.remove('out'); w.classList.add('on');
+    clearTimeout(welcomeT); w.classList.remove('out', 'og'); w.classList.add('on');
     view.welcomeUntil = now() + (STILL ? 0 : 4200);
   }
-  function endWelcome() { var w = $('welcome'); if (!w.classList.contains('on')) return; w.classList.add('out'); setTimeout(function () { w.classList.remove('on', 'out'); }, 700); }
+  var welcomeT = null;
+  function endWelcome() { var w = $('welcome'); if (!w.classList.contains('on')) return; w.classList.add('out'); clearTimeout(welcomeT); welcomeT = setTimeout(function () { w.classList.remove('on', 'out', 'og'); }, 700); }
+
+  /* ---------------- open gym: today's workout as a self-running class ---------------- */
+  function openGym() {
+    var n = todayNum(), p = programFor(n);
+    if (!p) { toast('No workout loaded for today.', 3000); return; }
+    view.openGym = true; view.mode = 'board'; view.day = n; view.start = null; view.sec = 0;
+    view.auto = true; view.ogUntil = now() + OPEN_GYM_MS; view.ogHard = view.ogUntil + OPEN_GYM_HARD_MS;
+    show('scBoard');
+    tSet(normSpec(p.sections[0].clock));
+    drawBoard(false);
+    view.ogStartAt = 0;
+    var w = $('welcome');
+    w.innerHTML = '<div class="wIn">' +
+      rise('<div class="eyebrow">Open gym</div>', 0) +
+      rise('<div class="wBig">Today’s<br><span class="outline">workout.</span></div>', 150) +
+      rise('<div class="ogSecs">' + p.sections.map(function (x) { return '<span>' + esc(x.name) + ' <b>' + x.min + ' min</b></span>'; }).join('<i></i>') + '</div>', 400) +
+      rise('<div class="wSub">One hour, transitions included. Press start and the board runs the whole class: every section, every clock.</div>', 550) +
+      rise('<div class="ogBtns"><button class="btn forge big" data-act="ogstart"><i class="ic play"></i>Start workout</button><button class="btn ghost" data-act="ogboard">Just show the board</button><button class="btn ghost" data-act="ogexit">Close</button></div>', 700) +
+      '</div>';
+    clearTimeout(welcomeT); w.classList.remove('out'); w.classList.add('on', 'og');
+    view.welcomeUntil = 0;
+  }
+  function ogStart() {
+    endWelcome(); view.auto = true; view.ogStartAt = now() + T.prep * 1000;
+    gotoSection(0, { force: true, start: true });
+    toast('Here we go. <span class="f">' + esc(boardData().sections[0].name) + '</span> starts in 10', 3000);
+  }
+  function leaveOpenGym() { view.openGym = false; view.auto = false; view.mode = null; view.start = null; view.cdTarget = null; endWelcome(); }
+  function endOpenGym() { leaveOpenGym(); tReset(); decide(); }
 
   /* ---------------- deciding what is on screen ---------------- */
   function setMode(want) {
     if (want.mode === 'board') {
       var newClass = view.mode !== 'board' || view.day !== want.day || view.start !== want.start;
       if (newClass) {
-        view.mode = 'board'; view.day = want.day; view.start = want.start; view.sec = 0; view.overviewUntil = 0;
+        view.mode = 'board'; view.day = want.day; view.start = want.start; view.sec = 0;
         show('scBoard');
         var p = boardData();
         tSet(normSpec(p ? p.sections[0].clock : null));
@@ -469,12 +601,13 @@
       view.mode = 'countdown'; show('scCountdown'); drawCountdown(want.next); return;
     }
     if (want.mode === 'centerpiece') {
-      if (view.mode === 'centerpiece') return;
-      view.mode = 'centerpiece'; show('scCenter'); drawCenter(want.next); return;
+      var key = (want.next ? want.next.day + ':' + want.next.start : '-') + ':' + centerMsg(want.next).head;
+      if (view.mode === 'centerpiece' && view.centerKey === key) return;
+      view.mode = 'centerpiece'; view.centerKey = key; show('scCenter'); drawCenter(want.next); return;
     }
   }
   function forced() {
-    var m = q('mode'); if (!m || m === 'overview') return null;
+    var m = q('mode'); if (!m || m === 'opengym') return null;
     var n = todayNum(), z = nowZ(), min = z.h * 60 + z.mi;
     if (m === 'board') { var c = q('class'); var list = classesOn(n); return { mode: 'board', day: n, start: c ? hhmmToMin(c) : (list[0] || 330) }; }
     if (m === 'countdown') return { mode: 'countdown', next: nextClassAfter(n, min) || { day: n + 1, start: 315, inDays: 1 } };
@@ -482,10 +615,13 @@
     return null;
   }
   function decide() {
-    if (view.mode === 'overview') {
+    if (view.openGym) {
       var s = scheduled();
-      if (s.mode === 'board' || now() > view.overviewUntil) { closeOverview(); }
-      else { var f = $('ovFoot'); if (f) f.textContent = 'Closes on its own in ' + Math.ceil((view.overviewUntil - now()) / 60000) + ' min'; return; }
+      // A scheduled class always takes the board back.
+      if (s.mode === 'board' && !forced()) { leaveOpenGym(); setMode(s); return; }
+      var running = T.state === 'run' || T.state === 'prep';
+      if ((now() > view.ogUntil && !running) || now() > view.ogHard) endOpenGym();
+      return;
     }
     var want = forced() || scheduled();
     // Don't yank the board away from a coach whose clock is still running after the hour.
@@ -495,13 +631,6 @@
     }
     setMode(want);
   }
-  function openOverview() {
-    if (!programFor(todayNum())) return;
-    view.prevMode = view.mode; view.mode = 'overview'; view.overviewUntil = now() + OVERVIEW_MS;
-    show('scOverview'); drawOverview();
-  }
-  function closeOverview() { view.mode = null; view.cdTarget = null; decide(); }
-
   /* ---------------- clock dashboard ---------------- */
   var draft = null;
   function openDash() {
@@ -563,15 +692,18 @@
     if (act === 'clock') openDash();
     if (act === 'auto') { view.auto = !view.auto; toast(view.auto ? 'Auto clock on: each section rolls into the next when its clock ends' : 'Auto clock off: you’re in control', 3200); drawClock(); }
     if (act === 'mute') { muted = !muted; drawClock(); }
-    if (act === 'overview') openOverview();
-    if (act === 'exit') closeOverview();
+    if (act === 'opengym') openGym();
+    if (act === 'ogstart') ogStart();
+    if (act === 'ogboard') endWelcome();
+    if (act === 'ogexit') endOpenGym();
   });
   document.addEventListener('keydown', function (e) {
     audio();
     var k = e.key, dashOn = $('dash').classList.contains('on');
-    if (k === 'Escape') { if (dashOn) closeDash(); else if (view.mode === 'overview') closeOverview(); return; }
+    if (k === 'Escape') { if (dashOn) closeDash(); else if (view.openGym) endOpenGym(); return; }
     if (k === 'f' || k === 'F') { var d = document.documentElement; if (d.requestFullscreen) d.requestFullscreen(); return; }
-    if (view.mode === 'countdown' || view.mode === 'centerpiece') { if (k === 'w' || k === 'W') openOverview(); return; }
+    if (view.mode === 'countdown' || view.mode === 'centerpiece') { if (k === 'w' || k === 'W') openGym(); return; }
+    if (view.openGym && $('welcome').classList.contains('og')) { if (k === ' ' || k === 'Enter') { e.preventDefault(); ogStart(); } return; }
     if (view.mode !== 'board' || dashOn) return;
     if (k === 'ArrowRight' || k === 'PageDown' || k === 'n' || k === 'N') { e.preventDefault(); nextSection(); }
     else if (k === 'ArrowLeft' || k === 'PageUp' || k === 'p' || k === 'P') { e.preventDefault(); gotoSection(view.sec - 1); }
@@ -596,22 +728,27 @@
   function loop() {
     tTick();
     if (view.mode === 'board') {
-      drawClock();
+      drawClock(); headsUp();
       if (view.welcomeUntil && now() > view.welcomeUntil) { view.welcomeUntil = 0; endWelcome(); }
     }
     var z = nowZ();
     if (z.s !== lastSec) {
       lastSec = z.s;
       decide();
-      if (view.mode === 'countdown') tickCountdown();
+      if (view.mode === 'countdown' || view.mode === 'centerpiece') tickCountdown();
+      var hb = $('bHour');
+      if (hb) {
+        var t0 = view.start !== null ? epochOf(view.day, view.start) : view.ogStartAt;
+        hb.style.transform = 'scaleX(' + (t0 ? Math.max(0, Math.min(1, (now() - t0) / (CLASS_MIN * 60000))) : 0) + ')';
+      }
       var tod = $('bTod'); if (tod) { var f = clockFace(z); tod.innerHTML = f.t + '<small>' + f.ap + '</small>' + (WX ? '<span class="sep"></span>' + wxHtml() : ''); }
-      var cc = $('classClock'); if (cc && view.start !== null) cc.innerHTML = '<span>Class clock</span>' + fmtSecs(Math.max(0, (now() - epochOf(view.day, view.start)) / 1000));
       if (z.s === 0) paintAmbient();
     }
   }
   loadWeather(); setInterval(loadWeather, 20 * 60000);
   decide(); paintAmbient();
-  if (q('mode') === 'overview') openOverview();
+  if (q('mode') === 'opengym') openGym();
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(function () { if (view.mode === 'board') fitBody(); });
   setInterval(loop, 100);
   // A coach touching the board un-hides the cursor; it hides again after 4 seconds.
   var curT; document.addEventListener('mousemove', function () { document.body.classList.add('cur'); clearTimeout(curT); curT = setTimeout(function () { document.body.classList.remove('cur'); }, 4000); });

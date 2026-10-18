@@ -22,37 +22,39 @@ a.t:hover{border-color:#FFD202}
 </style>
 </head>
 <body>
-<h1>Coach board, three versions</h1>
-<p>Every tile opens the real board. Click through sections, start the clock, try Clock settings and Auto clock. Keyboard: arrows for sections, space to start or pause, C for clock settings, A for auto clock. Programming shown is the week of Oct 12.</p>
+<h1>Coach board</h1>
+<p>The whiteboard layout. Every tile opens the real board: click through sections, start the clock, try Clock settings and Auto clock. Keyboard or clicker: arrows for sections, space to start or pause, C for clock settings, A for auto clock. Programming shown is the week of Oct 12.</p>
 <div id="out"></div>
 <script>
-var V = [
-  ['1', 'Whiteboard', 'The workout reads like the whiteboard. Big list on the left, the clock in a column on the right, section tabs along the bottom.'],
-  ['2', 'Rogue', 'The clock is the hero. A full-width timer band like the wall timer, the workout in columns underneath.'],
-  ['3', 'Run of show', 'A class timeline down the left with a running class clock, the section in the middle, the clock and what’s next on the right.']
-];
-var SHOTS = [
-  ['Warm up', 'date=2026-10-12&mode=board&class=9:30&section=1'],
-  ['Weightlifting, EMOM', 'date=2026-10-12&mode=board&class=9:30&section=2'],
-  ['Body building', 'date=2026-10-15&mode=board&class=9:30&section=3']
+var BOARD = [
+  ['Warm up', 'Opens here after the welcome. The text sizes itself to fill the board.', 'date=2026-10-12&mode=board&class=9:30&section=1'],
+  ['Transition', 'Leftover time in the hour, split evenly between pieces. Tells the room what to do next.', 'date=2026-10-12&mode=board&class=9:30&section=2'],
+  ['Weightlifting, EMOM', 'One movement, so the text runs large.', 'date=2026-10-12&mode=board&class=9:30&section=3'],
+  ['Into conditioning', 'Strip the bar, water and bathroom, set up your station.', 'date=2026-10-12&mode=board&class=9:30&section=4'],
+  ['Body building', 'Four pieces on Thursday, shorter transitions.', 'date=2026-10-15&mode=board&class=9:30&section=5'],
+  ['Cool down', 'Whatever is left at the end, so the class lands on the hour.', 'date=2026-10-12&mode=board&class=9:30&section=6']
 ];
 var SHARED = [
-  ['Time until next class', 'Between classes. Shows the countdown, time of day, weather, and a button for today’s workout.', 'date=2026-10-12&time=08:14'],
-  ['Welcome, then the warm-up', 'Plays at the start of each class. Opens on the warm-up with the clock ready.', 'date=2026-10-15&time=09:29:55'],
-  ['End of day', 'After the last class and overnight. The branded centerpiece with the time, weather and next class.', 'date=2026-10-12&time=21:05'],
-  ['Today’s workout (open gym)', 'Opened from the countdown or end of day screen. Closes itself after an hour.', 'date=2026-10-12&time=08:14&mode=overview']
+  ['Time until next class', 'Between classes, and from 4:15 AM before the first class.', 'date=2026-10-12&time=08:14'],
+  ['Welcome, then the warm-up', 'Plays at the start of each class.', 'date=2026-10-15&time=09:29:55'],
+  ['Open gym: today’s workout', 'Opens the whiteboard as a one-hour class with Auto clock on. Start workout runs the whole thing.', 'date=2026-10-12&time=08:14&mode=opengym']
+];
+var END = [
+  ['End of day 1: The clock', 'Time of day is the hero, the message and next class under it.', 'date=2026-10-12&time=21:05&end=1'],
+  ['End of day 2: The countdown', 'Matches the between-classes screen: a countdown to the next class.', 'date=2026-10-12&time=21:05&end=2'],
+  ['End of day 3: The brand', 'The logo and tagline lead, the message underneath.', 'date=2026-10-12&time=21:05&end=3'],
+  ['Weekend, version 1', 'Saturday after the 9:30 class and all day Sunday.', 'date=2026-10-17&time=12:05&end=1'],
+  ['Weekend, version 2', '', 'date=2026-10-17&time=12:05&end=2'],
+  ['Weekend, version 3', '', 'date=2026-10-17&time=12:05&end=3']
 ];
 function tile(href, title, sub) {
-  return '<a class="t" href="/coach/?' + href + '" target="_blank"><div class="f"><iframe loading="lazy" src="/coach/?' + href + '&still=1" tabindex="-1"></iframe></div><div class="c"><b>' + title + '</b>' + (sub || '') + '</div></a>';
+  return '<a class="t" href="/coach/?' + href + '" target="_blank"><div class="f"><iframe loading="lazy" src="/coach/?' + href + '&still=1&wx=72" tabindex="-1"></iframe></div><div class="c"><b>' + title + '</b>' + (sub || '') + '</div></a>';
 }
-var h = '';
-V.forEach(function (v) {
-  h += '<h2>Version ' + v[0] + '</h2><h3>' + v[1] + '</h3><p>' + v[2] + '</p><div class="grid">' +
-    SHOTS.map(function (s) { return tile('v=' + v[0] + '&' + s[1], s[0]); }).join('') + '</div>';
-});
-h += '<h2>Shared screens</h2><h3>Between classes and after hours</h3><p>These are the same in all three versions.</p><div class="grid">' +
-  SHARED.map(function (s) { return tile('v=1&' + s[2], s[0], s[1]); }).join('') + '</div>';
-document.getElementById('out').innerHTML = h;
+function grid(list) { return '<div class="grid">' + list.map(function (s) { return tile(s[2], s[0], s[1]); }).join('') + '</div>'; }
+document.getElementById('out').innerHTML =
+  '<h2>During class</h2><h3>The whiteboard</h3>' + grid(BOARD) +
+  '<h2>Between classes</h2><h3>Countdown, welcome and open gym</h3>' + grid(SHARED) +
+  '<h2>After hours</h2><h3>Three centered end-of-day versions. Pick one.</h3>' + grid(END);
 function scale() { [].forEach.call(document.querySelectorAll('.f'), function (f) { f.firstChild.style.transform = 'scale(' + f.clientWidth / 1920 + ')'; }); }
 window.addEventListener('resize', scale); setTimeout(scale, 50);
 </script>

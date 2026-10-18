@@ -12,6 +12,12 @@
      { type: "amrap", min: 10 }                  count down, labelled AMRAP
      { type: "tabata", work: 20, rest: 10, rounds: 8 }   work/rest intervals
 
+   Every class is one hour. Time the sections don't use is split evenly into
+   transition blocks between them, plus a cool-down at the end, so Auto clock
+   runs the whole class and finishes on the hour. Optional per section:
+     transition: ["Grab a box", "Water break"]   what the transition before it says
+   Per day (or for the whole program): transitions: false   turns them off.
+
    Text shortcuts: *word* = Forge yellow.
    ========================================================================== */
 
@@ -31,7 +37,7 @@ window.COACH_PROGRAM = {
   classMinutes: 60,
   // The "next class" countdown starts this many minutes before the day's first class.
   // Before that (and after the last class) the board shows the branded centerpiece.
-  morningCountdownMinutes: 75,
+  morningCountdownMinutes: 60,
 
   cycle: "Harder to Kill",
 
