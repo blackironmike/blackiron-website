@@ -69,6 +69,7 @@ button{font:inherit;color:inherit;cursor:pointer}
 .wx b{color:#fff;font-weight:800}
 
 .secKick{display:flex;align-items:center;gap:26px;font-weight:900;font-size:78px;line-height:1;text-transform:uppercase;letter-spacing:-.01em;color:#fff}
+.secKick.long{font-size:62px}
 .secKick .num{font-size:30px;font-weight:900;color:#000;background:var(--forge);padding:12px 14px 10px;letter-spacing:0}
 .secKick .num small{font-size:18px;opacity:.6;margin-left:2px}
 .secKick .mins{font-size:26px;font-weight:800;letter-spacing:.14em;color:var(--forge);border:2px solid var(--forge);padding:10px 16px 8px}
@@ -143,10 +144,13 @@ button{font:inherit;color:inherit;cursor:pointer}
 .v1 .ckBtns .btn.big{flex:1}
 .v1 #bCtl{left:1210px;top:740px;width:638px;flex-wrap:wrap}
 .v1 #bCtl #btnNext{width:100%;order:-1;height:92px;font-size:28px}
-.v1 #bCtl #btnPrev,.v1 #bCtl #btnAuto,.v1 #bCtl #btnExit{flex:1;padding:0 18px;white-space:nowrap}
-#btnMute,#btnExit{display:none}
-#scBoard.og #btnExit{display:inline-flex}
-#scBoard.og #btnAuto{flex:0 0 auto}
+.v1 #bCtl #btnPrev,.v1 #bCtl #btnAuto{flex:1;padding:0 18px;white-space:nowrap}
+#btnMute{display:none}
+.bh-r{display:flex;align-items:center}
+.xBtn{position:relative;width:72px;height:72px;margin-left:30px;background:var(--card);border:2px solid var(--steel);border-radius:4px}
+.xBtn i:before,.xBtn i:after{content:"";position:absolute;left:50%;top:50%;width:34px;height:5px;background:#fff;transform:translate(-50%,-50%) rotate(45deg)}
+.xBtn i:after{transform:translate(-50%,-50%) rotate(-45deg)}
+.xBtn:active{transform:scale(.96)}
 .v1 #bRail{left:72px;right:72px;bottom:40px}
 .v1 #bRail{gap:12px}
 .v1 #bRail .chip{flex:1 1 0;min-width:0;white-space:nowrap;padding:0 20px;gap:12px}
@@ -173,7 +177,7 @@ button{font:inherit;color:inherit;cursor:pointer}
 .mission{font-weight:700;font-size:24px;letter-spacing:.06em;color:var(--gray)}
 
 /* ==========================================================================
-   END OF DAY: three centered versions on the countdown frame (?end=1|2|3)
+   END OF DAY: centered, on the countdown frame
    ========================================================================== */
 #scCenter{display:flex;flex-direction:column}
 #scCenter .cdTop,#scCenter .cdMid,#scCenter .cdBot{position:relative;z-index:1}
@@ -182,16 +186,6 @@ button{font:inherit;color:inherit;cursor:pointer}
 .eDate{font-weight:700;font-size:44px;color:var(--gray)}
 .eSub{margin-top:46px;font-weight:800;font-size:46px;text-transform:uppercase;color:#fff;letter-spacing:.01em}
 .e1 .eSub{margin-top:52px}
-.eBig{font-size:330px}
-.e2 .cdNext{margin-top:6px}
-.eLogo{width:980px;margin:0 auto}
-.eLine{font-weight:900;font-size:76px;text-transform:uppercase;color:#fff;margin-top:58px;letter-spacing:-.01em}
-.eHead{margin-top:70px;font-weight:800;font-size:30px;letter-spacing:.18em;text-transform:uppercase;color:var(--forge)}
-.e3 .eSub{margin-top:18px}
-.cBg{position:absolute;left:50%;top:50%;width:1150px;transform:translate(-50%,-50%);opacity:.03;z-index:0}
-.cBg img{width:100%}
-.on .cBg{animation:drift 40s ease-in-out infinite alternate}
-@keyframes drift{from{transform:translate(-50%,-50%) scale(1)}to{transform:translate(-50%,-52%) scale(1.05)}}
 
 /* ==========================================================================
    OVERLAYS
@@ -219,7 +213,7 @@ button{font:inherit;color:inherit;cursor:pointer}
 #wipe.go i{animation:wipe .7s cubic-bezier(.7,0,.3,1) both}
 @keyframes wipe{0%{opacity:1;transform:translateX(0) skewX(-14deg)}100%{opacity:1;transform:translateX(2900px) skewX(-14deg)}}
 
-#toast{position:absolute;left:50%;bottom:150px;z-index:55;transform:translate(-50%,30px);opacity:0;background:#000;border:2px solid var(--forge);padding:22px 40px;font-weight:800;font-size:32px;color:#fff;text-transform:uppercase;letter-spacing:.04em;white-space:nowrap;transition:opacity .4s,transform .4s var(--ease)}
+#toast{position:absolute;left:50%;bottom:40px;z-index:55;transform:translate(-50%,30px);opacity:0;background:#000;border:2px solid var(--forge);padding:22px 40px;font-weight:800;font-size:32px;color:#fff;text-transform:uppercase;letter-spacing:.04em;white-space:nowrap;transition:opacity .4s,transform .4s var(--ease)}
 #toast.on{opacity:1;transform:translate(-50%,0)}
 
 #dash{position:absolute;inset:0;z-index:70;background:rgba(0,0,0,.82);display:none;align-items:center;justify-content:center}

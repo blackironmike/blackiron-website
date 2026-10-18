@@ -9,7 +9,6 @@
      after the last class     branded centerpiece
 
    URL options (all optional):
-     ?end=1|2|3          end-of-day screen version (prototype)
      ?date=2026-10-12    pretend it is this day
      ?time=09:29:50      pretend it is this time
      ?mode=board|countdown|centerpiece|opengym   force a screen (preview)
@@ -48,7 +47,6 @@
   });
   function q(k) { return Object.prototype.hasOwnProperty.call(QS, k) ? QS[k] : null; }
   var STILL = q('still') === '1';
-  var END = /^[123]$/.test(q('end') || '') ? q('end') : '1';
   stage.className = 'v1' + (STILL ? ' still' : '');
 
   /* ---------------- text ---------------- */
@@ -297,7 +295,7 @@
   }
 
   /* ---------------- shared bits of markup ---------------- */
-  var LOGO = '/images/logos/logo.png', ANVIL = '/images/tv/anvil.png';
+  var LOGO = '/images/logos/logo.png';
   function rise(html, d) { return '<div class="r" style="--d:' + d + 'ms">' + html + '</div>'; }
 
   /* ---------------- weather (Open-Meteo, no key) ---------------- */
@@ -362,40 +360,19 @@
     return { head: 'See you ' + day + '.', sub: 'Our next class is ' + day + ' at ' + at + '.', when: day + ', ' + minLabel(nx.start) };
   }
   function drawCenter(nx) {
-    var m = centerMsg(nx), h;
+    var m = centerMsg(nx);
     view.cdTarget = null;
-    var bot = '<div class="cdBot">' + ogButton() + '<div class="mission">We help everyday people become everyday athletes.</div></div>';
-    if (END === '2') {
-      // countdown style: the hero is the time until the next class
-      h = '<div class="cdTop"><img class="logo" src="' + LOGO + '" alt="Black Iron Athletics"><div class="amb" id="ambC"></div></div>' +
-        '<div class="cdMid">' +
-          rise('<div class="eyebrow">' + esc(m.head) + '</div>', 0) +
-          (nx ? rise('<div class="cdBig eBig" id="cdBig">--:--</div>', 120) : '') +
-          rise('<div class="cdNext">Next class <span class="f">' + esc(m.when) + '</span></div>', 240) +
-        '</div>' + bot;
-      if (nx) view.cdTarget = epochOf(nx.day, nx.start);
-    } else if (END === '3') {
-      // brand style: the mark is the hero
-      h = '<div class="cBg"><img src="' + ANVIL + '" alt=""></div>' +
-        '<div class="cdTop"><span></span><div class="amb" id="ambC"></div></div>' +
-        '<div class="cdMid">' +
-          rise('<img class="eLogo" src="' + LOGO + '" alt="Black Iron Athletics">', 0) +
-          rise('<div class="eLine">Everyday people. <span class="outline">Everyday athletes.</span></div>', 160) +
-          rise('<div class="eHead">' + esc(m.head) + '</div>', 320) +
-          rise('<div class="eSub">' + m.sub + '</div>', 420) +
-        '</div>' + bot;
-    } else {
-      // clock style: the time of day is the hero
-      h = '<div class="cdTop"><img class="logo" src="' + LOGO + '" alt="Black Iron Athletics"><div class="amb" id="ambW"></div></div>' +
+    // the time of day is the hero, the message and next class under it
+    $('scCenter').innerHTML =
+      '<div class="cdTop"><img class="logo" src="' + LOGO + '" alt="Black Iron Athletics"><div class="amb" id="ambW"></div></div>' +
         '<div class="cdMid">' +
           rise('<div class="eyebrow">' + esc(m.head) + '</div>', 0) +
           rise('<div class="cdBig eTime" id="cTime"></div>', 120) +
           rise('<div class="eDate" id="cDate"></div>', 220) +
           rise('<div class="eSub">' + m.sub + '</div>', 340) +
-        '</div>' + bot;
-    }
-    $('scCenter').innerHTML = h;
-    $('scCenter').className = 'screen on e' + END;
+        '</div>' +
+      '<div class="cdBot">' + ogButton() + '<div class="mission">We help everyday people become everyday athletes.</div></div>';
+    $('scCenter').className = 'screen on e1';
     paintAmbient(); tickCountdown();
   }
 
@@ -433,7 +410,7 @@
     $('bHead').innerHTML =
       '<img class="logo" src="' + LOGO + '" alt="Black Iron Athletics">' +
       '<div class="bh-mid"><span class="f">' + esc(cls) + '</span><span class="sep"></span>' + esc(dateLine(view.day)) + (p ? '<span class="sep"></span>' + esc(P.cycle || '') + (p.week ? ', ' + esc(p.week) : '') : '') + '</div>' +
-      '<div class="bh-r"><span id="bTod"></span></div>';
+      '<div class="bh-r"><span id="bTod"></span>' + (view.openGym ? '<button class="xBtn" data-act="ogexit" title="Exit open gym" aria-label="Exit open gym"><i></i></button>' : '') + '</div>';
     if (!s) {
       $('bSec').innerHTML = '<div class="empty"><div class="eyebrow">Coach board</div><h1>No programming loaded for ' + esc(dateLine(view.day)) + '.</h1><p>Send this week’s programming and it shows up here.</p></div>';
       $('bRail').innerHTML = '';
@@ -442,7 +419,7 @@
     var of = secs.length;
     $('bSec').innerHTML =
       '<div class="secTop' + (animate ? ' anim' : '') + '">' +
-        '<div class="secKick k-' + s.kind + '">' + (s.kind === 'main' ? '<span class="num">' + s.n + '<small>/' + s.of + '</small></span>' : '') + esc(s.name) + '<span class="mins">' + minsText(s.min) + '</span></div>' +
+        '<div class="secKick k-' + s.kind + (s.name.length > 13 ? ' long' : '') + '">' + (s.kind === 'main' ? '<span class="num">' + s.n + '<small>/' + s.of + '</small></span>' : '') + esc(s.name) + '<span class="mins">' + minsText(s.min) + '</span></div>' +
       '</div>' +
       '<div class="secBody' + (animate ? ' anim' : '') + '">' + sectionBody(s) + '</div>';
     fitBody();

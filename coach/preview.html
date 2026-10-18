@@ -40,12 +40,8 @@ var SHARED = [
   ['Open gym: today’s workout', 'Opens the whiteboard as a one-hour class with Auto clock on. Start workout runs the whole thing.', 'date=2026-10-12&time=08:14&mode=opengym']
 ];
 var END = [
-  ['End of day 1: The clock', 'Time of day is the hero, the message and next class under it.', 'date=2026-10-12&time=21:05&end=1'],
-  ['End of day 2: The countdown', 'Matches the between-classes screen: a countdown to the next class.', 'date=2026-10-12&time=21:05&end=2'],
-  ['End of day 3: The brand', 'The logo and tagline lead, the message underneath.', 'date=2026-10-12&time=21:05&end=3'],
-  ['Weekend, version 1', 'Saturday after the 9:30 class and all day Sunday.', 'date=2026-10-17&time=12:05&end=1'],
-  ['Weekend, version 2', '', 'date=2026-10-17&time=12:05&end=2'],
-  ['Weekend, version 3', '', 'date=2026-10-17&time=12:05&end=3']
+  ['End of day', 'After the last class and overnight: the time, then the next class.', 'date=2026-10-12&time=21:05'],
+  ['Weekend', 'Saturday after the 9:30 class and all day Sunday.', 'date=2026-10-17&time=12:05']
 ];
 function tile(href, title, sub) {
   return '<a class="t" href="/coach/?' + href + '" target="_blank"><div class="f"><iframe loading="lazy" src="/coach/?' + href + '&still=1&wx=72" tabindex="-1"></iframe></div><div class="c"><b>' + title + '</b>' + (sub || '') + '</div></a>';
@@ -54,7 +50,7 @@ function grid(list) { return '<div class="grid">' + list.map(function (s) { retu
 document.getElementById('out').innerHTML =
   '<h2>During class</h2><h3>The whiteboard</h3>' + grid(BOARD) +
   '<h2>Between classes</h2><h3>Countdown, welcome and open gym</h3>' + grid(SHARED) +
-  '<h2>After hours</h2><h3>Three centered end-of-day versions. Pick one.</h3>' + grid(END);
+  '<h2>After hours</h2><h3>End of day and weekend</h3>' + grid(END);
 function scale() { [].forEach.call(document.querySelectorAll('.f'), function (f) { f.firstChild.style.transform = 'scale(' + f.clientWidth / 1920 + ')'; }); }
 window.addEventListener('resize', scale); setTimeout(scale, 50);
 </script>
