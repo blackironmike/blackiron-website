@@ -479,7 +479,7 @@
     var p = boardData(); if (!p) return;
     var running = T.state === 'run' || T.state === 'prep';
     if (view.sec < p.sections.length - 1) gotoSection(view.sec + 1, { start: view.auto && running, noPrep: true });
-    else toast('That’s the workout. Nice work today.', 4000);
+    else celebrate();
   }
 
   // Auto clock: a 5-second heads-up during the end of each clock, then the
@@ -494,13 +494,11 @@
     var el = $('tn'); if (el) el.textContent = left;
   }
   T.onDone = function () {
-    if (!view.auto || view.mode !== 'board') return;
+    if (view.mode !== 'board') return;
     var p = boardData(); if (!p) return;
-    if (view.sec >= p.sections.length - 1) {
-      toast('That’s the workout. Nice work today.', 6000);
-      if (view.openGym) view.ogUntil = Math.min(view.ogUntil, now() + 3 * 60000);
-      return;
-    }
+    // The last clock of the class ending is the finish line, auto clock or not.
+    if (view.sec >= p.sections.length - 1) { celebrate(); return; }
+    if (!view.auto) return;
     $('toast').classList.remove('on');
     gotoSection(view.sec + 1, { start: true, noPrep: true });
   };
@@ -525,6 +523,72 @@
   }
   var welcomeT = null;
   function endWelcome() { var w = $('welcome'); if (!w.classList.contains('on')) return; w.classList.add('out'); clearTimeout(welcomeT); welcomeT = setTimeout(function () { w.classList.remove('on', 'out', 'og'); }, 700); }
+
+  /* ---------------- end of class: great work, with confetti ---------------- */
+  var CF = { raf: 0, parts: [], t0: 0 };
+  function celebrate() {
+    if (view.celebrating) return;
+    view.celebrating = true;
+    $('toast').classList.remove('on');
+    var z = nowZ(), nx = nextClassAfter(todayNum(), z.h * 60 + z.mi), nextTxt = '';
+    if (nx && !view.openGym) nextTxt = 'Next class ' + (nx.inDays === 0 ? 'today' : nx.inDays === 1 ? 'tomorrow' : WEEKDAY[fromDayNum(nx.day).wd]) + ' at <span class="f">' + minLabel(nx.start) + '</span>';
+    var c = $('celebrate');
+    c.innerHTML = '<canvas id="cfx" width="1920" height="1080"></canvas><div class="cIn">' +
+      rise('<div class="eyebrow">' + (view.openGym ? 'Open gym' : 'That’s class') + '</div>', 0) +
+      rise('<div class="wBig">' + (view.openGym || view.start === null ? 'Great<br><span class="outline">work.</span>' : 'Great work,<br><span class="outline">' + minShort(view.start) + ' crew.</span>') + '</div>', 200) +
+      rise('<div class="wSub">That’s the hour. Thanks for showing up.</div>', 650) +
+      (nextTxt ? rise('<div class="wNext">' + nextTxt + '</div>', 1000) : '') +
+      '</div><div class="cTap">Tap anywhere to close</div>';
+    c.classList.add('on');
+    view.celebrateUntil = now() + (STILL ? 60000 : 15000);
+    confetti();
+  }
+  function endCelebrate() {
+    if (!view.celebrating) return;
+    view.celebrating = false; view.celebrateUntil = 0;
+    cancelAnimationFrame(CF.raf); CF.parts = [];
+    $('celebrate').classList.remove('on');
+    if (view.openGym) endOpenGym();
+  }
+  function confetti() {
+    var cv = $('cfx'); if (!cv || !cv.getContext) return;
+    var ctx = cv.getContext('2d'), COL = ['#FFD202', '#FFD202', '#FFFFFF', '#C7C7C7'];
+    var calm = STILL || (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches);
+    function piece(x, y, vx, vy) {
+      return { x: x, y: y, vx: vx, vy: vy, w: 12 + Math.random() * 14, h: 7 + Math.random() * 9, r: Math.random() * 6.28, vr: (Math.random() - 0.5) * 0.32, f: Math.random() * 6.28, c: COL[Math.floor(Math.random() * COL.length)] };
+    }
+    function draw(p) {
+      ctx.save(); ctx.translate(p.x, p.y); ctx.rotate(p.r); ctx.scale(1, Math.cos(p.f));
+      ctx.fillStyle = p.c; ctx.fillRect(-p.w / 2, -p.h / 2, p.w, p.h); ctx.restore();
+    }
+    CF.parts = [];
+    if (calm) {   // one still frame of scattered confetti
+      for (var k = 0; k < 140; k++) draw(piece(Math.random() * 1920, Math.random() * 1080, 0, 0));
+      return;
+    }
+    // two cannons from the bottom corners, then a few seconds of falling confetti
+    for (var i = 0; i < 120; i++) {
+      CF.parts.push(piece(-20, 1100, 9 + Math.random() * 16, -(22 + Math.random() * 20)));
+      CF.parts.push(piece(1940, 1100, -(9 + Math.random() * 16), -(22 + Math.random() * 20)));
+    }
+    CF.t0 = Date.now();
+    var last = CF.t0;
+    function frame() {
+      var t = Date.now(), dt = Math.min(2.5, (t - last) / 16.7); last = t;
+      if (t - CF.t0 < 4500 && Math.random() < 0.6 * dt) CF.parts.push(piece(Math.random() * 1920, -30, (Math.random() - 0.5) * 3, 2 + Math.random() * 3));
+      ctx.clearRect(0, 0, 1920, 1080);
+      var alive = [];
+      for (var j = 0; j < CF.parts.length; j++) {
+        var p = CF.parts[j];
+        p.vy = Math.min(p.vy + 0.42 * dt, 7); p.vx *= Math.pow(0.985, dt);
+        p.x += (p.vx + Math.sin(p.f) * 1.2) * dt; p.y += p.vy * dt; p.r += p.vr * dt; p.f += 0.12 * dt;
+        if (p.y < 1140 && p.x > -60 && p.x < 1980) { draw(p); alive.push(p); }
+      }
+      CF.parts = alive;
+      if (alive.length || t - CF.t0 < 4500) CF.raf = requestAnimationFrame(frame);
+    }
+    CF.raf = requestAnimationFrame(frame);
+  }
 
   /* ---------------- open gym: today's workout as a self-running class ---------------- */
   function openGym() {
@@ -560,6 +624,7 @@
     if (want.mode === 'board') {
       var newClass = view.mode !== 'board' || view.day !== want.day || view.start !== want.start;
       if (newClass) {
+        endCelebrate();
         view.mode = 'board'; view.day = want.day; view.start = want.start; view.sec = 0;
         show('scBoard');
         var p = boardData();
@@ -655,6 +720,7 @@
   /* ---------------- input ---------------- */
   document.addEventListener('click', function (e) {
     audio();
+    if (view.celebrating) { endCelebrate(); return; }
     var el = e.target; while (el && el !== document && !el.getAttribute('data-act')) el = el.parentNode;
     if (!el || el === document) return;
     var act = el.getAttribute('data-act');
@@ -676,6 +742,7 @@
   });
   document.addEventListener('keydown', function (e) {
     audio();
+    if (view.celebrating) { endCelebrate(); return; }
     var k = e.key, dashOn = $('dash').classList.contains('on');
     if (k === 'Escape') { if (dashOn) closeDash(); else if (view.openGym) endOpenGym(); return; }
     if (k === 'f' || k === 'F') { var d = document.documentElement; if (d.requestFullscreen) d.requestFullscreen(); return; }
@@ -706,6 +773,7 @@
     tTick();
     if (view.mode === 'board') {
       drawClock(); headsUp();
+      if (view.celebrating && now() > view.celebrateUntil) endCelebrate();
       if (view.welcomeUntil && now() > view.welcomeUntil) { view.welcomeUntil = 0; endWelcome(); }
     }
     var z = nowZ();
@@ -725,6 +793,7 @@
   loadWeather(); setInterval(loadWeather, 20 * 60000);
   decide(); paintAmbient();
   if (q('mode') === 'opengym') openGym();
+  if (q('celebrate') === '1' && view.mode === 'board') celebrate();   // preview only
   if (document.fonts && document.fonts.ready) document.fonts.ready.then(function () { if (view.mode === 'board') fitBody(); });
   setInterval(loop, 100);
   // A coach touching the board un-hides the cursor; it hides again after 4 seconds.

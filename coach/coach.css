@@ -208,6 +208,16 @@ button{font:inherit;color:inherit;cursor:pointer}
 .ogBtns{display:flex;gap:20px;margin-top:60px}
 .ogBtns .btn{height:96px;font-size:28px;padding:0 44px}
 
+/* end of class */
+#celebrate{position:absolute;inset:0;z-index:65;background:radial-gradient(1100px 700px at 50% 45%,#141204,#000 70%);display:none;align-items:center;justify-content:center;text-align:center}
+#celebrate.on{display:flex}
+#celebrate canvas{position:absolute;left:0;top:0;width:1920px;height:1080px;pointer-events:none;z-index:2}
+#celebrate .cIn{position:relative;z-index:1}
+#celebrate .eyebrow{font-size:34px}
+#celebrate .wBig{font-size:240px}
+#celebrate .wNext{margin-top:50px}
+.cTap{position:absolute;left:0;right:0;bottom:44px;font-weight:700;font-size:20px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);z-index:1}
+
 #wipe{position:absolute;inset:0;z-index:50;pointer-events:none;overflow:hidden}
 #wipe i{position:absolute;top:-100px;bottom:-100px;left:-500px;width:260px;background:var(--forge);transform:skewX(-14deg);opacity:0}
 #wipe.go i{animation:wipe .7s cubic-bezier(.7,0,.3,1) both}
