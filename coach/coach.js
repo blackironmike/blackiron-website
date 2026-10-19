@@ -149,20 +149,29 @@
     main.forEach(function (s) { used += Math.round(s.min * 60); });
     var slack = CLASS_MIN * 60 - used, gaps = main.length - 1;
     var useT = P.transitions !== false && p.transitions !== false && slack >= 60;
-    var each = useT ? Math.floor(slack / (gaps + 1) / 15) * 15 : 0;   // gaps plus the cool-down, in 15 s steps
-    if (each < 30) each = 0;
+    // The cool-down gets an even share, but never more than 5 minutes; the rest
+    // is spread evenly across the transitions, in 15-second steps.
+    var COOL_MAX = 300, cool = 0, trans = [];
+    if (useT) {
+      var even = Math.floor(slack / (gaps + 1) / 15) * 15;
+      cool = Math.min(COOL_MAX, gaps ? even : slack);
+      var pool = slack - cool, each = gaps ? Math.floor(pool / gaps / 15) * 15 : 0, extra = gaps ? pool - each * gaps : 0;
+      if (each < 30) { each = 0; extra = 0; cool = Math.min(COOL_MAX, slack); }
+      for (var g = 0; g < gaps; g++) { var add = Math.min(15, extra); trans.push(each + add); extra -= add; }
+      if (extra > 0) { if (gaps && cool + extra > COOL_MAX) trans[gaps - 1] += extra; else cool += extra; }
+      if (cool < 60 && gaps && trans[gaps - 1]) { trans[gaps - 1] += cool; cool = 0; }
+    }
     main.forEach(function (s, i) {
       var m = {}; for (var k in s) m[k] = s[k];
       m.kind = 'main'; m.n = i + 1; m.of = main.length;
       out.push(m);
-      if (i < gaps && each) {
-        var nx = main[i + 1];
-        out.push({ kind: 'trans', name: 'Transition', min: each / 60, to: nx.name,
-          clock: { type: 'down', min: each / 60, label: 'Transition' },
+      if (i < gaps && trans[i]) {
+        var nx = main[i + 1], sec = trans[i];
+        out.push({ kind: 'trans', name: 'Transition', min: sec / 60, to: nx.name,
+          clock: { type: 'down', min: sec / 60, label: 'Transition' },
           blocks: [{ head: 'Up next: ' + nx.name, items: transitionTips(s, nx) }] });
       }
     });
-    var cool = useT ? slack - each * gaps : 0;
     if (cool >= 60) out.push({ kind: 'cool', name: 'Cool down', min: cool / 60,
       clock: { type: 'down', min: cool / 60, label: 'Cool down' },
       blocks: [{ head: 'Nice work today', items: ['Walk it out and stretch', 'Put your equipment away', 'Log your scores'] }] });
