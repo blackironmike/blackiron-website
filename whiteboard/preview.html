@@ -45,7 +45,7 @@ var END = [
   ['Weekend', 'Saturday after the 9:30 class and all day Sunday.', 'date=2026-10-17&time=12:05']
 ];
 function tile(href, title, sub) {
-  return '<a class="t" href="/coach/?' + href + '" target="_blank"><div class="f"><iframe loading="lazy" src="/coach/?' + href + '&still=1&wx=72" tabindex="-1"></iframe></div><div class="c"><b>' + title + '</b>' + (sub || '') + '</div></a>';
+  return '<a class="t" href="/whiteboard/?' + href + '" target="_blank"><div class="f"><iframe loading="lazy" src="/whiteboard/?' + href + '&still=1&wx=72" tabindex="-1"></iframe></div><div class="c"><b>' + title + '</b>' + (sub || '') + '</div></a>';
 }
 function grid(list) { return '<div class="grid">' + list.map(function (s) { return tile(s[2], s[0], s[1]); }).join('') + '</div>'; }
 document.getElementById('out').innerHTML =

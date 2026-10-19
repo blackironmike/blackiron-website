@@ -4,56 +4,11 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="robots" content="noindex,nofollow">
-<meta name="theme-color" content="#000000">
-<title>Black Iron Coach Board</title>
-<link rel="icon" href="/images/anvil-favicon.png">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap">
-<link rel="stylesheet" href="/coach/coach.css">
+<title>Black Iron Whiteboard</title>
+<!-- The coach board moved to /whiteboard. Keeps any TV already pointed here working, query string included. -->
+<script>location.replace('/whiteboard/' + location.search + location.hash);</script>
+<noscript><meta http-equiv="refresh" content="0; url=/whiteboard/"></noscript>
+<style>html,body{margin:0;background:#000}</style>
 </head>
-<body>
-<!-- The coach board for the middle TV. Programming lives in /coach/program.js. -->
-<div id="viewport">
-  <div id="stage">
-    <div id="glow"></div>
-
-    <section class="screen" id="scBoard">
-      <header id="bHead"></header>
-      <div id="bHourT"><i id="bHour"></i></div>
-      <main id="bSec"></main>
-      <div id="bClock" class="ck">
-        <div class="ckTop"><span id="ckMode"></span><button class="mini" data-act="clock">Clock settings</button></div>
-        <div id="ckBig">00:00</div>
-        <div id="ckSub"></div>
-        <div class="ckBtns">
-          <button class="btn forge big" id="btnPlay" data-act="play"></button>
-          <button class="btn ghost" data-act="reset">Reset</button>
-          <button class="btn ghost sq" data-act="minus">−1</button>
-          <button class="btn ghost sq" data-act="plus">+1</button>
-        </div>
-      </div>
-      <nav id="bRail"></nav>
-      <div id="bCtl">
-        <button class="btn ghost" id="btnPrev" data-act="prev"><span class="arr">←</span> Back</button>
-        <button class="btn ghost" id="btnAuto" data-act="auto"></button>
-        <button class="btn ghost sq" id="btnMute" data-act="mute" title="Sound">♪</button>
-        <button class="btn next" id="btnNext" data-act="next"></button>
-      </div>
-    </section>
-
-    <section class="screen" id="scCountdown"></section>
-    <section class="screen" id="scCenter"></section>
-
-    <div id="welcome"></div>
-    <div id="celebrate"></div>
-    <div id="wipe"><i></i></div>
-    <div id="toast"></div>
-    <div id="dash"></div>
-    <div id="grain"></div>
-  </div>
-</div>
-<script src="/coach/program.js"></script>
-<script src="/coach/coach.js"></script>
-</body>
+<body></body>
 </html>

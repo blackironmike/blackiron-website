@@ -1,6 +1,6 @@
 /* ==========================================================================
    BLACK IRON COACH BOARD engine
-   Reads window.COACH_PROGRAM (coach/program.js), works out the time in Frisco,
+   Reads window.COACH_PROGRAM (whiteboard/program.js), works out the time in Frisco,
    and decides what the middle screen shows:
 
      before the first class   branded centerpiece, then "time until next class"
