@@ -38,7 +38,8 @@ const EXCLUDED_FILES = new Set([
 const EXCLUDED_DIRS = new Set([
   '.', 'node_modules', 'api', '.git', '.vercel', '.claude',
   'tv', // the gym TV display: a screen, not a visitor
-  'coach', // the coach board on the middle TV, same reason
+  'coach', // redirect to /whiteboard
+  'whiteboard', // the coach whiteboard on the middle TV, same reason
 ]);
 
 if (!PIXEL_ID && !GA4_ID) {
