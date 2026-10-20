@@ -117,9 +117,10 @@
   function programFor(n) { return (P.days || {})[isoDay(n)] || null; }
 
   /* ---------------- the class hour: programming plus transitions ----------------
-     Every class is one hour. Whatever the programming doesn't use is split
-     evenly into transition blocks between the pieces, plus a cool-down at the
-     end, so Auto clock runs the whole class and lands on the hour. */
+     Every class is one hour. Whatever the programming doesn't use becomes prep
+     time at the start of each section after the warm-up (the coach's timer:
+     brief, load, set up), plus a cool-down at the end, so Auto clock runs the
+     whole class and lands on the hour. */
   function kindOf(s) {
     var n = (s.name || '').toLowerCase();
     if (/warm/.test(n)) return 'warm';
@@ -165,17 +166,12 @@
       var m = {}; for (var k in s) m[k] = s[k];
       m.kind = 'main'; m.n = i + 1; m.of = main.length;
       out.push(m);
-      if (i < gaps && trans[i]) {
-        var nx = main[i + 1], sec = trans[i];
-        out.push({ kind: 'trans', name: 'Transition', min: sec / 60, to: nx.name,
-          clock: { type: 'down', min: sec / 60, label: 'Transition' },
-          blocks: [{ head: 'Up next: ' + nx.name, items: transitionTips(s, nx) }] });
-      }
+      if (i > 0 && trans[i - 1]) { m.lead = trans[i - 1]; m.tips = transitionTips(main[i - 1], s); }
     });
     if (cool >= 60) out.push({ kind: 'cool', name: 'Cool down', min: cool / 60,
       clock: { type: 'down', min: cool / 60, label: 'Cool down' },
       blocks: [{ head: 'Nice work today', items: ['Walk it out and stretch', 'Put your equipment away', 'Log your scores'] }] });
-    var t = 0; out.forEach(function (x) { x.at = t; t += Math.round(x.min * 60); });
+    var t = 0; out.forEach(function (x) { x.at = t; t += (x.lead || 0) + Math.round(x.min * 60); });
     return (tlCache[key] = { week: p.week, sections: out, programmed: used });
   }
   function nextClassAfter(n, min) {
@@ -224,6 +220,15 @@
     if (s.type === 'tabata') { s.work = c.work || 20; s.rest = c.rest || 10; s.rounds = c.rounds || 8; }
     return s;
   }
+  // A section's clock: its own preset plus the prep time in front of it.
+  function specFor(sec) {
+    var s = normSpec(sec ? sec.clock : null);
+    if (sec && sec.lead) { s.lead = sec.lead; s.tips = sec.tips || []; }
+    return s;
+  }
+  // Prep plus work; 0 when the clock has no end (count up, no cap).
+  function fullTotal(s) { var w = specTotal(s); return w ? (s.lead || 0) + w : 0; }
+  function inLead(s, e) { return !!s.lead && e < s.lead; }
   function specTotal(s) {
     if (s.type === 'down' || s.type === 'amrap') return s.total;
     if (s.type === 'up') return s.cap || 0;
@@ -249,14 +254,21 @@
   var T = { spec: normSpec(), prep: 10, state: 'idle', runStart: 0, acc: 0, prepStart: 0, lastBeep: null, onDone: null };
   function tElapsed() { return T.state === 'run' ? T.acc + (now() - T.runStart) / 1000 * RATE : T.acc; }
   function tSet(spec) { T.spec = spec; tReset(); }
-  function tReset() { T.state = 'idle'; T.acc = 0; T.lastBeep = null; drawClock(); }
+  function tReset() { T.state = 'idle'; T.acc = 0; T.lastBeep = null; T.lastPhase = ''; drawClock(); }
+  // Skip the rest of the prep and go straight to the work clock.
+  function tSkipLead() {
+    var s = T.spec; if (!inLead(s, tElapsed())) return;
+    T.acc = s.lead; if (T.state === 'run') T.runStart = now();
+    if (T.state === 'run') beep(true);
+    drawClock();
+  }
   function tToggle(noPrep) {
     audio();
     if (T.state === 'run') { T.acc = tElapsed(); T.state = 'paused'; }
     else if (T.state === 'prep') { T.state = 'idle'; }
     else if (T.state === 'done') { tReset(); return tToggle(); }
     else if (T.state === 'paused') { T.runStart = now(); T.state = 'run'; }
-    else if (T.prep > 0 && !noPrep) { T.state = 'prep'; T.prepStart = now(); }
+    else if (T.prep > 0 && !noPrep && !inLead(T.spec, T.acc)) { T.state = 'prep'; T.prepStart = now(); }
     else { T.runStart = now(); T.state = 'run'; beep(true); }
     drawClock();
   }
@@ -275,6 +287,8 @@
       if (left <= 0) { T.state = 'run'; T.runStart = now(); T.acc = 0; beep(true); return tRead(); }
       return { big: String(Math.ceil(left)), sub: 'Get ready', phase: 'prep', beepAt: Math.ceil(left) };
     }
+    if (inLead(s, e)) return { big: fmtSecs(Math.ceil(s.lead - e)), sub: (s.tips || []).join(' · '), phase: 'lead', left: s.lead - e };
+    e -= s.lead || 0;
     if (total && e >= total) { e = total; r.done = true; }
     if (s.type === 'up') { r.big = fmtSecs(e); r.sub = s.cap ? 'Cap ' + fmtSecs(s.cap) : 'Count up'; }
     if (s.type === 'down' || s.type === 'amrap') { r.big = fmtSecs(Math.ceil(total - e)); r.sub = s.label || (s.type === 'amrap' ? 'AMRAP' : 'Countdown'); r.left = total - e; }
@@ -300,7 +314,9 @@
     if (r.phase === 'prep') key = 'p' + r.beepAt;
     else if (r.left !== undefined && r.left <= 3.05 && r.left > 0.05) key = 'l' + Math.ceil(r.left) + r.sub;
     if (key && key !== T.lastBeep && (r.phase !== 'prep' || r.beepAt <= 3)) { T.lastBeep = key; beep(false); }
-    if (r.done) { T.acc = specTotal(T.spec); T.state = 'done'; beep(true); if (T.onDone) T.onDone(); }
+    if (T.lastPhase === 'lead' && r.phase !== 'lead') { beep(true); toast('Go: <span class="f">' + esc((boardData() || { sections: [] }).sections[view.sec] ? boardData().sections[view.sec].name : '') + '</span>', 2500); }
+    T.lastPhase = r.phase;
+    if (r.done) { T.acc = fullTotal(T.spec); T.state = 'done'; beep(true); if (T.onDone) T.onDone(); }
   }
 
   /* ---------------- shared bits of markup ---------------- */
@@ -436,7 +452,6 @@
     $('bRail').className = secs.length > 7 ? 'many' : '';
     $('bRail').innerHTML = secs.map(function (x, i) {
       var st = (i === view.sec ? ' on' : i < view.sec ? ' past' : '');
-      if (x.kind === 'trans') return '<button class="chip tr' + st + '" data-act="goto" data-i="' + i + '" title="Transition"><i class="trI"></i><span>' + mss(x.min * 60) + '</span></button>';
       return '<button class="chip k-' + x.kind + st + '" data-act="goto" data-i="' + i + '">' + (x.kind === 'main' ? '<b>' + x.n + '</b>' : '') + '<em>' + esc(x.name) + '</em><span>' + chipTime(x) + '</span></button>';
     }).join('');
     $('btnPrev').disabled = view.sec === 0;
@@ -463,8 +478,12 @@
     var r = tRead(), s = T.spec;
     $('ckBig').textContent = r.big;
     $('ckSub').textContent = r.sub;
-    $('ckMode').textContent = s.label || MODES[s.type];
-    if (T.state === 'idle' && s.type !== 'tabata') $('ckSub').textContent = s.label ? fmtSecs(s.total) + ' ' + s.label.toLowerCase() : specSummary(s);
+    var lead = r.phase === 'lead';
+    $('ckMode').textContent = lead ? 'Prep time' : s.label || MODES[s.type];
+    $('ckSub').className = lead ? 'tips' : '';
+    if (T.state === 'idle' && !lead && s.type !== 'tabata') $('ckSub').textContent = s.label ? fmtSecs(s.total) + ' ' + s.label.toLowerCase() : specSummary(s);
+    var rb = $('btnReset');
+    rb.setAttribute('data-act', lead ? 'skipprep' : 'reset'); rb.textContent = lead ? 'Skip prep' : 'Reset';
     var panel = $('bClock');
     panel.className = 'ck st-' + T.state + (r.phase ? ' ph-' + r.phase : '');
     $('btnPlay').innerHTML = T.state === 'run' || T.state === 'prep' ? '<i class="ic pause"></i>Pause' : T.state === 'paused' ? '<i class="ic play"></i>Resume' : T.state === 'done' ? '<i class="ic reset"></i>Again' : '<i class="ic play"></i>Start';
@@ -479,7 +498,7 @@
     i = Math.max(0, Math.min(p.sections.length - 1, i));
     var changed = i !== view.sec;
     view.sec = i;
-    tSet(normSpec(p.sections[i].clock));
+    tSet(specFor(p.sections[i]));
     drawBoard(changed || (opts && opts.force));
     view.headsUp = -1;
     if (opts && opts.start) tToggle(opts.noPrep);
@@ -496,7 +515,7 @@
   function headsUp() {
     if (!view.auto || view.mode !== 'board' || T.state !== 'run') return;
     var p = boardData(); if (!p) return;
-    var total = specTotal(T.spec); if (!total) return;
+    var total = fullTotal(T.spec); if (!total) return;
     var left = Math.ceil(total - tElapsed()), nx = p.sections[view.sec + 1];
     if (!nx || left > 5 || left < 1) return;
     if (view.headsUp !== view.sec) { view.headsUp = view.sec; toast('Up next: <span class="f">' + esc(nx.name) + '</span> in <b id="tn">' + left + '</b>', 6000); }
@@ -606,7 +625,7 @@
     view.openGym = true; view.mode = 'board'; view.day = n; view.start = null; view.sec = 0;
     view.auto = true; view.ogUntil = now() + OPEN_GYM_MS; view.ogHard = view.ogUntil + OPEN_GYM_HARD_MS;
     show('scBoard');
-    tSet(normSpec(p.sections[0].clock));
+    tSet(specFor(p.sections[0]));
     drawBoard(false);
     view.ogStartAt = 0;
     var w = $('welcome');
@@ -637,7 +656,7 @@
         view.mode = 'board'; view.day = want.day; view.start = want.start; view.sec = 0;
         show('scBoard');
         var p = boardData();
-        tSet(normSpec(p ? p.sections[0].clock : null));
+        tSet(specFor(p ? p.sections[0] : null));
         var sec = parseInt(q('section'), 10);
         if (!isNaN(sec) && q('mode') === 'board') { gotoSection(sec - 1, { force: true }); return; }
         drawBoard(false);
@@ -717,7 +736,7 @@
       var min = { total: 60, cap: 0, every: 15, rounds: 1, work: 5, rest: 0, prep: 0 }[k];
       draft[k] = Math.max(min, (draft[k] || 0) + s);
     }
-    if (act === 'ddefault') { var p = boardData(); var keep2 = draft.prep; draft = normSpec(p ? p.sections[view.sec].clock : null); draft.prep = keep2; }
+    if (act === 'ddefault') { var p = boardData(); var keep2 = draft.prep; draft = specFor(p ? p.sections[view.sec] : null); draft.prep = keep2; }
     if (act === 'dapply' || act === 'dstart') {
       T.prep = draft.prep; var spec = JSON.parse(JSON.stringify(draft)); delete spec.prep; tSet(spec); closeDash();
       if (act === 'dstart') tToggle();
@@ -739,6 +758,7 @@
     if (act === 'goto') gotoSection(+el.getAttribute('data-i'));
     if (act === 'play') tToggle();
     if (act === 'reset') tReset();
+    if (act === 'skipprep') tSkipLead();
     if (act === 'plus') tAdjust(60);
     if (act === 'minus') tAdjust(-60);
     if (act === 'clock') openDash();
