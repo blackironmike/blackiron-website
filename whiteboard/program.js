@@ -12,10 +12,11 @@
      { type: "amrap", min: 10 }                  count down, labelled AMRAP
      { type: "tabata", work: 20, rest: 10, rounds: 8 }   work/rest intervals
 
-   Every class is one hour. Time the sections don't use is split evenly into
-   transition blocks between them, plus a cool-down at the end, so Auto clock
-   runs the whole class and finishes on the hour. Optional per section:
-     transition: ["Grab a box", "Water break"]   what the transition before it says
+   Every class is one hour. Time the sections don't use becomes prep time at
+   the start of each section after the warm-up (it runs on that section's
+   screen, then its own clock starts), plus a cool-down of up to 5 minutes, so
+   Auto clock runs the whole class and finishes on the hour. Optional per section:
+     transition: ["Grab a box", "Water break"]   what its prep time says
    Per day (or for the whole program): transitions: false   turns them off.
 
    Text shortcuts: *word* = Forge yellow.

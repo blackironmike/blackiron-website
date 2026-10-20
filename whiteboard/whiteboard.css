@@ -104,6 +104,13 @@ button{font:inherit;color:inherit;cursor:pointer}
 .ck.ph-rest #ckBig{color:var(--gray)}
 .ck.ph-rest #ckSub{color:var(--gray)}
 .ck.ph-done #ckBig{color:var(--forge)}
+/* prep time at the start of a section: the coach's timer */
+.ck.ph-lead #ckBig{color:var(--forge)}
+.ck.ph-lead{border-color:var(--forge)}
+#ckSub.tips{font-size:22px;font-weight:700;letter-spacing:.02em;text-transform:none;color:#fff;line-height:1.35;padding:0 6px}
+.secKick .mins{white-space:nowrap}
+.ckBtns .btn{white-space:nowrap}
+#btnReset{padding:0 22px}
 .ck.st-paused #ckBig{opacity:.55}
 
 #bCtl{display:flex;gap:16px;align-items:center}
