@@ -307,7 +307,7 @@ window.TV_CONFIG = {
        Shown on /tv/preview so you can see it first. */
     {
       id: "new-gym", type: "spotlight", seconds: 8, status: "draft", cycleLabel: false,
-      chip: "Coming in November",
+      chip: "Coming in January",
       title: ["The new Black Iron.", "*Right next door.*"],
       dateLine: "279 Main St • Suite 110 • Frisco",
       sub: "Same coaches. Same people. A lot more room.",
