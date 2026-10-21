@@ -633,7 +633,7 @@
       rise('<div class="eyebrow">Open gym</div>', 0) +
       rise('<div class="wBig">Today’s<br><span class="outline">workout.</span></div>', 150) +
       rise('<div class="ogSecs">' + p.sections.map(function (x) { return '<span>' + esc(x.name) + ' <b>' + x.min + ' min</b></span>'; }).join('<i></i>') + '</div>', 400) +
-      rise('<div class="wSub">One hour, transitions included. Press start and the board runs the whole class: every section, every clock.</div>', 550) +
+      rise('<div class="wSub">One hour, prep time included. Press start and the board runs the whole class: every section, every clock.</div>', 550) +
       rise('<div class="ogBtns"><button class="btn forge big" data-act="ogstart"><i class="ic play"></i>Start workout</button><button class="btn ghost" data-act="ogboard">Just show the board</button><button class="btn ghost" data-act="ogexit">Close</button></div>', 700) +
       '</div>';
     clearTimeout(welcomeT); w.classList.remove('out'); w.classList.add('on', 'og');
