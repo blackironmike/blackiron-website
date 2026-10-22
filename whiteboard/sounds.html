@@ -28,14 +28,14 @@ button:active{transform:scale(.97)}
 </head>
 <body>
 <h1>Whiteboard sounds</h1>
-<p>Five sets. Each plays the 3, 2, 1 into the start, and the 3, 2, 1 into the end. Turn the volume up the way it would be in the gym. “Use on this screen” sets the sound for the board on this device; open this page on the TV’s browser to set it there.</p>
+<p>Five sets, modeled on gym clocks and game-day sounds. Each plays the 3, 2, 1 into the start, and the 3, 2, 1 into the end. Turn the volume up the way it would be in the gym. “Use on this screen” sets the sound for the board on this device; open this page on the TV’s browser to set it there.</p>
 <div class="grid" id="out"></div>
 <script src="/whiteboard/sounds.js"></script>
 <script>
 (function () {
   var AC = null, cur = '';
   try { cur = localStorage.getItem('wbSound') || ''; } catch (e) {}
-  if (!BIA_SOUNDS.has(cur)) cur = 'gym';
+  if (!BIA_SOUNDS.has(cur)) cur = BIA_SOUNDS.sets[0].id;
   function ac() { if (!AC) AC = new (window.AudioContext || window.webkitAudioContext)(); if (AC.state === 'suspended') AC.resume(); return AC; }
   var timers = [];
   function run(id, kind) {

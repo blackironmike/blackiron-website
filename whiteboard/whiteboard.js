@@ -200,8 +200,8 @@
   var AC = null, muted = false;
   function audio() { if (!AC) { try { AC = new (window.AudioContext || window.webkitAudioContext)(); } catch (e) { AC = null; } } if (AC && AC.state === 'suspended') AC.resume(); return AC; }
   // Sound set (see /whiteboard/sounds.html): ?sound= for testing, else what was
-  // picked on this screen, else the programming default, else the gym timer.
-  var SOUNDS = window.BIA_SOUNDS, SOUND = 'gym';
+  // picked on this screen, else the programming default, else the first set (Rogue clock).
+  var SOUNDS = window.BIA_SOUNDS, SOUND = SOUNDS ? SOUNDS.sets[0].id : '';
   (function () {
     var pick = q('sound'); try { pick = pick || localStorage.getItem('wbSound'); } catch (e) {}
     pick = pick || P.sound;

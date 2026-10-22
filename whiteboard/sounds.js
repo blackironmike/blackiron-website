@@ -1,6 +1,7 @@
 /* ==========================================================================
    BLACK IRON WHITEBOARD: clock sounds.
-   Five sets, all made in the browser (no audio files to load). Each set has:
+   Five sets, all made in the browser (no audio files to load), modeled on gym
+   clocks and game-day sounds. Each set has:
      count   the 3, 2, 1 before a clock starts or ends (called with 3, 2 or 1)
      start   the clock starts (and each new EMOM round)
      end     the clock is done
@@ -43,58 +44,81 @@
     s.start(t); s.stop(t + d + 0.05);
   }
 
-  // a strike on a bell: a few inharmonic partials that ring out
-  function bell(ac, dest, t, f, len) {
-    var parts = [[1, 0.34, 1], [2.76, 0.17, 0.6], [5.4, 0.09, 0.35], [8.93, 0.05, 0.2]];
-    for (var i = 0; i < parts.length; i++) tone(ac, dest, 'sine', f * parts[i][0], t, 0.002, parts[i][1], len * parts[i][2]);
-    noise(ac, dest, t, 0.02, 0.12, 4000);
+  // flat envelope: quick attack, hold, quick cut (piezo beeps, horns, whistles)
+  function sus(g, t, a, peak, d) {
+    g.gain.setValueAtTime(0.0001, t);
+    g.gain.linearRampToValueAtTime(peak, t + a);
+    g.gain.setValueAtTime(peak, t + d);
+    g.gain.exponentialRampToValueAtTime(0.0001, t + d + 0.04);
   }
-  // the wall-timer buzzer: two detuned saws and a low square through a lowpass
-  function buzz(ac, dest, t, len) {
-    var lp = ac.createBiquadFilter(); lp.type = 'lowpass'; lp.frequency.value = 1900; lp.connect(dest);
-    tone(ac, lp, 'sawtooth', 196, t, 0.01, 0.22, len);
-    tone(ac, lp, 'sawtooth', 294, t, 0.01, 0.16, len);
-    tone(ac, lp, 'square', 98, t, 0.01, 0.12, len);
+  function flat(ac, dest, type, f, t, peak, d) {
+    var o = ac.createOscillator(), g = ac.createGain();
+    o.type = type; o.frequency.setValueAtTime(f, t);
+    sus(g, t, 0.004, peak, d); o.connect(g); g.connect(dest);
+    o.start(t); o.stop(t + d + 0.1);
+    return o;
   }
-  // an air horn: detuned saws through a bandpass, dropping a touch at the end
-  function horn(ac, dest, t, len) {
-    var bp = ac.createBiquadFilter(); bp.type = 'bandpass'; bp.frequency.value = 950; bp.Q.value = 0.7; bp.connect(dest);
-    [233, 236.5, 466, 470].forEach(function (f, i) {
-      var o = tone(ac, bp, 'sawtooth', f, t, 0.03, i < 2 ? 0.3 : 0.16, len);
-      o.frequency.setValueAtTime(f, t + len * 0.75);
-      o.frequency.linearRampToValueAtTime(f * 0.94, t + len);
-    });
+  // a gym-clock piezo beep: hard-edged square, a touch of lowpass so it isn't shrill
+  function piezo(ac, dest, t, f, d, peak) {
+    var lp = ac.createBiquadFilter(); lp.type = 'lowpass'; lp.frequency.value = 6000; lp.connect(dest);
+    flat(ac, lp, 'square', f, t, peak || 0.2, d);
   }
-  var RISE = { 3: 523.25, 2: 659.25, 1: 783.99 };
+  // the basketball horn: a nasal, slightly dissonant buzz
+  function shotHorn(ac, dest, t, d) {
+    var bp = ac.createBiquadFilter(); bp.type = 'bandpass'; bp.frequency.value = 1100; bp.Q.value = 0.6; bp.connect(dest);
+    flat(ac, bp, 'sawtooth', 311, t, 0.3, d);
+    flat(ac, bp, 'sawtooth', 370, t, 0.26, d);
+    flat(ac, bp, 'square', 155.5, t, 0.16, d);
+  }
+  // a pea whistle: a high tone with a fast trill, plus a little breath
+  function whistle(ac, dest, t, d) {
+    var o = ac.createOscillator(), g = ac.createGain(), lfo = ac.createOscillator(), depth = ac.createGain();
+    o.type = 'sine'; o.frequency.setValueAtTime(2850, t);
+    lfo.frequency.value = 30; depth.gain.value = 140; lfo.connect(depth); depth.connect(o.frequency);
+    sus(g, t, 0.012, 0.32, d); o.connect(g); g.connect(dest);
+    o.start(t); o.stop(t + d + 0.1); lfo.start(t); lfo.stop(t + d + 0.1);
+    noise(ac, dest, t, d, 0.03, 2400);
+  }
+  // a starting pistol: a crack, a thump, and a short tail
+  function gun(ac, dest, t) {
+    noise(ac, dest, t, 0.25, 1.0, 300);
+    noise(ac, dest, t + 0.02, 0.8, 0.2, 150);
+    var o = tone(ac, dest, 'sine', 90, t, 0.002, 0.9, 0.35);
+    o.frequency.exponentialRampToValueAtTime(38, t + 0.3);
+  }
+  // one strike on a small hand bell
+  function ding(ac, dest, t, f, len) {
+    tone(ac, dest, 'sine', f, t, 0.002, 0.3, len);
+    tone(ac, dest, 'sine', f * 2.76, t, 0.002, 0.12, len * 0.5);
+    tone(ac, dest, 'sine', f * 5.4, t, 0.002, 0.06, len * 0.3);
+    noise(ac, dest, t, 0.015, 0.1, 5000);
+  }
 
   var SETS = [
-    { id: 'gym', name: 'Gym timer', desc: 'Clean electronic beeps, like most wall timers. What the board uses today.',
-      count: function (ac, o, t) { tone(ac, o, 'square', 880, t, 0.005, 0.22, 0.16); },
-      start: function (ac, o, t) { tone(ac, o, 'square', 1250, t, 0.005, 0.24, 0.7); },
-      end:   function (ac, o, t) { tone(ac, o, 'square', 1250, t, 0.005, 0.24, 1.3); } },
+    { id: 'rogue', name: 'Rogue clock', desc: 'Sharp, high piezo beeps in one tone, like a Rogue Echo timer. Three short, then a long beep on go and a longer one at time.',
+      count: function (ac, o, t) { piezo(ac, o, t, 2600, 0.14); },
+      start: function (ac, o, t) { piezo(ac, o, t, 2600, 0.95); },
+      end:   function (ac, o, t) { piezo(ac, o, t, 2600, 1.6); } },
 
-    { id: 'buzzer', name: 'Buzzer', desc: 'Sharp beeps for the count, a heavy wall-timer buzzer to start and finish.',
-      count: function (ac, o, t) { tone(ac, o, 'square', 1050, t, 0.004, 0.2, 0.12); },
-      start: function (ac, o, t) { buzz(ac, o, t, 0.9); },
-      end:   function (ac, o, t) { buzz(ac, o, t, 1.8); } },
+    { id: 'comp', name: 'Comp timer', desc: 'Two-tone competition clock. A lower count, a higher long beep on go, and pulse, pulse, pulse, long at time.',
+      count: function (ac, o, t) { piezo(ac, o, t, 1800, 0.13, 0.21); },
+      start: function (ac, o, t) { piezo(ac, o, t, 2750, 0.9); },
+      end:   function (ac, o, t) { [0, 0.25, 0.5].forEach(function (d) { piezo(ac, o, t + d, 2750, 0.13); }); piezo(ac, o, t + 0.75, 2750, 1.2); } },
 
-    { id: 'bell', name: 'Fight bell', desc: 'Wood-block ticks for the count, one bell to start, three bells to finish.',
-      count: function (ac, o, t) { tone(ac, o, 'sine', 1750, t, 0.001, 0.4, 0.07); noise(ac, o, t, 0.025, 0.16, 3000); },
-      start: function (ac, o, t) { bell(ac, o, t, 620, 2.4); },
-      end:   function (ac, o, t) { bell(ac, o, t, 620, 1.2); bell(ac, o, t + 0.32, 620, 1.2); bell(ac, o, t + 0.64, 620, 2.6); } },
+    { id: 'shot', name: 'Shot clock', desc: 'Scoreboard tones for the count and the basketball horn to start and end.',
+      count: function (ac, o, t) { flat(ac, o, 'triangle', 1050, t, 0.34, 0.13); },
+      start: function (ac, o, t) { shotHorn(ac, o, t, 0.6); },
+      end:   function (ac, o, t) { shotHorn(ac, o, t, 1.9); } },
 
-    { id: 'rise', name: 'Step up', desc: 'The count climbs three notes, lands on a bright chord, and steps back down at the end.',
-      count: function (ac, o, t, n) { tone(ac, o, 'triangle', RISE[n] || 523.25, t, 0.006, 0.36, 0.28); },
-      start: function (ac, o, t) { [1046.5, 1318.5, 1568].forEach(function (f) { tone(ac, o, 'triangle', f, t, 0.006, 0.22, 0.85); }); },
-      end:   function (ac, o, t) {
-        [1568, 1318.5, 1046.5].forEach(function (f, i) { tone(ac, o, 'triangle', f, t + i * 0.14, 0.006, 0.26, 0.2); });
-        [523.25, 783.99, 1046.5].forEach(function (f) { tone(ac, o, 'triangle', f, t + 0.45, 0.01, 0.2, 1.4); });
-      } },
+    { id: 'whistle', name: 'Ref whistle', desc: 'Quick tweets for the count, one long whistle to start, and the end-of-game whistles to finish.',
+      count: function (ac, o, t) { whistle(ac, o, t, 0.12); },
+      start: function (ac, o, t) { whistle(ac, o, t, 0.75); },
+      end:   function (ac, o, t) { whistle(ac, o, t, 0.28); whistle(ac, o, t + 0.42, 0.28); whistle(ac, o, t + 0.84, 1.3); } },
 
-    { id: 'horn', name: 'Air horn', desc: 'Low blips for the count, an air horn to start, a double blast to finish.',
-      count: function (ac, o, t) { tone(ac, o, 'triangle', 440, t, 0.004, 0.32, 0.12); },
-      start: function (ac, o, t) { horn(ac, o, t, 0.8); },
-      end:   function (ac, o, t) { horn(ac, o, t, 0.45); horn(ac, o, t + 0.62, 1.3); } }
+    { id: 'track', name: 'Track start', desc: 'Starter beeps for the count, a starting gun to go, and the last-lap bell to finish.',
+      count: function (ac, o, t) { flat(ac, o, 'sine', 1000, t, 0.4, 0.16); },
+      start: function (ac, o, t) { gun(ac, o, t); },
+      end:   function (ac, o, t) { for (var i = 0; i < 9; i++) ding(ac, o, t + i * 0.13, 1250, i === 8 ? 1.8 : 0.35); } }
   ];
   var BY_ID = {};
   SETS.forEach(function (s) { BY_ID[s.id] = s; });
