@@ -40,6 +40,9 @@ window.COACH_PROGRAM = {
   // Before that (and after the last class) the board shows the branded centerpiece.
   morningCountdownMinutes: 60,
 
+  // Clock sound for every screen (see /whiteboard/sounds.html). A screen can pick its own in Clock settings.
+  sound: "go-high",
+
   cycle: "Harder to Kill",
 
   days: {
