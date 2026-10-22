@@ -1,7 +1,8 @@
 /* ==========================================================================
    BLACK IRON WHITEBOARD: clock sounds.
-   Five sets, all made in the browser (no audio files to load), modeled on gym
-   clocks and game-day sounds. Each set has:
+   The Shot clock: scoreboard tones for the count and the basketball horn to
+   start, with five endings to choose from. Made in the browser (no audio
+   files to load). Each set has:
      count   the 3, 2, 1 before a clock starts or ends (called with 3, 2 or 1)
      start   the clock starts (and each new EMOM round)
      end     the clock is done
@@ -58,11 +59,6 @@
     o.start(t); o.stop(t + d + 0.1);
     return o;
   }
-  // a gym-clock piezo beep: hard-edged square, a touch of lowpass so it isn't shrill
-  function piezo(ac, dest, t, f, d, peak) {
-    var lp = ac.createBiquadFilter(); lp.type = 'lowpass'; lp.frequency.value = 6000; lp.connect(dest);
-    flat(ac, lp, 'square', f, t, peak || 0.2, d);
-  }
   // the basketball horn: a nasal, slightly dissonant buzz
   function shotHorn(ac, dest, t, d) {
     var bp = ac.createBiquadFilter(); bp.type = 'bandpass'; bp.frequency.value = 1100; bp.Q.value = 0.6; bp.connect(dest);
@@ -70,55 +66,40 @@
     flat(ac, bp, 'sawtooth', 370, t, 0.26, d);
     flat(ac, bp, 'square', 155.5, t, 0.16, d);
   }
-  // a pea whistle: a high tone with a fast trill, plus a little breath
-  function whistle(ac, dest, t, d) {
-    var o = ac.createOscillator(), g = ac.createGain(), lfo = ac.createOscillator(), depth = ac.createGain();
-    o.type = 'sine'; o.frequency.setValueAtTime(2850, t);
-    lfo.frequency.value = 30; depth.gain.value = 140; lfo.connect(depth); depth.connect(o.frequency);
-    sus(g, t, 0.012, 0.32, d); o.connect(g); g.connect(dest);
-    o.start(t); o.stop(t + d + 0.1); lfo.start(t); lfo.stop(t + d + 0.1);
-    noise(ac, dest, t, d, 0.03, 2400);
-  }
-  // a starting pistol: a crack, a thump, and a short tail
-  function gun(ac, dest, t) {
-    noise(ac, dest, t, 0.25, 1.0, 300);
-    noise(ac, dest, t + 0.02, 0.8, 0.2, 150);
-    var o = tone(ac, dest, 'sine', 90, t, 0.002, 0.9, 0.35);
-    o.frequency.exponentialRampToValueAtTime(38, t + 0.3);
-  }
-  // one strike on a small hand bell
-  function ding(ac, dest, t, f, len) {
-    tone(ac, dest, 'sine', f, t, 0.002, 0.3, len);
-    tone(ac, dest, 'sine', f * 2.76, t, 0.002, 0.12, len * 0.5);
-    tone(ac, dest, 'sine', f * 5.4, t, 0.002, 0.06, len * 0.3);
-    noise(ac, dest, t, 0.015, 0.1, 5000);
-  }
 
-  var SETS = [
-    { id: 'rogue', name: 'Rogue clock', desc: 'Sharp, high piezo beeps in one tone, like a Rogue Echo timer. Three short, then a long beep on go and a longer one at time.',
-      count: function (ac, o, t) { piezo(ac, o, t, 2600, 0.14); },
-      start: function (ac, o, t) { piezo(ac, o, t, 2600, 0.95); },
-      end:   function (ac, o, t) { piezo(ac, o, t, 2600, 1.6); } },
+  // a deep arena horn (hockey style): a low chord that swells in and fades out
+  function arenaHorn(ac, dest, t, d) {
+    var lp = ac.createBiquadFilter(), g = ac.createGain();
+    lp.type = 'lowpass'; lp.frequency.value = 1000; lp.connect(g); g.connect(dest);
+    g.gain.setValueAtTime(0.0001, t); g.gain.linearRampToValueAtTime(1, t + 0.06);
+    g.gain.setValueAtTime(1, t + d * 0.6); g.gain.linearRampToValueAtTime(0.0001, t + d);
+    [138.6, 174.6, 207.7, 277.2].forEach(function (f, i) {
+      var o = ac.createOscillator(), og = ac.createGain();
+      o.type = 'sawtooth'; o.frequency.value = f; og.gain.value = i === 3 ? 0.12 : 0.22;
+      o.connect(og); og.connect(lp); o.start(t); o.stop(t + d + 0.05);
+    });
+  }
+  // the scoreboard tone used for the count
+  function board(ac, o, t, d) { flat(ac, o, 'triangle', 1050, t, 0.34, d); }
 
-    { id: 'comp', name: 'Comp timer', desc: 'Two-tone competition clock. A lower count, a higher long beep on go, and pulse, pulse, pulse, long at time.',
-      count: function (ac, o, t) { piezo(ac, o, t, 1800, 0.13, 0.21); },
-      start: function (ac, o, t) { piezo(ac, o, t, 2750, 0.9); },
-      end:   function (ac, o, t) { [0, 0.25, 0.5].forEach(function (d) { piezo(ac, o, t + d, 2750, 0.13); }); piezo(ac, o, t + 0.75, 2750, 1.2); } },
-
-    { id: 'shot', name: 'Shot clock', desc: 'Scoreboard tones for the count and the basketball horn to start and end.',
-      count: function (ac, o, t) { flat(ac, o, 'triangle', 1050, t, 0.34, 0.13); },
+  // Shot clock: scoreboard tones for the count, the horn to start. Five endings.
+  function shot(id, name, desc, end) {
+    return { id: id, name: name, desc: desc,
+      count: function (ac, o, t) { board(ac, o, t, 0.13); },
       start: function (ac, o, t) { shotHorn(ac, o, t, 0.6); },
-      end:   function (ac, o, t) { shotHorn(ac, o, t, 1.9); } },
-
-    { id: 'whistle', name: 'Ref whistle', desc: 'Quick tweets for the count, one long whistle to start, and the end-of-game whistles to finish.',
-      count: function (ac, o, t) { whistle(ac, o, t, 0.12); },
-      start: function (ac, o, t) { whistle(ac, o, t, 0.75); },
-      end:   function (ac, o, t) { whistle(ac, o, t, 0.28); whistle(ac, o, t + 0.42, 0.28); whistle(ac, o, t + 0.84, 1.3); } },
-
-    { id: 'track', name: 'Track start', desc: 'Starter beeps for the count, a starting gun to go, and the last-lap bell to finish.',
-      count: function (ac, o, t) { flat(ac, o, 'sine', 1000, t, 0.4, 0.16); },
-      start: function (ac, o, t) { gun(ac, o, t); },
-      end:   function (ac, o, t) { for (var i = 0; i < 9; i++) ding(ac, o, t + i * 0.13, 1250, i === 8 ? 1.8 : 0.35); } }
+      end: end };
+  }
+  var SETS = [
+    shot('shot-two', 'Two honks', 'Ends on two short horns, like the end of a quarter.',
+      function (ac, o, t) { shotHorn(ac, o, t, 0.42); shotHorn(ac, o, t + 0.56, 0.42); }),
+    shot('shot-three', 'Three honks', 'Ends on three quick horns, like the end of the game.',
+      function (ac, o, t) { [0, 0.42, 0.84].forEach(function (d) { shotHorn(ac, o, t + d, 0.28); }); }),
+    shot('shot-tones', 'Tones, then honk', 'Three fast scoreboard tones, then one short horn.',
+      function (ac, o, t) { [0, 0.17, 0.34].forEach(function (d) { board(ac, o, t + d, 0.1); }); shotHorn(ac, o, t + 0.56, 0.7); }),
+    shot('shot-arena', 'Arena horn', 'A deeper, rounder hockey-style horn that swells and fades out.',
+      function (ac, o, t) { arenaHorn(ac, o, t, 1.6); }),
+    shot('shot-tone', 'Final tone', 'No horn at the end: one long scoreboard tone.',
+      function (ac, o, t) { board(ac, o, t, 1.1); })
   ];
   var BY_ID = {};
   SETS.forEach(function (s) { BY_ID[s.id] = s; });
