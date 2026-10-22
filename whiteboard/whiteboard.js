@@ -199,10 +199,20 @@
   /* ---------------- sound ---------------- */
   var AC = null, muted = false;
   function audio() { if (!AC) { try { AC = new (window.AudioContext || window.webkitAudioContext)(); } catch (e) { AC = null; } } if (AC && AC.state === 'suspended') AC.resume(); return AC; }
-  function beep(long) {
+  // Sound set (see /whiteboard/sounds.html): ?sound= for testing, else what was
+  // picked on this screen, else the programming default, else the first set (Rogue clock).
+  var SOUNDS = window.BIA_SOUNDS, SOUND = SOUNDS ? SOUNDS.sets[0].id : '';
+  (function () {
+    var pick = q('sound'); try { pick = pick || localStorage.getItem('wbSound'); } catch (e) {}
+    pick = pick || P.sound;
+    if (SOUNDS && SOUNDS.has(pick)) SOUND = pick;
+  })();
+  // kind: 'count' (with 3, 2, 1), 'start' or 'end'
+  function sfx(kind, n) {
     if (muted || STILL) return;
     var ac = audio(); if (!ac) return;
-    var o = ac.createOscillator(), g = ac.createGain(), t = ac.currentTime, d = long ? 0.7 : 0.16;
+    if (SOUNDS) { SOUNDS.play(ac, SOUND, kind, n); return; }
+    var o = ac.createOscillator(), g = ac.createGain(), t = ac.currentTime, long = kind !== 'count', d = long ? 0.7 : 0.16;
     o.type = 'square'; o.frequency.value = long ? 1250 : 880;
     g.gain.setValueAtTime(0.0001, t); g.gain.exponentialRampToValueAtTime(0.25, t + 0.01); g.gain.exponentialRampToValueAtTime(0.0001, t + d);
     o.connect(g); g.connect(ac.destination); o.start(t); o.stop(t + d + 0.02);
@@ -258,6 +268,7 @@
   // skipped, that is the work clock at its full time; it never rewinds into prep.
   // Only a fresh section (tSet) starts from the top of its prep.
   function tReset(full) {
+    T.lastRound = '';
     var s = T.spec, pastLead = s.lead && (T.state === 'prep' ? T.acc : tElapsed()) >= s.lead;
     T.state = 'idle'; T.acc = !full && pastLead ? s.lead : 0; T.lastBeep = null; T.lastPhase = ''; drawClock();
   }
@@ -265,7 +276,7 @@
   function tSkipLead() {
     var s = T.spec; if (!inLead(s, tElapsed())) return;
     T.acc = s.lead; if (T.state === 'run') T.runStart = now();
-    if (T.state === 'run') beep(true);
+    if (T.state === 'run') sfx('start');
     drawClock();
   }
   function tToggle(noPrep) {
@@ -275,7 +286,7 @@
     else if (T.state === 'done') { tReset(); return tToggle(); }
     else if (T.state === 'paused') { T.runStart = now(); T.state = 'run'; }
     else if (T.prep > 0 && !noPrep && !inLead(T.spec, T.acc)) { T.state = 'prep'; T.prepStart = now(); }
-    else { T.runStart = now(); T.state = 'run'; beep(true); }
+    else { T.runStart = now(); T.state = 'run'; sfx('start'); }
     drawClock();
   }
   function tAdjust(deltaSec) {
@@ -290,7 +301,7 @@
     var s = T.spec, e = tElapsed(), total = specTotal(s), r = { big: '', sub: '', phase: '', done: false };
     if (T.state === 'prep') {
       var left = T.prep - (now() - T.prepStart) / 1000 * RATE;
-      if (left <= 0) { T.state = 'run'; T.runStart = now(); beep(true); return tRead(); }
+      if (left <= 0) { T.state = 'run'; T.runStart = now(); sfx('start'); return tRead(); }
       return { big: String(Math.ceil(left)), sub: 'Get ready', phase: 'prep', beepAt: Math.ceil(left) };
     }
     if (inLead(s, e)) return { big: fmtSecs(Math.ceil(s.lead - e)), sub: (s.tips || []).join(' · '), phase: 'lead', left: s.lead - e };
@@ -315,14 +326,18 @@
   function tTick() {
     if (T.state !== 'run' && T.state !== 'prep') return;
     var r = tRead();
-    // 3-2-1 beeps: in the prep countdown, and at the end of every countdown or interval
-    var key = null;
+    // 3, 2, 1: in the get-ready, and at the end of every countdown, round or interval
+    var key = null, n = r.phase === 'prep' ? r.beepAt : Math.ceil(r.left);
     if (r.phase === 'prep') key = 'p' + r.beepAt;
-    else if (r.left !== undefined && r.left <= 3.05 && r.left > 0.05) key = 'l' + Math.ceil(r.left) + r.sub;
-    if (key && key !== T.lastBeep && (r.phase !== 'prep' || r.beepAt <= 3)) { T.lastBeep = key; beep(false); }
-    if (T.lastPhase === 'lead' && r.phase !== 'lead') { beep(true); toast('Go: <span class="f">' + esc((boardData() || { sections: [] }).sections[view.sec] ? boardData().sections[view.sec].name : '') + '</span>', 2500); }
+    else if (r.left !== undefined && r.left <= 3.05 && r.left > 0.05) key = 'l' + n + r.sub;
+    if (key && key !== T.lastBeep && (r.phase !== 'prep' || r.beepAt <= 3)) { T.lastBeep = key; sfx('count', n); }
+    // a new EMOM round, or the work part of an interval, gets the start sound
+    var round = (T.spec.type === 'emom' || r.phase === 'work') && r.phase !== 'lead' && r.phase !== 'prep' ? r.sub : '';
+    if (round && T.lastRound && round !== T.lastRound && !r.done && T.lastPhase !== 'lead') sfx('start');
+    T.lastRound = round;
+    if (T.lastPhase === 'lead' && r.phase !== 'lead') { sfx('start'); toast('Go: <span class="f">' + esc((boardData() || { sections: [] }).sections[view.sec] ? boardData().sections[view.sec].name : '') + '</span>', 2500); }
     T.lastPhase = r.phase;
-    if (r.done) { T.acc = fullTotal(T.spec); T.state = 'done'; beep(true); if (T.onDone) T.onDone(); }
+    if (r.done) { T.acc = fullTotal(T.spec); T.state = 'done'; sfx('end'); if (T.onDone) T.onDone(); }
   }
 
   /* ---------------- shared bits of markup ---------------- */
@@ -728,11 +743,18 @@
     if (d.type === 'emom') h += stepper('every', 'Every', d.every, 15, 'time') + stepper('rounds', 'Rounds', d.rounds, 1);
     if (d.type === 'tabata') h += stepper('work', 'Work', d.work, 5, 'time') + stepper('rest', 'Rest', d.rest, 5, 'time') + stepper('rounds', 'Rounds', d.rounds, 1);
     h += stepper('prep', 'Get-ready countdown', d.prep, 5, 'time') + '</div>';
+    if (SOUNDS) h += '<div class="dSnd"><div class="stl">Sound</div><div class="dModes">' + SOUNDS.sets.map(function (x) {
+      return '<button class="mode' + (x.id === SOUND ? ' on' : '') + '" data-act="dsound" data-s="' + x.id + '">' + esc(x.name) + '</button>';
+    }).join('') + '</div></div>';
     h += '<div class="dFoot"><button class="btn ghost" data-act="ddefault">Section default</button><button class="btn" data-act="dapply">Set clock</button><button class="btn forge" data-act="dstart"><i class="ic play"></i>Set and start</button></div></div>';
     $('dash').innerHTML = h;
   }
   function dashAct(act, el) {
     if (act === 'dclose') return closeDash();
+    if (act === 'dsound') {
+      SOUND = el.getAttribute('data-s'); try { localStorage.setItem('wbSound', SOUND); } catch (e) {}
+      muted = false; sfx('start'); renderDash(); return;
+    }
     if (act === 'dmode') {
       var m = el.getAttribute('data-m'), keep = draft.prep;
       draft = normSpec({ type: m, min: draft.total ? draft.total / 60 : 10, cap: draft.cap ? draft.cap / 60 : 0 }); draft.prep = keep;

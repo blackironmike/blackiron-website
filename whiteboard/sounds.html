@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Whiteboard Sounds</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700;800;900&display=swap">
+<style>
+body{margin:0;background:#000;color:#C7C7C7;font-family:Montserrat,Arial,sans-serif;padding:40px 5vw 80px}
+h1{color:#fff;font-weight:900;text-transform:uppercase;font-size:clamp(28px,4vw,52px);margin:0 0 6px}
+p{max-width:820px;line-height:1.5;margin:6px 0 24px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:20px}
+.card{background:#101010;border:1px solid #2A2A2A;padding:24px;display:flex;flex-direction:column;gap:14px}
+.card.cur{border-color:#FFD202}
+.top{display:flex;align-items:center;justify-content:space-between;gap:12px}
+h2{margin:0;color:#fff;font-weight:900;text-transform:uppercase;font-size:24px}
+.tag{font-weight:800;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:#000;background:#FFD202;padding:5px 8px;visibility:hidden}
+.card.cur .tag{visibility:visible}
+.desc{margin:0;font-size:15px;line-height:1.45}
+.big{height:120px;display:flex;align-items:center;justify-content:center;background:#000;border:1px solid #2A2A2A;font-weight:900;font-size:72px;color:#fff;font-variant-numeric:tabular-nums;text-transform:uppercase}
+.big.go{color:#FFD202}
+.btns{display:flex;flex-wrap:wrap;gap:10px}
+button{font:inherit;cursor:pointer;height:52px;padding:0 18px;border:2px solid #2A2A2A;background:#141414;color:#fff;font-weight:800;font-size:15px;letter-spacing:.06em;text-transform:uppercase;border-radius:4px}
+button.forge{background:#FFD202;border-color:#FFD202;color:#000}
+button:active{transform:scale(.97)}
+</style>
+</head>
+<body>
+<h1>Whiteboard sounds</h1>
+<p>All five keep the 3, 2, 1 scoreboard beeps. What changes is the sound right after the 3, 2, 1 (no more horn), and a matching sound when the clock ends. Turn the volume up the way it would be in the gym. “Use on this screen” sets the sound for the board on this device; open this page on the TV’s browser to set it there.</p>
+<div class="grid" id="out"></div>
+<script src="/whiteboard/sounds.js"></script>
+<script>
+(function () {
+  var AC = null, cur = '';
+  try { cur = localStorage.getItem('wbSound') || ''; } catch (e) {}
+  if (!BIA_SOUNDS.has(cur)) cur = BIA_SOUNDS.sets[0].id;
+  function ac() { if (!AC) AC = new (window.AudioContext || window.webkitAudioContext)(); if (AC.state === 'suspended') AC.resume(); return AC; }
+  var timers = [];
+  function run(id, kind) {
+    timers.forEach(clearTimeout); timers = [];
+    var a = ac(), el = document.getElementById('big-' + id);
+    [3, 2, 1].forEach(function (n, i) {
+      BIA_SOUNDS.play(a, id, 'count', n, i);
+      timers.push(setTimeout(function () { el.className = 'big'; el.textContent = n; }, i * 1000));
+    });
+    BIA_SOUNDS.play(a, id, kind, 0, 3);
+    timers.push(setTimeout(function () { el.className = 'big go'; el.textContent = kind === 'start' ? 'Go' : 'Time'; }, 3000));
+    timers.push(setTimeout(function () { el.className = 'big'; el.textContent = ''; }, 5500));
+  }
+  function render() {
+    document.getElementById('out').innerHTML = BIA_SOUNDS.sets.map(function (s) {
+      return '<div class="card' + (s.id === cur ? ' cur' : '') + '"><div class="top"><h2>' + s.name + '</h2><span class="tag">On this screen</span></div>' +
+        '<p class="desc">' + s.desc + '</p><div class="big" id="big-' + s.id + '"></div>' +
+        '<div class="btns"><button class="forge" data-id="' + s.id + '" data-k="start">3, 2, 1, start</button><button data-id="' + s.id + '" data-k="end">3, 2, 1, end</button>' +
+        '<button data-id="' + s.id + '" data-k="use">Use on this screen</button></div></div>';
+    }).join('');
+  }
+  document.addEventListener('click', function (e) {
+    var b = e.target.closest ? e.target.closest('button') : null; if (!b) return;
+    var id = b.getAttribute('data-id'), k = b.getAttribute('data-k');
+    if (k === 'use') { cur = id; try { localStorage.setItem('wbSound', id); } catch (er) {} render(); BIA_SOUNDS.play(ac(), id, 'start'); return; }
+    run(id, k);
+  });
+  render();
+})();
+</script>
+</body>
+</html>
