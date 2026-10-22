@@ -247,6 +247,9 @@ button{font:inherit;color:inherit;cursor:pointer}
 .stc{display:flex;align-items:center;justify-content:space-between;margin-top:10px}
 .stc span{font-weight:900;font-size:56px;color:#fff;font-variant-numeric:tabular-nums}
 .stc button{width:76px;height:76px;background:#000;border:2px solid var(--steel);font-weight:800;font-size:40px;border-radius:4px}
+.dSnd{margin-top:26px}
+.dSnd .dModes{margin:10px 0 0}
+.dSnd .mode{height:68px;font-size:20px}
 .dFoot{display:flex;gap:16px;justify-content:flex-end;margin-top:36px}
 
 /* screenshots / reduced motion */
