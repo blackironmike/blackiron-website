@@ -1,7 +1,7 @@
 /* ==========================================================================
    BLACK IRON WHITEBOARD: clock sounds.
    The Shot clock: scoreboard tones for the count and the basketball horn to
-   start, with five endings to choose from. Made in the browser (no audio
+   start, with five endings to choose from (round two). Made in the browser (no audio
    files to load). Each set has:
      count   the 3, 2, 1 before a clock starts or ends (called with 3, 2 or 1)
      start   the clock starts (and each new EMOM round)
@@ -67,18 +67,6 @@
     flat(ac, bp, 'square', 155.5, t, 0.16, d);
   }
 
-  // a deep arena horn (hockey style): a low chord that swells in and fades out
-  function arenaHorn(ac, dest, t, d) {
-    var lp = ac.createBiquadFilter(), g = ac.createGain();
-    lp.type = 'lowpass'; lp.frequency.value = 1000; lp.connect(g); g.connect(dest);
-    g.gain.setValueAtTime(0.0001, t); g.gain.linearRampToValueAtTime(1, t + 0.06);
-    g.gain.setValueAtTime(1, t + d * 0.6); g.gain.linearRampToValueAtTime(0.0001, t + d);
-    [138.6, 174.6, 207.7, 277.2].forEach(function (f, i) {
-      var o = ac.createOscillator(), og = ac.createGain();
-      o.type = 'sawtooth'; o.frequency.value = f; og.gain.value = i === 3 ? 0.12 : 0.22;
-      o.connect(og); og.connect(lp); o.start(t); o.stop(t + d + 0.05);
-    });
-  }
   // the scoreboard tone used for the count
   function board(ac, o, t, d) { flat(ac, o, 'triangle', 1050, t, 0.34, d); }
 
@@ -89,17 +77,20 @@
       start: function (ac, o, t) { shotHorn(ac, o, t, 0.6); },
       end: end };
   }
+  // a scoreboard tone at any pitch (the count uses 1050)
+  function tn(ac, o, t, f, d) { flat(ac, o, 'triangle', f, t, 0.34, d); }
+
   var SETS = [
-    shot('shot-two', 'Two honks', 'Ends on two short horns, like the end of a quarter.',
-      function (ac, o, t) { shotHorn(ac, o, t, 0.42); shotHorn(ac, o, t + 0.56, 0.42); }),
-    shot('shot-three', 'Three honks', 'Ends on three quick horns, like the end of the game.',
-      function (ac, o, t) { [0, 0.42, 0.84].forEach(function (d) { shotHorn(ac, o, t + d, 0.28); }); }),
-    shot('shot-tones', 'Tones, then honk', 'Three fast scoreboard tones, then one short horn.',
-      function (ac, o, t) { [0, 0.17, 0.34].forEach(function (d) { board(ac, o, t + d, 0.1); }); shotHorn(ac, o, t + 0.56, 0.7); }),
-    shot('shot-arena', 'Arena horn', 'A deeper, rounder hockey-style horn that swells and fades out.',
-      function (ac, o, t) { arenaHorn(ac, o, t, 1.6); }),
-    shot('shot-tone', 'Final tone', 'No horn at the end: one long scoreboard tone.',
-      function (ac, o, t) { board(ac, o, t, 1.1); })
+    shot('end-alarm', 'Time’s up', 'Six fast scoreboard beeps, like a timer going off.',
+      function (ac, o, t) { for (var i = 0; i < 6; i++) tn(ac, o, t + i * 0.13, 1050, 0.08); }),
+    shot('end-rise', 'Step up', 'Three tones climbing to a short high finish. Upbeat.',
+      function (ac, o, t) { tn(ac, o, t, 1050, 0.13); tn(ac, o, t + 0.17, 1320, 0.13); tn(ac, o, t + 0.34, 1570, 0.5); }),
+    shot('end-double', 'Double beep', 'Two clean, longer beeps a step above the count.',
+      function (ac, o, t) { tn(ac, o, t, 1400, 0.3); tn(ac, o, t + 0.42, 1400, 0.45); }),
+    shot('end-start', 'Same as start', 'The start horn again, so start and finish match.',
+      function (ac, o, t) { shotHorn(ac, o, t, 0.6); }),
+    shot('end-down', 'Step down', 'Three tones stepping down to a low finish. Settles it.',
+      function (ac, o, t) { tn(ac, o, t, 1570, 0.13); tn(ac, o, t + 0.17, 1320, 0.13); tn(ac, o, t + 0.34, 1050, 0.13); tn(ac, o, t + 0.51, 785, 0.55); })
   ];
   var BY_ID = {};
   SETS.forEach(function (s) { BY_ID[s.id] = s; });
