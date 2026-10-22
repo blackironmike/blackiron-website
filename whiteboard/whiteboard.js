@@ -253,8 +253,14 @@
   var RATE = +(q('rate') || 1) || 1;   // QA only: run the clock faster
   var T = { spec: normSpec(), prep: 10, state: 'idle', runStart: 0, acc: 0, prepStart: 0, lastBeep: null, onDone: null };
   function tElapsed() { return T.state === 'run' ? T.acc + (now() - T.runStart) / 1000 * RATE : T.acc; }
-  function tSet(spec) { T.spec = spec; tReset(); }
-  function tReset() { T.state = 'idle'; T.acc = 0; T.lastBeep = null; T.lastPhase = ''; drawClock(); }
+  function tSet(spec) { T.spec = spec; tReset(true); }
+  // Reset puts back the clock the coach is looking at. Once prep is over or
+  // skipped, that is the work clock at its full time; it never rewinds into prep.
+  // Only a fresh section (tSet) starts from the top of its prep.
+  function tReset(full) {
+    var s = T.spec, pastLead = s.lead && (T.state === 'prep' ? T.acc : tElapsed()) >= s.lead;
+    T.state = 'idle'; T.acc = !full && pastLead ? s.lead : 0; T.lastBeep = null; T.lastPhase = ''; drawClock();
+  }
   // Skip the rest of the prep and go straight to the work clock.
   function tSkipLead() {
     var s = T.spec; if (!inLead(s, tElapsed())) return;
@@ -284,7 +290,7 @@
     var s = T.spec, e = tElapsed(), total = specTotal(s), r = { big: '', sub: '', phase: '', done: false };
     if (T.state === 'prep') {
       var left = T.prep - (now() - T.prepStart) / 1000 * RATE;
-      if (left <= 0) { T.state = 'run'; T.runStart = now(); T.acc = 0; beep(true); return tRead(); }
+      if (left <= 0) { T.state = 'run'; T.runStart = now(); beep(true); return tRead(); }
       return { big: String(Math.ceil(left)), sub: 'Get ready', phase: 'prep', beepAt: Math.ceil(left) };
     }
     if (inLead(s, e)) return { big: fmtSecs(Math.ceil(s.lead - e)), sub: (s.tips || []).join(' · '), phase: 'lead', left: s.lead - e };
@@ -738,7 +744,7 @@
     }
     if (act === 'ddefault') { var p = boardData(); var keep2 = draft.prep; draft = specFor(p ? p.sections[view.sec] : null); draft.prep = keep2; }
     if (act === 'dapply' || act === 'dstart') {
-      T.prep = draft.prep; var spec = JSON.parse(JSON.stringify(draft)); delete spec.prep; tSet(spec); closeDash();
+      T.prep = draft.prep; var spec = JSON.parse(JSON.stringify(draft)); delete spec.prep; delete spec.lead; delete spec.tips; tSet(spec); closeDash();
       if (act === 'dstart') tToggle();
       return;
     }
