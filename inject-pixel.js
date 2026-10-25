@@ -28,7 +28,6 @@ const VIEWCONTENT_PATHS = (process.env.META_VIEWCONTENT_PATHS || '')
 
 // Files that should NOT get the pixel
 const EXCLUDED_FILES = new Set([
-  'book.html',
   'email-template.html',
   'landing.html',
   'step1.html',

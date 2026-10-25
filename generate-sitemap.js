@@ -14,7 +14,6 @@ const SITE_URL = 'https://www.blackironathletics.com';
 // Pages that should NOT appear in the sitemap
 const EXCLUDED_FILES = new Set([
   '404.html',
-  'book.html',
   'email-template.html',
   'landing.html',
   'step1.html',
