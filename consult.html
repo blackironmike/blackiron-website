@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <!-- CONTRACT: keep this exact viewport tag — inject-pixel.js insertion marker -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Your Free 20-Minute Consult | Black Iron Athletics, Frisco TX</title>
+    <meta name="description" content="Book a free twenty minute consult at Black Iron Athletics in Frisco, TX. Sit down with a coach, see the floor, and leave with a plan. No workout, no weigh-in. Veteran-owned, in Frisco since 2013.">
+    <link rel="canonical" href="https://www.blackironathletics.com/consult">
+    <meta name="geo.region" content="US-TX">
+    <meta name="geo.placename" content="Frisco">
+    <meta name="geo.position" content="33.15035;-96.89026">
+    <meta property="og:title" content="20 minutes. Free. Book your consult at Black Iron Athletics.">
+    <meta property="og:description" content="Sit down with a coach, see the floor, and leave with a plan. No workout, no weigh-in. Frisco, TX.">
+    <meta property="og:url" content="https://www.blackironathletics.com/consult">
+    <meta property="og:image" content="https://www.blackironathletics.com/images/social/2026-08-05-default-share.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Members training on the floor at Black Iron Athletics in Frisco, Texas.">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Black Iron Athletics">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="20 minutes. Free. Book your consult at Black Iron Athletics.">
+    <meta name="twitter:description" content="Sit down with a coach, see the floor, and leave with a plan. No workout, no weigh-in. Frisco, TX.">
+    <meta name="twitter:image" content="https://www.blackironathletics.com/images/social/2026-08-05-default-share.jpg">
+    <link rel="icon" type="image/png" href="/images/anvil-favicon.png">
+    <link rel="apple-touch-icon" href="/images/anvil-favicon.png">
+    <meta name="theme-color" content="#000000">
+    <link rel="preload" as="image" href="/images/book/hero-640.webp" imagesrcset="/images/book/hero-640.webp 640w, /images/book/hero-1200.webp 1200w" imagesizes="(min-width:900px) 46vw, 100vw">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://api.leadconnectorhq.com">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&display=swap" rel="stylesheet"></noscript>
+    <link rel="stylesheet" href="/css/bia.css">
+    <style>
+    /* ── Landing chrome: logo and a phone number, no menu. The only exits
+          are booking, calling, or closing the tab. ───────────────────────── */
+    .lp-bar{position:sticky;top:0;z-index:60;background:rgba(0,0,0,.92);
+      backdrop-filter:blur(8px);border-bottom:1px solid var(--steel-line)}
+    .lp-bar-in{display:flex;align-items:center;justify-content:space-between;
+      gap:16px;padding:14px clamp(16px,4vw,40px);max-width:1240px;margin:0 auto}
+    .lp-bar img{height:34px;width:auto;display:block}
+    .lp-call{display:inline-flex;align-items:center;gap:9px;color:var(--white);
+      font-weight:900;font-size:.86rem;letter-spacing:.06em;white-space:nowrap}
+    @media(max-width:420px){.lp-call span{display:none}}
+
+    /* ── Hero. The ad look: a black-and-white member photo that falls away
+          into black, a white headline over it, the second line outlined. On a
+          phone the photo sits on top and the type overlaps its lower edge. ── */
+    .bk-hero{position:relative;overflow:hidden}
+    .bk-photo{position:relative}
+    .bk-photo img{display:block;width:100%;height:auto;aspect-ratio:1/1;object-fit:cover;object-position:center 22%}
+    .bk-photo::after{content:"";position:absolute;inset:0;
+      background:linear-gradient(180deg,rgba(0,0,0,.15) 0%,rgba(0,0,0,0) 30%,rgba(0,0,0,.55) 62%,#000 96%)}
+    .bk-slash{position:absolute;top:18px;right:18px;z-index:2;display:flex;gap:9px}
+    .bk-slash i{display:block;width:7px;height:46px;background:var(--yellow);transform:skewX(-24deg)}
+    .bk-copy{position:relative;z-index:2;padding:0 20px 40px;margin-top:-30vw}
+    .bk-copy .eyebrow{margin-bottom:14px}
+    .bk-hero h1{font-size:clamp(2.5rem,11.4vw,5.6rem);line-height:.92;margin:0 0 16px}
+    .bk-hero h1 .outline{--hole:#000}
+    .bk-sub{color:var(--white);font-size:1.04rem;line-height:1.5;margin:0 0 20px;max-width:46ch}
+    .bk-ticks{list-style:none;margin:0;padding:0;display:grid;gap:10px}
+    .bk-ticks li{position:relative;padding-left:22px;color:var(--gray);font-size:.96rem}
+    .bk-ticks li::before{content:"";position:absolute;left:0;top:.62em;width:10px;height:3px;background:var(--yellow)}
+    .bk-cta{width:100%;font-size:15px;padding:20px 24px;letter-spacing:2px}
+    .bk-cta-note{margin:12px 0 0;font-size:.86rem;color:var(--gray);text-align:center}
+    .bk-cta-note a{color:var(--white);font-weight:700}
+    .bk-trust{margin:24px 0 18px}
+    .bk-trust b{font-weight:900}
+    @media(min-width:900px){
+      .bk-hero-in{display:grid;grid-template-columns:1fr 46%;align-items:center;max-width:1240px;margin:0 auto}
+      .bk-photo{order:2}
+      .bk-photo img{aspect-ratio:4/5;max-height:calc(100svh - 64px);object-position:center 30%}
+      .bk-photo::after{background:linear-gradient(90deg,#000 0%,rgba(0,0,0,.25) 26%,rgba(0,0,0,0) 50%),
+        linear-gradient(180deg,rgba(0,0,0,0) 70%,#000 100%)}
+      .bk-copy{order:1;margin-top:0;padding:56px 40px 56px clamp(20px,4vw,48px)}
+      .bk-hero h1{font-size:clamp(3rem,4.6vw,4.4rem)}
+      .bk-cta{width:auto;padding:20px 40px}
+      .bk-cta-note{text-align:left}
+    }
+
+    /* ── Calendar. Full width and tall: it is the only thing on the page
+          with a job. GHL declares the frame shorter than it draws on phones,
+          and the Facebook/Instagram in-app browsers often skip the resize
+          message, so the floor is taller than the calendar ever is. ──────── */
+    .bk-cal{background:var(--coal);--hole:var(--coal);border-top:1px solid var(--steel-line);
+      padding:clamp(40px,6vw,80px) 0}
+    .bk-cal h2{font-size:clamp(2rem,8vw,3.6rem);margin:0 0 12px}
+    .bk-cal .bk-cal-sub{color:var(--gray);margin:0 0 24px;max-width:58ch}
+    .slots{margin:0 0 22px}
+    .slots-head{font-size:11px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--yellow);margin:0 0 12px}
+    .slots-list{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+    @media(min-width:700px){.slots-list{grid-template-columns:repeat(4,1fr)}}
+    .slot{font-family:var(--font);text-align:left;cursor:pointer;background:var(--black);
+      border:1px solid var(--steel-line);color:var(--white);padding:14px 16px;transition:border-color .18s}
+    .slot:hover,.slot:focus-visible{border-color:var(--yellow)}
+    .slot b{display:block;font-weight:900;text-transform:uppercase;letter-spacing:.04em;font-size:.95rem}
+    .slot span{display:block;color:var(--gray);font-size:.86rem;margin-top:3px}
+    .slot-skel{height:66px;background:linear-gradient(90deg,#141414,#1c1c1c,#141414);background-size:200% 100%;
+      animation:skel 1.3s linear infinite;border:1px solid var(--steel-line)}
+    @keyframes skel{to{background-position:-200% 0}}
+    .slots-msg{grid-column:1/-1;color:var(--gray);font-size:.9rem}
+    .bookwrap{border:1px solid var(--steel-line);background:var(--black);padding:clamp(8px,2vw,24px)}
+    .bookwrap iframe{display:block;width:100%;min-height:900px;border:0;background:var(--black)}
+    @media(max-width:600px){.bookwrap iframe{min-height:1000px}}
+    .book-fallback{margin:16px 0 0;font-size:.9rem;color:var(--gray)}
+    .book-fallback a{color:var(--white);font-weight:700}
+
+    /* ── What happens in the twenty minutes: three photo cards. ─────────── */
+    .bk-steps{padding:clamp(56px,8vw,110px) 0}
+    .bk-steps h2{font-size:clamp(2rem,8vw,3.6rem)}
+    .step-cards{display:grid;gap:18px;grid-template-columns:1fr;margin-top:8px}
+    @media(min-width:820px){.step-cards{grid-template-columns:repeat(3,1fr)}}
+    .scard{border:1px solid var(--steel-line);background:var(--black)}
+    .scard img{display:block;width:100%;height:auto;aspect-ratio:4/3;object-fit:cover}
+    .scard-b{padding:22px 22px 26px}
+    .scard-n{display:block;font-weight:900;color:var(--yellow);font-size:.82rem;letter-spacing:.16em;text-transform:uppercase;margin-bottom:8px}
+    .scard h3{font-size:1.2rem;margin:0 0 10px}
+    .scard p{margin:0;color:var(--gray);font-size:.95rem;line-height:1.55}
+
+    /* ── Proof: photo band with the member quotes. ──────────────────────── */
+    .bk-proof{position:relative;border-top:1px solid var(--steel-line);overflow:hidden}
+    .bk-proof-photo img{display:block;width:100%;height:auto;aspect-ratio:4/5;object-fit:cover}
+    .bk-proof-photo{position:relative}
+    .bk-proof-photo::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,0) 40%,#000 98%)}
+    .bk-proof-in{position:relative;z-index:1;margin-top:-36vw;padding-bottom:clamp(56px,8vw,100px)}
+    .bk-proof h2{font-size:clamp(2.4rem,11vw,4.6rem);margin:0 0 20px}
+    .bk-proof h2 .outline{--hole:#000}
+    .bk-proof .trust{margin:0 0 26px}
+    .bk-quotes{display:grid;gap:14px}
+    @media(min-width:820px){.bk-quotes{grid-template-columns:repeat(3,1fr)}}
+    .bk-quotes figure{margin:0;border:1px solid var(--steel-line);background:rgba(0,0,0,.82);padding:24px}
+    .bk-quotes blockquote{margin:0 0 14px;color:var(--white);font-weight:700;line-height:1.5;font-size:1rem}
+    .bk-quotes figcaption{font-size:11px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:var(--gray)}
+    @media(min-width:900px){
+      .bk-proof-photo{position:absolute;inset:0}
+      .bk-proof-photo img{height:100%;aspect-ratio:auto}
+      .bk-proof-photo::after{background:linear-gradient(180deg,rgba(0,0,0,.35),rgba(0,0,0,.6) 45%,#000 100%)}
+      .bk-proof-in{margin-top:0;padding-top:clamp(140px,16vw,240px)}
+    }
+
+    /* ── Last call. ──────────────────────────────────────────────────────── */
+    .bk-final{border-top:1px solid var(--steel-line);padding:clamp(56px,8vw,100px) 0;text-align:center}
+    .bk-final h2{font-size:clamp(2.2rem,10vw,4.4rem);margin:0 0 16px}
+    .bk-final p{color:var(--gray);margin:0 auto 26px;max-width:46ch}
+    .bk-final .bk-cta{max-width:420px}
+
+    /* ── Thumb bar: a phone-only "pick your time" that rides the bottom of
+          the screen between the hero and the calendar, and gets out of the
+          way when the calendar or a button is already on screen. ────────── */
+    .thumb{position:fixed;left:0;right:0;bottom:0;z-index:70;padding:10px 14px calc(10px + env(safe-area-inset-bottom));
+      background:rgba(0,0,0,.94);border-top:1px solid var(--steel-line);backdrop-filter:blur(8px);
+      transform:translateY(110%);transition:transform .25s ease}
+    .thumb.show{transform:none}
+    .thumb .btn{width:100%;padding:16px 20px;font-size:14px}
+    @media(min-width:900px){.thumb{display:none}}
+    @media (prefers-reduced-motion:reduce){.thumb{transition:none}.slot-skel{animation:none}}
+
+    .lp-foot{border-top:1px solid var(--steel-line);background:var(--black);
+      padding:44px clamp(16px,4vw,40px) 96px;text-align:center}
+    .lp-foot p{margin:0 0 10px;color:var(--gray);font-size:.9rem}
+    .lp-foot a{color:var(--gray)}
+    .lp-foot .lp-foot-legal{margin-top:18px;font-size:.8rem}
+    </style>
+    <script defer src="/_vercel/insights/script.js"></script>
+</head>
+<body>
+<header class="lp-bar">
+    <div class="lp-bar-in">
+        <a href="/" aria-label="Black Iron Athletics home"><img src="/images/logos/logo.png" alt="Black Iron Athletics" width="150" height="34"></a>
+        <a class="lp-call" href="tel:+19727857036" onclick="if(window.fbq)fbq('trackCustom','PhoneClick');"><svg width="17" height="17" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M6.5 2.5 8.2 6l-1.7 1.6a11 11 0 0 0 4.9 4.9L13 10.8l3.5 1.7v3.2c0 .6-.5 1-1.1 1A13.6 13.6 0 0 1 2.3 3.6c0-.6.4-1.1 1-1.1h3.2Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg><span>(972) 785-7036</span></a>
+    </div>
+</header>
+
+<main id="main-content">
+    <section class="bk-hero no-top">
+        <div class="bk-hero-in">
+            <div class="bk-photo">
+                <img src="/images/book/hero-640.webp" srcset="/images/book/hero-640.webp 640w, /images/book/hero-1200.webp 1200w" sizes="(min-width:900px) 46vw, 100vw" width="1200" height="1500" alt="Members high-fiving between rounds at Black Iron Athletics in Frisco" fetchpriority="high">
+                <div class="bk-slash" aria-hidden="true"><i></i><i></i></div>
+            </div>
+            <div class="bk-copy">
+                <span class="eyebrow eyebrow-y">Free consult &middot; Frisco, TX</span>
+                <h1>20 minutes.<br><span class="outline">Free.</span></h1>
+                <p class="bk-sub">Sit down with a coach, see the floor, and leave with a plan. No workout, no weigh&#8209;in.</p>
+                <a class="btn btn-y bk-cta" href="#calendar" data-scroll>Pick your time</a>
+                <p class="bk-cta-note">Rather talk first? Call <a href="tel:+19727857036" onclick="if(window.fbq)fbq('trackCustom','PhoneClick');">(972) 785-7036</a></p>
+                <p class="trust bk-trust"><span class="stars" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 2l3 7 7 .6-5.3 4.6L18.5 22 12 18l-6.5 4 1.8-7.8L2 9.6 9 9z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3 7 7 .6-5.3 4.6L18.5 22 12 18l-6.5 4 1.8-7.8L2 9.6 9 9z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3 7 7 .6-5.3 4.6L18.5 22 12 18l-6.5 4 1.8-7.8L2 9.6 9 9z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3 7 7 .6-5.3 4.6L18.5 22 12 18l-6.5 4 1.8-7.8L2 9.6 9 9z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3 7 7 .6-5.3 4.6L18.5 22 12 18l-6.5 4 1.8-7.8L2 9.6 9 9z"/></svg></span><b>5.0</b>&nbsp;on Google &middot; Veteran-owned</p>
+                <ul class="bk-ticks">
+                    <li>Coached classes with three levels, so you start where you are.</li>
+                    <li>Every member starts with Foundations: a week of one-on-one coaching.</li>
+                    <li>The same faces every week, and a coach who knows your name.</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section class="bk-cal" id="calendar">
+        <div class="wrap">
+            <span class="eyebrow eyebrow-y">Free &middot; 20 minutes &middot; In person</span>
+            <h2>Pick your <span class="outline">time.</span></h2>
+            <p class="bk-cal-sub">Choose a day and time below. It takes about a minute.</p>
+            <div class="slots" aria-live="polite">
+                <p class="slots-head">Next open times</p>
+                <div class="slots-list">
+                    <div class="slot-skel"></div><div class="slot-skel"></div><div class="slot-skel"></div><div class="slot-skel"></div>
+                </div>
+            </div>
+            <div class="bookwrap" id="booking">
+                <iframe data-src="https://api.leadconnectorhq.com/widget/booking/aOyy4UPbwziVvHz35TCU" style="width:100%;border:none;overflow:hidden" scrolling="no" id="aOyy4UPbwziVvHz35TCU_1771041740943" title="Book your free consult"></iframe>
+            </div>
+            <p class="book-fallback">Calendar not loading, or no time that works? Call or text <a href="tel:+19727857036" onclick="if(window.fbq)fbq('trackCustom','PhoneClick');">(972) 785-7036</a> and we’ll find one.</p>
+        </div>
+    </section>
+
+    <section class="bk-steps">
+        <div class="wrap">
+            <span class="eyebrow eyebrow-y rv">What happens in the 20 minutes</span>
+            <h2 class="rv">No pressure. <span class="outline">Just a plan.</span></h2>
+            <div class="step-cards">
+                <article class="scard rv">
+                    <img src="/images/book/coach-640.webp" srcset="/images/book/coach-640.webp 640w, /images/book/coach-1000.webp 1000w" sizes="(min-width:820px) 33vw, 100vw" width="1000" height="750" alt="Coach Kristin, general manager at Black Iron Athletics" loading="lazy">
+                    <div class="scard-b"><span class="scard-n">01</span><h3>Sit down with a coach</h3><p>Your goals, your schedule, and whatever has gotten in the way before. We listen first.</p></div>
+                </article>
+                <article class="scard rv">
+                    <img src="/images/book/floor-640.webp" srcset="/images/book/floor-640.webp 640w, /images/book/floor-1000.webp 1000w" sizes="(min-width:820px) 33vw, 100vw" width="1000" height="750" alt="A coached class warming up on the floor" loading="lazy">
+                    <div class="scard-b"><span class="scard-n">02</span><h3>See the floor</h3><p>Walk the gym and see how a class runs: three levels, so beginners and veterans train side by side.</p></div>
+                </article>
+                <article class="scard rv">
+                    <img src="/images/book/foundations-640.webp" srcset="/images/book/foundations-640.webp 640w, /images/book/foundations-1000.webp 1000w" sizes="(min-width:820px) 33vw, 100vw" width="1000" height="750" alt="A coach working one-on-one with a member" loading="lazy">
+                    <div class="scard-b"><span class="scard-n">03</span><h3>Leave with a plan</h3><p>Where to start, which classes fit your week, and how Foundations gets you ready for group classes.</p></div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <section class="bk-proof">
+        <div class="bk-proof-photo">
+            <picture>
+                <source media="(min-width:900px)" srcset="/images/book/squat-wide-1600.webp">
+                <img src="/images/book/squat-tall-640.webp" srcset="/images/book/squat-tall-640.webp 640w, /images/book/squat-tall-1000.webp 1000w" sizes="100vw" width="1000" height="1250" alt="A member under the bar in a back squat" loading="lazy">
+            </picture>
+        </div>
+        <div class="wrap bk-proof-in">
+            <span class="eyebrow eyebrow-y">From our members</span>
+            <h2>Same faces,<br><span class="outline">every week.</span></h2>
+            <p class="trust"><span class="stars" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 2l3 7 7 .6-5.3 4.6L18.5 22 12 18l-6.5 4 1.8-7.8L2 9.6 9 9z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3 7 7 .6-5.3 4.6L18.5 22 12 18l-6.5 4 1.8-7.8L2 9.6 9 9z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3 7 7 .6-5.3 4.6L18.5 22 12 18l-6.5 4 1.8-7.8L2 9.6 9 9z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3 7 7 .6-5.3 4.6L18.5 22 12 18l-6.5 4 1.8-7.8L2 9.6 9 9z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3 7 7 .6-5.3 4.6L18.5 22 12 18l-6.5 4 1.8-7.8L2 9.6 9 9z"/></svg></span><b>5.0</b>&nbsp;on Google</p>
+            <div class="bk-quotes">
+                <figure class="rv"><blockquote>“The community is what really sets it apart. Everyone is supportive, encouraging, and genuinely wants to see each other succeed.”</blockquote><figcaption>Eric D., member</figcaption></figure>
+                <figure class="rv"><blockquote>“The programming is well thought out, challenging, and scalable for all fitness levels, so you’re always making progress.”</blockquote><figcaption>Christopher P., member</figcaption></figure>
+                <figure class="rv"><blockquote>“I wouldn’t be as healthy or as strong as I am without their amazing fitness programs and incredible coaching.”</blockquote><figcaption>Brian A., member</figcaption></figure>
+            </div>
+        </div>
+    </section>
+
+    <section class="bk-final">
+        <div class="wrap">
+            <span class="eyebrow eyebrow-y">Your first step</span>
+            <h2>Show up <span class="outline">once.</span></h2>
+            <p>Twenty minutes, on us. We’ll take it from there.</p>
+            <a class="btn btn-y bk-cta" href="#calendar" data-scroll>Pick your time</a>
+        </div>
+    </section>
+</main>
+
+<div class="thumb" id="thumb" aria-hidden="true">
+    <a class="btn btn-y" href="#calendar" data-scroll tabindex="-1">Pick your time &middot; Free, 20 min</a>
+</div>
+
+<footer class="lp-foot">
+    <p><b style="color:var(--white)">Black Iron Athletics</b></p>
+    <p>279 Main St, Suite 122, Frisco, TX 75036</p>
+    <p><a href="tel:+19727857036" onclick="if(window.fbq)fbq('trackCustom','PhoneClick');">(972) 785-7036</a></p>
+    <p class="lp-foot-legal">Veteran-owned &middot; Est. 2013 &middot; <a href="/privacy-policy">Privacy</a> &middot; <a href="/terms">Terms</a></p>
+</footer>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "name": "Free 20-Minute Consult",
+  "description": "Book a free twenty minute consult at Black Iron Athletics in Frisco, TX. Sit down with a coach, see the floor, and leave with a plan.",
+  "provider": {
+    "@type": "GymAndHealthClub",
+    "name": "Black Iron Athletics",
+    "telephone": "(972) 785-7036",
+    "address": { "@type": "PostalAddress", "streetAddress": "279 Main St #122", "addressLocality": "Frisco", "addressRegion": "TX", "postalCode": "75036", "addressCountry": "US" },
+    "url": "https://www.blackironathletics.com"
+  },
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD", "description": "Free twenty minute consult" },
+  "url": "https://www.blackironathletics.com/consult"
+}
+</script>
+
+<script>
+/* Reveal on scroll, matched to the site's own .rv/.on behaviour. */
+(function () {
+  var els = document.querySelectorAll('.rv');
+  if (!('IntersectionObserver' in window)) { els.forEach(function (e) { e.classList.add('on'); }); return; }
+  var io = new IntersectionObserver(function (en) { en.forEach(function (x) {
+    if (x.isIntersecting) { x.target.classList.add('on'); io.unobserve(x.target); } }); }, { rootMargin: '0px 0px -8% 0px' });
+  els.forEach(function (e) { io.observe(e); });
+})();
+
+/* Every "Pick your time" button goes to the calendar and loads it, even
+   before the lazy loader would have. */
+(function () {
+  [].forEach.call(document.querySelectorAll('[data-scroll]'), function (a) {
+    a.addEventListener('click', function (e) {
+      var cal = document.getElementById('calendar'); if (!cal) return;
+      e.preventDefault();
+      var f = document.querySelector('.bookwrap iframe[data-src]');
+      if (f && !f.src) { f.src = f.dataset.src; f.dataset.loadedAt = String(Date.now()); }
+      cal.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  });
+})();
+
+/* Thumb bar: only between the hero buttons and the calendar. */
+(function () {
+  var bar = document.getElementById('thumb'); if (!bar || !('IntersectionObserver' in window)) return;
+  var watch = [document.querySelector('.bk-copy .bk-cta'), document.getElementById('calendar'), document.querySelector('.bk-final')];
+  var visible = {};
+  var io = new IntersectionObserver(function (en) {
+    en.forEach(function (x) { visible[watch.indexOf(x.target)] = x.isIntersecting; });
+    var heroGone = !visible[0] && window.scrollY > 200;
+    bar.classList.toggle('show', heroGone && !visible[1] && !visible[2]);
+  }, { threshold: 0 });
+  watch.forEach(function (el) { if (el) io.observe(el); });
+})();
+
+/* Next open times, from the same availability the calendar uses. Tapping
+   one takes you to the calendar to confirm it there. */
+(function () {
+  var list = document.querySelector('.slots-list'); if (!list) return;
+  var DAY = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'], MON = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  function ymd(d) { return d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0'); }
+  function hm(d) { var h = d.getHours(), m = d.getMinutes(); return (h % 12 || 12) + ':' + String(m).padStart(2, '0') + (h >= 12 ? ' PM' : ' AM'); }
+  function hide() { var w = document.querySelector('.slots'); if (w) w.style.display = 'none'; }
+  var now = new Date(), end = new Date(now); end.setDate(end.getDate() + 14);
+  fetch('/api/free-slots?startDate=' + ymd(now) + '&endDate=' + ymd(end))
+    .then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); })
+    .then(function (data) {
+      var src = data && (data.slots || data.data) || data || {}, slots = [];
+      Object.keys(src).forEach(function (k) {
+        var v = src[k], arr = Array.isArray(v) ? v : (v && Array.isArray(v.slots) ? v.slots : []);
+        arr.forEach(function (s) { var t = new Date(s); if (!isNaN(t) && t > now) slots.push(t); });
+      });
+      slots.sort(function (a, b) { return a - b; });
+      if (!slots.length) { hide(); return; }
+      list.innerHTML = '';
+      slots.slice(0, 4).forEach(function (t) {
+        var b = document.createElement('button');
+        b.type = 'button'; b.className = 'slot';
+        var today = ymd(t) === ymd(now), tmw = ymd(t) === ymd(new Date(now.getTime() + 864e5));
+        b.innerHTML = '<b>' + (today ? 'Today' : tmw ? 'Tomorrow' : DAY[t.getDay()] + ', ' + MON[t.getMonth()] + ' ' + t.getDate()) + '</b><span>' + hm(t) + '</span>';
+        b.setAttribute('aria-label', 'Book ' + b.textContent + ' in the calendar below');
+        b.addEventListener('click', function () {
+          var f = document.querySelector('.bookwrap iframe[data-src]');
+          if (f && !f.src) { f.src = f.dataset.src; f.dataset.loadedAt = String(Date.now()); }
+          document.getElementById('booking').scrollIntoView({ behavior: 'smooth', block: 'start' });
+          if (typeof fbq === 'function') fbq('trackCustom', 'SlotTap');
+        });
+        list.appendChild(b);
+      });
+    })
+    .catch(hide);
+})();
+</script>
+<script>
+/* Booking calendar: lazy load, and the funnel events (CalendarView,
+   InitiateCheckout, Schedule), same as the ad landing pages. data-src (not
+   src) is what the UTM pass-through in inject-pixel.js looks for, so the
+   booking stays attributable to the ad that earned it. Do not change it. */
+(function () {
+  var frames = [].slice.call(document.querySelectorAll('.bookwrap iframe[data-src]'));
+  if (!frames.length) return;
+  var fired = {};
+  function once(n, custom) {
+    if (fired[n]) return; fired[n] = true;
+    if (typeof fbq === 'function') fbq(custom ? 'trackCustom' : 'track', n);
+  }
+  function activate(f) { if (!f.src && f.dataset.src) { f.src = f.dataset.src; f.dataset.loadedAt = String(Date.now()); } }
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function (en) {
+      en.forEach(function (x) { if (x.isIntersecting) { activate(x.target); io.unobserve(x.target); } });
+    }, { rootMargin: '600px 0px' });
+    frames.forEach(function (f) { io.observe(f); });
+    var seen = new IntersectionObserver(function (en) {
+      en.forEach(function (x) { if (x.isIntersecting && x.intersectionRatio >= 0.4) {
+        once('CalendarView', true); seen.unobserve(x.target); } });
+    }, { threshold: [0.4] });
+    frames.forEach(function (f) { seen.observe(f); });
+  } else { frames.forEach(activate); }
+  window.fpBookingMessages = [];
+  window.addEventListener('message', function (ev) {
+    var host = ''; try { host = new URL(ev.origin).hostname; } catch (e) { return; }
+    if (!/(^|\.)leadconnectorhq\.com$|(^|\.)msgsndr\.com$/.test(host)) return;
+    window.fpBookingMessages.push({ t: Date.now(), origin: ev.origin, data: ev.data });
+    var raw = ''; try { raw = typeof ev.data === 'string' ? ev.data : JSON.stringify(ev.data); } catch (e) {}
+    if (/appointment|booked|booking[_-]?(success|complete)|slot[_-]?selected|scheduled/i.test(raw)) {
+      once('InitiateCheckout');
+      if (/booked|success|complete|scheduled|confirmed/i.test(raw)) once('Schedule');
+      return;
+    }
+    var oldest = frames.reduce(function (a, f) {
+      var v = Number(f.dataset.loadedAt || 0); return v && (!a || v < a) ? v : a; }, 0);
+    if (oldest && Date.now() - oldest > 2500) once('InitiateCheckout');
+  }, false);
+})();
+</script>
+<script src="https://link.msgsndr.com/js/form_embed.js" type="text/javascript" defer></script>
+</body>
+</html>
