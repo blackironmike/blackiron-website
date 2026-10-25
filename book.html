@@ -1,1271 +1,411 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <!-- CONTRACT: keep this exact viewport tag — inject-pixel.js insertion marker -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="robots" content="noindex">
-    <title>Book Your Free Consultation | Black Iron Athletics | Frisco, TX</title>
-    <meta name="description" content="Book a free consultation at Black Iron Athletics in Frisco, TX. No pressure, no sales pitch — an honest conversation about your goals.">
+    <title>Book Your Free 20-Minute Consult | Black Iron Athletics, Frisco TX</title>
+    <meta name="description" content="Book a free twenty minute consult at Black Iron Athletics in Frisco, TX. Sit down with a coach, see the floor, and leave with a plan. No workout, no weigh-in. Veteran-owned, in Frisco since 2013.">
+    <link rel="canonical" href="https://www.blackironathletics.com/book">
     <meta name="geo.region" content="US-TX">
     <meta name="geo.placename" content="Frisco">
-    <link rel="canonical" href="https://www.blackironathletics.com/book">
-    <!-- Open Graph -->
-    <meta property="og:title" content="Book Your Free Consultation | Black Iron Athletics | Frisco, TX">
-    <meta property="og:description" content="Book your free consultation at Black Iron Athletics. No pressure, no sales pitch — just an honest conversation about your fitness goals.">
+    <meta name="geo.position" content="33.15035;-96.89026">
+    <meta property="og:title" content="20 minutes. Free. Book your consult at Black Iron Athletics.">
+    <meta property="og:description" content="Sit down with a coach, see the floor, and leave with a plan. No workout, no weigh-in. Frisco, TX.">
     <meta property="og:url" content="https://www.blackironathletics.com/book">
     <meta property="og:image" content="https://www.blackironathletics.com/images/social/2026-08-05-default-share.jpg">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
-    <meta property="og:image:alt" content="Members training on the floor at Black Iron Athletics in Frisco, Texas. We help everyday people become everyday athletes.">
+    <meta property="og:image:alt" content="Members training on the floor at Black Iron Athletics in Frisco, Texas.">
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="Black Iron Athletics">
-    <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Book Your Free Consultation | Black Iron Athletics | Frisco, TX">
-    <meta name="twitter:description" content="Book your free consultation at Black Iron Athletics. No pressure, no sales pitch — just an honest conversation about your fitness goals.">
+    <meta name="twitter:title" content="20 minutes. Free. Book your consult at Black Iron Athletics.">
+    <meta name="twitter:description" content="Sit down with a coach, see the floor, and leave with a plan. No workout, no weigh-in. Frisco, TX.">
     <meta name="twitter:image" content="https://www.blackironathletics.com/images/social/2026-08-05-default-share.jpg">
-    <link rel="icon" type="image/png" href="images/anvil-favicon.png">
+    <link rel="icon" type="image/png" href="/images/anvil-favicon.png">
+    <link rel="apple-touch-icon" href="/images/anvil-favicon.png">
     <meta name="theme-color" content="#000000">
-    <link rel="apple-touch-icon" href="images/anvil-favicon.png">
+    <link rel="preload" as="image" href="/images/book/hero-640.webp" imagesrcset="/images/book/hero-640.webp 640w, /images/book/hero-1200.webp 1200w" imagesizes="(min-width:900px) 46vw, 100vw">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;900&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
-    <noscript><link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;900&display=swap" rel="stylesheet"></noscript>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" media="print" onload="this.media='all'">
-    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"></noscript>
-    <style>@font-face{font-family:"Font Awesome 6 Brands";font-display:swap}@font-face{font-family:"Font Awesome 6 Free";font-display:swap}</style>
+    <link rel="preconnect" href="https://api.leadconnectorhq.com">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&display=swap" rel="stylesheet"></noscript>
+    <link rel="stylesheet" href="/css/bia.css">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        :root {
-            --black: #000000;
-            --dark-gray: #101010;
-            --medium-gray: #2A2A2A;
-            --light-gray: #C7C7C7;
-            --white: #ffffff;
-            --yellow: #FFD202;
-        }
-
-        body {
-            font-family: 'Montserrat', sans-serif;
-            font-weight: 500;
-            background: var(--black);
-            color: var(--white);
-            overflow-x: hidden;
-            line-height: 1.6;
-            margin: 0;
-            padding: 0;
-        }
-
-        html {
-            margin: 0;
-            padding: 0;
-            scroll-behavior: smooth;
-        }
-
-        h1, h2, h3, h4, h5, h6 {
-            font-family: 'Montserrat', sans-serif;
-            font-weight: 900;
-            line-height: 1.2;
-        }
-
-        nav {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            padding: 1.5rem 0;
-            background: var(--black);
-            z-index: 1000;
-            border-bottom: 1px solid var(--medium-gray);
-        }
-
-        .nav-container {
-            max-width: 100%;
-            margin: 0;
-            padding: 0 4rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            height: 50px;
-        }
-
-        .logo a {
-            display: block;
-            height: 100%;
-        }
-
-        .logo img {
-            height: 100%;
-            width: auto;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 3rem;
-            list-style: none;
-            align-items: center;
-        }
-
-        .nav-links > li {
-            position: relative;
-        }
-
-        .nav-links a {
-            color: var(--white);
-            text-decoration: none;
-            font-size: 0.95rem;
-            font-weight: 900;
-            transition: color 0.3s ease;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-
-        .nav-links > li > a:hover {
-            color: var(--yellow);
-        }
-
-        .submenu {
-            display: none;
-            position: absolute;
-            top: 100%;
-            left: 0;
-            background: rgba(26, 26, 26, 0.95);
-            backdrop-filter: blur(10px);
-            min-width: 240px;
-            padding: 0.5rem 0;
-            border: 1px solid var(--medium-gray);
-            list-style: none;
-        }
-
-        .submenu li {
-            padding: 0;
-        }
-
-        .submenu a {
-            display: block;
-            padding: 1rem 1.5rem;
-            font-size: 0.85rem;
-            font-weight: 900;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            transition: all 0.3s ease;
-        }
-
-        .submenu a:hover {
-            background: rgba(255, 210, 2, 0.1);
-            color: var(--yellow);
-            padding-left: 2rem;
-        }
-
-        .nav-links > li:hover .submenu {
-            display: block;
-        }
-
-        .has-submenu > a::after {
-            content: '';
-            display: inline-block;
-            width: 0;
-            height: 0;
-            margin-left: 0.5rem;
-            border-left: 4px solid transparent;
-            border-right: 4px solid transparent;
-            border-top: 5px solid var(--white);
-            transition: all 0.3s ease;
-        }
-
-        .has-submenu:hover > a::after {
-            border-top-color: var(--yellow);
-            transform: translateY(2px);
-        }
-
-        .cta-btn {
-            background: var(--yellow);
-            color: var(--black);
-            padding: 0.9rem 1.5rem;
-            border-radius: 0;
-            text-decoration: none;
-            font-weight: 900;
-            font-size: 0.85rem;
-            transition: all 0.3s ease;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            border: 2px solid var(--yellow);
-            white-space: nowrap;
-        }
-
-        .cta-btn:hover {
-            background: var(--black);
-            color: var(--yellow);
-        }
-
-        /* Booking Page Content */
-        .booking-section {
-            padding-top: 160px;
-            padding-bottom: 6rem;
-            background: var(--black);
-        }
-
-        .booking-container {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 0 4rem;
-            text-align: center;
-        }
-
-        .booking-subtitle {
-            font-size: 0.85rem;
-            font-weight: 700;
-            color: var(--yellow);
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            margin-bottom: 1rem;
-        }
-
-        .booking-title {
-            font-weight: 900;
-            font-size: clamp(2.5rem, 5vw, 4rem);
-            margin-bottom: 1.5rem;
-            text-transform: uppercase;
-        }
-
-        .booking-description {
-            font-size: 1.2rem;
-            color: var(--light-gray);
-            margin-bottom: 3rem;
-            line-height: 1.8;
-        }
-
-        .booking-embed {
-            background: var(--black);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            padding: 1.5rem;
-            min-height: 600px;
-            position: relative;
-        }
-
-        .booking-embed::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 60px;
-            height: 3px;
-            background: var(--yellow);
-        }
-
-        .booking-embed iframe {
-            min-height: 600px;
-        }
-
-        /* ===== BOOKING WIDGETS ===== */
-        .slots-widget-heading {
-            font-size: 0.7rem;
-            font-weight: 600;
-            color: rgba(255, 255, 255, 0.4);
-            text-transform: uppercase;
-            letter-spacing: 3px;
-            margin-bottom: 1rem;
-            text-align: center;
-        }
-
-        /* --- Next Available Times Widget --- */
-        .next-slots-widget {
-            margin-bottom: 2rem;
-        }
-        .next-slots-list {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.6rem;
-            justify-content: center;
-            margin-bottom: 1rem;
-        }
-        .slot-card {
-            background: rgba(255, 255, 255, 0.04);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            padding: 0.7rem 1rem;
-            cursor: pointer;
-            transition: all 0.25s ease;
-            text-align: center;
-            min-width: 120px;
-            flex: 0 1 auto;
-            max-width: 155px;
-        }
-        .slot-card:hover, .slot-card:focus-visible {
-            background: rgba(255, 210, 2, 0.06);
-            border-color: rgba(255, 210, 2, 0.4);
-            box-shadow: 0 0 16px rgba(255, 210, 2, 0.08);
-        }
-        .slot-card-day {
-            font-weight: 600;
-            font-size: 0.65rem;
-            color: rgba(255, 255, 255, 0.45);
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
-            margin-bottom: 0.2rem;
-        }
-        .slot-card-date {
-            font-weight: 700;
-            font-size: 0.8rem;
-            color: var(--white);
-            margin-bottom: 0.35rem;
-            padding-bottom: 0.35rem;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-        }
-        .slot-card-time {
-            font-weight: 800;
-            font-size: 0.9rem;
-            color: var(--yellow);
-        }
-        /* --- Skeleton Loading --- */
-        @keyframes shimmer {
-            0% { background-position: -200% 0; }
-            100% { background-position: 200% 0; }
-        }
-        .skeleton {
-            background: linear-gradient(90deg, rgba(255,255,255,0.03) 25%, rgba(255,255,255,0.06) 50%, rgba(255,255,255,0.03) 75%);
-            background-size: 200% 100%;
-            animation: shimmer 1.5s infinite;
-            border-radius: 0;
-        }
-        .skeleton-card {
-            height: 65px;
-            min-width: 120px;
-            flex: 0 1 auto;
-            max-width: 155px;
-            border: 1px solid rgba(255, 255, 255, 0.06);
-        }
-        /* --- Widget Error/Empty States --- */
-        .widget-error, .widget-empty {
-            text-align: center;
-            padding: 1.5rem 1rem;
-            color: rgba(255, 255, 255, 0.4);
-            font-size: 0.85rem;
-        }
-        .widget-retry-btn {
-            background: transparent;
-            color: var(--yellow);
-            border: 1px solid var(--yellow);
-            padding: 0.4rem 1.25rem;
-            font-family: 'Montserrat', sans-serif;
-            font-weight: 700;
-            font-size: 0.75rem;
-            text-transform: uppercase;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            margin-top: 0.75rem;
-        }
-        .widget-retry-btn:hover {
-            background: var(--yellow);
-            color: var(--black);
-        }
-
-        @media (max-width: 768px) {
-            /* Widget responsive — 2x2 grid on mobile */
-            .next-slots-list {
-                display: grid;
-                grid-template-columns: 1fr 1fr;
-                gap: 0.5rem;
-            }
-            .slot-card {
-                max-width: 100%;
-                min-width: 0;
-            }
-        }
-
-        /* Footer */
-        footer {
-            padding: 4rem 0 2rem;
-            background: var(--black);
-            border-top: 1px solid var(--medium-gray);
-            width: 100%;
-        }
-
-        .footer-container {
-            max-width: 100%;
-            margin: 0;
-            padding: 0 4rem;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 4rem;
-            margin-bottom: 3rem;
-        }
-
-        .footer-section h3 {
-            font-weight: 900;
-            margin-bottom: 1.5rem;
-            text-transform: uppercase;
-            font-size: 0.9rem;
-            letter-spacing: 1px;
-        }
-
-        .footer-section ul {
-            list-style: none;
-        }
-
-        .footer-section ul li {
-            margin-bottom: 0.75rem;
-        }
-
-        .footer-section a {
-            color: var(--light-gray);
-            text-decoration: none;
-            transition: color 0.3s ease;
-            font-weight: 500;
-        }
-
-        .footer-section a:hover {
-            color: var(--yellow);
-        }
-
-        .footer-logo {
-            height: 60px;
-            margin-bottom: 1.5rem;
-        }
-
-        .footer-bottom {
-            text-align: center;
-            padding-top: 2rem;
-            border-top: 1px solid var(--medium-gray);
-            color: var(--light-gray);
-            font-size: 0.9rem;
-        }
-
-        /* ===== SCROLL REVEAL ===== */
-        .reveal {
-            opacity: 0;
-            transform: translateY(40px);
-            transition: opacity 0.7s ease, transform 0.7s ease;
-        }
-
-        .reveal.revealed {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .reveal-scale {
-            opacity: 0;
-            transform: scale(0.9);
-            transition: opacity 0.7s ease, transform 0.7s ease;
-        }
-
-        .reveal-scale.revealed {
-            opacity: 1;
-            transform: scale(1);
-        }
-
-        .reveal-stagger > .reveal {
-            transition-delay: calc(var(--reveal-index, 0) * 0.1s);
-        }
-
-        @media (prefers-reduced-motion: reduce) {
-            .reveal,
-            .reveal-scale {
-                opacity: 1;
-                transform: none;
-                transition: none;
-            }
-            .reveal-stagger > .reveal {
-                transition-delay: 0s;
-            }
-        }
-
-        @media (max-width: 1024px) {
-            .nav-container,
-            .booking-container,
-            .footer-container {
-                padding-left: 2rem;
-                padding-right: 2rem;
-            }
-        }
-
-        /* Hamburger Menu */
-        .hamburger {
-            display: none;
-            flex-direction: column;
-            justify-content: center;
-            gap: 5px;
-            width: 30px;
-            height: 30px;
-            cursor: pointer;
-            background: none;
-            border: none;
-            padding: 0;
-            z-index: 1002;
-        }
-
-        .hamburger span {
-            display: block;
-            width: 30px;
-            height: 3px;
-            background: var(--white);
-            transition: all 0.3s ease;
-        }
-
-        .hamburger.active span:nth-child(1) {
-            transform: rotate(45deg) translate(6px, 6px);
-        }
-
-        .hamburger.active span:nth-child(2) {
-            opacity: 0;
-        }
-
-        .hamburger.active span:nth-child(3) {
-            transform: rotate(-45deg) translate(6px, -6px);
-        }
-
-        /* Side Menu */
-        .menu-backdrop {
-            position: fixed; inset: 0; background: rgba(0,0,0,0.6); z-index: 1001;
-            opacity: 0; visibility: hidden; transition: opacity 0.3s, visibility 0.3s;
-        }
-        .menu-backdrop.open { opacity: 1; visibility: visible; }
-        .side-menu {
-            position: fixed; top: 0; right: 0; width: 300px; max-width: 85vw; height: 100%;
-            background: var(--dark-gray); z-index: 1002; transform: translateX(100%);
-            transition: transform 0.3s ease; display: flex; flex-direction: column; overflow-y: auto;
-        }
-        .side-menu.open { transform: translateX(0); }
-        .side-menu-header {
-            display: flex; align-items: center; justify-content: space-between;
-            padding: 1rem 1.5rem; border-bottom: 1px solid var(--medium-gray);
-        }
-        .side-menu-header img { height: 30px; width: auto; }
-        .side-menu-close {
-            background: none; border: none; color: var(--light-gray); font-size: 1.3rem;
-            cursor: pointer; padding: 0.25rem; transition: color 0.3s;
-        }
-        .side-menu-close:hover { color: var(--white); }
-        .side-menu-links { flex: 1; padding: 0.75rem 0; }
-        .side-menu-links a {
-            display: block; padding: 0.85rem 1.5rem; color: var(--white); text-decoration: none;
-            font-size: 1rem; font-weight: 900; text-transform: uppercase; letter-spacing: 0.5px;
-            transition: all 0.2s;
-        }
-        .side-menu-links a:hover { color: var(--yellow); background: rgba(255,255,255,0.05); }
-        .side-menu-links .sub-link {
-            font-size: 0.85rem; color: var(--light-gray); padding: 0.5rem 1.5rem 0.5rem 2.5rem;
-            font-weight: 700;
-        }
-        .side-menu-links .sub-link:hover { color: var(--yellow); }
-        .side-menu-links .menu-divider { height: 1px; background: var(--medium-gray); margin: 0.5rem 1.5rem; }
-        .side-menu-footer { border-top: 1px solid var(--medium-gray); padding: 1rem 1.5rem; }
-        .side-menu-footer a {
-            display: block; background: var(--yellow); color: var(--black); padding: 0.9rem 1.5rem;
-            text-align: center; font-weight: 900; font-size: 0.9rem; text-transform: uppercase;
-            text-decoration: none; transition: all 0.3s;
-        }
-        .side-menu-footer a:hover { background: var(--white); }
-
-        @media (max-width: 768px) {
-            .hamburger {
-                display: flex !important;
-            }
-
-            .nav-links {
-                display: none !important;
-            }
-
-            .nav-container {
-                padding: 0 1.5rem;
-                flex-wrap: wrap;
-            }
-
-            .cta-btn {
-                order: 3;
-                width: 100%;
-                text-align: center;
-                margin-top: 0.75rem;
-                padding: 0.7rem 1rem;
-                font-size: 0.8rem;
-            }
-
-            .booking-section {
-                padding-top: 160px;
-            }
-
-            .booking-container {
-                padding: 0 1.5rem;
-            }
-
-            .booking-title {
-                font-size: clamp(2rem, 6vw, 3rem);
-            }
-
-            .booking-embed {
-                padding: 0.75rem;
-                min-height: 400px;
-            }
-
-            .booking-embed iframe {
-                min-height: 400px;
-            }
-
-            .footer-container {
-                padding: 0 1.5rem;
-                gap: 2rem;
-            }
-
-            .modal-container {
-                max-width: calc(100% - 2rem);
-            }
-        }
-
-        /* Skip Navigation */
-        .skip-link {
-            position: absolute;
-            top: -100%;
-            left: 50%;
-            transform: translateX(-50%);
-            background: var(--yellow);
-            color: var(--black);
-            padding: 0.75rem 1.5rem;
-            font-weight: 700;
-            z-index: 10000;
-            text-decoration: none;
-            transition: top 0.2s;
-        }
-        .skip-link:focus {
-            top: 10px;
-        }
-
-        /* Focus Visible Styles */
-        a:focus-visible,
-        button:focus-visible,
-        input:focus-visible,
-        select:focus-visible,
-        textarea:focus-visible,
-        [tabindex]:focus-visible {
-            outline: 2px solid var(--yellow);
-            outline-offset: 2px;
-        }
-
-        /* Keyboard Nav for Submenus */
-        .nav-links > li:focus-within .submenu,
-        .has-submenu.submenu-open .submenu {
-            display: block;
-        }
-        .has-submenu:focus-within > a::after {
-            border-top-color: var(--yellow);
-            transform: translateY(2px);
-        }
+    /* ── Landing chrome: logo and a phone number, no menu. The only exits
+          are booking, calling, or closing the tab. ───────────────────────── */
+    .lp-bar{position:sticky;top:0;z-index:60;background:rgba(0,0,0,.92);
+      backdrop-filter:blur(8px);border-bottom:1px solid var(--steel-line)}
+    .lp-bar-in{display:flex;align-items:center;justify-content:space-between;
+      gap:16px;padding:14px clamp(16px,4vw,40px);max-width:1240px;margin:0 auto}
+    .lp-bar img{height:34px;width:auto;display:block}
+    .lp-call{display:inline-flex;align-items:center;gap:9px;color:var(--white);
+      font-weight:900;font-size:.86rem;letter-spacing:.06em;white-space:nowrap}
+    @media(max-width:420px){.lp-call span{display:none}}
+
+    /* ── Hero. The ad look: a black-and-white member photo that falls away
+          into black, a white headline over it, the second line outlined. On a
+          phone the photo sits on top and the type overlaps its lower edge. ── */
+    .bk-hero{position:relative;overflow:hidden}
+    .bk-photo{position:relative}
+    .bk-photo img{display:block;width:100%;height:auto;aspect-ratio:1/1;object-fit:cover;object-position:center 22%}
+    .bk-photo::after{content:"";position:absolute;inset:0;
+      background:linear-gradient(180deg,rgba(0,0,0,.15) 0%,rgba(0,0,0,0) 30%,rgba(0,0,0,.55) 62%,#000 96%)}
+    .bk-slash{position:absolute;top:18px;right:18px;z-index:2;display:flex;gap:9px}
+    .bk-slash i{display:block;width:7px;height:46px;background:var(--yellow);transform:skewX(-24deg)}
+    .bk-copy{position:relative;z-index:2;padding:0 20px 40px;margin-top:-30vw}
+    .bk-copy .eyebrow{margin-bottom:14px}
+    .bk-hero h1{font-size:clamp(2.5rem,11.4vw,5.6rem);line-height:.92;margin:0 0 16px}
+    .bk-hero h1 .outline{--hole:#000}
+    .bk-sub{color:var(--white);font-size:1.04rem;line-height:1.5;margin:0 0 20px;max-width:46ch}
+    .bk-ticks{list-style:none;margin:0;padding:0;display:grid;gap:10px}
+    .bk-ticks li{position:relative;padding-left:22px;color:var(--gray);font-size:.96rem}
+    .bk-ticks li::before{content:"";position:absolute;left:0;top:.62em;width:10px;height:3px;background:var(--yellow)}
+    .bk-cta{width:100%;font-size:15px;padding:20px 24px;letter-spacing:2px}
+    .bk-trust{margin:24px 0 18px}
+    .bk-trust b{font-weight:900}
+    @media(min-width:900px){
+      .bk-hero-in{display:grid;grid-template-columns:1fr 46%;align-items:center;max-width:1240px;margin:0 auto}
+      .bk-photo{order:2}
+      .bk-photo img{aspect-ratio:4/5;max-height:calc(100svh - 64px);object-position:center 30%}
+      .bk-photo::after{background:linear-gradient(90deg,#000 0%,rgba(0,0,0,.25) 26%,rgba(0,0,0,0) 50%),
+        linear-gradient(180deg,rgba(0,0,0,0) 70%,#000 100%)}
+      .bk-copy{order:1;margin-top:0;padding:56px 40px 56px clamp(20px,4vw,48px)}
+      .bk-hero h1{font-size:clamp(3rem,4.6vw,4.4rem)}
+      .bk-cta{width:auto;padding:20px 40px}
+    }
+
+    /* ── Calendar. Full width and tall: it is the only thing on the page
+          with a job. GHL declares the frame shorter than it draws on phones,
+          and the Facebook/Instagram in-app browsers often skip the resize
+          message, so the floor is taller than the calendar ever is. ──────── */
+    .bk-cal{background:var(--coal);--hole:var(--coal);border-top:1px solid var(--steel-line);
+      padding:clamp(40px,6vw,80px) 0}
+    .bk-cal h2{font-size:clamp(2rem,8vw,3.6rem);margin:0 0 12px}
+    .bk-cal .bk-cal-sub{color:var(--gray);margin:0 0 24px;max-width:58ch}
+    .slots{margin:0 0 22px}
+    .slots-head{font-size:11px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--yellow);margin:0 0 12px}
+    .slots-list{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+    @media(min-width:700px){.slots-list{grid-template-columns:repeat(4,1fr)}}
+    .slot{font-family:var(--font);text-align:left;cursor:pointer;background:var(--black);
+      border:1px solid var(--steel-line);color:var(--white);padding:14px 16px;transition:border-color .18s}
+    .slot:hover,.slot:focus-visible{border-color:var(--yellow)}
+    .slot b{display:block;font-weight:900;text-transform:uppercase;letter-spacing:.04em;font-size:.95rem}
+    .slot span{display:block;color:var(--gray);font-size:.86rem;margin-top:3px}
+    .slot-skel{height:66px;background:linear-gradient(90deg,#141414,#1c1c1c,#141414);background-size:200% 100%;
+      animation:skel 1.3s linear infinite;border:1px solid var(--steel-line)}
+    @keyframes skel{to{background-position:-200% 0}}
+    .slots-msg{grid-column:1/-1;color:var(--gray);font-size:.9rem}
+    .bookwrap{border:1px solid var(--steel-line);background:var(--black);padding:clamp(8px,2vw,24px)}
+    .bookwrap iframe{display:block;width:100%;min-height:900px;border:0;background:var(--black)}
+    @media(max-width:600px){.bookwrap iframe{min-height:1000px}}
+    .book-fallback{margin:16px 0 0;font-size:.9rem;color:var(--gray)}
+    .book-fallback a{color:var(--white);font-weight:700}
+
+    /* ── What happens in the twenty minutes: three photo cards. ─────────── */
+    .bk-steps{padding:clamp(56px,8vw,110px) 0}
+    .bk-steps h2{font-size:clamp(2rem,8vw,3.6rem)}
+    .step-cards{display:grid;gap:18px;grid-template-columns:1fr;margin-top:8px}
+    @media(min-width:820px){.step-cards{grid-template-columns:repeat(3,1fr)}}
+    .scard{border:1px solid var(--steel-line);background:var(--black)}
+    .scard img{display:block;width:100%;height:auto;aspect-ratio:4/3;object-fit:cover}
+    .scard-b{padding:22px 22px 26px}
+    .scard-n{display:block;font-weight:900;color:var(--yellow);font-size:.82rem;letter-spacing:.16em;text-transform:uppercase;margin-bottom:8px}
+    .scard h3{font-size:1.2rem;margin:0 0 10px}
+    .scard p{margin:0;color:var(--gray);font-size:.95rem;line-height:1.55}
+
+    /* ── Proof: photo band with the member quotes. ──────────────────────── */
+    .bk-proof{position:relative;border-top:1px solid var(--steel-line);overflow:hidden}
+    .bk-proof-photo img{display:block;width:100%;height:auto;aspect-ratio:4/5;object-fit:cover}
+    .bk-proof-photo{position:relative}
+    .bk-proof-photo::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,0) 40%,#000 98%)}
+    .bk-proof-in{position:relative;z-index:1;margin-top:-36vw;padding-bottom:clamp(56px,8vw,100px)}
+    .bk-proof h2{font-size:clamp(2.4rem,11vw,4.6rem);margin:0 0 20px}
+    .bk-proof h2 .outline{--hole:#000}
+    .bk-proof .trust{margin:0 0 26px}
+    .bk-quotes{display:grid;gap:14px}
+    @media(min-width:820px){.bk-quotes{grid-template-columns:repeat(3,1fr)}}
+    .bk-quotes figure{margin:0;border:1px solid var(--steel-line);background:rgba(0,0,0,.82);padding:24px}
+    .bk-quotes blockquote{margin:0 0 14px;color:var(--white);font-weight:700;line-height:1.5;font-size:1rem}
+    .bk-quotes figcaption{font-size:11px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:var(--gray)}
+    @media(min-width:900px){
+      .bk-proof-photo{position:absolute;inset:0}
+      .bk-proof-photo img{height:100%;aspect-ratio:auto}
+      .bk-proof-photo::after{background:linear-gradient(180deg,rgba(0,0,0,.35),rgba(0,0,0,.6) 45%,#000 100%)}
+      .bk-proof-in{margin-top:0;padding-top:clamp(140px,16vw,240px)}
+    }
+
+    /* ── Last call. ──────────────────────────────────────────────────────── */
+    .bk-final{border-top:1px solid var(--steel-line);padding:clamp(56px,8vw,100px) 0;text-align:center}
+    .bk-final h2{font-size:clamp(2.2rem,10vw,4.4rem);margin:0 0 16px}
+    .bk-final p{color:var(--gray);margin:0 auto 26px;max-width:46ch}
+    .bk-final .bk-cta{max-width:420px}
+
+    /* ── Thumb bar: a phone-only "pick your time" that rides the bottom of
+          the screen between the hero and the calendar, and gets out of the
+          way when the calendar or a button is already on screen. ────────── */
+    .thumb{position:fixed;left:0;right:0;bottom:0;z-index:70;padding:10px 14px calc(10px + env(safe-area-inset-bottom));
+      background:rgba(0,0,0,.94);border-top:1px solid var(--steel-line);backdrop-filter:blur(8px);
+      transform:translateY(110%);transition:transform .25s ease}
+    .thumb.show{transform:none}
+    .thumb .btn{width:100%;padding:16px 20px;font-size:14px}
+    @media(min-width:900px){.thumb{display:none}}
+    @media (prefers-reduced-motion:reduce){.thumb{transition:none}.slot-skel{animation:none}}
+
+    .lp-foot{border-top:1px solid var(--steel-line);background:var(--black);
+      padding:44px clamp(16px,4vw,40px) 96px;text-align:center}
+    .lp-foot p{margin:0 0 10px;color:var(--gray);font-size:.9rem}
+    .lp-foot a{color:var(--gray)}
+    .lp-foot .lp-foot-legal{margin-top:18px;font-size:.8rem}
     </style>
-<script defer src="/_vercel/insights/script.js"></script>
+    <script defer src="/_vercel/insights/script.js"></script>
 </head>
 <body>
-    <a href="#main-content" class="skip-link">Skip to main content</a>
-    <nav>
-        <div class="nav-container">
-            <div class="logo">
-                <a href="/">
-                    <img src="images/logos/logo.png" alt="Black Iron Athletics">
-                </a>
-            </div>
-            <ul class="nav-links">
-                <li class="has-submenu">
-                    <a href="about">About Us</a>
-                    <ul class="submenu">
-                        <li><a href="about#mission">Our Mission</a></li>
-                        <li><a href="about#team">Meet the Team</a></li>
-                        <li><a href="programs">Programs</a></li>
-                        <li><a href="schedule">Class Schedule</a></li>
-                    </ul>
-                </li>
-                <li class="has-submenu">
-                    <a href="getting-started">Getting Started</a>
-                    <ul class="submenu">
-                        <li><a href="getting-started#membership">Membership Options</a></li>
-                        <li><a href="getting-started#faqs">FAQs</a></li>
-                    </ul>
-                </li>
-                <li><a href="media">Media</a></li>
-                <li><a href="blog/">Blog</a></li>
-                <li><a href="contact">Contact</a></li>
-            </ul>
-            <a href="https://book.blackironathletics.com/book" class="cta-btn">Book Free Consultation</a>
-            <button class="hamburger" onclick="toggleSideMenu()" aria-label="Menu">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
-        </div>
-    </nav>
-
-    <div class="menu-backdrop" id="menuBackdrop"></div>
-    <div class="side-menu" id="sideMenu">
-        <div class="side-menu-header">
-            <img src="images/logos/logo.png" alt="Black Iron Athletics">
-            <button class="side-menu-close" onclick="closeSideMenu()" aria-label="Close menu">&times;</button>
-        </div>
-        <div class="side-menu-links">
-            <a href="/">Home</a>
-            <a href="about">About Us</a>
-            <a href="about#mission" class="sub-link">Our Mission</a>
-            <a href="about#team" class="sub-link">Meet the Team</a>
-            <a href="programs" class="sub-link">Programs</a>
-            <a href="schedule" class="sub-link">Class Schedule</a>
-            <a href="getting-started">Getting Started</a>
-            <a href="getting-started#membership" class="sub-link">Membership Options</a>
-            <a href="getting-started#faqs" class="sub-link">FAQs</a>
-            <a href="media">Media</a>
-            <a href="blog/">Blog</a>
-            <a href="contact">Contact</a>
-        </div>
-        <div class="side-menu-footer">
-            <a href="https://book.blackironathletics.com/book" onclick="closeSideMenu();">Book Free Consultation</a>
-        </div>
+<header class="lp-bar">
+    <div class="lp-bar-in">
+        <a href="/" aria-label="Black Iron Athletics home"><img src="/images/logos/logo.png" alt="Black Iron Athletics" width="150" height="34"></a>
+        <a class="lp-call" href="tel:+19727857036" onclick="if(window.fbq)fbq('trackCustom','PhoneClick');"><svg width="17" height="17" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M6.5 2.5 8.2 6l-1.7 1.6a11 11 0 0 0 4.9 4.9L13 10.8l3.5 1.7v3.2c0 .6-.5 1-1.1 1A13.6 13.6 0 0 1 2.3 3.6c0-.6.4-1.1 1-1.1h3.2Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg><span>(972) 785-7036</span></a>
     </div>
+</header>
 
-    <main id="main-content">
-
-    <!-- Booking Section -->
-    <section class="booking-section">
-        <div class="booking-container">
-            <div class="reveal">
-                <div class="booking-subtitle">Take the First Step</div>
-                <h1 class="booking-title">Book Your Free Consultation</h1>
-                <p class="booking-description">No pressure, no sales pitch. Just an honest conversation about your goals and how we can help you get there. Pick a time that works for you.</p>
+<main id="main-content">
+    <section class="bk-hero no-top">
+        <div class="bk-hero-in">
+            <div class="bk-photo">
+                <img src="/images/book/hero-640.webp" srcset="/images/book/hero-640.webp 640w, /images/book/hero-1200.webp 1200w" sizes="(min-width:900px) 46vw, 100vw" width="1200" height="1500" alt="Members high-fiving between rounds at Black Iron Athletics in Frisco" fetchpriority="high">
+                <div class="bk-slash" aria-hidden="true"><i></i><i></i></div>
             </div>
-
-            <!-- Next Available Times Widget -->
-            <div class="next-slots-widget reveal">
-                <div class="slots-widget-heading">Next Available Times</div>
-                <div class="next-slots-list">
-                    <div class="skeleton skeleton-card"></div>
-                    <div class="skeleton skeleton-card"></div>
-                    <div class="skeleton skeleton-card"></div>
-                    <div class="skeleton skeleton-card"></div>
-                </div>
-            </div>
-
-            <div class="booking-embed reveal">
-                <iframe src="https://api.leadconnectorhq.com/widget/booking/aOyy4UPbwziVvHz35TCU" style="width: 100%; border: none; overflow: hidden;" scrolling="no" id="aOyy4UPbwziVvHz35TCU_1771041740943" title="Book a free consultation"></iframe>
-                <script src="https://link.msgsndr.com/js/form_embed.js" type="text/javascript" defer></script>
+            <div class="bk-copy">
+                <span class="eyebrow eyebrow-y">Free consult &middot; Frisco, TX</span>
+                <h1>20 minutes.<br><span class="outline">Free.</span></h1>
+                <p class="bk-sub">Sit down with a coach, see the floor, and leave with a plan. No workout, no weigh&#8209;in.</p>
+                <a class="btn btn-y bk-cta" href="#calendar" data-scroll>Pick your time</a>
+                <p class="trust bk-trust"><span class="stars" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 2l3 7 7 .6-5.3 4.6L18.5 22 12 18l-6.5 4 1.8-7.8L2 9.6 9 9z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3 7 7 .6-5.3 4.6L18.5 22 12 18l-6.5 4 1.8-7.8L2 9.6 9 9z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3 7 7 .6-5.3 4.6L18.5 22 12 18l-6.5 4 1.8-7.8L2 9.6 9 9z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3 7 7 .6-5.3 4.6L18.5 22 12 18l-6.5 4 1.8-7.8L2 9.6 9 9z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3 7 7 .6-5.3 4.6L18.5 22 12 18l-6.5 4 1.8-7.8L2 9.6 9 9z"/></svg></span><b>5.0</b>&nbsp;on Google &middot; Veteran-owned</p>
+                <ul class="bk-ticks">
+                    <li>Coached classes with three levels, so you start where you are.</li>
+                    <li>Every member starts with Foundations: a week of one-on-one coaching.</li>
+                    <li>The same faces every week, and a coach who knows your name.</li>
+                </ul>
             </div>
         </div>
     </section>
 
-    <!-- Footer -->
-
-    </main>
-
-<script>
-// ===== BOOKING WIDGETS =====
-(function() {
-    var API_URL = '/api/free-slots';
-    var cache = {};
-    var DAY_NAMES = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
-    var MONTH_NAMES = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
-
-    function toDateStr(d) {
-        var y = d.getFullYear();
-        var m = String(d.getMonth() + 1).padStart(2, '0');
-        var day = String(d.getDate()).padStart(2, '0');
-        return y + '-' + m + '-' + day;
-    }
-
-    function formatTime(isoStr) {
-        var d = new Date(isoStr);
-        var h = d.getHours();
-        var m = d.getMinutes();
-        var ampm = h >= 12 ? 'PM' : 'AM';
-        h = h % 12 || 12;
-        return h + ':' + String(m).padStart(2, '0') + ' ' + ampm + ' CT';
-    }
-
-    function addDays(d, n) {
-        var r = new Date(d);
-        r.setDate(r.getDate() + n);
-        return r;
-    }
-
-    function fetchSlots(startDate, endDate, cb) {
-        var key = startDate + '_' + endDate;
-        if (cache[key]) { return cb(null, cache[key]); }
-        var url = API_URL + '?startDate=' + startDate + '&endDate=' + endDate;
-        fetch(url)
-            .then(function(r) {
-                if (!r.ok) throw new Error('HTTP ' + r.status);
-                return r.json();
-            })
-            .then(function(data) {
-                cache[key] = data;
-                cb(null, data);
-            })
-            .catch(function(err) { cb(err, null); });
-    }
-
-    function parseSlots(data) {
-        var slots = [];
-        if (!data || typeof data !== 'object') return slots;
-        var source = data;
-        if (data && typeof data === 'object' && !Array.isArray(data)) {
-            if (data.slots) source = data.slots;
-            else if (data.data) source = data.data;
-        }
-        Object.keys(source).forEach(function(dateKey) {
-            var dayData = source[dateKey];
-            var daySlots = [];
-            if (Array.isArray(dayData)) {
-                daySlots = dayData;
-            } else if (dayData && Array.isArray(dayData.slots)) {
-                daySlots = dayData.slots;
-            }
-            daySlots.forEach(function(s) {
-                slots.push({ dateKey: dateKey, iso: s, time: new Date(s) });
-            });
-        });
-        slots.sort(function(a, b) { return a.time - b.time; });
-        return slots;
-    }
-
-    function onSlotClick() {
-        var embed = document.querySelector('.booking-embed');
-        if (embed) {
-            embed.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        }
-    }
-
-    function renderAllWidgets(slots) {
-        var widgets = document.querySelectorAll('.next-slots-widget');
-        var topSlots = slots.slice(0, 4);
-        widgets.forEach(function(widget) {
-            var list = widget.querySelector('.next-slots-list');
-            if (!list) return;
-            list.innerHTML = '';
-            if (topSlots.length === 0) {
-                list.innerHTML = '<div class="widget-empty">No upcoming slots found. Check back soon.</div>';
-                return;
-            }
-            topSlots.forEach(function(s) {
-                var card = document.createElement('button');
-                card.className = 'slot-card';
-                card.setAttribute('aria-label', 'Book ' + DAY_NAMES[s.time.getDay()] + ' ' + MONTH_NAMES[s.time.getMonth()] + ' ' + s.time.getDate() + ' at ' + formatTime(s.iso));
-                card.innerHTML = '<div class="slot-card-day">' + DAY_NAMES[s.time.getDay()] + '</div>' +
-                    '<div class="slot-card-date">' + MONTH_NAMES[s.time.getMonth()] + ' ' + s.time.getDate() + '</div>' +
-                    '<div class="slot-card-time">' + formatTime(s.iso) + '</div>';
-                card.addEventListener('click', onSlotClick);
-                list.appendChild(card);
-            });
-        });
-    }
-
-    function showError() {
-        var widgets = document.querySelectorAll('.next-slots-widget');
-        widgets.forEach(function(widget) {
-            var list = widget.querySelector('.next-slots-list');
-            if (list) {
-                list.innerHTML = '<div class="widget-error">Unable to load availability.<br><button class="widget-retry-btn" onclick="window.__retrySlots()">Retry</button></div>';
-            }
-        });
-    }
-
-    function loadSlots() {
-        var today = new Date();
-        var start = toDateStr(today);
-        var end = toDateStr(addDays(today, 14));
-        fetchSlots(start, end, function(err, data) {
-            if (err) { showError(); return; }
-            var allSlots = parseSlots(data);
-            var now = new Date();
-            allSlots = allSlots.filter(function(s) { return s.time > now; });
-            renderAllWidgets(allSlots);
-        });
-    }
-
-    window.__retrySlots = loadSlots;
-    loadSlots();
-})();
-</script>
-
-    <footer>
-        <div class="footer-container">
-            <div class="footer-section">
-                <a href="/">
-                    <img src="images/logos/logo.png" alt="Black Iron Athletics" class="footer-logo" loading="lazy">
-                </a>
-                <p style="color: var(--light-gray); margin-bottom: 1rem;">Forging everyday people into everyday athletes through strength, community, and purpose.</p>
-                <p style="color: var(--light-gray); font-size: 0.85rem;">Proudly serving Frisco, Prosper, The Colony, Little Elm, McKinney, Plano, Celina &amp; North Dallas.</p>
+    <section class="bk-cal" id="calendar">
+        <div class="wrap">
+            <span class="eyebrow eyebrow-y">Free &middot; 20 minutes &middot; In person</span>
+            <h2>Pick your <span class="outline">time.</span></h2>
+            <p class="bk-cal-sub">Choose a day and time below. It takes about a minute.</p>
+            <div class="slots" aria-live="polite">
+                <p class="slots-head">Next open times</p>
+                <div class="slots-list">
+                    <div class="slot-skel"></div><div class="slot-skel"></div><div class="slot-skel"></div><div class="slot-skel"></div>
+                </div>
             </div>
-
-            <div class="footer-section">
-                <h3>Quick Links</h3>
-                <ul>
-                    <li><a href="/">Home</a></li>
-                    <li><a href="schedule">Class Schedule</a></li>
-                    <li><a href="faq">FAQ</a></li>
-                    <li><a href="#" onclick="openSubscribeModal(); return false;">Subscribe</a></li>
-                    <li><a href="privacy-policy">Privacy Policy</a></li>
-                    <li><a href="terms">Terms &amp; Conditions</a></li>
-                    <li><a href="privacy-policy#sms-terms">SMS Terms</a></li>
-                </ul>
+            <div class="bookwrap" id="booking">
+                <iframe data-src="https://api.leadconnectorhq.com/widget/booking/aOyy4UPbwziVvHz35TCU" style="width:100%;border:none;overflow:hidden" scrolling="no" id="aOyy4UPbwziVvHz35TCU_1771041740943" title="Book your free consult"></iframe>
             </div>
+            <p class="book-fallback">Calendar not loading, or no time that works? Call or text <a href="tel:+19727857036" onclick="if(window.fbq)fbq('trackCustom','PhoneClick');">(972) 785-7036</a> and we’ll find one.</p>
+        </div>
+    </section>
 
-            <div class="footer-section">
-                <h3>Contact</h3>
-                <p style="color: var(--light-gray); margin-bottom: 1rem;">
-                    279 Main St #122<br>
-                    Frisco, TX 75036
-                </p>
-                <p style="margin-bottom: 1.5rem;">
-                    <a href="tel:(972) 785-7036" style="color: var(--yellow); font-weight: 700;">(972) 785-7036</a>
-                </p>
-            </div>
-
-            <div class="footer-section">
-                <h3>Hours</h3>
-                <p style="color: var(--light-gray); margin-bottom: 1rem;">
-                    Check our class calendar for an up to date schedule.
-                </p>
-                <p style="color: var(--yellow); font-weight: 700;">
-                    Open Gym: 7 Days a Week
-                </p>
+    <section class="bk-steps">
+        <div class="wrap">
+            <span class="eyebrow eyebrow-y rv">What happens in the 20 minutes</span>
+            <h2 class="rv">No pressure. <span class="outline">Just a plan.</span></h2>
+            <div class="step-cards">
+                <article class="scard rv">
+                    <img src="/images/book/coach-640.webp" srcset="/images/book/coach-640.webp 640w, /images/book/coach-1000.webp 1000w" sizes="(min-width:820px) 33vw, 100vw" width="1000" height="750" alt="Coach Kristin, general manager at Black Iron Athletics" loading="lazy">
+                    <div class="scard-b"><span class="scard-n">01</span><h3>Sit down with a coach</h3><p>Your goals, your schedule, and whatever has gotten in the way before. We listen first.</p></div>
+                </article>
+                <article class="scard rv">
+                    <img src="/images/book/floor-640.webp" srcset="/images/book/floor-640.webp 640w, /images/book/floor-1000.webp 1000w" sizes="(min-width:820px) 33vw, 100vw" width="1000" height="750" alt="A coached class warming up on the floor" loading="lazy">
+                    <div class="scard-b"><span class="scard-n">02</span><h3>See the floor</h3><p>Walk the gym and see how a class runs: three levels, so beginners and veterans train side by side.</p></div>
+                </article>
+                <article class="scard rv">
+                    <img src="/images/book/foundations-640.webp" srcset="/images/book/foundations-640.webp 640w, /images/book/foundations-1000.webp 1000w" sizes="(min-width:820px) 33vw, 100vw" width="1000" height="750" alt="A coach working one-on-one with a member" loading="lazy">
+                    <div class="scard-b"><span class="scard-n">03</span><h3>Leave with a plan</h3><p>Where to start, which classes fit your week, and how Foundations gets you ready for group classes.</p></div>
+                </article>
             </div>
         </div>
+    </section>
 
-        <div class="footer-bottom">
-            <div style="margin-bottom: 1.5rem; display: flex; justify-content: center; gap: 1.5rem; font-size: 1.5rem;">
-                <a href="https://www.instagram.com/blackiron_athletics/" target="_blank" rel="noopener" style="color: var(--light-gray); transition: color 0.3s ease;" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
-                <a href="https://www.youtube.com/channel/UCF1XjUXEs81OWY70chem6vA" target="_blank" rel="noopener" style="color: var(--light-gray); transition: color 0.3s ease;" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
-                <a href="https://www.facebook.com/BlackIronAthletics/" target="_blank" rel="noopener" style="color: var(--light-gray); transition: color 0.3s ease;" aria-label="Facebook"><i class="fa-brands fa-facebook"></i></a>
-            </div>
-            <p>&copy; 2026 Black Iron Athletics. All rights reserved.</p>
+    <section class="bk-proof">
+        <div class="bk-proof-photo">
+            <picture>
+                <source media="(min-width:900px)" srcset="/images/book/squat-wide-1600.webp">
+                <img src="/images/book/squat-tall-640.webp" srcset="/images/book/squat-tall-640.webp 640w, /images/book/squat-tall-1000.webp 1000w" sizes="100vw" width="1000" height="1250" alt="A member under the bar in a back squat" loading="lazy">
+            </picture>
         </div>
-    </footer>
-    <!-- Schema Markup for SEO -->
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "Service",
-      "name": "Free Fitness Consultation",
-      "description": "Book a free consultation at Black Iron Athletics in Frisco, TX. No pressure, no sales pitch — just an honest conversation about your fitness goals.",
-      "provider": {
-        "@type": "GymAndHealthClub",
-        "name": "Black Iron Athletics",
-        "telephone": "(972) 785-7036",
-        "address": {
-          "@type": "PostalAddress",
-          "streetAddress": "279 Main St #122",
-          "addressLocality": "Frisco",
-          "addressRegion": "TX",
-          "postalCode": "75036",
-          "addressCountry": "US"
-        },
-        "url": "https://www.blackironathletics.com"
-      },
-      "offers": {
-        "@type": "Offer",
-        "price": "0",
-        "priceCurrency": "USD",
-        "description": "Free consultation to discuss your fitness goals"
-      },
-      "url": "https://www.blackironathletics.com/book"
-    }
-    </script>
-<!-- Lead Capture Popup Modal -->
-<style>
-    .modal-overlay {
-        display: none;
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: rgba(0, 0, 0, 0.9);
-        z-index: 9999;
-        overflow-y: auto;
-        padding: 2rem;
-    }
-    .modal-overlay.active {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
-    .modal-container {
-        background: var(--dark-gray);
-        border: 2px solid var(--medium-gray);
-        max-width: 600px;
-        width: 100%;
-        position: relative;
-        margin: auto;
-        animation: modalSlideIn 0.3s ease-out;
-    }
-    @keyframes modalSlideIn {
-        from { opacity: 0; transform: translateY(-50px); }
-        to { opacity: 1; transform: translateY(0); }
-    }
-    .modal-close {
-        position: absolute;
-        top: 0.5rem;
-        right: 0.5rem;
-        background: transparent;
-        border: none;
-        color: var(--light-gray);
-        font-size: 2rem;
-        cursor: pointer;
-        line-height: 1;
-        padding: 0.5rem;
-        transition: color 0.3s ease;
-        font-weight: 300;
-        z-index: 10000;
-    }
-    .modal-close:hover { color: var(--yellow); }
-    .modal-container iframe {
-        width: 100%;
-        border: none;
-        display: block;
-    }
-    @media (max-width: 768px) {
-        .modal-overlay { padding: 1rem; }
-    }
-</style>
+        <div class="wrap bk-proof-in">
+            <span class="eyebrow eyebrow-y">From our members</span>
+            <h2>Same faces,<br><span class="outline">every week.</span></h2>
+            <p class="trust"><span class="stars" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 2l3 7 7 .6-5.3 4.6L18.5 22 12 18l-6.5 4 1.8-7.8L2 9.6 9 9z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3 7 7 .6-5.3 4.6L18.5 22 12 18l-6.5 4 1.8-7.8L2 9.6 9 9z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3 7 7 .6-5.3 4.6L18.5 22 12 18l-6.5 4 1.8-7.8L2 9.6 9 9z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3 7 7 .6-5.3 4.6L18.5 22 12 18l-6.5 4 1.8-7.8L2 9.6 9 9z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3 7 7 .6-5.3 4.6L18.5 22 12 18l-6.5 4 1.8-7.8L2 9.6 9 9z"/></svg></span><b>5.0</b>&nbsp;on Google</p>
+            <div class="bk-quotes">
+                <figure class="rv"><blockquote>“The community is what really sets it apart. Everyone is supportive, encouraging, and genuinely wants to see each other succeed.”</blockquote><figcaption>Eric D., member</figcaption></figure>
+                <figure class="rv"><blockquote>“The programming is well thought out, challenging, and scalable for all fitness levels, so you’re always making progress.”</blockquote><figcaption>Christopher P., member</figcaption></figure>
+                <figure class="rv"><blockquote>“I wouldn’t be as healthy or as strong as I am without their amazing fitness programs and incredible coaching.”</blockquote><figcaption>Brian A., member</figcaption></figure>
+            </div>
+        </div>
+    </section>
 
-<div class="modal-overlay" id="leadModal">
-    <div class="modal-container">
-        <button class="modal-close" onclick="closeLeadModal()">&times;</button>
-        <iframe
-            data-src="https://api.leadconnectorhq.com/widget/form/vw0hMdDkTCL6K5N3i7vF"
-            style="width:100%;height:100%;border:none;border-radius:4px"
-            id="inline-vw0hMdDkTCL6K5N3i7vF"
-            data-layout="{'id':'INLINE'}"
-            data-trigger-type="alwaysShow"
-            data-trigger-value=""
-            data-activation-type="alwaysActivated"
-            data-activation-value=""
-            data-deactivation-type="neverDeactivate"
-            data-deactivation-value=""
-            data-form-name="Form 2"
-            data-height="565"
-            data-layout-iframe-id="inline-vw0hMdDkTCL6K5N3i7vF"
-            data-form-id="vw0hMdDkTCL6K5N3i7vF"
-            title="Form 2"
-        ></iframe>
-    </div>
-</div>
-<div class="modal-overlay" id="subscribeModal">
-    <div class="modal-container">
-        <button class="modal-close" onclick="closeSubscribeModal()">&times;</button>
-        <iframe
-            data-src="https://api.leadconnectorhq.com/widget/form/GnNJNaEX8InuIeGxWjaI"
-            style="width:100%;height:100%;border:none;border-radius:4px"
-            id="inline-GnNJNaEX8InuIeGxWjaI"
-            data-layout="{'id':'INLINE'}"
-            data-trigger-type="alwaysShow"
-            data-trigger-value=""
-            data-activation-type="alwaysActivated"
-            data-activation-value=""
-            data-deactivation-type="neverDeactivate"
-            data-deactivation-value=""
-            data-form-name="Subscribe"
-            data-height="430"
-            data-layout-iframe-id="inline-GnNJNaEX8InuIeGxWjaI"
-            data-form-id="GnNJNaEX8InuIeGxWjaI"
-            title="Subscribe"
-        ></iframe>
-    </div>
+    <section class="bk-final">
+        <div class="wrap">
+            <span class="eyebrow eyebrow-y">Your first step</span>
+            <h2>Show up <span class="outline">once.</span></h2>
+            <p>Twenty minutes, on us. We’ll take it from there.</p>
+            <a class="btn btn-y bk-cta" href="#calendar" data-scroll>Pick your time</a>
+        </div>
+    </section>
+</main>
+
+<div class="thumb" id="thumb" aria-hidden="true">
+    <a class="btn btn-y" href="#calendar" data-scroll tabindex="-1">Pick your time &middot; Free, 20 min</a>
 </div>
 
-<script>
-    function openLeadModal() {
-        var modal = document.getElementById('leadModal');
-        var iframe = modal.querySelector('iframe');
-        if (iframe && !iframe.src && iframe.dataset.src) { iframe.src = iframe.dataset.src; }
-        modal.classList.add('active');
-        document.body.style.overflow = 'hidden';
-    }
-    function closeLeadModal() {
-        document.getElementById('leadModal').classList.remove('active');
-        document.body.style.overflow = '';
-    }
+<footer class="lp-foot">
+    <p><b style="color:var(--white)">Black Iron Athletics</b></p>
+    <p>279 Main St, Suite 122, Frisco, TX 75036</p>
+    <p><a href="tel:+19727857036" onclick="if(window.fbq)fbq('trackCustom','PhoneClick');">(972) 785-7036</a></p>
+    <p class="lp-foot-legal">Veteran-owned &middot; Est. 2013 &middot; <a href="/privacy-policy">Privacy</a> &middot; <a href="/terms">Terms</a></p>
+</footer>
 
-    /* Every "Book a Free Consult" link opens the lead form in place instead of
-       leaving for the booking subdomain. The href stays exactly as it was, so
-       cmd-click, middle-click and a JS failure all still reach the calendar,
-       and pages without the modal (404, links) keep their plain link. */
-    document.addEventListener('click', function (e) {
-        if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) { return; }
-        var t = e.target;
-        var a = t && t.closest ? t.closest('a[href*="book.blackironathletics.com"]') : null;
-        if (!a || !document.getElementById('leadModal')) { return; }
-        e.preventDefault();
-        openLeadModal();
-    });
-    document.getElementById('leadModal').addEventListener('click', function(e) {
-        if (e.target === this) { closeLeadModal(); }
-    });
-    function openSubscribeModal() {
-        var modal = document.getElementById('subscribeModal');
-        var iframe = modal.querySelector('iframe');
-        if (iframe && !iframe.src && iframe.dataset.src) { iframe.src = iframe.dataset.src; }
-        modal.classList.add('active');
-        document.body.style.overflow = 'hidden';
-    }
-    function closeSubscribeModal() {
-        document.getElementById('subscribeModal').classList.remove('active');
-        document.body.style.overflow = '';
-    }
-    document.getElementById('subscribeModal').addEventListener('click', function(e) {
-        if (e.target === this) { closeSubscribeModal(); }
-    });
-    document.addEventListener('keydown', function(e) {
-        if (e.key === 'Escape') { closeLeadModal(); closeSubscribeModal(); }
-    });
-
-    // Side Menu
-    function toggleSideMenu() {
-        var menu = document.getElementById('sideMenu');
-        var backdrop = document.getElementById('menuBackdrop');
-        var hamburger = document.querySelector('.hamburger');
-        var isOpen = menu.classList.contains('open');
-        if (isOpen) { closeSideMenu(); }
-        else {
-            menu.classList.add('open');
-            backdrop.classList.add('open');
-            hamburger.classList.add('active');
-            document.body.style.overflow = 'hidden';
-        }
-    }
-    function closeSideMenu() {
-        var menu = document.getElementById('sideMenu');
-        var backdrop = document.getElementById('menuBackdrop');
-        var hamburger = document.querySelector('.hamburger');
-        menu.classList.remove('open');
-        backdrop.classList.remove('open');
-        hamburger.classList.remove('active');
-        document.body.style.overflow = '';
-    }
-    document.getElementById('menuBackdrop').addEventListener('click', closeSideMenu);
-    document.addEventListener('keydown', function(e) {
-        if (e.key === 'Escape') closeSideMenu();
-    });
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "name": "Free 20-Minute Consult",
+  "description": "Book a free twenty minute consult at Black Iron Athletics in Frisco, TX. Sit down with a coach, see the floor, and leave with a plan.",
+  "provider": {
+    "@type": "GymAndHealthClub",
+    "name": "Black Iron Athletics",
+    "telephone": "(972) 785-7036",
+    "address": { "@type": "PostalAddress", "streetAddress": "279 Main St #122", "addressLocality": "Frisco", "addressRegion": "TX", "postalCode": "75036", "addressCountry": "US" },
+    "url": "https://www.blackironathletics.com"
+  },
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD", "description": "Free twenty minute consult" },
+  "url": "https://www.blackironathletics.com/book"
+}
 </script>
 
-<script src="https://widgets.leadconnectorhq.com/loader.js" data-resources-url="https://widgets.leadconnectorhq.com/chat-widget/loader.js" data-widget-id="6995d6d76e6009387f78d31e" defer></script>
-
 <script>
-// ===== SCROLL REVEAL =====
-(function() {
-    var staggerParents = document.querySelectorAll('.reveal-stagger');
-    staggerParents.forEach(function(parent) {
-        var children = parent.querySelectorAll('.reveal');
-        children.forEach(function(child, i) {
-            child.style.setProperty('--reveal-index', i);
-        });
-    });
+/* Reveal on scroll, matched to the site's own .rv/.on behaviour. */
+(function () {
+  var els = document.querySelectorAll('.rv');
+  if (!('IntersectionObserver' in window)) { els.forEach(function (e) { e.classList.add('on'); }); return; }
+  var io = new IntersectionObserver(function (en) { en.forEach(function (x) {
+    if (x.isIntersecting) { x.target.classList.add('on'); io.unobserve(x.target); } }); }, { rootMargin: '0px 0px -8% 0px' });
+  els.forEach(function (e) { io.observe(e); });
+})();
 
-    var observer = new IntersectionObserver(function(entries) {
-        entries.forEach(function(entry) {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('revealed');
-                observer.unobserve(entry.target);
-            }
-        });
-    }, { threshold: 0.15, rootMargin: '-50px' });
-
-    document.querySelectorAll('.reveal, .reveal-scale').forEach(function(el) {
-        observer.observe(el);
+/* Every "Pick your time" button goes to the calendar and loads it, even
+   before the lazy loader would have. */
+(function () {
+  [].forEach.call(document.querySelectorAll('[data-scroll]'), function (a) {
+    a.addEventListener('click', function (e) {
+      var cal = document.getElementById('calendar'); if (!cal) return;
+      e.preventDefault();
+      var f = document.querySelector('.bookwrap iframe[data-src]');
+      if (f && !f.src) { f.src = f.dataset.src; f.dataset.loadedAt = String(Date.now()); }
+      cal.scrollIntoView({ behavior: 'smooth', block: 'start' });
     });
+  });
+})();
+
+/* Thumb bar: only between the hero buttons and the calendar. */
+(function () {
+  var bar = document.getElementById('thumb'); if (!bar || !('IntersectionObserver' in window)) return;
+  var watch = [document.querySelector('.bk-copy .bk-cta'), document.getElementById('calendar'), document.querySelector('.bk-final')];
+  var visible = {};
+  var io = new IntersectionObserver(function (en) {
+    en.forEach(function (x) { visible[watch.indexOf(x.target)] = x.isIntersecting; });
+    var heroGone = !visible[0] && window.scrollY > 200;
+    bar.classList.toggle('show', heroGone && !visible[1] && !visible[2]);
+  }, { threshold: 0 });
+  watch.forEach(function (el) { if (el) io.observe(el); });
+})();
+
+/* Next open times, from the same availability the calendar uses. Tapping
+   one takes you to the calendar to confirm it there. */
+(function () {
+  var list = document.querySelector('.slots-list'); if (!list) return;
+  var DAY = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'], MON = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  function ymd(d) { return d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0'); }
+  function hm(d) { var h = d.getHours(), m = d.getMinutes(); return (h % 12 || 12) + ':' + String(m).padStart(2, '0') + (h >= 12 ? ' PM' : ' AM'); }
+  function hide() { var w = document.querySelector('.slots'); if (w) w.style.display = 'none'; }
+  var now = new Date(), end = new Date(now); end.setDate(end.getDate() + 14);
+  fetch('/api/free-slots?startDate=' + ymd(now) + '&endDate=' + ymd(end))
+    .then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); })
+    .then(function (data) {
+      var src = data && (data.slots || data.data) || data || {}, slots = [];
+      Object.keys(src).forEach(function (k) {
+        var v = src[k], arr = Array.isArray(v) ? v : (v && Array.isArray(v.slots) ? v.slots : []);
+        arr.forEach(function (s) { var t = new Date(s); if (!isNaN(t) && t > now) slots.push(t); });
+      });
+      slots.sort(function (a, b) { return a - b; });
+      if (!slots.length) { hide(); return; }
+      list.innerHTML = '';
+      slots.slice(0, 4).forEach(function (t) {
+        var b = document.createElement('button');
+        b.type = 'button'; b.className = 'slot';
+        var today = ymd(t) === ymd(now), tmw = ymd(t) === ymd(new Date(now.getTime() + 864e5));
+        b.innerHTML = '<b>' + (today ? 'Today' : tmw ? 'Tomorrow' : DAY[t.getDay()] + ', ' + MON[t.getMonth()] + ' ' + t.getDate()) + '</b><span>' + hm(t) + '</span>';
+        b.setAttribute('aria-label', 'Book ' + b.textContent + ' in the calendar below');
+        b.addEventListener('click', function () {
+          var f = document.querySelector('.bookwrap iframe[data-src]');
+          if (f && !f.src) { f.src = f.dataset.src; f.dataset.loadedAt = String(Date.now()); }
+          document.getElementById('booking').scrollIntoView({ behavior: 'smooth', block: 'start' });
+          if (typeof fbq === 'function') fbq('trackCustom', 'SlotTap');
+        });
+        list.appendChild(b);
+      });
+    })
+    .catch(hide);
 })();
 </script>
 <script>
-// ===== ACCESSIBILITY: KEYBOARD NAV & FOCUS TRAP =====
-(function() {
-    // --- Keyboard Navigation for Submenus ---
-    document.querySelectorAll('.has-submenu').forEach(function(item) {
-        var link = item.querySelector('a');
-        var sub = item.querySelector('.submenu');
-        if (!link || !sub) return;
-        link.setAttribute('aria-haspopup', 'true');
-        link.setAttribute('aria-expanded', 'false');
-        function openSub() { item.classList.add('submenu-open'); link.setAttribute('aria-expanded', 'true'); }
-        function closeSub() { item.classList.remove('submenu-open'); link.setAttribute('aria-expanded', 'false'); }
-        link.addEventListener('keydown', function(e) {
-            if (e.key === 'Enter' || e.key === ' ') {
-                e.preventDefault();
-                if (link.getAttribute('aria-expanded') === 'true') { closeSub(); }
-                else { openSub(); var f = sub.querySelector('a'); if (f) f.focus(); }
-            }
-            if (e.key === 'ArrowDown') { e.preventDefault(); openSub(); var f = sub.querySelector('a'); if (f) f.focus(); }
-        });
-        sub.addEventListener('keydown', function(e) {
-            var links = sub.querySelectorAll('a');
-            var idx = Array.prototype.indexOf.call(links, document.activeElement);
-            if (e.key === 'Escape') { closeSub(); link.focus(); }
-            if (e.key === 'ArrowDown' && idx < links.length - 1) { e.preventDefault(); links[idx + 1].focus(); }
-            if (e.key === 'ArrowUp') { e.preventDefault(); if (idx > 0) links[idx - 1].focus(); else { closeSub(); link.focus(); } }
-        });
-        item.addEventListener('focusout', function() {
-            setTimeout(function() { if (!item.contains(document.activeElement)) closeSub(); }, 0);
-        });
-    });
-
-    // --- Hamburger aria-expanded ---
-    var hamburger = document.querySelector('.hamburger');
-    if (hamburger) {
-        hamburger.setAttribute('aria-expanded', 'false');
-        var sm = document.getElementById('sideMenu');
-        if (sm) new MutationObserver(function() {
-            hamburger.setAttribute('aria-expanded', sm.classList.contains('open') ? 'true' : 'false');
-        }).observe(sm, { attributes: true, attributeFilter: ['class'] });
+/* Booking calendar: lazy load, and the funnel events (CalendarView,
+   InitiateCheckout, Schedule), same as the ad landing pages. data-src (not
+   src) is what the UTM pass-through in inject-pixel.js looks for, so the
+   booking stays attributable to the ad that earned it. Do not change it. */
+(function () {
+  var frames = [].slice.call(document.querySelectorAll('.bookwrap iframe[data-src]'));
+  if (!frames.length) return;
+  var fired = {};
+  function once(n, custom) {
+    if (fired[n]) return; fired[n] = true;
+    if (typeof fbq === 'function') fbq(custom ? 'trackCustom' : 'track', n);
+  }
+  function activate(f) { if (!f.src && f.dataset.src) { f.src = f.dataset.src; f.dataset.loadedAt = String(Date.now()); } }
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function (en) {
+      en.forEach(function (x) { if (x.isIntersecting) { activate(x.target); io.unobserve(x.target); } });
+    }, { rootMargin: '600px 0px' });
+    frames.forEach(function (f) { io.observe(f); });
+    var seen = new IntersectionObserver(function (en) {
+      en.forEach(function (x) { if (x.isIntersecting && x.intersectionRatio >= 0.4) {
+        once('CalendarView', true); seen.unobserve(x.target); } });
+    }, { threshold: [0.4] });
+    frames.forEach(function (f) { seen.observe(f); });
+  } else { frames.forEach(activate); }
+  window.fpBookingMessages = [];
+  window.addEventListener('message', function (ev) {
+    var host = ''; try { host = new URL(ev.origin).hostname; } catch (e) { return; }
+    if (!/(^|\.)leadconnectorhq\.com$|(^|\.)msgsndr\.com$/.test(host)) return;
+    window.fpBookingMessages.push({ t: Date.now(), origin: ev.origin, data: ev.data });
+    var raw = ''; try { raw = typeof ev.data === 'string' ? ev.data : JSON.stringify(ev.data); } catch (e) {}
+    if (/appointment|booked|booking[_-]?(success|complete)|slot[_-]?selected|scheduled/i.test(raw)) {
+      once('InitiateCheckout');
+      if (/booked|success|complete|scheduled|confirmed/i.test(raw)) once('Schedule');
+      return;
     }
-
-    // --- Modal Focus Trapping ---
-    var prevFocus = null;
-    function trapFocus(modal) {
-        prevFocus = document.activeElement;
-        var els = modal.querySelectorAll('button, a[href], iframe, input, select, textarea, [tabindex]:not([tabindex="-1"])');
-        if (!els.length) return;
-        var first = els[0], last = els[els.length - 1];
-        modal._focusTrap = function(e) {
-            if (e.key !== 'Tab') return;
-            if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
-            else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
-        };
-        modal.addEventListener('keydown', modal._focusTrap);
-        first.focus();
-    }
-    function releaseFocus(modal) {
-        if (modal._focusTrap) { modal.removeEventListener('keydown', modal._focusTrap); delete modal._focusTrap; }
-        if (prevFocus) { prevFocus.focus(); prevFocus = null; }
-    }
-    document.querySelectorAll('.modal-overlay').forEach(function(modal) {
-        modal.setAttribute('role', 'dialog');
-        modal.setAttribute('aria-modal', 'true');
-        new MutationObserver(function() {
-            if (modal.classList.contains('active')) trapFocus(modal);
-            else releaseFocus(modal);
-        }).observe(modal, { attributes: true, attributeFilter: ['class'] });
-    });
+    var oldest = frames.reduce(function (a, f) {
+      var v = Number(f.dataset.loadedAt || 0); return v && (!a || v < a) ? v : a; }, 0);
+    if (oldest && Date.now() - oldest > 2500) once('InitiateCheckout');
+  }, false);
 })();
 </script>
-
-    <!-- BreadcrumbList Schema -->
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "BreadcrumbList",
-      "itemListElement": [
-          {
-            "@type": "ListItem",
-            "position": 1,
-            "name": "Home",
-            "item": "https://www.blackironathletics.com/"
-          },
-          {
-            "@type": "ListItem",
-            "position": 2,
-            "name": "Book a Consultation",
-            "item": "https://www.blackironathletics.com/book.html"
-          }
-      ]
-    }
-    </script>
+<script src="https://link.msgsndr.com/js/form_embed.js" type="text/javascript" defer></script>
 </body>
 </html>

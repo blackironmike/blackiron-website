@@ -94,15 +94,15 @@ Personal Training runs $120–150 per hour. One coach, one plan: 1-on-1 sessions
 
 ## How much does a membership cost?
 
-Standard is $200 a month (3 classes a week). Unlimited + Open Gym is $240 a month — our most popular plan. Open Gym Only is $50 a month. Personal Training runs $120–150 per hour. Every membership starts with a free consultation and the Foundations week, and a $30 day pass is credited toward your first month if you join. Book your free consultation at https://book.blackironathletics.com/book or buy a day pass online at https://blackiron.wodify.com/OnlineSalesPage/Main?q=Classes%7COnlineMembershipId%3D235166%26LocationId%3D10409
+Standard is $200 a month (3 classes a week). Unlimited + Open Gym is $240 a month — our most popular plan. Open Gym Only is $50 a month. Personal Training runs $120–150 per hour. Every membership starts with a free consultation and the Foundations week, and a $30 day pass is credited toward your first month if you join. Book your free consultation at https://www.blackironathletics.com/book or buy a day pass online at https://blackiron.wodify.com/OnlineSalesPage/Main?q=Classes%7COnlineMembershipId%3D235166%26LocationId%3D10409
 
 ## How do I get started?
 
-Three easy steps: 1) Book a free consultation to meet with a coach and discuss your goals (20 minutes, no pressure). 2) We build a custom plan based on your fitness level and goals. 3) Start classes with full coaching support from day one. Book here: https://book.blackironathletics.com/book
+Three easy steps: 1) Book a free consultation to meet with a coach and discuss your goals (20 minutes, no pressure). 2) We build a custom plan based on your fitness level and goals. 3) Start classes with full coaching support from day one. Book here: https://www.blackironathletics.com/book
 
 ## How do I book a consultation?
 
-You can book a free consultation at https://book.blackironathletics.com/book. It takes about 20 minutes and there is no pressure to sign up.
+You can book a free consultation at https://www.blackironathletics.com/book. It takes about 20 minutes and there is no pressure to sign up.
 
 ## Is Black Iron Athletics beginner-friendly?
 
