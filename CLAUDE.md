@@ -18,7 +18,7 @@ wrong, because it claims veteran ownership a year before it started. When a
 sentence needs both, give the year its own subject: "Veteran-owned. In Frisco
 since 2013." or "...veteran-owned, and the gym has served Frisco since 2013."
 
-We are not CrossFit, not a big-box gym, not a boutique studio. We help everyday people become everyday athletes. The new gym opens in November (Michael confirmed the November target 2026-09-14, after the build got back on schedule; this supersedes the earlier “say later this year, never a month” rule, which was written while the build had slipped. If it slips again, say later this year and sweep the site back.) at 279 Main St, Suite 110, Frisco TX — next door to the current space at Suite 122, where we train until the new doors open.
+We are not CrossFit, not a big-box gym, not a boutique studio. We help everyday people become everyday athletes. The new gym opens in January (Michael moved the public date from November to January on 2026-10-27 to match the live ads; the build may land in December, but say January everywhere until he says otherwise. Earlier rules: November was confirmed 2026-09-14; before that the rule was “say later this year, never a month” while the build had slipped. If it slips again, say later this year and sweep the site back.) at 279 Main St, Suite 110, Frisco TX — next door to the current space at Suite 122, where we train until the new doors open.
 
 **Mission, verbatim, never paraphrased:**
 > We help everyday people become everyday athletes.
