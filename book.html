@@ -50,12 +50,13 @@
           phone the photo sits on top and the type overlaps its lower edge. ── */
     .bk-hero{position:relative;overflow:hidden}
     .bk-photo{position:relative}
-    .bk-photo img{display:block;width:100%;height:auto;aspect-ratio:1/1;object-fit:cover;object-position:center 22%}
+    .bk-photo img{display:block;width:100%;height:auto;aspect-ratio:3/2;object-fit:cover;object-position:center 22%}
     .bk-photo::after{content:"";position:absolute;inset:0;
       background:linear-gradient(180deg,rgba(0,0,0,.15) 0%,rgba(0,0,0,0) 30%,rgba(0,0,0,.55) 62%,#000 96%)}
     .bk-slash{position:absolute;top:18px;right:18px;z-index:2;display:flex;gap:9px}
     .bk-slash i{display:block;width:7px;height:46px;background:var(--yellow);transform:skewX(-24deg)}
-    .bk-copy{position:relative;z-index:2;padding:0 20px 40px;margin-top:-30vw}
+    .bk-copy{position:relative;z-index:2;padding:0 20px 40px;margin-top:-22vw}
+    .bk-copy .slots{margin:4px 0 16px}
     .bk-copy .eyebrow{margin-bottom:14px}
     .bk-hero h1{font-size:clamp(2.5rem,11.4vw,5.6rem);line-height:.92;margin:0 0 16px}
     .bk-hero h1 .outline{--hole:#000}
@@ -181,7 +182,14 @@
                 <span class="eyebrow eyebrow-y">Free consult &middot; Frisco, TX</span>
                 <h1>20 minutes.<br><span class="outline">Free.</span></h1>
                 <p class="bk-sub">Sit down with a coach, see the floor, and leave with a plan. No workout, no weigh&#8209;in.</p>
-                <a class="btn btn-y bk-cta" href="#calendar" data-scroll>Pick your time</a>
+
+                <div class="slots" aria-live="polite">
+                    <p class="slots-head">Next open times</p>
+                    <div class="slots-list">
+                        <div class="slot-skel"></div><div class="slot-skel"></div><div class="slot-skel"></div><div class="slot-skel"></div>
+                    </div>
+                </div>
+                <a class="btn btn-y bk-cta" href="#calendar" data-scroll>See all open times</a>
                 <p class="trust bk-trust"><span class="stars" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 2l3 7 7 .6-5.3 4.6L18.5 22 12 18l-6.5 4 1.8-7.8L2 9.6 9 9z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3 7 7 .6-5.3 4.6L18.5 22 12 18l-6.5 4 1.8-7.8L2 9.6 9 9z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3 7 7 .6-5.3 4.6L18.5 22 12 18l-6.5 4 1.8-7.8L2 9.6 9 9z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3 7 7 .6-5.3 4.6L18.5 22 12 18l-6.5 4 1.8-7.8L2 9.6 9 9z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3 7 7 .6-5.3 4.6L18.5 22 12 18l-6.5 4 1.8-7.8L2 9.6 9 9z"/></svg></span><b>5.0</b>&nbsp;on Google &middot; Veteran-owned</p>
                 <ul class="bk-ticks">
                     <li>Coached classes with three levels, so you start where you are.</li>
@@ -196,13 +204,7 @@
         <div class="wrap">
             <span class="eyebrow eyebrow-y">Free &middot; 20 minutes &middot; In person</span>
             <h2>Pick your <span class="outline">time.</span></h2>
-            <p class="bk-cal-sub">Choose a day and time below. It takes about a minute.</p>
-            <div class="slots" aria-live="polite">
-                <p class="slots-head">Next open times</p>
-                <div class="slots-list">
-                    <div class="slot-skel"></div><div class="slot-skel"></div><div class="slot-skel"></div><div class="slot-skel"></div>
-                </div>
-            </div>
+            <p class="bk-cal-sub">Every open time, in the calendar below. It takes about a minute.</p>
             <div class="bookwrap" id="booking">
                 <iframe data-src="https://api.leadconnectorhq.com/widget/booking/aOyy4UPbwziVvHz35TCU" style="width:100%;border:none;overflow:hidden" scrolling="no" id="aOyy4UPbwziVvHz35TCU_1771041740943" title="Book your free consult"></iframe>
             </div>
