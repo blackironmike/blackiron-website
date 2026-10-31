@@ -35,6 +35,39 @@ const CHOICES = {
 
 const UTM_KEYS = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content'];
 
+// A path the visitor sent us, kept only if it looks like one of our pages.
+function cleanPath(v) {
+  const p = clean(v, 200);
+  return /^\/[\w\-./#]*$/.test(p) ? p.split('#')[0] : '';
+}
+
+// Readable names for the pages people most often click from.
+function pageName(path) {
+  if (!path) return '';
+  if (path === '/' || path === '/index' || path === '/index.html') return 'homepage';
+  if (path.startsWith('/blog/')) return 'blog';
+  return path.replace(/^\//, '').replace(/\.html$/, '') || 'homepage';
+}
+
+const pretty = (p) => (pageName(p) === 'homepage' ? 'the homepage' : p);
+
+// One line a coach can read, plus one tag to filter on in GHL.
+function leadSource({ utm, fbclid, gclid, landingRef }) {
+  if (utm.utm_source || fbclid) {
+    const src = (utm.utm_source || 'facebook').toLowerCase();
+    const where = /^(ig|instagram)/.test(src) ? 'Instagram' : /^(fb|facebook|meta)/.test(src) ? 'Facebook/Instagram' : utm.utm_source;
+    const camp = utm.utm_campaign ? ` (${utm.utm_campaign})` : '';
+    return { label: `${where} ad${camp}`, tag: 'lead source: ad' };
+  }
+  if (gclid) return { label: 'Google ad', tag: 'lead source: ad' };
+  let host = '';
+  try { host = landingRef ? new URL(landingRef).hostname.replace(/^www\./, '') : ''; } catch (e) {}
+  if (/google\.|bing\.|duckduckgo\.|yahoo\./.test(host)) return { label: `Search (${host})`, tag: 'lead source: search' };
+  if (/facebook\.|instagram\.|fb\.|t\.co$|tiktok\.|youtube\./.test(host)) return { label: `Social, not an ad (${host})`, tag: 'lead source: social' };
+  if (host && !/blackironathletics\.com$/.test(host)) return { label: `Link from ${host}`, tag: 'lead source: referral' };
+  return { label: 'Website (came straight to the site)', tag: 'lead source: website' };
+}
+
 function env(name) {
   const val = process.env[name];
   if (!val) throw new Error(`Missing env var: ${name}`);
@@ -106,7 +139,13 @@ export default async function handler(req, res) {
   if (start === 'Just looking') tags.push('check-in: just looking');
   if (interest === 'Personal training') tags.push('interest: personal training');
   if (interest === 'Group classes') tags.push('interest: group classes');
-  if (utm.utm_source) tags.push(`source: ${utm.utm_source.toLowerCase()}`);
+  const fromPage = cleanPath(b.from_page);
+  const landingPage = cleanPath(b.landing_page);
+  const source = leadSource({
+    utm, fbclid: !!b.fbclid, gclid: !!b.gclid, landingRef: clean(b.landing_ref, 300),
+  });
+  tags.push(source.tag);
+  if (fromPage) tags.push(`clicked from: ${pageName(fromPage)}`);
 
   try {
     const locationId = env('GHL_LOCATION_ID');
@@ -114,7 +153,7 @@ export default async function handler(req, res) {
       method: 'POST',
       body: JSON.stringify({
         locationId, firstName, lastName, email, phone, tags,
-        source: 'Website check-in (/book)',
+        source: `Website check-in: ${source.label}`.slice(0, 120),
       }),
     });
     const contactId = up.contact && up.contact.id;
@@ -127,7 +166,11 @@ export default async function handler(req, res) {
       `Wants to start: ${start}`,
       `Best time to reach: ${contactTime || 'No preference'}`,
       notes ? `Anything we should know: ${notes}` : null,
-      Object.keys(utm).length ? `Ad source: ${Object.entries(utm).map(([k, v]) => `${k}=${v}`).join(', ')}` : null,
+      '',
+      `Lead source: ${source.label}`,
+      fromPage ? `Clicked "Talk to a Coach" on: ${pretty(fromPage)}` : 'Clicked from: came straight to /book',
+      landingPage && landingPage !== fromPage && landingPage !== '/book' ? `First page this visit: ${pretty(landingPage)}` : null,
+      Object.keys(utm).length ? `Ad details: ${Object.entries(utm).map(([k, v]) => `${k}=${v}`).join(', ')}` : null,
     ].filter(Boolean);
     await ghl(`/contacts/${contactId}/notes`, {
       method: 'POST',

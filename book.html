@@ -101,6 +101,7 @@
 
     /* ── The check-in form. ─────────────────────────────────────────────── */
     .ci-wrap{display:grid;gap:36px}
+    #checkin{scroll-margin-top:64px}
     @media(min-width:960px){.ci-wrap{grid-template-columns:1fr 1.15fr;align-items:start}}
     .ci-intro .bk-ticks{margin-top:22px}
     .ci-form{border:1px solid var(--steel-line);background:var(--black);padding:clamp(20px,3vw,36px)}
@@ -543,6 +544,17 @@
       var v = params.get(k); try { v = v || sessionStorage.getItem(k); } catch (err) {}
       if (v) d[k] = v;
     });
+    /* Where they came from, for the coach and for GHL tags: the page they
+       clicked "Talk to a Coach" on, the first page of their visit (stored
+       by the site-wide pixel script), and whether an ad click brought them. */
+    try {
+      var ref = document.referrer ? new URL(document.referrer) : null;
+      if (ref && ref.host === location.host && ref.pathname !== location.pathname) d.from_page = ref.pathname;
+      d.landing_page = sessionStorage.getItem('bia_landing') || location.pathname;
+      d.landing_ref = sessionStorage.getItem('bia_landing_ref') || (ref && ref.host !== location.host ? document.referrer : '');
+    } catch (err) {}
+    if (params.get('fbclid')) d.fbclid = '1';
+    if (params.get('gclid')) d.gclid = '1';
 
     btn.disabled = true; btn.textContent = 'Sending…';
     fetch('/api/check-in', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(d) })
