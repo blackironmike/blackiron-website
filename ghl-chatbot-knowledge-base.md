@@ -98,11 +98,11 @@ Standard is $200 a month (3 classes a week). Unlimited + Open Gym is $240 a mont
 
 ## How do I get started?
 
-Three easy steps: 1) Book a free consultation to meet with a coach and discuss your goals (20 minutes, no pressure). 2) We build a custom plan based on your fitness level and goals. 3) Start classes with full coaching support from day one. Book here: https://www.blackironathletics.com/book
+Three easy steps: 1) Send us your info at https://www.blackironathletics.com/book and a coach (usually Mike or Lawrence) will reach out personally, by text or a call from their own phone, to see if we're a good fit. 2) If we are, you come in for a free 20-minute consult: meet a coach, see the floor, no workout, no pressure. 3) You start with Foundations and then classes, with full coaching support from day one.
 
 ## How do I book a consultation?
 
-You can book a free consultation at https://www.blackironathletics.com/book. It takes about 20 minutes and there is no pressure to sign up.
+The easiest way is to send your info at https://www.blackironathletics.com/book. A coach will reach out personally as soon as possible to find a time that works. If you already know you're in, the same page has a calendar where you can pick a time for your free 20-minute consult yourself. There is no pressure to sign up.
 
 ## Is Black Iron Athletics beginner-friendly?
 
