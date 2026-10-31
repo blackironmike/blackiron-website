@@ -1,9 +1,10 @@
 // Coach check-in form on /book.
 //
 // The page posts the visitor's info here, and this hands it to GHL as a
-// contact tagged "website check-in", with their answers in a note and an
-// opportunity in the "New Lead" stage. That tag is what the GHL workflow
-// listens for to alert Mike and Lawrence. Nothing here messages the lead:
+// contact tagged "website check-in", with their answers in a note. That tag
+// is what the GHL workflow listens for: it texts and emails Mike and
+// Lawrence and creates the pipeline opportunity, so the pipeline and stage
+// are managed in GHL, not here. Nothing here messages the lead:
 // a coach reaches out personally from their own phone.
 
 const GHL_BASE = 'https://services.leadconnectorhq.com';
@@ -64,30 +65,6 @@ function normalizePhone(raw) {
   if (d.length === 10) return `+1${d}`;
   if (d.length === 11 && d[0] === '1') return `+${d}`;
   return null;
-}
-
-// The opportunity is a nice-to-have: the contact and its tag are what alert
-// the coaches, so a pipeline lookup failure is logged, never surfaced.
-async function addOpportunity(contactId, name, locationId) {
-  const { pipelines = [] } = await ghl(`/opportunities/pipelines?locationId=${locationId}`);
-  for (const p of pipelines) {
-    const stage = (p.stages || []).find((s) => /^new lead$/i.test(s.name));
-    if (stage) {
-      await ghl('/opportunities/', {
-        method: 'POST',
-        body: JSON.stringify({
-          locationId,
-          pipelineId: p.id,
-          pipelineStageId: stage.id,
-          contactId,
-          name: `${name} (website check-in)`,
-          status: 'open',
-        }),
-      });
-      return;
-    }
-  }
-  console.warn('check-in: no pipeline stage named "New Lead" found');
 }
 
 export default async function handler(req, res) {
@@ -156,9 +133,6 @@ export default async function handler(req, res) {
       method: 'POST',
       body: JSON.stringify({ body: lines.join('\n') }),
     });
-
-    try { await addOpportunity(contactId, name, locationId); }
-    catch (e) { console.error('check-in: opportunity failed', e.message); }
 
     return res.status(200).json({ ok: true, firstName });
   } catch (e) {
