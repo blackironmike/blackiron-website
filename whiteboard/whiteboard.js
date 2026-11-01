@@ -251,12 +251,14 @@
     var h = Math.floor(sec / 3600), m = Math.floor(sec % 3600 / 60), s = sec % 60;
     return h ? h + ':' + pad(m) + ':' + pad(s) : pad(m) + ':' + pad(s);
   }
+  // Short intervals read as seconds (20s), long ones as a clock (3:00).
+  function iv(sec) { return sec >= 60 ? fmtSecs(sec) : sec + 's'; }
   function specSummary(s) {
     if (s.type === 'down') return fmtSecs(s.total) + ' countdown';
     if (s.type === 'amrap') return 'AMRAP ' + fmtSecs(s.total);
     if (s.type === 'up') return s.cap ? 'For time, cap ' + fmtSecs(s.cap) : 'Count up';
     if (s.type === 'emom') return 'Every ' + fmtSecs(s.every) + ' × ' + s.rounds;
-    if (s.type === 'tabata') return s.work + 's on / ' + s.rest + 's off × ' + s.rounds;
+    if (s.type === 'tabata') return iv(s.work) + ' on / ' + iv(s.rest) + ' off × ' + s.rounds;
     return '';
   }
 

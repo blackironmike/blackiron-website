@@ -331,6 +331,101 @@ window.COACH_PROGRAM = {
           blocks: [ { head: "In partners, for time", items: ["100 Double Unders (split)", "100/80 Calorie Row (split)", "50 Deadlifts @ 225/155", "31 Synchronized Burpees", "19 Synchronized Pull-ups", "1000m Shuttle Run (relay)"] } ],
           levels: [["1", "Singles, 70/50 calories, barbell @ 185/125 and jumping pull-ups"], ["2", "As written"], ["3", "Barbell @ 275/185"]] }
       ]
+    },
+
+    "2026-11-02": {
+      week: "W7 Build",
+      sections: [
+        { name: "Warm up", min: 5, clock: { type: "down", min: 5 },
+          blocks: [ { head: "5 minutes for effort", items: ["10/10 PVC Around the Worlds", "10 Alt World’s Greatest Stretch", "10 Burpee into Squat", "10 Heel Elevated Goblet Squats", "10 Plate GTO"] } ] },
+        { name: "Barbell warm-up", min: 10, clock: { type: "down", min: 10 },
+          transition: ["Grab a PVC or an empty bar", "Find your space on the floor", "Coach walks through the movements"],
+          blocks: [ { head: "3 rounds (PVC or empty bar)", items: ["10 Back Squat @ 33X2 tempo", "5 to 10 BTN SG Press", "5 to 10 OHS", "5 to 10 Snatch Balance"] } ] },
+        { name: "Weightlifting", min: 15, clock: { type: "emom", every: 150, rounds: 6 },
+          blocks: [ { head: "Every 2:30 for 6 rounds", items: ["2 Snatch"] } ],
+          levels: [["1", "5 Muscle Snatch or 5 SDLHP"], ["2", "PWR Snatch"], ["3", "Full Snatch"]] },
+        { name: "Conditioning", min: 15, clock: { type: "up", cap: 15 },
+          transition: ["Water break", "Load a bar for front squats, grab your DBs", "Coach walks through the rounds"],
+          blocks: [ { head: "For time, 3 rounds", items: ["21-15-9 Front Squats @ 95/65", "14-10-6 Pull-ups", "7-5-3 DB Devils Press @ 40/20"] } ],
+          levels: [["1", "Front Squats @ 45/35, lighter DBs and jumping pull-ups"], ["2", "As written"], ["3", "Front Squats @ 135/95 and DBs @ 50/30"]] }
+      ]
+    },
+
+    "2026-11-03": {
+      week: "W7 Build",
+      sections: [
+        { name: "Warm up", min: 10, clock: { type: "down", min: 10 },
+          blocks: [ { items: ["Knee Pulls", "Quad Pulls", "Heel Scoops", "Lunges", "Inside Heel Taps", "Outside Heel Taps", "High Knees", "Butt Kicks", "200m Run"] } ] },
+        { name: "Intervals", min: 28, clock: { type: "up", cap: 28 },
+          transition: ["Water and a bathroom break", "Level 1: grab a bike or a rower", "Coach walks through the intervals"],
+          blocks: [ { head: "2 rounds, each for time", items: ["Run 1600m (timed)", "Walk 400m (completion only)"] } ],
+          levels: [["1a", "5km Bike (timed), then 400m Walk (completion)"], ["1b", "2000m Row (timed), then 400m Walk (completion)"], ["2", "As written"]] },
+        { name: "Strength", min: 12, clock: { type: "down", min: 12 },
+          transition: ["Water break", "Grab your carry weights, a DB and a plate", "Coach walks through the movements"],
+          blocks: [ { head: "For effort", items: ["100m Farmers Carry", "20 Alt DB Pull Throughs", "20 Alt Plate Russian Twists"] } ],
+          notes: "Challenge yourself on the weights and keep moving." }
+      ]
+    },
+
+    "2026-11-04": {
+      week: "W7 Build",
+      sections: [
+        { name: "Warm up", min: 7, clock: { type: "down", min: 7 },
+          blocks: [ { items: ["7 Burpees", "7 KB Deadlift", "7 Russian KB Swings", "14 Alt KB Lunges", "30 second Plank Hold", "30 second Arch Hold"] } ] },
+        { name: "Strength", min: 25, clock: { type: "down", min: 25 },
+          blocks: [ { head: "Sumo Deadlift", items: ["3 sets of 1 rep (clusters)", "1 set of max reps (TNG) @ 75% of top set from above"] } ],
+          notes: "Clusters are singles with 10 to 15 seconds between reps: 1×1×1. *Heavier than last week.*" },
+        { name: "Conditioning", min: 12, clock: { type: "tabata", work: 180, rest: 60, rounds: 3 },
+          transition: ["Water break", "Load your bar for ground to overhead", "Grab a jump rope"],
+          blocks: [ { head: "3 rounds: 3 minutes on, 1 minute off", items: ["6 GTO @ 115/85", "30 Double Unders"] } ],
+          notes: "Pick up exactly where you left off.",
+          levels: [["1", "Plate GTO @ 45/25 and singles"], ["2", "As written"], ["3", "GTO @ 135/95"]] }
+      ]
+    },
+
+    "2026-11-05": {
+      week: "W7 Build",
+      sections: [
+        { name: "Warm up", min: 10, clock: { type: "down", min: 10 },
+          blocks: [ { items: ["Knee Pulls", "Quad Pulls", "Heel Scoops", "Lunges", "Inside Heel Taps", "Outside Heel Taps", "High Knees", "Butt Kicks"] } ] },
+        { name: "Conditioning", min: 45, clock: { type: "up", cap: 45 },
+          transition: ["Water break", "Load the sled, grab your DBs and a bench", "Coach walks through the workout"],
+          blocks: [
+            { head: "For time", items: ["400m Sled Drag @ 140/95"] },
+            { head: "Then 6 rounds", items: ["10 DB Bench Press @ 50/30", "10/10 DB SA Row @ 50/30", "10 Toes to Bar", "400m Run"] },
+            { head: "Then", items: ["120/80 Calorie Row / Bike / Ski"] }
+          ],
+          notes: "Big class: one group starts on the sled and ends on the calories, the other starts on the calories and ends on the sled.",
+          levels: [["1", "Lighter weights, modified toes to bar and 1km Bike instead of the run"], ["2", "As written"]] }
+      ]
+    },
+
+    "2026-11-06": {
+      week: "W7 Build",
+      sections: [
+        { name: "Warm up", min: 8, clock: { type: "down", min: 8 },
+          blocks: [ { items: ["10/10 Toe/Calf Raises", "20 Mountain Climbers", "10 Alt World’s Greatest Stretch", "100m Shuttle Run", "10 KB Goblet Squats @ 32X1 tempo"] } ] },
+        { name: "Strength", min: 25, clock: { type: "down", min: 25 },
+          blocks: [ { head: "Back Squats", items: ["3 sets of 1 rep @ 5XX2 tempo", "1 set of max reps with no tempo @ top set from above"] } ],
+          notes: "*Heavier than last week.*" },
+        { name: "Conditioning", min: 12, clock: { type: "amrap", min: 12 },
+          transition: ["Water break", "Grab a box and a wall ball", "Find your pull-up spot"],
+          blocks: [ { head: "AMRAP in 12 minutes", items: ["6 Pull-ups", "9 Burpee Box Jumps @ 24/20", "12 Wall Balls @ 20/14"] } ],
+          levels: [["1", "Banded Pull-ups or Ring Rows, Burpee Plate Jumps and Wall Ball Squats"], ["2", "As written"], ["3", "Strict Pull-ups and box @ 30/24"]] }
+      ]
+    },
+
+    "2026-11-07": {
+      week: "W7 Build",
+      sections: [
+        { name: "Warm up", min: 6, clock: { type: "down", min: 6 },
+          blocks: [ { head: "In 2 teams", items: ["Ski-lay race"] } ],
+          notes: "Losing team does 10 synchronized burpees." },
+        { name: "Conditioning", min: 40, clock: { type: "emom", every: 60, rounds: 40 },
+          transition: ["Water break", "Coach sets up the 8 stations", "Find your starting station"],
+          blocks: [ { head: "EMOM for 40 minutes", items: ["1: Max Calorie Ski", "2: Max reps Sit-ups", "3: Max Calorie Row", "4: Max reps Push-ups", "5: Max Calorie Bike", "6: Max reps Ring Rows", "7: Max reps 50ft Shuttle Run (inside)", "8: Max reps Walking Lunges"] } ],
+          notes: "All levels as written. Modify where you need to, like push-ups." }
+      ]
     }
   }
 };
