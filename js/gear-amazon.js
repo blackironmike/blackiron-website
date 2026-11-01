@@ -28,8 +28,8 @@
           img.alt = '';
           img.loading = 'lazy';
           img.decoding = 'async';
+          img.onload = function () { well.classList.add('is-filled'); };
           well.appendChild(img);
-          well.classList.add('is-filled');
         }
         if (it.price) {
           var b = t.querySelector('.amz-price');

@@ -413,7 +413,7 @@ SHELVES = [
     ('gym-bag', 'Gym bag', 'What you wear and carry', 'What people wear|to class.',
      'None of it is required on day one. When the weights get heavy and the gymnastics gets harder, this is the short list.'),
     ('supplements', 'Supplements', 'Thorne &middot; 1st Phorm &middot; Swolverine &middot; Transparent Labs &middot; C4 &middot; Beam',
-     'Supplements,|sorted by when you take them.',
+     'Supplements,|sorted by timing.',
      'Food first. These fill the gaps. If you compete in a tested sport, check the label on the specific product before you buy it.'),
     ('meal-prep', 'Meal prep', 'Trifecta &middot; Fuel Meals &middot; scales and containers',
      'Meal prep,|done for you or done yourself.',
@@ -507,7 +507,8 @@ def render_tiles_html():
     tiles = []
     for key, short, *_ in SHELVES:
         items = [p for p in P if p['shelf'] == key]
-        img = next((p['img'] for p in items if p.get('img')), '')
+        pref = {'supplements': 'phorm-level-1', 'gym-bag': '511-duffel'}.get(key)
+        img = next((p['img'] for p in items if p['id'] == pref), '') or next((p['img'] for p in items if p.get('img')), '')
         tiles.append(f'<a class="shelf-tile" href="#{key}"><span class="shelf-tile-img">'
                      + (f'<img src="{e(img)}" alt="" loading="lazy" decoding="async">' if img else '')
                      + f'</span><b>{e(short)}</b><span>{len(items)} picks</span></a>')
