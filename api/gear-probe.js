@@ -174,9 +174,15 @@ module.exports = async (req, res) => {
           if (terms.length && !terms.some(t => name.toLowerCase().includes(t))) continue;
           if (q.min && Number(x.CurrentPrice) < Number(q.min)) continue;
           if (q.instock && x.StockAvailability !== 'InStock') continue;
-          if (seen.has(base)) continue;
+          if (!q.ids && seen.has(base)) continue;
           seen.add(base);
-          lines.push([x.CatalogItemId || x.Id, x.CurrentPrice, x.OriginalPrice || '', x.StockAvailability === 'InStock' ? 'in' : 'out', name.slice(0, 110)].join(' | '));
+          if (q.ids) {
+            const want = String(q.ids).split(',');
+            if (!want.includes(String(x.CatalogItemId || x.Id))) continue;
+          }
+          lines.push(q.full
+            ? JSON.stringify({ id: x.CatalogItemId || x.Id, name, price: x.CurrentPrice, img: x.ImageUrl, url: x.Url })
+            : [x.CatalogItemId || x.Id, x.CurrentPrice, x.OriginalPrice || '', x.StockAvailability === 'InStock' ? 'in' : 'out', name.slice(0, 110)].join(' | '));
         }
         if (items.length < 200) break;
       }
