@@ -19,6 +19,8 @@
  * Usage:
  *   GET  /api/push-knowledge-base                  dry run, shows the plan
  *   POST /api/push-knowledge-base?apply=1          performs it
+ *   nightly Vercel cron (see vercel.json)          performs it if the file
+ *                                                   and GHL disagree
  *   ...&kb=<name>                                  target an existing base by name
  *   ...&createKb=<name>                            create a new base, then fill it
  *
@@ -37,12 +39,13 @@ const GHL_BASE = 'https://services.leadconnectorhq.com';
 const KB_VERSION = '2021-04-15';
 const SOURCE_FILE = '/ghl-chatbot-knowledge-base.md';
 
-/* The live knowledge base, confirmed by Michael. The location has two, and the
-   other one ("Existing knowledge base") is not what the chatbot reads. Named
+/* The live knowledge base: the clean one built with ?createKb, which is what
+   the agent reads and what docs/ghl-update-guide.md promises the default
+   push hits. The older bases still exist beside it and are not read. Named
    rather than positional on purpose: taking the first of the list would send
    ninety records somewhere nobody looks if GHL ever reorders them. Override
    with ?kb=<name>. */
-const DEFAULT_KB_NAME = 'Black Iron Knowledge base';
+const DEFAULT_KB_NAME = 'Black Iron Knowledge base (synced)';
 /* Ninety creates have to finish inside Vercel's function ceiling, so the
    spacing is set from that rather than from caution. At 150ms plus request
    latency this runs around 35 seconds and sits near 3 requests a second,
@@ -143,8 +146,16 @@ export default async function handler(req, res) {
   const locationId = process.env.GHL_LOCATION_ID;
   if (!key || !locationId) return res.status(503).json({ error: 'GHL_API_KEY or GHL_LOCATION_ID not set' });
 
-  /* Two independent gates. A GET is always a dry run. */
-  const apply = req.method === 'POST' && req.query.apply === '1';
+  /* Two independent gates. A GET is a dry run, with one exception: the
+     nightly Vercel cron, which can only send a GET. Vercel attaches the
+     CRON_SECRET header and its own user agent to scheduled runs, so a GET
+     writes only when both are present AND the path asks for it. A pasted
+     URL with ?secret= in it still cannot write. */
+  const fromCron =
+    req.headers.authorization === `Bearer ${cronSecret}` &&
+    /vercel-cron/i.test(req.headers['user-agent'] || '') &&
+    req.query.cron === '1';
+  const apply = req.query.apply === '1' && (req.method === 'POST' || fromCron);
 
   try {
     const proto = (req.headers['x-forwarded-proto'] || 'https').split(',')[0];
@@ -221,9 +232,22 @@ export default async function handler(req, res) {
       questions: faqs.map((f, i) => `${String(i + 1).padStart(2, '0')}. ${f.question}  (${f.answer.length} chars)`),
     };
 
+    /* Already in step? Then leave it alone. A rewrite briefly empties the
+       base the bot reads, so the nightly run only rewrites when the file and
+       GHL disagree. */
+    const norm = (q, a) => `${(q || '').trim()}\u0000${(a || '').trim()}`;
+    const have = existing.map(f => norm(f.question, f.answer)).sort();
+    const want = faqs.map(f => norm(f.question, f.answer)).sort();
+    plan.inSync = have.length === want.length && have.every((x, i) => x === want[i]);
+
     if (!apply) {
-      plan.note = 'Nothing was changed. Re-send as POST with ?apply=1 to perform this.';
+      plan.note = plan.inSync
+        ? 'Already matches the file. Nothing to do.'
+        : 'Nothing was changed. Re-send as POST with ?apply=1 to perform this.';
       return res.status(200).json(plan);
+    }
+    if (plan.inSync && !createName) {
+      return res.status(200).json({ ...plan, mode: 'unchanged', note: 'Already matches the file. Nothing was rewritten.' });
     }
 
     const deleted = [];

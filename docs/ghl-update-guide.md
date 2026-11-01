@@ -54,9 +54,10 @@ Both are guarded by `CRON_SECRET`, and a GET can never write.
 4. Paste the GOAL section into the Goal field.
 5. Paste the GUIDELINES section into the Guidelines field.
 6. Save.
-7. Test in the preview: ask “How much is a membership?” — the bot should answer
-   with real numbers ($200, $240, $50, $120–150/hour), not “pricing is
-   personalized.”
+7. Test in the preview: ask “How much is a membership?” — the bot should name
+   the plans and send them to /pricing (prices show after a quick check-in)
+   or offer a coach. It should not quote membership numbers. The $30 day pass
+   is the one price it can share.
 
 ## 3. Restrict the consult calendar to a rolling 3-day window
 
@@ -100,7 +101,7 @@ Forms: `vw0hMdDkTCL6K5N3i7vF` (lead modal) and `TtM4VqCtmx8o3ZuBgseK` (contact).
    and confirm it states $200 / $240 / $50 / $120–150 per hour.
 3. Spot-check two more: “Do you teach Olympic weightlifting?” (classes paused,
    lifts still in programming and open gym) and “Are you moving?” (next door,
-   Suite 110, opening in November).
+   Suite 110, opening in January).
 4. On moving day — not before — update the Google Business Profile address
    from Suite 122 to Suite 110 (Google Business Profile → Edit profile →
    Location → Business address). Changing it early sends people to a door
