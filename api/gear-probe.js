@@ -159,6 +159,58 @@ module.exports = async (req, res) => {
         mfr: x.Manufacturer, gtin: x.Gtin,
       }));
       if (!c.json) out.raw = c.text || c.error;
+    } else if (op === 'list') {
+      // compact, filtered, de-duplicated listing across all pages of one catalog
+      const id = String(q.catalog || '').replace(/\D/g, '');
+      const terms = String(q.q || '').toLowerCase().split('|').filter(Boolean);
+      const seen = new Set();
+      const lines = [];
+      for (let page = 1; page <= 40; page++) {
+        const c = await impactGet(`Catalogs/${id}/Items?PageSize=200&Page=${page}`);
+        const items = c.json?.Items ?? [];
+        for (const x of items) {
+          const name = String(x.Name || '');
+          const base = name.replace(/\s+-\s+[^-]*$/, '').replace(/^[^:]+:\s*/, '');
+          if (terms.length && !terms.some(t => name.toLowerCase().includes(t))) continue;
+          if (seen.has(base)) continue;
+          seen.add(base);
+          lines.push([x.CatalogItemId || x.Id, x.CurrentPrice, x.OriginalPrice || '', x.StockAvailability === 'InStock' ? 'in' : 'out', name.slice(0, 110)].join(' | '));
+        }
+        if (items.length < 200) break;
+      }
+      res.setHeader('Content-Type', 'text/plain; charset=utf-8');
+      res.status(200).send(lines.join('\n') || 'none');
+      return;
+    } else if (op === 'item') {
+      const id = String(q.catalog || '').replace(/\D/g, '');
+      const ids = String(q.ids || '').split(',').map(s => s.trim()).filter(Boolean).slice(0, 40);
+      out.items = [];
+      for (const iid of ids) {
+        const c = await impactGet(`Catalogs/${id}/Items/${encodeURIComponent(iid)}`);
+        const x = c.json || {};
+        out.items.push({ id: iid, status: c.status, name: x.Name, price: x.CurrentPrice, orig: x.OriginalPrice, stock: x.StockAvailability, img: x.ImageUrl, url: x.Url });
+      }
+    } else if (op === 'og') {
+      const u = new URL(String(q.url || ''));
+      if (!/(^|\.)(transparentlabs\.com|shopbeam\.com|fuelmeals\.com|trifectanutrition\.com|litmethod\.com|1stphorm\.com|thorne\.com|coachsoak\.com)$/.test(u.hostname)) {
+        res.status(400).json({ error: 'host not allowed' });
+        return;
+      }
+      const r = await fetch(u.toString(), { headers: { 'User-Agent': 'Mozilla/5.0 (compatible; BIA-gear-probe)' } });
+      const html = await r.text();
+      const meta = (prop) => (html.match(new RegExp(`<meta[^>]+(?:property|name)=["']${prop}["'][^>]*content=["']([^"']+)`, 'i')) || [])[1];
+      out.status = r.status;
+      out.title = meta('og:title') || (html.match(/<title>([^<]+)/i) || [])[1];
+      out.image = meta('og:image');
+      out.price = meta('product:price:amount') || meta('og:price:amount');
+      // Shopify stores expose /products.json; list product handles + first image for discovery
+      if (q.products === '1') {
+        const pr = await fetch(`${u.origin}/products.json?limit=250`);
+        const pj = pr.ok ? await pr.json() : {};
+        res.setHeader('Content-Type', 'text/plain; charset=utf-8');
+        res.status(200).send((pj.products || []).map(p => [p.handle, p.variants?.[0]?.price, (p.images?.[0]?.src || '').slice(0, 140), p.title].join(' | ')).join('\n') || `none ${pr.status}`);
+        return;
+      }
     } else if (op === 'search') {
       const kw = encodeURIComponent(String(q.q || ''));
       const c = await impactGet(`Catalogs/ItemSearch?Keyword=${kw}&PageSize=100`);
