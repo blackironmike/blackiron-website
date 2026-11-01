@@ -75,7 +75,6 @@ def swol_img(file):
     return f'https://cdn.shopify.com/s/files/1/1283/2557/files/{file}'
 
 
-THORNE_CDN = 'https://d1vo8zfysxy97v.cloudfront.net/media/product/'
 
 # ---------------------------------------------------------------------------
 # Products. Keys:
@@ -162,12 +161,12 @@ add(id='suunto-hr-belt', shelf='watches', src='impact', brand='Suunto', name='Sm
 # ---- SUPPLEMENTS ------------------------------------------------------------
 add(id='thorne-creatine', shelf='supplements', group='The daily basics', src='direct', brand='Thorne',
     name='Creatine', url='https://s.thorne.com/ivqHX', pick=True,
-    img=THORNE_CDN + 'sf903__ve8382489c6ce9fb7f28cdddef00e6f1ece146591.png',
+    img='/images/gear/thorne-creatine.jpg', edc='thorne-creatine',
     blurb='Five grams a day. Supports strength and power output. The one we stock.',
     kw='creatine monohydrate strength power')
 add(id='thorne-whey', shelf='supplements', group='The daily basics', src='direct', brand='Thorne',
     name='Whey Protein Isolate', url='https://s.thorne.com/gOquC',
-    img=THORNE_CDN + 'sp111__v496b30d9bd6d9b49984937cf925408c168a0561f.png',
+    img='/images/gear/thorne-whey-protein-isolate.jpg', edc='thorne-whey-protein-isolate',
     blurb='For the days food alone does not get you to your protein number. Mixes clean.',
     kw='protein powder whey isolate shake')
 add(id='phorm-level-1', shelf='supplements', group='The daily basics', src='direct', brand='1st Phorm',
@@ -185,11 +184,11 @@ add(id='swol-creatine', shelf='supplements', group='The daily basics', src='impa
     img=swol_img('CreatineMonohydrate-Front.webp'),
     blurb='Plain creatine, nothing added. Supports strength and power with daily use.',
     kw='creatine monohydrate')
-add(id='thorne-multi', shelf='supplements', group='The daily basics', src='direct', brand='Thorne',
-    name='Multi-Vitamin Elite', url='https://s.thorne.com/7qflr',
-    img=THORNE_CDN + 'vm114nc__v59f2e2230168349549da2930659889eb3ad55612.png',
-    blurb='A morning and evening split. Supports energy metabolism and immune function through a hard block.',
-    kw='multivitamin vitamins daily')
+add(id='thorne-basic-nutrients', shelf='supplements', group='The daily basics', src='direct', brand='Thorne',
+    name='Basic Nutrients 2/Day', url='https://s.thorne.com/AHAyw', edc='thorne-basic-nutrients-2-day',
+    img='/images/gear/thorne-basic-nutrients-2-day.jpg',
+    blurb='A two-capsule daily multivitamin. Supports energy metabolism and helps fill the gaps a busy week leaves.',
+    kw='multivitamin multi vitamins daily')
 
 add(id='c4-original', shelf='supplements', group='Before and during training', src='impact', brand='C4',
     name='C4 Original pre-workout', edc='c4-original-pre-workout',
@@ -245,16 +244,11 @@ add(id='tl-sleep', shelf='supplements', group='Sleep and recovery', src='impact'
     img=tl_img('TL_SLEEP-RECOVER_120_1_1.png'),
     blurb='Capsules for the nights you want a little help winding down. Supports sleep quality.',
     kw='sleep recovery melatonin')
-add(id='swol-mag', shelf='supplements', group='Sleep and recovery', src='impact', brand='Swolverine',
-    name='Magnesium bisglycinate', url=swol('49727013454104', 'magnesium-bisglycinate'),
-    img=swol_img('Magnesium-Front.webp'),
-    blurb='A gentle form of magnesium. Supports muscle function and relaxation in the evening.',
+add(id='thorne-magnesium', shelf='supplements', group='Sleep and recovery', src='direct', brand='Thorne',
+    name='Magnesium Bisglycinate', url='https://s.thorne.com/L38nt', edc='thorne-magnesium-bisglycinate',
+    img='/images/gear/thorne-magnesium-bisglycinate.jpg',
+    blurb='A gentle powdered magnesium for the evening. Supports muscle relaxation and restful sleep.',
     kw='magnesium sleep recovery')
-add(id='thorne-amino', shelf='supplements', group='Sleep and recovery', src='direct', brand='Thorne',
-    name='Amino Complex', url='https://s.thorne.com/4AYih',
-    img=THORNE_CDN + 'sp641__v5d864686891ec733704f50f55b51dbb6f3c911a5.png',
-    blurb='Essential amino acids. Supports muscle protein synthesis when meals are spread thin.',
-    kw='amino acids eaa recovery')
 add(id='tl-creatine-hmb', shelf='supplements', group='Sleep and recovery', src='impact', brand='Transparent Labs',
     name='Creatine HMB', url=tl('creatine-hmb'), edc='transparent-labs-creatine-hmb',
     img=tl_img('TL_CreatineHMB_30S_U_1_2.png'),
