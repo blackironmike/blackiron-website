@@ -1476,21 +1476,6 @@ footer{border-top:1px solid var(--steel-line);padding:clamp(56px,7vw,88px) 0 0}
 .ptile-img.amz-img.is-filled{background:#fff}
 .ptile-img.amz-img img{mix-blend-mode:normal}
 
-.shelf-tiles{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;
-             margin-top:clamp(28px,3.4vw,44px);box-shadow:0 0 0 1px var(--steel-line)}
-.shelf-tile{position:relative;display:flex;flex-direction:column;gap:2px;padding:0 16px 16px;
-            background:var(--black);color:var(--white);text-decoration:none;min-width:0;
-            box-shadow:0 0 0 1px var(--steel-line);transition:background .18s ease}
-.shelf-tile:hover{background:var(--coal)}
-.shelf-tile-img{display:grid;place-items:center;margin:0 -16px 12px;aspect-ratio:16/10;
-                background:var(--coal);overflow:hidden;padding:12px}
-.shelf-tile-img img{width:auto;height:100%;max-width:100%;object-fit:contain}
-.shelf-tile b{font-weight:900;font-size:.95rem;letter-spacing:-.01em}
-.shelf-tile span:last-child{color:var(--gray);font-size:.72rem;letter-spacing:.12em;
-                            text-transform:uppercase}
-.shelf-tile:hover b{color:var(--yellow)}
-@media(max-width:900px){.shelf-tiles{grid-template-columns:repeat(2,1fr)}}
-
 .edc-row{margin-top:clamp(22px,2.6vw,32px);padding-top:18px;border-top:1px solid var(--steel-line)}
 .edc-row > b{display:block;margin-bottom:12px;color:var(--gray);font-size:.72rem;font-weight:900;
              letter-spacing:.14em;text-transform:uppercase}
@@ -1506,3 +1491,190 @@ footer{border-top:1px solid var(--steel-line);padding:clamp(56px,7vw,88px) 0 0}
 .shop-grid.mini-shop{margin-top:16px;grid-template-columns:repeat(3,1fr)}
 @media(max-width:900px){.shop-grid.mini-shop{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:520px){.shop-grid.mini-shop{grid-template-columns:1fr 1fr}}
+
+
+/* ------------------------------------------------------------
+   41. THE STOREFRONT (/gear)
+   Store layout, borrowed in structure from Rogue and Uncrate and kept
+   in the Black Iron palette: a masthead with the search box, a sticky
+   shelf bar under the site nav, a directory of every subcategory, one
+   editorial feature, tabbed product rails, the rules as an icon strip,
+   photo collection tiles, then the shelves. Everything here is scoped
+   to main.sf, so the shared .ptile on /supplements and /programs keeps
+   its look.
+   ------------------------------------------------------------ */
+.ptag-w{background:var(--white);color:var(--black)}
+
+.sf-mast{padding:calc(74px + clamp(40px,5.5vw,76px)) 0 clamp(30px,3.6vw,46px)}
+.sf-mast-in{display:grid;grid-template-columns:1.35fr 1fr;gap:clamp(26px,4vw,64px);align-items:end}
+.sf-mast h1{font-size:clamp(2.5rem,4.6vw,4.1rem);margin:0}
+.sf-mast .eyebrow{margin-bottom:18px}
+.sf-mast-lead{color:var(--gray);font-size:1rem;line-height:1.6;margin:0 0 20px;max-width:46ch}
+.sf .sf-search{max-width:none;min-width:0}
+.sf .sf-search input{padding-block:17px;font-size:1.02rem}
+.sf-mast .finder-status{margin-top:12px}
+.sf-mast .finder-empty{margin-top:24px}
+@media(max-width:860px){.sf-mast-in{grid-template-columns:1fr;align-items:start}}
+
+/* Sticks under the 74px fixed site nav. Centered when the eight shelves
+   fit; a phone scrolls it sideways, and the page script keeps the active
+   shelf in view so nothing current is ever off-screen. */
+.sf-bar{position:sticky;top:74px;z-index:50;background:rgba(0,0,0,.94);
+        backdrop-filter:blur(8px);border-block:1px solid var(--steel-line)}
+.sf-bar-in{display:flex;justify-content:center;gap:clamp(18px,2.4vw,34px);
+           overflow-x:auto;scrollbar-width:none}
+.sf-bar-in::-webkit-scrollbar{display:none}
+.sf-bar a{flex:none;padding:16px 0 14px;font-size:12px;font-weight:900;letter-spacing:.14em;
+          text-transform:uppercase;color:var(--gray);border-bottom:2px solid transparent;
+          white-space:nowrap;transition:color .18s ease,border-color .18s ease}
+.sf-bar a:hover,.sf-bar a[aria-current]{color:var(--white);border-bottom-color:var(--yellow)}
+@media(max-width:1180px){.sf-bar-in{justify-content:flex-start}}
+
+.sf-dir-sect{padding:clamp(28px,3.4vw,44px) 0 clamp(30px,3.6vw,46px)}
+.sf-dir{display:grid;grid-template-columns:repeat(8,minmax(0,1fr));gap:26px 20px}
+.sf-dir-h{display:flex;flex-wrap:wrap;gap:2px 8px;align-items:baseline;margin-bottom:12px;
+          color:var(--white);font-size:11.5px;font-weight:900;letter-spacing:.14em;
+          text-transform:uppercase;line-height:1.35}
+.sf-dir-h span{color:var(--gray);font-weight:700;letter-spacing:0}
+.sf-dir ul{list-style:none;margin:0;padding:0}
+.sf-dir li{margin:0 0 7px}
+.sf-dir li a{color:var(--gray);font-size:11px;font-weight:600;letter-spacing:.07em;
+             text-transform:uppercase;line-height:1.4}
+.sf-dir a:hover,.sf-dir a:focus-visible{color:var(--yellow)}
+.sf-dir + .disclose-line{margin-top:clamp(26px,3vw,36px)}
+@media(max-width:1180px){.sf-dir{grid-template-columns:repeat(4,minmax(0,1fr))}}
+@media(max-width:700px){.sf-dir{display:none}.sf-dir + .disclose-line{margin-top:0}}
+
+.sf-feature{padding-top:clamp(34px,4vw,56px)}
+.sf-hero-img{display:block;aspect-ratio:21/9;overflow:hidden;background:var(--coal)}
+.sf-hero-img img{width:100%;height:100%;object-fit:cover;object-position:center 58%;
+                 filter:grayscale(1);transition:filter .5s ease,transform .8s ease}
+.sf-hero-img:hover img,.sf-hero-img:focus-visible img{filter:none;transform:scale(1.015)}
+.sf-hero-cap{max-width:720px;margin:0 auto;padding-top:clamp(24px,3vw,36px);text-align:center}
+.sf-kicker{display:block;margin-bottom:14px;color:var(--gray);font-size:11px;font-weight:700;
+           letter-spacing:3px;text-transform:uppercase}
+.sf-hero-title{font-size:clamp(1.8rem,3.8vw,3rem);margin:0 0 16px}
+.sf-hero-cap p{color:var(--gray)}
+.sf-hero-cta{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin-top:24px}
+@media(max-width:700px){.sf-hero-img{aspect-ratio:4/3}}
+
+/* Small section heads: the catalog voice, so the big solid-and-outline
+   pair stays reserved for the shelves themselves. */
+.sf-h{margin:0;font-size:clamp(1.3rem,2vw,1.7rem);line-height:1}
+.sf-rail-head{display:flex;flex-wrap:wrap;align-items:flex-end;gap:14px 28px;
+              margin-bottom:24px;border-bottom:1px solid var(--steel-line)}
+.sf-rail-head .sf-h{padding-bottom:14px}
+.sf-tabs{display:flex;gap:24px;margin-left:auto}
+.sf-tabs button{margin-bottom:-1px;padding:0 0 14px;background:none;border:0;
+                border-bottom:2px solid transparent;color:var(--gray);cursor:pointer;
+                font:inherit;font-size:12px;font-weight:900;letter-spacing:.14em;text-transform:uppercase;
+                white-space:nowrap}
+.sf-tabs button span{margin-left:6px;font-weight:700;letter-spacing:0;opacity:.7}
+.sf-tabs button:hover{color:var(--white)}
+.sf-tabs button[aria-selected="true"]{color:var(--white);border-bottom-color:var(--yellow)}
+.sf-tabs button:focus-visible{outline:2px solid var(--yellow);outline-offset:4px}
+.sf-rail-nav{display:flex;gap:8px;padding-bottom:10px}
+.sf-rail-nav button{width:40px;height:40px;background:transparent;border:1px solid var(--steel-line);
+                    color:var(--white);font-size:1rem;cursor:pointer;transition:border-color .18s ease}
+.sf-rail-nav button:hover{border-color:var(--white)}
+.sf-rail{display:grid;grid-auto-flow:column;grid-auto-columns:calc((100% - 3px) / 4);gap:1px;
+         padding:1px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:thin;
+         scrollbar-color:var(--steel-line) transparent}
+.sf-rail .ptile{scroll-snap-align:start}
+.sf-rail[hidden]{display:none}
+@media(max-width:1000px){.sf-rail{grid-auto-columns:calc((100% - 2px) / 3)}}
+@media(max-width:700px){.sf-rail{grid-auto-columns:70%}
+                        .sf-rail-nav{display:none}
+                        .sf-tabs{margin-left:0;width:100%;gap:20px;overflow-x:auto;scrollbar-width:none}}
+
+/* The rules, as an icon strip. White disc, black mark: the Rogue
+   shipping row turned the right way round for a black page. */
+.sf-rules{padding:clamp(34px,4vw,54px) 0}
+.sf-rule-row{display:grid;grid-template-columns:repeat(4,1fr);gap:28px;margin:0;padding:0;list-style:none}
+.sf-rule{display:flex;flex-direction:column;align-items:center;gap:6px;text-align:center}
+.sf-rule-ic{display:grid;place-items:center;width:64px;height:64px;margin-bottom:10px;
+            border-radius:50%;background:var(--white);color:var(--black)}
+.sf-rule-ic svg{width:28px;height:28px}
+.sf-rule b{color:var(--white);font-size:.8rem;font-weight:900;letter-spacing:.12em;text-transform:uppercase}
+.sf-rule-t{max-width:28ch;color:var(--gray);font-size:.85rem;line-height:1.5}
+.sf-rule-t a{color:var(--yellow);white-space:nowrap}
+@media(max-width:860px){.sf-rule-row{grid-template-columns:1fr 1fr;gap:32px 20px}}
+
+.sf-collections .sf-h{margin-bottom:24px}
+.sf-cols{display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(14px,1.8vw,22px) clamp(12px,1.4vw,18px)}
+.sf-col{display:flex;flex-direction:column;color:var(--white);text-decoration:none}
+.sf-col-img{display:block;aspect-ratio:4/3;margin-bottom:14px;overflow:hidden;background:var(--coal)}
+.sf-col-img img{width:100%;height:100%;object-fit:cover;filter:grayscale(1);
+                transition:filter .4s ease,transform .6s ease}
+.sf-col:hover .sf-col-img img,.sf-col:focus-visible .sf-col-img img{filter:none;transform:scale(1.03)}
+.sf-col b{font-size:1.02rem;font-weight:900;letter-spacing:-.01em}
+.sf-col-meta{margin-top:2px;color:var(--gray);font-size:.82rem}
+.sf-col-go{margin-top:8px;color:var(--gray);font-size:.74rem;font-weight:700;letter-spacing:.12em;
+           text-transform:uppercase;text-decoration:underline;text-underline-offset:4px}
+.sf-col:hover .sf-col-go{color:var(--yellow)}
+@media(max-width:900px){.sf-cols{grid-template-columns:1fr 1fr}}
+
+/* Shelves */
+.sf .shelf-sect{scroll-margin-top:120px}
+.sf .shelf-group{scroll-margin-top:136px}
+.sf-shelf-head{display:grid;grid-template-columns:1.1fr 1fr;gap:clamp(18px,3vw,56px);align-items:end}
+.sf-shelf-head h2{margin-bottom:0}
+.sf-shelf-head .lead{margin:0;color:var(--gray);font-size:1rem;line-height:1.6}
+@media(max-width:860px){.sf-shelf-head{grid-template-columns:1fr}}
+.sf-subnav{display:flex;flex-wrap:wrap;gap:8px;margin-top:clamp(22px,2.6vw,32px)}
+.sf-subnav a{display:inline-flex;align-items:baseline;gap:8px;padding:9px 14px;
+             border:1px solid var(--steel-line);color:var(--gray);font-size:11px;font-weight:900;
+             letter-spacing:.12em;text-transform:uppercase;transition:border-color .18s ease,color .18s ease}
+.sf-subnav a span{font-weight:700;letter-spacing:0;opacity:.7}
+.sf-subnav a:hover,.sf-subnav a:focus-visible{border-color:var(--white);color:var(--white)}
+.sf-searching .sf-browse,.sf-searching .sf-subnav,.sf-searching .shelf-sub span{display:none}
+
+/* Product wells go white across the page, the way a catalog shoots on
+   seamless. Brand photos that are scenes rather than packshots fill the
+   well instead of floating in it. */
+.sf .ptile-img{background:var(--white)}
+/* Amazon wells stay coal until the API photo has actually loaded, so a
+   failed call reads as a quiet empty well, not a bright white hole. */
+.sf .ptile-img.amz-img{background:var(--coal)}
+.sf .ptile-img.amz-img.is-filled{background:var(--white)}
+/* Fixed tracks, not auto-fit: a two-product group keeps the same tile
+   size as a six-product one instead of stretching two tiles edge to edge. */
+.sf .shop-grid{grid-template-columns:repeat(4,minmax(0,1fr))}
+@media(max-width:1000px){.sf .shop-grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media(max-width:700px){.sf .shop-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.sf .ptile-img.is-cover{padding:0}
+.sf .ptile-img.is-cover img{width:100%;height:100%;object-fit:cover}
+
+.sf-mini-h{margin:0 0 16px;color:var(--white);font-size:.85rem;font-weight:900;
+           letter-spacing:1.5px;text-transform:uppercase}
+.sf-brands{margin-top:clamp(34px,3.8vw,48px);padding-top:16px;border-top:1px solid var(--steel-line)}
+.sf-brand-row{display:grid;grid-template-columns:repeat(6,1fr);gap:1px;padding:1px}
+.sf-brand{display:flex;flex-direction:column;gap:8px;padding:20px 18px;background:var(--coal);
+          box-shadow:0 0 0 1px var(--steel-line);text-decoration:none;transition:background .18s ease}
+.sf-brand b{color:var(--white);font-size:1.02rem;font-weight:900;letter-spacing:-.01em}
+.sf-brand span{color:var(--gray);font-size:.68rem;font-weight:900;letter-spacing:.14em;text-transform:uppercase}
+.sf-brand:hover{background:var(--black)}
+.sf-brand:hover span{color:var(--yellow)}
+@media(max-width:900px){.sf-brand-row{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:520px){.sf-brand-row{grid-template-columns:1fr 1fr}}
+
+.sf-phorm{--hole:var(--coal);margin-top:clamp(34px,3.8vw,48px);padding:clamp(22px,3vw,40px);
+          background:var(--coal);border:1px solid var(--steel-line);scroll-margin-top:130px}
+.sf-phorm-head{display:grid;grid-template-columns:150px 1fr;gap:clamp(18px,3vw,36px);
+               align-items:center;margin-bottom:30px}
+.sf-phorm-img{display:grid;place-items:center;aspect-ratio:1;padding:14px;background:var(--white)}
+.sf-phorm-img img{width:auto;max-height:100%;object-fit:contain}
+.sf-phorm-head .eyebrow{margin-bottom:12px}
+.sf-phorm-title{margin:0 0 14px;font-size:clamp(1.5rem,2.8vw,2.3rem);line-height:.95}
+.sf-phorm p{max-width:64ch;color:var(--gray);font-size:.95rem;line-height:1.6}
+.sf-phorm .catalog{margin-top:30px}
+.sf-catalog-cols{display:grid;grid-template-columns:repeat(3,1fr);gap:0 32px}
+.sf-catalog-cols .catalog-group:first-child{margin-top:26px}
+.sf-catalog-cols .catalog-list{columns:1}
+.sf-catalog-cols .catalog-group:last-child{grid-column:1/-1}
+.sf-catalog-cols .catalog-group:last-child .catalog-list{columns:3}
+@media(max-width:860px){.sf-catalog-cols{grid-template-columns:1fr 1fr}
+                        .sf-catalog-cols .catalog-group:last-child .catalog-list{columns:2}}
+@media(max-width:560px){.sf-phorm-head{grid-template-columns:96px 1fr;align-items:start}
+                        .sf-catalog-cols{grid-template-columns:1fr}
+                        .sf-catalog-cols .catalog-group:last-child .catalog-list{columns:1}}
