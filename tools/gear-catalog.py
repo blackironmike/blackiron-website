@@ -158,6 +158,27 @@ add(id='blenderbottle', budget=True, shelf='gym-bag', group='Bags and bottles', 
     blurb='The wire whisk ball means no clumps. Buy two so one is always clean.',
     kw='shaker bottle protein shaker blender bottle')
 
+# Impact partner additions, gym bag
+TA = 'Training apparel'
+add(id='nomatic-duffel', shelf='gym-bag', group='Bags and bottles', src='impact', brand='NOMATIC',
+    name='Navigator collapsible duffel 42L',
+    url='https://nomatic.sjv.io/c/7701857/2878004/31298?prodsku=39504927326280&u=https%3A%2F%2Fwww.nomatic.com%2Fproducts%2Fnavigator-collapsible-duffle-42l&intsrc=APIG_23005',
+    img='https://cdn.shopify.com/s/files/1/0745/1299/files/CDUF42-BLK-01_NavigatorCollapsibleDuffle42L_NOMATIC_ECOMM_013.png',
+    blurb='A gym duffel that folds flat when it is not in use. Good for the car trunk or a travel bag.',
+    kw='gym bag duffel bag nomatic collapsible')
+add(id='511-havoc-short', shelf='gym-bag', group=TA, src='impact', brand='5.11 Tactical',
+    name='PT-R Havoc training short',
+    url='https://511.pxf.io/c/7701857/2160246/14180?prodsku=888579877328&u=https%3A%2F%2Fwww.511tactical.com%2Fpt-r-havoc-short.html%3Fsku%3D888579877328%26country%3Dus&intsrc=APIG_19374',
+    img='https://tactical511.widen.net/content/ymkq51s1ov/webp/82410_019_PT-R_HAVOC_SHORT_01.webp',
+    blurb='Stretch training shorts with a liner and a zip pocket that keeps your phone and keys put through burpees.',
+    kw='shorts training shorts gym shorts 511 apparel')
+add(id='511-catalyst-tee', shelf='gym-bag', group=TA, src='impact', brand='5.11 Tactical',
+    name='PT-R Catalyst Pro training shirt',
+    url='https://511.pxf.io/c/7701857/2160246/14180?prodsku=198900105458&u=https%3A%2F%2Fwww.511tactical.com%2Fpt-r-catalyst-pro.html%3Fsku%3D198900105458%26country%3Dus&intsrc=APIG_19374',
+    img='https://tactical511.widen.net/content/f7hg4joewj/webp/82134_019_03.webp',
+    blurb='A light, quick-drying training shirt that does not cling after the first round of a hot class.',
+    kw='shirt training shirt tee apparel 511')
+
 # ---- WATCHES ----------------------------------------------------------------
 SUUNTO = 'https://suunto.pxf.io/c/7701857/2975536/35454?prodsku={sku}&u=https%3A%2F%2Fus.suunto.com%2Fproducts%2F{h}&intsrc=APIG_23878'
 SUUNTO_IMG = 'https://cdn.shopify.com/s/files/1/0645/6488/7733/files/'
@@ -181,6 +202,21 @@ add(id='suunto-hr-belt', shelf='watches', group='Heart rate', src='impact', bran
     img=SUUNTO_IMG + 'ss050579000-suunto_smart_heart_rate_belt_04.png',
     blurb='A chest strap reads heart rate more accurately than a wrist does during intervals and lifting.',
     kw='heart rate monitor chest strap')
+add(id='suunto-vertical-2', shelf='watches', group='GPS watches', src='impact', brand='Suunto', name='Suunto Vertical 2',
+    url=SUUNTO.format(sku='53581742670005', h='suunto-vertical-2-pine-green'), edc='suunto-vertical-2',
+    img=SUUNTO_IMG + 'Suunto_Vertical2-PineGreen-Front-PineGreen-watchface-c29-marlin_EN.png',
+    blurb='The adventure watch: offline maps, a big battery and a tough case. For the ruck, the hike and the long weekend.',
+    kw='watch gps maps adventure battery vertical')
+add(id='suunto-run-2', shelf='watches', group='GPS watches', src='impact', brand='Suunto', name='Suunto Run 2',
+    url=SUUNTO.format(sku='53225167618229', h='suunto-run-2-all-black'),
+    img=SUUNTO_IMG + 'Suunto_Run2-AllBlack-ATH6-Frontview-Black-Mainwatchface_AllBlack.png',
+    blurb='The newer Run with a brighter screen and more battery, still light enough to forget you have it on.',
+    kw='watch gps running suunto run')
+add(id='suunto-9-peak-pro', budget=True, shelf='watches', group='GPS watches', src='impact', brand='Suunto', name='Suunto 9 Peak Pro',
+    url=SUUNTO.format(sku='44247946920117', h='suunto-9-peak-pro-all-black'),
+    img=SUUNTO_IMG + 'Suunto_9_Peak_Pro_All_Black-Front-Watch-face-12_1.png',
+    blurb='Last generation, so the price dropped. Thin, tough and long battery life for a lot less.',
+    kw='watch gps budget suunto 9 peak')
 add(id='garmin-fr165', shelf='watches', group='GPS watches', src='amazon', brand='Garmin',
     name='Forerunner 165', asin='B0CT3SGHXL',
     blurb='A bright AMOLED screen, GPS, sleep and recovery tracking. The most popular running watch at its price.',
@@ -304,6 +340,41 @@ add(id='lmnt', shelf='supplements', group='Before and during training', src='ama
     blurb='A salty electrolyte mix with no sugar. Supports hydration for heavy sweaters and Texas summers.',
     kw='electrolytes hydration salt sodium lmnt')
 
+# Impact partner additions, supplements
+add(id='ag1', shelf='supplements', group='The daily basics', src='impact', brand='AG1',
+    name='AG1 Next Gen greens, 30 servings',
+    url='https://ag1amazonseller.pxf.io/c/7701857/3990944/56343?prodsku=B0FBXZF3MD&u=https%3A%2F%2Fwww.amazon.com%2Fdp%2FB0FBXZF3MD&intsrc=APIG_35720',
+    img='https://m.media-amazon.com/images/I/31v0unwRrUL.jpg',
+    blurb='One scoop of greens, vitamins and probiotics in the morning. Supports daily nutrition and gut health.',
+    kw='greens powder ag1 athletic greens multivitamin probiotic')
+add(id='swol-whey', shelf='supplements', group='The daily basics', src='impact', brand='Swolverine',
+    name='Whey protein isolate', url=swol('11466445004', 'whey-protein-isolate'),
+    img=swol_img('WheyIsolate-Front.webp'),
+    blurb='A clean whey isolate that mixes thin and sits light. Supports muscle recovery after training.',
+    kw='protein powder whey isolate')
+add(id='swol-plant', shelf='supplements', group='The daily basics', src='impact', brand='Swolverine',
+    name='Plant protein', url=swol('4292865261646', 'plant-protein'),
+    img=swol_img('PlantProtein-Chocolate-Front.webp'),
+    blurb='For people who skip dairy. A plant blend that still gets you a real serving of protein.',
+    kw='protein powder plant vegan dairy free')
+add(id='swol-clean-carbs', shelf='supplements', group='Before and during training', src='impact', brand='Swolverine',
+    name='Clean Carbs', url=swol('2407218085966', 'clean-carbs'),
+    img=swol_img('Swolverine-clean-carbs-2407218085966-50061240402200.png'),
+    blurb='Carbs from real food sources in a scoop, for long sessions and endurance days. Supports energy.',
+    kw='carbs carbohydrate endurance intra workout')
+add(id='c4-sport', budget=True, shelf='supplements', group='Before and during training', src='impact', brand='C4',
+    name='C4 Sport pre-workout',
+    url='https://cellucor.sjv.io/c/7701857/3960641/54611?prodsku=10461479442&u=https%3A%2F%2Fcellucor.com%2Fproducts%2Fc4-sport-old&intsrc=APIG_35014',
+    img='https://cdn.shopify.com/s/files/1/1492/2278/products/CELL_2095_Digital_ProductRefresh_PDPimagery_C4Sport_2022-Render.png',
+    blurb='A milder pre-workout with less caffeine, made for tested athletes. The gentle way in.',
+    kw='pre workout preworkout c4 sport low caffeine')
+add(id='c4-ultimate', shelf='supplements', group='Before and during training', src='impact', brand='C4',
+    name='C4 Ultimate pre-workout',
+    url='https://cellucor.sjv.io/c/7701857/3960641/54611?prodsku=40501162082366&u=https%3A%2F%2Fcellucor.com%2Fproducts%2Fc4-ultimate%3Fvariant%3D40501162082366&intsrc=APIG_35014',
+    img='https://cdn.shopify.com/s/files/1/1492/2278/files/C4AN_1002_Brand_C4YellowLabel_Transition_C4Ultimate_CoreFlavors_BasicPDPs-Ultimate-FB-Hero-Grey.png',
+    blurb='The strongest C4. For experienced users only. Start with half a scoop and see how you feel.',
+    kw='pre workout preworkout c4 ultimate high stim')
+
 # 1st Phorm best sellers. These render inside the 1st Phorm block at the
 # bottom of the supplements shelf (render_phorm), not in a timing group:
 # the block is for people who already buy the brand. Photos are the brand's
@@ -416,6 +487,19 @@ add(id='ninja-air-fryer', shelf='meal-prep', group='Kitchen tools', src='amazon'
     name='Air Fryer XL, 6.5 quart', asin='B0CS3V8M9H',
     blurb='Crispy chicken and vegetables with a spray of oil instead of a pan of it. Big enough to cook for a family.',
     kw='air fryer ninja kitchen meal prep')
+
+add(id='trifecta-paleo', shelf='meal-prep', group='Meals made for you', src='impact', brand='Trifecta', cover=True,
+    name='Paleo meal plan',
+    url='https://trifectanutrition.llbyf9.net/c/7701857/3373483/4609?prodsku=PAL1400&u=https%3A%2F%2Fshop.trifectanutrition.com%2Fshop%2Fmeal-plans%2Fpaleo-meal-plan%2F&intsrc=APIG_28485',
+    img='https://uploads-v2.trifectanutrition.com/wp-content/uploads/2018/10/11165528/PALEO-%CE%93Co-06-24.jpg',
+    blurb='Meat, vegetables and healthy fats, no grains or dairy. Portioned and delivered weekly.',
+    kw='meal delivery paleo meal plan trifecta')
+add(id='trifecta-plant', shelf='meal-prep', group='Meals made for you', src='impact', brand='Trifecta', cover=True,
+    name='Plant-based meal plan',
+    url='https://trifectanutrition.llbyf9.net/c/7701857/3373483/4609?prodsku=VGN1400&u=https%3A%2F%2Fshop.trifectanutrition.com%2Fshop%2Fmeal-plans%2Fvegan-meal-plan%2F&intsrc=APIG_28485',
+    img='https://uploads-v2.trifectanutrition.com/wp-content/uploads/2018/10/11165515/PLANT-BASED-%CE%93Co-06-24.jpg',
+    blurb='The plant-based version, with protein counted so you are not guessing whether you hit your number.',
+    kw='meal delivery vegan plant based meal plan trifecta')
 
 # ---- RECOVERY AND MOBILITY -------------------------------------------------
 # Heat and cold copy carries the safety line on purpose: a sauna tent and an
@@ -530,19 +614,32 @@ add(id='merach-w60', cover=True, shelf='desk', group='Desk and walking pad', src
     img=MCDN + 'w60-b2-amz-woman_1.png',
     blurb='Slides under a standing desk, with a 12 percent incline for walking through calls.',
     kw='walking pad under desk treadmill incline')
-add(id='topo-mat', shelf='desk', group='Standing comfort', src='amazon', brand='Ergodriven', name='Topo standing mat',
+add(id='topo-mat', shelf='desk', group='Comfort and accessories', src='amazon', brand='Ergodriven', name='Topo standing mat',
     asin='B00V3TO9EK', edc='ergodriven-topo',
     blurb='Not flat on purpose. The bumps keep you shifting your weight, which keeps you standing longer.',
     kw='standing mat anti fatigue mat desk')
-add(id='fezibo-board', shelf='desk', group='Standing comfort', src='amazon', brand='FEZIBO', name='Balance board',
+add(id='fezibo-board', shelf='desk', group='Comfort and accessories', src='amazon', brand='FEZIBO', name='Balance board',
     asin='B07HD838VP',
     blurb='A rocker board for the standing desk. Gives your legs something to do besides lock out.',
     kw='balance board standing desk wobble')
 
-add(id='gaiam-ball-chair', shelf='desk', group='Standing comfort', src='amazon', brand='Gaiam',
+add(id='gaiam-ball-chair', shelf='desk', group='Comfort and accessories', src='amazon', brand='Gaiam',
     name='Balance ball chair', asin='B0007VB4NE',
     blurb='For the hours you do sit. A ball keeps you shifting instead of slumping into one position.',
     kw='balance ball chair office chair stability')
+
+add(id='merach-w50', budget=True, shelf='desk', group='Desk and walking pad', src='impact', brand='MERACH',
+    name='NovaWalk W50 walking pad',
+    url=MERACH.format(sku='44769691238575', h='novawalk-w50-trekpad'),
+    img=MCDN + 'w50-main.jpg',
+    blurb='The lower-priced walking pad, still with a 12 percent incline. Plenty for walking through calls.',
+    kw='walking pad under desk treadmill incline budget')
+add(id='uplift-monitor-arm', shelf='desk', group='Comfort and accessories', src='impact', brand='UPLIFT Desk',
+    name='Zilker single monitor arm',
+    url='https://upliftdesk.sjv.io/c/7701857/2037399/22058?prodsku=MON001&u=http%3A%2F%2Fcheckout.upliftdesk.com%2Fzilker-single-monitor-arm-by-uplift-desk%2F&intsrc=APIG_17322',
+    img='https://cdn11.bigcommerce.com/s-l85bzww3lo/products/914/images/16795/gallery-mon001-zilker-single-4__76906.1787869312.1217.655.jpg',
+    blurb='Puts the screen at eye level whether you sit or stand, so your neck is not doing the work.',
+    kw='monitor arm desk ergonomics uplift')
 
 # ---- HOME GYM ---------------------------------------------------------------
 add(id='kettlebell', budget=True, shelf='home-gym', group='Weights', src='amazon', brand='Amazon Basics', name='Cast iron kettlebell',
@@ -588,6 +685,19 @@ add(id='stall-mats', shelf='home-gym', group='The floor', src='amazon', brand='A
     blurb='Protects the garage floor and your weights. The classic home gym floor, because it holds up.',
     kw='rubber mats stall mats floor home gym')
 
+add(id='merach-dumbbells', budget=True, shelf='home-gym', group='Weights', src='impact', brand='MERACH',
+    name='5-in-1 adjustable dumbbells',
+    url=MERACH.format(sku='47510225223855', h='5-in-1-adjustable-dumbbells%3Fvariant%3D47510225223855'),
+    img=MCDN + '11_73e4a915-fad9-4809-b42c-b2956a42a51c.jpg',
+    blurb='A cheaper way into adjustable dumbbells. Fine for most home workouts before you need the big set.',
+    kw='adjustable dumbbells weights home gym budget')
+add(id='merach-barbell', shelf='home-gym', group='Weights', src='impact', brand='MERACH',
+    name='20 kg Olympic barbell',
+    url=MERACH.format(sku='50802837520559', h='merach-performance-olympic-barbell-20kg-1-000-lb-capacity'),
+    img=MCDN + 'p17s1-zt_2.jpg',
+    blurb='A standard 20 kg bar rated to 1,000 pounds. Plenty of bar for one person in a garage.',
+    kw='barbell olympic bar home gym')
+
 # ---------------------------------------------------------------------------
 # Shelves, in page order. groups fixes the order of the subheadings, which is
 # also the order they appear in the header directory. photo is the lifestyle
@@ -597,9 +707,9 @@ SHELVES = [
     dict(key='gym-bag', short='Gym bag', sub='What you wear and carry',
          h2='What people wear|to class.',
          lead='None of it is required on day one. When the weights get heavy and the gymnastics gets harder, this is the short list.',
-         groups=['Shoes', 'Belts, sleeves and wraps', 'Grips, straps and ropes', 'Bags and bottles'],
+         groups=['Shoes', TA, 'Belts, sleeves and wraps', 'Grips, straps and ropes', 'Bags and bottles'],
          photo='/images/training/pullup-bar.webp'),
-    dict(key='supplements', short='Supplements', sub='Thorne &middot; 1st Phorm &middot; Swolverine &middot; Transparent Labs &middot; C4 &middot; Beam',
+    dict(key='supplements', short='Supplements', sub='Thorne &middot; 1st Phorm &middot; Swolverine &middot; Transparent Labs &middot; C4 &middot; AG1 &middot; Beam',
          h2='Supplements,|sorted by timing.',
          lead='Food first. These fill the gaps. If you compete in a tested sport, check the label on the specific product before you buy it.',
          groups=['The daily basics', 'Before and during training', 'Sleep and recovery'],
@@ -627,7 +737,7 @@ SHELVES = [
     dict(key='desk', short='Desk setup', sub='UPLIFT &middot; MERACH &middot; Gaiam',
          h2='The desk I work at,|and what goes under it.',
          lead='If you sit for a living, this is the most useful thing on the page.',
-         groups=['Desk and walking pad', 'Standing comfort'],
+         groups=['Desk and walking pad', 'Comfort and accessories'],
          photo='https://cdn11.bigcommerce.com/s-l85bzww3lo/products/890/images/38645/Final_MVT011_and_UPL964_Inclining_Walking_01496_2__22750.1787774251.1217.655.jpg'),
     dict(key='watches', short='Watches', sub='Suunto &middot; Garmin &middot; Polar',
          h2='Watches|and heart rate.',
