@@ -514,12 +514,12 @@
     <section class="sect alt" id="pricing">
         <div class="wrap">
             <span class="eyebrow rv">Membership</span>
-            <h2 class="rv">What it costs.<br><span class="outline">In writing.</span></h2>
-            <p class="lead rv">We publish our prices because we&rsquo;re proud of what they buy. Coaching is the product &mdash; a coach who knows your name, programming that&rsquo;s planned, and a floor where you belong. If you&rsquo;re comparing us to a $10 big-box, we&rsquo;re not it. On purpose.</p>
+            <h2 class="rv">Four ways in.<br><span class="outline">Pick yours.</span></h2>
+            <p class="lead rv">Coaching is the product &mdash; a coach who knows your name, programming that&rsquo;s planned, and a floor where you belong. If you&rsquo;re comparing us to a $10 big-box, we&rsquo;re not it. On purpose.</p>
             <div class="price-grid">
                 <article class="pcard rv">
                     <h3>Standard</h3>
-                    <b class="pnum">$200<span>/mo</span></b>
+                    <a class="pnum-lock" href="/pricing#unlock"><svg viewBox="0 0 12 14" fill="none" aria-hidden="true"><rect x="1" y="6" width="10" height="7" stroke="currentColor" stroke-width="1.5"/><path d="M3.5 6V4a2.5 2.5 0 0 1 5 0v2" stroke="currentColor" stroke-width="1.5"/></svg>See the price</a>
                     <ul>
                         <li>3 coached Strength &amp; Conditioning classes per week</li>
                         <li>Monthly body-composition scan</li>
@@ -529,7 +529,7 @@
                 <article class="pcard pop rv">
                     <span class="tag">Most Popular</span>
                     <h3>Unlimited + Open Gym</h3>
-                    <b class="pnum">$240<span>/mo</span></b>
+                    <a class="pnum-lock" href="/pricing#unlock"><svg viewBox="0 0 12 14" fill="none" aria-hidden="true"><rect x="1" y="6" width="10" height="7" stroke="currentColor" stroke-width="1.5"/><path d="M3.5 6V4a2.5 2.5 0 0 1 5 0v2" stroke="currentColor" stroke-width="1.5"/></svg>See the price</a>
                     <ul>
                         <li>Unlimited coached classes</li>
                         <li>Everything in Standard</li>
@@ -538,7 +538,7 @@
                 </article>
                 <article class="pcard rv">
                     <h3>Open Gym Only</h3>
-                    <b class="pnum">$50<span>/mo</span></b>
+                    <a class="pnum-lock" href="/pricing#unlock"><svg viewBox="0 0 12 14" fill="none" aria-hidden="true"><rect x="1" y="6" width="10" height="7" stroke="currentColor" stroke-width="1.5"/><path d="M3.5 6V4a2.5 2.5 0 0 1 5 0v2" stroke="currentColor" stroke-width="1.5"/></svg>See the price</a>
                     <ul>
                         <li>Self-directed training</li>
                         <li>Access to all our programming</li>
@@ -547,7 +547,7 @@
                 </article>
                 <article class="pcard rv">
                     <h3>Personal Training</h3>
-                    <b class="pnum rng">$120&ndash;150<span>/hour</span></b>
+                    <a class="pnum-lock" href="/pricing#unlock"><svg viewBox="0 0 12 14" fill="none" aria-hidden="true"><rect x="1" y="6" width="10" height="7" stroke="currentColor" stroke-width="1.5"/><path d="M3.5 6V4a2.5 2.5 0 0 1 5 0v2" stroke="currentColor" stroke-width="1.5"/></svg>See the price</a>
                     <ul>
                         <li>One coach, one plan</li>
                         <li>Customized programming</li>
@@ -593,7 +593,7 @@
                     </details>
                     <details>
                         <summary>What does it cost?</summary>
-                        <p>Standard is $200 a month, Unlimited with open gym is $240, open gym only is $50, and personal training runs $120&ndash;150 an hour. Prices are <a href="/pricing">in writing</a> because we don&rsquo;t do games. Want to try first? A $30 day pass covers any class, credited toward your first month if you join.</p>
+                        <p>It depends on how you want to train: group classes, open gym, personal training, or a mix. Every plan and price is on our <a href="/pricing">pricing page</a> after a quick check-in, and a coach will help you pick the one that fits. Want to try first? A $30 day pass covers any class, credited toward your first month if you join.</p>
                     </details>
                     <details>
                         <summary>I bounced off CrossFit and big gyms before.</summary>
@@ -736,23 +736,108 @@
         "value": "279 Main St, Suite 110, Frisco, TX 75036 — next door to the current space — opening in January"
       },
       "areaServed": [
-        {"@type": "City", "name": "Frisco", "containedInPlace": {"@type": "State", "name": "Texas"}},
-        {"@type": "City", "name": "Prosper", "containedInPlace": {"@type": "State", "name": "Texas"}},
-        {"@type": "City", "name": "The Colony", "containedInPlace": {"@type": "State", "name": "Texas"}},
-        {"@type": "City", "name": "Little Elm", "containedInPlace": {"@type": "State", "name": "Texas"}},
-        {"@type": "City", "name": "McKinney", "containedInPlace": {"@type": "State", "name": "Texas"}},
-        {"@type": "City", "name": "Plano", "containedInPlace": {"@type": "State", "name": "Texas"}},
-        {"@type": "City", "name": "Celina", "containedInPlace": {"@type": "State", "name": "Texas"}},
-        {"@type": "Place", "name": "North Dallas"}
+        {
+          "@type": "City",
+          "name": "Frisco",
+          "containedInPlace": {
+            "@type": "State",
+            "name": "Texas"
+          }
+        },
+        {
+          "@type": "City",
+          "name": "Prosper",
+          "containedInPlace": {
+            "@type": "State",
+            "name": "Texas"
+          }
+        },
+        {
+          "@type": "City",
+          "name": "The Colony",
+          "containedInPlace": {
+            "@type": "State",
+            "name": "Texas"
+          }
+        },
+        {
+          "@type": "City",
+          "name": "Little Elm",
+          "containedInPlace": {
+            "@type": "State",
+            "name": "Texas"
+          }
+        },
+        {
+          "@type": "City",
+          "name": "McKinney",
+          "containedInPlace": {
+            "@type": "State",
+            "name": "Texas"
+          }
+        },
+        {
+          "@type": "City",
+          "name": "Plano",
+          "containedInPlace": {
+            "@type": "State",
+            "name": "Texas"
+          }
+        },
+        {
+          "@type": "City",
+          "name": "Celina",
+          "containedInPlace": {
+            "@type": "State",
+            "name": "Texas"
+          }
+        },
+        {
+          "@type": "Place",
+          "name": "North Dallas"
+        }
       ],
       "amenityFeature": [
-        {"@type": "LocationFeatureSpecification", "name": "Open Gym Access (7 days a week, between classes and after hours)", "value": true},
-        {"@type": "LocationFeatureSpecification", "name": "Free Parking", "value": true},
-        {"@type": "LocationFeatureSpecification", "name": "Certified Coaches", "value": true},
-        {"@type": "LocationFeatureSpecification", "name": "Climate Controlled", "value": true},
-        {"@type": "LocationFeatureSpecification", "name": "Monthly Body Composition Scans", "value": true}
+        {
+          "@type": "LocationFeatureSpecification",
+          "name": "Open Gym Access (7 days a week, between classes and after hours)",
+          "value": true
+        },
+        {
+          "@type": "LocationFeatureSpecification",
+          "name": "Free Parking",
+          "value": true
+        },
+        {
+          "@type": "LocationFeatureSpecification",
+          "name": "Certified Coaches",
+          "value": true
+        },
+        {
+          "@type": "LocationFeatureSpecification",
+          "name": "Climate Controlled",
+          "value": true
+        },
+        {
+          "@type": "LocationFeatureSpecification",
+          "name": "Monthly Body Composition Scans",
+          "value": true
+        }
       ],
-      "knowsAbout": ["Strength Training", "Strength and Conditioning", "Functional Fitness", "CrossFit Alternative", "HIIT", "HYROX Affiliate Programming", "Group Training", "Personal Training", "Nutrition Coaching", "Olympic Weightlifting", "Metabolic Conditioning", "Body Composition Analysis"],
+      "knowsAbout": [
+        "Strength Training",
+        "Strength and Conditioning",
+        "Functional Fitness",
+        "CrossFit Alternative",
+        "HIIT",
+        "HYROX Affiliate Programming",
+        "Group Training",
+        "Personal Training",
+        "Nutrition Coaching",
+        "Olympic Weightlifting",
+        "Metabolic Conditioning",
+        "Body Composition Analysis"
+      ],
       "sameAs": [
         "https://www.instagram.com/blackiron_athletics/",
         "https://www.youtube.com/channel/UCF1XjUXEs81OWY70chem6vA",
@@ -765,49 +850,37 @@
           {
             "@type": "Offer",
             "name": "Standard Membership",
-            "price": "200",
-            "priceCurrency": "USD",
             "itemOffered": {
               "@type": "Service",
               "name": "Standard Membership",
-              "description": "$200 per month. 3 coached Strength & Conditioning classes per week, a monthly body-composition scan, and community events."
+              "description": "3 coached Strength & Conditioning classes per week, a monthly body-composition scan, and community events."
             }
           },
           {
             "@type": "Offer",
             "name": "Unlimited + Open Gym Membership",
-            "price": "240",
-            "priceCurrency": "USD",
             "itemOffered": {
               "@type": "Service",
               "name": "Unlimited + Open Gym Membership",
-              "description": "$240 per month. Unlimited coached classes, everything in Standard, and open gym access 7 days a week between classes and after hours."
+              "description": "Unlimited coached classes, everything in Standard, and open gym access 7 days a week between classes and after hours."
             }
           },
           {
             "@type": "Offer",
             "name": "Open Gym Only Membership",
-            "price": "50",
-            "priceCurrency": "USD",
             "itemOffered": {
               "@type": "Service",
               "name": "Open Gym Only Membership",
-              "description": "$50 per month. Self-directed training with access to all Black Iron programming, 7 days a week between classes and after hours."
+              "description": "Self-directed training with access to all Black Iron programming, 7 days a week between classes and after hours."
             }
           },
           {
             "@type": "Offer",
             "name": "Personal Training",
-            "priceSpecification": {
-              "@type": "PriceSpecification",
-              "minPrice": "120",
-              "maxPrice": "150",
-              "priceCurrency": "USD"
-            },
             "itemOffered": {
               "@type": "Service",
               "name": "Personal Training",
-              "description": "$120-150 per hour. One coach, one plan: customized programming, individual accountability, and nutrition guidance."
+              "description": "One coach, one plan: customized programming, individual accountability, and nutrition guidance."
             }
           },
           {

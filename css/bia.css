@@ -583,6 +583,14 @@ section{border-top:1px solid var(--steel-line)}
 .pnum{display:block;color:var(--white);font-weight:900;font-size:clamp(2.4rem,3.4vw,3.4rem);line-height:.9;letter-spacing:-.03em;margin:20px 0 24px}
 .pnum.rng{font-size:clamp(1.8rem,2.4vw,2.35rem)}
 .pnum span{font-size:.85rem;font-weight:700;letter-spacing:1px;color:var(--gray);margin-left:4px}
+/* Prices sit behind the check-in on /pricing. Everywhere else the price slot
+   is this link, so the card keeps its shape and points at the one place the
+   numbers live. */
+.pnum-lock{display:inline-flex;align-items:center;gap:9px;margin:20px 0 24px;padding:11px 14px;
+  border:1px solid var(--steel-line);color:var(--white);font-weight:700;font-size:.78rem;
+  letter-spacing:2px;text-transform:uppercase;line-height:1;transition:border-color .18s}
+.pnum-lock:hover,.pnum-lock:focus-visible{border-color:var(--yellow)}
+.pnum-lock svg{width:12px;height:14px;flex:none}
 .pcard ul{flex:1}
 .pcard li{border-top:1px solid var(--steel-line);padding:11px 0;font-size:.88rem;line-height:1.55}
 
