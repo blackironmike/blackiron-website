@@ -161,12 +161,12 @@ add(id='suunto-hr-belt', shelf='watches', src='impact', brand='Suunto', name='Sm
 # ---- SUPPLEMENTS ------------------------------------------------------------
 add(id='thorne-creatine', shelf='supplements', group='The daily basics', src='direct', brand='Thorne',
     name='Creatine', url='https://s.thorne.com/ivqHX', pick=True,
-    img='/images/gear/thorne-creatine.jpg', edc='thorne-creatine',
+    img='/images/gear/thorne-creatine-product.webp', edc='thorne-creatine',
     blurb='Five grams a day. Supports strength and power output. The one we stock.',
     kw='creatine monohydrate strength power')
 add(id='thorne-whey', shelf='supplements', group='The daily basics', src='direct', brand='Thorne',
     name='Whey Protein Isolate', url='https://s.thorne.com/gOquC',
-    img='/images/gear/thorne-whey-protein-isolate.jpg', edc='thorne-whey-protein-isolate',
+    img='/images/gear/thorne-whey-protein-isolate-product.webp', edc='thorne-whey-protein-isolate',
     blurb='For the days food alone does not get you to your protein number. Mixes clean.',
     kw='protein powder whey isolate shake')
 add(id='phorm-level-1', shelf='supplements', group='The daily basics', src='direct', brand='1st Phorm',
@@ -186,7 +186,7 @@ add(id='swol-creatine', shelf='supplements', group='The daily basics', src='impa
     kw='creatine monohydrate')
 add(id='thorne-basic-nutrients', shelf='supplements', group='The daily basics', src='direct', brand='Thorne',
     name='Basic Nutrients 2/Day', url='https://s.thorne.com/AHAyw', edc='thorne-basic-nutrients-2-day',
-    img='/images/gear/thorne-basic-nutrients-2-day.jpg',
+    img='/images/gear/thorne-basic-nutrients-2-day-product.webp',
     blurb='A two-capsule daily multivitamin. Supports energy metabolism and helps fill the gaps a busy week leaves.',
     kw='multivitamin multi vitamins daily')
 
@@ -246,7 +246,7 @@ add(id='tl-sleep', shelf='supplements', group='Sleep and recovery', src='impact'
     kw='sleep recovery melatonin')
 add(id='thorne-magnesium', shelf='supplements', group='Sleep and recovery', src='direct', brand='Thorne',
     name='Magnesium Bisglycinate', url='https://s.thorne.com/L38nt', edc='thorne-magnesium-bisglycinate',
-    img='/images/gear/thorne-magnesium-bisglycinate.jpg',
+    img='/images/gear/thorne-magnesium-bisglycinate-product.png',
     blurb='A gentle powdered magnesium for the evening. Supports muscle relaxation and restful sleep.',
     kw='magnesium sleep recovery')
 add(id='tl-creatine-hmb', shelf='supplements', group='Sleep and recovery', src='impact', brand='Transparent Labs',
