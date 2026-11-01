@@ -124,18 +124,39 @@ add(id='bear-komplex-rope', budget=True, shelf='gym-bag', group='Grips, straps a
     name='Speed jump rope', asin='B0D6XF6K3Y',
     blurb='Ball bearing handles and an adjustable cable. The rope you learn double-unders on.',
     kw='jump rope speed rope double unders')
-add(id='511-duffel', shelf='gym-bag', group='Bags', src='impact', brand='5.11 Tactical',
+add(id='511-duffel', shelf='gym-bag', group='Bags and bottles', src='impact', brand='5.11 Tactical',
     name='PT-R Daily Grind duffel 32L',
     url='https://511.pxf.io/c/7701857/2160246/14180?prodsku=198900106776&u=https%3A%2F%2Fwww.511tactical.com%2Fpt-r-daily-grind-duffel.html%3Fsku%3D198900106776%26country%3Dus&intsrc=APIG_19374',
     img='https://tactical511.widen.net/content/opemc7tmbv/webp/56856ABR_701_03.webp',
     blurb='Shoes, belt, sleeves and a change of clothes, with a pocket that keeps the sweaty stuff apart.',
     kw='gym bag duffel bag 511')
-add(id='511-trainer-bag', splurge=True, shelf='gym-bag', group='Bags', src='impact', brand='5.11 Tactical',
+add(id='511-trainer-bag', splurge=True, shelf='gym-bag', group='Bags and bottles', src='impact', brand='5.11 Tactical',
     name='Range Ready trainer bag 50L',
     url='https://511.pxf.io/c/7701857/2160246/14180?prodsku=888579885163&u=https%3A%2F%2Fwww.511tactical.com%2Frange-ready-trainer-bag.html%3Fsku%3D888579885163%26country%3Dus&intsrc=APIG_19374',
     img='https://tactical511.widen.net/content/n1cyct90rn/webp/56567_019_RangeReadyTrainerBag_05.webp',
     blurb='The bigger option for people who bring everything: lifting shoes, a jump rope, a belt and lunch.',
     kw='gym bag trainer bag 511 backpack')
+
+add(id='reebok-nano-x5', shelf='gym-bag', group='Shoes', src='amazon', brand='Reebok',
+    name='Nano X5 training shoes', asin='B0D68RJWMV',
+    blurb='The other shoe you see most in class. Stable for lifting, flexible enough for box jumps and burpees.',
+    kw='training shoes cross training nano sneakers')
+add(id='dark-iron-belt', budget=True, shelf='gym-bag', group='Belts, sleeves and wraps', src='amazon', brand='Dark Iron Fitness',
+    name='4 inch leather lifting belt', asin='B016RAMIW4',
+    blurb='A simple leather belt that does the job for less. The one most people start with.',
+    kw='belt lifting weightlifting leather budget')
+add(id='evmt-chalk', budget=True, shelf='gym-bag', group='Grips, straps and ropes', src='amazon', brand='EVMT',
+    name='Liquid chalk', asin='B08F7BF7MP',
+    blurb='Grip without the cloud of chalk dust. Rub it in, let it dry, and the bar stays put.',
+    kw='chalk liquid chalk grip')
+add(id='owala-freesip', shelf='gym-bag', group='Bags and bottles', src='amazon', brand='Owala',
+    name='FreeSip 32 oz water bottle', asin='B085DVHQ57',
+    blurb='Insulated, sip or swig from the same lid, and it does not leak in the bag. Half the gym already carries one.',
+    kw='water bottle insulated owala')
+add(id='blenderbottle', budget=True, shelf='gym-bag', group='Bags and bottles', src='amazon', brand='BlenderBottle',
+    name='Classic V2 28 oz shaker', asin='B07TK681SZ',
+    blurb='The wire whisk ball means no clumps. Buy two so one is always clean.',
+    kw='shaker bottle protein shaker blender bottle')
 
 # ---- WATCHES ----------------------------------------------------------------
 SUUNTO = 'https://suunto.pxf.io/c/7701857/2975536/35454?prodsku={sku}&u=https%3A%2F%2Fus.suunto.com%2Fproducts%2F{h}&intsrc=APIG_23878'
@@ -160,6 +181,18 @@ add(id='suunto-hr-belt', shelf='watches', group='Heart rate', src='impact', bran
     img=SUUNTO_IMG + 'ss050579000-suunto_smart_heart_rate_belt_04.png',
     blurb='A chest strap reads heart rate more accurately than a wrist does during intervals and lifting.',
     kw='heart rate monitor chest strap')
+add(id='garmin-fr165', shelf='watches', group='GPS watches', src='amazon', brand='Garmin',
+    name='Forerunner 165', asin='B0CT3SGHXL',
+    blurb='A bright AMOLED screen, GPS, sleep and recovery tracking. The most popular running watch at its price.',
+    kw='watch gps garmin running forerunner')
+add(id='garmin-fr55', budget=True, shelf='watches', group='GPS watches', src='amazon', brand='Garmin',
+    name='Forerunner 55', asin='B092RCLKHN',
+    blurb='GPS, heart rate and two weeks of battery for not much money. Everything most people need from a watch.',
+    kw='watch gps garmin running budget')
+add(id='polar-h10', shelf='watches', group='Heart rate', src='amazon', brand='Polar',
+    name='H10 heart rate strap', asin='B07PM54P4N',
+    blurb='The chest strap other devices get tested against. Pairs with almost any watch, phone or machine.',
+    kw='heart rate monitor chest strap polar')
 
 # ---- SUPPLEMENTS ------------------------------------------------------------
 add(id='thorne-creatine', shelf='supplements', group='The daily basics', src='direct', brand='Thorne',
@@ -257,6 +290,19 @@ add(id='tl-creatine-hmb', shelf='supplements', group='Sleep and recovery', src='
     img=tl_img('TL_CreatineHMB_30S_U_1_2.png'),
     blurb='Creatine paired with HMB. Supports strength and helps maintain lean muscle during a cut.',
     kw='creatine hmb strength')
+
+add(id='on-gold-standard', budget=True, shelf='supplements', group='The daily basics', src='amazon', brand='Optimum Nutrition',
+    name='Gold Standard whey, 5 lb', asin='B000QSNYGI',
+    blurb='The best-selling whey on Amazon, and the value pick per scoop. Supports muscle recovery after training.',
+    kw='protein powder whey gold standard budget')
+add(id='premier-protein', shelf='supplements', group='The daily basics', src='amazon', brand='Premier Protein',
+    name='30g protein shakes, 12 pack', asin='B07MJL8NXR',
+    blurb='Ready to drink, no shaker needed. For the car, the desk drawer and the walk out of class.',
+    kw='protein shake ready to drink premier')
+add(id='lmnt', shelf='supplements', group='Before and during training', src='amazon', brand='LMNT',
+    name='Zero sugar electrolytes', asin='B08ZJQ1XD4',
+    blurb='A salty electrolyte mix with no sugar. Supports hydration for heavy sweaters and Texas summers.',
+    kw='electrolytes hydration salt sodium lmnt')
 
 # 1st Phorm best sellers. These render inside the 1st Phorm block at the
 # bottom of the supplements shelf (render_phorm), not in a timing group:
@@ -362,6 +408,15 @@ add(id='rubbermaid-plastic', shelf='meal-prep', group='Prep it yourself', src='a
     blurb='Lighter than glass for the gym bag and the cooler, still leak-proof.',
     kw='food storage containers plastic meal prep')
 
+add(id='instant-pot', shelf='meal-prep', group='Kitchen tools', src='amazon', brand='Instant Pot',
+    name='Duo 6 quart pressure cooker', asin='B00FLYWNYQ',
+    blurb='Shredded chicken, rice and chili for the week in about an hour, mostly hands off.',
+    kw='instant pot pressure cooker slow cooker rice meal prep')
+add(id='ninja-air-fryer', shelf='meal-prep', group='Kitchen tools', src='amazon', brand='Ninja',
+    name='Air Fryer XL, 6.5 quart', asin='B0CS3V8M9H',
+    blurb='Crispy chicken and vegetables with a spray of oil instead of a pan of it. Big enough to cook for a family.',
+    kw='air fryer ninja kitchen meal prep')
+
 # ---- RECOVERY AND MOBILITY -------------------------------------------------
 # Heat and cold copy carries the safety line on purpose: a sauna tent and an
 # ice tub are the two products on this page that can genuinely hurt somebody
@@ -454,6 +509,15 @@ add(id='merach-s28', shelf='cardio', group='Rowers and bikes', src='impact', bra
     blurb='Magnetic resistance and an app. Low-impact cardio for the days your joints want a break.',
     kw='bike exercise bike cycling cardio')
 
+add(id='concept2-rower', pick=True, splurge=True, shelf='cardio', group='Rowers and bikes', src='amazon', brand='Concept2',
+    name='RowErg rower', asin='B00NH9WEUA',
+    blurb='The rower on our floor. Every gym uses it because it never breaks, and your times compare to everyone else in the world.',
+    kw='rower rowing machine concept2 erg')
+add(id='schwinn-airdyne', shelf='cardio', group='Rowers and bikes', src='amazon', brand='Schwinn',
+    name='AD7 Airdyne bike', asin='B072Q63BDD',
+    blurb='A fan bike that gets harder the harder you push. Brutal intervals with zero impact on the joints.',
+    kw='air bike fan bike airdyne assault bike')
+
 # ---- DESK SETUP -------------------------------------------------------------
 add(id='uplift-v3', cover=True, shelf='desk', group='Desk and walking pad', src='impact', brand='UPLIFT Desk', name='V3 standing desk', pick=True,
     url='https://upliftdesk.sjv.io/c/7701857/2037399/22058?prodsku=UPL960-black-lam-60x24&u=http%3A%2F%2Fcheckout.upliftdesk.com%2F2-leg-standing-desk%2F&intsrc=APIG_17322',
@@ -474,6 +538,11 @@ add(id='fezibo-board', shelf='desk', group='Standing comfort', src='amazon', bra
     asin='B07HD838VP',
     blurb='A rocker board for the standing desk. Gives your legs something to do besides lock out.',
     kw='balance board standing desk wobble')
+
+add(id='gaiam-ball-chair', shelf='desk', group='Standing comfort', src='amazon', brand='Gaiam',
+    name='Balance ball chair', asin='B0007VB4NE',
+    blurb='For the hours you do sit. A ball keeps you shifting instead of slumping into one position.',
+    kw='balance ball chair office chair stability')
 
 # ---- HOME GYM ---------------------------------------------------------------
 add(id='kettlebell', budget=True, shelf='home-gym', group='Weights', src='amazon', brand='Amazon Basics', name='Cast iron kettlebell',
@@ -498,6 +567,27 @@ add(id='pullup-bar', budget=True, shelf='home-gym', group='Bodyweight', src='ama
     blurb='No drilling, adjustable width, and it holds more than you would think.',
     kw='pull up bar doorway chin up')
 
+add(id='flybird-bench', shelf='home-gym', group='Weights', src='amazon', brand='FLYBIRD',
+    name='WB5 adjustable bench', asin='B07DNYSJ8W',
+    blurb='Flat, incline and decline, rated to 800 pounds. Turns a pair of dumbbells into a full upper-body day.',
+    kw='weight bench adjustable bench home gym')
+add(id='prosource-slam-ball', shelf='home-gym', group='Weights', src='amazon', brand='ProsourceFit',
+    name='Slam ball', asin='B07FR67WS2',
+    blurb='Dead weight, no bounce. Pick it up, slam it, repeat. The conditioning tool that never needs a spotter.',
+    kw='slam ball medicine ball conditioning')
+add(id='ghb-rings', shelf='home-gym', group='Bodyweight', src='amazon', brand='GHB',
+    name='Wooden gymnastic rings', asin='B0B6C4N3XP',
+    blurb='Hang them from a beam or a tree. Ring rows and dips build the strength that gets you to a pull-up.',
+    kw='gymnastic rings rings pull up bodyweight')
+add(id='vinsguir-ab-wheel', budget=True, shelf='home-gym', group='Bodyweight', src='amazon', brand='Vinsguir',
+    name='Ab roller wheel', asin='B07RKW5H68',
+    blurb='Twenty dollars of honest core work. Start on your knees and roll out only as far as you can control.',
+    kw='ab wheel ab roller core abs')
+add(id='stall-mats', shelf='home-gym', group='The floor', src='amazon', brand='American Floor Mats',
+    name='Heavy-duty rubber stall mats', asin='B08RTWQCDQ',
+    blurb='Protects the garage floor and your weights. The classic home gym floor, because it holds up.',
+    kw='rubber mats stall mats floor home gym')
+
 # ---------------------------------------------------------------------------
 # Shelves, in page order. groups fixes the order of the subheadings, which is
 # also the order they appear in the header directory. photo is the lifestyle
@@ -507,7 +597,7 @@ SHELVES = [
     dict(key='gym-bag', short='Gym bag', sub='What you wear and carry',
          h2='What people wear|to class.',
          lead='None of it is required on day one. When the weights get heavy and the gymnastics gets harder, this is the short list.',
-         groups=['Shoes', 'Belts, sleeves and wraps', 'Grips, straps and ropes', 'Bags'],
+         groups=['Shoes', 'Belts, sleeves and wraps', 'Grips, straps and ropes', 'Bags and bottles'],
          photo='/images/training/pullup-bar.webp'),
     dict(key='supplements', short='Supplements', sub='Thorne &middot; 1st Phorm &middot; Swolverine &middot; Transparent Labs &middot; C4 &middot; Beam',
          h2='Supplements,|sorted by timing.',
@@ -517,7 +607,7 @@ SHELVES = [
     dict(key='meal-prep', short='Meal prep', sub='Trifecta &middot; Fuel Meals &middot; scales and containers',
          h2='Meal prep,|done for you or done yourself.',
          lead='Have the meals made, or make them on Sunday. Either way, a food scale is how you learn what a portion actually looks like.',
-         groups=['Meals made for you', 'Prep it yourself'],
+         groups=['Meals made for you', 'Prep it yourself', 'Kitchen tools'],
          photo='https://uploads-v2.trifectanutrition.com/wp-content/uploads/2024/11/07151512/PL0043CX-001-2.jpg'),
     dict(key='recovery', short='Recovery and mobility', sub='Sauna &middot; cold plunge &middot; mobility tools',
          h2='Recovery|and mobility at home.',
@@ -527,21 +617,21 @@ SHELVES = [
     dict(key='home-gym', short='Home gym', sub='For the garage',
          h2='The short list|for the garage.',
          lead='For the days you cannot make it in. You do not need much.',
-         groups=['Weights', 'Bodyweight'],
+         groups=['Weights', 'Bodyweight', 'The floor'],
          photo='/images/training/back-squat.webp'),
-    dict(key='cardio', short='Treadmills and cardio', sub='MERACH',
+    dict(key='cardio', short='Treadmills and cardio', sub='MERACH &middot; Concept2 &middot; Schwinn',
          h2='Treadmills,|rowers and bikes.',
-         lead='The MERACH lineup, starting with the treadmill in my garage.',
+         lead='The treadmill in my garage, the rower on our floor, and the machines in between.',
          groups=['Treadmills', 'Rowers and bikes'],
          photo='/images/gear/merach-t12-folded.jpg'),
-    dict(key='desk', short='Desk setup', sub='UPLIFT &middot; MERACH',
+    dict(key='desk', short='Desk setup', sub='UPLIFT &middot; MERACH &middot; Gaiam',
          h2='The desk I work at,|and what goes under it.',
          lead='If you sit for a living, this is the most useful thing on the page.',
          groups=['Desk and walking pad', 'Standing comfort'],
          photo='https://cdn11.bigcommerce.com/s-l85bzww3lo/products/890/images/38645/Final_MVT011_and_UPL964_Inclining_Walking_01496_2__22750.1787774251.1217.655.jpg'),
-    dict(key='watches', short='Watches', sub='Suunto',
+    dict(key='watches', short='Watches', sub='Suunto &middot; Garmin &middot; Polar',
          h2='Watches|and heart rate.',
-         lead='Steps, sleep, heart rate and training load, from a watch that keeps going between charges.',
+         lead='Steps, sleep, heart rate and training load. Suunto for battery life, Garmin for the app, and a chest strap for accurate heart rate.',
          groups=['GPS watches', 'Heart rate'],
          photo='/images/training/outdoor-run.webp'),
 ]
@@ -788,8 +878,8 @@ if __name__ == '__main__':
     if dup:
         raise SystemExit(f'duplicate ids: {dup}')
     amz = {p['asin'] for p in P if p['src'] == 'amazon'}
-    if len(amz) > 40:
-        raise SystemExit(f'{len(amz)} Amazon ASINs; /api/gear-amazon takes 40 per call')
+    if len(amz) > 90:
+        raise SystemExit(f'{len(amz)} Amazon ASINs; js/gear-amazon.js fetches them 30 at a time, keep the page reasonable')
     gear = ROOT / 'gear.html'
     inject(gear, 'BAR', render_bar())
     inject(gear, 'DIRECTORY', render_directory())

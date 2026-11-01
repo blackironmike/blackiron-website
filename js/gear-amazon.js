@@ -14,32 +14,45 @@
     if (asins.indexOf(a) === -1) asins.push(a);
   });
   asins.sort();
-  fetch('/api/gear-amazon?asins=' + asins.join(','))
-    .then(function (r) { return r.ok ? r.json() : null; })
-    .then(function (data) {
-      if (!data || !data.items) return;
-      tiles.forEach(function (t) {
-        var it = data.items[t.getAttribute('data-asin')];
-        if (!it) return;
-        var well = t.querySelector('.amz-img');
-        if (it.img && well && !well.firstChild) {
-          var img = document.createElement('img');
-          img.src = it.img;
-          img.alt = '';
-          img.loading = 'lazy';
-          img.decoding = 'async';
-          img.onload = function () { well.classList.add('is-filled'); };
-          well.appendChild(img);
+
+  function apply(data) {
+    if (!data || !data.items) return;
+    tiles.forEach(function (t) {
+      var it = data.items[t.getAttribute('data-asin')];
+      if (!it) return;
+      var well = t.querySelector('.amz-img');
+      if (it.img && well && !well.firstChild) {
+        var img = document.createElement('img');
+        img.src = it.img;
+        img.alt = '';
+        img.loading = 'lazy';
+        img.decoding = 'async';
+        img.onload = function () { well.classList.add('is-filled'); };
+        well.appendChild(img);
+      }
+      if (it.price) {
+        var b = t.querySelector('.amz-price');
+        if (b) {
+          b.textContent = '$' + Number(it.price).toFixed(2).replace(/\.00$/, '');
+          t.classList.remove('no-price');
         }
-        if (it.price) {
-          var b = t.querySelector('.amz-price');
-          if (b) {
-            b.textContent = '$' + Number(it.price).toFixed(2).replace(/\.00$/, '');
-            t.classList.remove('no-price');
-          }
-        }
-        if (it.url) t.href = it.url;
-      });
-    })
-    .catch(function () {});
+      }
+      if (it.url) t.href = it.url;
+    });
+  }
+
+  /* The endpoint takes 40 ASINs per call. Chunks are cut from the sorted
+     list so every visitor asks for the same chunks, which keeps them edge
+     cache hits, and they run one after another so the API never sees more
+     than one call at a time from a page. */
+  var CHUNK = 30, chunks = [];
+  for (var i = 0; i < asins.length; i += CHUNK) chunks.push(asins.slice(i, i + CHUNK));
+  chunks.reduce(function (p, c) {
+    return p.then(function () {
+      return fetch('/api/gear-amazon?asins=' + c.join(','))
+        .then(function (r) { return r.ok ? r.json() : null; })
+        .then(apply)
+        .catch(function () {});
+    });
+  }, Promise.resolve());
 })();
