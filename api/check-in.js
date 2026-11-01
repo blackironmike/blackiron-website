@@ -35,6 +35,18 @@ const CHOICES = {
 
 const UTM_KEYS = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content'];
 
+// Membership prices live here, not in the site's HTML, so the /pricing page
+// can only show them after someone checks in. Change a price here and it
+// changes on /pricing. The $30 day pass stays public on the site on purpose.
+const PRICING = {
+  standard: { amount: '$200', unit: '/mo' },
+  unlimited: { amount: '$240', unit: '/mo' },
+  openGym: { amount: '$50', unit: '/mo' },
+  personalTraining: { amount: '$120–150', unit: '/hour' },
+  foundations: { amount: '$360 or $720', unit: ' one time' },
+  nutrition: { amount: '$200', unit: '/mo', note: 'Founding rate, then $250/mo' },
+};
+
 // A path the visitor sent us, kept only if it looks like one of our pages.
 function cleanPath(v) {
   const p = clean(v, 200);
@@ -120,14 +132,17 @@ export default async function handler(req, res) {
   const start = pick('start');
   const contactTime = pick('contact_time');
   const notes = clean(b.notes, 1000);
+  // "pricing" is the gate on /pricing: it asks fewer questions and answers
+  // with the prices. Everything else is the full check-in on /book.
+  const forPricing = clean(b.intent, 20) === 'pricing';
 
   const errors = {};
   if (!name) errors.name = 'Please add your name.';
   if (!phone) errors.phone = 'Please add a US mobile number.';
   if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) errors.email = 'Please add a valid email.';
-  if (!goal) errors.goal = 'Pick the one that fits best.';
   if (!interest) errors.interest = 'Pick the one that fits best.';
-  if (!start) errors.start = 'Pick the one that fits best.';
+  if (!forPricing && !goal) errors.goal = 'Pick the one that fits best.';
+  if (!forPricing && !start) errors.start = 'Pick the one that fits best.';
   if (Object.keys(errors).length) return res.status(400).json({ error: 'invalid', fields: errors });
 
   const [firstName, ...rest] = name.split(/\s+/);
@@ -136,6 +151,7 @@ export default async function handler(req, res) {
   UTM_KEYS.forEach((k) => { const v = clean(b[k], 120); if (v) utm[k] = v; });
 
   const tags = ['website check-in'];
+  if (forPricing) tags.push('pricing request');
   if (start === 'Just looking') tags.push('check-in: just looking');
   if (interest === 'Personal training') tags.push('interest: personal training');
   if (interest === 'Group classes') tags.push('interest: group classes');
@@ -160,15 +176,16 @@ export default async function handler(req, res) {
     if (!contactId) throw new Error('GHL upsert returned no contact id');
 
     const lines = [
-      'Website check-in (/book)',
-      `What brings them in: ${goal}`,
+      forPricing ? 'Unlocked prices on /pricing' : 'Website check-in (/book)',
+      goal ? `What brings them in: ${goal}` : null,
       `Interested in: ${interest}`,
-      `Wants to start: ${start}`,
+      start ? `Wants to start: ${start}` : null,
       `Best time to reach: ${contactTime || 'No preference'}`,
       notes ? `Anything we should know: ${notes}` : null,
       '',
       `Lead source: ${source.label}`,
-      fromPage ? `Clicked "Talk to a Coach" on: ${pretty(fromPage)}` : 'Clicked from: came straight to /book',
+      forPricing ? null : (fromPage ? `Clicked "Talk to a Coach" on: ${pretty(fromPage)}` : 'Clicked from: came straight to /book'),
+      forPricing && fromPage ? `Came to /pricing from: ${pretty(fromPage)}` : null,
       landingPage && landingPage !== fromPage && landingPage !== '/book' ? `First page this visit: ${pretty(landingPage)}` : null,
       Object.keys(utm).length ? `Ad details: ${Object.entries(utm).map(([k, v]) => `${k}=${v}`).join(', ')}` : null,
     ].filter(Boolean);
@@ -177,7 +194,7 @@ export default async function handler(req, res) {
       body: JSON.stringify({ body: lines.join('\n') }),
     });
 
-    return res.status(200).json({ ok: true, firstName });
+    return res.status(200).json(forPricing ? { ok: true, firstName, pricing: PRICING } : { ok: true, firstName });
   } catch (e) {
     console.error('check-in failed', e.message);
     return res.status(502).json({ error: 'upstream' });

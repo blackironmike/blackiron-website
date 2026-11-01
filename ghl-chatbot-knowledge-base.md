@@ -66,7 +66,7 @@ Yes. You work with a real human coach: weekly check-ins, honest feedback, and ta
 
 ## How much does nutrition coaching cost?
 
-Nutrition coaching is $200 a month at the founding rate, which is open now while the founding group fills. After that it goes to $250 a month. It runs month to month, with or without a gym membership.
+Nutrition coaching has a founding rate that is open now while the founding group fills, and the rate goes up after that. You can see every plan and price at https://www.blackironathletics.com/pricing after a quick check-in, and a coach will reach out to help you pick the one that fits. Or call or text (972) 785-7036. It runs month to month, with or without a gym membership.
 
 ## Can I do nutrition coaching without a gym membership?
 
@@ -74,27 +74,27 @@ Yes, nutrition coaching is available as a standalone service. It works anywhere,
 
 ## What membership options do you offer?
 
-We offer four plans: Standard ($200/month, 3 classes a week), Unlimited + Open Gym ($240/month, most popular), Open Gym Only ($50/month), and Personal Training ($120–150/hour). Visit https://www.blackironathletics.com/getting-started for details.
+We offer four plans: Standard (3 classes a week), Unlimited + Open Gym (our most popular), Open Gym Only, and Personal Training. You can see every plan and price at https://www.blackironathletics.com/pricing after a quick check-in, and a coach will reach out to help you pick the one that fits. Or call or text (972) 785-7036.
 
 ## What is the Standard membership?
 
-The Standard plan is $200 a month. It includes 3 coach-led Strength and Conditioning classes per week, a monthly body composition scan, and community events.
+The Standard plan includes 3 coach-led Strength and Conditioning classes per week, a monthly body composition scan, and community events.
 
 ## What is the Unlimited + Open Gym membership?
 
-Our most popular plan, at $240 a month. It includes unlimited coach-led classes, Open Gym access 7 days a week between classes and after hours, private gym access, monthly body composition scans, and community events.
+Our most popular plan. It includes unlimited coach-led classes, Open Gym access 7 days a week between classes and after hours, private gym access, monthly body composition scans, and community events.
 
 ## What is the Open Gym Only membership?
 
-The Open Gym Only plan is $50 a month. It includes Open Gym access 7 days a week between classes and after hours, private gym access, and access to all our structured programming for self-directed training.
+The Open Gym Only plan includes Open Gym access 7 days a week between classes and after hours, private gym access, and access to all our structured programming for self-directed training.
 
 ## What is the Personal Training membership?
 
-Personal Training runs $120–150 per hour. One coach, one plan: 1-on-1 sessions with customized programming, individual accountability, nutrition guidance, monthly body composition scans, and community events.
+Personal Training is one coach, one plan: 1-on-1 sessions with customized programming, individual accountability, nutrition guidance, monthly body composition scans, and community events.
 
 ## How much does a membership cost?
 
-Standard is $200 a month (3 classes a week). Unlimited + Open Gym is $240 a month — our most popular plan. Open Gym Only is $50 a month. Personal Training runs $120–150 per hour. Every membership starts with a free consultation and the Foundations week, and a $30 day pass is credited toward your first month if you join. Book your free consultation at https://www.blackironathletics.com/book or buy a day pass online at https://blackiron.wodify.com/OnlineSalesPage/Main?q=Classes%7COnlineMembershipId%3D235166%26LocationId%3D10409
+It depends on the plan: Standard, Unlimited + Open Gym, Open Gym Only, or Personal Training. You can see every plan and price at https://www.blackironathletics.com/pricing after a quick check-in, and a coach will reach out to help you pick the one that fits. Or call or text (972) 785-7036. Every membership starts with a free consultation and the Foundations week, and a $30 day pass is credited toward your first month if you join. Book your free consultation at https://www.blackironathletics.com/book or buy a day pass online at https://blackiron.wodify.com/OnlineSalesPage/Main?q=Classes%7COnlineMembershipId%3D235166%26LocationId%3D10409
 
 ## How do I get started?
 
@@ -346,7 +346,7 @@ Yes — right next door. We train at 279 Main St, Suite 122 today, and our new, 
 
 ## How much do gyms in Frisco cost?
 
-Gym prices in Frisco range from about $10 a month at big-box gyms to $200 or more at boutique studios. We wrote an honest breakdown at https://www.blackironathletics.com/blog/gym-membership-cost-frisco-tx. Our own numbers: Standard is $200 a month, Unlimited + Open Gym is $240 a month, Open Gym Only is $50 a month, and Personal Training runs $120–150 per hour. A free consultation walks you through what fits — zero pressure.
+Gym prices in Frisco range from about $10 a month at big-box gyms to $200 or more at boutique studios. We wrote an honest breakdown at https://www.blackironathletics.com/blog/gym-membership-cost-frisco-tx. Our own prices are at https://www.blackironathletics.com/pricing after a quick check-in, and a coach will help you pick what fits. Zero pressure.
 
 ## I am nervous about starting
 

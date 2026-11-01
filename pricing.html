@@ -5,26 +5,26 @@
     <!-- CONTRACT: keep this exact viewport tag — inject-pixel.js insertion marker -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Membership Pricing | Black Iron Athletics — Frisco, TX</title>
-    <meta name="description" content="Membership pricing at Black Iron Athletics in Frisco, TX — in writing: Standard $200/mo, Unlimited + Open Gym $240/mo, Open Gym $50/mo, personal training $120–150/hour. Try any class with a $30 day pass, credited toward your first month.">
+    <meta name="description" content="Membership plans at Black Iron Athletics in Frisco, TX: Standard, Unlimited + Open Gym, Open Gym Only, and personal training. See every price after a quick check-in, or try any class with a $30 day pass.">
     <meta name="geo.region" content="US-TX">
     <meta name="geo.placename" content="Frisco">
     <meta name="geo.position" content="33.15035;-96.89026">
     <link rel="canonical" href="https://www.blackironathletics.com/pricing">
     <!-- Open Graph -->
     <meta property="og:title" content="Membership Pricing | Black Iron Athletics — Frisco, TX">
-    <meta property="og:description" content="Membership pricing at Black Iron Athletics in Frisco, TX — in writing: Standard $200/mo, Unlimited + Open Gym $240/mo, Open Gym $50/mo, personal training $120–150/hour. Try any class with a $30 day pass, credited toward your first month.">
+    <meta property="og:description" content="Membership plans at Black Iron Athletics in Frisco, TX: Standard, Unlimited + Open Gym, Open Gym Only, and personal training. See every price after a quick check-in, or try any class with a $30 day pass.">
     <meta property="og:url" content="https://www.blackironathletics.com/pricing">
-    <meta property="og:image" content="https://www.blackironathletics.com/images/social/2026-08-05-pricing-share.jpg">
+    <meta property="og:image" content="https://www.blackironathletics.com/images/social/2026-08-05-default-share.jpg">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
-    <meta property="og:image:alt" content="A member under a loaded barbell at Black Iron Athletics. Headline: What it costs. In writing. Standard $200, Unlimited plus Open Gym $240, Open Gym $50.">
+    <meta property="og:image:alt" content="Members training on the floor at Black Iron Athletics in Frisco, Texas.">
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="Black Iron Athletics">
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Membership Pricing | Black Iron Athletics — Frisco, TX">
-    <meta name="twitter:description" content="Membership pricing at Black Iron Athletics in Frisco, TX — in writing: Standard $200/mo, Unlimited + Open Gym $240/mo, Open Gym $50/mo, personal training $120–150/hour. Try any class with a $30 day pass, credited toward your first month.">
-    <meta name="twitter:image" content="https://www.blackironathletics.com/images/social/2026-08-05-pricing-share.jpg">
+    <meta name="twitter:description" content="Membership plans at Black Iron Athletics in Frisco, TX: Standard, Unlimited + Open Gym, Open Gym Only, and personal training. See every price after a quick check-in, or try any class with a $30 day pass.">
+    <meta name="twitter:image" content="https://www.blackironathletics.com/images/social/2026-08-05-default-share.jpg">
     <link rel="icon" type="image/png" href="/images/anvil-favicon.png">
     <link rel="apple-touch-icon" href="/images/anvil-favicon.png">
     <meta name="theme-color" content="#000000">
@@ -44,6 +44,41 @@
     .compare-col.us li{color:var(--white)}
     .compare-close{margin-top:26px;max-width:66ch}
     @media (max-width:760px){.compare{grid-template-columns:1fr}}
+    /* ── Price gate: the four plans show, their prices wait behind a short
+          check-in. Prices come back from /api/check-in, not from this page. */
+    .pslot{min-height:72px;display:flex;align-items:flex-start}
+    .pslot .pnum{margin:20px 0 24px}
+    .unlock{display:grid;gap:28px;margin-top:28px;border:1px solid var(--steel-line);background:var(--coal);
+      padding:clamp(22px,3.4vw,40px);scroll-margin-top:90px}
+    @media(min-width:960px){.unlock{grid-template-columns:.9fr 1.1fr;align-items:start}}
+    .unlock h3{font-size:clamp(1.6rem,3.4vw,2.2rem);margin:0 0 12px}
+    .unlock-copy p{color:var(--gray);margin:0;max-width:44ch}
+    .unlock .ci-row{display:grid;gap:14px}
+    @media(min-width:620px){.unlock .ci-row.two{grid-template-columns:1fr 1fr}}
+    .unlock .ci-field{margin:0 0 18px}
+    .unlock .ci-field > label,.unlock .ci-field legend{display:block;font-size:11px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:var(--white);margin:0 0 9px;padding:0}
+    .unlock fieldset.ci-field{border:0;padding:0;min-width:0}
+    .unlock input[type=text],.unlock input[type=tel],.unlock input[type=email]{width:100%;background:var(--black);border:1px solid var(--steel-line);color:var(--white);font-size:16px;padding:14px;border-radius:0}
+    .unlock input:focus{outline:none;border-color:var(--white)}
+    .unlock .chips{display:flex;flex-wrap:wrap;gap:8px}
+    .unlock .chip{position:relative}
+    .unlock .chip input{position:absolute;opacity:0;width:1px;height:1px}
+    .unlock .chip span{display:inline-block;border:1px solid var(--steel-line);background:var(--black);color:var(--gray);font-size:.9rem;font-weight:600;padding:11px 14px;cursor:pointer}
+    .unlock .chip input:checked + span{border-color:var(--yellow);color:var(--white)}
+    .unlock .chip input:focus-visible + span{outline:2px solid var(--white);outline-offset:2px}
+    .unlock .ci-err{display:none;color:var(--white);font-size:.82rem;margin-top:7px}
+    .unlock .ci-field.bad .ci-err{display:block}
+    .unlock .ci-field.bad input{border-color:var(--white)}
+    .unlock .ci-hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+    .unlock .ci-submit{width:100%;font-size:15px;padding:20px 24px}
+    .unlock .ci-submit[disabled]{opacity:.6;cursor:wait}
+    .unlock .ci-consent{color:var(--gray);font-size:.8rem;margin:14px 0 0}
+    .unlock .ci-fail{display:none;color:var(--white);font-size:.9rem;margin:14px 0 0}
+    .unlock .ci-fail a{color:var(--white);font-weight:700}
+    .unlock-done{display:none}
+    .unlock.is-open .unlock-form{display:none}
+    .unlock.is-open .unlock-done{display:block}
+    .unlock-done p{color:var(--gray);margin:0;max-width:52ch}
     </style>
     <script defer src="/_vercel/insights/script.js"></script>
 </head>
@@ -145,8 +180,8 @@
     <section class="page-header no-top">
         <div class="wrap">
             <span class="eyebrow rv">Membership</span>
-            <h1 class="rv">What it costs.<br><span class="outline">In writing.</span></h1>
-            <p class="lead rv">We publish our prices because we&rsquo;re proud of what they buy. Coaching is the product &mdash; a coach who knows your name, programming that&rsquo;s planned, and a floor where you belong. If you&rsquo;re comparing us to a $10 big-box, we&rsquo;re not it. On purpose.</p>
+            <h1 class="rv">What it costs.<br><span class="outline">One quick step.</span></h1>
+            <p class="lead rv">Coaching is the product &mdash; a coach who knows your name, programming that&rsquo;s planned, and a floor where you belong. Tell us a little about you and every plan and price is yours in about a minute. If you&rsquo;re comparing us to a $10 big-box, we&rsquo;re not it. On purpose.</p>
         </div>
     </section>
 
@@ -159,7 +194,7 @@
                 <article class="pcard rv">
                     <h3>Standard</h3>
                     <p class="who">For the three-days-a-week athlete building a rhythm.</p>
-                    <b class="pnum">$200<span>/mo</span></b>
+                    <div class="pslot" data-price="standard"><a class="pnum-lock" href="#unlock" data-unlock><svg viewBox="0 0 12 14" fill="none" aria-hidden="true"><rect x="1" y="6" width="10" height="7" stroke="currentColor" stroke-width="1.5"/><path d="M3.5 6V4a2.5 2.5 0 0 1 5 0v2" stroke="currentColor" stroke-width="1.5"/></svg>See the price</a></div>
                     <ul>
                         <li>3 Strength &amp; Conditioning classes per week</li>
                         <li>A coach on every rep</li>
@@ -171,7 +206,7 @@
                     <span class="tag">Most Popular</span>
                     <h3>Unlimited + Open Gym</h3>
                     <p class="who">For regulars who want every class and the open floor too.</p>
-                    <b class="pnum">$240<span>/mo</span></b>
+                    <div class="pslot" data-price="unlimited"><a class="pnum-lock" href="#unlock" data-unlock><svg viewBox="0 0 12 14" fill="none" aria-hidden="true"><rect x="1" y="6" width="10" height="7" stroke="currentColor" stroke-width="1.5"/><path d="M3.5 6V4a2.5 2.5 0 0 1 5 0v2" stroke="currentColor" stroke-width="1.5"/></svg>See the price</a></div>
                     <ul>
                         <li>Unlimited Strength &amp; Conditioning classes</li>
                         <li>Everything in Standard</li>
@@ -181,7 +216,7 @@
                 <article class="pcard rv">
                     <h3>Open Gym Only</h3>
                     <p class="who">For experienced lifters who run their own program.</p>
-                    <b class="pnum">$50<span>/mo</span></b>
+                    <div class="pslot" data-price="openGym"><a class="pnum-lock" href="#unlock" data-unlock><svg viewBox="0 0 12 14" fill="none" aria-hidden="true"><rect x="1" y="6" width="10" height="7" stroke="currentColor" stroke-width="1.5"/><path d="M3.5 6V4a2.5 2.5 0 0 1 5 0v2" stroke="currentColor" stroke-width="1.5"/></svg>See the price</a></div>
                     <ul>
                         <li>Self-directed training</li>
                         <li>Access to all our programming</li>
@@ -192,7 +227,7 @@
                 <article class="pcard rv">
                     <h3>Personal Training</h3>
                     <p class="who">For specific goals, a tight schedule, or a private track.</p>
-                    <b class="pnum rng">$120&ndash;150<span>/hour</span></b>
+                    <div class="pslot" data-price="personalTraining" data-rng><a class="pnum-lock" href="#unlock" data-unlock><svg viewBox="0 0 12 14" fill="none" aria-hidden="true"><rect x="1" y="6" width="10" height="7" stroke="currentColor" stroke-width="1.5"/><path d="M3.5 6V4a2.5 2.5 0 0 1 5 0v2" stroke="currentColor" stroke-width="1.5"/></svg>See the price</a></div>
                     <ul>
                         <li>One coach, one plan</li>
                         <li>Customized programming</li>
@@ -200,6 +235,38 @@
                         <li>Nutrition guidance</li>
                     </ul>
                 </article>
+            </div>
+            <div class="unlock rv" id="unlock">
+                <div class="unlock-copy">
+                    <span class="eyebrow eyebrow-y">See every price</span>
+                    <h3>One quick step.</h3>
+                    <p>Tell us who you are and the prices show up right here. A coach will reach out as soon as possible to help you pick the plan that fits. No automated texts.</p>
+                </div>
+                <form class="unlock-form" id="unlock-form" novalidate>
+                    <div class="ci-field" data-f="name"><label for="u-name">Your name</label><input type="text" id="u-name" name="name" autocomplete="name" required><span class="ci-err">Please add your name.</span></div>
+                    <div class="ci-row two">
+                        <div class="ci-field" data-f="phone"><label for="u-phone">Mobile</label><input type="tel" id="u-phone" name="phone" autocomplete="tel" inputmode="tel" required><span class="ci-err">Please add a US mobile number.</span></div>
+                        <div class="ci-field" data-f="email"><label for="u-email">Email</label><input type="email" id="u-email" name="email" autocomplete="email" inputmode="email" required><span class="ci-err">Please add a valid email.</span></div>
+                    </div>
+                    <fieldset class="ci-field" data-f="interest">
+                        <legend>What sounds right?</legend>
+                        <div class="chips">
+                            <label class="chip"><input type="radio" name="interest" value="group"><span>Group classes</span></label>
+                            <label class="chip"><input type="radio" name="interest" value="pt"><span>Personal training</span></label>
+                            <label class="chip"><input type="radio" name="interest" value="unsure"><span>Not sure yet</span></label>
+                        </div>
+                        <span class="ci-err">Pick the one that fits best.</span>
+                    </fieldset>
+                    <div class="ci-hp" aria-hidden="true"><label for="u-company">Company</label><input type="text" id="u-company" name="company" tabindex="-1" autocomplete="off"></div>
+                    <button class="btn btn-y ci-submit" type="submit">Show me the prices</button>
+                    <p class="ci-consent">By sending this, you agree a Black Iron coach can call or text you at the number above.</p>
+                    <p class="ci-fail" role="alert">That didn&rsquo;t go through on our end. Call or text us at <a href="tel:+19727857036">(972) 785-7036</a> and we&rsquo;ll walk you through pricing.</p>
+                </form>
+                <div class="unlock-done" id="unlock-done" tabindex="-1" aria-live="polite">
+                    <span class="eyebrow eyebrow-y">Unlocked</span>
+                    <h3>There you go, <span id="u-first">friend</span>.</h3>
+                    <p>Every price is in the plans above. A coach will reach out as soon as possible to help you pick the one that fits.</p>
+                </div>
             </div>
             <aside class="pass rv" aria-label="Day pass offer">
                 <b class="pass-num">$30</b>
@@ -276,7 +343,7 @@
             <div class="steps">
                 <div class="step rv">
                     <em>01</em>
-                    <h3>Book a free consult</h3>
+                    <h3>Talk to a coach</h3>
                     <p>A conversation with a coach. Goals, history, and what your week actually looks like. No sales pitch &mdash; if we&rsquo;re not the right fit, we&rsquo;ll say so.</p>
                 </div>
                 <div class="step rv">
@@ -336,11 +403,11 @@
     </section>
 
     <!-- ============ FINAL CTA ============ -->
-    <section class="final" aria-label="Book a free consult">
+    <section class="final" aria-label="Talk to a coach">
         <div class="slash" aria-hidden="true"></div>
         <div class="final-in wrap">
-            <h2 class="rv">The price is<br><span class="outline">on the wall.</span></h2>
-            <p class="lead rv">Book the free consult. We&rsquo;ll talk goals, walk the floor, and help you pick the right plan &mdash; and if we&rsquo;re not the right fit, we&rsquo;ll tell you.</p>
+            <h2 class="rv">Questions about<br><span class="outline">price?</span></h2>
+            <p class="lead rv">Ask a coach. We&rsquo;ll talk goals, walk the floor, and help you pick the right plan &mdash; and if we&rsquo;re not the right fit, we&rsquo;ll tell you.</p>
             <div class="final-ctas rv">
                 <a class="btn btn-y" href="/book#checkin">Talk to a Coach</a>
                 <p class="alt-offer">Or just try it &mdash; <a href="https://blackiron.wodify.com/OnlineSalesPage/Main?q=Classes%7COnlineMembershipId%3D235166%26LocationId%3D10409" target="_blank" rel="noopener" onclick="if(window.fbq)fbq('trackCustom','DayPassClick');">$30 day pass</a>, credited toward your first month.</p>
@@ -419,7 +486,7 @@
           "@id": "https://www.blackironathletics.com/pricing",
           "url": "https://www.blackironathletics.com/pricing",
           "name": "Membership Pricing | Black Iron Athletics — Frisco, TX",
-          "description": "Membership pricing at Black Iron Athletics in Frisco, TX: Standard $200 per month, Unlimited + Open Gym $240 per month, Open Gym Only $50 per month, personal training $120-150 per hour, and a $30 day pass credited toward the first month.",
+          "description": "Membership plans at Black Iron Athletics in Frisco, TX: Standard, Unlimited + Open Gym, Open Gym Only, and personal training. See every price after a quick check-in, or try any class with a $30 day pass.",
           "isPartOf": {
             "@type": "WebSite",
             "name": "Black Iron Athletics",
@@ -434,54 +501,22 @@
             {
               "@type": "Offer",
               "name": "Standard Membership",
-              "description": "3 Strength and Conditioning classes per week, a monthly body-composition scan, and community events.",
-              "price": "200",
-              "priceCurrency": "USD",
-              "priceSpecification": {
-                "@type": "UnitPriceSpecification",
-                "price": "200",
-                "priceCurrency": "USD",
-                "unitText": "month"
-              }
+              "description": "3 Strength and Conditioning classes per week, a monthly body-composition scan, and community events."
             },
             {
               "@type": "Offer",
               "name": "Unlimited + Open Gym Membership",
-              "description": "Unlimited Strength and Conditioning classes, everything in Standard, and open gym access 7 days a week.",
-              "price": "240",
-              "priceCurrency": "USD",
-              "priceSpecification": {
-                "@type": "UnitPriceSpecification",
-                "price": "240",
-                "priceCurrency": "USD",
-                "unitText": "month"
-              }
+              "description": "Unlimited Strength and Conditioning classes, everything in Standard, and open gym access 7 days a week."
             },
             {
               "@type": "Offer",
               "name": "Open Gym Only Membership",
-              "description": "Self-directed training with access to all Black Iron programming, 7 days a week between classes and after hours.",
-              "price": "50",
-              "priceCurrency": "USD",
-              "priceSpecification": {
-                "@type": "UnitPriceSpecification",
-                "price": "50",
-                "priceCurrency": "USD",
-                "unitText": "month"
-              }
+              "description": "Self-directed training with access to all Black Iron programming, 7 days a week between classes and after hours."
             },
             {
               "@type": "Offer",
               "name": "Personal Training",
-              "description": "One coach, one plan: customized programming, individual accountability, and nutrition guidance.",
-              "priceCurrency": "USD",
-              "priceSpecification": {
-                "@type": "PriceSpecification",
-                "minPrice": 120,
-                "maxPrice": 150,
-                "priceCurrency": "USD",
-                "unitText": "hour"
-              }
+              "description": "One coach, one plan: customized programming, individual accountability, and nutrition guidance."
             }
           ]
         },
@@ -768,6 +803,85 @@
 })();
 </script>
 
+<script>
+/* Price gate. The four prices are not in this page. Sending the short form
+   (or having sent it before on this device) asks /api/check-in for them and
+   drops them into the plan cards. The lead goes to GHL like any check-in,
+   tagged "pricing request", and a coach follows up by hand. */
+(function () {
+  var KEY = 'bia_pricing_v1';
+  var gate = document.getElementById('unlock'), form = document.getElementById('unlock-form');
+  if (!gate || !form) return;
+  function fill(p, first) {
+    [].forEach.call(document.querySelectorAll('.pslot[data-price]'), function (el) {
+      var x = p && p[el.getAttribute('data-price')]; if (!x) return;
+      var b = document.createElement('b'); b.className = 'pnum' + (el.hasAttribute('data-rng') ? ' rng' : '');
+      b.textContent = x.amount; var u = document.createElement('span'); u.textContent = x.unit; b.appendChild(u);
+      el.innerHTML = ''; el.appendChild(b);
+    });
+    document.getElementById('u-first').textContent = first || 'friend';
+    gate.classList.add('is-open');
+  }
+  try { var saved = JSON.parse(localStorage.getItem(KEY) || 'null'); if (saved && saved.pricing) fill(saved.pricing, saved.firstName); } catch (e) {}
+
+  [].forEach.call(document.querySelectorAll('[data-unlock]'), function (a) {
+    a.addEventListener('click', function (e) {
+      e.preventDefault(); gate.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      var n = document.getElementById('u-name'); if (n && !gate.classList.contains('is-open')) setTimeout(function () { n.focus({ preventScroll: true }); }, 450);
+    });
+  });
+  if (location.hash === '#unlock') setTimeout(function () { gate.scrollIntoView({ block: 'start' }); }, 50);
+
+  var btn = form.querySelector('.ci-submit'), fail = form.querySelector('.ci-fail'), started = false;
+  form.addEventListener('input', function (e) {
+    if (!started) { started = true; if (typeof fbq === 'function') fbq('trackCustom', 'PricingGateStart'); }
+    var f = e.target.closest('.ci-field'); if (f) f.classList.remove('bad');
+  });
+  form.addEventListener('change', function (e) { var f = e.target.closest('.ci-field'); if (f) f.classList.remove('bad'); });
+  function val(n) { var el = form.elements[n]; return el ? (el.value || '').trim() : ''; }
+  function mark(bad) {
+    bad.forEach(function (k) { var f = form.querySelector('[data-f="' + k + '"]'); if (f) f.classList.add('bad'); });
+    var first = form.querySelector('.ci-field.bad'); if (first) { var i = first.querySelector('input'); if (i) i.focus(); }
+  }
+  form.addEventListener('submit', function (e) {
+    e.preventDefault(); fail.style.display = 'none';
+    var c = form.querySelector('input[name="interest"]:checked');
+    var d = { intent: 'pricing', name: val('name'), phone: val('phone'), email: val('email'), interest: c ? c.value : '', company: val('company') };
+    var bad = [], digits = d.phone.replace(/\D/g, '');
+    if (!d.name) bad.push('name');
+    if (!(digits.length === 10 || (digits.length === 11 && digits[0] === '1'))) bad.push('phone');
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(d.email)) bad.push('email');
+    if (!d.interest) bad.push('interest');
+    if (bad.length) { mark(bad); return; }
+    var params = new URLSearchParams(location.search);
+    ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content'].forEach(function (k) {
+      var v = params.get(k); try { v = v || sessionStorage.getItem(k); } catch (err) {} if (v) d[k] = v; });
+    try {
+      var ref = document.referrer ? new URL(document.referrer) : null;
+      if (ref && ref.host === location.host && ref.pathname !== location.pathname) d.from_page = ref.pathname;
+      d.landing_page = sessionStorage.getItem('bia_landing') || location.pathname;
+      d.landing_ref = sessionStorage.getItem('bia_landing_ref') || (ref && ref.host !== location.host ? document.referrer : '');
+    } catch (err) {}
+    if (params.get('fbclid')) d.fbclid = '1';
+    btn.disabled = true; btn.textContent = 'One sec…';
+    fetch('/api/check-in', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(d) })
+      .then(function (r) { return r.json().then(function (j) { return { ok: r.ok, j: j }; }); })
+      .then(function (res) {
+        if (!res.ok) {
+          if (res.j && res.j.fields) { mark(Object.keys(res.j.fields)); btn.disabled = false; btn.textContent = 'Show me the prices'; return; }
+          throw new Error('server');
+        }
+        if (!res.j || !res.j.pricing) throw new Error('no pricing');
+        if (typeof fbq === 'function') fbq('track', 'Lead', { content_name: 'Pricing unlock', content_category: d.interest });
+        var first = res.j.firstName || d.name.split(/\s+/)[0];
+        try { localStorage.setItem(KEY, JSON.stringify({ pricing: res.j.pricing, firstName: first })); } catch (err) {}
+        fill(res.j.pricing, first);
+        var grid = document.querySelector('.price-grid'); if (grid) grid.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      })
+      .catch(function () { btn.disabled = false; btn.textContent = 'Show me the prices'; fail.style.display = 'block'; });
+  });
+})();
+</script>
 <script src="https://link.msgsndr.com/js/form_embed.js" type="text/javascript" defer></script>
 <script src="https://widgets.leadconnectorhq.com/loader.js" data-resources-url="https://widgets.leadconnectorhq.com/chat-widget/loader.js" data-widget-id="6995d6d76e6009387f78d31e" defer></script>
     <!-- Thumb bar: reveal once the hero's own consult button has scrolled by -->
