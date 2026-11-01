@@ -37,12 +37,13 @@ const GHL_BASE = 'https://services.leadconnectorhq.com';
 const KB_VERSION = '2021-04-15';
 const SOURCE_FILE = '/ghl-chatbot-knowledge-base.md';
 
-/* The live knowledge base, confirmed by Michael. The location has two, and the
-   other one ("Existing knowledge base") is not what the chatbot reads. Named
+/* The live knowledge base: the clean one built with ?createKb, which is what
+   the agent reads and what docs/ghl-update-guide.md promises the default
+   push hits. The older bases still exist beside it and are not read. Named
    rather than positional on purpose: taking the first of the list would send
    ninety records somewhere nobody looks if GHL ever reorders them. Override
    with ?kb=<name>. */
-const DEFAULT_KB_NAME = 'Black Iron Knowledge base';
+const DEFAULT_KB_NAME = 'Black Iron Knowledge base (synced)';
 /* Ninety creates have to finish inside Vercel's function ceiling, so the
    spacing is set from that rather than from caution. At 150ms plus request
    latency this runs around 35 seconds and sits near 3 requests a second,
