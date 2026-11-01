@@ -37,7 +37,7 @@ const UTM_KEYS = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content'];
 
 // Membership prices live here, not in the site's HTML, so the /pricing page
 // can only show them after someone checks in. Change a price here and it
-// changes on /pricing. The $30 day pass stays public on the site on purpose.
+// changes on /pricing.
 const PRICING = {
   standard: { amount: '$200', unit: '/mo' },
   unlimited: { amount: '$240', unit: '/mo' },
