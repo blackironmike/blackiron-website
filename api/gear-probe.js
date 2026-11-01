@@ -172,6 +172,8 @@ module.exports = async (req, res) => {
           const name = String(x.Name || '');
           const base = name.replace(/\s+-\s+[^-]*$/, '').replace(/^[^:]+:\s*/, '');
           if (terms.length && !terms.some(t => name.toLowerCase().includes(t))) continue;
+          if (q.min && Number(x.CurrentPrice) < Number(q.min)) continue;
+          if (q.instock && x.StockAvailability !== 'InStock') continue;
           if (seen.has(base)) continue;
           seen.add(base);
           lines.push([x.CatalogItemId || x.Id, x.CurrentPrice, x.OriginalPrice || '', x.StockAvailability === 'InStock' ? 'in' : 'out', name.slice(0, 110)].join(' | '));
@@ -244,6 +246,11 @@ module.exports = async (req, res) => {
       const r = await amazonCall('searchItems', body);
       out.status = r.status;
       out.result = r.json ? slimAmazon(r.json) : r.text;
+      if (q.compact && r.json) {
+        res.setHeader('Content-Type', 'text/plain; charset=utf-8');
+        res.status(200).send(out.result.items.map(i => [i.asin, i.price, i.brand, (i.title || '').slice(0, 90)].join(' | ')).join('\n') || 'none');
+        return;
+      }
     } else if (op === 'amazon-items') {
       const ids = String(q.ids || '').split(',').map(s => s.trim()).filter(Boolean).slice(0, 10);
       const r = await amazonCall('getItems', {
