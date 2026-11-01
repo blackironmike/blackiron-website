@@ -258,6 +258,60 @@ add(id='tl-creatine-hmb', shelf='supplements', group='Sleep and recovery', src='
     blurb='Creatine paired with HMB. Supports strength and helps maintain lean muscle during a cut.',
     kw='creatine hmb strength')
 
+# 1st Phorm best sellers. These render inside the 1st Phorm block at the
+# bottom of the supplements shelf (render_phorm), not in a timing group:
+# the block is for people who already buy the brand. Photos are the brand's
+# own packshots from its Shopify CDN. Copy stays structure and function.
+PH = '1st Phorm'
+add(id='phorm-phormula-1', shelf='supplements', group=PH, src='direct', brand='1st Phorm',
+    name='Phormula-1 protein', url=phorm('phormula-1'), img=phorm_img('phormula-1-chocolate-milkshake.png'),
+    blurb='Their whey isolate. Fast to digest, so it suits the shake right after class. Supports muscle recovery.',
+    kw='protein powder whey isolate shake phormula')
+add(id='phorm-micro-factor', shelf='supplements', group=PH, src='direct', brand='1st Phorm',
+    name='Micro Factor', url=phorm('micro-factor'), img=phorm_img('micro-factor_4c4cc124-073f-4ed5-8d93-6cc56ee24736.png'),
+    blurb='Six daily basics in one packet: vitamins, minerals and more. Supports whole-body health for people who hate a pill drawer.',
+    kw='multivitamin vitamins daily packet micro factor')
+add(id='phorm-opti-greens', shelf='supplements', group=PH, src='direct', brand='1st Phorm',
+    name='Opti-Greens 50', url=phorm('opti-greens-50'), img=phorm_img('opti-greens-50-natural-berry-04_25.png'),
+    blurb='A greens powder for the days the vegetables lose. Supports digestion and natural energy. Not a replacement for the vegetables.',
+    kw='greens powder superfood opti greens')
+add(id='phorm-creatine', shelf='supplements', group=PH, src='direct', brand='1st Phorm',
+    name='Micronized creatine', url=phorm('micronized-creatine-monohydrate'), img=phorm_img('creatine-100-serving.png'),
+    blurb='Plain creatine monohydrate in 50 or 100 servings. Supports strength and power with daily use.',
+    kw='creatine monohydrate micronized strength')
+add(id='phorm-phormula-1-clear', shelf='supplements', group=PH, src='direct', brand='1st Phorm',
+    name='Phormula-1 Clear', url=phorm('phormula-1-clear'), img=phorm_img('Phormula-1_Clear_Cotton_Candy_-_WEB_3_1.png'),
+    blurb='Whey isolate that drinks like juice instead of a milkshake. For people who cannot face a thick shake after a hot class.',
+    kw='protein powder clear whey isolate')
+add(id='phorm-eaa', shelf='supplements', group=PH, src='direct', brand='1st Phorm',
+    name='Essential amino acids', url=phorm('essential-amino-acids'), img=phorm_img('eaa-tropical-mango.png'),
+    blurb='All nine essential aminos to sip during training. Supports muscle repair and hydration on long sessions.',
+    kw='eaa amino acids intra workout')
+add(id='phorm-hydration-daily', shelf='supplements', group=PH, src='direct', brand='1st Phorm',
+    name='Hydration Daily', url=phorm('hydration-daily'), img=phorm_img('hydration-daily-strawberry.png'),
+    blurb='The everyday electrolyte stick, lighter than Hydration Sport. One in the water bottle on a normal day.',
+    kw='electrolytes hydration daily sticks')
+add(id='phorm-level-1-bars', shelf='supplements', group=PH, src='direct', brand='1st Phorm',
+    name='Level-1 protein bars', url=phorm('level-1-bar'), img=phorm_img('peanut-butter-lover-combo-pack.png'),
+    blurb='20 grams of protein in a bar that lives in the gym bag. Two boxes of 15, mix the flavors.',
+    kw='protein bar bars snack level 1')
+add(id='phorm-opti-reds', shelf='supplements', group=PH, src='direct', brand='1st Phorm',
+    name='Opti-Reds 50', url=phorm('opti-reds-50'), img=phorm_img('opti-reds-50-04_25.png'),
+    blurb='The reds version: fruits, vegetables and herbs in a scoop. Supports natural energy and circulation.',
+    kw='reds powder superfood opti reds')
+add(id='phorm-full-mega', shelf='supplements', group=PH, src='direct', brand='1st Phorm',
+    name='Full-Mega fish oil', url=phorm('full-mega'), img=phorm_img('full-mega_c02f96b0-75bf-4b69-bd65-b0333adde28d.png'),
+    blurb='Omega-3 softgels with real amounts of EPA and DHA. Supports heart and brain health.',
+    kw='fish oil omega 3 epa dha')
+add(id='phorm-daily-stack', shelf='supplements', group=PH, src='direct', brand='1st Phorm',
+    name='The Daily Stack', url=phorm('the-daily-stack'), img=phorm_img('daily-stack-03_25.png'),
+    blurb='Micro Factor and Opti-Greens 50 together, for people who want both and one checkout.',
+    kw='stack bundle micro factor opti greens daily')
+add(id='phorm-joint-mobility', shelf='supplements', group=PH, src='direct', brand='1st Phorm',
+    name='Joint Mobility', url=phorm('joint-mobility'), img=phorm_img('joint-mobility_97703ed0-7288-4f6b-bb54-641d1dce437a.png'),
+    blurb='For people who train hard and feel it in their joints. Supports joint comfort and healthy connective tissue.',
+    kw='joint mobility joints cartilage')
+
 # ---- MEAL PREP --------------------------------------------------------------
 add(id='trifecta-lean', cover=True, shelf='meal-prep', group='Meals made for you', src='impact', brand='Trifecta',
     name='Get Lean meal plan', edc='trifecta-meal-delivery',
@@ -577,13 +631,16 @@ def reviews_row(items):
 
 
 def render_phorm():
-    """The 1st Phorm block on the supplements shelf. The tiles above it are
-    the recommendation; this is the front door for people who already buy the
-    brand. Most-asked products are open as chips, the rest collapse into a
-    directory laid out in columns."""
+    """The 1st Phorm block on the supplements shelf, for people who already
+    buy the brand: best sellers as photo tiles, the rest of the most-asked
+    list as chips, and the full catalog collapsed into a column directory.
+    The tile grid is a .shelf-group so search filters it like any other."""
     groups = json.loads((ROOT / 'tools' / 'phorm-catalog.json').read_text())
     top, rest = groups[0], groups[1:]
-    chips = ''.join(f'<a class="finder-chip" href="{phorm(h)}"{OUT}>{e(n)}</a>' for h, n in top['items'])
+    tiled = [p for p in P if p.get('group') == PH]
+    tiled_urls = {p['url'] for p in tiled} | {p['url'] for p in P if p['brand'] == '1st Phorm' and p.get('url')}
+    left = [(h, n) for h, n in top['items'] if phorm(h) not in tiled_urls]
+    chips = ''.join(f'<a class="finder-chip" href="{phorm(h)}"{OUT}>{e(n)}</a>' for h, n in left)
     cols = ''.join(
         f'<div class="catalog-group"><h4>{e(g["title"])}</h4><ul class="catalog-list">'
         + ''.join(f'<li><a href="{phorm(h)}"{OUT}>{e(n)}</a></li>' for h, n in g['items'])
@@ -591,16 +648,16 @@ def render_phorm():
     n_rest = sum(len(g['items']) for g in rest)
     return (
         '<div class="sf-phorm" id="first-phorm">'
-        '<div class="sf-phorm-head">'
-        f'<span class="sf-phorm-img"><img src="{phorm_img("level-1-birthday-cake.png")}" alt="" loading="lazy" decoding="async"></span>'
+        '<div class="sf-phorm-head sf-phorm-head-text">'
         '<div><span class="eyebrow">Legionnaire partner</span>'
-        '<h3 class="sf-phorm-title">Already buy 1st Phorm?<br><span class="outline">Then buy 1st Phorm.</span></h3>'
+        '<h3 class="sf-phorm-title">Already buy 1st Phorm?<br><span class="outline">Then buy 1st Phorm.</span></h3></div>'
         '<p>We are a Legionnaire partner as well as a Thorne one, because people want different things out of a tub '
         'and you should get to pick which. Every 1st Phorm link here is tracked to my account, at the same price you&rsquo;d pay going direct.</p>'
-        '</div></div>'
-        '<h4 class="sf-mini-h">What people ask for most</h4>'
-        f'<div class="finder-chips">{chips}</div>'
-        f'<details class="catalog"><summary>The rest of the catalog<span>{n_rest} products</span></summary>'
+        '</div>'
+        f'<div class="shelf-group"><h4 class="shelf-sub">Their best sellers<span>{len(tiled)} picks</span></h4>'
+        f'<div class="shop-grid">{"".join(tile(p) for p in tiled)}</div></div>'
+        + (f'<h4 class="sf-mini-h sf-also">Also asked for</h4><div class="finder-chips">{chips}</div>' if chips else '')
+        + f'<details class="catalog"><summary>The rest of the catalog<span>{n_rest} products</span></summary>'
         f'<div class="catalog-body sf-catalog-cols">{cols}</div></details>'
         '</div>')
 
@@ -618,7 +675,7 @@ def render_storefront():
         key = sh['key']
         items = shelf_items(key)
         groups = sh['groups']
-        missing = {p.get('group') for p in items} - set(groups)
+        missing = {p.get('group') for p in items} - set(groups) - {PH}
         if missing:
             raise SystemExit(f'{key}: products in groups not listed in SHELVES: {missing}')
         # Section keywords are the shelf and group names only. Product words
@@ -629,6 +686,8 @@ def render_storefront():
         subnav = ''.join(
             f'<a href="#{gid(key, g)}">{e(g)}<span>{sum(1 for p in items if p.get("group") == g)}</span></a>'
             for g in groups)
+        if key == 'supplements':
+            subnav += f'<a href="#first-phorm">1st Phorm<span>{sum(1 for p in items if p.get("group") == PH)}</span></a>'
         body = []
         for g in groups:
             gi = [p for p in items if p.get('group') == g]
@@ -658,7 +717,7 @@ def render_directory():
         n = len(shelf_items(key))
         lis = [f'<li><a href="#{gid(key, g)}">{e(g)}</a></li>' for g in sh['groups']]
         if key == 'supplements':
-            lis.append('<li><a href="#first-phorm">1st Phorm catalog</a></li>')
+            lis.append('<li><a href="#first-phorm">1st Phorm</a></li>')
             lis.append('<li><a href="/supplements">The Thorne shelf</a></li>')
         cols.append(f'<div class="sf-dir-col"><a class="sf-dir-h" href="#{key}">{e(sh["short"])}<span>{n}</span></a>'
                     f'<ul>{"".join(lis)}</ul></div>')
