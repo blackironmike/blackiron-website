@@ -1461,3 +1461,46 @@ footer{border-top:1px solid var(--steel-line);padding:clamp(56px,7vw,88px) 0 0}
 .rec-solo{max-width:620px;margin:34px 0 0;border:1px solid var(--steel-line)}
 .rec-solo img{width:100%;height:auto;display:block}
 .rec-solo figcaption{padding:10px 14px;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--gray);border-top:1px solid var(--steel-line)}
+
+/* ------------------------------------------------------------
+   STOREFRONT (/gear) and the nutrition mini shops (/programs)
+   Tiles are the existing .ptile; these add the brand line, the
+   shelf jump tiles, the Every Dad Carry review row, and the
+   Amazon photo well that /js/gear-amazon.js fills in.
+   ------------------------------------------------------------ */
+.ptile-brand{display:block;margin:0 0 4px;color:var(--gray);font-size:.66rem;font-weight:700;
+             letter-spacing:.14em;text-transform:uppercase;opacity:.8}
+/* Amazon tiles arrive without a photo (Amazon's rules: photos come from their
+   API, fresh). The well holds its size so nothing jumps when the photo lands. */
+.ptile-img.amz-img{background:var(--coal)}
+.ptile-img.amz-img.is-filled{background:#fff}
+.ptile-img.amz-img img{mix-blend-mode:normal}
+
+.shelf-tiles{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;
+             margin-top:clamp(28px,3.4vw,44px);box-shadow:0 0 0 1px var(--steel-line)}
+.shelf-tile{position:relative;display:flex;flex-direction:column;gap:2px;padding:0 16px 16px;
+            background:var(--black);color:var(--white);text-decoration:none;min-width:0;
+            box-shadow:0 0 0 1px var(--steel-line);transition:background .18s ease}
+.shelf-tile:hover{background:var(--coal)}
+.shelf-tile-img{display:grid;place-items:center;margin:0 -16px 12px;aspect-ratio:16/10;
+                background:var(--coal);overflow:hidden;padding:12px}
+.shelf-tile-img img{width:auto;height:100%;max-width:100%;object-fit:contain}
+.shelf-tile b{font-weight:900;font-size:.95rem;letter-spacing:-.01em}
+.shelf-tile span:last-child{color:var(--gray);font-size:.72rem;letter-spacing:.12em;
+                            text-transform:uppercase}
+.shelf-tile:hover b{color:var(--yellow)}
+@media(max-width:900px){.shelf-tiles{grid-template-columns:repeat(2,1fr)}}
+
+.edc-row{margin-top:clamp(22px,2.6vw,32px);padding-top:18px;border-top:1px solid var(--steel-line)}
+.edc-row > b{display:block;margin-bottom:12px;color:var(--gray);font-size:.72rem;font-weight:900;
+             letter-spacing:.14em;text-transform:uppercase}
+
+.mini-shops{margin-top:clamp(40px,5vw,70px);padding-top:clamp(28px,3.4vw,44px);
+            border-top:1px solid var(--steel-line)}
+.mini-shop-head h3{margin-top:10px;font-size:clamp(1.6rem,3vw,2.4rem)}
+.mini-shop-head p{margin-top:14px;max-width:70ch;color:var(--gray);font-size:.9rem;line-height:1.65}
+.mini-shop-block{margin-top:clamp(28px,3.4vw,40px)}
+.mini-shop-title{display:flex;justify-content:space-between;align-items:baseline;gap:16px;flex-wrap:wrap}
+.mini-shop-title b{font-weight:900;font-size:1.1rem;color:var(--white)}
+.mini-shop .ptile-blurb{font-size:.8rem}
+.shop-grid.mini-shop{margin-top:16px}

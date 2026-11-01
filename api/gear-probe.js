@@ -219,6 +219,18 @@ module.exports = async (req, res) => {
         res.status(200).send((pj.products || []).map(p => [p.handle, p.variants?.[0]?.price, (p.images?.[0]?.src || '').slice(0, 140), p.title].join(' | ')).join('\n') || `none ${pr.status}`);
         return;
       }
+    } else if (op === 'img') {
+      // QA only: relay a product photo so a sandboxed browser can render the page
+      const u = new URL(String(q.url || ''));
+      if (!/(cloudfront\.net|cdn\.shopify\.com|widen\.net|trifectanutrition\.com|fuelmeals\.com|bigcommerce\.com|media-amazon\.com|1stphorm\.com)$/.test(u.hostname)) {
+        res.status(400).send('host not allowed');
+        return;
+      }
+      const r = await fetch(u.toString());
+      const buf = Buffer.from(await r.arrayBuffer());
+      res.setHeader('Content-Type', r.headers.get('content-type') || 'image/jpeg');
+      res.status(r.status).send(buf);
+      return;
     } else if (op === 'search') {
       const kw = encodeURIComponent(String(q.q || ''));
       const c = await impactGet(`Catalogs/ItemSearch?Keyword=${kw}&PageSize=100`);
