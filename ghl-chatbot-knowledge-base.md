@@ -344,6 +344,10 @@ Owner Mike Manning is a medically retired Marine Corps combat veteran. He served
 
 Yes — right next door. We train at 279 Main St, Suite 122 today, and our new, bigger space at Suite 110 opens in January. It includes a recovery room with two cold plunges and a five-person sauna that runs infrared and red light on top of traditional heat. Same street, same parking, same good people.
 
+## When does the new gym open?
+
+The new space at 279 Main St, Suite 110 opens in January. Until then, every class runs as normal at Suite 122, right next door. Nothing pauses while we build. We will share the exact opening date as soon as it is set.
+
 ## How much do gyms in Frisco cost?
 
 Gym prices in Frisco range from about $10 a month at big-box gyms to $200 or more at boutique studios. We wrote an honest breakdown at https://www.blackironathletics.com/blog/gym-membership-cost-frisco-tx. Our own prices are at https://www.blackironathletics.com/pricing after a quick check-in, and a coach will help you pick what fits. Zero pressure.
