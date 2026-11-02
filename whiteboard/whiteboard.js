@@ -849,6 +849,42 @@
       if (z.s === 0) paintAmbient();
     }
   }
+  /* ---------------- fresh programming ----------------
+     The TV stays open for days, and the browser only read program.js when the
+     page first loaded. So a screen opened last week never saw this week's
+     workouts and showed "No programming loaded" at the 5:15. Re-read it every
+     few minutes and right after midnight in Frisco. New programming takes the
+     screen straight away, except mid-class on a board that already has a
+     workout: that waits until the class ends, so nothing moves under a coach. */
+  function sigOf(p) { try { return JSON.stringify([p.days || {}, p.schedule || {}, p.cycle || '', p.transitions]); } catch (e) { return ''; } }
+  var progSig = sigOf(P), pendingP = null, lastDayNum = todayNum();
+  function applyProgram(np) {
+    P = np; progSig = sigOf(np); pendingP = null; tlCache = {};
+    if (view.openGym) { leaveOpenGym(); tReset(); }
+    view.mode = null; view.centerKey = null; view.cdTarget = null;
+    decide();
+  }
+  function boardBusy() { return view.mode === 'board' && !!boardData(); }
+  function refreshProgram() {
+    try {
+      var s = document.createElement('script');
+      s.src = '/whiteboard/program.js?v=' + Date.now();
+      s.onload = s.onerror = function () {
+        if (s.parentNode) s.parentNode.removeChild(s);
+        var np = window.COACH_PROGRAM;
+        if (!np || !np.days || sigOf(np) === progSig) return;
+        if (boardBusy()) pendingP = np; else applyProgram(np);
+      };
+      document.getElementsByTagName('head')[0].appendChild(s);
+    } catch (e) {}
+  }
+  setInterval(function () {
+    var n = todayNum();
+    if (n !== lastDayNum) { lastDayNum = n; refreshProgram(); }
+    if (pendingP && !boardBusy()) applyProgram(pendingP);
+  }, 15000);
+  setInterval(refreshProgram, 5 * 60000);
+
   loadWeather(); setInterval(loadWeather, 20 * 60000);
   decide(); paintAmbient();
   if (q('mode') === 'opengym') openGym();
