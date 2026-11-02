@@ -94,7 +94,7 @@ Personal Training is one coach, one plan: 1-on-1 sessions with customized progra
 
 ## How much does a membership cost?
 
-It depends on the plan: Standard, Unlimited + Open Gym, Open Gym Only, or Personal Training. You can see every plan and price at https://www.blackironathletics.com/pricing after a quick check-in, and a coach will reach out to help you pick the one that fits. Or call or text (972) 785-7036. Every membership starts with a free consultation and the Foundations week, and a $30 day pass is credited toward your first month if you join. Book your free consultation at https://www.blackironathletics.com/book or buy a day pass online at https://blackiron.wodify.com/OnlineSalesPage/Main?q=Classes%7COnlineMembershipId%3D235166%26LocationId%3D10409
+It depends on the plan: Standard, Unlimited + Open Gym, Open Gym Only, or Personal Training. You can see every plan and price at https://www.blackironathletics.com/pricing after a quick check-in, and a coach will reach out to help you pick the one that fits. Or call or text (972) 785-7036. Every membership starts with a free consultation and the Foundations week. Book your free consultation at https://www.blackironathletics.com/book
 
 ## How do I get started?
 
@@ -123,10 +123,6 @@ We recommend 3-5 times per week depending on your goals, but you can start with 
 ## What makes Black Iron different from other gyms?
 
 Every session is coach-led with real programming, not random workouts. We combine training and nutrition under one roof. Our community holds each other accountable. We are veteran-owned with a culture built on discipline, respect, and showing up.
-
-## Do you offer a day pass?
-
-Yes. For $30 you can try any class you would like before joining. If you sign up, we will credit that towards your first month. You can buy your day pass and sign the waiver online here: https://blackiron.wodify.com/OnlineSalesPage/Main?q=Classes%7COnlineMembershipId%3D235166%26LocationId%3D10409
 
 ## What is your cancellation policy?
 
@@ -258,7 +254,7 @@ Every class is about 60 minutes and follows a structured format: warm-up, skill 
 
 ## Can I bring a friend to try a class?
 
-Yes. Guests are welcome to try a class with a $30 day pass. If they sign up for a membership, we credit that $30 towards their first month. They can pay and sign the waiver online here: https://blackiron.wodify.com/OnlineSalesPage/Main?q=Classes%7COnlineMembershipId%3D235166%26LocationId%3D10409
+Yes. Have them book a free consultation at https://www.blackironathletics.com/book and a coach will get them started with a Foundations week.
 
 ## How big are your classes?
 

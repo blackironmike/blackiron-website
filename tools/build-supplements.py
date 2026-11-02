@@ -179,8 +179,7 @@ HEAD_REPLACEMENTS = [
     ("Membership Pricing | Black Iron Athletics — Frisco, TX",
      "Supplements We Stock | Black Iron Athletics — Frisco, TX"),
     ("Membership pricing at Black Iron Athletics in Frisco, TX — in writing: Standard $200/mo, "
-     "Unlimited + Open Gym $240/mo, Open Gym $50/mo, personal training $120–150/hour. Try any "
-     "class with a $30 day pass, credited toward your first month.",
+     "Unlimited + Open Gym $240/mo, Open Gym $50/mo, personal training $120–150/hour.",
      "The Thorne supplements we stock and use at Black Iron Athletics in Frisco, TX. A four-part "
      "year-round stack, what changes in a cut or a build, and the pre-built athlete stacks. All "
      "NSF Certified for Sport."),

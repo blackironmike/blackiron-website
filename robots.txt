@@ -30,6 +30,5 @@ Allow: /
 
 User-agent: cohere-ai
 Allow: /
-Disallow: /redesign/
 
 Sitemap: https://www.blackironathletics.com/sitemap.xml

@@ -295,7 +295,7 @@ window.TV_CONFIG = {
     {
       id: "links", type: "qr", seconds: 8,
       title: ["One scan.", "Everything *you*", "*need.*"],
-      list: ["Book a free consultation", "Sign the waiver", "Buy a day pass",
+      list: ["Book a free consultation", "Sign the waiver", "New here? Start here",
              "Leave us a Google review", "Class schedule and more"],
       qr: { src: "/images/tv/qr-links.svg", label: "Scan me", above: true,
             caption: "blackironathletics.com/links",
