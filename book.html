@@ -139,12 +139,6 @@
     .ci-done p{color:var(--gray);margin:0 0 12px;max-width:52ch}
     .ci-done.show{display:block}
 
-    /* ── Already know you're in: the calendar, folded away. ─────────────── */
-    .cal-toggle{margin-top:6px}
-    .bookwrap{border:1px solid var(--steel-line);background:var(--black);padding:clamp(8px,2vw,24px);margin-top:22px}
-    .bookwrap iframe{display:block;width:100%;min-height:900px;border:0;background:var(--black)}
-    @media(max-width:600px){.bookwrap iframe{min-height:1000px}}
-    .book-fallback{margin:16px 0 0;font-size:.9rem;color:var(--gray)}
     .book-fallback a{color:var(--white);font-weight:700}
 
     /* ── Proof: photo band with the member quotes. ──────────────────────── */
@@ -398,21 +392,6 @@
         </div>
     </section>
 
-    <section class="bk-sec coal" id="calendar">
-        <div class="wrap">
-            <span class="eyebrow eyebrow-y">Already know you’re in?</span>
-            <h2>Skip ahead and <span class="outline">pick a time.</span></h2>
-            <p class="sec-sub">Book your free twenty-minute visit directly. No workout, no weigh-in.</p>
-            <button type="button" class="btn btn-ghost cal-toggle" id="cal-toggle" aria-expanded="false" aria-controls="cal-panel">Show the calendar</button>
-            <div id="cal-panel" hidden>
-                <div class="bookwrap" id="booking">
-                    <iframe data-src="https://api.leadconnectorhq.com/widget/booking/aOyy4UPbwziVvHz35TCU" style="width:100%;border:none;overflow:hidden" scrolling="no" id="aOyy4UPbwziVvHz35TCU_1771041740943" title="Book your free visit"></iframe>
-                </div>
-                <p class="book-fallback">Calendar not loading, or no time that works? Call or text <a href="tel:+19727857036" onclick="if(window.fbq)fbq('trackCustom','PhoneClick');">(972) 785-7036</a> and we’ll find one.</p>
-            </div>
-        </div>
-    </section>
-
     <section class="bk-final">
         <div class="wrap">
             <span class="eyebrow eyebrow-y">Your first step</span>
@@ -478,12 +457,12 @@
 /* Thumb bar: only between the hero button and the form. */
 (function () {
   var bar = document.getElementById('thumb'); if (!bar || !('IntersectionObserver' in window)) return;
-  var watch = [document.querySelector('.bk-copy .bk-cta'), document.getElementById('checkin'), document.querySelector('.bk-final'), document.getElementById('calendar')];
+  var watch = [document.querySelector('.bk-copy .bk-cta'), document.getElementById('checkin'), document.querySelector('.bk-final')];
   var visible = {};
   var io = new IntersectionObserver(function (en) {
     en.forEach(function (x) { visible[watch.indexOf(x.target)] = x.isIntersecting; });
     var heroGone = !visible[0] && window.scrollY > 200;
-    bar.classList.toggle('show', heroGone && !visible[1] && !visible[2] && !visible[3]);
+    bar.classList.toggle('show', heroGone && !visible[1] && !visible[2]);
   }, { threshold: 0 });
   watch.forEach(function (el) { if (el) io.observe(el); });
 })();
@@ -578,39 +557,6 @@
   });
 })();
 
-/* Calendar, folded away for people who already know they're in. Unfolding
-   it loads the frame. data-src (not src) is what the UTM pass-through in
-   inject-pixel.js looks for, so a booking stays attributable to the ad that
-   earned it. Do not change it. */
-(function () {
-  var toggle = document.getElementById('cal-toggle'), panel = document.getElementById('cal-panel');
-  var frame = document.querySelector('.bookwrap iframe[data-src]');
-  if (!toggle || !panel || !frame) return;
-  var fired = {};
-  function once(n, custom) {
-    if (fired[n]) return; fired[n] = true;
-    if (typeof fbq === 'function') fbq(custom ? 'trackCustom' : 'track', n);
-  }
-  toggle.addEventListener('click', function () {
-    panel.hidden = false;
-    toggle.setAttribute('aria-expanded', 'true');
-    toggle.style.display = 'none';
-    if (!frame.src) { frame.src = frame.dataset.src; frame.dataset.loadedAt = String(Date.now()); }
-    once('CalendarView', true);
-  });
-  window.fpBookingMessages = [];
-  window.addEventListener('message', function (ev) {
-    var host = ''; try { host = new URL(ev.origin).hostname; } catch (e) { return; }
-    if (!/(^|\.)leadconnectorhq\.com$|(^|\.)msgsndr\.com$/.test(host)) return;
-    window.fpBookingMessages.push({ t: Date.now(), origin: ev.origin, data: ev.data });
-    var raw = ''; try { raw = typeof ev.data === 'string' ? ev.data : JSON.stringify(ev.data); } catch (e) {}
-    if (/appointment|booked|booking[_-]?(success|complete)|slot[_-]?selected|scheduled/i.test(raw)) {
-      once('InitiateCheckout');
-      if (/booked|success|complete|scheduled|confirmed/i.test(raw)) once('Schedule');
-    }
-  }, false);
-})();
 </script>
-<script src="https://link.msgsndr.com/js/form_embed.js" type="text/javascript" defer></script>
 </body>
 </html>

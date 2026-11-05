@@ -102,7 +102,7 @@ Three easy steps: 1) Send us your info at https://www.blackironathletics.com/boo
 
 ## How do I book a consultation?
 
-The easiest way is to send your info at https://www.blackironathletics.com/book. A coach will reach out personally as soon as possible to find a time that works. If you already know you're in, the same page has a calendar where you can pick a time for your free 20-minute consult yourself. There is no pressure to sign up.
+Send your info at https://www.blackironathletics.com/book. A coach (usually Mike or Lawrence) will reach out personally, by text or a call from their own phone, to see if we're a good fit and find a time that works for your free 20-minute consult. There is no self-booking calendar; a coach sets the time with you. There is no pressure to sign up.
 
 ## Is Black Iron Athletics beginner-friendly?
 

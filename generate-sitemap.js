@@ -20,13 +20,6 @@ const EXCLUDED_FILES = new Set([
   'thank-you.html',
   'member-newsletter-test-week.html',
   'links.html',
-  'back-to-school.html',
-  'routine.html',
-  // The capture pages are ad destinations and carry robots noindex. Listing a
-  // noindex URL in the sitemap is what Search Console reports as
-  // "Submitted URL marked noindex", so they are excluded here too.
-  'start-back-to-school.html',
-  'start-routine.html',
   'group-training.html',
   'nutrition-coaching.html',
   'open-gym.html',

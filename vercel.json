@@ -25,7 +25,7 @@
       ]
     },
     {
-      "source": "/(back-to-school|routine|thank-you)",
+      "source": "/thank-you",
       "headers": [
         { "key": "Content-Security-Policy", "value": "frame-ancestors 'self' https://*.leadconnectorhq.com https://*.msgsndr.com" }
       ]
@@ -44,6 +44,10 @@
       "permanent": true
     },
     { "source": "/free-consultation", "destination": "/book", "permanent": true },
+    { "source": "/back-to-school", "destination": "/book", "permanent": true },
+    { "source": "/routine", "destination": "/book", "permanent": true },
+    { "source": "/start-back-to-school", "destination": "/book", "permanent": true },
+    { "source": "/start-routine", "destination": "/book", "permanent": true },
     { "source": "/group-training", "destination": "/programs#group-classes", "permanent": true },
     { "source": "/personal-training", "destination": "/programs#personal-training", "permanent": true },
     { "source": "/nutrition-coaching", "destination": "/programs#nutrition-coaching", "permanent": true },
