@@ -426,6 +426,106 @@ window.COACH_PROGRAM = {
           blocks: [ { head: "EMOM for 40 minutes", items: ["1: Max Calorie Ski", "2: Max reps Sit-ups", "3: Max Calorie Row", "4: Max reps Push-ups", "5: Max Calorie Bike", "6: Max reps Ring Rows", "7: Max reps 50ft Shuttle Run (inside)", "8: Max reps Walking Lunges"] } ],
           notes: "All levels as written. Modify where you need to, like push-ups." }
       ]
+    },
+
+    "2026-11-09": {
+      week: "W8 Deload",
+      sections: [
+        { name: "Warm up", min: 5, clock: { type: "down", min: 5 },
+          blocks: [ { head: "5 minutes for effort", items: ["10/10 PVC Around the Worlds", "10 Alt World’s Greatest Stretch", "10 Burpee into Squat", "10 Heel Elevated Goblet Squats", "10 Plate GTO"] } ] },
+        { name: "Barbell drills", min: 10, clock: { type: "down", min: 10 },
+          transition: ["Grab a PVC or an empty bar", "Find your space on the floor", "Coach walks through the drills"],
+          blocks: [ { items: ["Snatch Extensions", "Snatch Pulls", "BTN SG Press", "Snatch Balance", "Muscle Snatch", "3 Position PWR Snatch"] } ],
+          notes: "Coach-led drills." },
+        { name: "Weightlifting", min: 15, clock: { type: "emom", every: 180, rounds: 6 },
+          blocks: [ { head: "Every 3 minutes for 6 rounds", items: ["3 Position PWR Snatch"] } ],
+          notes: "From the top down: High Hang PWR Snatch + Hang PWR Snatch + PWR Snatch. You *can* drop the bar between reps.",
+          levels: [["1", "3 Position Muscle Snatch or 5 SDLHP"], ["2", "As written"]] },
+        { name: "Conditioning", min: 12, clock: { type: "up", cap: 12 },
+          transition: ["Water break", "Load your bar for shoulder to overhead", "Find your toes to bar spot"],
+          blocks: [ { head: "For time, 3 rounds", items: ["5 STO @ 115/85", "10 Squat Cleans", "15 Toes to Bar"] } ],
+          levels: [["1", "Lighter barbell or DBs, and Toe Touch Sit-ups"], ["2", "As written"], ["3", "Barbell @ 135/95 and GHD Sit-ups"]] }
+      ]
+    },
+
+    "2026-11-10": {
+      week: "W8 Deload",
+      sections: [
+        { name: "Warm up", min: 7, clock: { type: "down", min: 7 },
+          blocks: [ { head: "Row-ling", items: ["100m (+/-) = Burpees"] } ] },
+        { name: "Strength", min: 25, clock: { type: "down", min: 25 },
+          transition: ["Set up your bench", "Load your bar and grab a spotter", "Coach briefs the lift"],
+          blocks: [ { head: "Bench Press", items: ["Build to a heavy 4 reps for the day"] },
+                    { head: "Then", items: ["Max reps @ 80% of top set", "Max reps @ 60% of top set"] } ] },
+        { name: "Conditioning", min: 15, clock: { type: "emom", every: 60, rounds: 15 },
+          transition: ["Water break", "Grab a box and your DBs", "Find a rower, bike or ski"],
+          blocks: [ { head: "EMOM for 15 minutes", items: ["1: Max Calories (Row, Bike, Ski)", "2: Max reps Box Overs @ 24/20", "3: Max reps DB Curl to Arnold Press"] } ],
+          notes: "Choose your weight with the DBs." }
+      ]
+    },
+
+    "2026-11-11": {
+      week: "W8 Deload",
+      sections: [
+        { name: "Core", min: 4, clock: { type: "tabata", work: 20, rest: 10, rounds: 8 },
+          blocks: [ { head: "Tabata: 20 on, 10 off x 8 rounds", items: ["Flutter Kicks"] } ] },
+        { name: "Warm up", min: 5, clock: { type: "down", min: 5 },
+          blocks: [ { items: ["5 Burpees", "10 Alt DB DL", "10 Alt Lunges"] } ] },
+        { name: "Strength", min: 25, clock: { type: "up", cap: 25 },
+          transition: ["Load your bar for back rack lunges", "Grab your DBs", "Coach walks through the rounds"],
+          blocks: [ { head: "5 to 6 rounds", items: ["8 Back Rack Reverse Lunges", "12 DB RDL", "Max effort Hollow Hold"] } ] },
+        { name: "Conditioning", min: 8, clock: { type: "amrap", min: 8 },
+          transition: ["Water break", "Grab one DB and a jump rope", "Coach walks through the AMRAP"],
+          blocks: [ { head: "AMRAP in 8 minutes", items: ["8 DB Snatch @ 40/20 (right)", "8 DB OH Lunges (right)", "8 DB Snatch @ 40/20 (left)", "8 DB OH Lunges (left)", "32 Double Unders"] } ],
+          levels: [["1", "Lighter DB and singles"], ["2", "As written"], ["3", "DBs @ 50/30"]] }
+      ]
+    },
+
+    "2026-11-12": {
+      week: "W8 Deload",
+      sections: [
+        { name: "Warm up", min: 15, clock: { type: "down", min: 15 },
+          blocks: [ { items: ["Knee Pulls", "Quad Pulls", "Heel Scoops", "Lunges", "Inside Heel Taps", "Outside Heel Taps", "High Knees", "Butt Kicks"] },
+                    { head: "Then 3 rounds", items: ["12 Banded Pull Aparts", "12 Scap Pull-ups", "6 HR Push-up to Pike"] } ] },
+        { name: "Conditioning", min: 40, clock: { type: "up", cap: 40 },
+          transition: ["Water break", "Grab a plate for push-ups", "Find your pull-up spot"],
+          blocks: [ { head: "For time, 8 rounds", items: ["Run 400m", "12 Alt Plate Push-ups @ 45/25", "6 Strict Pull-ups"] } ],
+          levels: [["1", "Bike 1km, modified push-ups and banded pull-ups"], ["2", "As written"]] }
+      ]
+    },
+
+    "2026-11-13": {
+      week: "W8 Deload",
+      sections: [
+        { name: "Warm up", min: 8, clock: { type: "down", min: 8 },
+          blocks: [ { items: ["10/10 Toe/Calf Raises", "20 Mountain Climbers", "10 Alt World’s Greatest Stretch", "10 Russian KB Swings"] } ] },
+        { name: "Strength", min: 30, clock: { type: "emom", every: 300, rounds: 6 },
+          transition: ["Set your box height", "Load your bar for box squats", "Coach briefs the lift"],
+          blocks: [ { head: "Every 5 minutes for 6 rounds", items: ["5 Box Squats", "5 Seated Box Jumps", "5/5 Strict Box Step-ups"] } ],
+          notes: "Box should be at a height where you are at parallel when you touch." },
+        { name: "Conditioning", min: 12, clock: { type: "down", min: 12 },
+          transition: ["Water break", "Load the sled", "Grab your carry weights"],
+          blocks: [ { head: "12 minutes", items: ["40ft Sled Push", "100m Farmers Carry", "Walk until recovered, then repeat"] } ],
+          notes: "*As heavy as possible* on the sled." }
+      ]
+    },
+
+    "2026-11-14": {
+      week: "W8 Deload",
+      sections: [
+        { name: "Warm up", min: 15, clock: { type: "down", min: 15 },
+          blocks: [ { head: "2 rounds", items: ["Jog 200m", "10 Burpees"] },
+                    { head: "Then 2 rounds, 2 to 5 reps of", items: ["Clean Extension", "Clean Pull", "PWR Clean", "Front Squat", "STO"] },
+                    { head: "Then", items: ["3 complexes as a group"] } ] },
+        { name: "Weightlifting", min: 20, clock: { type: "down", min: 20 },
+          transition: ["Load your bar", "Find your platform", "Coach briefs the complex"],
+          blocks: [ { head: "Build to a heavy complex", items: ["PWR Clean + Front Squat + Hang Squat Clean"] } ],
+          levels: [["1", "Use DBs, or keep it light and work from the hang"], ["2", "As written"]] },
+        { name: "Conditioning", min: 17, clock: { type: "up", cap: 17 },
+          transition: ["Water break", "Load your bar @ 135/95", "Coach sets up the shuttle lanes"],
+          blocks: [ { head: "For time", items: ["6 Clean and Jerk @ 135/95", "500m Shuttle Run", "6 Clean and Jerk", "400m Shuttle Run", "6 Clean and Jerk", "300m Shuttle Run", "6 Clean and Jerk", "200m Shuttle Run", "6 Clean and Jerk", "100m Shuttle Run"] } ],
+          levels: [["1", "Lighter barbell"], ["2", "As written"]] }
+      ]
     }
   }
 };
