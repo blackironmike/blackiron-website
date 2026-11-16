@@ -526,6 +526,109 @@ window.COACH_PROGRAM = {
           blocks: [ { head: "For time", items: ["6 Clean and Jerk @ 135/95", "500m Shuttle Run", "6 Clean and Jerk", "400m Shuttle Run", "6 Clean and Jerk", "300m Shuttle Run", "6 Clean and Jerk", "200m Shuttle Run", "6 Clean and Jerk", "100m Shuttle Run"] } ],
           levels: [["1", "Lighter barbell"], ["2", "As written"]] }
       ]
+    },
+
+    "2026-11-16": {
+      week: "W9 Retest",
+      sections: [
+        { name: "Warm up", min: 5, clock: { type: "down", min: 5 },
+          blocks: [ { head: "For effort", items: ["10/10 PVC Around the Worlds", "10 Alt World’s Greatest Stretch", "10 Burpee into Squat", "10 Heel Elevated Goblet Squats", "10 Plate GTO"] } ] },
+        { name: "Coach drills", min: 5, clock: { type: "down", min: 5 },
+          transition: ["Grab a PVC or an empty bar", "Find your space on the floor", "Coach runs the drills"],
+          blocks: [ { items: ["Ready… 3rd position (hip)", "GO! High Pull, Muscle Snatch"] },
+                    { head: "Then", items: ["10 BTN SG Shoulder Press", "Ready… BTN SG dip position", "GO! SG Jerk", "Ready… 3rd position (hip)", "GO! High Hang PWR Snatch"] },
+                    { head: "Then", items: ["10 OHS", "Ready… 2nd position (knee)", "GO! Snatch", "Ready… 1st position (floor)", "GO! Snatch"] } ] },
+        { name: "Benchmark", min: 20, clock: { type: "down", min: 20 },
+          transition: ["Load your bar", "Pick your rep scheme", "Coach briefs the lift"],
+          blocks: [ { head: "Snatch / SDLHP: pick your rep scheme", items: ["3 rep max", "2 rep max", "1 rep max"] } ],
+          notes: "No need to truly max here if you are not ready. Work up to something heavy for the movement you feel the most comfortable with, and then work to improve technique and strength this cycle.",
+          levels: [["1", "SDLHP"], ["2", "Hang PWR Snatch"], ["3", "Snatch"]] },
+        { name: "Benchmark", min: 15, clock: { type: "up", cap: 15 },
+          transition: ["Water break", "Load your bar @ 75/55", "Find your toes to bar spot"],
+          blocks: [ { head: "For time", items: ["60 PWR Snatch @ 75/55", "40 Toes to Bar"] } ],
+          notes: "Start with 4 Burpees over the Bar, then do *4 BOTB every minute* until you finish.",
+          levels: [["1", "80 Alt DB Snatch, 40 Toe Touch Sit-ups and 4 Burpees EMOM"], ["2", "As written"], ["3", "Barbell @ 95/65 and GHD Sit-ups"]] }
+      ]
+    },
+
+    "2026-11-17": {
+      week: "W9 Retest",
+      sections: [
+        { name: "Warm up", min: 10, clock: { type: "down", min: 10 },
+          blocks: [ { items: ["100m Shuttle Run", "Knee Pulls", "Quad Pulls", "100m Shuttle Run", "Heel Scoops", "Lunges", "200m Run", "High Knees", "Butt Kicks", "200m Run"] } ] },
+        { name: "Benchmark", min: 10, clock: { type: "up" },
+          transition: ["Water and a bathroom break", "Level 1: grab a bike", "Line up for the start"],
+          blocks: [ { head: "For time", items: ["Run 1 mile"] } ],
+          levels: [["1", "5km Bike"], ["2", "As written"]] },
+        { name: "Strength", min: 20, clock: { type: "emom", every: 240, rounds: 5 },
+          transition: ["Water break", "Load your bar for push press", "Set up a band for pull downs"],
+          blocks: [ { head: "Every 4 minutes for 5 rounds", items: ["5 Push Press", "10/10 Banded Single Arm Half Kneeling Pull Downs"] } ],
+          levels: [["1", "10 Push Press with DBs"], ["2", "As written"]] }
+      ]
+    },
+
+    "2026-11-18": {
+      week: "W9 Retest",
+      sections: [
+        { name: "Warm up", min: 7, clock: { type: "down", min: 7 },
+          blocks: [ { items: ["7 Burpees", "7 KB Deadlift", "7 Russian KB Swings", "14 Alt KB Lunges", "30 second Plank Hold", "30 second Arch Hold"] } ] },
+        { name: "Benchmark", min: 25, clock: { type: "down", min: 25 },
+          transition: ["Load your bar", "Pick your rep scheme", "Coach briefs the lift"],
+          blocks: [ { head: "Sumo Deadlift: pick your rep scheme", items: ["6 rep max", "4 rep max", "2 rep max"] } ],
+          notes: "No need to truly max here if you are not ready. Work up to something heavy for the movement you feel the most comfortable with, and then work to improve technique and strength this cycle.",
+          levels: [["1", "Stick with the 4 or 6 rep max, and stop when the form breaks down, even if you can do more"], ["2", "Work up to a 2 rep max. Keep it safe, never fight a bad lift"]] },
+        { name: "Conditioning", min: 10, clock: { type: "amrap", min: 10 },
+          transition: ["Water break", "Set up a PVC on boxes", "Grab a DB and find the rings"],
+          blocks: [ { head: "AMRAP in 10 minutes", items: ["10 PVC Jump Overs @ 24/20\"", "10 Ring Rows", "10/10 Half Kneeling SA DB Shoulder Press @ 40/20"] } ],
+          levels: [["1", "Jumping Knee Tucks and a lighter DB"], ["2", "As written"], ["3", "Inverted Ring Rows, box @ 30/24\" and DB @ 50/30"]] }
+      ]
+    },
+
+    "2026-11-19": {
+      week: "W9 Retest",
+      sections: [
+        { name: "Warm up", min: 8, clock: { type: "down", min: 8 },
+          blocks: [ { head: "For effort", items: ["1 minute Row", "15 Band Pull Aparts", "15 DB Floor Press", "10/10 Side Plank Thread the Needle"] } ] },
+        { name: "Strength", min: 12, clock: { type: "emom", every: 120, rounds: 6 },
+          transition: ["Set up your bench", "Load your bar and grab a spotter", "Coach briefs the lift"],
+          blocks: [ { head: "Narrow Grip Bench Press", items: ["Every 2 minutes for 6 rounds", "6 reps"] } ],
+          notes: "Build across the 6 rounds. The last set should be *heavy and still clean*.",
+          levels: [["1", "Use DBs"], ["2", "As written"], ["3", "Pause 1 second at the chest on every rep"]] },
+        { name: "Body building", min: 15, clock: { type: "up", cap: 15 },
+          transition: ["Grab a band", "Grab a plate for push-ups", "Coach walks through the rounds"],
+          blocks: [ { head: "3 to 5 rounds", items: ["10/10 Pallof Press", "10/10 Banded Rotations (arms extended)", "10/10 Banded Chest Cross-over (adduction)", "10 Alt Plate Push-ups"] } ] },
+        { name: "Conditioning", min: 15, clock: { type: "down", min: 15 },
+          transition: ["Water break", "Pick your machine or head out for a jog"],
+          blocks: [ { head: "Zone 2 steady state", items: ["Choose your modality: Row, Bike, Ski or Jog"] } ],
+          notes: "Conversational pace. You should be able to hold a full conversation the entire time. No intervals, no pushing. *Active recovery and aerobic base.*" }
+      ]
+    },
+
+    "2026-11-20": {
+      week: "W9 Retest",
+      sections: [
+        { name: "Warm up", min: 8, clock: { type: "down", min: 8 },
+          blocks: [ { items: ["10/10 Toe/Calf Raises", "20 Mountain Climbers", "10 Alt World’s Greatest Stretch", "100m Shuttle Run", "10 KB Goblet Squats (4 second negative)"] } ] },
+        { name: "Benchmark", min: 25, clock: { type: "down", min: 25 },
+          transition: ["Load your bar in the rack", "Pick your rep scheme", "Coach briefs the lift"],
+          blocks: [ { head: "Back Squat: pick your rep scheme", items: ["5 rep max", "3 rep max", "1 rep max"] } ],
+          notes: "No need to truly max here if you are not ready. Work up to something heavy for the movement you feel the most comfortable with, and then work to improve technique and strength this cycle.",
+          levels: [["1", "Box Squat. Do not max, work up to a heavy 3 to 5 reps"], ["2", "Work up to the rep scheme max of your choice"]] },
+        { name: "Benchmark", min: 15, clock: { type: "up", cap: 15 },
+          transition: ["Water break", "Grab a jump rope and a wall ball", "Grab your KBs for the carry"],
+          blocks: [ { head: "3 rounds for reps", items: ["Max unbroken Double Unders (3 starts)", "Max unbroken Wall Balls @ 20/14", "Max unbroken hold KB Farmers Carry @ 53/35"] } ],
+          notes: "1 round = 1 movement. You get 3 starts on the double unders, but once you get going on each movement, log your total unbroken reps or time (seconds). *If you stop or drop it, the round is over.*",
+          levels: [["1", "Singles, Wall Balls @ 14/10 to 1 foot above your reach, KB hold @ 35/25"], ["2", "As written"], ["3", "KB hold @ 70/53"]] }
+      ]
+    },
+
+    "2026-11-21": {
+      week: "W9 Retest",
+      sections: [
+        { name: "Make-up or free play", min: 60, clock: { type: "up" },
+          blocks: [ { head: "Your choice", items: ["Benchmark make-up", "Free play"] } ],
+          notes: "Missed a benchmark this week? *Make it up today.*" }
+      ]
     }
   }
 };
