@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <!-- CONTRACT: keep this exact viewport tag — inject-pixel.js insertion marker -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GOWOD Mobility App: A Coach’s Take | Black Iron Athletics Blog</title>
+    <meta name="description" content="What the GOWOD mobility app is, what is free and what is not, and how a Frisco coach would use it as homework between classes.">
+    <meta name="geo.region" content="US-TX">
+    <meta name="geo.placename" content="Frisco">
+    <meta name="geo.position" content="33.15035;-96.89026">
+    <link rel="canonical" href="https://www.blackironathletics.com/blog/gowod-mobility-app">
+    <!-- Open Graph -->
+    <meta property="og:title" content="GOWOD: Mobility You Can Do at Home Between Classes">
+    <meta property="og:description" content="What the GOWOD mobility app is, what is free and what is not, and how a Frisco coach would use it as homework between classes.">
+    <meta property="og:url" content="https://www.blackironathletics.com/blog/gowod-mobility-app">
+    <meta property="og:image" content="https://www.blackironathletics.com/images/social/2026-11-17-gowod-mobility-header.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Black Iron Athletics, Frisco TX. Headline: Mobility you can do at home. Beside it, members working through a floor warm-up.">
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="Black Iron Athletics">
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="GOWOD: Mobility You Can Do at Home Between Classes">
+    <meta name="twitter:description" content="What the GOWOD mobility app is, what is free and what is not, and how a Frisco coach would use it as homework between classes.">
+    <meta name="twitter:image" content="https://www.blackironathletics.com/images/social/2026-11-17-gowod-mobility-header.jpg">
+    <link rel="icon" type="image/png" href="/images/anvil-favicon.png">
+    <link rel="apple-touch-icon" href="/images/anvil-favicon.png">
+    <meta name="theme-color" content="#000000">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&display=swap" rel="stylesheet"></noscript>
+    <link rel="stylesheet" href="/css/bia.css">
+    <script defer src="/_vercel/insights/script.js"></script>
+</head>
+<body>
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
+    <!-- ============ NAV (final IA — identical on every page) ============ -->
+    <nav id="nav">
+        <div class="nav-container">
+            <div class="logo">
+                <a href="/" aria-label="Black Iron Athletics home">
+                    <img src="/images/logos/logo.png" alt="Black Iron Athletics">
+                </a>
+            </div>
+            <ul class="nav-links">
+                <li><a href="/getting-started">Start Here</a></li>
+                <li class="has-submenu">
+                    <a href="/programs">Programs</a>
+                    <ul class="submenu">
+                        <li><a href="/programs#group-classes">Strength &amp; Conditioning</a></li>
+                        <li><a href="/programs#personal-training">Personal Training</a></li>
+                        <li><a href="/programs#nutrition-coaching">Nutrition Coaching</a></li>
+                        <li><a href="/programs#open-gym">Open Gym</a></li>
+                        <li><a href="/programs#recovery">Recovery Room</a></li>
+                    </ul>
+                </li>
+                <li><a href="/schedule">Schedule</a></li>
+                <li><a href="/pricing">Pricing</a></li>
+                <li class="has-submenu">
+                    <a href="/about">About</a>
+                    <ul class="submenu">
+                        <li><a href="/about">Our Mission</a></li>
+                        <li><a href="/about#team">Meet the Team</a></li>
+                        <li><a href="/faq">FAQs</a></li>
+                        <li><a href="/blog">Blog</a></li>
+                        <li><a href="/gear">Gear</a></li>
+                        <li><a href="/media">Media</a></li>
+                    </ul>
+                </li>
+            </ul>
+            <a href="/book#checkin" class="cta-btn">Talk to a Coach</a>
+            <button class="hamburger" onclick="toggleSideMenu()" aria-label="Menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- ============ THUMB BAR (mobile) ============ -->
+    <div class="thumbbar">
+        <a class="tb-call" href="tel:+19727857036" aria-label="Call Black Iron Athletics"><svg width="19" height="19" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M6.5 2.5 8.2 6l-1.7 1.6a11 11 0 0 0 4.9 4.9L13 10.8l3.5 1.7v3.2c0 .6-.5 1-1.1 1A13.6 13.6 0 0 1 2.3 3.6c0-.6.4-1.1 1-1.1h3.2Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg></a>
+        <a class="tb-book" href="/book#checkin">Talk to a Coach</a>
+    </div>
+
+    <!-- ============ SIDE MENU (flat mirror of the nav IA) ============ -->
+    <div class="menu-backdrop" id="menuBackdrop"></div>
+    <div class="side-menu" id="sideMenu">
+        <div class="side-menu-header">
+            <img src="/images/logos/logo.png" alt="Black Iron Athletics">
+            <button class="side-menu-close" onclick="closeSideMenu()" aria-label="Close menu">&times;</button>
+        </div>
+        <div class="side-menu-links">
+            <a href="/getting-started">Start Here</a>
+            <a href="/schedule">Schedule</a>
+            <a href="/pricing">Pricing</a>
+            <details class="m-acc"><summary>Programs</summary>
+                <a href="/programs" class="sub-link">All programs</a>
+                <a href="/programs#group-classes" class="sub-link">Strength &amp; Conditioning</a>
+                <a href="/programs#personal-training" class="sub-link">Personal Training</a>
+                <a href="/programs#nutrition-coaching" class="sub-link">Nutrition Coaching</a>
+                <a href="/programs#open-gym" class="sub-link">Open Gym</a>
+                <a href="/programs#recovery" class="sub-link">Recovery Room</a>
+            </details>
+            <details class="m-acc"><summary>About</summary>
+                <a href="/about" class="sub-link">Our Mission</a>
+                <a href="/about#team" class="sub-link">Meet the Team</a>
+                <a href="/faq" class="sub-link">FAQs</a>
+                <a href="/blog" class="sub-link">Blog</a>
+                <a href="/gear" class="sub-link">Gear</a>
+                <a href="/media" class="sub-link">Media</a>
+            </details>
+            <a href="/contact">Contact</a>
+        </div>
+        <div class="side-menu-footer">
+            <a href="/book#checkin" onclick="closeSideMenu();">Talk to a Coach</a>
+        </div>
+    </div>
+
+    <main id="main-content">
+
+    <!-- ============ ARTICLE HERO ============ -->
+    <section class="article-hero no-top">
+        <div class="article-hero-container">
+            <div class="breadcrumb"><a href="/">Home</a><span>/</span><a href="/blog">Blog</a><span>/</span><span>GOWOD Mobility App</span></div>
+            <h1>GOWOD: Mobility You Can Do at Home Between Classes</h1>
+            <div class="article-meta">
+                <span>November 17, 2026</span>
+                <span>6 min read</span>
+                <span>By Mike Manning</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============ ARTICLE ============ -->
+    <div class="article-content">
+        <div class="article-body">
+            <img src="/images/social/2026-11-17-gowod-mobility-header.jpg" alt="Black Iron Athletics, Frisco TX. Headline: Mobility you can do at home. Beside it, members working through a floor warm-up." class="article-hero-image" loading="eager" width="1200" height="630">
+
+<p class="article-lead">&ldquo;What should I be doing on the days I&rsquo;m not in class?&rdquo; I get that question more than almost any other. For a lot of you, the honest answer isn&rsquo;t more conditioning. It&rsquo;s mobility.</p>
+<p>So here&rsquo;s an app that makes mobility easier to actually do at home: what it is, what&rsquo;s free, what isn&rsquo;t, and how I&rsquo;d use it if I were a member trying to get more out of my hour with us.</p>
+<h2>Why Mobility Is Homework</h2>
+<p>Every class starts with a warm-up. It&rsquo;s built for that day&rsquo;s session, it&rsquo;s coached, and it gets you ready to train. What it can&rsquo;t do in five to fifteen minutes is undo eight hours in a chair.</p>
+<p>That&rsquo;s the job of the other twenty-three hours. One of the six things we believe at Black Iron is that the 23 hours matter more than the 1. Nutrition, sleep and daily habits are most of it. Mobility belongs on that list.</p>
+<p>Here&rsquo;s what it looks like on the floor. If your ankles won&rsquo;t let you get to depth, your squat finds the range somewhere else, usually your knees or your low back. If your shoulders won&rsquo;t get the bar overhead, your low back arches to make up the difference. We coach around it every rep. But the fix for a position you don&rsquo;t own lives outside of class, a few minutes at a time.</p>
+<p>This one is personal for me. I came home from the Marine Corps with a broken back. Twenty years of coaching later, I can tell you the people still training hard in their forties and fifties aren&rsquo;t the ones who pushed the hardest. They&rsquo;re the ones who kept their positions.</p>
+<h2>What GOWOD Is</h2>
+<p>GOWOD is a mobility and stretching app built for people who train. It starts with a mobility test you do on your own, at home, in under fifteen minutes. The test checks each area of your body and shows you which ones are holding you back.</p>
+<p>From there, the app builds routines around what the test found. Instead of guessing which stretch to do, you&rsquo;re working on the areas that came back the tightest.</p>
+<h2>What&rsquo;s Free and What Isn&rsquo;t</h2>
+<p>The parts I&rsquo;d start with cost nothing:</p>
+<ul>
+<li><strong>The mobility test</strong>, plus the breakdown of your results</li>
+<li><strong>A library of more than 300 mobility videos</strong></li>
+</ul>
+<p>Premium is the paid tier. It adds personalized daily routines built from your test, activation routines for before you train, recovery routines for after, and progress tracking. It comes with a 7-day free trial, and you can cancel in the app or online.</p>
+<p>Check the current price in the app before the trial ends. I&rsquo;d rather you see it there than read a number here that&rsquo;s out of date by next month.</p>
+<h2>Honest Disclosure</h2>
+<p>Two things you should know before you click anything.</p>
+<p>First, the GOWOD links in this post are affiliate links. If you sign up through one, Black Iron earns a commission, at no extra cost to you.</p>
+<p>Second, I haven&rsquo;t put real time into GOWOD myself yet. This isn&rsquo;t a review. It&rsquo;s a coach telling you what the app is, who it&rsquo;s for, and how I&rsquo;d use it. Once I&rsquo;ve got real time in it, I&rsquo;ll tell you what I think, including anything I don&rsquo;t like.</p>
+<p>That&rsquo;s also why I&rsquo;d start you on the free test, not the subscription. It costs you fifteen minutes and tells you whether the app deserves more of your time.</p>
+<h2>How I&rsquo;d Use It as a Member</h2>
+<ol>
+<li><strong>Take the free test.</strong> Do it on a rest day, warmed up, and be honest with yourself. A flattering score helps nobody.</li>
+<li><strong>Pick one or two areas.</strong> Whatever came back tightest. Not all of them, just the one or two you&rsquo;ll actually work on.</li>
+<li><strong>Put in ten minutes before class or on your off days.</strong> Ten minutes, three or four times a week, for a month, beats one hour-long stretch session you never repeat.</li>
+<li><strong>Bring your results to a coach.</strong> Show us what came back tight. We&rsquo;ll tell you how it shows up in your squat, your press or your pull, and what to watch for in class.</li>
+<li><strong>Retest with us.</strong> We&rsquo;re in retest week for Harder to Kill right now. Take the mobility test again when the next cycle ends, and see whether it moved along with your lifts.</li>
+</ol>
+<h2>What It Won&rsquo;t Do</h2>
+<p>An app can&rsquo;t watch you squat. It doesn&rsquo;t know you rolled your ankle last year, or that your hip gets cranky after a long drive. Your coaches do. Use GOWOD to do the work between classes, and keep us in the loop.</p>
+<p>And if something hurts, not tight but actually hurts, stretching it harder isn&rsquo;t the answer. Tell a coach, and see a doctor or a physical therapist.</p>
+<h2>Start This Week</h2>
+<p><a href="https://premium.gowod.app/?cid=rMTamiG4HQ09KI&amp;via=blackiron" target="_blank" rel="sponsored noopener">Take GOWOD&rsquo;s free mobility test</a> this week, then bring what you find to class.</p>
+<p>We help everyday people become everyday athletes. The hour you spend with us is where we coach it. The other twenty-three are where you keep it.</p>
+        </div>
+
+        <!-- Author box -->
+        <div class="author-box">
+            <img src="/images/team/owner-headcoach-mike.webp" alt="Mike Manning, owner and head coach of Black Iron Athletics" class="author-box-image" loading="lazy">
+            <div>
+                <span class="author-box-label">Written by</span>
+                <a href="/mike-manning" class="author-box-name">Mike Manning</a>
+                <p class="author-box-bio">U.S. Marine Corps veteran, owner and head coach of Black Iron Athletics in Frisco, TX. Over 20 years of coaching experience with certifications in USA Weightlifting, personal training, and more.</p>
+            </div>
+        </div>
+
+        <!-- CTA boxes -->
+        <div class="article-cta-box">
+            <h3>Take the Free Mobility Test</h3>
+            <p>Fifteen minutes at home, and you&rsquo;ll know which areas are holding you back. The test is free. This is an affiliate link, so Black Iron earns a commission if you go Premium, at no extra cost to you.</p>
+            <a href="https://premium.gowod.app/?cid=rMTamiG4HQ09KI&amp;via=blackiron" target="_blank" rel="sponsored noopener" class="btn btn-y">Start the Free Test</a>
+        </div>
+
+        <div class="article-cta-box">
+            <h3>Want a Coach to Look at Your Results?</h3>
+            <p>Book a free consultation and we&rsquo;ll look at your positions, your goals and your schedule, with zero pressure. Explore our <a href="/programs">programs</a> or see how easy it is to <a href="/getting-started">get started</a>.</p>
+            <a href="/book#checkin" class="btn btn-ghost">Talk to a Coach</a>
+        </div>
+
+        <div class="article-cta-box">
+            <h3>Get Tips Like This in Your Inbox</h3>
+            <p>Subscribe for weekly training, nutrition, and supplement tips from the coaches at Black Iron Athletics.</p>
+            <a href="#" onclick="openSubscribeModal(); return false;" class="btn btn-ghost">Subscribe</a>
+        </div>
+
+        <a href="/blog" class="back-to-blog"><svg width="16" height="12" viewBox="0 0 16 12" fill="none" aria-hidden="true"><path d="M6 1L1 6l5 5M1 6h14" stroke="currentColor" stroke-width="1.5"/></svg> Back to the blog</a>
+    </div>
+
+    </main>
+
+    <!-- ============ FOOTER ============ -->
+    <footer>
+        <div class="wrap">
+            <div class="foot-top">
+                <div>
+                    <div class="foot-brand">
+                        <img src="/images/logos/Anvil-WHITE.png" alt="Black Iron Athletics anvil mark" loading="lazy" width="88" height="58">
+                        <div>
+                            <b>Black Iron<br>Athletics</b>
+                        </div>
+                    </div>
+                    <p class="foot-mission">We help everyday people become everyday athletes.</p>
+                    <p class="foot-note">Veteran-owned &middot; Est. 2013 &middot; Serving Frisco, Prosper, The Colony, Little Elm, McKinney, Plano, Celina &amp; North Dallas.</p>
+                </div>
+                <ul class="foot-col">
+                    <li><b>Quick links</b></li>
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/pricing">Pricing</a></li>
+                    <li><a href="/schedule">Class Schedule</a></li>
+                    <li><a href="/faq">FAQ</a></li>
+                    <li><a href="/blog">Blog</a></li>
+                    <li><a href="/gear">Gear</a></li>
+                    <li><a href="/supplements">Supplements</a></li>
+                    <li><a href="#" onclick="openSubscribeModal(); return false;">Subscribe</a></li>
+                    <li><a href="#" onclick="openCancelModal(); return false;">Cancel Membership</a></li>
+                    <li><a href="/privacy-policy">Privacy Policy</a></li>
+                    <li><a href="/terms">Terms &amp; Conditions</a></li>
+                    <li><a href="/privacy-policy#sms-terms">SMS Terms</a></li>
+                </ul>
+                <ul class="foot-col">
+                    <li><b>Find us</b></li>
+                    <li>279 Main St, Suite 122<br>Frisco, TX 75036</li>
+                    <li>Suite 110 &mdash; our new home next door &mdash; opening in January.</li>
+                    <li><a href="tel:+19727857036">(972) 785-7036</a></li>
+                </ul>
+                <ul class="foot-col">
+                    <li><b>Hours</b></li>
+                    <li>Open gym 7 days a week.</li>
+                    <li><a href="/schedule">See the class schedule</a></li>
+                </ul>
+            </div>
+            <div class="foot-bottom">
+                <span>&copy; 2026 Black Iron Athletics. Veteran-owned &middot; Est. 2013.</span>
+                <span class="foot-social">
+                    <a href="https://www.instagram.com/blackiron_athletics/" target="_blank" rel="noopener" aria-label="Instagram">
+                        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="4"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="1.1" fill="currentColor" stroke="none"/></svg>
+                    </a>
+                    <a href="https://www.youtube.com/channel/UCF1XjUXEs81OWY70chem6vA" target="_blank" rel="noopener" aria-label="YouTube">
+                        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="2.5" y="5.5" width="19" height="13" rx="3"/><path d="M10 9.5v5l4.5-2.5z" fill="currentColor" stroke="none"/></svg>
+                    </a>
+                    <a href="https://www.facebook.com/BlackIronAthletics/" target="_blank" rel="noopener" aria-label="Facebook">
+                        <svg class="icon-fill" viewBox="0 0 24 24" aria-hidden="true"><path d="M13.5 21v-7h2.4l.4-3h-2.8V9.1c0-.9.3-1.5 1.6-1.5H16.6V4.9c-.3 0-1.2-.1-2.2-.1-2.2 0-3.7 1.3-3.7 3.8V11H8.3v3h2.4v7h2.8z"/></svg>
+                    </a>
+                </span>
+            </div>
+        </div>
+    </footer>
+
+    <!-- CONTRACT: sticky mobile CTA on all marketing pages (shows at 640px down) -->
+
+    <!-- ============ SCHEMA: BreadcrumbList ============ -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://www.blackironathletics.com/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Blog",
+            "item": "https://www.blackironathletics.com/blog/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "GOWOD: Mobility You Can Do at Home Between Classes",
+            "item": "https://www.blackironathletics.com/blog/gowod-mobility-app"
+          }
+      ]
+    }
+    </script>
+
+    <!-- ============ SCHEMA: BlogPosting ============ -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      "headline": "GOWOD: Mobility You Can Do at Home Between Classes",
+      "image": "https://www.blackironathletics.com/images/social/2026-11-17-gowod-mobility-header.jpg",
+      "description": "What the GOWOD mobility app is, what is free and what is not, and how a Frisco coach would use it as homework between classes.",
+      "url": "https://www.blackironathletics.com/blog/gowod-mobility-app",
+      "datePublished": "2026-11-17",
+      "dateModified": "2026-11-17",
+      "author": {
+        "@type": "Person",
+        "name": "Mike Manning",
+        "url": "https://www.blackironathletics.com/mike-manning"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "Black Iron Athletics",
+        "url": "https://www.blackironathletics.com",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://www.blackironathletics.com/images/logos/logo.png"
+        }
+      },
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://www.blackironathletics.com/blog/gowod-mobility-app"
+      }
+    }
+    </script>
+
+    <!-- ============ GHL MODALS (iframe blocks VERBATIM — lazy data-src, ids unchanged) ============ -->
+    <div class="modal-overlay" id="leadModal">
+        <div class="modal-container">
+            <button class="modal-close" onclick="closeLeadModal()">&times;</button>
+            <iframe
+                data-src="https://api.leadconnectorhq.com/widget/form/vw0hMdDkTCL6K5N3i7vF"
+                style="width:100%;height:100%;border:none;border-radius:4px"
+                id="inline-vw0hMdDkTCL6K5N3i7vF"
+                data-layout="{'id':'INLINE'}"
+                data-trigger-type="alwaysShow"
+                data-trigger-value=""
+                data-activation-type="alwaysActivated"
+                data-activation-value=""
+                data-deactivation-type="neverDeactivate"
+                data-deactivation-value=""
+                data-form-name="Form 2"
+                data-height="565"
+                data-layout-iframe-id="inline-vw0hMdDkTCL6K5N3i7vF"
+                data-form-id="vw0hMdDkTCL6K5N3i7vF"
+                title="Form 2"
+            ></iframe>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="cancelModal">
+        <div class="modal-container">
+            <button class="modal-close" onclick="closeCancelModal()">&times;</button>
+            <iframe
+                data-src="https://api.leadconnectorhq.com/widget/form/d4jtjY9fM2Hv9zVTzLwj"
+                style="width:100%;height:100%;border:none;border-radius:4px"
+                id="inline-d4jtjY9fM2Hv9zVTzLwj"
+                data-layout="{'id':'INLINE'}"
+                data-trigger-type="alwaysShow"
+                data-trigger-value=""
+                data-activation-type="alwaysActivated"
+                data-activation-value=""
+                data-deactivation-type="neverDeactivate"
+                data-deactivation-value=""
+                data-form-name="Membership Cancellation Form"
+                data-height="787"
+                data-layout-iframe-id="inline-d4jtjY9fM2Hv9zVTzLwj"
+                data-form-id="d4jtjY9fM2Hv9zVTzLwj"
+                title="Membership Cancellation Form"
+            ></iframe>
+        </div>
+    </div>
+    <div class="modal-overlay" id="subscribeModal">
+        <div class="modal-container">
+            <button class="modal-close" onclick="closeSubscribeModal()">&times;</button>
+            <iframe
+                data-src="https://api.leadconnectorhq.com/widget/form/GnNJNaEX8InuIeGxWjaI"
+                style="width:100%;height:100%;border:none;border-radius:4px"
+                id="inline-GnNJNaEX8InuIeGxWjaI"
+                data-layout="{'id':'INLINE'}"
+                data-trigger-type="alwaysShow"
+                data-trigger-value=""
+                data-activation-type="alwaysActivated"
+                data-activation-value=""
+                data-deactivation-type="neverDeactivate"
+                data-deactivation-value=""
+                data-form-name="Subscribe"
+                data-height="430"
+                data-layout-iframe-id="inline-GnNJNaEX8InuIeGxWjaI"
+                data-form-id="GnNJNaEX8InuIeGxWjaI"
+                title="Subscribe"
+            ></iframe>
+        </div>
+    </div>
+
+    <!-- ============ PAGE JS: modals + side menu (function names byte-identical to the live site) ============ -->
+    <script>
+    function openLeadModal() {
+        var modal = document.getElementById('leadModal');
+        var iframe = modal.querySelector('iframe');
+        if (iframe && !iframe.src && iframe.dataset.src) { iframe.src = iframe.dataset.src; }
+        modal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    }
+    function closeLeadModal() {
+        document.getElementById('leadModal').classList.remove('active');
+        document.body.style.overflow = '';
+    }
+
+    /* Every "Book a Free Consult" link opens the lead form in place instead of
+       leaving for the booking subdomain. The href stays exactly as it was, so
+       cmd-click, middle-click and a JS failure all still reach the calendar,
+       and pages without the modal (404, links) keep their plain link. */
+    document.addEventListener('click', function (e) {
+        if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) { return; }
+        var t = e.target;
+        var a = t && t.closest ? t.closest('a[href*="book.blackironathletics.com"]') : null;
+        if (!a || !document.getElementById('leadModal')) { return; }
+        e.preventDefault();
+        openLeadModal();
+    });
+    document.getElementById('leadModal').addEventListener('click', function(e) {
+        if (e.target === this) { closeLeadModal(); }
+    });
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') { closeLeadModal(); closeCancelModal(); closeSubscribeModal(); }
+    });
+
+    function openCancelModal() {
+        var modal = document.getElementById('cancelModal');
+        var iframe = modal.querySelector('iframe');
+        if (iframe && !iframe.src && iframe.dataset.src) { iframe.src = iframe.dataset.src; }
+        modal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    }
+    function closeCancelModal() {
+        document.getElementById('cancelModal').classList.remove('active');
+        document.body.style.overflow = '';
+    }
+    document.getElementById('cancelModal').addEventListener('click', function(e) {
+        if (e.target === this) { closeCancelModal(); }
+    });
+    function openSubscribeModal() {
+        var modal = document.getElementById('subscribeModal');
+        var iframe = modal.querySelector('iframe');
+        if (iframe && !iframe.src && iframe.dataset.src) { iframe.src = iframe.dataset.src; }
+        modal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    }
+    function closeSubscribeModal() {
+        document.getElementById('subscribeModal').classList.remove('active');
+        document.body.style.overflow = '';
+    }
+    document.getElementById('subscribeModal').addEventListener('click', function(e) {
+        if (e.target === this) { closeSubscribeModal(); }
+    });
+
+    // Side Menu
+    function toggleSideMenu() {
+        var menu = document.getElementById('sideMenu');
+        var backdrop = document.getElementById('menuBackdrop');
+        var hamburger = document.querySelector('.hamburger');
+        var isOpen = menu.classList.contains('open');
+        if (isOpen) { closeSideMenu(); }
+        else {
+            menu.classList.add('open');
+            backdrop.classList.add('open');
+            hamburger.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+    }
+    function closeSideMenu() {
+        var menu = document.getElementById('sideMenu');
+        var backdrop = document.getElementById('menuBackdrop');
+        var hamburger = document.querySelector('.hamburger');
+        menu.classList.remove('open');
+        backdrop.classList.remove('open');
+        hamburger.classList.remove('active');
+        document.body.style.overflow = '';
+    }
+    document.getElementById('menuBackdrop').addEventListener('click', closeSideMenu);
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') closeSideMenu();
+    });
+    </script>
+
+    <!-- ============ PAGE JS: nav scroll state + reveal observer ============ -->
+    <script>
+    (function(){
+        var nav = document.getElementById('nav');
+        function onScroll(){ if (nav) nav.classList.toggle('scrolled', window.scrollY > 24); }
+        window.addEventListener('scroll', onScroll, {passive:true});
+        onScroll();
+
+        var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        var items = document.querySelectorAll('.rv');
+        if (reduced || !('IntersectionObserver' in window)) {
+            items.forEach(function(el){ el.classList.add('on'); });
+            return;
+        }
+        var io = new IntersectionObserver(function(entries){
+            entries.forEach(function(e){
+                if (e.isIntersecting) { e.target.classList.add('on'); io.unobserve(e.target); }
+            });
+        }, {threshold:0.12, rootMargin:'0px 0px -40px 0px'});
+        items.forEach(function(el){ io.observe(el); });
+    })();
+    </script>
+
+<!-- ============ A11Y TAIL IIFE — copied VERBATIM from index.html. Do not edit. ============ -->
+<script>
+// ===== ACCESSIBILITY: KEYBOARD NAV & FOCUS TRAP =====
+(function() {
+    // --- Keyboard Navigation for Submenus ---
+    document.querySelectorAll('.has-submenu').forEach(function(item) {
+        var link = item.querySelector('a');
+        var sub = item.querySelector('.submenu');
+        if (!link || !sub) return;
+        link.setAttribute('aria-haspopup', 'true');
+        link.setAttribute('aria-expanded', 'false');
+        function openSub() { item.classList.add('submenu-open'); link.setAttribute('aria-expanded', 'true'); }
+        function closeSub() { item.classList.remove('submenu-open'); link.setAttribute('aria-expanded', 'false'); }
+        link.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                if (link.getAttribute('aria-expanded') === 'true') { closeSub(); }
+                else { openSub(); var f = sub.querySelector('a'); if (f) f.focus(); }
+            }
+            if (e.key === 'ArrowDown') { e.preventDefault(); openSub(); var f = sub.querySelector('a'); if (f) f.focus(); }
+        });
+        sub.addEventListener('keydown', function(e) {
+            var links = sub.querySelectorAll('a');
+            var idx = Array.prototype.indexOf.call(links, document.activeElement);
+            if (e.key === 'Escape') { closeSub(); link.focus(); }
+            if (e.key === 'ArrowDown' && idx < links.length - 1) { e.preventDefault(); links[idx + 1].focus(); }
+            if (e.key === 'ArrowUp') { e.preventDefault(); if (idx > 0) links[idx - 1].focus(); else { closeSub(); link.focus(); } }
+        });
+        item.addEventListener('focusout', function() {
+            setTimeout(function() { if (!item.contains(document.activeElement)) closeSub(); }, 0);
+        });
+    });
+
+    // --- Hamburger aria-expanded ---
+    var hamburger = document.querySelector('.hamburger');
+    if (hamburger) {
+        hamburger.setAttribute('aria-expanded', 'false');
+        var sm = document.getElementById('sideMenu');
+        if (sm) new MutationObserver(function() {
+            hamburger.setAttribute('aria-expanded', sm.classList.contains('open') ? 'true' : 'false');
+        }).observe(sm, { attributes: true, attributeFilter: ['class'] });
+    }
+
+    // --- Modal Focus Trapping ---
+    var prevFocus = null;
+    function trapFocus(modal) {
+        prevFocus = document.activeElement;
+        var els = modal.querySelectorAll('button, a[href], iframe, input, select, textarea, [tabindex]:not([tabindex="-1"])');
+        if (!els.length) return;
+        var first = els[0], last = els[els.length - 1];
+        modal._focusTrap = function(e) {
+            if (e.key !== 'Tab') return;
+            if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+            else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+        };
+        modal.addEventListener('keydown', modal._focusTrap);
+        first.focus();
+    }
+    function releaseFocus(modal) {
+        if (modal._focusTrap) { modal.removeEventListener('keydown', modal._focusTrap); delete modal._focusTrap; }
+        if (prevFocus) { prevFocus.focus(); prevFocus = null; }
+    }
+    document.querySelectorAll('.modal-overlay').forEach(function(modal) {
+        modal.setAttribute('role', 'dialog');
+        modal.setAttribute('aria-modal', 'true');
+        new MutationObserver(function() {
+            if (modal.classList.contains('active')) trapFocus(modal);
+            else releaseFocus(modal);
+        }).observe(modal, { attributes: true, attributeFilter: ['class'] });
+    });
+})();
+</script>
+
+<script src="https://link.msgsndr.com/js/form_embed.js" type="text/javascript" defer></script>
+<script src="https://widgets.leadconnectorhq.com/loader.js" data-resources-url="https://widgets.leadconnectorhq.com/chat-widget/loader.js" data-widget-id="6995d6d76e6009387f78d31e" defer></script>
+    <!-- Thumb bar: reveal once the hero's own consult button has scrolled by -->
+    <script>
+    (function() {
+      var bar = document.querySelector('.thumbbar');
+      if (!bar) return;
+      bar.classList.add('tb-auto');
+      var shown = false, ticking = false;
+      function check() {
+        ticking = false;
+        var past = window.scrollY > window.innerHeight * 0.6;
+        if (past === shown) return;
+        shown = past;
+        bar.classList.toggle('tb-show', past);
+      }
+      function onScroll() {
+        if (ticking) return;
+        ticking = true;
+        window.requestAnimationFrame(check);
+      }
+      window.addEventListener('scroll', onScroll, { passive: true });
+      window.addEventListener('resize', onScroll, { passive: true });
+      check();
+    })();
+    </script>
+</body>
+</html>
