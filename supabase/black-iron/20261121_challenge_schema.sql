@@ -79,6 +79,7 @@ create table public.missions (
   category_key text not null,
   target_count smallint not null default 1,
   points_label int not null default 0,
+  bonus_points int not null default 0 check (bonus_points between 0 and 50),
   is_flash boolean not null default false,
   opens_at timestamptz,
   closes_at timestamptz,
@@ -154,6 +155,7 @@ create index entries_photo on public.entries (photo_path) where photo_path is no
 create unique index entries_wodify_once on public.entries (challenge_id, user_id, category_key, activity_date) where source = 'wodify';
 create unique index entries_once on public.entries (challenge_id, user_id, category_key) where category_key in ('profile','original','team_signup');
 create unique index entries_sweep_once on public.entries (challenge_id, user_id, week_no) where category_key = 'clean_sweep';
+create unique index entries_mission_bonus_once on public.entries (user_id, mission_id) where category_key = 'mission_bonus';
 
 create table public.invites (
   code text primary key,
@@ -320,6 +322,14 @@ begin
     perform app.add_auto(p_uid, p_ch, tm.team_id, 'team_signup', null);
   end if;
   perform app.post_attendance_for(p_ch, p_uid);
+
+  -- A mission with a bonus pays it once, when the member hits the target.
+  insert into public.entries (challenge_id, user_id, team_id, category_key, mission_id, week_no, activity_date, points, team_only, status, source)
+  select p_ch, p_uid, tm.team_id, 'mission_bonus', m.id, m.week_no, app.today(), m.bonus_points, false, 'approved', 'auto'
+  from public.missions m
+  where m.challenge_id = p_ch and m.status = 'live' and not m.is_flash and m.bonus_points > 0
+    and app.mission_count(p_uid, m, 'approved') >= m.target_count
+  on conflict do nothing;
 
   for w in select week_no from public.weeks where challenge_id = p_ch and starts_on <= app.today() loop
     select count(*), count(*) filter (where app.mission_count(p_uid, m, 'approved') >= m.target_count)
@@ -718,10 +728,16 @@ begin
   return v_id;
 end $$;
 
--- Service use (the daily Wodify pull): post class points for everyone.
-create function app.post_attendance() returns void language sql security definer set search_path = '' as $$
-  select app.post_attendance_for(ch.id, null) from public.challenges ch where ch.is_active
-$$;
+-- Service use (the daily Wodify pull): post class points and any bonuses they trigger, for everyone.
+create function app.post_attendance() returns void language plpgsql security definer set search_path = '' as $$
+declare r record;
+begin
+  for r in select tm.user_id, tm.challenge_id from public.team_members tm
+           join public.challenges ch on ch.id = tm.challenge_id
+           where ch.is_active and not tm.is_captain loop
+    perform app.award_auto(r.user_id, r.challenge_id);
+  end loop;
+end $$;
 
 -- Storage: who can see a proof photo.
 create function app.can_view_proof(p_name text) returns boolean language sql stable security definer set search_path = '' as $$

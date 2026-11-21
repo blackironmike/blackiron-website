@@ -54,23 +54,25 @@ from public.challenges ch,
     ('clean_sweep', 'Clean Sweep',             'Finish every mission in a week.',                             5, 'auto',   'none',          'week',    null,      false, false, 8),
     ('profile',     'Profile complete',        'Your photo and why you train.',                               2, 'auto',   'none',          'once',    null,      false, false, 9),
     ('original',    'Rally Point Original',    'Signed up before November 30.',                               3, 'auto',   'none',          'once',    null,      false, false, 10),
-    ('team_signup', 'Team sign-up bonus',      'One point to your team for signing up before November 30.',   1, 'auto',   'none',          'once',    null,      true,  false, 11)
+    ('team_signup', 'Team sign-up bonus',      'One point to your team for signing up before November 30.',   1, 'auto',   'none',          'once',    null,      true,  false, 11),
+    ('mission_bonus', 'Mission bonus',         'Hit a weekly target, like three classes in a week.',          3, 'auto',   'none',          'any',     null,      false, false, 12)
   ) as v(key, label, hint, points, logged_by, proof, per, max_total, team_only, allowed_pre, sort)
 where ch.slug = 'rally-point'
 on conflict (challenge_id, key) do nothing;
 
 -- Week 2 missions. points_label is what the row shows; the points themselves
--- come from the category each time something is logged.
-insert into public.missions (challenge_id, week_no, sort, title, category_key, target_count, points_label, status)
-select ch.id, 2, v.sort, v.title, v.category_key, v.target_count, v.points_label, 'live'
+-- come from the category each time something is logged. bonus_points lands
+-- once when the member hits the target (3 classes: 2 each, plus 3).
+insert into public.missions (challenge_id, week_no, sort, title, category_key, target_count, points_label, bonus_points, status)
+select ch.id, 2, v.sort, v.title, v.category_key, v.target_count, v.points_label, v.bonus_points, 'live'
 from public.challenges ch,
   (values
-    (1, 'Show up 3 times', 'class', 3, 6),
-    (2, 'Social challenge: throwback to your first day at BIA', 'social', 1, 3),
-    (3, 'Finish your profile: photo and why I train', 'profile', 1, 2),
-    (4, 'Bring a guest', 'guest', 1, 5),
-    (5, 'Toy drop', 'toy', 1, 2),
-    (6, 'In-class challenge (Coach Mike picks it)', 'in_class', 1, 3)
-  ) as v(sort, title, category_key, target_count, points_label)
+    (1, 'Show up 3 times', 'class', 3, 3, 3),
+    (2, 'Social challenge: throwback to your first day at BIA', 'social', 1, 3, 0),
+    (3, 'Finish your profile: photo and why I train', 'profile', 1, 2, 0),
+    (4, 'Bring a guest', 'guest', 1, 5, 0),
+    (5, 'Toy drop', 'toy', 1, 2, 0),
+    (6, 'In-class challenge (Coach Mike picks it)', 'in_class', 1, 3, 0)
+  ) as v(sort, title, category_key, target_count, points_label, bonus_points)
 where ch.slug = 'rally-point'
   and not exists (select 1 from public.missions m where m.challenge_id = ch.id and m.week_no = 2 and m.title = v.title);
