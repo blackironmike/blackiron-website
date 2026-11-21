@@ -45,6 +45,7 @@ select ch.id, v.key, v.label, v.hint, v.points, v.logged_by, v.proof, v.per, v.m
 from public.challenges ch,
   (values
     ('class',       'Class attended',          'Counts on its own from your check-in.',                       2, 'auto',   'none',          'day',     null::int, false, false, 1),
+    ('open_gym',    'Open Gym',                'Counts on its own from your check-in. A class the same day counts instead.', 1, 'auto', 'none', 'day', null, false, false, 2),
     ('social',      'Weekly social challenge', 'Post it, then add the link or a screenshot.',                 3, 'member', 'link_or_photo', 'week',    null,      false, false, 2),
     ('active',      'Active anywhere',         'Home workout, run, walk, hike, ride, travel gym.',            2, 'member', 'photo',         'day',     null,      false, false, 3),
     ('guest',       'Brought a guest',         'A coach confirms once your guest signs the waiver.',          5, 'member', 'none',          'any',     null,      false, true,  4),
