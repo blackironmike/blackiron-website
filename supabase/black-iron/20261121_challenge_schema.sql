@@ -152,7 +152,7 @@ create index entries_user on public.entries (challenge_id, user_id);
 create index entries_team on public.entries (challenge_id, team_id, status);
 create index entries_mission on public.entries (mission_id) where mission_id is not null;
 create index entries_photo on public.entries (photo_path) where photo_path is not null;
-create unique index entries_wodify_once on public.entries (challenge_id, user_id, category_key, activity_date) where source = 'wodify';
+create unique index entries_wodify_once on public.entries (challenge_id, user_id, activity_date) where source = 'wodify';
 create unique index entries_once on public.entries (challenge_id, user_id, category_key) where category_key in ('profile','original','team_signup');
 create unique index entries_sweep_once on public.entries (challenge_id, user_id, week_no) where category_key = 'clean_sweep';
 create unique index entries_mission_bonus_once on public.entries (user_id, mission_id) where category_key = 'mission_bonus';
@@ -182,6 +182,8 @@ create table app.attendance (
   wodify_client_id int not null,
   class_date date not null,
   class_name text,
+  -- One check-in is credited per member per day. A class beats Open Gym on the same day.
+  kind text not null default 'class' check (kind in ('class', 'open_gym')),
   primary key (wodify_client_id, class_date)
 );
 alter table app.roster enable row level security;
@@ -293,15 +295,17 @@ $$;
 
 create function app.post_attendance_for(p_ch smallint, p_uid uuid) returns void
 language sql security definer set search_path = '' as $$
-  insert into public.entries (challenge_id, user_id, team_id, category_key, week_no, activity_date, points, team_only, status, source)
+  insert into public.entries as t (challenge_id, user_id, team_id, category_key, week_no, activity_date, points, team_only, status, source)
   select ch.id, x.id, tm.team_id, c.key, app.week_no(ch.id, a.class_date), a.class_date, c.points, false, 'approved', 'wodify'
   from public.challenges ch
-  join public.point_categories c on c.challenge_id = ch.id and c.key = 'class' and c.active
   join public.team_members tm on tm.challenge_id = ch.id and not tm.is_captain and (p_uid is null or tm.user_id = p_uid)
   join public.profile_private x on x.id = tm.user_id and x.wodify_client_id is not null
   join app.attendance a on a.wodify_client_id = x.wodify_client_id
+  join public.point_categories c on c.challenge_id = ch.id and c.key = a.kind and c.active
   where ch.id = p_ch and a.class_date between ch.scoring_starts_on and ch.ends_on
-  on conflict do nothing
+  on conflict (challenge_id, user_id, activity_date) where source = 'wodify'
+  do update set category_key = excluded.category_key, points = excluded.points
+  where t.category_key = 'open_gym' and excluded.category_key = 'class'
 $$;
 
 create function app.award_auto(p_uid uuid, p_ch smallint) returns void language plpgsql security definer set search_path = '' as $$
