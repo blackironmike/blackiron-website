@@ -15,6 +15,7 @@ const SITE_URL = 'https://www.blackironathletics.com';
 const EXCLUDED_FILES = new Set([
   '404.html',
   'rallypoint.html',
+  'your-people.html', // one-off page for a visiting group, shared by direct link only
   'email-template.html',
   'landing.html',
   'step1.html',
