@@ -369,10 +369,10 @@
   }
 
   // ---------- frame tool ----------
-  // The frame is Black Iron first: the stacked name and anvil over a dark fade,
-  // with a short line about belonging. No challenge or team name on it.
+  // The frame is Black Iron first: WE ARE BLACK IRON stacked with the anvil over
+  // a dark fade. It is about belonging to the gym. No challenge or team name on it.
   var FR = { img: null, fmt: 'story', anvil: null };
-  var FRAME_TAG = 'WE ARE BLACK IRON', FRAME_HANDLE = '@BLACKIRON_ATHLETICS';
+  var FRAME_HANDLE = '@BLACKIRON_ATHLETICS';
   function sheetFrame() {
     FR.img = null;
     if (!FR.anvil) { FR.anvil = new Image(); FR.anvil.onload = function () { drawFrame(); }; FR.anvil.src = '/images/logos/Anvil-WHITE.png'; }
@@ -420,30 +420,26 @@
       }
     }
     // Dark fade so the name reads on any photo.
-    var g = c.createLinearGradient(0, H - safeB - 960, 0, H - safeB);
-    g.addColorStop(0, 'rgba(0,0,0,0)'); g.addColorStop(0.55, 'rgba(0,0,0,.62)'); g.addColorStop(1, 'rgba(0,0,0,.92)');
-    c.fillStyle = g; c.fillRect(0, H - safeB - 960, W, 960);
+    var fadeH = story ? 1150 : 1000, g = c.createLinearGradient(0, H - safeB - fadeH, 0, H - safeB);
+    g.addColorStop(0, 'rgba(0,0,0,0)'); g.addColorStop(0.5, 'rgba(0,0,0,.6)'); g.addColorStop(1, 'rgba(0,0,0,.92)');
+    c.fillStyle = g; c.fillRect(0, H - safeB - fadeH, W, fadeH);
     if (safeB) { c.fillStyle = 'rgba(0,0,0,.92)'; c.fillRect(0, H - safeB, W, safeB); }
 
-    // Stacked name, bottom left: anvil, BLACK, IRON (outline), ATHLETICS in Forge, handle.
-    var yb = H - safeB - 78, ya = yb - 62, fs = 176, big = '900 ' + fs + 'px Montserrat, Arial';
+    // The statement, bottom left: anvil, WE ARE (outline), BLACK, IRON, then ATHLETICS in Forge and the handle.
+    var fs = story ? 168 : 144, k = fs / 176, pitch = Math.round(148 * k), big = '900 ' + fs + 'px Montserrat, Arial';
+    var yb = H - safeB - 78, ya = yb - 62, y3 = ya - Math.round(78 * k), y2 = y3 - pitch, y1 = y2 - pitch;
     c.fillStyle = '#C7C7C7'; c.font = '700 24px Montserrat, Arial'; tracked(c, FRAME_HANDLE, x + 4, yb, 4);
     c.font = big; var wB = c.measureText('BLACK').width;
     c.fillStyle = '#FFD202'; c.font = '700 44px Montserrat, Arial';
     var letters = 'ATHLETICS', lw = trackedWidth(c, letters, 0);
     tracked(c, letters, x + 6, ya, (wB - 12 - lw) / (letters.length - 1));
-    c.font = big; outlineText(c, 'IRON', x, ya - 78, fs);
-    c.fillStyle = '#fff'; c.textAlign = 'left'; c.fillText('BLACK', x, ya - 226);
+    c.font = big; c.fillStyle = '#fff'; c.textAlign = 'left';
+    c.fillText('IRON', x, y3); c.fillText('BLACK', x, y2);
+    outlineText(c, 'WE ARE', x, y1, fs);
     if (FR.anvil && FR.anvil.naturalWidth) {
-      var aw = 170, ah = aw * FR.anvil.naturalHeight / FR.anvil.naturalWidth;
-      c.drawImage(FR.anvil, x, ya - 376 - ah, aw, ah);
+      var aw = Math.round(170 * k), ah = aw * FR.anvil.naturalHeight / FR.anvil.naturalWidth;
+      c.drawImage(FR.anvil, x, y1 - Math.round(150 * k) - ah, aw, ah);
     }
-
-    // Tag, top left.
-    c.font = '700 24px Montserrat, Arial';
-    var tw = trackedWidth(c, FRAME_TAG, 5);
-    c.fillStyle = '#000'; c.fillRect(x, safeT + 72, tw + 56, 62);
-    c.fillStyle = '#fff'; tracked(c, FRAME_TAG, x + 28, safeT + 112, 5);
     return cv;
   }
   function saveCanvas(cv, name, type) {
