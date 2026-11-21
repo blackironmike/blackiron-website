@@ -230,6 +230,7 @@ create function app.team_board(p_ch smallint) returns jsonb language sql stable 
 $$;
 
 -- Creates the caller's profile rows on first visit and matches them to the roster.
+-- Only a confirmed email address can match the roster.
 create function app.ensure_profile() returns void language plpgsql security definer set search_path = '' as $$
 declare
   v_uid uuid := auth.uid();
@@ -237,8 +238,9 @@ declare
   r app.roster%rowtype;
 begin
   if v_uid is null then raise exception 'Sign in first.'; end if;
-  select lower(u.email), u.raw_user_meta_data into v_email, v_meta from auth.users u where u.id = v_uid;
-  if v_email is null then raise exception 'This account has no email.'; end if;
+  select lower(u.email), u.raw_user_meta_data into v_email, v_meta
+  from auth.users u where u.id = v_uid and u.email_confirmed_at is not null;
+  if v_email is null then raise exception 'Confirm your email first.'; end if;
   select * into r from app.roster where email = v_email and active;
 
   if not exists (select 1 from public.profile_private where id = v_uid) then
