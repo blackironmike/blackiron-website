@@ -40,7 +40,7 @@
       '<main class="ch-main no-nav">' +
       '<header class="ch-hero"><span class="eyebrow eyebrow-y">Black Iron Athletics</span>' +
       '<h1 class="ch-h1">Rally <span class="outline">Point</span></h1>' +
-      '<p class="ch-lead">Eight weeks. Four teams. Show up, bring your people, and carry your team through the holidays.</p></header>' +
+      '<p class="ch-lead">Eight weeks. Five teams. Show up, bring your people, and carry your team through the holidays.</p></header>' +
       '<section class="card"><h2 class="ch-h2">Sign in</h2>' +
       (S.signErr ? '<p class="err" role="alert">' + esc(S.signErr) + '</p>' : '') +
       '<div id="gbtn" class="gbtn"></div><p id="gnote" class="note" hidden></p>' +
@@ -359,7 +359,7 @@
       return '<div class="item"><span class="grow"><span class="item-t">' + esc(c.label) + '</span>' + (c.hint ? '<br><span class="item-s">' + esc(c.hint) + '</span>' : '') + '</span><span class="val">+' + c.points + '</span></div>';
     }).join('');
     openSheet('How it works',
-      '<p class="fine">Four teams, one per coach. Every point you earn counts for you and for your team. Scoring runs ' + esc(B.fmtDay(S.d.challenge.scoring_starts_on)) + ' through ' + esc(B.fmtDay(S.d.challenge.ends_on)) + '.</p>' +
+      '<p class="fine">' + (['Zero', 'One', 'Two', 'Three', 'Four', 'Five', 'Six', 'Seven', 'Eight'][S.d.teams.length] || S.d.teams.length) + ' teams, one per coach. Every point you earn counts for you and for your team. Scoring runs ' + esc(B.fmtDay(S.d.challenge.scoring_starts_on)) + ' through ' + esc(B.fmtDay(S.d.challenge.ends_on)) + '.</p>' +
       '<div class="list">' + rows + '</div>' +
       '<p class="fine">Class check-ins come from Wodify and post by the next morning. Sign in to class like you always do.</p>' +
       '<p class="fine">Traveling or stuck at home? Anything active counts once a day: a run, a walk, a hotel gym. Add a photo.</p>' +
