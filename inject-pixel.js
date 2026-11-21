@@ -31,6 +31,7 @@ const EXCLUDED_FILES = new Set([
   'email-template.html',
   'landing.html',
   'step1.html',
+  'rallypoint.html', // redirect to /challenge
 ]);
 
 // Directories to skip entirely
@@ -39,6 +40,7 @@ const EXCLUDED_DIRS = new Set([
   'tv', // the gym TV display: a screen, not a visitor
   'coach', // redirect to /whiteboard
   'whiteboard', // the coach whiteboard on the middle TV, same reason
+  'challenge', // signed-in member app, coach view and gym screen: no ad tracking
 ]);
 
 if (!PIXEL_ID && !GA4_ID) {
