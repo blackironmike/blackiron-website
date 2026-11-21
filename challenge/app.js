@@ -369,13 +369,11 @@
   }
 
   // ---------- frame tool ----------
-  // The frame is Black Iron first: WE ARE BLACK IRON stacked with the anvil over
-  // a dark fade. It is about belonging to the gym. No challenge or team name on it.
-  var FR = { img: null, fmt: 'story', anvil: null };
+  // The frame is Black Iron first: WE ARE BLACK IRON stacked over a dark fade. It is about belonging to the gym. No challenge or team name on it.
+  var FR = { img: null, fmt: 'story' };
   var FRAME_HANDLE = '@BLACKIRON_ATHLETICS';
   function sheetFrame() {
     FR.img = null;
-    if (!FR.anvil) { FR.anvil = new Image(); FR.anvil.onload = function () { drawFrame(); }; FR.anvil.src = '/images/logos/Anvil-WHITE.png'; }
     openSheet('Make my post',
       '<div class="seg" role="group" aria-label="Size"><button data-fmt="story" aria-pressed="true">Story</button><button data-fmt="post" aria-pressed="false">Post</button></div>' +
       '<canvas id="fc" class="frame-prev" aria-label="Preview of your framed photo"></canvas>' +
@@ -420,12 +418,12 @@
       }
     }
     // Dark fade so the name reads on any photo.
-    var fadeH = story ? 1150 : 1000, g = c.createLinearGradient(0, H - safeB - fadeH, 0, H - safeB);
+    var fadeH = story ? 1000 : 880, g = c.createLinearGradient(0, H - safeB - fadeH, 0, H - safeB);
     g.addColorStop(0, 'rgba(0,0,0,0)'); g.addColorStop(0.5, 'rgba(0,0,0,.6)'); g.addColorStop(1, 'rgba(0,0,0,.92)');
     c.fillStyle = g; c.fillRect(0, H - safeB - fadeH, W, fadeH);
     if (safeB) { c.fillStyle = 'rgba(0,0,0,.92)'; c.fillRect(0, H - safeB, W, safeB); }
 
-    // The statement, bottom left: anvil, WE ARE (outline), BLACK, IRON, then ATHLETICS in Forge and the handle.
+    // The statement, bottom left: WE ARE (outline), BLACK, IRON, then ATHLETICS in Forge and the handle.
     var fs = story ? 168 : 144, k = fs / 176, pitch = Math.round(148 * k), big = '900 ' + fs + 'px Montserrat, Arial';
     var yb = H - safeB - 78, ya = yb - 62, y3 = ya - Math.round(78 * k), y2 = y3 - pitch, y1 = y2 - pitch;
     c.fillStyle = '#C7C7C7'; c.font = '700 24px Montserrat, Arial'; tracked(c, FRAME_HANDLE, x + 4, yb, 4);
@@ -436,10 +434,6 @@
     c.font = big; c.fillStyle = '#fff'; c.textAlign = 'left';
     c.fillText('IRON', x, y3); c.fillText('BLACK', x, y2);
     outlineText(c, 'WE ARE', x, y1, fs);
-    if (FR.anvil && FR.anvil.naturalWidth) {
-      var aw = Math.round(170 * k), ah = aw * FR.anvil.naturalHeight / FR.anvil.naturalWidth;
-      c.drawImage(FR.anvil, x, y1 - Math.round(150 * k) - ah, aw, ah);
-    }
     return cv;
   }
   function saveCanvas(cv, name, type) {
