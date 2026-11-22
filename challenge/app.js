@@ -289,7 +289,9 @@
           '<b>' + esc(B.fmtDay(x, { weekday: 'short' })) + '</b><span>' + B.parseDay(x).getDate() + '</span></button>';
       }).join('') + '</div>' +
       '<div class="list">' + list.map(function (c) {
-        var spots = c.limit ? (c.full || c.spots_left === 0 ? 'Full' : c.spots_left + ' of ' + c.limit + ' spots left') : 'No reservation needed';
+        // Open Gym runs in long blocks with no reservations, so show when it ends instead of spots.
+        var spots = c.limit ? (c.full || c.spots_left === 0 ? 'Full' : c.spots_left + ' of ' + c.limit + ' spots left')
+          : (c.end ? 'Until ' + clock(c.end) + '. ' : '') + 'No reservation needed';
         return '<div class="item"><span class="cl-time">' + esc(clock(c.start)) + '</span><span class="grow"><span class="item-t">' + esc(c.program) + '</span><br>' +
           '<span class="item-s">' + esc(spots) + '</span></span></div>';
       }).join('') + '</div>' +
