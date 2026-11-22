@@ -8,7 +8,19 @@
   var today = now.getFullYear() + '-' + String(now.getMonth() + 1).padStart(2, '0') + '-' + String(now.getDate()).padStart(2, '0');
   var gw = CFG.guestWeek, guestWeekOn = today <= gw.to;
 
-  function draw(info) {
+  // The next workout or two, preview level: the main pieces only.
+  function workouts(list) {
+    list = (Array.isArray(list) ? list : []).filter(function (w) { return w.parts && w.parts.length; });
+    if (!list.length) return '';
+    return '<section class="card"><span class="kicker">What we’re training</span>' + list.map(function (w) {
+      return '<h2 class="ch-h2">' + esc(B.fmtDay(w.date, { weekday: 'long', month: 'short', day: 'numeric' })) + '</h2><div class="wod">' + w.parts.map(function (p) {
+        return '<div class="wod-part"><span class="wod-name">' + esc(p.name) + '</span>' +
+          (p.lines || []).map(function (l) { return '<span class="wod-line">' + esc(l) + '</span>'; }).join('') + '</div>';
+      }).join('') + '</div>';
+    }).join('') + '<p class="fine">Never done any of this? Good. Every workout has three levels, and a coach scales it to you.</p></section>';
+  }
+
+  function draw(info, wod) {
     var name = info && info.first_name ? info.first_name : null;
     var who = name ? esc(name) : 'A member';
     $app.innerHTML =
@@ -26,6 +38,8 @@
       '<li><span>Sign the waiver. It takes two minutes on your phone.</span></li>' +
       '<li><span>Pick a class' + (guestWeekOn ? ' below' : '') + ' and tell ' + (name ? esc(name) : 'your friend') + ' which one.</span></li>' +
       '<li><span>Show up ten minutes early. A coach will meet you, and every workout has three levels, so you’ll train at yours.</span></li></ol></section>' +
+
+      workouts(wod) +
 
       (guestWeekOn
         ? '<section class="card"><span class="kicker">Friends & Family Week</span><h2 class="ch-h2">Class times</h2><div class="sched">' +
@@ -45,6 +59,10 @@
     });
   }
 
-  if (!code) return draw(null);
-  B.rpc('invite_info', { p_code: code }).then(draw, function () { draw(null); });
+  // Each piece is optional: the page still works with no code and no workout posted.
+  var noop = function () { return null; };
+  Promise.all([
+    code ? B.rpc('invite_info', { p_code: code }).catch(noop) : null,
+    B.rpc('workout_preview').catch(noop)
+  ]).then(function (r) { draw(r[0], r[1]); });
 })();
