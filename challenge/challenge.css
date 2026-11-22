@@ -148,6 +148,18 @@ button.item{cursor:pointer}
 .grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px}
 .proof{width:96px;height:96px;object-fit:cover;flex:none;background:var(--black);border:1px solid var(--steel-line)}
 .proof-lg{width:100%;height:auto;max-height:420px;object-fit:contain}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.item .btn-sm{flex:none}
+.item-s a{color:var(--white);text-decoration:underline;text-underline-offset:3px;white-space:nowrap}
+.more{border-top:1px solid var(--steel-line);padding-top:6px}
+.more summary{cursor:pointer;min-height:44px;display:flex;align-items:center;color:var(--white);font-size:12px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase}
+.more summary:focus-visible{outline:2px solid var(--yellow);outline-offset:3px}
+.more[open] summary{margin-bottom:6px}
+.more .list{margin-top:14px}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{min-height:44px;padding:8px 14px;background:var(--white);border:1px solid var(--white);color:var(--black);font:inherit;font-size:.85rem;font-weight:700;cursor:pointer}
+.chip[aria-pressed=false]{background:none;color:var(--gray);border-color:var(--steel-line);text-decoration:line-through}
+.story-prev{max-width:320px;align-self:center}
 
 /* Invite page */
 .sched{display:flex;flex-direction:column}

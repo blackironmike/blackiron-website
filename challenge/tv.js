@@ -1,5 +1,6 @@
 /* Gym screen at /challenge/tv. Public and read-only. Rotates through:
-   team leaderboard, individual leaderboard, member highlight, photo wall.
+   team leaderboard, individual leaderboard, member highlight, and this week's
+   birthday and anniversary shoutouts (first names only, no ages).
    Before scoring starts it shows the countdown and sign-ups by team. */
 (function () {
   'use strict';
@@ -65,6 +66,17 @@
       '<div><div class="tv-k y">' + esc(team(top.team_id).name) + '</div><div class="tv-title" style="font-size:96px;margin:14px 0 26px">' + esc(top.name) + '</div>' +
       '<div class="tv-quote">' + top.week_points + ' points this week</div></div></div></div>';
   }
+  function shoutCount() { var so = D.shoutouts || {}; return (so.birthdays || []).length + (so.anniversaries || []).length; }
+  function scrShout() {
+    var so = D.shoutouts, n = shoutCount();
+    function group(label, list) {
+      return list.length ? '<div><div class="tv-k y">' + label + '</div><div class="tv-names">' + list.map(function (x) {
+        return '<span>' + esc(x.name) + (x.years ? '<small>' + x.years + (x.years === 1 ? ' year' : ' years') + '</small>' : '') + '</span>';
+      }).join('') + '</div></div>' : '';
+    }
+    return '<div class="tv-right"><div class="tv-k">This week at Black Iron</div><div class="tv-shout' + (n > 16 ? ' tight' : n > 8 ? ' many' : '') + '">' +
+      group('Happy birthday', so.birthdays) + group('Black Iron anniversary', so.anniversaries) + '</div></div>';
+  }
   function scrPhotos() {
     var ph = D.photos.filter(function (p) { return urls[p.path]; }).slice(0, 8);
     return '<div class="tv-right"><div class="tv-k">Out there getting it done</div><div class="tv-photos">' + ph.map(function (p) {
@@ -76,6 +88,7 @@
     var s = [scrTeams];
     if (D.phase !== 'pre' && D.people.length >= 3 && D.people[0].points > 0) s.push(scrPeople);
     if (D.highlights.length) s.push(scrHighlight);
+    if (shoutCount()) s.push(scrShout);
     if (D.phase !== 'pre' && D.people.some(function (p) { return p.week_points > 0; })) s.push(scrMvp);
     if (D.photos.filter(function (p) { return urls[p.path]; }).length >= 4) s.push(scrPhotos);
     return s;
