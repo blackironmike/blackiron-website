@@ -3,7 +3,14 @@
   'use strict';
   var B = window.BIA, CFG = B.CFG, sb = B.sb, esc = B.esc, avatar = B.avatar;
   var $app = document.getElementById('app'), $sheet = document.getElementById('sheet');
-  var S = { session: null, d: null, board: null, tab: 'missions', boardMode: 'teams', otpEmail: null, log: null, signErr: null };
+  // Small per-device notes. Storage can be blocked or empty, so every use is wrapped.
+  function note(k, v) { try { if (v === undefined) return localStorage.getItem('bia-' + k); if (v === null) localStorage.removeItem('bia-' + k); else localStorage.setItem('bia-' + k, v); } catch (e) {} return null; }
+  // If the phone reloads this page while someone is in their mail app getting the code,
+  // bring them back to the code screen instead of the start. Good for 20 minutes.
+  function recallOtp() {
+    try { var o = JSON.parse(note('otp') || 'null'); return o && Date.now() - o.t < 20 * 60 * 1000 ? o.e : null; } catch (e) { return null; }
+  }
+  var S = { session: null, d: null, board: null, tab: 'missions', boardMode: 'teams', otpEmail: recallOtp(), log: null, signErr: null };
 
   var IC = {
     check: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12l5 5 9-10"/></svg>',
@@ -156,7 +163,8 @@
         'There is nothing to approve. What members log counts right away.',
         'Know who’s on your team. Say their name in class. Get them to sign up, show up and bring a friend.',
         'When they post, remind them to tag @blackiron_athletics and add #BlackIron2027.',
-        'The coach view is there if you want it. You can add points for someone or take one back if it doesn’t check out. You never have to open it.'] }
+        'The coach view is there if you want it. You can add points for someone or take one back if it doesn’t check out. You never have to open it.',
+        'Put the app on your home screen so it’s one tap away. The next screens show you how, and you can show your team.'] }
     ];
   }
   function guideCard(g) {
@@ -208,7 +216,7 @@
   }
 
   function tabMissions() {
-    var d = S.d, t = myTeam(), cap = d.membership.is_captain, h = '';
+    var d = S.d, t = myTeam(), cap = d.membership.is_captain, h = installCard();
     if (cap) {
       h += '<section class="card"><span class="kicker kicker-y">Captain</span><h2 class="ch-h2">' + esc(t.name) + '</h2>' +
         '<p class="fine">Coaches don’t earn points. Your team’s total is your score.</p>' +
@@ -324,7 +332,9 @@
       (cap || m.role !== 'member' ? '<a class="item" href="/challenge/coach"><span class="grow item-t">Coach view</span></a>' : '') +
       '<button class="item" data-act="invite"><span class="grow"><span class="item-t">Invite a friend</span><br><span class="item-s">Your own link with the waiver.</span></span></button>' +
       '<button class="item" data-act="frame"><span class="grow"><span class="item-t">Make my post</span><br><span class="item-s">Your photo in the Black Iron frame.</span></span></button>' +
-      '<button class="item" data-act="how"><span class="grow item-t">How to earn points</span></button></div></section>';
+      '<button class="item" data-act="how"><span class="grow item-t">How to earn points</span></button>' +
+      (isInstalled() ? '' : '<button class="item" data-act="install"><span class="grow"><span class="item-t">Add to home screen</span><br><span class="item-s">Open Rally Point like an app.</span></span></button>') +
+      '</div></section>';
     if (!cap) {
       h += '<section class="card"><h2 class="ch-h2">Your log</h2>' + (d.entries.length ? '<div class="list">' + d.entries.map(function (e) {
         var c = cat(e.category_key) || { label: e.category_key };
@@ -399,6 +409,59 @@
         '<a class="linkbtn" href="' + esc(link) + '" target="_blank" rel="noopener">Preview your page</a>' +
         '<p class="fine">When your guest shows up, log it under Log points or tell a coach. Each guest is ' + ((cat('guest') || {}).points || 5) + ' points.</p>');
     }).catch(function (e) { openSheet('Invite a friend', '<p class="err">' + esc(B.errMsg(e)) + '</p>'); });
+  }
+
+  // ---------- add to home screen ----------
+  var UA = navigator.userAgent;
+  function isIOS() { return /iPhone|iPad|iPod/.test(UA) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1); }
+  function isAndroid() { return /Android/.test(UA); }
+  function isInstalled() {
+    try { return navigator.standalone === true || window.matchMedia('(display-mode: standalone)').matches; } catch (e) { return false; }
+  }
+  // Simple drawings of where to tap. Grey lines, with the thing to tap in Forge.
+  function pic(kind) {
+    var g = 'fill="none" stroke="#C7C7C7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"', y = 'fill="none" stroke="#FFD202" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"';
+    var t = 'font-family="Montserrat,Arial" font-size="13" fill="#C7C7C7"', ty = 'font-family="Montserrat,Arial" font-size="13" font-weight="700" fill="#FFD202"';
+    var body = '';
+    if (kind === 'ios-confirm') body = '<rect x="40" y="10" width="240" height="80" rx="12" ' + g + '/><text x="56" y="36" ' + t + '>Cancel</text><text x="236" y="36" ' + ty + '>Add</text>' +
+      '<rect x="224" y="19" width="46" height="26" rx="8" ' + y + '/><image href="/challenge/icons/icon-180.png" x="56" y="48" width="32" height="32"/><text x="98" y="69" ' + t + '>Rally Point</text>';
+    if (kind === 'and-menu') body = '<rect x="20" y="28" width="280" height="44" rx="8" ' + g + '/><text x="36" y="55" ' + t + '>blackironathletics.com</text>' +
+      '<circle cx="278" cy="50" r="17" ' + y + '/><g fill="#FFD202"><circle cx="278" cy="42" r="2.4"/><circle cx="278" cy="50" r="2.4"/><circle cx="278" cy="58" r="2.4"/></g>';
+    if (kind === 'and-add') body = '<rect x="70" y="6" width="210" height="88" rx="8" ' + g + '/><text x="88" y="30" ' + t + '>New tab</text>' +
+      '<rect x="76" y="40" width="198" height="34" rx="6" ' + y + '/><text x="88" y="62" ' + ty + '>Add to Home screen</text><text x="88" y="88" ' + t + '>Settings</text>';
+    if (kind === 'home') body = '<image href="/challenge/icons/icon-180.png" x="132" y="8" width="56" height="56" clip-path="inset(0 round 13px)"/>' +
+      '<text x="160" y="84" text-anchor="middle" font-family="Montserrat,Arial" font-size="13" fill="#FFFFFF">Rally Point</text>';
+    return '<svg class="hs-pic" viewBox="0 0 320 100" role="img" aria-hidden="true">' + body + '</svg>';
+  }
+  function sheetInstall(which) {
+    var os = which || (isAndroid() ? 'android' : 'ios');
+    var seg = '<div class="seg" role="group" aria-label="Phone"><button data-install="ios" aria-pressed="' + (os === 'ios') + '">iPhone</button><button data-install="android" aria-pressed="' + (os === 'android') + '">Android</button></div>';
+    function step(txt, p) { return '<li><span>' + txt + (p ? pic(p) : '') + '</span></li>'; }
+    function shot(n, w, h, alt) { return '<img class="hs-shot" src="/challenge/guide/home-screen-iphone-' + n + '.jpg" width="' + w + '" height="' + h + '" alt="' + alt + '" loading="lazy">'; }
+    function stepShot(txt, img) { return '<li><span>' + txt + img + '</span></li>'; }
+    var steps = os === 'ios'
+      ? step('Open this page in <b>Safari</b>. It has to be Safari, not Instagram or the Google app.') +
+        stepShot('Tap the <b>menu button</b> at the left end of the address bar. On some iPhones it’s three dots instead.', shot(1, 880, 183, 'Safari’s address bar with the menu button on its left end circled.')) +
+        stepShot('Tap <b>Share</b>.', shot(2, 760, 618, 'The menu that opens, with Share circled.')) +
+        stepShot('Tap <b>View More</b>, the arrow at the end of the row.', shot(3, 880, 267, 'The share options, with View More circled at the right end.')) +
+        stepShot('Tap <b>Add to Home Screen</b>.', shot(4, 880, 530, 'The longer list, with Add to Home Screen circled.')) +
+        step('Tap <b>Add</b> in the top corner.', 'ios-confirm')
+      : step('Open this page in <b>Chrome</b>.') +
+        step('Tap the <b>three dots</b> at the top right.', 'and-menu') +
+        step('Tap <b>Add to Home screen</b>. On some phones it says Install app.', 'and-add') +
+        step('Tap <b>Add</b>.');
+    openSheet('Add to home screen',
+      '<p class="fine">Put Rally Point on your home screen and it opens like any other app. It takes about 20 seconds.</p>' + seg +
+      (B.inAppBrowser() ? '<p class="err" role="alert">You’re inside another app’s browser right now. Tap its menu and choose Open in Safari or Open in Chrome first.</p>' : '') +
+      '<ol class="howto">' + steps + '</ol>' + pic('home') +
+      '<p class="fine">The first time you open it from your home screen, it will ask you to sign in one more time. After that it remembers you.</p>');
+  }
+  // One nudge on the Missions tab until they add it or wave it off.
+  function installCard() {
+    if (isInstalled() || note('hs') === 'no' || !(isIOS() || isAndroid())) return '';
+    return '<section class="card"><div class="row"><img src="/challenge/icons/icon-180.png" alt="" width="52" height="52" style="border-radius:12px;flex:none">' +
+      '<div class="grow"><h2 class="ch-h2" style="margin:0">Put this on your home screen</h2><p class="fine" style="margin:4px 0 0">It opens like an app. No app store.</p></div></div>' +
+      '<div class="row" style="margin-top:14px"><button class="btn btn-y grow" data-act="install">Show me how</button><button class="btn btn-ghost" data-act="install-no">Not now</button></div></section>';
   }
 
   // Every way to earn, with what it's worth and how often it counts.
@@ -555,13 +618,15 @@
     if (act === 'close') return closeSheet();
     if (act === 'signout') return sb.auth.signOut();
     if (act === 'reload') return load();
-    if (act === 'otp-back') { S.otpEmail = null; S.signErr = null; return render(); }
+    if (act === 'otp-back') { S.otpEmail = null; S.signErr = null; note('otp', null); return render(); }
     if (act === 'coach-next') { S.coachStep = (S.coachStep || 0) + 1; return render(); }
     if (act === 'coach-guide') return sheetCoachGuide();
     if (act === 'revealed') { S.d.membership.revealed = true; render(); return B.rpc('mark_revealed').catch(function () {}); }
     if (act === 'log') return sheetLog(el.dataset.cat, el.dataset.mission ? +el.dataset.mission : null);
     if (act === 'invite') return sheetInvite();
     if (act === 'how') return sheetHow();
+    if (act === 'install') return sheetInstall();
+    if (act === 'install-no') { note('hs', 'no'); return render(); }
     if (act === 'frame') return sheetFrame();
     if (act === 'edit') return openSheet('Edit profile', profileForm(false));
     if (act === 'share-invite') return navigator.share({ text: document.getElementById('it').value }).catch(function () {});
@@ -610,13 +675,13 @@
       busy(true, 'Sending…');
       sb.auth.signInWithOtp({ email: email, options: { shouldCreateUser: true, emailRedirectTo: location.origin + '/challenge' } }).then(function (r) {
         if (r.error) { S.signErr = B.errMsg(r.error); return render(); }
-        S.otpEmail = email; S.signErr = null; render();
+        S.otpEmail = email; S.signErr = null; note('otp', JSON.stringify({ e: email, t: Date.now() })); render();
       });
     } else if (kind === 'otp') {
       busy(true, 'Checking…');
       sb.auth.verifyOtp({ email: S.otpEmail, token: document.getElementById('code').value.trim(), type: 'email' }).then(function (r) {
         if (r.error) { S.signErr = 'That code didn’t work. Check it, or go back and send a new one.'; render(); }
-        else { S.otpEmail = null; S.signErr = null; }
+        else { S.otpEmail = null; S.signErr = null; note('otp', null); }
       });
     } else if (kind === 'profile') {
       var err = document.getElementById('perr'), tv = form.querySelector('input[name=tv]:checked'), adult = document.getElementById('adult');

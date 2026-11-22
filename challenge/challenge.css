@@ -159,3 +159,9 @@ button.item{cursor:pointer}
 .howto li::before{content:counter(s);font-weight:900;color:var(--white);font-size:1.4rem;line-height:1;width:22px;flex:none}
 
 @media (prefers-reduced-motion:reduce){.toast{transition:none}}
+
+/* Add to home screen guide */
+.hs-pic{display:block;width:100%;max-width:320px;height:auto;margin:10px 0 2px;background:var(--black);border:1px solid var(--steel-line)}
+.hs-shot{display:block;width:100%;max-width:340px;height:auto;margin:10px 0 2px;border:1px solid var(--steel-line)}
+.howto li>span{flex:1;min-width:0}
+.howto li b{color:var(--white)}
