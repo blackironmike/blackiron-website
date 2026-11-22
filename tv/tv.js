@@ -212,7 +212,7 @@
     title: [], timeline: [], columns: ['title', 'columns'], benchmark: ['name', 'movements', 'day'],
     explainer: ['title', 'points'], event: ['title', 'starts'], spotlight: ['title'],
     statement: ['lines'], fuelpath: ['title', 'points'], programs: ['title', 'cards'], qr: ['title', 'qr'],
-    offer: ['title', 'columns'], schedule: ['title', 'rows'], embed: ['src']
+    offer: ['title', 'columns'], schedule: ['title', 'rows'], embed: ['src'], hours: ['title', 'days']
   };
   var DATE_RE = /^\d{4}-\d{2}-\d{2}$/;
   function validate() {
@@ -573,6 +573,32 @@
     });
     h += '<div class="sg">' + g + '</div>';
     if (p.note) h += '<div class="note"' + attr('fade', 900 + rows.length * 170 + 400) + '>' + md(p.note) + '</div>';
+    h += footer(p.footer || 'chips', 1900);
+    return h;
+  };
+
+  // Holiday hours: one card per day with that day's class times, or one big
+  // word like "Open gym" (`big`) or CLOSED (`closed: true`). Days come in as dates, so the card for today lights up and days
+  // already gone dim on their own. Four or five cards read best.
+  RENDER.hours = function (p) {
+    var h = '', days = Array.isArray(p.days) ? p.days.filter(Boolean) : [], t = today();
+    if (p.eyebrow) h += '<div class="eb"><span class="chip fill big"' + attr('wipe', 100) + '>' + md(p.eyebrow) + '</span></div>';
+    h += '<div class="h"><h1 class="disp">' + heading(p.title, 250, 170) + '</h1></div>';
+    if (p.lead) h += '<div class="lead"' + attr('rise', 600) + '>' + md(p.lead) + '</div>';
+    var n = Math.max(days.length, 1), gap = 28, w = Math.floor((1760 - gap * (n - 1)) / n);
+    h += '<div class="hc">' + days.map(function (d, i) {
+      var dn = DATE_RE.test(d.date || '') ? parseDate(d.date) : null;
+      var big = d.big || (d.closed ? 'Closed' : '');
+      var cls = 'hcard' + (big ? ' big' : '') + (dn === t ? ' today' : '') + (dn != null && dn < t ? ' past' : '');
+      var top = '<div class="hd">' + esc(dn != null ? WEEKDAY[weekdayIdx(dn)] : (d.day || '')) + '</div>' +
+        '<div class="hdt">' + esc(dn != null ? fmtShort(dn) : '') + (dn === t ? '<span class="tdy">Today</span>' : '') + '</div>';
+      var mid = big
+        ? '<div class="hx">' + md(big) + '</div>'
+        : '<div class="ht">' + (d.times || []).map(function (tm) { return '<div>' + md(tm) + '</div>'; }).join('') + '</div>';
+      return '<div class="' + cls + '"' + attr('rise', 800 + i * 140, 'left:' + (i * (w + gap)) + 'px;width:' + w + 'px') + '>' +
+        top + mid + (d.note ? '<div class="hn">' + md(d.note) + '</div>' : '') + '</div>';
+    }).join('') + '</div>';
+    if (p.note) h += '<div class="note"' + attr('fade', 800 + n * 140 + 400) + '>' + md(p.note) + '</div>';
     h += footer(p.footer || 'chips', 1900);
     return h;
   };
