@@ -45,7 +45,7 @@
     var m = me(), ms = S.d.membership, t = ms && ms.is_captain ? myTeam() : null;
     return (t && t.captain_photo) || m.photo_path;
   }
-  function profileComplete() { var m = me(); return !!(m.photo_path && (m.why_i_train || '').trim()); }
+  function profileComplete() { var m = me(), cap = S.d.membership && S.d.membership.is_captain; return !!((m.photo_path || cap) && (m.why_i_train || '').trim()); }
 
   // ---------- sign in ----------
   function viewSignIn() {
@@ -160,7 +160,8 @@
         'Class check-ins count on their own from Wodify. Members log everything else themselves in the app.',
         (d.phase === 'pre' ? 'Sign-ups are open now. Scoring starts ' : 'Sign-ups are open. Scoring started ') + B.fmtDay(ch.scoring_starts_on) + ' and runs through ' + B.fmtDay(ch.ends_on) + '.'] },
       { k: 'Your part', t: ['What we need', 'from you'], p: [
-        'You don’t earn points. Your team’s total is your score.',
+        'You earn points for your team the same way your athletes do. Take class, log it, bring a guest. Train next to them when you can.',
+        'Your points count for your team. You stay off the individual leaderboard, so that race belongs to the members.',
         'There is nothing to approve. What members log counts right away.',
         'Know who’s on your team. Say their name in class. Get them to sign up, show up and bring a friend.',
         'When they post, remind them to tag @blackiron_athletics and add #BlackIron2027.',
@@ -191,7 +192,7 @@
       avatar(t.captain_name, t.captain_photo, 'av-xl') +
       '<h1>' + esc(t.name.split(' ')[0]) + ' <span class="outline">' + esc(t.name.split(' ').slice(1).join(' ')) + '</span></h1>' +
       '<p class="ch-lead">' + (cap
-        ? 'Your headshot and profile are already set up. Members join your team as they sign up.'
+        ? 'Your headshot and profile are already set up. Members join your team as they sign up, and you earn points for it right alongside them.'
         : 'Captained by ' + esc(t.captain_name) + '. When you travel, your team carries you. When they travel, you carry them.') + '</p>' +
       '<button class="btn btn-y w100" data-act="revealed">Let’s go</button></main>';
   }
@@ -199,7 +200,7 @@
   // ---------- home ----------
   function viewHome() {
     var body = S.tab === 'schedule' ? tabSchedule() : S.tab === 'team' ? tabTeam() : S.tab === 'board' ? tabBoard() : S.tab === 'me' ? tabMe() : tabMissions();
-    var canLog = S.tab === 'missions' && !S.d.membership.is_captain && S.d.phase !== 'done';
+    var canLog = S.tab === 'missions' && S.d.phase !== 'done';
     $app.innerHTML = top() + '<main class="ch-main">' + body + '</main>' +
       (canLog ? '<div class="cta-bar"><button class="btn btn-y w100" data-act="log">Log points</button></div>' : '') +
       '<div class="tabs" role="navigation" aria-label="Rally Point">' +
@@ -305,8 +306,8 @@
     var d = S.d, t = myTeam(), cap = d.membership.is_captain, h = installCard();
     if (cap) {
       h += '<section class="card"><span class="kicker kicker-y">Captain</span><h2 class="ch-h2">' + esc(t.name) + '</h2>' +
-        '<p class="fine">Coaches don’t earn points. Your team’s total is your score.</p>' +
-        '<a class="btn btn-y w100" href="/challenge/coach">Open coach view</a></section>';
+        '<p class="fine">This is your athlete view. You earn points for your team like everyone on it. Your points stay off the individual leaderboard.</p>' +
+        '<a class="btn btn-ghost w100" href="/challenge/coach">Switch to coach view</a></section>';
     }
     h += wodCard();
     if (d.phase === 'pre') {
@@ -314,7 +315,7 @@
       h += '<section class="card"><span class="kicker">Scoring starts ' + esc(B.fmtDay(d.challenge.scoring_starts_on, { weekday: 'long', month: 'long', day: 'numeric' })) + '</span>' +
         '<div class="row"><div class="big">' + days + '</div><div class="item-s">' + (days === 1 ? 'day' : 'days') + ' to kickoff.<br>' + d.signups + ' signed up so far.</div></div>' +
         weeksStrip() + '</section>';
-      if (!cap) {
+      {
         h += '<section class="card"><h2 class="ch-h2">Get ahead before kickoff</h2><div class="list">' +
           preItem(true, 'Rally Point Original', 'You signed up before kickoff. That’s 3 points and a badge you keep.', '+3') +
           preItem(profileComplete(), 'Finish your profile', 'Your photo and one line on why you train.', '+2', profileComplete() ? null : 'edit') +
@@ -325,11 +326,11 @@
       h += '<section class="card"><h2 class="ch-h2">Sign-ups by team</h2>' + teamBars('members') +
         '<p class="fine">Every teammate who signs up before kickoff adds a point to your team.</p></section>';
     } else {
-      if (!cap) h += pointsStrip();
+      h += pointsStrip();
       h += d.flash.map(function (f) {
         return '<section class="card card-y"><span class="kicker kicker-y">Flash mission · closes ' + esc(new Date(f.closes_at).toLocaleString('en-US', { weekday: 'short', hour: 'numeric', minute: '2-digit' })) + '</span>' +
           '<h2 class="ch-h2">' + esc(f.title) + '</h2>' + (f.detail ? '<p class="fine">' + esc(f.detail) + '</p>' : '') +
-          (cap ? '' : f.done ? '<p class="fine">Logged.</p>' : '<button class="btn btn-ghost w100" data-act="log" data-cat="flash" data-mission="' + f.id + '">Log it for +' + f.points + '</button>') + '</section>';
+          (f.done ? '<p class="fine">Logged.</p>' : '<button class="btn btn-ghost w100" data-act="log" data-cat="flash" data-mission="' + f.id + '">Log it for +' + f.points + '</button>') + '</section>';
       }).join('');
       if (d.phase === 'done') {
         h += '<section class="card"><h2 class="ch-h2">That’s a wrap</h2><p class="fine">Rally Point is finished. Check the board for the final standings.</p></section>';
@@ -357,7 +358,7 @@
     if (m.target > 1 && !done) sub = Math.min(m.done, m.target) + ' of ' + m.target + '. ' + sub;
     var inner = '<span class="box' + (done ? ' on' : wait ? ' wait' : '') + '">' + (done ? IC.check : wait ? IC.clock : '') + '</span>' +
       '<span class="grow"><span class="item-t">' + esc(m.title) + '</span><br><span class="item-s">' + esc(sub) + '</span></span><span class="val">+' + m.points + '</span>';
-    var tappable = !done && !wait && c && c.logged_by === 'member' && !S.d.membership.is_captain;
+    var tappable = !done && !wait && c && c.logged_by === 'member';
     return tappable ? '<button class="item" data-act="log" data-cat="' + esc(m.category_key) + '">' + inner + '</button>' : '<div class="item">' + inner + '</div>';
   }
   function teamBars(field) {
@@ -410,7 +411,7 @@
     var m = me(), d = S.d, r = B.rankFor(d.ranks, d.points), cap = d.membership.is_captain;
     var original = d.entries.some(function (e) { return e.category_key === 'original'; });
     var h = '<section class="card"><div class="row">' + avatar(m.display_name, myPhoto(), 'av-lg av-color') +
-      '<div class="grow"><h2 class="mid">' + esc(m.display_name) + '</h2><p class="item-s">' + esc(myTeam().name) + (cap ? ' · Captain' : ' · ' + esc(r.cur.name)) + '</p>' +
+      '<div class="grow"><h2 class="mid">' + esc(m.display_name) + '</h2><p class="item-s">' + esc(myTeam().name) + (cap ? ' · Captain' : '') + ' · ' + esc(r.cur.name) + '</p>' +
       (original ? '<span class="ch-chip" style="display:inline-block;margin-top:8px">Rally Point Original</span>' : '') + '</div></div>' +
       (m.why_i_train ? '<p class="fine">“' + esc(m.why_i_train) + '”</p>' : '') +
       '<button class="btn btn-ghost w100" data-act="edit">Edit profile</button></section>';
@@ -422,7 +423,7 @@
       '<button class="item" data-act="how"><span class="grow item-t">How to earn points</span></button>' +
       (isInstalled() ? '' : '<button class="item" data-act="install"><span class="grow"><span class="item-t">Add to home screen</span><br><span class="item-s">Open Rally Point like an app.</span></span></button>') +
       '</div></section>';
-    if (!cap) {
+    {
       h += '<section class="card"><h2 class="ch-h2">Your log</h2>' + (d.entries.length ? '<div class="list">' + d.entries.map(function (e) {
         var c = cat(e.category_key) || { label: e.category_key };
         var st = e.status === 'approved' ? '' : e.status === 'pending' ? 'Coach reviewing' : 'Not counted';

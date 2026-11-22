@@ -140,6 +140,7 @@
 
     $app.innerHTML = shell(
       '<h1 class="ch-h1" style="font-size:2.2rem">' + esc(myTeam ? myTeam.name : 'Coach view') + '</h1>' +
+      '<a class="btn btn-ghost w100" href="/challenge">Switch to athlete view</a>' +
       '<div class="grid2">' + check + shout + '</div>' +
       '<div class="row" style="margin-top:8px"><h2 class="ch-h1 grow" style="font-size:1.7rem">Recent logs</h2><span class="ch-chip">' + d.queue.length + ' logged</span></div>' +
       '<p class="fine">' + (admin ? 'You see every team.' : 'You see ' + esc(teamName(d.me.team_id) || 'your team') + '.') + ' Everything members log counts right away, so there is nothing to approve. If one doesn’t check out, take it back here. Photos are only seen by coaches.</p>' +
