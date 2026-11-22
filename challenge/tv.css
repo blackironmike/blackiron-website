@@ -54,6 +54,10 @@
 .tv-shout.packed{gap:22px}
 .tv-shout.packed .tv-names{font-size:30px;grid-template-columns:repeat(3,minmax(0,1fr));gap:0 36px}
 .tv-shout.packed .tv-names small{letter-spacing:1px}
+/* Team colors on the gym screen: a stripe on the photo, a square by the team name. */
+.tv-stripe{display:flex;flex:none;border-left:12px solid var(--tc,transparent)}
+.tv-people .tv-stripe{border-left-width:8px}
+.tv-sq{display:inline-block;width:20px;height:20px;margin-right:16px;background:var(--tc,transparent)}
 .tv-qr{margin-top:auto;display:flex;align-items:flex-end;gap:26px}
 .tv-qr img{display:block;width:216px;height:216px;background:var(--white)}
 .tv-qr span{font-size:22px;line-height:1.5;font-weight:700;letter-spacing:5px;text-transform:uppercase;color:var(--white);padding-bottom:6px}

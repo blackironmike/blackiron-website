@@ -167,6 +167,11 @@ in `css/bia.css`, which label a training block the way the coaches' own cycle
 sheet does — data colors, never decoration. If a member photo has green plants
 or a blue sky in it, that's fine; that's the world, not the brand.
 
+A second exception, approved by Michael on 2026-11-22: the six Rally Point team
+colors in `challenge/challenge.css` (`.t1` to `.t6`). Same rule as the phase
+colors. They label a team in the roster, on the leaderboards and on the gym
+screen, as a stripe or a small square, and nothing else.
+
 > **Decided 2026-08-13 by Michael.** This replaces the earlier five-color
 > palette (Iron `#1A1D21`, Smoked Oak `#B8895A`, Bone `#F1ECE3`, Worn Leather
 > `#6B4226`), which was written in May 2026 and never shipped — those four

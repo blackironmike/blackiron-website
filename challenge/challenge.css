@@ -160,9 +160,14 @@ button.item{cursor:pointer}
 .ch.wide{max-width:920px}
 .two{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
 /* Team colors: data colors, the same exception as the phase colors on the Programs page.
-   Coach Mike asked for the teams to be color coded in his roster (Nov 22). They label a
-   team and nothing else. The first four reuse the phase tokens from bia.css. */
+   Coach Mike asked for the teams to be color coded in his roster, then said yes to the member
+   leaderboards and the gym screen (Nov 22). They label a team and nothing else: no buttons,
+   no headlines, no backgrounds. The first four reuse the phase tokens from bia.css. */
 .t1{--tc:var(--ph-intro)}.t2{--tc:var(--ph-test)}.t3{--tc:var(--ph-build)}.t4{--tc:var(--ph-deload)}.t5{--tc:#FF8A3D}.t6{--tc:#2ED3C6}
+/* On the member leaderboards the team color is a stripe down the left edge of the photo. */
+.tstripe{display:flex;flex:none;border-left:4px solid var(--tc,transparent)}
+.tstripe.lg{border-left-width:8px}
+.reveal .tstripe{align-self:flex-start}
 .tdot{display:inline-block;flex:none;width:12px;height:12px;background:var(--tc,var(--gray))}
 .tchips{display:flex;flex-wrap:wrap;gap:8px}
 .tchips button{display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:8px 12px;background:var(--black);border:1px solid var(--steel-line);color:var(--gray);font:inherit;font-size:.82rem;font-weight:700;cursor:pointer}
