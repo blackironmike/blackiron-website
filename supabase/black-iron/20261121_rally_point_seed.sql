@@ -1,8 +1,10 @@
 -- Rally Point: the first challenge. Values come from the "Rally Point Challenge
 -- Setup" sheet. Safe to re-run: every insert skips rows that already exist.
 
-insert into public.challenges (slug, name, starts_on, scoring_starts_on, ends_on, is_active)
-values ('rally-point', 'Rally Point', '2026-11-23', '2026-11-30', '2027-01-17', true)
+-- Scoring starts with the launch (Coach Mike, Nov 22). The early sign-up points
+-- (Rally Point Original, team sign-up bonus) keep a Nov 30 cutoff.
+insert into public.challenges (slug, name, starts_on, scoring_starts_on, ends_on, is_active, early_signup_until)
+values ('rally-point', 'Rally Point', '2026-11-23', '2026-11-23', '2027-01-17', true, '2026-11-30')
 on conflict (slug) do nothing;
 
 insert into public.teams (challenge_id, name, captain_name, captain_photo, sort)
@@ -23,8 +25,8 @@ insert into public.weeks (challenge_id, week_no, starts_on, focus, double_catego
 select ch.id, v.week_no, v.starts_on::date, v.focus, v.dbl
 from public.challenges ch,
   (values
-    (1, '2026-11-23', 'Friends & Family Week. Sign-ups open, teams revealed, no scoring yet.', null),
-    (2, '2026-11-30', 'Kickoff. Scoring starts.', null),
+    (1, '2026-11-23', 'Kickoff and Friends & Family Week. Scoring starts.', null),
+    (2, '2026-11-30', null, null),
     (3, '2026-12-07', 'Toy drop run Sat Dec 12.', null),
     (4, '2026-12-14', 'Awards night.', null),
     (5, '2026-12-21', 'Travel week.', 'active'),
@@ -63,12 +65,13 @@ from public.challenges ch,
 where ch.slug = 'rally-point'
 on conflict (challenge_id, key) do nothing;
 
--- Week 2 missions. points_label is what the row shows; the points themselves
--- come from the category each time something is logged. bonus_points lands
--- once when the member hits the target (3 classes: 2 each, plus 3).
+-- Week 1 and Week 2 missions (the same set until Coach Mike changes Week 2).
+-- points_label is what the row shows; the points themselves come from the
+-- category each time something is logged. bonus_points lands once when the
+-- member hits the target (3 classes: 2 each, plus 3).
 insert into public.missions (challenge_id, week_no, sort, title, category_key, target_count, points_label, bonus_points, status)
-select ch.id, 2, v.sort, v.title, v.category_key, v.target_count, v.points_label, v.bonus_points, 'live'
-from public.challenges ch,
+select ch.id, wk.n, v.sort, v.title, v.category_key, v.target_count, v.points_label, v.bonus_points, 'live'
+from public.challenges ch, (values (1), (2)) as wk(n),
   (values
     (1, 'Show up 3 times', 'class', 3, 3, 3),
     (2, 'Social challenge: throwback to your first day at BIA', 'social', 1, 3, 0),
@@ -78,4 +81,4 @@ from public.challenges ch,
     (6, 'In-class challenge (Coach Mike picks it)', 'in_class', 1, 3, 0)
   ) as v(sort, title, category_key, target_count, points_label, bonus_points)
 where ch.slug = 'rally-point'
-  and not exists (select 1 from public.missions m where m.challenge_id = ch.id and m.week_no = 2 and m.title = v.title);
+  and not exists (select 1 from public.missions m where m.challenge_id = ch.id and m.week_no = wk.n and m.title = v.title);
