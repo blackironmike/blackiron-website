@@ -369,7 +369,9 @@
   }
 
   // ---------- frame tool ----------
+  // The frame is Black Iron first: WE ARE BLACK IRON stacked over a dark fade. It is about belonging to the gym. No challenge or team name on it.
   var FR = { img: null, fmt: 'story' };
+  var FRAME_HANDLE = '@BLACKIRON_ATHLETICS';
   function sheetFrame() {
     FR.img = null;
     openSheet('Make my post',
@@ -378,15 +380,32 @@
       '<label class="btn btn-ghost w100" for="ff">Choose a photo<input id="ff" type="file" accept="image/*" style="position:absolute;width:1px;height:1px;opacity:0"></label>' +
       '<button class="btn btn-y w100" data-act="frame-save">Save image</button>' +
       '<button class="linkbtn" data-act="frame-blank">Download the blank frame</button>' +
-      '<p class="fine">Post it and tag @blackironathletics. Stories keep the frame clear of Instagram’s own buttons.</p>');
+      '<p class="fine">Post it and tag @blackiron_athletics. Stories keep the frame clear of Instagram’s own buttons.</p>');
     document.fonts.load('900 100px Montserrat').then(function () { return document.fonts.load('700 30px Montserrat'); }).then(drawFrame, drawFrame);
+  }
+  // Text drawn one letter at a time with a fixed gap. Works in every browser.
+  function tracked(c, s, x, y, gap) {
+    c.textAlign = 'left';
+    for (var i = 0, cx = x; i < s.length; i++) { c.fillText(s[i], cx, y); cx += c.measureText(s[i]).width + gap; }
+    return cx - gap - x;
+  }
+  function trackedWidth(c, s, gap) {
+    for (var i = 0, w = 0; i < s.length; i++) w += c.measureText(s[i]).width + (i < s.length - 1 ? gap : 0);
+    return w;
+  }
+  // Outline type the brand way: white rim, opaque black interior. Never a transparent fill.
+  function outlineText(c, s, x, y, fs) {
+    c.textAlign = 'left'; c.lineJoin = 'round'; c.lineWidth = Math.max(5, fs * 0.068); c.strokeStyle = '#fff'; c.strokeText(s, x, y);
+    c.fillStyle = '#000'; c.fillText(s, x, y);
   }
   function drawFrame(blank) {
     var cv = document.getElementById('fc'); if (!cv) return null;
     blank = blank === true;
-    var W = 1080, H = FR.fmt === 'story' ? 1920 : 1350, c = cv.getContext('2d');
+    var story = FR.fmt === 'story', W = 1080, H = story ? 1920 : 1350, c = cv.getContext('2d');
+    // Stories keep clear of Instagram's own header and reply bar.
+    var safeT = story ? 250 : 0, safeB = story ? 270 : 0, x = 72;
     cv.width = W; cv.height = H;
-    c.clearRect(0, 0, W, H);
+    c.clearRect(0, 0, W, H); c.textBaseline = 'alphabetic';
     if (!blank) {
       c.fillStyle = '#000'; c.fillRect(0, 0, W, H);
       if (FR.img) {
@@ -395,27 +414,28 @@
       } else {
         c.fillStyle = '#101010'; c.fillRect(0, 0, W, H);
         c.fillStyle = '#C7C7C7'; c.font = '700 34px Montserrat, Arial'; c.textAlign = 'center';
-        c.fillText('YOUR PHOTO HERE', W / 2, H * 0.36);
+        c.fillText('YOUR PHOTO HERE', W / 2, H * 0.3);
       }
     }
-    var bandH = 330, y0 = FR.fmt === 'story' ? H - 270 - bandH : H - bandH, x = 72;
-    c.fillStyle = '#000'; c.fillRect(0, y0, W, bandH);
-    c.strokeStyle = '#fff'; c.lineWidth = 3; c.strokeRect(36, 36, W - 72, H - 72);
-    c.textAlign = 'left'; c.textBaseline = 'alphabetic';
-    c.fillStyle = '#FFD202'; c.font = '700 26px Montserrat, Arial';
-    c.fillText(spaced('BLACK IRON ATHLETICS'), x, y0 + 74);
-    c.font = '900 132px Montserrat, Arial';
-    c.fillStyle = '#fff'; c.fillText('RALLY', x, y0 + 200);
-    var rw = c.measureText('RALLY ').width;
-    c.lineJoin = 'round'; c.lineWidth = 9; c.strokeStyle = '#fff'; c.strokeText('POINT', x + rw, y0 + 200);
-    c.fillStyle = '#000'; c.fillText('POINT', x + rw, y0 + 200);
-    var t = myTeam();
-    c.fillStyle = '#fff'; c.font = '700 30px Montserrat, Arial';
-    c.fillText(spaced((t ? t.name.toUpperCase() + '  ·  ' : '') + 'EST. 2013'), x, y0 + 268);
-    c.fillStyle = '#FFD202'; c.fillRect(x, y0 + 292, 96, 8);
+    // Dark fade so the name reads on any photo.
+    var fadeH = story ? 1000 : 880, g = c.createLinearGradient(0, H - safeB - fadeH, 0, H - safeB);
+    g.addColorStop(0, 'rgba(0,0,0,0)'); g.addColorStop(0.5, 'rgba(0,0,0,.6)'); g.addColorStop(1, 'rgba(0,0,0,.92)');
+    c.fillStyle = g; c.fillRect(0, H - safeB - fadeH, W, fadeH);
+    if (safeB) { c.fillStyle = 'rgba(0,0,0,.92)'; c.fillRect(0, H - safeB, W, safeB); }
+
+    // The statement, bottom left: WE ARE (outline), BLACK, IRON, then ATHLETICS in Forge and the handle.
+    var fs = story ? 168 : 144, k = fs / 176, pitch = Math.round(148 * k), big = '900 ' + fs + 'px Montserrat, Arial';
+    var yb = H - safeB - 78, ya = yb - 62, y3 = ya - Math.round(78 * k), y2 = y3 - pitch, y1 = y2 - pitch;
+    c.fillStyle = '#C7C7C7'; c.font = '700 24px Montserrat, Arial'; tracked(c, FRAME_HANDLE, x + 4, yb, 4);
+    c.font = big; var wB = c.measureText('BLACK').width;
+    c.fillStyle = '#FFD202'; c.font = '700 44px Montserrat, Arial';
+    var letters = 'ATHLETICS', lw = trackedWidth(c, letters, 0);
+    tracked(c, letters, x + 6, ya, (wB - 12 - lw) / (letters.length - 1));
+    c.font = big; c.fillStyle = '#fff'; c.textAlign = 'left';
+    c.fillText('IRON', x, y3); c.fillText('BLACK', x, y2);
+    outlineText(c, 'WE ARE', x, y1, fs);
     return cv;
   }
-  function spaced(s) { return s.split('').join(' '); }
   function saveCanvas(cv, name, type) {
     cv.toBlob(function (blob) {
       var file = new File([blob], name, { type: type });
@@ -478,8 +498,8 @@
     if (act === 'edit') return openSheet('Edit profile', profileForm(false));
     if (act === 'share-invite') return navigator.share({ text: document.getElementById('it').value }).catch(function () {});
     if (act === 'copy-invite') return navigator.clipboard.writeText(document.getElementById('it').value).then(function () { B.toast('Copied.'); }, function () { B.toast('Couldn’t copy. Press and hold the message instead.'); });
-    if (act === 'frame-save') { if (!FR.img) return B.toast('Choose a photo first.'); return saveCanvas(drawFrame(), 'rally-point-' + FR.fmt + '.jpg', 'image/jpeg'); }
-    if (act === 'frame-blank') { var cv = drawFrame(true); saveCanvas(cv, 'rally-point-frame-' + FR.fmt + '.png', 'image/png'); return drawFrame(); }
+    if (act === 'frame-save') { if (!FR.img) return B.toast('Choose a photo first.'); return saveCanvas(drawFrame(), 'black-iron-' + FR.fmt + '.jpg', 'image/jpeg'); }
+    if (act === 'frame-blank') { var cv = drawFrame(true); saveCanvas(cv, 'black-iron-frame-' + FR.fmt + '.png', 'image/png'); return drawFrame(); }
     if (act === 'delete') return openSheet('Delete my account', '<p class="fine">This removes your profile, your photo and your points from Rally Point. It can’t be undone. Your gym membership isn’t affected.</p><button class="btn btn-ghost w100" data-act="delete-yes">Delete everything</button><button class="btn btn-y w100" data-act="close">Keep my account</button>');
     if (act === 'delete-yes') return deleteAccount();
   });
