@@ -35,6 +35,8 @@
         ? '<div><div class="tv-k">Scoring starts</div><div class="tv-big" style="margin-top:12px">' + esc(B.fmtDay(D.challenge.scoring_starts_on, { weekday: 'long', month: 'long', day: 'numeric' })) + '</div></div>' +
           '<div class="tv-sub">' + D.signups + ' signed up. Sign up before kickoff and bank points for your team.</div>'
         : '<div><div class="tv-k">Week ' + D.week_no + ' of ' + D.weeks.length + '</div><div class="tv-sub" style="margin-top:12px">' + esc(wk.focus || '') + '</div></div>') +
+      // The code opens blackironathletics.com/rallypoint. It sits right above the footer line that spells the address out.
+      '<div class="tv-qr"><img src="/challenge/qr-rallypoint.svg" alt="QR code for blackironathletics.com/rallypoint" width="216" height="216"><span>Scan to<br>sign up</span></div>' +
       '</div>';
   }
 
@@ -70,11 +72,12 @@
   function scrShout() {
     var so = D.shoutouts, n = shoutCount();
     function group(label, list) {
+      // One name per line, so two birthdays never read as one person's first and last name.
       return list.length ? '<div><div class="tv-k y">' + label + '</div><div class="tv-names">' + list.map(function (x) {
-        return '<span>' + esc(x.name) + (x.years ? '<small>' + x.years + (x.years === 1 ? ' year' : ' years') + '</small>' : '') + '</span>';
+        return '<span><b>' + esc(x.name) + '</b>' + (x.years ? '<small>' + x.years + (x.years === 1 ? ' year' : ' years') + '</small>' : '') + '</span>';
       }).join('') + '</div></div>' : '';
     }
-    return '<div class="tv-right"><div class="tv-k">This week at Black Iron</div><div class="tv-shout' + (n > 16 ? ' tight' : n > 8 ? ' many' : '') + '">' +
+    return '<div class="tv-right"><div class="tv-k">This week at Black Iron</div><div class="tv-shout' + (n > 22 ? ' packed' : n > 8 ? ' tight' : n > 5 ? ' many' : '') + '">' +
       group('Happy birthday', so.birthdays) + group('Black Iron anniversary', so.anniversaries) + '</div></div>';
   }
   function scrPhotos() {

@@ -42,13 +42,21 @@
 .tv-hi img,.tv-hi .tv-av{width:420px;height:420px;font-size:120px}
 .tv-quote{font-size:54px;line-height:1.15;font-weight:900;color:var(--white);text-transform:uppercase}
 .tv-shout{display:flex;flex-direction:column;justify-content:center;gap:56px;flex:1;min-height:0}
-.tv-names{display:flex;flex-wrap:wrap;gap:18px 56px;margin-top:22px;font-size:84px;line-height:1;font-weight:900;color:var(--white);text-transform:uppercase}
-.tv-names span{display:flex;align-items:baseline;gap:18px;white-space:nowrap}
-.tv-names small{font-size:.32em;font-weight:700;letter-spacing:3px;color:var(--gray)}
+.tv-names{display:grid;grid-template-columns:minmax(0,1fr);gap:0 56px;margin-top:14px;font-size:84px;line-height:1;font-weight:900;color:var(--white);text-transform:uppercase}
+.tv-names span{display:flex;align-items:baseline;justify-content:space-between;gap:24px;min-width:0;padding:.17em 0;border-bottom:2px solid var(--steel-line)}
+.tv-names b{font-weight:900;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.tv-names small{flex:none;font-size:.32em;font-weight:700;letter-spacing:3px;color:var(--gray)}
+/* The list steps down as the week fills up: one column, then two, then three. */
 .tv-shout.many{gap:40px}
-.tv-shout.many .tv-names{font-size:60px;gap:14px 44px}
+.tv-shout.many .tv-names{font-size:60px}
 .tv-shout.tight{gap:28px}
-.tv-shout.tight .tv-names{font-size:42px;gap:10px 36px}
+.tv-shout.tight .tv-names{font-size:40px;grid-template-columns:repeat(2,minmax(0,1fr))}
+.tv-shout.packed{gap:22px}
+.tv-shout.packed .tv-names{font-size:30px;grid-template-columns:repeat(3,minmax(0,1fr));gap:0 36px}
+.tv-shout.packed .tv-names small{letter-spacing:1px}
+.tv-qr{margin-top:auto;display:flex;align-items:flex-end;gap:26px}
+.tv-qr img{display:block;width:216px;height:216px;background:var(--white)}
+.tv-qr span{font-size:22px;line-height:1.5;font-weight:700;letter-spacing:5px;text-transform:uppercase;color:var(--white);padding-bottom:6px}
 .tv-photos{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px;flex:1;min-height:0}
 .tv-photos figure{position:relative;margin:0;overflow:hidden;background:var(--coal);border:1px solid var(--steel-line)}
 .tv-photos img{width:100%;height:100%;object-fit:cover}
