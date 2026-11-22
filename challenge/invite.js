@@ -8,17 +8,31 @@
   var today = now.getFullYear() + '-' + String(now.getMonth() + 1).padStart(2, '0') + '-' + String(now.getDate()).padStart(2, '0');
   var gw = CFG.guestWeek, guestWeekOn = today <= gw.to;
 
-  // The next workout or two, preview level: the main pieces only.
-  function workouts(list) {
-    list = (Array.isArray(list) ? list : []).filter(function (w) { return w.parts && w.parts.length; });
-    if (!list.length) return '';
-    return '<section class="card"><span class="kicker">What we’re training</span>' + list.map(function (w) {
-      return '<h2 class="ch-h2">' + esc(B.fmtDay(w.date, { weekday: 'long', month: 'short', day: 'numeric' })) + '</h2><div class="wod">' + w.parts.map(function (p) {
+  // The week ahead, one day at a time. Preview level: the main pieces only.
+  var WOD = [], wi = 0;
+  function wodInner() {
+    var w = WOD[Math.min(wi, WOD.length - 1)];
+    return '<span class="kicker">What we’re training</span>' +
+      '<h2 class="ch-h2">' + esc(B.fmtDay(w.date, { weekday: 'long', month: 'short', day: 'numeric' })) + '</h2>' +
+      (WOD.length > 1 ? '<div class="days" role="group" aria-label="Day">' + WOD.map(function (x, k) {
+        return '<button data-wd="' + k + '" aria-pressed="' + (k === wi) + '" aria-label="' + esc(B.fmtDay(x.date, { weekday: 'long', month: 'long', day: 'numeric' })) + '">' +
+          '<b>' + esc(B.fmtDay(x.date, { weekday: 'short' })) + '</b><span>' + B.parseDay(x.date).getDate() + '</span></button>';
+      }).join('') + '</div>' : '') +
+      '<div class="wod">' + w.parts.map(function (p) {
         return '<div class="wod-part"><span class="wod-name">' + esc(p.name) + '</span>' +
           (p.lines || []).map(function (l) { return '<span class="wod-line">' + esc(l) + '</span>'; }).join('') + '</div>';
-      }).join('') + '</div>';
-    }).join('') + '<p class="fine">Never done any of this? Good. Every workout has three levels, and a coach scales it to you.</p></section>';
+      }).join('') + '</div>' +
+      '<p class="fine">Never done any of this? Good. Every workout has three levels, and a coach scales it to you.</p>';
   }
+  function workouts(list) {
+    WOD = (Array.isArray(list) ? list : []).filter(function (w) { return w.parts && w.parts.length; });
+    return WOD.length ? '<section class="card" id="wodcard">' + wodInner() + '</section>' : '';
+  }
+  document.addEventListener('click', function (ev) {
+    var b = ev.target.closest('[data-wd]'), card = document.getElementById('wodcard');
+    if (!b || !card) return;
+    wi = +b.dataset.wd; card.innerHTML = wodInner();
+  });
 
   function draw(info, wod) {
     var name = info && info.first_name ? info.first_name : null;

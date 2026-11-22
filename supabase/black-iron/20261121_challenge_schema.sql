@@ -22,7 +22,10 @@ create table public.challenges (
   starts_on date not null,
   scoring_starts_on date not null,
   ends_on date not null,
-  is_active boolean not null default false
+  is_active boolean not null default false,
+  -- Sign up before this date and you earn the early sign-up points. When it is
+  -- empty the cutoff is the day scoring starts.
+  early_signup_until date
 );
 create unique index challenges_one_active on public.challenges (is_active) where is_active;
 
@@ -351,7 +354,7 @@ begin
   if p.photo_path is not null and coalesce(trim(p.why_i_train), '') <> '' then
     perform app.add_auto(p_uid, p_ch, tm.team_id, 'profile', null);
   end if;
-  if (tm.joined_at at time zone 'America/Chicago')::date < ch.scoring_starts_on then
+  if (tm.joined_at at time zone 'America/Chicago')::date < coalesce(ch.early_signup_until, ch.scoring_starts_on) then
     perform app.add_auto(p_uid, p_ch, tm.team_id, 'original', null);
     perform app.add_auto(p_uid, p_ch, tm.team_id, 'team_signup', null);
   end if;
@@ -729,12 +732,12 @@ begin
   );
 end $$;
 
--- Public: today's and tomorrow's workout, published days only. Shown in the app
--- and on a member's invite page so they can share it with a friend.
+-- Public: the week ahead (today and the six days after it), published days only.
+-- Shown in the app and on a member's invite page so they can share it with a friend.
 create function app.workout_preview() returns jsonb language sql stable security definer set search_path = '' as $$
   select coalesce(jsonb_agg(jsonb_build_object('date', w.workout_date, 'parts', w.parts) order by w.workout_date), '[]'::jsonb)
   from app.workouts w
-  where w.published and w.workout_date between app.today() and app.today() + 1
+  where w.published and w.workout_date between app.today() and app.today() + 6
 $$;
 
 create function app.delete_my_account() returns void language plpgsql security definer set search_path = '' as $$

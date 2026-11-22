@@ -157,7 +157,7 @@
         n + ' teams, one per coach. Members land on a team when they sign up.',
         'They earn points for coming to class, bringing a guest, dropping off a toy, staying active on the road and the weekly challenges.',
         'Class check-ins count on their own from Wodify. Members log everything else themselves in the app.',
-        'Sign-ups open ' + B.fmtDay(ch.starts_on) + '. Scoring starts ' + B.fmtDay(ch.scoring_starts_on) + ' and runs through ' + B.fmtDay(ch.ends_on) + '.'] },
+        (d.phase === 'pre' ? 'Sign-ups are open now. Scoring starts ' : 'Sign-ups are open. Scoring started ') + B.fmtDay(ch.scoring_starts_on) + ' and runs through ' + B.fmtDay(ch.ends_on) + '.'] },
       { k: 'Your part', t: ['What we need', 'from you'], p: [
         'You don’t earn points. Your team’s total is your score.',
         'There is nothing to approve. What members log counts right away.',
@@ -216,7 +216,7 @@
   }
 
   // ---------- the day's workout ----------
-  // Preview level on purpose: the main pieces as Coach Mike wrote them. No warm-up, no coach's notes.
+  // The week ahead, one day at a time. Preview level on purpose: the main pieces as Coach Mike wrote them. No warm-up, no coach's notes.
   function wodLabel(w) {
     var n = B.daysBetween(S.d.today, w.date);
     return n === 0 ? 'Today’s workout' : n === 1 ? 'Tomorrow’s workout' : 'The workout';
@@ -233,8 +233,9 @@
     var i = Math.min(S.wodDay, list.length - 1), w = list[i];
     return '<section class="card"><span class="kicker">' + esc(B.fmtDay(w.date, { weekday: 'long', month: 'short', day: 'numeric' })) + '</span>' +
       '<h2 class="ch-h2">' + wodLabel(w) + '</h2>' +
-      (list.length > 1 ? '<div class="seg" role="group" aria-label="Day">' + list.map(function (x, k) {
-        return '<button data-act="wod-day" data-i="' + k + '" aria-pressed="' + (k === i) + '">' + esc(B.fmtDay(x.date, { weekday: 'long' })) + '</button>';
+      (list.length > 1 ? '<div class="days" role="group" aria-label="Day">' + list.map(function (x, k) {
+        return '<button data-act="wod-day" data-i="' + k + '" aria-pressed="' + (k === i) + '" aria-label="' + esc(B.fmtDay(x.date, { weekday: 'long', month: 'long', day: 'numeric' })) + '">' +
+          '<b>' + esc(B.fmtDay(x.date, { weekday: 'short' })) + '</b><span>' + B.parseDay(x.date).getDate() + '</span></button>';
       }).join('') + '</div>' : '') +
       wodParts(w) +
       '<p class="fine">Every class has three levels, and a coach scales it to you.</p>' +
