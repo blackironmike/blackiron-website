@@ -331,7 +331,7 @@ language sql security definer set search_path = '' as $$
   insert into public.entries as t (challenge_id, user_id, team_id, category_key, week_no, activity_date, points, team_only, status, source)
   select ch.id, x.id, tm.team_id, c.key, app.week_no(ch.id, a.class_date), a.class_date, c.points, false, 'approved', 'wodify'
   from public.challenges ch
-  join public.team_members tm on tm.challenge_id = ch.id and not tm.is_captain and (p_uid is null or tm.user_id = p_uid)
+  join public.team_members tm on tm.challenge_id = ch.id and (p_uid is null or tm.user_id = p_uid)
   join public.profile_private x on x.id = tm.user_id and x.wodify_client_id is not null
   join app.attendance a on a.wodify_client_id = x.wodify_client_id
   join public.point_categories c on c.challenge_id = ch.id and c.key = a.kind and c.active
@@ -347,11 +347,13 @@ declare
   w record; v_total int; v_done int;
 begin
   select * into tm from public.team_members where challenge_id = p_ch and user_id = p_uid;
-  if not found or tm.is_captain then return; end if;
+  -- Captains earn points for their team like any athlete (Coach Mike, Nov 22).
+  if not found then return; end if;
   select * into p from public.profiles where id = p_uid;
   select * into ch from public.challenges where id = p_ch;
 
-  if p.photo_path is not null and coalesce(trim(p.why_i_train), '') <> '' then
+  -- A captain's photo is their site headshot, so only the "why I train" line is needed.
+  if (p.photo_path is not null or tm.is_captain) and coalesce(trim(p.why_i_train), '') <> '' then
     perform app.add_auto(p_uid, p_ch, tm.team_id, 'profile', null);
   end if;
   if (tm.joined_at at time zone 'America/Chicago')::date < coalesce(ch.early_signup_until, ch.scoring_starts_on) then
@@ -493,7 +495,6 @@ begin
   select * into ch from public.challenges where is_active limit 1;
   select * into tm from public.team_members where challenge_id = ch.id and user_id = v_uid;
   if not found then raise exception 'Join the challenge first.'; end if;
-  if tm.is_captain then raise exception 'Coaches don’t earn points. Your team’s total is your score.'; end if;
   select * into c from public.point_categories where challenge_id = ch.id and key = p_category and active;
   if not found or c.logged_by <> 'member' then raise exception 'That can’t be logged here.'; end if;
   if v_today > ch.ends_on then raise exception 'This challenge has ended.'; end if;
@@ -890,7 +891,7 @@ declare r record;
 begin
   for r in select tm.user_id, tm.challenge_id from public.team_members tm
            join public.challenges ch on ch.id = tm.challenge_id
-           where ch.is_active and not tm.is_captain loop
+           where ch.is_active loop
     perform app.award_auto(r.user_id, r.challenge_id);
   end loop;
 end $$;
