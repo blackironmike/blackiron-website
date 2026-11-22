@@ -263,7 +263,7 @@
     S.schedBusy = true;
     fetch('/api/challenge-classes', { headers: { Accept: 'application/json' } })
       .then(function (r) { if (!r.ok) throw new Error('schedule ' + r.status); return r.json(); })
-      .then(function (d) { S.sched = { classes: Array.isArray(d.classes) ? d.classes : [] }; }, function () { S.sched = { error: true }; })
+      .then(function (d) { S.sched = { from: d.from, classes: Array.isArray(d.classes) ? d.classes : [] }; }, function () { S.sched = { error: true }; })
       .then(function () {
         S.schedBusy = false; S.schedAt = Date.now();
         if (S.d && S.tab === 'schedule') render();
@@ -277,26 +277,40 @@
         '<button class="btn btn-ghost w100" data-act="sched-reload">Try again</button>' +
         '<a class="linkbtn" href="/schedule">See the schedule on our site</a></section>';
     }
-    var days = [];
-    sc.classes.forEach(function (c) { if (days.indexOf(c.date) < 0) days.push(c.date); });
-    if (!days.length) return '<section class="card"><h2 class="ch-h2">Class schedule</h2><p class="fine">Nothing on the calendar for the next seven days.</p></section>';
+    // Seven days from today, classes or not, so a holiday still has a place to say so.
+    var days = [], d0 = B.parseDay(sc.from || S.d.today);
+    for (var k = 0; k < 7; k++) {
+      var dt = new Date(d0.getFullYear(), d0.getMonth(), d0.getDate() + k);
+      days.push(dt.getFullYear() + '-' + String(dt.getMonth() + 1).padStart(2, '0') + '-' + String(dt.getDate()).padStart(2, '0'));
+    }
     var day = days.indexOf(S.schedDay) >= 0 ? S.schedDay : days[0];
-    var list = sc.classes.filter(function (c) { return c.date === day; });
-    var n = B.daysBetween(S.d.today, day);
-    var h = '<section class="card"><span class="kicker">' + (n === 0 ? 'Today' : n === 1 ? 'Tomorrow' : 'This week') + '</span>' +
+    var isOG = function (c) { return c.kind ? c.kind === 'open_gym' : /open gym/i.test(c.program || ''); };
+    // Classes only. Open Gym stays off the list.
+    var list = sc.classes.filter(function (c) { return c.date === day && !isOG(c); });
+    var og = sc.classes.filter(function (c) { return c.date === day && isOG(c); });
+    var n = B.daysBetween(S.d.today, day), holiday = (CFG.holidays || {})[day];
+    var h = '<section class="card' + (holiday ? ' card-y' : '') + '"><span class="kicker kicker-y">' + (n === 0 ? 'Today' : n === 1 ? 'Tomorrow' : 'This week') + '</span>' +
       '<h2 class="ch-h2">' + esc(B.fmtDay(day, { weekday: 'long', month: 'short', day: 'numeric' })) + '</h2>' +
-      '<div class="days" role="group" aria-label="Day">' + days.map(function (x) {
+      '<div class="days days-y" role="group" aria-label="Day">' + days.map(function (x) {
         return '<button data-act="sched-day" data-d="' + esc(x) + '" aria-pressed="' + (x === day) + '" aria-label="' + esc(B.fmtDay(x, { weekday: 'long', month: 'long', day: 'numeric' })) + '">' +
           '<b>' + esc(B.fmtDay(x, { weekday: 'short' })) + '</b><span>' + B.parseDay(x).getDate() + '</span></button>';
-      }).join('') + '</div>' +
-      '<div class="list">' + list.map(function (c) {
-        // Open Gym runs in long blocks with no reservations, so show when it ends instead of spots.
-        var spots = c.limit ? (c.full || c.spots_left === 0 ? 'Full' : c.spots_left + ' of ' + c.limit + ' spots left')
-          : (c.end ? 'Until ' + clock(c.end) + '. ' : '') + 'No reservation needed';
+      }).join('') + '</div>';
+    if (list.length) {
+      h += '<div class="list">' + list.map(function (c) {
+        var spots = !c.limit ? 'No reservation needed' : c.full || c.spots_left === 0 ? 'Full' : c.spots_left + ' of ' + c.limit + ' spots left';
         return '<div class="item"><span class="cl-time">' + esc(clock(c.start)) + '</span><span class="grow"><span class="item-t">' + esc(c.program) + '</span><br>' +
           '<span class="item-s">' + esc(spots) + '</span></span></div>';
       }).join('') + '</div>' +
-      '<p class="fine">Reserve your spot in the Wodify app, the same as always.</p></section>';
+        '<p class="fine">Reserve your spot in the Wodify app, the same as always.</p>';
+    } else {
+      // No classes: say so, and say when Open Gym is open if it is.
+      var allDay = og.length === 1 && og[0].start <= '06:00' && og[0].end >= '22:00';
+      var ogLine = !og.length ? '' : allDay ? ' Open Gym is open all day.'
+        : ' Open Gym is open ' + og.map(function (c) { return clock(c.start) + ' to ' + clock(c.end); }).join(' and ') + '.';
+      h += '<div class="noclass">' + (holiday ? '<span class="noclass-t">' + esc(holiday) + '</span>' : '') +
+        '<p>No classes ' + (n === 0 ? 'today' : n === 1 ? 'tomorrow' : 'on ' + esc(B.fmtDay(day, { weekday: 'long' }))) + '.' + esc(ogLine) + '</p></div>';
+    }
+    h += '</section>';
     var w = (S.wod || []).filter(function (x) { return x.date === day && x.parts && x.parts.length; })[0];
     if (w) h += '<section class="card"><span class="kicker">What we’re training</span>' + wodParts(w) + '</section>';
     return h;

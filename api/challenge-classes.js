@@ -55,6 +55,9 @@ export default async function handler(req, res) {
           start: String(c.start_time || '').slice(0, 5),
           end: String(c.end_date_time || '').slice(11, 16),
           program: c.program_name || c.name || 'Class',
+          // The app lists classes only. Open Gym blocks ride along so a day with
+          // no classes can still say when the gym is open.
+          kind: /open gym/i.test(c.program_name || c.name || '') ? 'open_gym' : 'class',
           // limit 0 means the class takes no reservations (Open Gym, Hyrox).
           limit,
           spots_left: limit ? Math.max(0, Number(c.available) || 0) : null,

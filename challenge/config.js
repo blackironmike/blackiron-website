@@ -9,6 +9,8 @@ window.BIA_CHALLENGE = {
   googleHosts: ['blackironathletics.com', 'www.blackironathletics.com'],
   siteUrl: 'https://www.blackironathletics.com',
   waiverUrl: 'https://app.wodify.com/Token/SignWaiver?WaiverToken=A5D02840253D598F0BBD91DFF0DD47ABF87D4B6FDFF5AE4CD4DB7D18822BA558',
+  // Days the Schedule tab greets by name. Classes and Open Gym hours still come from Wodify.
+  holidays: { '2026-11-26': 'Happy Thanksgiving' },
   classTimes: ['5:15 AM', '6:15 AM', '8:30 AM', '9:30 AM', '12:00 PM', '4:30 PM', '5:30 PM', '6:30 PM', 'It varies'],
   // Friends & Family Week, Nov 23 to 28, 2026. Strength & Conditioning classes.
   // bookUrl is the Wodify free trial schedule. A guest books a class there, which
