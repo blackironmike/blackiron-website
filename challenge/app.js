@@ -136,7 +136,7 @@
       avatar(t.captain_name, t.captain_photo, 'av-xl') +
       '<h1>' + esc(t.name.split(' ')[0]) + ' <span class="outline">' + esc(t.name.split(' ').slice(1).join(' ')) + '</span></h1>' +
       '<p class="ch-lead">' + (cap
-        ? 'You don’t earn points yourself. Your team’s total is your score. Approvals for your team come to you.'
+        ? 'You don’t earn points yourself. Your team’s total is your score. You can log points for your people from the coach view.'
         : 'Captained by ' + esc(t.captain_name) + '. When you travel, your team carries you. When they travel, you carry them.') + '</p>' +
       '<button class="btn btn-y w100" data-act="revealed">Let’s go</button></main>';
   }
@@ -327,8 +327,8 @@
       (c.proof === 'link_or_photo' ? '<div class="field"><label for="ll">Link to your post</label><input id="ll" type="url" inputmode="url" placeholder="https://instagram.com/p/…"></div>' : '') +
       '<div class="field"><label for="lc">' + (c.key === 'guest' ? 'Who did you bring?' : 'Caption (optional)') + '</label><input id="lc" type="text" maxlength="200"' + (c.key === 'guest' ? ' required' : '') + '></div>' +
       '<p class="err" id="lerr" role="alert" hidden></p>' +
-      '<button class="btn btn-y w100" type="submit">Submit for +' + pts + '</button>' +
-      '<p class="fine">A coach on your team confirms it. Anything not reviewed in 48 hours counts automatically.' + (c.proof !== 'none' ? ' Photos only show on the feed or the gym TV after a coach approves them.' : '') + '</p></form>');
+      '<button class="btn btn-y w100" type="submit">Log it for +' + pts + '</button>' +
+      '<p class="fine">It counts right away. Keep it honest. Coaches can take back anything that doesn’t check out.' + (c.proof !== 'none' ? ' Only coaches see this photo.' : '') + '</p></form>');
   }
 
   function inviteText(link) {
@@ -363,7 +363,8 @@
       '<div class="list">' + rows + '</div>' +
       '<p class="fine">Class check-ins come from Wodify and post by the next morning. Sign in to class like you always do.</p>' +
       '<p class="fine">Traveling or stuck at home? Anything active counts once a day: a run, a walk, a hotel gym. Add a photo.</p>' +
-      '<p class="fine">A coach on your team confirms what you log. Anything not reviewed in 48 hours counts automatically.</p>' +
+      '<p class="fine">What you log counts right away. Keep it honest. Coaches can take back anything that doesn’t check out.</p>' +
+      '<p class="fine">Posting your workout? Tag @blackiron_athletics and add #BlackIron3.</p>' +
       '<p class="fine">Your rank climbs with your points: ' + S.d.ranks.map(function (r) { return esc(r.name) + ' ' + r.min; }).join(', ') + '.</p>' +
       '<p class="fine">Prizes along the way.</p>');
   }
@@ -380,7 +381,7 @@
       '<label class="btn btn-ghost w100" for="ff">Choose a photo<input id="ff" type="file" accept="image/*" style="position:absolute;width:1px;height:1px;opacity:0"></label>' +
       '<button class="btn btn-y w100" data-act="frame-save">Save image</button>' +
       '<button class="linkbtn" data-act="frame-blank">Download the blank frame</button>' +
-      '<p class="fine">Post it and tag @blackiron_athletics. Stories keep the frame clear of Instagram’s own buttons.</p>');
+      '<p class="fine">Post it, tag @blackiron_athletics and add #BlackIron3. Stories keep the frame clear of Instagram’s own buttons.</p>');
     document.fonts.load('900 100px Montserrat').then(function () { return document.fonts.load('700 30px Montserrat'); }).then(drawFrame, drawFrame);
   }
   // Text drawn one letter at a time with a fixed gap. Works in every browser.
@@ -577,7 +578,7 @@
       var upl = L.photo ? B.resizeImage(L.photo, { max: 1600 }).then(function (b) { return B.upload('proof', S.session.user.id, b); }) : Promise.resolve(null);
       upl.then(function (path) {
         return B.rpc('submit_entry', { p_category: L.cat, p_date: day ? day.value : S.d.today, p_photo: path, p_link: link ? link.trim() : null, p_caption: document.getElementById('lc').value, p_mission: L.mission });
-      }).then(function (r) { closeSheet(); B.toast('Logged. +' + r.points + ' once a coach confirms.'); return load(); }).catch(function (e) { lfail(B.errMsg(e)); });
+      }).then(function (r) { closeSheet(); B.toast('Logged. +' + r.points + '.'); return load(); }).catch(function (e) { lfail(B.errMsg(e)); });
     }
   });
 
