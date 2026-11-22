@@ -10,12 +10,13 @@
   function recallOtp() {
     try { var o = JSON.parse(note('otp') || 'null'); return o && Date.now() - o.t < 20 * 60 * 1000 ? o.e : null; } catch (e) { return null; }
   }
-  var S = { session: null, d: null, board: null, tab: 'missions', boardMode: 'teams', otpEmail: recallOtp(), log: null, signErr: null, wod: [], wodDay: 0 };
+  var S = { session: null, d: null, board: null, tab: 'missions', boardMode: 'teams', otpEmail: recallOtp(), log: null, signErr: null, wod: [], wodDay: 0, sched: null, schedDay: null, schedAt: 0, schedBusy: false };
 
   var IC = {
     check: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12l5 5 9-10"/></svg>',
     clock: '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8"/><path d="M12 8v4l3 2"/></svg>',
     missions: '<svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h16v14H4z"/><path d="M8 10l2 2 4-4M8 15h8"/></svg>',
+    schedule: '<svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16v14H4zM4 10h16M8 3v5M16 3v5"/></svg>',
     team: '<svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="8" cy="9" r="3"/><circle cx="16" cy="9" r="3"/><path d="M2 20c0-3 3-5 6-5s6 2 6 5M14 15c3 0 8 1 8 5"/></svg>',
     board: '<svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 20V10M12 20V4M19 20v-7"/></svg>',
     me: '<svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-6 8-6s8 2 8 6"/></svg>',
@@ -197,12 +198,12 @@
 
   // ---------- home ----------
   function viewHome() {
-    var body = S.tab === 'team' ? tabTeam() : S.tab === 'board' ? tabBoard() : S.tab === 'me' ? tabMe() : tabMissions();
+    var body = S.tab === 'schedule' ? tabSchedule() : S.tab === 'team' ? tabTeam() : S.tab === 'board' ? tabBoard() : S.tab === 'me' ? tabMe() : tabMissions();
     var canLog = S.tab === 'missions' && !S.d.membership.is_captain && S.d.phase !== 'done';
     $app.innerHTML = top() + '<main class="ch-main">' + body + '</main>' +
       (canLog ? '<div class="cta-bar"><button class="btn btn-y w100" data-act="log">Log points</button></div>' : '') +
       '<div class="tabs" role="navigation" aria-label="Rally Point">' +
-      [['missions', 'Missions'], ['team', 'Team'], ['board', 'Board'], ['me', 'Me']].map(function (t) {
+      [['missions', 'Missions'], ['schedule', 'Schedule'], ['team', 'Team'], ['board', 'Board'], ['me', 'Me']].map(function (t) {
         return '<button data-tab="' + t[0] + '"' + (S.tab === t[0] ? ' aria-current="page"' : '') + '>' + IC[t[0]] + t[1] + '</button>';
       }).join('') + '</div>';
   }
@@ -247,6 +248,55 @@
       // Only redraw the Missions tab. Never a screen someone is typing on.
       if (S.d && setupDone() && S.d.membership && S.d.membership.revealed && S.tab === 'missions' && S.wod.length) render();
     }).catch(function () { /* no workout posted, or the function is not there yet */ });
+  }
+
+  // ---------- class schedule ----------
+  // The week ahead, live from Wodify through /api/challenge-classes. Read-only for now:
+  // members still reserve in the Wodify app.
+  function clock(hm) {
+    var p = String(hm || '').split(':'), h = +p[0];
+    return isNaN(h) ? '' : ((h + 11) % 12 + 1) + ':' + (p[1] || '00') + ' ' + (h < 12 ? 'AM' : 'PM');
+  }
+  function loadSched() {
+    if (S.schedBusy) return;
+    S.schedBusy = true;
+    fetch('/api/challenge-classes', { headers: { Accept: 'application/json' } })
+      .then(function (r) { if (!r.ok) throw new Error('schedule ' + r.status); return r.json(); })
+      .then(function (d) { S.sched = { classes: Array.isArray(d.classes) ? d.classes : [] }; }, function () { S.sched = { error: true }; })
+      .then(function () {
+        S.schedBusy = false; S.schedAt = Date.now();
+        if (S.d && S.tab === 'schedule') render();
+      });
+  }
+  function tabSchedule() {
+    var sc = S.sched;
+    if (!sc) { loadSched(); return '<section class="card"><h2 class="ch-h2">Class schedule</h2><p class="fine">Loading this week’s classes…</p></section>'; }
+    if (sc.error) {
+      return '<section class="card"><h2 class="ch-h2">Class schedule</h2><p class="fine">The schedule isn’t loading right now.</p>' +
+        '<button class="btn btn-ghost w100" data-act="sched-reload">Try again</button>' +
+        '<a class="linkbtn" href="/schedule">See the schedule on our site</a></section>';
+    }
+    var days = [];
+    sc.classes.forEach(function (c) { if (days.indexOf(c.date) < 0) days.push(c.date); });
+    if (!days.length) return '<section class="card"><h2 class="ch-h2">Class schedule</h2><p class="fine">Nothing on the calendar for the next seven days.</p></section>';
+    var day = days.indexOf(S.schedDay) >= 0 ? S.schedDay : days[0];
+    var list = sc.classes.filter(function (c) { return c.date === day; });
+    var n = B.daysBetween(S.d.today, day);
+    var h = '<section class="card"><span class="kicker">' + (n === 0 ? 'Today' : n === 1 ? 'Tomorrow' : 'This week') + '</span>' +
+      '<h2 class="ch-h2">' + esc(B.fmtDay(day, { weekday: 'long', month: 'short', day: 'numeric' })) + '</h2>' +
+      '<div class="days" role="group" aria-label="Day">' + days.map(function (x) {
+        return '<button data-act="sched-day" data-d="' + esc(x) + '" aria-pressed="' + (x === day) + '" aria-label="' + esc(B.fmtDay(x, { weekday: 'long', month: 'long', day: 'numeric' })) + '">' +
+          '<b>' + esc(B.fmtDay(x, { weekday: 'short' })) + '</b><span>' + B.parseDay(x).getDate() + '</span></button>';
+      }).join('') + '</div>' +
+      '<div class="list">' + list.map(function (c) {
+        var spots = c.limit ? (c.full || c.spots_left === 0 ? 'Full' : c.spots_left + ' of ' + c.limit + ' spots left') : 'No reservation needed';
+        return '<div class="item"><span class="cl-time">' + esc(clock(c.start)) + '</span><span class="grow"><span class="item-t">' + esc(c.program) + '</span><br>' +
+          '<span class="item-s">' + esc(spots) + '</span></span></div>';
+      }).join('') + '</div>' +
+      '<p class="fine">Reserve your spot in the Wodify app, the same as always.</p></section>';
+    var w = (S.wod || []).filter(function (x) { return x.date === day && x.parts && x.parts.length; })[0];
+    if (w) h += '<section class="card"><span class="kicker">What we’re training</span>' + wodParts(w) + '</section>';
+    return h;
   }
 
   function tabMissions() {
@@ -650,7 +700,12 @@
   document.addEventListener('click', function (ev) {
     var el = ev.target.closest('[data-act],[data-tab],[data-board],[data-pick],[data-fmt]');
     if (!el) { if (ev.target === $sheet) closeSheet(); return; }
-    if (el.dataset.tab) { S.tab = el.dataset.tab; render(); window.scrollTo(0, 0); return; }
+    if (el.dataset.tab) {
+      S.tab = el.dataset.tab;
+      // Spots change through the day, so refresh the schedule when it is more than a minute old.
+      if (S.tab === 'schedule' && S.sched && Date.now() - S.schedAt > 60000) loadSched();
+      render(); window.scrollTo(0, 0); return;
+    }
     if (el.dataset.board) { S.boardMode = el.dataset.board; render(); return; }
     if (el.dataset.pick) { S.log.cat = el.dataset.pick; S.log.photo = null; drawLog(); return; }
     if (el.dataset.fmt) {
@@ -669,6 +724,8 @@
     if (act === 'log') return sheetLog(el.dataset.cat, el.dataset.mission ? +el.dataset.mission : null);
     if (act === 'invite') return sheetInvite();
     if (act === 'wod-day') { S.wodDay = +el.dataset.i; return render(); }
+    if (act === 'sched-day') { S.schedDay = el.dataset.d; return render(); }
+    if (act === 'sched-reload') { S.sched = null; return render(); }
     if (act === 'share-wod') {
       var wl = (S.wod || []).filter(function (w) { return w.parts && w.parts.length && w.date >= S.d.today; });
       return sheetInvite(wl[+el.dataset.i] || null);
