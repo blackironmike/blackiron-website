@@ -111,7 +111,8 @@
 
   /* ---------------- schedule ---------------- */
   function classesOn(n) {
-    var list = (P.schedule && P.schedule[fromDayNum(n).wd]) || [];
+    var byDate = P.scheduleByDate && P.scheduleByDate[isoDay(n)];
+    var list = byDate || (P.schedule && P.schedule[fromDayNum(n).wd]) || [];
     return list.map(hhmmToMin).sort(function (a, b) { return a - b; });
   }
   function programFor(n) { return (P.days || {})[isoDay(n)] || null; }

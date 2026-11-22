@@ -35,6 +35,13 @@ window.COACH_PROGRAM = {
     6: ["9:30"],
     0: []
   },
+  // One-off days that don't follow the weekly schedule (holidays). The date
+  // wins over its weekday. An empty list means no classes that day.
+  scheduleByDate: {
+    "2026-11-25": ["8:30", "9:30", "12:00", "16:30"],
+    "2026-11-26": [],
+    "2026-11-27": ["8:30", "9:30"]
+  },
   classMinutes: 60,
   // The "next class" countdown starts this many minutes before the day's first class.
   // Before that (and after the last class) the board shows the branded centerpiece.
@@ -103,9 +110,9 @@ window.COACH_PROGRAM = {
     "2026-11-26": {
       week: "W1 Friends & Family",
       sections: [
-        { name: "Closed", min: 60, clock: { type: "up" },
-          blocks: [ { head: "Happy Thanksgiving", items: ["The gym is closed today"] } ],
-          notes: "Back at it *Friday*." }
+        { name: "Open Gym", min: 60, clock: { type: "up" },
+          blocks: [ { head: "Happy Thanksgiving", items: ["No classes today", "Open gym all day"] } ],
+          notes: "Classes are back *Friday* at 8:30 and 9:30 AM." }
       ]
     },
 

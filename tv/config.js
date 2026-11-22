@@ -23,7 +23,7 @@
 window.TV_CONFIG = {
   // Bump this whenever you edit. It shows in the bottom-left corner of every
   // TV, so you can tell at a glance if a screen is stuck on an old version.
-  version: "2026-11-22.2",
+  version: "2026-11-22.3",
 
   timezone: "America/Chicago",
   defaultSeconds: 10,
@@ -74,6 +74,22 @@ window.TV_CONFIG = {
     {
       id: "title", type: "title", seconds: 8, cycle: true, skull: "off",
       photo: { src: "/images/tv/photo-title.jpg", position: "62% 30%" }
+    },
+
+    {
+      // Thanksgiving week, from the Wodify calendar. Comes down after Sunday.
+      id: "holiday-hours", type: "hours", seconds: 12, until: "2026-11-29", skull: "off",
+      eyebrow: "Thanksgiving week",
+      title: ["Holiday", "~hours.~"],
+      lead: "Class times below. Open gym runs like normal between classes and after hours.",
+      days: [
+        { date: "2026-11-25", times: ["8:30 AM", "9:30 AM", "12:00 PM", "4:30 PM"] },
+        { date: "2026-11-26", big: "Open gym", note: "All day. No classes. Happy Thanksgiving." },
+        { date: "2026-11-27", times: ["8:30 AM", "9:30 AM"], note: "Mornings only" },
+        { date: "2026-11-28", times: ["9:30 AM"], note: "Regular Saturday" },
+        { date: "2026-11-29", big: "Open gym", note: "All day" }
+      ],
+      footer: "chips"
     },
 
     {

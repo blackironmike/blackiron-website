@@ -724,3 +724,22 @@ body.preview{height:auto}
 .p-embed iframe{position:absolute;left:0;top:0;width:1920px;height:1080px;border:0;background:#000}
 .p-embed .embedErr{position:absolute;left:120px;top:480px;font:700 40px/1.2 Montserrat,sans-serif;color:#FFD202}
 #stage.is-embed #clock,#stage.is-embed #vignette,#stage.is-embed #grain,#stage.is-embed #glow{opacity:0;transition:opacity .4s}
+
+/* hours: holiday schedule, one card per day */
+.p-hours .eb{position:absolute;left:80px;top:90px}
+.p-hours .h{position:absolute;left:80px;top:166px}
+.p-hours .h .disp{font-size:118px}
+.p-hours .lead{position:absolute;left:80px;top:404px;font:500 34px/1.2 Montserrat,sans-serif;color:var(--gray);white-space:nowrap}
+.hc{position:absolute;left:80px;top:470px;width:1760px;height:390px}
+.hcard{position:absolute;top:0;height:390px;background:var(--card);border:2px solid #262626;padding:26px 26px 0;box-sizing:border-box}
+.hcard.today{border-color:var(--forge);background:#161616}
+.hcard.past{filter:brightness(.4)}
+.hcard .hd{font:900 34px/1 Montserrat,sans-serif;text-transform:uppercase;letter-spacing:.01em;color:var(--white);white-space:nowrap}
+.hcard.today .hd{color:var(--forge)}
+.hcard .hdt{margin-top:10px;font:700 22px/1 Montserrat,sans-serif;letter-spacing:.08em;text-transform:uppercase;color:#9A9A9A;white-space:nowrap}
+.hcard .hdt .tdy{margin-left:12px;color:var(--forge);letter-spacing:.16em}
+.hcard .ht{margin-top:22px;border-top:2px solid #262626;padding-top:16px}
+.hcard .ht div{font:800 40px/52px Montserrat,sans-serif;color:var(--white);font-variant-numeric:tabular-nums;white-space:nowrap}
+.hcard .hx{margin-top:22px;border-top:2px solid #262626;padding-top:30px;font:900 58px/1 Montserrat,sans-serif;text-transform:uppercase;color:var(--forge);letter-spacing:-.01em}
+.hcard .hn{position:absolute;left:26px;right:26px;bottom:24px;font:600 22px/1.25 Montserrat,sans-serif;color:var(--gray)}
+.p-hours .note{position:absolute;right:80px;bottom:150px;font:800 26px/1 Montserrat,sans-serif;letter-spacing:.02em;text-transform:uppercase;color:var(--white)}
