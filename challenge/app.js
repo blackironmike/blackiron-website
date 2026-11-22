@@ -534,14 +534,22 @@
   }
   function closeSheet() { $sheet.hidden = true; $sheet.innerHTML = ''; S.log = null; }
 
+  // Everything a member can log, in one place. A category that has not opened yet still
+  // shows, greyed, with the day it opens. Live flash missions are in the list too.
   function sheetLog(preCat, mission) {
-    var d = S.d;
-    var cats = d.categories.filter(function (c) {
-      return c.logged_by === 'member' && c.per !== 'mission' && (d.phase === 'live' || c.allowed_pre);
+    var d = S.d, opens = 'Opens ' + B.fmtDay(d.challenge.scoring_starts_on, { weekday: 'long' });
+    var opts = d.categories.filter(function (c) { return c.logged_by === 'member' && c.per !== 'mission'; }).map(function (c) {
+      var open = d.phase === 'live' || c.allowed_pre;
+      return { key: c.key, mission: null, label: c.label, hint: open ? (c.hint || '') : opens, points: c.points, open: open };
     });
-    if (preCat === 'flash') cats = d.categories.filter(function (c) { return c.key === 'flash'; });
-    if (!cats.length) return openSheet('Log points', '<p class="fine">Scoring starts ' + esc(B.fmtDay(d.challenge.scoring_starts_on)) + '. Until then, bring a guest.</p>');
-    S.log = { cat: (cats.filter(function (c) { return c.key === preCat; })[0] || cats[0]).key, mission: mission || null, cats: cats, date: d.today, photo: null };
+    if (d.phase === 'live') (d.flash || []).filter(function (f) { return !f.done; }).forEach(function (f) {
+      opts.push({ key: 'flash', mission: f.id, label: f.title, hint: 'Flash mission. ' + (f.detail || 'Add a photo.'), points: f.points, open: true });
+    });
+    if (preCat === 'flash') opts = opts.filter(function (o) { return o.key === 'flash' && o.mission === mission; });
+    var pickable = opts.filter(function (o) { return o.open; });
+    if (!pickable.length) return openSheet('Log points', '<p class="fine">Scoring starts ' + esc(B.fmtDay(d.challenge.scoring_starts_on)) + '. Until then, bring a guest.</p>');
+    var first = pickable.filter(function (o) { return o.key === preCat && (preCat !== 'flash' || o.mission === mission); })[0] || pickable[0];
+    S.log = { cat: first.key, mission: first.mission, opts: opts, date: d.today, photo: null };
     drawLog();
   }
   function drawLog() {
@@ -550,9 +558,9 @@
     var fl = L.mission ? d.flash.filter(function (f) { return f.id === L.mission; })[0] : null;
     var pts = (fl ? fl.points : c.points) * (dbl ? 2 : 1);
     openSheet('Log points',
-      '<p class="fine">Class check-ins count on their own from Wodify, usually by the next morning. Log everything else here.</p>' +
-      (L.cats.length > 1 ? '<div class="pick">' + L.cats.map(function (x) {
-        return '<button type="button" data-pick="' + esc(x.key) + '" aria-pressed="' + (x.key === L.cat) + '"><b>' + esc(x.label) + '</b><small>' + esc(x.hint || '') + '</small><span class="val">+' + x.points + '</span></button>';
+      '<p class="fine">Class check-ins count on their own from Wodify, usually by the next morning. Everything else you can earn is here.</p>' +
+      (L.opts.length > 1 ? '<div class="pick">' + L.opts.map(function (x, k) {
+        return '<button type="button" data-pick="' + k + '" aria-pressed="' + (x.key === L.cat && x.mission === L.mission) + '"' + (x.open ? '' : ' aria-disabled="true"') + '><b>' + esc(x.label) + '</b><small>' + esc(x.hint || '') + '</small><span class="val">+' + x.points + '</span></button>';
       }).join('') + '</div>' : '<p class="item-t">' + esc(fl ? fl.title : c.label) + '</p>') +
       '<form class="stack" data-form="log">' +
       (c.per === 'day' ? '<fieldset class="field"><legend>When</legend><div class="choice">' +
@@ -801,7 +809,7 @@
       render(); window.scrollTo(0, 0); return;
     }
     if (el.dataset.board) { S.boardMode = el.dataset.board; render(); return; }
-    if (el.dataset.pick) { S.log.cat = el.dataset.pick; S.log.photo = null; drawLog(); return; }
+    if (el.dataset.pick) { var po = S.log.opts[+el.dataset.pick]; if (!po || !po.open) return; S.log.cat = po.key; S.log.mission = po.mission; S.log.photo = null; drawLog(); return; }
     if (el.dataset.fmt) {
       FR.fmt = el.dataset.fmt;
       $sheet.querySelectorAll('[data-fmt]').forEach(function (b) { b.setAttribute('aria-pressed', String(b === el)); });
