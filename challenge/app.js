@@ -32,6 +32,11 @@
     }).join('') + '</div>';
   }
   function setupDone() { var m = me(); return m.adult_confirmed && m.show_on_tv !== null; }
+  // A captain's picture is their team headshot from the site, whatever they uploaded.
+  function myPhoto() {
+    var m = me(), ms = S.d.membership, t = ms && ms.is_captain ? myTeam() : null;
+    return (t && t.captain_photo) || m.photo_path;
+  }
   function profileComplete() { var m = me(); return !!(m.photo_path && (m.why_i_train || '').trim()); }
 
   // ---------- sign in ----------
@@ -101,10 +106,12 @@
   function profileForm(first) {
     var m = me();
     return '<form class="stack" data-form="profile" novalidate>' +
-      '<div class="photo-pick">' + avatar(m.display_name, m.photo_path, 'av-lg av-color') +
-      '<label class="btn btn-ghost btn-sm" for="pf">' + (m.photo_path ? 'Change photo' : 'Add your photo') +
-      '<input id="pf" type="file" accept="image/*"></label></div>' +
-      '<p class="fine" id="pfn">A clear photo of your face. Your team sees it.</p>' +
+      '<div class="photo-pick">' + avatar(m.display_name, myPhoto(), 'av-lg av-color') +
+      (S.d.membership && S.d.membership.is_captain
+        ? '<span class="fine">Your team headshot from the website.</span></div>'
+        : '<label class="btn btn-ghost btn-sm" for="pf">' + (m.photo_path ? 'Change photo' : 'Add your photo') +
+          '<input id="pf" type="file" accept="image/*"></label></div>' +
+          '<p class="fine" id="pfn">A clear photo of your face. Your team sees it.</p>') +
       '<div class="field"><label for="dn">Name on the board</label><input id="dn" type="text" maxlength="40" required value="' + esc(m.display_name) + '"></div>' +
       '<div class="field"><label for="why">Why I train</label><textarea id="why" maxlength="140" placeholder="One line. Your own words.">' + esc(m.why_i_train || '') + '</textarea></div>' +
       '<div class="field"><label for="uc">Usual class time</label><select id="uc"><option value="">Pick one</option>' +
@@ -307,7 +314,7 @@
   function tabMe() {
     var m = me(), d = S.d, r = B.rankFor(d.ranks, d.points), cap = d.membership.is_captain;
     var original = d.entries.some(function (e) { return e.category_key === 'original'; });
-    var h = '<section class="card"><div class="row">' + avatar(m.display_name, m.photo_path, 'av-lg av-color') +
+    var h = '<section class="card"><div class="row">' + avatar(m.display_name, myPhoto(), 'av-lg av-color') +
       '<div class="grow"><h2 class="mid">' + esc(m.display_name) + '</h2><p class="item-s">' + esc(myTeam().name) + (cap ? ' · Captain' : ' · ' + esc(r.cur.name)) + '</p>' +
       (original ? '<span class="ch-chip" style="display:inline-block;margin-top:8px">Rally Point Original</span>' : '') + '</div></div>' +
       (m.why_i_train ? '<p class="fine">“' + esc(m.why_i_train) + '”</p>' : '') +

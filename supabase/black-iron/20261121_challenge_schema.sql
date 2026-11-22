@@ -273,11 +273,12 @@ begin
       v_name := initcap(split_part(v_email, '@', 1));
     end if;
     insert into public.profiles (id, display_name) values (v_uid, left(v_name, 40));
-    -- A coach who leads a team is set up for them: the name and headshot from their
-    -- team, already on the site and the boards, so there is nothing to upload or tick.
+    -- A coach who leads a team is set up for them: their team name for display and the two
+    -- profile choices already made, so there is nothing to upload or tick. Their headshot is
+    -- the team's captain photo, which the app shows for captains. (photo_path has to stay
+    -- inside the member's own upload folder: check constraint photo_in_own_folder.)
     if r.role in ('coach', 'admin') and r.coach_team is not null then
-      update public.profiles p set display_name = t.captain_name, photo_path = coalesce(t.captain_photo, p.photo_path),
-        show_on_tv = true, adult_confirmed = true
+      update public.profiles p set display_name = t.captain_name, show_on_tv = true, adult_confirmed = true
       from public.teams t join public.challenges ch on ch.id = t.challenge_id and ch.is_active
       where p.id = v_uid and t.name = r.coach_team;
     end if;
