@@ -17,7 +17,7 @@ window.BIA_CHALLENGE = {
       ['Mon, Nov 23', '5:15 AM · 6:15 AM · 9:30 AM · 12:00 PM · 4:30 PM · 5:30 PM · 6:30 PM'],
       ['Tue, Nov 24', '5:15 AM · 6:15 AM · 9:30 AM · 12:00 PM · 4:30 PM · 5:30 PM'],
       ['Wed, Nov 25', '8:30 AM · 9:30 AM · 12:00 PM · 4:30 PM'],
-      ['Thu, Nov 26', 'Closed for Thanksgiving'],
+      ['Thu, Nov 26', 'No classes. Open Gym is open all day.'],
       ['Fri, Nov 27', '8:30 AM · 9:30 AM'],
       ['Sat, Nov 28', '9:30 AM']
     ]
