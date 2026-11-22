@@ -149,6 +149,15 @@ button.item{cursor:pointer}
 .proof{width:96px;height:96px;object-fit:cover;flex:none;background:var(--black);border:1px solid var(--steel-line)}
 .proof-lg{width:100%;height:auto;max-height:420px;object-fit:contain}
 
+/* The day's workout: part name, then its lines as written */
+.wod{display:flex;flex-direction:column}
+.wod-part{display:flex;flex-direction:column;gap:4px;padding:14px 0;border-top:1px solid var(--steel-line)}
+.wod-part:first-child{border-top:0;padding-top:0}
+.wod-name{color:var(--white);font-weight:900;font-size:1.05rem;line-height:1.2;text-transform:uppercase;letter-spacing:-.005em}
+.wod-line{font-size:.92rem;line-height:1.5;color:var(--gray)}
+h2 + .wod{margin-top:-2px}
+.wod + h2{margin-top:10px;padding-top:18px;border-top:1px solid var(--steel-line)}
+
 /* Invite page */
 .sched{display:flex;flex-direction:column}
 .sched div{display:flex;gap:14px;padding:12px 0;border-top:1px solid var(--steel-line);font-size:.85rem;line-height:1.5}

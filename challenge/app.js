@@ -3,7 +3,7 @@
   'use strict';
   var B = window.BIA, CFG = B.CFG, sb = B.sb, esc = B.esc, avatar = B.avatar;
   var $app = document.getElementById('app'), $sheet = document.getElementById('sheet');
-  var S = { session: null, d: null, board: null, tab: 'missions', boardMode: 'teams', otpEmail: null, log: null, signErr: null };
+  var S = { session: null, d: null, board: null, tab: 'missions', boardMode: 'teams', otpEmail: null, log: null, signErr: null, wod: [], wodDay: 0 };
 
   var IC = {
     check: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12l5 5 9-10"/></svg>',
@@ -207,6 +207,39 @@
       '</p><button class="linkbtn" data-act="how">How to earn points</button></section>';
   }
 
+  // ---------- the day's workout ----------
+  // Preview level on purpose: the main pieces as Coach Mike wrote them. No warm-up, no coach's notes.
+  function wodLabel(w) {
+    var n = B.daysBetween(S.d.today, w.date);
+    return n === 0 ? 'Today’s workout' : n === 1 ? 'Tomorrow’s workout' : 'The workout';
+  }
+  function wodParts(w) {
+    return '<div class="wod">' + w.parts.map(function (p) {
+      return '<div class="wod-part"><span class="wod-name">' + esc(p.name) + '</span>' +
+        (p.lines || []).map(function (l) { return '<span class="wod-line">' + esc(l) + '</span>'; }).join('') + '</div>';
+    }).join('') + '</div>';
+  }
+  function wodCard() {
+    var list = (S.wod || []).filter(function (w) { return w.parts && w.parts.length && w.date >= S.d.today; });
+    if (!list.length) return '';
+    var i = Math.min(S.wodDay, list.length - 1), w = list[i];
+    return '<section class="card"><span class="kicker">' + esc(B.fmtDay(w.date, { weekday: 'long', month: 'short', day: 'numeric' })) + '</span>' +
+      '<h2 class="ch-h2">' + wodLabel(w) + '</h2>' +
+      (list.length > 1 ? '<div class="seg" role="group" aria-label="Day">' + list.map(function (x, k) {
+        return '<button data-act="wod-day" data-i="' + k + '" aria-pressed="' + (k === i) + '">' + esc(B.fmtDay(x.date, { weekday: 'long' })) + '</button>';
+      }).join('') + '</div>' : '') +
+      wodParts(w) +
+      '<p class="fine">Every class has three levels, and a coach scales it to you.</p>' +
+      '<button class="btn btn-ghost w100" data-act="share-wod" data-i="' + i + '">Share it with a friend</button></section>';
+  }
+  function loadWod() {
+    B.rpc('workout_preview').then(function (w) {
+      S.wod = Array.isArray(w) ? w : [];
+      // Only redraw the Missions tab. Never a screen someone is typing on.
+      if (S.d && setupDone() && S.d.membership && S.d.membership.revealed && S.tab === 'missions' && S.wod.length) render();
+    }).catch(function () { /* no workout posted, or the function is not there yet */ });
+  }
+
   function tabMissions() {
     var d = S.d, t = myTeam(), cap = d.membership.is_captain, h = '';
     if (cap) {
@@ -214,6 +247,7 @@
         '<p class="fine">Coaches don’t earn points. Your team’s total is your score.</p>' +
         '<a class="btn btn-y w100" href="/challenge/coach">Open coach view</a></section>';
     }
+    h += wodCard();
     if (d.phase === 'pre') {
       var days = B.daysBetween(d.today, d.challenge.scoring_starts_on);
       h += '<section class="card"><span class="kicker">Scoring starts ' + esc(B.fmtDay(d.challenge.scoring_starts_on, { weekday: 'long', month: 'long', day: 'numeric' })) + '</span>' +
@@ -378,19 +412,28 @@
       '<p class="fine">It counts right away. Keep it honest. Coaches can take back anything that doesn’t check out.' + (c.proof !== 'none' ? ' Only coaches see this photo.' : '') + '</p></form>');
   }
 
-  function inviteText(link) {
+  function namesOf(w) {
+    var n = w.parts.map(function (p) { return p.name; });
+    return n.length < 2 ? n.join('') : n.length === 2 ? n.join(', then ') : n.slice(0, -1).join(', ') + ' and ' + n[n.length - 1];
+  }
+  function inviteText(link, w) {
     var gw = CFG.guestWeek, on = S.d.today <= gw.to;
+    if (w) {
+      var n = B.daysBetween(S.d.today, w.date), when = n === 0 ? 'today' : n === 1 ? 'tomorrow' : 'on ' + B.fmtDay(w.date, { weekday: 'long' });
+      return 'Come train with me at Black Iron Athletics ' + when + '. Here’s the workout: ' + namesOf(w).replace(/[.!?]+$/, '') + '. Every class has three levels, so you’ll train at yours. ' +
+        (on ? 'It’s Friends & Family Week, so your class is free. ' : '') + 'The full workout, class times and the waiver are here: ' + link;
+    }
     return on
       ? 'Come train with me at Black Iron Athletics this week. It’s Friends & Family Week, so your classes are free. The schedule and the waiver are here: ' + link
       : 'Come train with me at Black Iron Athletics. The waiver and details are here: ' + link;
   }
-  function sheetInvite() {
+  function sheetInvite(w) {
     openSheet('Invite a friend', '<p class="fine">Getting your link…</p>');
     B.rpc('my_invite').then(function (code) {
       S.d.invite_code = code;
-      var link = location.origin + '/challenge/invite?c=' + code, text = inviteText(link);
+      var link = location.origin + '/challenge/invite?c=' + code, text = inviteText(link, w);
       openSheet('Invite a friend',
-        '<p class="fine">This link opens a page with your name on it, this week’s class times and the waiver. Send it to anyone you’d train with.</p>' +
+        '<p class="fine">This link opens a page with your name on it, ' + (w ? 'the workout, ' : '') + 'this week’s class times and the waiver. Send it to anyone you’d train with.</p>' +
         '<div class="field"><label for="it">Your message</label><textarea id="it" rows="4">' + esc(text) + '</textarea></div>' +
         (navigator.share ? '<button class="btn btn-y w100" data-act="share-invite">Share</button>' : '') +
         '<div class="choice"><a class="btn btn-ghost" id="sms" href="sms:?&body=' + encodeURIComponent(text) + '">Text</a>' +
@@ -533,7 +576,7 @@
       if (setupDone() && d.me.verified && !d.membership) {
         return B.rpc('join_challenge').then(function () { return B.rpc('bootstrap'); }).then(function (d2) { S.d = d2; });
       }
-    }).then(function () { loading = false; render(); }, function (e) {
+    }).then(function () { loading = false; render(); loadWod(); }, function (e) {
       loading = false;
       $app.innerHTML = '<main class="ch-main no-nav"><p class="err" role="alert">' + esc(B.errMsg(e)) + '</p><button class="btn btn-ghost w100" data-act="reload">Try again</button><button class="linkbtn" data-act="signout">Sign out</button></main>';
     });
@@ -561,6 +604,11 @@
     if (act === 'revealed') { S.d.membership.revealed = true; render(); return B.rpc('mark_revealed').catch(function () {}); }
     if (act === 'log') return sheetLog(el.dataset.cat, el.dataset.mission ? +el.dataset.mission : null);
     if (act === 'invite') return sheetInvite();
+    if (act === 'wod-day') { S.wodDay = +el.dataset.i; return render(); }
+    if (act === 'share-wod') {
+      var wl = (S.wod || []).filter(function (w) { return w.parts && w.parts.length && w.date >= S.d.today; });
+      return sheetInvite(wl[+el.dataset.i] || null);
+    }
     if (act === 'how') return sheetHow();
     if (act === 'frame') return sheetFrame();
     if (act === 'edit') return openSheet('Edit profile', profileForm(false));

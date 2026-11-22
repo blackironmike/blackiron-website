@@ -186,8 +186,20 @@ create table app.attendance (
   kind text not null default 'class' check (kind in ('class', 'open_gym')),
   primary key (wodify_client_id, class_date)
 );
+-- Private: the day's workout as members and their guests see it. Preview level
+-- only: the main pieces exactly as Coach Mike wrote them, with no warm-up and
+-- no coach's notes. parts is [{"name": "...", "lines": ["...", "..."]}].
+-- Nothing shows until a day is marked published.
+create table app.workouts (
+  workout_date date primary key,
+  parts jsonb not null default '[]'::jsonb,
+  published boolean not null default false,
+  updated_at timestamptz not null default now(),
+  constraint workout_parts_is_list check (jsonb_typeof(parts) = 'array')
+);
 alter table app.roster enable row level security;
 alter table app.attendance enable row level security;
+alter table app.workouts enable row level security;
 
 -- ------------------------------------------------------------------
 -- Helpers
@@ -614,6 +626,14 @@ begin
   );
 end $$;
 
+-- Public: today's and tomorrow's workout, published days only. Shown in the app
+-- and on a member's invite page so they can share it with a friend.
+create function app.workout_preview() returns jsonb language sql stable security definer set search_path = '' as $$
+  select coalesce(jsonb_agg(jsonb_build_object('date', w.workout_date, 'parts', w.parts) order by w.workout_date), '[]'::jsonb)
+  from app.workouts w
+  where w.published and w.workout_date between app.today() and app.today() + 1
+$$;
+
 create function app.delete_my_account() returns void language plpgsql security definer set search_path = '' as $$
 declare v_uid uuid := auth.uid();
 begin
@@ -784,6 +804,7 @@ create function public.invite_info(p_code text) returns jsonb language sql secur
 create function public.invite_click(p_code text) returns void language sql security invoker set search_path = '' as $$ select app.invite_click(p_code) $$;
 create function public.leaderboard() returns jsonb language sql security invoker set search_path = '' as $$ select app.leaderboard() $$;
 create function public.tv_snapshot() returns jsonb language sql security invoker set search_path = '' as $$ select app.tv_snapshot() $$;
+create function public.workout_preview() returns jsonb language sql security invoker set search_path = '' as $$ select app.workout_preview() $$;
 create function public.delete_my_account() returns void language sql security invoker set search_path = '' as $$ select app.delete_my_account() $$;
 create function public.coach_home() returns jsonb language sql security invoker set search_path = '' as $$ select app.coach_home() $$;
 create function public.review_entry(p_id bigint, p_approve boolean) returns void language sql security invoker set search_path = '' as $$ select app.review_entry(p_id, p_approve) $$;
@@ -812,6 +833,7 @@ grant execute on function
   app.move_member(uuid, smallint), app.create_flash(text, text, int, int)
 to authenticated;
 grant execute on function app.can_view_proof(text), app.invite_info(text), app.invite_click(text), app.tv_snapshot() to anon;
+grant execute on function app.workout_preview() to anon, authenticated;
 
 grant execute on function
   public.bootstrap(), public.join_challenge(), public.mark_revealed(), public.submit_entry(text, date, text, text, text, bigint),
@@ -820,6 +842,7 @@ grant execute on function
   public.move_member(uuid, smallint), public.create_flash(text, text, int, int)
 to authenticated;
 grant execute on function public.invite_info(text), public.invite_click(text), public.tv_snapshot() to anon;
+grant execute on function public.workout_preview() to anon, authenticated;
 
 -- ------------------------------------------------------------------
 -- Row level security
