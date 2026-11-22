@@ -172,6 +172,9 @@ button.item{cursor:pointer}
 .thead{display:flex;justify-content:space-between;align-items:baseline;font-weight:900;text-transform:uppercase;color:var(--white);font-size:1rem;padding:2px 0 6px}
 .thead span{color:var(--tc);font-size:1.1rem}
 .tgroup .list .item:first-child{border-top:0}
+.item.rm-ask{flex-direction:column;align-items:stretch;gap:6px}
+.rm-btns{display:flex;gap:10px;margin-top:8px}
+.rm-btns .btn{flex:1}
 .grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px}
 .proof{width:96px;height:96px;object-fit:cover;flex:none;background:var(--black);border:1px solid var(--steel-line)}
 .proof-lg{width:100%;height:auto;max-height:420px;object-fit:contain}

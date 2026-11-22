@@ -41,8 +41,8 @@
     function row(m) {
       var who = esc(m.full || m.name);
       if (S.rm === m.id) {
-        return '<div class="item"><span class="grow"><span class="item-t">Remove ' + who + '?</span><br><span class="item-s">They come off ' + esc(teamName(m.team_id)) + ' and their ' + m.points + ' points go with them.</span></span>' +
-          '<button class="btn btn-y btn-sm" data-act="roster-remove-yes" data-id="' + esc(m.id) + '">Remove</button><button class="btn btn-ghost btn-sm" data-act="roster-remove-no">Keep</button></div>';
+        return '<div class="item rm-ask"><span class="item-t">Remove ' + who + '?</span><span class="item-s">They come off ' + esc(teamName(m.team_id)) + ' and their ' + m.points + ' points go with them.</span>' +
+          '<span class="rm-btns"><button class="btn btn-y btn-sm" data-act="roster-remove-yes" data-id="' + esc(m.id) + '">Remove</button><button class="btn btn-ghost btn-sm" data-act="roster-remove-no">Keep</button></span></div>';
       }
       return '<div class="item">' + teamDot(m.team_id) + '<span class="grow"><span class="item-t">' + who + '</span><br><span class="item-s">' +
         (m.is_captain ? 'Captain' : 'Joined ' + esc(shortDay(m.joined_at.slice(0, 10)))) + ' · ' + m.points + ' points</span></span>' +
