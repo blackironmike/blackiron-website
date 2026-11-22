@@ -8,7 +8,7 @@
   'use strict';
   var B = window.BIA, sb = B.sb, esc = B.esc, avatar = B.avatar;
   var $app = document.getElementById('app');
-  var S = { session: null, d: null, urls: {}, story: false, off: {} };
+  var S = { session: null, d: null, urls: {}, story: false, off: {}, roster: null, rosterTeam: 0, rm: null };
   var HANDLE = '@BLACKIRON_ATHLETICS';
 
   // Small per-device notes (who you already texted). Never required to work.
@@ -21,6 +21,46 @@
   }
   function shortDay(s) { return B.fmtDay(s, { month: 'short', day: 'numeric' }); }
   function prettyPhone(p) { var m = /^\+1(\d{3})(\d{3})(\d{4})$/.exec(p || ''); return m ? '(' + m[1] + ') ' + m[2] + '-' + m[3] : p; }
+
+  // Team colors are data colors, the same idea as the phase colors on the Programs page.
+  // They only label a team in the admin's roster. Order follows the team order.
+  function teamIdx(id) { for (var i = 0; i < S.d.teams.length; i++) if (S.d.teams[i].id === id) return i; return -1; }
+  function teamDot(id) { return '<i class="tdot t' + (teamIdx(id) + 1) + '" aria-hidden="true"></i>'; }
+
+  // The admin's full view: everyone signed up, by team, with a way to take someone off.
+  function rosterCard() {
+    var r = S.roster, d = S.d;
+    if (!r) return '<section class="card"><h2 class="ch-h2">Everyone signed up</h2><p class="fine">Loading…</p></section>';
+    var by = {}; r.members.forEach(function (m) { (by[m.team_id] = by[m.team_id] || []).push(m); });
+    var athletes = r.members.filter(function (m) { return !m.is_captain; }).length;
+    var chips = '<div class="tchips" role="group" aria-label="Team">' +
+      '<button data-act="roster-team" data-t="0" aria-pressed="' + (!S.rosterTeam) + '">All <b>' + r.members.length + '</b></button>' +
+      d.teams.map(function (t) {
+        return '<button data-act="roster-team" data-t="' + t.id + '" aria-pressed="' + (S.rosterTeam === t.id) + '">' + teamDot(t.id) + esc(t.name.replace(/^Team /, '')) + ' <b>' + (by[t.id] || []).length + '</b></button>';
+      }).join('') + '</div>';
+    function row(m) {
+      var who = esc(m.full || m.name);
+      if (S.rm === m.id) {
+        return '<div class="item rm-ask"><span class="item-t">Remove ' + who + '?</span><span class="item-s">They come off ' + esc(teamName(m.team_id)) + ' and their ' + m.points + ' points go with them.</span>' +
+          '<span class="rm-btns"><button class="btn btn-y btn-sm" data-act="roster-remove-yes" data-id="' + esc(m.id) + '">Remove</button><button class="btn btn-ghost btn-sm" data-act="roster-remove-no">Keep</button></span></div>';
+      }
+      return '<div class="item">' + teamDot(m.team_id) + '<span class="grow"><span class="item-t">' + who + '</span><br><span class="item-s">' +
+        (m.is_captain ? 'Captain' : 'Joined ' + esc(shortDay(m.joined_at.slice(0, 10)))) + ' · ' + m.points + ' points</span></span>' +
+        (m.is_captain ? '' : '<button class="linkbtn" data-act="roster-remove" data-id="' + esc(m.id) + '">Remove<span class="sr"> ' + who + '</span></button>') + '</div>';
+    }
+    var groups = d.teams.filter(function (t) { return !S.rosterTeam || S.rosterTeam === t.id; }).map(function (t) {
+      var list = by[t.id] || [];
+      return '<div class="tgroup t' + (teamIdx(t.id) + 1) + '"><div class="thead">' + esc(t.name) + '<span>' + list.length + '</span></div>' +
+        (list.length ? '<div class="list">' + list.map(row).join('') + '</div>' : '<p class="fine">Nobody yet.</p>') + '</div>';
+    }).join('');
+    var removed = r.removed.length ? '<details class="more"><summary>Removed (' + r.removed.length + ')</summary><div class="list">' + r.removed.map(function (m) {
+      return '<div class="item"><span class="grow"><span class="item-t">' + esc(m.full || m.name) + '</span><br><span class="item-s">Removed ' + esc(shortDay(m.removed_at.slice(0, 10))) + '</span></span>' +
+        '<button class="btn btn-ghost btn-sm" data-act="roster-restore" data-id="' + esc(m.id) + '">Put back</button></div>';
+    }).join('') + '</div><p class="fine">Put someone back and they land on a team the next time they open the app.</p></details>' : '';
+    return '<section class="card"><h2 class="ch-h2">Everyone signed up</h2>' +
+      '<p class="fine">' + athletes + ' athletes and ' + (r.members.length - athletes) + ' captains. Only you see this card.</p>' +
+      chips + groups + removed + '</section>';
+  }
 
   function teamName(id) { var t = S.d.teams.filter(function (x) { return x.id === id; })[0]; return t ? t.name : ''; }
   function label(key) { return S.d.labels[key] || key; }
@@ -141,6 +181,7 @@
     $app.innerHTML = shell(
       '<h1 class="ch-h1" style="font-size:2.2rem">' + esc(myTeam ? myTeam.name : 'Coach view') + '</h1>' +
       '<a class="btn btn-ghost w100" href="/challenge">Switch to athlete view</a>' +
+      (admin ? rosterCard() : '') +
       '<div class="grid2">' + check + shout + '</div>' +
       '<div class="row" style="margin-top:8px"><h2 class="ch-h1 grow" style="font-size:1.7rem">Recent logs</h2><span class="ch-chip">' + d.queue.length + ' logged</span></div>' +
       '<p class="fine">' + (admin ? 'You see every team.' : 'You see ' + esc(teamName(d.me.team_id) || 'your team') + '.') + ' Everything members log counts right away, so there is nothing to approve. If one doesn’t check out, take it back here. Photos are only seen by coaches.</p>' +
@@ -242,6 +283,7 @@
   function load() {
     return B.rpc('coach_home').then(function (d) {
       S.d = d; draw();
+      if (d.me.role === 'admin') B.rpc('admin_roster').then(function (r) { S.roster = r; draw(); }).catch(function () {});
       d.queue.forEach(function (q) {
         if (q.photo_path && !S.urls[q.photo_path]) {
           B.signedUrl(q.photo_path).then(function (u) { if (u) { S.urls[q.photo_path] = u; draw(); } });
@@ -258,6 +300,11 @@
   document.addEventListener('click', function (ev) {
     var el = ev.target.closest('[data-act]'); if (!el) return;
     var act = el.dataset.act;
+    if (act === 'roster-team') { S.rosterTeam = +el.dataset.t; S.rm = null; return draw(); }
+    if (act === 'roster-remove') { S.rm = el.dataset.id; return draw(); }
+    if (act === 'roster-remove-no') { S.rm = null; return draw(); }
+    if (act === 'roster-remove-yes') { el.disabled = true; S.rm = null; return run(B.rpc('remove_member', { p_user: el.dataset.id }), 'Removed.'); }
+    if (act === 'roster-restore') { el.disabled = true; return run(B.rpc('restore_member', { p_user: el.dataset.id }), 'Put back. They’ll land on a team next time they open the app.'); }
     if (act === 'texted') {
       // Let the link open Messages, and remember it on this phone so nobody gets texted twice.
       var t = mem('bia-texted') || {}; t[el.dataset.id] = S.d.today; mem('bia-texted', t);
