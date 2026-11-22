@@ -43,14 +43,17 @@
       (info && info.photo ? B.avatar(name, info.photo, 'av-lg av-color') : '') +
       '<h1 class="ch-h1" style="font-size:clamp(2.4rem,12vw,3.6rem);margin-top:18px">' + who + ' <span class="outline">invited you</span></h1>' +
       '<p class="ch-lead">' + (guestWeekOn
-        ? 'It’s Friends & Family Week at Black Iron. Come train with ' + (name ? esc(name) : 'us') + '. Your classes are free this week. All we need is a signed waiver.'
+        ? 'It’s Friends & Family Week at Black Iron. Come train with ' + (name ? esc(name) : 'us') + '. Your classes are free this week. Book your first one and you’re good all week.'
         : 'Come train with ' + (name ? esc(name) : 'us') + ' at Black Iron. Sign the waiver, pick a class, and we’ll take it from there.') + '</p></header>' +
 
-      '<a class="btn btn-y w100" id="waiver" href="' + esc(CFG.waiverUrl) + '" target="_blank" rel="noopener">Sign the waiver</a>' +
+      '<a class="btn btn-y w100" id="waiver" href="' + esc(guestWeekOn ? gw.bookUrl : CFG.waiverUrl) + '" target="_blank" rel="noopener">' + (guestWeekOn ? 'Book your first free class' : 'Sign the waiver') + '</a>' +
 
       '<section class="card"><h2 class="ch-h2">How it works</h2><ol class="howto">' +
-      '<li><span>Sign the waiver. It takes two minutes on your phone.</span></li>' +
-      '<li><span>Pick a class' + (guestWeekOn ? ' below' : '') + ' and tell ' + (name ? esc(name) : 'your friend') + ' which one.</span></li>' +
+      (guestWeekOn
+        ? '<li><span>Book your first free class. You’ll pick a time, set up a quick profile and sign the waiver. It takes a few minutes on your phone.</span></li>' +
+          '<li><span>Tell ' + (name ? esc(name) : 'your friend') + ' which class you picked. Want more? Book any other class this week the same way.</span></li>'
+        : '<li><span>Sign the waiver. It takes two minutes on your phone.</span></li>' +
+          '<li><span>Pick a class and tell ' + (name ? esc(name) : 'your friend') + ' which one.</span></li>') +
       '<li><span>Show up ten minutes early. A coach will meet you, and every workout has three levels, so you’ll train at yours.</span></li></ol></section>' +
 
       workouts(wod) +
