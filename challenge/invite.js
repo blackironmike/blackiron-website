@@ -12,7 +12,7 @@
   var WOD = [], wi = 0;
   function wodInner() {
     var w = WOD[Math.min(wi, WOD.length - 1)];
-    return '<span class="kicker">What we’re training</span>' +
+    return '<span class="kicker kicker-y">What we’re training</span>' +
       '<h2 class="ch-h2">' + esc(B.fmtDay(w.date, { weekday: 'long', month: 'short', day: 'numeric' })) + '</h2>' +
       (WOD.length > 1 ? '<div class="days" role="group" aria-label="Day">' + WOD.map(function (x, k) {
         return '<button data-wd="' + k + '" aria-pressed="' + (k === wi) + '" aria-label="' + esc(B.fmtDay(x.date, { weekday: 'long', month: 'long', day: 'numeric' })) + '">' +
