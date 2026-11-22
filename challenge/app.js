@@ -366,13 +366,19 @@
         return '<div class="item cl-row' + (st ? ' item-on' : '') + '"><span class="grow"><span class="cl-time">' + esc(clock(c.start)) + '</span>' +
           '<span class="item-s">' + esc(c.program) + '</span><span class="item-s cl-spots">' + esc(spots) + '</span></span>' + right + '</div>';
       }).join('') + '</div>' +
-        '<p class="fine">' + (res ? 'This is the same list as Wodify. Reserve or cancel in either place.' : 'Reserve your spot in the Wodify app, the same as always.') + '</p>';
+        '<p class="fine">' + (res ? 'This is the same list as Wodify. Reserve or cancel in either place.' : 'Reserve your spot in the Wodify app, the same as always.') + '</p>' +
+        // Coach Mike, Nov 22: people should know they can train any time, and that classes come first.
+        '<div class="og-note"><span class="kicker kicker-y">Open Gym</span>' +
+        '<p>Open Gym runs between classes and after hours, so you can train any time. No Open Gym during class times. Classes take priority.</p></div>';
     } else {
       // No classes: say so, and say when Open Gym is open if it is.
-      var allDay = og.length === 1 && og[0].start <= '06:00' && og[0].end >= '22:00';
+      // "All day" when the Open Gym blocks run from early morning to late evening, however Wodify splits them.
+      var first = og.map(function (c) { return c.start; }).sort()[0], last = og.map(function (c) { return c.end; }).sort().pop();
+      var allDay = og.length && first <= '06:00' && last >= '22:00';
       var ogLine = !og.length ? '' : allDay ? ' Open Gym is open all day.'
         : ' Open Gym is open ' + og.map(function (c) { return clock(c.start) + ' to ' + clock(c.end); }).join(' and ') + '.';
-      h += '<div class="noclass">' + (holiday ? '<span class="noclass-t">' + esc(holiday) + '</span>' : '') +
+      var title = holiday || (allDay ? 'Open Gym all day' : '');
+      h += '<div class="noclass">' + (title ? '<span class="noclass-t">' + esc(title) + '</span>' : '') +
         '<p>No classes ' + (n === 0 ? 'today' : n === 1 ? 'tomorrow' : 'on ' + esc(B.fmtDay(day, { weekday: 'long' }))) + '.' + esc(ogLine) + '</p></div>';
     }
     h += '</section>';
