@@ -50,7 +50,7 @@
   // ---------- sign in ----------
   function viewSignIn() {
     $app.innerHTML =
-      '<main class="ch-main no-nav">' +
+      '<main class="ch-main no-nav has-pt"><i class="rp-pt" aria-hidden="true"></i>' +
       '<header class="ch-hero"><span class="eyebrow eyebrow-y">Black Iron Athletics</span>' +
       '<h1 class="ch-h1">Rally <span class="outline">Point</span></h1>' +
       '<p class="ch-lead">Eight weeks. Six teams. Show up, bring your people, and carry your team through the holidays.</p></header>' +
@@ -169,6 +169,33 @@
         'Put the app on your home screen so it’s one tap away. The next screens show you how, and you can show your team.'] }
     ];
   }
+  // The member's welcome: three short cards before they meet their team. The why is the
+  // same wording Coach Mike approved for the /rallypoint page.
+  function memberGuide() {
+    var d = S.d, ch = d.challenge, n = (['Zero', 'One', 'Two', 'Three', 'Four', 'Five', 'Six', 'Seven', 'Eight'][d.teams.length] || d.teams.length);
+    var pt = function (k, f) { var c = cat(k); return c ? c.points : f; };
+    return [
+      { k: 'Welcome to', t: ['Rally', 'Point'], p: [
+        'Eight weeks of training together through the holidays. No testing. No benchmarks. Just showing up, having fun and doing it as a team.',
+        n + ' teams, each led by a coach. You’re about to land on one.',
+        (d.phase === 'pre' ? 'Scoring starts ' : 'Scoring started ') + B.fmtDay(ch.scoring_starts_on, { weekday: 'long', month: 'long', day: 'numeric' }) + ' and runs through ' + B.fmtDay(ch.ends_on, { month: 'long', day: 'numeric' }) + '.'] },
+      { k: 'The reason', t: ['Why we’re', 'doing it'], p: [
+        'It’s about belonging. Being a member here means you’re part of something larger than your own workout.',
+        'For the next eight weeks, your team is counting on you to walk through the door.',
+        'It also carries us into the new gym in January, together.'] },
+      { k: 'The short version', t: ['How you', 'earn points'], p: [
+        'Come to class. Sign in like you always do and it counts on its own: ' + pt('class', 2) + ' points a class, plus ' + pt('mission_bonus', 3) + ' more when you hit three in a week.',
+        'Everything else, you log with the yellow Log points button: bring a guest (' + pt('guest', 5) + '), drop off a toy (' + pt('toy', 10) + '), train at home or on the road (' + pt('active', 2) + '), and take on the weekly challenges.',
+        'Every point counts for you and for your team. Prizes along the way.',
+        'One more thing. Put Rally Point on your home screen so it’s one tap away. The first screen shows you how.'] }
+    ];
+  }
+  function sheetMemberGuide() {
+    openSheet('How Rally Point works', memberGuide().map(function (g) {
+      return '<h3 class="ch-h2" style="margin-top:16px">' + esc(g.t.join(' ')) + '</h3>' + g.p.map(function (x) { return '<p class="fine">' + esc(x) + '</p>'; }).join('');
+    }).join('') + '<button class="btn btn-ghost w100" data-act="how">Every way to earn points</button>' +
+      (isInstalled() ? '' : '<button class="btn btn-ghost w100" data-act="install">Add to home screen</button>'));
+  }
   function guideCard(g) {
     return '<span class="eyebrow eyebrow-y">' + esc(g.k) + '</span><h1 style="font-size:clamp(2.4rem,12vw,3.6rem)">' + esc(g.t[0]) + ' <span class="outline">' + esc(g.t[1]) + '</span></h1>' +
       g.p.map(function (x) { return '<p class="ch-lead">' + esc(x) + '</p>'; }).join('');
@@ -180,15 +207,15 @@
   }
 
   function viewReveal() {
-    var t = myTeam(), cap = S.d.membership.is_captain, guide = cap ? coachGuide() : [], step = S.coachStep || 0;
-    if (cap && step < guide.length) {
-      $app.innerHTML = '<main class="reveal">' + guideCard(guide[step]) +
-        '<button class="btn btn-y w100" data-act="coach-next">' + (step < guide.length - 1 ? 'Next' : 'Meet your team') + '</button>' +
-        '<p class="fine">' + (step + 1) + ' of ' + guide.length + '</p></main>';
+    var t = myTeam(), cap = S.d.membership.is_captain, guide = cap ? coachGuide() : memberGuide(), step = S.coachStep || 0;
+    if (step < guide.length) {
+      $app.innerHTML = '<main class="reveal has-pt"><i class="rp-pt" aria-hidden="true"></i>' + guideCard(guide[step]) +
+        '<button class="btn btn-y w100" data-act="coach-next">' + (step < guide.length - 1 ? 'Next' : cap ? 'Meet your team' : 'See your team') + '</button>' +
+        '<p class="fine">' + (step + 1) + ' of ' + guide.length + (cap ? '' : ' · <button class="linkbtn" data-act="guide-skip">Skip</button>') + '</p></main>';
       window.scrollTo(0, 0);
       return;
     }
-    $app.innerHTML = '<main class="reveal"><span class="eyebrow eyebrow-y">' + (cap ? 'Your team, Coach' : 'You’re on') + '</span>' +
+    $app.innerHTML = '<main class="reveal has-pt"><i class="rp-pt" aria-hidden="true"></i><span class="eyebrow eyebrow-y">' + (cap ? 'Your team, Coach' : 'You’re on') + '</span>' +
       avatar(t.captain_name, t.captain_photo, 'av-xl') +
       '<h1>' + esc(t.name.split(' ')[0]) + ' <span class="outline">' + esc(t.name.split(' ').slice(1).join(' ')) + '</span></h1>' +
       '<p class="ch-lead">' + (cap
@@ -507,6 +534,7 @@
       (m.why_i_train ? '<p class="fine">“' + esc(m.why_i_train) + '”</p>' : '') +
       '<button class="btn btn-ghost w100" data-act="edit">Edit profile</button></section>';
     h += '<section class="card"><div class="list">' +
+      '<button class="item" data-act="member-guide"><span class="grow"><span class="item-t">How Rally Point works</span><br><span class="item-s">What it is, why we’re doing it and how to earn points.</span></span></button>' +
       (cap ? '<button class="item" data-act="coach-guide"><span class="grow"><span class="item-t">Coach guide</span><br><span class="item-s">Why we’re doing this and what we need from you.</span></span></button>' : '') +
       (cap || m.role !== 'member' ? '<a class="item" href="/challenge/coach"><span class="grow item-t">Coach view</span></a>' : '') +
       '<button class="item" data-act="invite"><span class="grow"><span class="item-t">Invite a friend</span><br><span class="item-s">Your own link to get them in the door.</span></span></button>' +
@@ -534,14 +562,22 @@
   }
   function closeSheet() { $sheet.hidden = true; $sheet.innerHTML = ''; S.log = null; }
 
+  // Everything a member can log, in one place. A category that has not opened yet still
+  // shows, greyed, with the day it opens. Live flash missions are in the list too.
   function sheetLog(preCat, mission) {
-    var d = S.d;
-    var cats = d.categories.filter(function (c) {
-      return c.logged_by === 'member' && c.per !== 'mission' && (d.phase === 'live' || c.allowed_pre);
+    var d = S.d, opens = 'Opens ' + B.fmtDay(d.challenge.scoring_starts_on, { weekday: 'long' });
+    var opts = d.categories.filter(function (c) { return c.logged_by === 'member' && c.per !== 'mission'; }).map(function (c) {
+      var open = d.phase === 'live' || c.allowed_pre;
+      return { key: c.key, mission: null, label: c.label, hint: open ? (c.hint || '') : opens, points: c.points, open: open };
     });
-    if (preCat === 'flash') cats = d.categories.filter(function (c) { return c.key === 'flash'; });
-    if (!cats.length) return openSheet('Log points', '<p class="fine">Scoring starts ' + esc(B.fmtDay(d.challenge.scoring_starts_on)) + '. Until then, bring a guest.</p>');
-    S.log = { cat: (cats.filter(function (c) { return c.key === preCat; })[0] || cats[0]).key, mission: mission || null, cats: cats, date: d.today, photo: null };
+    if (d.phase === 'live') (d.flash || []).filter(function (f) { return !f.done; }).forEach(function (f) {
+      opts.push({ key: 'flash', mission: f.id, label: f.title, hint: 'Flash mission. ' + (f.detail || 'Add a photo.'), points: f.points, open: true });
+    });
+    if (preCat === 'flash') opts = opts.filter(function (o) { return o.key === 'flash' && o.mission === mission; });
+    var pickable = opts.filter(function (o) { return o.open; });
+    if (!pickable.length) return openSheet('Log points', '<p class="fine">Scoring starts ' + esc(B.fmtDay(d.challenge.scoring_starts_on)) + '. Until then, bring a guest.</p>');
+    var first = pickable.filter(function (o) { return o.key === preCat && (preCat !== 'flash' || o.mission === mission); })[0] || pickable[0];
+    S.log = { cat: first.key, mission: first.mission, opts: opts, date: d.today, photo: null };
     drawLog();
   }
   function drawLog() {
@@ -550,9 +586,9 @@
     var fl = L.mission ? d.flash.filter(function (f) { return f.id === L.mission; })[0] : null;
     var pts = (fl ? fl.points : c.points) * (dbl ? 2 : 1);
     openSheet('Log points',
-      '<p class="fine">Class check-ins count on their own from Wodify, usually by the next morning. Log everything else here.</p>' +
-      (L.cats.length > 1 ? '<div class="pick">' + L.cats.map(function (x) {
-        return '<button type="button" data-pick="' + esc(x.key) + '" aria-pressed="' + (x.key === L.cat) + '"><b>' + esc(x.label) + '</b><small>' + esc(x.hint || '') + '</small><span class="val">+' + x.points + '</span></button>';
+      '<p class="fine">Class check-ins count on their own from Wodify, usually by the next morning. Everything else you can earn is here.</p>' +
+      (L.opts.length > 1 ? '<div class="pick">' + L.opts.map(function (x, k) {
+        return '<button type="button" data-pick="' + k + '" aria-pressed="' + (x.key === L.cat && x.mission === L.mission) + '"' + (x.open ? '' : ' aria-disabled="true"') + '><b>' + esc(x.label) + '</b><small>' + esc(x.hint || '') + '</small><span class="val">+' + x.points + '</span></button>';
       }).join('') + '</div>' : '<p class="item-t">' + esc(fl ? fl.title : c.label) + '</p>') +
       '<form class="stack" data-form="log">' +
       (c.per === 'day' ? '<fieldset class="field"><legend>When</legend><div class="choice">' +
@@ -801,7 +837,7 @@
       render(); window.scrollTo(0, 0); return;
     }
     if (el.dataset.board) { S.boardMode = el.dataset.board; render(); return; }
-    if (el.dataset.pick) { S.log.cat = el.dataset.pick; S.log.photo = null; drawLog(); return; }
+    if (el.dataset.pick) { var po = S.log.opts[+el.dataset.pick]; if (!po || !po.open) return; S.log.cat = po.key; S.log.mission = po.mission; S.log.photo = null; drawLog(); return; }
     if (el.dataset.fmt) {
       FR.fmt = el.dataset.fmt;
       $sheet.querySelectorAll('[data-fmt]').forEach(function (b) { b.setAttribute('aria-pressed', String(b === el)); });
@@ -813,6 +849,8 @@
     if (act === 'reload') return load();
     if (act === 'otp-back') { S.otpEmail = null; S.signErr = null; note('otp', null); return render(); }
     if (act === 'coach-next') { S.coachStep = (S.coachStep || 0) + 1; return render(); }
+    if (act === 'guide-skip') { S.coachStep = 99; return render(); }
+    if (act === 'member-guide') return sheetMemberGuide();
     if (act === 'coach-guide') return sheetCoachGuide();
     if (act === 'revealed') { S.d.membership.revealed = true; render(); return B.rpc('mark_revealed').catch(function () {}); }
     if (act === 'log') return sheetLog(el.dataset.cat, el.dataset.mission ? +el.dataset.mission : null);

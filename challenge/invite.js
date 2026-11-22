@@ -38,7 +38,7 @@
     var name = info && info.first_name ? info.first_name : null;
     var who = name ? esc(name) : 'A member';
     $app.innerHTML =
-      '<main class="ch-main no-nav">' +
+      '<main class="ch-main no-nav has-pt"><i class="rp-pt" aria-hidden="true"></i>' +
       '<header class="ch-hero"><span class="eyebrow eyebrow-y">Black Iron Athletics · Frisco, TX</span>' +
       (info && info.photo ? B.avatar(name, info.photo, 'av-lg av-color') : '') +
       '<h1 class="ch-h1" style="font-size:clamp(2.4rem,12vw,3.6rem);margin-top:18px">' + who + ' <span class="outline">invited you</span></h1>' +
