@@ -29,22 +29,22 @@ In `tv/config.js`, under `cycle`:
 
 ```js
 cycle: {
-  name: "Harder to Kill",
-  titleLines: ["Harder", "~to Kill~"],   // ~ ~ = outlined lettering
-  tagline: "Stronger. Faster. ~Harder to Kill.~",
-  start: "2026-09-21",                    // the Monday of week 1
-  end: "2026-11-21",
-  lifts: ["Snatch", "Sumo Deadlift", "Back Squat", "and a whole lot of running"],
+  name: "Rally Point",
+  titleLines: ["Rally", "~Point~"],     // ~ ~ = outlined lettering
+  tagline: "Eight weeks. Six teams. ~One gym.~",
+  start: "2026-11-23",                   // the Monday of week 1
+  end: "2027-01-17",
+  lifts: ["Show up", "Bring your people", "Carry your team"],
   weeks: [
-    { label: "Foundation", phase: "intro" },
-    { label: "Test",       phase: "test",   note: "Set the numbers" },
+    { label: "Kickoff",  phase: "rally", note: "Friends & Family" },
+    { label: "Week 2",   phase: "rally" },
     ...
   ]
 }
 ```
 
 - **You type week labels, not dates.** Week dates come from `start`, so two weeks can never land on the same Monday.
-- `phase` is one of `intro`, `test`, `build`, `deload`. It sets the phase colors, which match the cycle timeline on `/programs`.
+- `phase` is one of `intro`, `test`, `build`, `deload`. It sets the phase colors, which match the cycle timeline on `/programs`. Rally Point uses `rally`, which draws every week in Forge.
 - `note` is the short line under a week on the timeline. Leave it out for no note.
 - Phase colors only ever appear on the timeline, the current-week chip and the benchmark chips. Every other highlight is Forge yellow.
 - Then update the benchmark, explainer and event panels in `deck` for the new cycle.
@@ -76,7 +76,7 @@ Fields every panel understands:
 | `until` | Last day it shows. It is gone the next morning. |
 | `cycle` | `true` = only while the cycle is running. |
 | `status` | `"draft"` = never on the TVs, only on `/tv/preview`. |
-| `skull` | `"right"` (default), `"off"`, or `"pattern"` (the tiled Halloween background). |
+| `skull` | Where the Rally Point checkerboard sits: `"right"` (default), `"off"`, or `"pattern"` (tiled across the panel). The field keeps its old name. |
 | `footer` | `"cycle"`, `"brand"`, `"chips"`, or `"none"`. |
 
 Text shortcuts work in any text field: `*word*` turns it Forge yellow, `~word~` gives it the outlined lettering, and `•` becomes a drawn dot.
@@ -181,7 +181,7 @@ tv/config.js      the cycle and the deck (the only file you edit)
 tv/tv.js          the engine: date math, scheduler, panel layouts
 tv/tv.css         the look and the motion
 tv-sw.js          offline cache for /tv (lives at the site root so it can cover /tv)
-images/tv/        skull, photos, QR codes, FuelPath marks
+images/tv/        Rally Point checkerboard and flag, photos, QR codes, FuelPath marks
 ```
 
 `/tv` is left out of the Meta Pixel and GA4 injection (`inject-pixel.js`) and out of the sitemap (`generate-sitemap.js`), so the TVs never count as website visitors and the page stays off Google.

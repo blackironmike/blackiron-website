@@ -23,7 +23,7 @@
 window.TV_CONFIG = {
   // Bump this whenever you edit. It shows in the bottom-left corner of every
   // TV, so you can tell at a glance if a screen is stuck on an old version.
-  version: "2026-10-06.4",
+  version: "2026-11-22.1",
 
   timezone: "America/Chicago",
   defaultSeconds: 10,
@@ -39,32 +39,32 @@ window.TV_CONFIG = {
   /* ----------------------------------------------------------------------
      THE CYCLE
      Week dates come from `start`. You type labels, not dates.
-     phase: intro | test | build | deload  (these drive the phase colors)
+     phase: intro | test | build | deload drive the phase colors.
+     Rally Point uses "rally", which draws every week in Forge.
      ---------------------------------------------------------------------- */
   cycle: {
-    name: "Harder to Kill",
-    titleLines: ["Harder", "~to Kill~"],
-    tagline: "Stronger. Faster. ~Harder to Kill.~",
-    start: "2026-09-21",
-    end: "2026-11-21",
-    lifts: ["Snatch", "Sumo Deadlift", "Back Squat", "and a whole lot of running"],
+    name: "Rally Point",
+    titleLines: ["Rally", "~Point~"],
+    tagline: "Eight weeks. Six teams. ~One gym.~",
+    start: "2026-11-23",
+    end: "2027-01-17",
+    lifts: ["Show up", "Bring your people", "Carry your team"],
     weeks: [
-      { label: "Foundation", phase: "intro" },
-      { label: "Test",       phase: "test",   note: "Set the numbers" },
-      { label: "Build",      phase: "build" },
-      { label: "Build",      phase: "build" },
-      { label: "Build",      phase: "build",  note: "633 Run" },
-      { label: "Build",      phase: "build",  note: "Halloween WOD" },
-      { label: "Build",      phase: "build" },
-      { label: "Deload",     phase: "deload", note: "Taper" },
-      { label: "Retest",     phase: "test",   note: "Beat W2" }
+      { label: "Kickoff",      phase: "rally", note: "Friends & Family" },
+      { label: "Week 2",       phase: "rally" },
+      { label: "Toy Drop",     phase: "rally", note: "Run Sat Dec 12" },
+      { label: "Awards Night", phase: "rally" },
+      { label: "Travel",       phase: "rally", note: "Double active pts" },
+      { label: "New Year",     phase: "rally", note: "Last WOD of 2026" },
+      { label: "Week 7",       phase: "rally" },
+      { label: "Finale",       phase: "rally", note: "Champions crowned" }
     ]
   },
 
   /* Shared footers. Panels pick one with footer: "cycle" | "brand" | "chips". */
   footers: {
     chips: ["Veteran-owned", "Frisco, TX", "Est. 2013"],
-    cycle: "Stronger. Faster. ~Harder to Kill.~",
+    cycle: "Eight weeks. Six teams. ~One gym.~",
     brand: "Everyday people. ~Everyday athletes.~"
   },
 
@@ -118,11 +118,38 @@ window.TV_CONFIG = {
 
     {
       id: "timeline", type: "timeline", seconds: 10, cycle: true,
-      eyebrow: "The timeline",
-      headline: "9 Weeks",
-      phases: "Foundation • Test • Build • Deload • Retest",
-      note: ["Test in Week 2. Build for five. Deload. Then find out what changed.",
-             "All of it finished before Thanksgiving."]
+      eyebrow: "The road to January",
+      headline: "8 Weeks",
+      phases: "Kickoff • Toy Drop • Awards Night • Travel • New Year • Finale",
+      note: ["Every class earns points for your team.",
+             "Champions crowned January 17."]
+    },
+
+    {
+      id: "rally-points", type: "spotlight", seconds: 10, cycle: true,
+      chip: "How to score",
+      title: ["Six teams.", "*One gym.*"],
+      dateLine: "November 23 • January 17",
+      sub: "Every point goes to your team.",
+      cards: [
+        { title: "Show up",          text: "2 points a class. It counts from your check-in." },
+        { title: "Bring a guest",    text: "5 points. Your invite link gets them set up." },
+        { title: "Drop off a toy",   text: "10 points. Toys for Tots, at the front desk." }
+      ],
+      footer: "cycle",
+      skull: "off"
+    },
+
+    {
+      id: "rally-join", type: "qr", seconds: 9, cycle: true,
+      title: ["Your team", "*is waiting.*"],
+      list: ["Scan and sign in with your membership email",
+             "Add your photo and why you train",
+             "Meet your team and your coach"],
+      qr: { src: "/images/tv/qr-rallypoint.svg", label: "Join Rally Point", above: true,
+            caption: "blackironathletics.com/rallypoint",
+            url: "https://www.blackironathletics.com/rallypoint" },
+      footer: "cycle"
     },
 
     {
@@ -149,105 +176,12 @@ window.TV_CONFIG = {
       skull: "off"
     },
 
-    {
-      id: "focus", type: "columns", seconds: 10, cycle: true,
-      title: "The Focus",
-      columns: [
-        { heading: "The Lifts",  items: ["Snatch / SDLHP", "Sumo Deadlift", "Back Squat"],
-          foot: "Monday • Wednesday • Friday" },
-        { heading: "The Engine", items: ["Long conditioning", "Running ramps up", "Zone 2 every Thursday"],
-          foot: "Tuesday • Thursday • Saturday" },
-        { heading: "The Benchmarks", items: ["“The Reaper”", "“Second Wind”", "“All Grit, No Quit”"],
-          foot: "@benchmarks" }
-      ],
-      note: "Every number you set in Week 2 gets retested in Week 9.",
-      footer: "cycle"
-    },
 
-    {
-      id: "reaper", type: "benchmark", seconds: 12, cycle: true,
-      name: "The Reaper",
-      format: ["For time", "15 min cap"],
-      day: "Monday",
-      movements: ["60 PWR Snatch @ 75/55", "40 Toes to Bar"],
-      note: "4 Burpees over the bar EMOM until you finish. Start with 4.",
-      footer: "cycle"
-    },
 
-    {
-      id: "eccentric", type: "explainer", seconds: 12, cycle: true,
-      eyebrow: "Why we train it",
-      title: ["Eccentric", "*Strength*"],
-      lead: "The lowering half of the rep. The part everybody rushes.",
-      points: [
-        { title: "You are stronger going down",
-          text: "You can lower more weight than you can lift. Most people never use it." },
-        { title: "More muscle, more control",
-          text: "Slow lowering creates more tension, and tension is what builds size and strength." },
-        { title: "It protects you",
-          text: "Stronger tendons and connective tissue. This is the work that keeps you training." },
-        { title: "You will see it all cycle",
-          text: "Tempo squats, 5 second negatives, pauses. When we say slow down, slow down." }
-      ],
-      photo: { src: "/images/tv/photo-eccentric.jpg", position: "62% 40%" },
-      tempo: 5,
-      skull: "off"
-    },
 
-    {
-      id: "second-wind", type: "benchmark", seconds: 12, cycle: true,
-      name: "Second Wind",
-      format: ["1 mile for time"],
-      day: "Tuesday",
-      movements: ["Run 1 Mile", "(or) 5km Bike"],
-      note: "Whatever you choose in Week 2 is what you repeat in Week 9.",
-      footer: "cycle"
-    },
 
-    {
-      id: "snatch", type: "explainer", seconds: 12, cycle: true,
-      eyebrow: "Mondays", eyebrowDay: "Monday",
-      title: ["Do not be afraid", "*of the snatch*"],
-      lead: "Monday is a skill day. There is an option for every person in this room.",
-      points: [
-        { title: "Want to learn it?",     text: "We will teach you, and we will keep it light while you do." },
-        { title: "Never want to snatch?", text: "That is fine. Sumo deadlift high pull works the same pattern." },
-        { title: "Already have it?",      text: "Full snatch, and we will sharpen it for nine weeks." }
-      ],
-      close: "Nobody is getting thrown into the deep end. Talk to your coach.",
-      photo: { src: "/images/tv/photo-snatch.jpg", position: "45% 30%" },
-      footer: "chips",
-      skull: "off"
-    },
 
-    {
-      id: "all-grit", type: "benchmark", seconds: 12, cycle: true,
-      name: "All Grit, No Quit",
-      format: ["3 rounds for reps"],
-      day: "Friday",
-      movements: ["MAX unbroken Double Unders",
-                  "MAX unbroken Wall Balls @ 20/14",
-                  "MAX unbroken KB Farmers Hold @ 53/35"],
-      note: "One round per movement. The second you stop, the round is over.",
-      footer: "cycle"
-    },
 
-    {
-      id: "halloween", type: "spotlight", seconds: 8, until: "2026-10-31",
-      chip: "Halloween Partner WOD",
-      title: ["Grab a partner.", "*Bring a costume.*"],
-      starts: { date: "2026-10-31", time: "09:30" },
-      countLabel: "Until the partner WOD",
-      dateLine: "Saturday • October 31 • 9:30 AM",
-      sub: "Teams of 2. One workout. All of us.",
-      cards: [
-        { title: "Teams of 2",  text: "Pick a partner or we will pair you up" },
-        { title: "Costumes",    text: "Encouraged. Judged. Loosely." },
-        { title: "All levels",  text: "Scaled for everybody in the room" }
-      ],
-      footer: "cycle",
-      skull: "pattern"
-    },
 
     {
       id: "fuelpath", type: "fuelpath", seconds: 10,

@@ -497,7 +497,7 @@ img{display:block}
    SPOTLIGHT (Halloween, new gym)
    ========================================================================== */
 .p-spotlight .pattern{position:absolute;left:-600px;top:-600px;width:3120px;height:2280px;z-index:0;opacity:.16;
-  background-image:url(/images/tv/skull.png);background-size:620px auto;background-repeat:repeat;
+  background-image:url(/images/tv/rally-board.svg);background-size:620px auto;background-repeat:repeat;
   transform:rotate(-12deg)}
 .p-spotlight .pattern.kb2{animation:pat 60s linear infinite}
 @keyframes pat{from{transform:rotate(-12deg) translate3d(0,0,0)}to{transform:rotate(-12deg) translate3d(-620px,-672px,0)}}

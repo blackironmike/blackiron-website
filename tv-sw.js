@@ -9,10 +9,10 @@
    - Fonts are cached once they load successfully.
    If the internet drops and a TV restarts, it boots from this cache instead
    of showing a browser error page. */
-var CACHE = 'bia-tv-v2';
+var CACHE = 'bia-tv-v3';
 var CORE = [
   '/tv', '/tv/tv.css', '/tv/tv.js', '/tv/config.js',
-  '/images/tv/skull.png', '/images/tv/anvil.png'
+  '/images/tv/rally-board.svg', '/images/tv/rally-flag.svg', '/images/tv/anvil.png'
 ];
 
 self.addEventListener('install', function (e) {
