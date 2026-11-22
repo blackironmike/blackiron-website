@@ -12,7 +12,9 @@ from public.challenges ch,
     ('Team Mike', 'Coach Mike', '/images/team/owner-headcoach-mike.webp', 1),
     ('Team Kristin', 'Coach Kristin', '/images/team/general-manager-caoch-kristin.webp', 2),
     ('Team Emily', 'Coach Emily', '/images/team/coach-emily.webp', 3),
-    ('Team Lawrence', 'Coach Lawrence', '/images/team/coach-lawrence.webp', 4)
+    ('Team Lawrence', 'Coach Lawrence', '/images/team/coach-lawrence.webp', 4),
+    ('Team Evan', 'Coach Evan', '/images/team/coach-evan.webp', 5),
+    ('Team Aileen', 'Coach Aileen', '/images/team/coach-aileen.webp', 6)
   ) as v(name, captain, photo, sort)
 where ch.slug = 'rally-point'
   and not exists (select 1 from public.teams t where t.challenge_id = ch.id and t.name = v.name);
@@ -46,11 +48,11 @@ from public.challenges ch,
   (values
     ('class',       'Class attended',          'Counts on its own from your check-in.',                       2, 'auto',   'none',          'day',     null::int, false, false, 1),
     ('open_gym',    'Open Gym',                'Counts on its own from your check-in. A class the same day counts instead.', 1, 'auto', 'none', 'day', null, false, false, 2),
-    ('social',      'Weekly social challenge', 'Post it, tag @blackiron_athletics, add #BlackIron3. Then drop the link or a screenshot here.', 3, 'member', 'link_or_photo', 'week', null, false, false, 2),
+    ('social',      'Weekly social challenge', 'Post it, tag @blackiron_athletics, add #BlackIron2027. Then drop the link or a screenshot here.', 3, 'member', 'link_or_photo', 'week', null, false, false, 2),
     ('active',      'Active anywhere',         'Home workout, run, walk, hike, ride, travel gym. Snap a photo.', 2, 'member', 'photo',         'day',     null,      false, false, 3),
     ('guest',       'Brought a guest',         'Tell us who you brought. They sign the waiver before class.',  5, 'member', 'none',          'any',     null,      false, true,  4),
-    ('toy',         'Toy drop',                'Toys for Tots. Snap a photo of your toy at the drop box. Up to 5.', 2, 'member', 'photo',     'any',     5,         false, true,  5),
-    ('in_class',    'In-class challenge',      'Coach Mike picks it. A coach logs it.',                       3, 'coach',  'none',          'any',     null,      false, false, 6),
+    ('toy',         'Toy drop',                'Toys for Tots. Snap a photo of your toy at the drop box.', 2, 'member', 'photo',     'any',     5,         false, true,  5),
+    ('in_class',    'In-class challenge',      'This week’s challenge from Coach Mike. Log it once you’ve done it.', 3, 'member', 'none',          'week',    null,      false, false, 6),
     ('flash',       'Flash mission',           'Surprise missions with a short clock.',                       3, 'member', 'photo',         'mission', null,      false, false, 7),
     ('clean_sweep', 'Clean Sweep',             'Finish every mission in a week.',                             5, 'auto',   'none',          'week',    null,      false, false, 8),
     ('profile',     'Profile complete',        'Your photo and why you train.',                               2, 'auto',   'none',          'once',    null,      false, false, 9),

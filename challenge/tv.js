@@ -41,7 +41,7 @@
     var pre = D.phase === 'pre', f = pre ? 'members' : 'points';
     var list = D.teams.slice().sort(function (a, b) { return b[f] - a[f] || a.id - b.id; });
     var max = Math.max.apply(null, list.map(function (t) { return t[f]; }).concat([1]));
-    return '<div class="tv-right"><div class="tv-k">' + (pre ? 'Sign-ups by team' : 'Team leaderboard') + '</div>' + list.map(function (t, i) {
+    return '<div class="tv-right' + (list.length > 5 ? ' dense' : '') + '"><div class="tv-k">' + (pre ? 'Sign-ups by team' : 'Team leaderboard') + '</div>' + list.map(function (t, i) {
       return '<div><div class="tv-row' + (i === 0 && t[f] > 0 ? ' first' : '') + '"><span class="tv-pos">' + (i + 1) + '</span>' + av(t.captain_name, t.captain_photo) +
         '<span class="tv-name">' + esc(t.name) + '</span><span class="tv-pts">' + t[f] + '</span></div>' +
         '<div class="tv-bar"><i style="width:' + Math.round(t[f] / max * 100) + '%"></i></div></div>';
