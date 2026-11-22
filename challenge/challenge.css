@@ -159,6 +159,19 @@ button.item{cursor:pointer}
 /* Coach view runs wider on a laptop */
 .ch.wide{max-width:920px}
 .two{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+/* Team colors: data colors, the same exception as the phase colors on the Programs page.
+   Coach Mike asked for the teams to be color coded in his roster (Nov 22). They label a
+   team and nothing else. The first four reuse the phase tokens from bia.css. */
+.t1{--tc:var(--ph-intro)}.t2{--tc:var(--ph-test)}.t3{--tc:var(--ph-build)}.t4{--tc:var(--ph-deload)}.t5{--tc:#FF8A3D}.t6{--tc:#2ED3C6}
+.tdot{display:inline-block;flex:none;width:12px;height:12px;background:var(--tc,var(--gray))}
+.tchips{display:flex;flex-wrap:wrap;gap:8px}
+.tchips button{display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:8px 12px;background:var(--black);border:1px solid var(--steel-line);color:var(--gray);font:inherit;font-size:.82rem;font-weight:700;cursor:pointer}
+.tchips button b{color:var(--white);font-weight:900}
+.tchips button[aria-pressed=true]{border-color:var(--white);color:var(--white)}
+.tgroup{border-left:4px solid var(--tc,var(--steel-line));padding-left:14px}
+.thead{display:flex;justify-content:space-between;align-items:baseline;font-weight:900;text-transform:uppercase;color:var(--white);font-size:1rem;padding:2px 0 6px}
+.thead span{color:var(--tc);font-size:1.1rem}
+.tgroup .list .item:first-child{border-top:0}
 .grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px}
 .proof{width:96px;height:96px;object-fit:cover;flex:none;background:var(--black);border:1px solid var(--steel-line)}
 .proof-lg{width:100%;height:auto;max-height:420px;object-fit:contain}

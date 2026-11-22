@@ -215,6 +215,19 @@ alter table app.roster enable row level security;
 alter table app.attendance enable row level security;
 alter table app.workouts enable row level security;
 
+-- People the admin has taken off the challenge. While someone is listed here they cannot
+-- land back on a team by opening the app. The admin can put them back.
+create table app.removed_members (
+  challenge_id smallint not null references public.challenges(id) on delete cascade,
+  user_id uuid not null references auth.users(id) on delete cascade,
+  removed_at timestamptz not null default now(),
+  removed_by uuid references auth.users(id) on delete set null,
+  primary key (challenge_id, user_id)
+);
+create index removed_members_user on app.removed_members (user_id);
+create index removed_members_by on app.removed_members (removed_by);
+alter table app.removed_members enable row level security;
+
 -- ------------------------------------------------------------------
 -- Helpers
 -- ------------------------------------------------------------------
@@ -475,6 +488,9 @@ begin
   if not pp.verified then raise exception 'A coach needs to confirm your membership first.'; end if;
   if not p.adult_confirmed then raise exception 'Rally Point is for members 18 and older.'; end if;
   if p.show_on_tv is null then raise exception 'Choose whether your name and photo can show on the gym TV.'; end if;
+  if exists (select 1 from app.removed_members r where r.challenge_id = ch.id and r.user_id = v_uid) then
+    raise exception 'You’ve been taken off Rally Point. If that’s a mistake, talk to Coach Mike.';
+  end if;
 
   perform pg_advisory_xact_lock(74201, ch.id);
   select team_id into v_team from public.team_members where challenge_id = ch.id and user_id = v_uid;
@@ -888,6 +904,59 @@ begin
   update public.entries set team_id = p_team where challenge_id = v_ch and user_id = p_user;
 end $$;
 
+-- Everyone signed up, with their team, for the admin's full view.
+create function app.admin_roster() returns jsonb language plpgsql stable security definer set search_path = '' as $$
+declare ch public.challenges%rowtype;
+begin
+  if not app.is_admin() then raise exception 'Admin only.'; end if;
+  select * into ch from public.challenges where is_active limit 1;
+  return jsonb_build_object(
+    'members', (select coalesce(jsonb_agg(jsonb_build_object(
+          'id', t.user_id, 'name', p.display_name,
+          'full', nullif(concat_ws(' ', x.first_name, x.last_name), ''),
+          'team_id', t.team_id, 'is_captain', t.is_captain, 'joined_at', t.joined_at,
+          'points', (select coalesce(sum(e.points), 0) from public.entries e
+                     where e.challenge_id = ch.id and e.user_id = t.user_id and e.status = 'approved')
+        ) order by t.is_captain desc, coalesce(x.first_name, p.display_name), x.last_name), '[]'::jsonb)
+      from public.team_members t
+      join public.profiles p on p.id = t.user_id
+      join public.profile_private x on x.id = t.user_id
+      where t.challenge_id = ch.id),
+    'removed', (select coalesce(jsonb_agg(jsonb_build_object(
+          'id', r.user_id, 'name', p.display_name,
+          'full', nullif(concat_ws(' ', x.first_name, x.last_name), ''), 'removed_at', r.removed_at
+        ) order by r.removed_at desc), '[]'::jsonb)
+      from app.removed_members r
+      join public.profiles p on p.id = r.user_id
+      join public.profile_private x on x.id = r.user_id
+      where r.challenge_id = ch.id));
+end $$;
+
+-- Take an athlete off their team and out of the challenge. Their points go with them.
+create function app.remove_member(p_user uuid) returns void language plpgsql security definer set search_path = '' as $$
+declare v_uid uuid := auth.uid(); v_ch smallint; tm public.team_members%rowtype;
+begin
+  if not app.is_admin() then raise exception 'Admin only.'; end if;
+  select id into v_ch from public.challenges where is_active limit 1;
+  select * into tm from public.team_members where challenge_id = v_ch and user_id = p_user;
+  if not found then raise exception 'They’re not on a team.'; end if;
+  if tm.is_captain then raise exception 'A team captain can’t be removed here.'; end if;
+  if p_user = v_uid then raise exception 'You can’t remove yourself.'; end if;
+  delete from public.entries where challenge_id = v_ch and user_id = p_user;
+  delete from public.team_members where challenge_id = v_ch and user_id = p_user;
+  insert into app.removed_members (challenge_id, user_id, removed_by) values (v_ch, p_user, v_uid)
+  on conflict (challenge_id, user_id) do update set removed_at = now(), removed_by = excluded.removed_by;
+end $$;
+
+-- Let a removed athlete back in. They land on a team the next time they open the app.
+create function app.restore_member(p_user uuid) returns void language plpgsql security definer set search_path = '' as $$
+declare v_ch smallint;
+begin
+  if not app.is_admin() then raise exception 'Admin only.'; end if;
+  select id into v_ch from public.challenges where is_active limit 1;
+  delete from app.removed_members where challenge_id = v_ch and user_id = p_user;
+end $$;
+
 create function app.create_flash(p_title text, p_detail text, p_hours int, p_points int) returns bigint
 language plpgsql security definer set search_path = '' as $$
 declare v_ch smallint; v_id bigint;
@@ -933,6 +1002,9 @@ create function public.leaderboard() returns jsonb language sql security invoker
 create function public.tv_snapshot() returns jsonb language sql security invoker set search_path = '' as $$ select app.tv_snapshot() $$;
 create function public.workout_preview() returns jsonb language sql security invoker set search_path = '' as $$ select app.workout_preview() $$;
 create function public.reserve_identity() returns jsonb language sql security invoker set search_path = '' as $$ select app.reserve_identity() $$;
+create function public.admin_roster() returns jsonb language sql security invoker set search_path = '' as $$ select app.admin_roster() $$;
+create function public.remove_member(p_user uuid) returns void language sql security invoker set search_path = '' as $$ select app.remove_member(p_user) $$;
+create function public.restore_member(p_user uuid) returns void language sql security invoker set search_path = '' as $$ select app.restore_member(p_user) $$;
 create function public.delete_my_account() returns void language sql security invoker set search_path = '' as $$ select app.delete_my_account() $$;
 create function public.coach_home() returns jsonb language sql security invoker set search_path = '' as $$ select app.coach_home() $$;
 create function public.review_entry(p_id bigint, p_approve boolean) returns void language sql security invoker set search_path = '' as $$ select app.review_entry(p_id, p_approve) $$;
@@ -972,6 +1044,8 @@ to authenticated;
 grant execute on function public.invite_info(text), public.invite_click(text), public.tv_snapshot() to anon;
 grant execute on function public.workout_preview() to anon, authenticated;
 grant execute on function app.reserve_identity(), public.reserve_identity() to authenticated;
+grant execute on function app.admin_roster(), app.remove_member(uuid), app.restore_member(uuid),
+  public.admin_roster(), public.remove_member(uuid), public.restore_member(uuid) to authenticated;
 
 -- ------------------------------------------------------------------
 -- Row level security
