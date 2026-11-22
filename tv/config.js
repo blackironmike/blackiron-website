@@ -23,7 +23,7 @@
 window.TV_CONFIG = {
   // Bump this whenever you edit. It shows in the bottom-left corner of every
   // TV, so you can tell at a glance if a screen is stuck on an old version.
-  version: "2026-11-22.1",
+  version: "2026-11-22.2",
 
   timezone: "America/Chicago",
   defaultSeconds: 10,
@@ -50,16 +50,15 @@ window.TV_CONFIG = {
     end: "2027-01-17",
     lifts: ["Show up", "Bring your people", "Carry your team"],
     weeks: [
-      { label: "Kickoff",      phase: "rally", note: "Friends & Family" },
-      { label: "Week 2",       phase: "rally" },
-      { label: "Toy Drop",     phase: "rally", note: "Run Sat Dec 12" },
-      { label: "Awards Night", phase: "rally" },
-      { label: "Travel",       phase: "rally", note: "Double active pts" },
-      { label: "New Year",     phase: "rally", note: "Last WOD of 2026" },
-      { label: "Week 7",       phase: "rally" },
-      { label: "Finale",       phase: "rally", note: "Champions crowned" }
-    ]
-  },
+      { label: "Week 1", phase: "rally", note: "Kickoff • Friends & Family" },
+      { label: "Week 2", phase: "rally" },
+      { label: "Week 3", phase: "rally", note: "Toy drop run Sat Dec 12" },
+      { label: "Week 4", phase: "rally", note: "Awards night" },
+      { label: "Week 5", phase: "rally", note: "Travel • Double active pts" },
+      { label: "Week 6", phase: "rally", note: "Last WOD of 2026" },
+      { label: "Week 7", phase: "rally" },
+      { label: "Week 8", phase: "rally", note: "Finale • Grand opening" }
+    ]  },
 
   /* Shared footers. Panels pick one with footer: "cycle" | "brand" | "chips". */
   footers: {
@@ -75,45 +74,6 @@ window.TV_CONFIG = {
     {
       id: "title", type: "title", seconds: 8, cycle: true, skull: "off",
       photo: { src: "/images/tv/photo-title.jpg", position: "62% 30%" }
-    },
-
-    {
-      // The evening times changed in October 2026: 4:15 and 5:15 PM became
-      // 4:30 and 5:30, plus a new 6:30 PM on Monday, Wednesday and Friday.
-      // Today's column lights up on its own. Remove "until" to keep it up.
-      id: "evening", type: "schedule", seconds: 12, until: "2026-11-08", skull: "off",
-      eyebrow: "Now live",
-      title: ["New evening", "~class times.~"],
-      lead: "4:15 is now 4:30. 5:15 is now 5:30. And a new *6:30* on Monday, Wednesday and Friday.",
-      days: ["Mon", "Tue", "Wed", "Thu", "Fri"],
-      rows: [
-        { time: "4:30 PM" },
-        { time: "5:30 PM" },
-        { time: "6:30 PM", on: ["Mon", "Wed", "Fri"], tag: "New" }
-      ],
-      note: "Book in Wodify",
-      footer: "chips"
-    },
-
-    {
-      id: "633-run", type: "event", seconds: 10, until: "2026-10-24",
-      eyebrow: "Join the team",
-      title: "633 Run",
-      starts: { date: "2026-10-24", time: "08:00" },
-      countLabel: "To the start line",
-      when: "Saturday, October 24 • 8:00 AM",
-      where: "Lobo Stadium • Little Elm",
-      items: [
-        { label: "1 Mile Fun Run", text: "Families, kids, walkers. Everyone can do this one." },
-        { label: "5K",             text: "The main event. Coach Mike is signed up." },
-        { label: "6.33 Mile",      text: "Officer Walker’s badge number was 633." }
-      ],
-      body: ["Honoring fallen Little Elm Police Officer Jerry R. Walker.",
-             "Proceeds support a public service scholarship in his name."],
-      cta: "Join team “Black Iron Athletics”",
-      qr: { src: "/images/tv/qr-633-run.svg", label: "Scan to sign up",
-            url: "https://runsignup.com/Race/TX/LittleElm/633Run" },
-      skull: "off"
     },
 
     {
@@ -153,6 +113,27 @@ window.TV_CONFIG = {
     },
 
     {
+      // The live Rally Point standings, straight from /challenge/tv. It
+      // refreshes itself, so this panel is always current.
+      id: "leaderboard", type: "embed", seconds: 28, cycle: true, skull: "off",
+      src: "/challenge/tv", label: "Rally Point leaderboard"
+    },
+
+    {
+      id: "grand-opening", type: "spotlight", seconds: 10, until: "2027-01-16",
+      cycleLabel: false, skull: "off",
+      chip: "Grand opening",
+      starts: { date: "2027-01-16", time: "09:30" },
+      countLabel: "Until the doors open",
+      title: ["The new Black Iron.", "*Grand opening.*"],
+      dateLine: "Saturday • January 16 • 9:30 AM",
+      sub: "279 Main St • Suite 110 • Right next door.",
+      images: ["/images/renderings/2026-08-01-new-gym-floor-rendering.jpg",
+               "/images/renderings/2026-08-01-recovery-room-rendering.jpg"],
+      footer: "brand"
+    },
+
+    {
       id: "mission", type: "statement", seconds: 8,
       lines: ["We help *everyday*", "*people* become *everyday*", "*athletes.*"],
       sub: "Forge the body. Guard the mind.",
@@ -175,13 +156,6 @@ window.TV_CONFIG = {
       footer: "chips",
       skull: "off"
     },
-
-
-
-
-
-
-
 
     {
       id: "fuelpath", type: "fuelpath", seconds: 10,
@@ -235,20 +209,6 @@ window.TV_CONFIG = {
             caption: "blackironathletics.com/links",
             url: "https://www.blackironathletics.com/links" },
       footer: "brand"
-    },
-
-    /* DRAFT: not on the TVs until you remove `status: "draft"`.
-       Shown on /tv/preview so you can see it first. */
-    {
-      id: "new-gym", type: "spotlight", seconds: 8, status: "draft", cycleLabel: false,
-      chip: "Coming in January",
-      title: ["The new Black Iron.", "*Right next door.*"],
-      dateLine: "279 Main St • Suite 110 • Frisco",
-      sub: "Same coaches. Same people. A lot more room.",
-      images: ["/images/renderings/2026-08-01-new-gym-floor-rendering.jpg",
-               "/images/renderings/2026-08-01-recovery-room-rendering.jpg"],
-      footer: "brand",
-      skull: "off"
     }
   ]
 };

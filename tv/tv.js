@@ -212,7 +212,7 @@
     title: [], timeline: [], columns: ['title', 'columns'], benchmark: ['name', 'movements', 'day'],
     explainer: ['title', 'points'], event: ['title', 'starts'], spotlight: ['title'],
     statement: ['lines'], fuelpath: ['title', 'points'], programs: ['title', 'cards'], qr: ['title', 'qr'],
-    offer: ['title', 'columns'], schedule: ['title', 'rows']
+    offer: ['title', 'columns'], schedule: ['title', 'rows'], embed: ['src']
   };
   var DATE_RE = /^\d{4}-\d{2}-\d{2}$/;
   function validate() {
@@ -621,6 +621,15 @@
     return h;
   };
 
+  // A whole page inside the deck, e.g. the live Rally Point leaderboard at
+  // /challenge/tv. Same-site paths only, so nothing outside the gym's own
+  // site can end up on a screen. The page scales itself to 1920x1080.
+  RENDER.embed = function (p) {
+    var src = String(p.src || '');
+    if (src.charAt(0) !== '/' || src.charAt(1) === '/') return '<div class="embedErr">embed src must be a path on this site</div>';
+    return '<iframe class="embed" src="' + esc(src) + '" title="' + esc(p.label || 'Live screen') + '" loading="eager" scrolling="no"></iframe>';
+  };
+
   RENDER.statement = function (p, secs) {
     var h = '';
     h += photo(p.photo, 'full', secs);
@@ -942,6 +951,7 @@
         fit(); setWeekColor();
         stage.classList.remove('sk-right', 'sk-off', 'sk-pattern', 'sk-low');
         stage.classList.add('sk-' + skullFor(p));
+        stage.classList.toggle('is-embed', p.type === 'embed');
         inc.classList.add('in');
         try { fitBlocks(inc); } catch (e) {}
         runCounts(inc);

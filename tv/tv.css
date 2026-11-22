@@ -718,3 +718,9 @@ body.preview{height:auto}
 .lite .phone .glare{animation:none!important}
 
 
+
+/* embed: a live page (the Rally Point leaderboard) fills the panel. The TV's
+   own clock and overlays step aside so they do not sit on top of it. */
+.p-embed iframe{position:absolute;left:0;top:0;width:1920px;height:1080px;border:0;background:#000}
+.p-embed .embedErr{position:absolute;left:120px;top:480px;font:700 40px/1.2 Montserrat,sans-serif;color:#FFD202}
+#stage.is-embed #clock,#stage.is-embed #vignette,#stage.is-embed #grain,#stage.is-embed #glow{opacity:0;transition:opacity .4s}
