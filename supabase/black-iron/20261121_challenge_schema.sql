@@ -273,6 +273,14 @@ begin
       v_name := initcap(split_part(v_email, '@', 1));
     end if;
     insert into public.profiles (id, display_name) values (v_uid, left(v_name, 40));
+    -- A coach who leads a team is set up for them: the name and headshot from their
+    -- team, already on the site and the boards, so there is nothing to upload or tick.
+    if r.role in ('coach', 'admin') and r.coach_team is not null then
+      update public.profiles p set display_name = t.captain_name, photo_path = coalesce(t.captain_photo, p.photo_path),
+        show_on_tv = true, adult_confirmed = true
+      from public.teams t join public.challenges ch on ch.id = t.challenge_id and ch.is_active
+      where p.id = v_uid and t.name = r.coach_team;
+    end if;
   end if;
 end $$;
 
@@ -359,6 +367,12 @@ begin
   select * into ch from public.challenges where is_active limit 1;
   if not found then raise exception 'No challenge is running right now.'; end if;
   perform app.sweep(ch.id);
+  -- A coach who leads a team lands on it as captain without a sign-up step.
+  if exists (select 1 from public.profile_private x where x.id = v_uid and x.role in ('coach', 'admin') and x.coach_team is not null)
+     and exists (select 1 from public.profiles q where q.id = v_uid and q.adult_confirmed and q.show_on_tv is not null)
+     and not exists (select 1 from public.team_members t where t.challenge_id = ch.id and t.user_id = v_uid) then
+    perform app.join_challenge();
+  end if;
   perform app.award_auto(v_uid, ch.id);
   select * into pp from public.profile_private where id = v_uid;
   select * into p from public.profiles where id = v_uid;
