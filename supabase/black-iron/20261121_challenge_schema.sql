@@ -25,7 +25,9 @@ create table public.challenges (
   is_active boolean not null default false,
   -- Sign up before this date and you earn the early sign-up points. When it is
   -- empty the cutoff is the day scoring starts.
-  early_signup_until date
+  early_signup_until date,
+  -- Who can reserve classes inside the app: nobody, the admin (while testing), or every verified member.
+  reservations text not null default 'admin' check (reservations in ('off', 'admin', 'all'))
 );
 create unique index challenges_one_active on public.challenges (is_active) where is_active;
 
@@ -223,6 +225,21 @@ $$;
 create function app.is_verified() returns boolean language sql stable security definer set search_path = '' as $$
   select exists (select 1 from public.profile_private where id = (select auth.uid()) and verified)
 $$;
+-- Called by api/challenge-reserve.js with the member's own sign-in token. Answers with
+-- that member's Wodify ID and whether reserving is switched on for them.
+create function app.reserve_identity() returns jsonb language plpgsql stable security definer set search_path = '' as $$
+declare v_uid uuid := auth.uid(); pp public.profile_private%rowtype; v_mode text; v_client int;
+begin
+  if v_uid is null then raise exception 'Sign in first.'; end if;
+  select * into pp from public.profile_private where id = v_uid;
+  if not found or not pp.verified then raise exception 'Finish signing up first.'; end if;
+  v_client := coalesce(pp.wodify_client_id,
+    (select r.wodify_client_id from app.roster r where lower(r.email) = lower(pp.email) and r.active limit 1));
+  select c.reservations into v_mode from public.challenges c where c.is_active limit 1;
+  return jsonb_build_object(
+    'client_id', v_client,
+    'allowed', v_client is not null and (v_mode = 'all' or (v_mode = 'admin' and pp.role = 'admin')));
+end $$;
 create function app.is_coach() returns boolean language sql stable security definer set search_path = '' as $$
   select exists (select 1 from public.profile_private where id = (select auth.uid()) and role in ('coach','admin'))
 $$;
@@ -915,6 +932,7 @@ create function public.invite_click(p_code text) returns void language sql secur
 create function public.leaderboard() returns jsonb language sql security invoker set search_path = '' as $$ select app.leaderboard() $$;
 create function public.tv_snapshot() returns jsonb language sql security invoker set search_path = '' as $$ select app.tv_snapshot() $$;
 create function public.workout_preview() returns jsonb language sql security invoker set search_path = '' as $$ select app.workout_preview() $$;
+create function public.reserve_identity() returns jsonb language sql security invoker set search_path = '' as $$ select app.reserve_identity() $$;
 create function public.delete_my_account() returns void language sql security invoker set search_path = '' as $$ select app.delete_my_account() $$;
 create function public.coach_home() returns jsonb language sql security invoker set search_path = '' as $$ select app.coach_home() $$;
 create function public.review_entry(p_id bigint, p_approve boolean) returns void language sql security invoker set search_path = '' as $$ select app.review_entry(p_id, p_approve) $$;
@@ -953,6 +971,7 @@ grant execute on function
 to authenticated;
 grant execute on function public.invite_info(text), public.invite_click(text), public.tv_snapshot() to anon;
 grant execute on function public.workout_preview() to anon, authenticated;
+grant execute on function app.reserve_identity(), public.reserve_identity() to authenticated;
 
 -- ------------------------------------------------------------------
 -- Row level security

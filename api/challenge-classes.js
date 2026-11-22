@@ -44,21 +44,35 @@ export default async function handler(req, res) {
       if (!more) break;
     }
 
+    // Real instants come from Wodify's *_server fields. The plain ones are local time with a Z stuck on.
+    const UNIT_MS = { 1: 60e3, 2: 3600e3, 3: 86400e3 }; // minutes, hours, days
+    const iso = t => (Number.isFinite(t) ? new Date(t).toISOString() : null);
+
     const classes = rows
       // "Log ONLY" entries are for logging scores, not classes anyone attends.
       .filter(c => !c.is_cancelled && !c.is_deleted && !/^log only/i.test(c.name || ''))
       .map(c => {
         const limit = Number(c.class_limit) || 0;
+        const start = Date.parse(c.start_date_time_server || '');
+        const openMs = Number(c.reservation_open) * (UNIT_MS[c.reservation_open_time_format_id] || 0);
         return {
           id: c.id,
           date: c.start_date,
           start: String(c.start_time || '').slice(0, 5),
           end: String(c.end_date_time || '').slice(11, 16),
           program: c.program_name || c.name || 'Class',
+          // The app lists classes only. Open Gym blocks ride along so a day with
+          // no classes can still say when the gym is open.
+          kind: /open gym/i.test(c.program_name || c.name || '') ? 'open_gym' : 'class',
           // limit 0 means the class takes no reservations (Open Gym, Hyrox).
           limit,
           spots_left: limit ? Math.max(0, Number(c.available) || 0) : null,
           full: limit ? Boolean(c.is_full) : false,
+          // When reserving opens and closes, straight from the class's own settings in Wodify.
+          start_at: iso(start),
+          opens_at: limit && openMs > 0 ? iso(start - openMs) : null,
+          closes_at: limit ? iso(Date.parse(c.reservation_close_date_time_server || '') || start) : null,
+          waitlist: Boolean(c.allow_waitlist),
         };
       })
       .sort((a, b) => (a.date + a.start).localeCompare(b.date + b.start));
