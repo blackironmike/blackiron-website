@@ -32,6 +32,11 @@
     }).join('') + '</div>';
   }
   function setupDone() { var m = me(); return m.adult_confirmed && m.show_on_tv !== null; }
+  // A captain's picture is their team headshot from the site, whatever they uploaded.
+  function myPhoto() {
+    var m = me(), ms = S.d.membership, t = ms && ms.is_captain ? myTeam() : null;
+    return (t && t.captain_photo) || m.photo_path;
+  }
   function profileComplete() { var m = me(); return !!(m.photo_path && (m.why_i_train || '').trim()); }
 
   // ---------- sign in ----------
@@ -101,10 +106,12 @@
   function profileForm(first) {
     var m = me();
     return '<form class="stack" data-form="profile" novalidate>' +
-      '<div class="photo-pick">' + avatar(m.display_name, m.photo_path, 'av-lg av-color') +
-      '<label class="btn btn-ghost btn-sm" for="pf">' + (m.photo_path ? 'Change photo' : 'Add your photo') +
-      '<input id="pf" type="file" accept="image/*"></label></div>' +
-      '<p class="fine" id="pfn">A clear photo of your face. Your team sees it.</p>' +
+      '<div class="photo-pick">' + avatar(m.display_name, myPhoto(), 'av-lg av-color') +
+      (S.d.membership && S.d.membership.is_captain
+        ? '<span class="fine">Your team headshot from the website.</span></div>'
+        : '<label class="btn btn-ghost btn-sm" for="pf">' + (m.photo_path ? 'Change photo' : 'Add your photo') +
+          '<input id="pf" type="file" accept="image/*"></label></div>' +
+          '<p class="fine" id="pfn">A clear photo of your face. Your team sees it.</p>') +
       '<div class="field"><label for="dn">Name on the board</label><input id="dn" type="text" maxlength="40" required value="' + esc(m.display_name) + '"></div>' +
       '<div class="field"><label for="why">Why I train</label><textarea id="why" maxlength="140" placeholder="One line. Your own words.">' + esc(m.why_i_train || '') + '</textarea></div>' +
       '<div class="field"><label for="uc">Usual class time</label><select id="uc"><option value="">Pick one</option>' +
@@ -130,13 +137,52 @@
       '<button class="btn btn-ghost w100" data-act="reload">Check again</button>' +
       '<button class="linkbtn" data-act="signout">Sign out</button></main>';
   }
+  // ---------- coach guide ----------
+  // Shown to a captain once, before their team screen, and kept on the Me tab after that.
+  function coachGuide() {
+    var d = S.d, ch = d.challenge, n = (['Zero', 'One', 'Two', 'Three', 'Four', 'Five', 'Six', 'Seven', 'Eight'][d.teams.length] || d.teams.length);
+    return [
+      { k: 'Welcome, Coach', t: ['Why', 'Rally Point'], p: [
+        'Rally Point is eight weeks of training together through the holidays. No testing, no benchmarks. Just showing up, having fun and doing it as a team.',
+        'The bigger reason is belonging. Being a member here means being part of something larger than your own workout. That’s what we want every person on your team to feel.',
+        'It also carries us into the new gym in January, together.'] },
+      { k: 'The short version', t: ['How it', 'works'], p: [
+        n + ' teams, one per coach. Members land on a team when they sign up.',
+        'They earn points for coming to class, bringing a guest, dropping off a toy, staying active on the road and the weekly challenges.',
+        'Class check-ins count on their own from Wodify. Members log everything else themselves in the app.',
+        'Sign-ups open ' + B.fmtDay(ch.starts_on) + '. Scoring starts ' + B.fmtDay(ch.scoring_starts_on) + ' and runs through ' + B.fmtDay(ch.ends_on) + '.'] },
+      { k: 'Your part', t: ['What we need', 'from you'], p: [
+        'You don’t earn points. Your team’s total is your score.',
+        'There is nothing to approve. What members log counts right away.',
+        'Know who’s on your team. Say their name in class. Get them to sign up, show up and bring a friend.',
+        'When they post, remind them to tag @blackiron_athletics and add #BlackIron2027.',
+        'The coach view is there if you want it. You can add points for someone or take one back if it doesn’t check out. You never have to open it.'] }
+    ];
+  }
+  function guideCard(g) {
+    return '<span class="eyebrow eyebrow-y">' + esc(g.k) + '</span><h1 style="font-size:clamp(2.4rem,12vw,3.6rem)">' + esc(g.t[0]) + ' <span class="outline">' + esc(g.t[1]) + '</span></h1>' +
+      g.p.map(function (x) { return '<p class="ch-lead">' + esc(x) + '</p>'; }).join('');
+  }
+  function sheetCoachGuide() {
+    openSheet('Coach guide', coachGuide().map(function (g) {
+      return '<h3 class="ch-h2" style="margin-top:16px">' + esc(g.t.join(' ')) + '</h3>' + g.p.map(function (x) { return '<p class="fine">' + esc(x) + '</p>'; }).join('');
+    }).join(''));
+  }
+
   function viewReveal() {
-    var t = myTeam(), cap = S.d.membership.is_captain;
+    var t = myTeam(), cap = S.d.membership.is_captain, guide = cap ? coachGuide() : [], step = S.coachStep || 0;
+    if (cap && step < guide.length) {
+      $app.innerHTML = '<main class="reveal">' + guideCard(guide[step]) +
+        '<button class="btn btn-y w100" data-act="coach-next">' + (step < guide.length - 1 ? 'Next' : 'Meet your team') + '</button>' +
+        '<p class="fine">' + (step + 1) + ' of ' + guide.length + '</p></main>';
+      window.scrollTo(0, 0);
+      return;
+    }
     $app.innerHTML = '<main class="reveal"><span class="eyebrow eyebrow-y">' + (cap ? 'Your team, Coach' : 'You’re on') + '</span>' +
       avatar(t.captain_name, t.captain_photo, 'av-xl') +
       '<h1>' + esc(t.name.split(' ')[0]) + ' <span class="outline">' + esc(t.name.split(' ').slice(1).join(' ')) + '</span></h1>' +
       '<p class="ch-lead">' + (cap
-        ? 'You don’t earn points yourself. Your team’s total is your score. You can log points for your people from the coach view.'
+        ? 'Your headshot and profile are already set up. Members join your team as they sign up.'
         : 'Captained by ' + esc(t.captain_name) + '. When you travel, your team carries you. When they travel, you carry them.') + '</p>' +
       '<button class="btn btn-y w100" data-act="revealed">Let’s go</button></main>';
   }
@@ -268,15 +314,16 @@
   function tabMe() {
     var m = me(), d = S.d, r = B.rankFor(d.ranks, d.points), cap = d.membership.is_captain;
     var original = d.entries.some(function (e) { return e.category_key === 'original'; });
-    var h = '<section class="card"><div class="row">' + avatar(m.display_name, m.photo_path, 'av-lg av-color') +
+    var h = '<section class="card"><div class="row">' + avatar(m.display_name, myPhoto(), 'av-lg av-color') +
       '<div class="grow"><h2 class="mid">' + esc(m.display_name) + '</h2><p class="item-s">' + esc(myTeam().name) + (cap ? ' · Captain' : ' · ' + esc(r.cur.name)) + '</p>' +
       (original ? '<span class="ch-chip" style="display:inline-block;margin-top:8px">Rally Point Original</span>' : '') + '</div></div>' +
       (m.why_i_train ? '<p class="fine">“' + esc(m.why_i_train) + '”</p>' : '') +
       '<button class="btn btn-ghost w100" data-act="edit">Edit profile</button></section>';
     h += '<section class="card"><div class="list">' +
+      (cap ? '<button class="item" data-act="coach-guide"><span class="grow"><span class="item-t">Coach guide</span><br><span class="item-s">Why we’re doing this and what we need from you.</span></span></button>' : '') +
       (cap || m.role !== 'member' ? '<a class="item" href="/challenge/coach"><span class="grow item-t">Coach view</span></a>' : '') +
       '<button class="item" data-act="invite"><span class="grow"><span class="item-t">Invite a friend</span><br><span class="item-s">Your own link with the waiver.</span></span></button>' +
-      '<button class="item" data-act="frame"><span class="grow"><span class="item-t">Make my post</span><br><span class="item-s">Your photo in the Rally Point frame.</span></span></button>' +
+      '<button class="item" data-act="frame"><span class="grow"><span class="item-t">Make my post</span><br><span class="item-s">Your photo in the Black Iron frame.</span></span></button>' +
       '<button class="item" data-act="how"><span class="grow item-t">How to earn points</span></button></div></section>';
     if (!cap) {
       h += '<section class="card"><h2 class="ch-h2">Your log</h2>' + (d.entries.length ? '<div class="list">' + d.entries.map(function (e) {
@@ -509,6 +556,8 @@
     if (act === 'signout') return sb.auth.signOut();
     if (act === 'reload') return load();
     if (act === 'otp-back') { S.otpEmail = null; S.signErr = null; return render(); }
+    if (act === 'coach-next') { S.coachStep = (S.coachStep || 0) + 1; return render(); }
+    if (act === 'coach-guide') return sheetCoachGuide();
     if (act === 'revealed') { S.d.membership.revealed = true; render(); return B.rpc('mark_revealed').catch(function () {}); }
     if (act === 'log') return sheetLog(el.dataset.cat, el.dataset.mission ? +el.dataset.mission : null);
     if (act === 'invite') return sheetInvite();
