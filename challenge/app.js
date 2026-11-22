@@ -309,6 +309,12 @@
         '<p class="fine">This is your athlete view. You earn points for your team like everyone on it. Your points stay off the individual leaderboard.</p>' +
         '<a class="btn btn-ghost w100" href="/challenge/coach">Switch to coach view</a></section>';
     }
+    // Invite and post live on the Me tab too. They sit up top here so nobody has to go looking.
+    if (d.phase !== 'done') {
+      h += '<div class="quick" role="group" aria-label="Share Rally Point">' +
+        '<button class="btn btn-ghost" data-act="invite">Invite a friend</button>' +
+        '<button class="btn btn-ghost" data-act="frame">Make my post</button></div>';
+    }
     h += wodCard();
     if (d.phase === 'pre') {
       var days = B.daysBetween(d.today, d.challenge.scoring_starts_on);
