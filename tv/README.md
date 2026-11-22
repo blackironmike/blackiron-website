@@ -91,13 +91,14 @@ Text shortcuts work in any text field: `*word*` turns it Forge yellow, `~word~` 
 | `benchmark` | A tested workout | `name`, `format`, `day` ("Monday"), `movements`, `note`, optional `weeks: [2, 9]` |
 | `explainer` | Eccentric Strength, the snatch | `eyebrow`, `title`, `lead`, `points: [{title, text}]`, `close`, `photo`, `tempo` (seconds, draws a countdown ring), `eyebrowDay` (lights up as "Today" on that weekday) |
 | `event` | The 633 Run | `title`, `starts: {date, time}`, `countLabel`, `when`, `where`, `items`, `body`, `cta`, `qr` |
-| `spotlight` | Halloween, centered announcements | `chip`, `title`, `starts`, `dateLine`, `sub`, `cards` or `images` |
+| `spotlight` | The grand opening, centered announcements | `chip`, `title`, `starts`, `dateLine`, `sub`, `cards` or `images` |
 | `statement` | The mission | `lines`, `sub`, `photo` |
 | `fuelpath` | FuelPath, with the live phone | `title`, `points`, `ask` |
 | `programs` | Black Iron Athletics and the four programs | `chips`, `title`, `mission`, `cards: [{title, text, photo}]` |
 | `qr` | Google review, the links page | `title`, `body` or `list`, `stars`, `steps`, `qr`, `photo` |
 | `offer` | Personal Training and Nutrition Coaching, side by side | `eyebrow`, `title` (two short lines read best), `columns: [{heading, items}]` (two columns of three short items read best), `cta`, `photo`. Longer text shrinks to fit rather than covering the footer. |
 | `schedule` | The new evening class times, as a week grid | `eyebrow`, `title`, `lead`, `days` (defaults to Mon to Fri), `rows: [{time, on, tag}]`, `note`. `on` lists the days a time runs, as a list like `["Mon", "Wed"]` (leave it out for every day). Three rows fit; put more on a second panel. `tag` puts a chip like "New" beside the time. Today's column lights up on its own. |
+| `embed` | The live Rally Point leaderboard | `src` (a path on this site, like `"/challenge/tv"`), `label`. The page fills the screen and keeps itself current; the TV clock steps aside while it is up. Give it enough `seconds` to cycle its own views (28 shows teams and individuals). |
 
 A brand new kind of layout is one new function in `tv.js` (`RENDER.yourtype`), registered by name. Nothing else changes.
 
