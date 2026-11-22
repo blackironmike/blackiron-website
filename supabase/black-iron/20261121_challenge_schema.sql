@@ -176,7 +176,16 @@ create table app.roster (
   role text not null default 'member' check (role in ('member','coach','admin')),
   coach_team text,
   active boolean not null default true,
-  updated_at timestamptz not null default now()
+  updated_at timestamptz not null default now(),
+  -- Filled by the daily Wodify sync. Phone and texting status are only ever
+  -- shown to a team captain for their own team (and to the admin).
+  phone text,
+  sms_status text,
+  next_birthday date,
+  member_since date,
+  last_class_date date,
+  -- Set true for anyone who asks to be left off birthday and anniversary shoutouts.
+  skip_shoutouts boolean not null default false
 );
 create table app.attendance (
   wodify_client_id int not null,
@@ -551,6 +560,98 @@ create function app.invite_click(p_code text) returns void language sql security
   update public.invites set clicks = clicks + 1 where code = p_code
 $$;
 
+-- Birthdays and gym anniversaries for the current Monday to Sunday week.
+-- First names only (a last initial is added only when two people in the same
+-- list share a first name). Never ages. Days are returned to coaches only.
+-- Anniversaries skip anyone whose Wodify start date is before April 2023: that
+-- is when the gym moved onto Wodify, so those dates are not real start dates.
+create function app.shoutouts(p_days boolean) returns jsonb language sql stable security definer set search_path = '' as $$
+  with w as (
+    select date_trunc('week', app.today()::timestamp)::date as d0,
+           date_trunc('week', app.today()::timestamp)::date + 6 as d1
+  ),
+  r as (
+    select x.first_name, x.last_name, x.next_birthday, x.member_since
+    from app.roster x
+    where x.active and not x.skip_shoutouts and coalesce(trim(x.first_name), '') <> ''
+  ),
+  b as (
+    select r.first_name, r.last_name, v.d
+    from r cross join w
+    cross join lateral (values (r.next_birthday), ((r.next_birthday - interval '1 year')::date)) v(d)
+    where v.d between w.d0 and w.d1
+  ),
+  a as (
+    select r.first_name, r.last_name, v.d, v.n
+    from r cross join w
+    cross join lateral (
+      select (r.member_since + make_interval(years => k.n))::date as d, k.n
+      from (select distinct q.n from (values
+              (extract(year from w.d0)::int - extract(year from r.member_since)::int),
+              (extract(year from w.d1)::int - extract(year from r.member_since)::int)) q(n)) k
+    ) v
+    where r.member_since >= date '2023-04-01' and v.n >= 1 and v.d between w.d0 and w.d1
+  )
+  select jsonb_build_object(
+    'from', (select d0 from w), 'to', (select d1 from w),
+    'birthdays', (select coalesce(jsonb_agg(jsonb_strip_nulls(jsonb_build_object('name', s.nm, 'day', case when p_days then s.d end))
+        order by case when p_days then s.d end, s.nm), '[]'::jsonb)
+      from (select b.d, b.first_name || case when count(*) over (partition by lower(b.first_name)) > 1 and coalesce(b.last_name, '') <> ''
+                     then ' ' || left(b.last_name, 1) || '.' else '' end as nm from b) s),
+    'anniversaries', (select coalesce(jsonb_agg(jsonb_strip_nulls(jsonb_build_object('name', s.nm, 'years', s.n, 'day', case when p_days then s.d end))
+        order by case when p_days then s.d end, s.nm), '[]'::jsonb)
+      from (select a.d, a.n, a.first_name || case when count(*) over (partition by lower(a.first_name)) > 1 and coalesce(a.last_name, '') <> ''
+                     then ' ' || left(a.last_name, 1) || '.' else '' end as nm from a) s)
+  )
+$$;
+
+-- Members with no check-in for 10 days or more, for the coach view.
+-- A captain gets their own team. The admin also gets members who have not
+-- joined a team yet. A phone number is returned only when the member has not
+-- opted out of texts in Wodify. Last check-in comes from the daily sync.
+create function app.check_ins(p_ch smallint, p_team smallint, p_admin boolean) returns jsonb
+language sql stable security definer set search_path = '' as $$
+  with lim as (select app.today() as today, 10 as days),
+  ro as (
+    select r.wodify_client_id as id, r.first_name, r.last_name, r.last_class_date as last,
+           case when r.sms_status = 'Subscribed' then
+             case when length(d.digits) = 10 then '+1' || d.digits
+                  when length(d.digits) = 11 and left(d.digits, 1) = '1' then '+' || d.digits end
+           end as phone
+    from app.roster r
+    cross join lim
+    cross join lateral (select regexp_replace(coalesce(r.phone, ''), '\D', '', 'g') as digits) d
+    where r.active and r.role = 'member'
+      and (r.last_class_date <= lim.today - lim.days
+           or (r.last_class_date is null and coalesce(r.member_since, date '2000-01-01') <= lim.today - lim.days))
+  ),
+  team as (
+    select ro.id, coalesce(nullif(concat_ws(' ', x.first_name, x.last_name), ''), p.display_name) as name,
+           coalesce(nullif(x.first_name, ''), split_part(p.display_name, ' ', 1)) as first, ro.last, ro.phone
+    from public.team_members t
+    join public.profiles p on p.id = t.user_id
+    join public.profile_private x on x.id = t.user_id
+    join ro on ro.id = x.wodify_client_id
+    where p_team is not null and t.challenge_id = p_ch and t.team_id = p_team and not t.is_captain
+  ),
+  loose as (
+    select ro.id, concat_ws(' ', ro.first_name, ro.last_name) as name, ro.first_name as first, ro.last, ro.phone
+    from ro
+    where p_admin and not exists (
+      select 1 from public.profile_private x
+      join public.team_members t on t.user_id = x.id and t.challenge_id = p_ch
+      where x.wodify_client_id = ro.id)
+  )
+  select jsonb_build_object(
+    'days', (select days from lim),
+    'as_of', (select max(r.last_class_date) from app.roster r),
+    'team', (select coalesce(jsonb_agg(jsonb_build_object('id', t.id, 'name', t.name, 'first', t.first, 'last', t.last, 'phone', t.phone)
+               order by t.last desc nulls last, t.name), '[]'::jsonb) from team t),
+    'loose', case when p_admin then (select coalesce(jsonb_agg(jsonb_build_object('id', l.id, 'name', l.name, 'first', l.first, 'last', l.last, 'phone', l.phone)
+               order by l.last desc nulls last, l.name), '[]'::jsonb) from loose l) end
+  )
+$$;
+
 create function app.leaderboard() returns jsonb language plpgsql security definer set search_path = '' as $$
 declare ch public.challenges%rowtype; v_wk int;
 begin
@@ -572,6 +673,7 @@ begin
 end $$;
 
 -- Public: everything the gym TV shows. Names and photos only for members who said yes.
+-- Birthday and anniversary shoutouts are first names only, with no dates and no ages.
 create function app.tv_snapshot() returns jsonb language plpgsql security definer set search_path = '' as $$
 declare ch public.challenges%rowtype; v_today date := app.today(); v_wk int;
 begin
@@ -603,6 +705,7 @@ begin
         order by md5(p.id::text || v_today::text) limit 6) h),
     -- Photos sent with a log entry are for coaches only. They never go on the gym screen.
     'photos', '[]'::jsonb,
+    'shoutouts', app.shoutouts(false),
     'ticker', (select coalesce(jsonb_agg(k.x), '[]'::jsonb) from (
         select jsonb_build_object('name', case when p.show_on_tv then p.display_name else 'A teammate' end,
                  'label', c.label, 'points', e.points, 'team_id', e.team_id) as x
@@ -626,16 +729,19 @@ end $$;
 -- ------------------------------------------------------------------
 create function app.coach_home() returns jsonb language plpgsql security definer set search_path = '' as $$
 declare
-  v_uid uuid := auth.uid(); ch public.challenges%rowtype; pp public.profile_private%rowtype; v_team smallint;
+  v_uid uuid := auth.uid(); ch public.challenges%rowtype; pp public.profile_private%rowtype; v_team smallint; v_cap boolean;
 begin
   perform app.ensure_profile();
   if not app.is_coach() then raise exception 'Coaches only.'; end if;
   select * into ch from public.challenges where is_active limit 1;
   select * into pp from public.profile_private where id = v_uid;
   perform app.sweep(ch.id);
-  select team_id into v_team from public.team_members where challenge_id = ch.id and user_id = v_uid;
+  select team_id, is_captain into v_team, v_cap from public.team_members where challenge_id = ch.id and user_id = v_uid;
   return jsonb_build_object(
     'me', jsonb_build_object('role', pp.role, 'team_id', v_team, 'first_name', pp.first_name),
+    -- Only a team captain sees who on their team has gone quiet, and their phone numbers.
+    'check_in', app.check_ins(ch.id, case when coalesce(v_cap, false) then v_team end, pp.role = 'admin'),
+    'shoutouts', app.shoutouts(true),
     'challenge', to_jsonb(ch), 'today', app.today(),
     'teams', app.team_board(ch.id),
     'queue', (select coalesce(jsonb_agg(s.x order by s.created_at desc), '[]'::jsonb) from (
