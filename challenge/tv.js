@@ -22,6 +22,10 @@
     return src ? '<img class="tv-av ' + (cls || '') + '" src="' + esc(src) + '" alt="">' : '<span class="tv-av ' + (cls || '') + '">' + esc(B.initials(name)) + '</span>';
   }
   function team(id) { return D.teams.filter(function (t) { return t.id === id; })[0] || { name: '' }; }
+  // Team colors: a stripe on the photo and a square by the team name, the same color everywhere.
+  function tn(id) { return 't' + B.teamNo(D.teams, id); }
+  function stripe(id, html) { return '<span class="tv-stripe ' + tn(id) + '">' + html + '</span>'; }
+  function tsq(id) { return '<i class="tv-sq ' + tn(id) + '" aria-hidden="true"></i>'; }
 
   function left() {
     var wk = D.weeks.filter(function (w) { return w.week_no === D.week_no; })[0] || {};
@@ -45,27 +49,27 @@
     var list = D.teams.slice().sort(function (a, b) { return b[f] - a[f] || a.id - b.id; });
     var max = Math.max.apply(null, list.map(function (t) { return t[f]; }).concat([1]));
     return '<div class="tv-right' + (list.length > 5 ? ' dense' : '') + '"><div class="tv-k">' + (pre ? 'Sign-ups by team' : 'Team leaderboard') + '</div>' + list.map(function (t, i) {
-      return '<div><div class="tv-row' + (i === 0 && t[f] > 0 ? ' first' : '') + '"><span class="tv-pos">' + (i + 1) + '</span>' + av(t.captain_name, t.captain_photo) +
+      return '<div><div class="tv-row' + (i === 0 && t[f] > 0 ? ' first' : '') + '"><span class="tv-pos">' + (i + 1) + '</span>' + stripe(t.id, av(t.captain_name, t.captain_photo)) +
         '<span class="tv-name">' + esc(t.name) + '</span><span class="tv-pts">' + t[f] + '</span></div>' +
         '<div class="tv-bar"><i style="width:' + Math.round(t[f] / max * 100) + '%"></i></div></div>';
     }).join('') + '</div>';
   }
   function scrPeople() {
     return '<div class="tv-right"><div class="tv-k">Individual leaderboard</div><div class="tv-people">' + D.people.slice(0, 10).map(function (p, i) {
-      return '<div class="tv-row' + (i === 0 ? ' first' : '') + '"><span class="tv-pos">' + (i + 1) + '</span>' + av(p.name, p.photo, 'sm') +
+      return '<div class="tv-row' + (i === 0 ? ' first' : '') + '"><span class="tv-pos">' + (i + 1) + '</span>' + stripe(p.team_id, av(p.name, p.photo, 'sm')) +
         '<span class="tv-name">' + esc(p.name) + '<small>' + esc(team(p.team_id).name) + '</small></span><span class="tv-pts">' + p.points + '</span></div>';
     }).join('') + '</div></div>';
   }
   function scrHighlight() {
     var h = D.highlights[tick % D.highlights.length];
     return '<div class="tv-right"><div class="tv-k">Meet the member</div><div class="tv-hi">' + av(h.name, h.photo) +
-      '<div><div class="tv-k y">' + esc(team(h.team_id).name) + '</div><div class="tv-title" style="font-size:84px;margin:14px 0 26px">' + esc(h.name) + '</div>' +
+      '<div><div class="tv-k y">' + tsq(h.team_id) + esc(team(h.team_id).name) + '</div><div class="tv-title" style="font-size:84px;margin:14px 0 26px">' + esc(h.name) + '</div>' +
       '<div class="tv-k">Why I train</div><div class="tv-quote" style="margin-top:12px">' + esc(h.why) + '</div></div></div></div>';
   }
   function scrMvp() {
     var top = D.people.slice().sort(function (a, b) { return b.week_points - a.week_points; })[0];
     return '<div class="tv-right"><div class="tv-k">Leading this week</div><div class="tv-hi">' + av(top.name, top.photo) +
-      '<div><div class="tv-k y">' + esc(team(top.team_id).name) + '</div><div class="tv-title" style="font-size:96px;margin:14px 0 26px">' + esc(top.name) + '</div>' +
+      '<div><div class="tv-k y">' + tsq(top.team_id) + esc(team(top.team_id).name) + '</div><div class="tv-title" style="font-size:96px;margin:14px 0 26px">' + esc(top.name) + '</div>' +
       '<div class="tv-quote">' + top.week_points + ' points this week</div></div></div></div>';
   }
   function shoutCount() { var so = D.shoutouts || {}; return (so.birthdays || []).length + (so.anniversaries || []).length; }

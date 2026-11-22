@@ -24,7 +24,7 @@
 
   // Team colors are data colors, the same idea as the phase colors on the Programs page.
   // They only label a team in the admin's roster. Order follows the team order.
-  function teamIdx(id) { for (var i = 0; i < S.d.teams.length; i++) if (S.d.teams[i].id === id) return i; return -1; }
+  function teamIdx(id) { return B.teamNo(S.d.teams, id) - 1; }
   function teamDot(id) { return '<i class="tdot t' + (teamIdx(id) + 1) + '" aria-hidden="true"></i>'; }
 
   // The admin's full view: everyone signed up, by team, with a way to take someone off.

@@ -216,7 +216,7 @@
       return;
     }
     $app.innerHTML = '<main class="reveal has-pt"><i class="rp-pt" aria-hidden="true"></i><span class="eyebrow eyebrow-y">' + (cap ? 'Your team, Coach' : 'You’re on') + '</span>' +
-      avatar(t.captain_name, t.captain_photo, 'av-xl') +
+      stripe(t.id, avatar(t.captain_name, t.captain_photo, 'av-xl'), 'lg') +
       '<h1>' + esc(t.name.split(' ')[0]) + ' <span class="outline">' + esc(t.name.split(' ').slice(1).join(' ')) + '</span></h1>' +
       '<p class="ch-lead">' + (cap
         ? 'Your headshot and profile are already set up. Members join your team as they sign up, and you earn points for it right alongside them.'
@@ -479,13 +479,15 @@
     var tappable = !done && !wait && c && c.logged_by === 'member';
     return tappable ? '<button class="item" data-act="log" data-cat="' + esc(m.category_key) + '">' + inner + '</button>' : '<div class="item">' + inner + '</div>';
   }
+  // Team colors: a stripe on the photo, the same color for a team everywhere it shows.
+  function stripe(teamId, html, cls) { return '<span class="tstripe t' + B.teamNo(S.d.teams, teamId) + (cls ? ' ' + cls : '') + '">' + html + '</span>'; }
   function teamBars(field) {
     var teams = B.placed(S.d.teams), mine = S.d.membership.team_id;
     if (field === 'members') teams = S.d.teams.slice().sort(function (a, b) { return b.members - a.members; });
     var max = Math.max.apply(null, teams.map(function (t) { return t[field]; }).concat([1]));
     return '<div>' + teams.map(function (t, i) {
       return '<div class="teamrow"><div class="row">' + (field === 'points' ? '<span class="pos">' + (i + 1) + '</span>' : '') +
-        avatar(t.captain_name, t.captain_photo) + '<span class="grow item-t">' + esc(t.name) + (t.id === mine ? ' <span class="kicker kicker-y" style="display:inline">You</span>' : '') + '</span>' +
+        stripe(t.id, avatar(t.captain_name, t.captain_photo)) + '<span class="grow item-t">' + esc(t.name) + (t.id === mine ? ' <span class="kicker kicker-y" style="display:inline">You</span>' : '') + '</span>' +
         '<span class="val">' + t[field] + '</span></div><div class="bar' + (t.id === mine ? ' mine' : '') + '"><i style="width:' + Math.round(t[field] / max * 100) + '%"></i></div></div>';
     }).join('') + '</div>';
   }
@@ -495,22 +497,23 @@
     B.rpc('leaderboard').then(function (b) { S.board = b; S.d.teams = b.teams; render(); }).catch(function (e) { B.toast(B.errMsg(e)); });
     return false;
   }
-  function personRow(p, i) {
+  function personRow(p, i, onTeam) {
     var mine = p.id === S.session.user.id;
-    return '<div class="item' + (mine ? ' me' : '') + '"><span class="pos">' + (i + 1) + '</span>' + avatar(p.name, p.photo) +
-      '<span class="grow"><span class="item-t">' + esc(p.name) + (mine ? ' (you)' : '') + '</span><br><span class="item-s">' + esc(B.rankFor(S.d.ranks, p.points).cur.name) + '</span></span>' +
+    var tm = S.d.teams.filter(function (t) { return t.id === p.team_id; })[0];
+    return '<div class="item' + (mine ? ' me' : '') + '"><span class="pos">' + (i + 1) + '</span>' + stripe(p.team_id, avatar(p.name, p.photo)) +
+      '<span class="grow"><span class="item-t">' + esc(p.name) + (mine ? ' (you)' : '') + '</span><br><span class="item-s">' + esc(B.rankFor(S.d.ranks, p.points).cur.name) + (tm && onTeam !== true ? ' · ' + esc(tm.name) : '') + '</span></span>' +
       '<span class="val">' + p.points + '</span></div>';
   }
   function tabTeam() {
     var t = myTeam(), order = B.placed(S.d.teams), place = order.map(function (x) { return x.id; }).indexOf(t.id) + 1;
     var lead = order[0], gap = lead.id === t.id ? (order[1] ? t.points - order[1].points : 0) : lead.points - t.points;
-    var h = '<section class="card"><div class="row">' + avatar(t.captain_name, t.captain_photo, 'av-lg') +
+    var h = '<section class="card"><div class="row">' + stripe(t.id, avatar(t.captain_name, t.captain_photo, 'av-lg'), 'lg') +
       '<div class="grow"><span class="kicker">Captain: ' + esc(t.captain_name) + '</span><h2 class="mid" style="font-size:1.9rem">' + esc(t.name) + '</h2>' +
       '<p class="item-s">' + B.ordinal(place) + ' place · ' + t.points + ' pts' + (S.d.phase === 'pre' ? '' : lead.id === t.id ? ' · ' + gap + ' ahead' : ' · ' + gap + ' back') + '</p></div></div></section>';
     if (!needBoard()) return h + '<p class="fine">Loading your team…</p>';
     var mates = S.board.people.filter(function (p) { return p.team_id === t.id; });
     h += '<section class="card"><div class="row"><h2 class="ch-h2 grow">Roster</h2><span class="val">' + mates.length + '</span></div>' +
-      (mates.length ? '<div class="list">' + mates.map(personRow).join('') + '</div>' : '<p class="fine">Nobody yet. Send your teammates the link.</p>') + '</section>';
+      (mates.length ? '<div class="list">' + mates.map(function (p, i) { return personRow(p, i, true); }).join('') + '</div>' : '<p class="fine">Nobody yet. Send your teammates the link.</p>') + '</section>';
     return h;
   }
   function tabBoard() {
@@ -523,7 +526,7 @@
     }
     if (!needBoard()) return h + '<p class="fine">Loading the board…</p>';
     var ppl = S.board.people;
-    return h + '<section class="card">' + (ppl.length ? '<div class="list">' + ppl.map(personRow).join('') + '</div>' : '<p class="fine">Nobody on the board yet.</p>') + '</section>';
+    return h + '<section class="card">' + (ppl.length ? '<div class="list">' + ppl.map(function (p, i) { return personRow(p, i); }).join('') + '</div>' : '<p class="fine">Nobody on the board yet.</p>') + '</section>';
   }
   function tabMe() {
     var m = me(), d = S.d, r = B.rankFor(d.ranks, d.points), cap = d.membership.is_captain;

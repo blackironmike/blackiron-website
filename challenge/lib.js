@@ -97,6 +97,13 @@
     return { cur: cur, next: next };
   }
   function placed(teams) { return teams.slice().sort(function (a, b) { return b.points - a.points || a.id - b.id; }); }
+  // A team's color number, 1 to 6, in team order. The same team gets the same color on every
+  // screen no matter how the list in hand is sorted. 0 when the team is unknown.
+  function teamNo(teams, id) {
+    var n = 0, found = false;
+    (teams || []).forEach(function (t) { if (t.id === id) found = true; else if (t.id < id) n++; });
+    return found ? n + 1 : 0;
+  }
   function ordinal(n) { return n + (['th', 'st', 'nd', 'rd'][n % 100 > 10 && n % 100 < 14 ? 0 : n % 10] || 'th'); }
 
   // Instagram, Facebook and similar in-app browsers block Google sign-in.
@@ -106,6 +113,6 @@
     CFG: CFG, sb: sb, esc: esc, avatar: avatar, avatarUrl: avatarUrl, initials: initials,
     parseDay: parseDay, fmtDay: fmtDay, daysBetween: daysBetween, addDays: addDays,
     resizeImage: resizeImage, loadBitmap: loadBitmap, upload: upload, signedUrl: signedUrl, rpc: rpc,
-    toast: toast, errMsg: errMsg, rankFor: rankFor, placed: placed, ordinal: ordinal, inAppBrowser: inAppBrowser
+    toast: toast, errMsg: errMsg, rankFor: rankFor, placed: placed, teamNo: teamNo, ordinal: ordinal, inAppBrowser: inAppBrowser
   };
 })();
