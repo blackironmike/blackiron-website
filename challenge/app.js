@@ -266,7 +266,7 @@
         h += '<section class="card"><h2 class="ch-h2">Get ahead before kickoff</h2><div class="list">' +
           preItem(true, 'Rally Point Original', 'You signed up before kickoff. That’s 3 points and a badge you keep.', '+3') +
           preItem(profileComplete(), 'Finish your profile', 'Your photo and one line on why you train.', '+2', profileComplete() ? null : 'edit') +
-          preItem(false, 'Bring a guest this week', 'Friends & Family Week. Guests train free with a waiver.', '+5', 'invite') +
+          preItem(false, 'Bring a guest this week', 'Friends & Family Week. Guests train free. Your link lets them book a class.', '+5', 'invite') +
           preItem(false, 'Make your post', 'Drop your photo in the Black Iron frame, tag us and share it.', '', 'frame') +
           '</div><button class="linkbtn" data-act="how">How to earn points</button></section>';
       }
@@ -365,7 +365,7 @@
     h += '<section class="card"><div class="list">' +
       (cap ? '<button class="item" data-act="coach-guide"><span class="grow"><span class="item-t">Coach guide</span><br><span class="item-s">Why we’re doing this and what we need from you.</span></span></button>' : '') +
       (cap || m.role !== 'member' ? '<a class="item" href="/challenge/coach"><span class="grow item-t">Coach view</span></a>' : '') +
-      '<button class="item" data-act="invite"><span class="grow"><span class="item-t">Invite a friend</span><br><span class="item-s">Your own link with the waiver.</span></span></button>' +
+      '<button class="item" data-act="invite"><span class="grow"><span class="item-t">Invite a friend</span><br><span class="item-s">Your own link to get them in the door.</span></span></button>' +
       '<button class="item" data-act="frame"><span class="grow"><span class="item-t">Make my post</span><br><span class="item-s">Your photo in the Black Iron frame.</span></span></button>' +
       '<button class="item" data-act="how"><span class="grow item-t">How to earn points</span></button>' +
       (isInstalled() ? '' : '<button class="item" data-act="install"><span class="grow"><span class="item-t">Add to home screen</span><br><span class="item-s">Open Rally Point like an app.</span></span></button>') +
@@ -432,10 +432,10 @@
     if (w) {
       var n = B.daysBetween(S.d.today, w.date), when = n === 0 ? 'today' : n === 1 ? 'tomorrow' : 'on ' + B.fmtDay(w.date, { weekday: 'long' });
       return 'Come train with me at Black Iron Athletics ' + when + '. Here’s the workout: ' + namesOf(w).replace(/[.!?]+$/, '') + '. Every class has three levels, so you’ll train at yours. ' +
-        (on ? 'It’s Friends & Family Week, so your class is free. ' : '') + 'The full workout, class times and the waiver are here: ' + link;
+        (on ? 'It’s Friends & Family Week, so your class is free. The full workout and the link to book your spot are here: ' : 'The full workout, class times and the waiver are here: ') + link;
     }
     return on
-      ? 'Come train with me at Black Iron Athletics this week. It’s Friends & Family Week, so your classes are free. The schedule and the waiver are here: ' + link
+      ? 'Come train with me at Black Iron Athletics this week. It’s Friends & Family Week, so your classes are free. Book your spot here: ' + link
       : 'Come train with me at Black Iron Athletics. The waiver and details are here: ' + link;
   }
   function sheetInvite(w) {
@@ -444,7 +444,7 @@
       S.d.invite_code = code;
       var link = location.origin + '/challenge/invite?c=' + code, text = inviteText(link, w);
       openSheet('Invite a friend',
-        '<p class="fine">This link opens a page with your name on it, ' + (w ? 'the workout, ' : '') + 'this week’s class times and the waiver. Send it to anyone you’d train with.</p>' +
+        '<p class="fine">This link opens a page with your name on it, ' + (w ? 'the workout, ' : '') + 'this week’s class times and ' + (S.d.today <= CFG.guestWeek.to ? 'a button to book their first free class' : 'the waiver') + '. Send it to anyone you’d train with.</p>' +
         '<div class="field"><label for="it">Your message</label><textarea id="it" rows="4">' + esc(text) + '</textarea></div>' +
         (navigator.share ? '<button class="btn btn-y w100" data-act="share-invite">Share</button>' : '') +
         '<div class="choice"><a class="btn btn-ghost" id="sms" href="sms:?&body=' + encodeURIComponent(text) + '">Text</a>' +
