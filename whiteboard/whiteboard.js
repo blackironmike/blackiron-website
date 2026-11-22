@@ -172,7 +172,7 @@
       clock: { type: 'down', min: cool / 60, label: 'Cool down' },
       blocks: [{ head: 'Nice work today', items: ['Walk it out and stretch', 'Put your equipment away', 'Log your scores'] }] });
     var t = 0; out.forEach(function (x) { x.at = t; t += (x.lead || 0) + Math.round(x.min * 60); });
-    return (tlCache[key] = { week: p.week, sections: out, programmed: used });
+    return (tlCache[key] = { week: p.week, cycle: p.cycle, sections: out, programmed: used });
   }
   function nextClassAfter(n, min) {
     for (var k = 0; k < 8; k++) {
@@ -379,7 +379,7 @@
       '<div class="cdMid">' +
         rise('<div class="eyebrow">Time until next class</div>', 0) +
         rise('<div class="cdBig" id="cdBig">--:--</div>', 120) +
-        rise('<div class="cdNext"><span class="f">' + minLabel(nx.start) + '</span> class' + (p ? ' · ' + esc(P.cycle || '') + (p.week ? ', ' + esc(p.week) : '') : '') + '</div>', 240) +
+        rise('<div class="cdNext"><span class="f">' + minLabel(nx.start) + '</span> class' + (p ? ' · ' + esc(p.cycle || P.cycle || '') + (p.week ? ', ' + esc(p.week) : '') : '') + '</div>', 240) +
         (p ? rise('<div class="cdSecs">' + p.sections.map(function (s) { return '<span>' + esc(s.name) + '</span>'; }).join('<i></i>') + '</div>', 360) : '') +
       '</div>' +
       '<div class="cdBot">' + ogButton() + '<div class="mission">We help everyday people become everyday athletes.</div></div>';
@@ -457,7 +457,7 @@
     var cls = view.openGym ? 'Open gym' : view.start !== null ? minLabel(view.start) + ' class' : 'Today';
     $('bHead').innerHTML =
       '<img class="logo" src="' + LOGO + '" alt="Black Iron Athletics">' +
-      '<div class="bh-mid"><span class="f">' + esc(cls) + '</span><span class="sep"></span>' + esc(dateLine(view.day)) + (p ? '<span class="sep"></span>' + esc(P.cycle || '') + (p.week ? ', ' + esc(p.week) : '') : '') + '</div>' +
+      '<div class="bh-mid"><span class="f">' + esc(cls) + '</span><span class="sep"></span>' + esc(dateLine(view.day)) + (p ? '<span class="sep"></span>' + esc(p.cycle || P.cycle || '') + (p.week ? ', ' + esc(p.week) : '') : '') + '</div>' +
       '<div class="bh-r"><span id="bTod"></span>' + (view.openGym ? '<button class="xBtn" data-act="ogexit" title="Exit open gym" aria-label="Exit open gym"><i></i></button>' : '') + '</div>';
     if (!s) {
       $('bSec').innerHTML = '<div class="empty"><div class="eyebrow">Coach board</div><h1>No programming loaded for ' + esc(dateLine(view.day)) + '.</h1><p>Send this week’s programming and it shows up here.</p></div>';

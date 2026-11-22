@@ -69,7 +69,7 @@
   function attr(kind, d, style) { return ' data-a="' + kind + '" style="--d:' + Math.round(d) + (style ? ';' + style : '') + '"'; }
   // a headline line that slides up from behind a mask
   function L(html, d) { return '<span class="ln"><span' + attr('up', d) + '>' + html + '</span></span>'; }
-  // split "Stronger. Faster. ~Harder to Kill.~" into sentence words
+  // split "Eight weeks. Six teams. ~One gym.~" into sentence words
   function sentences(s) { return String(s).replace(/\.\s+/g, '.\u0000').split('\u0000'); }
   function words(s, d, step) {
     return sentences(s).map(function (w, i) {
@@ -358,7 +358,7 @@
   RENDER.title = function (p, secs) {
     var c = C.cycle, st = cycleState(), h = '';
     h += photo(p.photo, '', secs);
-    h += '<img class="mini" src="/images/tv/skull.png" alt=""' + attr('stamp', 150) + '>';
+    h += '<img class="mini" src="/images/tv/rally-flag.svg" alt=""' + attr('stamp', 150) + '>';
     h += '<div class="h"><h1 class="disp">' + heading(c.titleLines, 300) + '</h1></div>';
     h += '<div class="rule"' + attr('rule', 780) + '></div>';
     h += '<div class="tag">' + words(plain(c.tagline), 900, 150) + '</div>';
@@ -1046,7 +1046,7 @@
     ]);
   }
   function allImages() {
-    var out = ['/images/tv/skull.png', ANVIL];
+    var out = ['/images/tv/rally-board.svg', '/images/tv/rally-flag.svg', ANVIL];
     JSON.stringify(C.deck || []).replace(/"(\/images\/[^"]+)"/g, function (_, s) { out.push(s); });
     return out;
   }
@@ -1159,7 +1159,7 @@
       var tag = broken ? '<span class="pv-tag off">Error</span>' : p.status === 'draft' ? '<span class="pv-tag draft">Draft</span>' : (a.on ? '<span class="pv-tag live">On air</span>' : '<span class="pv-tag off">Off</span>');
       return '<div class="pv-item"><div class="pv-frame"><div class="stageMini sk-' + skullFor(p) + (ck !== 'off' ? ' ck-' + ck : '') + '">' +
         '<div class="bar" style="top:0"></div><div class="bar" style="bottom:0"></div>' +
-        '<div class="skw"><img src="/images/tv/skull.png" alt=""></div>' +
+        '<div class="skw"><img src="/images/tv/rally-board.svg" alt=""></div>' +
         '<div class="layer in still">' + html + '</div>' + (ck !== 'off' ? '<div class="clock">' + clockInner() + '</div>' : '') + '</div></div>' +
         '<div class="pv-meta">' + tag + '<b>' + esc(p.id) + '</b> · ' + esc(p.type) + ' · ' + seconds(p) + 's · ' + esc(a.why) +
         ' <a href="/tv' + esc(qstring({ panel: p.id })) + '">Play</a></div></div>';
