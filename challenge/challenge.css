@@ -176,6 +176,12 @@ button.item{cursor:pointer}
 h2 + .wod{margin-top:-2px}
 .wod + h2{margin-top:10px;padding-top:18px;border-top:1px solid var(--steel-line)}
 
+/* Rally Point landing page: the six captains */
+.caps{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px 12px}
+.caps figure{margin:0;display:flex;flex-direction:column;gap:8px}
+.caps .av{width:100%;height:auto;aspect-ratio:1;object-position:50% 22%}
+.caps figcaption{color:var(--white);font-weight:800;font-size:.72rem;letter-spacing:.5px;text-transform:uppercase;line-height:1.2}
+
 /* Invite page */
 .sched{display:flex;flex-direction:column}
 .sched div{display:flex;gap:14px;padding:12px 0;border-top:1px solid var(--steel-line);font-size:.85rem;line-height:1.5}
