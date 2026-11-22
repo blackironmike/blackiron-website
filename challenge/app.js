@@ -10,7 +10,7 @@
   function recallOtp() {
     try { var o = JSON.parse(note('otp') || 'null'); return o && Date.now() - o.t < 20 * 60 * 1000 ? o.e : null; } catch (e) { return null; }
   }
-  var S = { session: null, d: null, board: null, tab: 'missions', boardMode: 'teams', otpEmail: recallOtp(), log: null, signErr: null, wod: [], wodDay: 0, sched: null, schedDay: null, schedAt: 0, schedBusy: false };
+  var S = { session: null, d: null, board: null, tab: 'missions', boardMode: 'teams', otpEmail: recallOtp(), log: null, signErr: null, wod: [], wodDay: 0, sched: null, schedDay: null, schedAt: 0, schedBusy: false, mine: null, mineBusy: false, resBusy: 0 };
 
   var IC = {
     check: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12l5 5 9-10"/></svg>',
@@ -258,10 +258,58 @@
     var p = String(hm || '').split(':'), h = +p[0];
     return isNaN(h) ? '' : ((h + 11) % 12 + 1) + ':' + (p[1] || '00') + ' ' + (h < 12 ? 'AM' : 'PM');
   }
-  function loadSched() {
+  // Reserving is switched on in the database: off, admin (Coach Mike testing), or all.
+  function canReserve() {
+    var mode = S.d && S.d.challenge && S.d.challenge.reservations;
+    return mode === 'all' || (mode === 'admin' && S.d.me.role === 'admin');
+  }
+  function reserveApi(method, body) {
+    return sb.auth.getSession().then(function (r) {
+      var t = r.data && r.data.session && r.data.session.access_token;
+      if (!t) throw new Error('Sign in again to reserve.');
+      return fetch('/api/challenge-reserve', {
+        method: method, headers: { Accept: 'application/json', Authorization: 'Bearer ' + t, 'Content-Type': 'application/json' },
+        body: body ? JSON.stringify(body) : undefined
+      });
+    }).then(function (r) {
+      return r.json().catch(function () { return {}; }).then(function (d) {
+        if (!r.ok) throw new Error(d.error || 'That didn’t go through. Try again.');
+        return d;
+      });
+    });
+  }
+  function loadMine() {
+    if (S.mineBusy || !canReserve()) return;
+    S.mineBusy = true;
+    reserveApi('GET').then(function (d) { S.mine = d.mine || {}; }, function () { S.mine = S.mine || {}; })
+      .then(function () { S.mineBusy = false; if (S.d && S.tab === 'schedule') render(); });
+  }
+  function classById(id) { return ((S.sched && S.sched.classes) || []).filter(function (c) { return String(c.id) === String(id); })[0]; }
+  function classWhen(c) { return clock(c.start) + ' ' + B.fmtDay(c.date, { weekday: 'long' }); }
+  function doReserve(id, action) {
+    var c = classById(id);
+    if (!c || S.resBusy) return;
+    S.resBusy = c.id; closeSheet(); render();
+    reserveApi('POST', { class_id: c.id, action: action }).then(function (d) {
+      S.mine = S.mine || {};
+      if (action === 'cancel') {
+        var was = S.mine[c.id]; delete S.mine[c.id];
+        if (was === 'reserved' && c.spots_left != null) { c.spots_left = Math.min(c.limit, c.spots_left + 1); c.full = false; }
+        B.toast(d.late ? 'Cancelled. Wodify counted that as a late cancel.' : 'Cancelled. Your spot is open for someone else.');
+      } else {
+        S.mine[c.id] = d.status === 'waitlist' ? 'waitlist' : 'reserved';
+        if (d.status !== 'waitlist' && c.spots_left != null) { c.spots_left = Math.max(0, c.spots_left - 1); c.full = c.spots_left === 0; }
+        B.toast(d.status === 'waitlist' ? 'You’re on the waitlist for ' + classWhen(c) + '.' : 'You’re in for ' + classWhen(c) + '.');
+      }
+    }, function (e) { B.toast(B.errMsg(e)); })
+      .then(function () { S.resBusy = 0; loadSched(true); if (S.d && S.tab === 'schedule') render(); });
+  }
+  function loadSched(fresh) {
     if (S.schedBusy) return;
     S.schedBusy = true;
-    fetch('/api/challenge-classes', { headers: { Accept: 'application/json' } })
+    if (!S.mine || fresh) loadMine();
+    // After a reservation, skip the one-minute cache so the spots count is current.
+    fetch('/api/challenge-classes' + (fresh ? '?t=' + Date.now() : ''), { headers: { Accept: 'application/json' } })
       .then(function (r) { if (!r.ok) throw new Error('schedule ' + r.status); return r.json(); })
       .then(function (d) { S.sched = { from: d.from, classes: Array.isArray(d.classes) ? d.classes : [] }; }, function () { S.sched = { error: true }; })
       .then(function () {
@@ -296,12 +344,29 @@
           '<b>' + esc(B.fmtDay(x, { weekday: 'short' })) + '</b><span>' + B.parseDay(x).getDate() + '</span></button>';
       }).join('') + '</div>';
     if (list.length) {
+      var res = canReserve(), mine = S.mine || {}, now = Date.now();
       h += '<div class="list">' + list.map(function (c) {
-        var spots = !c.limit ? 'No reservation needed' : c.full || c.spots_left === 0 ? 'Full' : c.spots_left + ' of ' + c.limit + ' spots left';
-        return '<div class="item"><span class="cl-time">' + esc(clock(c.start)) + '</span><span class="grow"><span class="item-t">' + esc(c.program) + '</span><br>' +
-          '<span class="item-s">' + esc(spots) + '</span></span></div>';
+        var st = mine[c.id], full = c.full || c.spots_left === 0;
+        var spots = !c.limit ? 'No reservation needed' : full ? 'Full' : c.spots_left + ' of ' + c.limit + ' spots left';
+        var right = '';
+        if (res && c.limit) {
+          var started = c.start_at && now >= Date.parse(c.start_at), closed = c.closes_at && now >= Date.parse(c.closes_at);
+          var early = c.opens_at && now < Date.parse(c.opens_at);
+          if (S.resBusy === c.id) right = '<span class="val">…</span>';
+          else if (st === 'in') right = '<span class="tag-y">Checked in</span>';
+          else if (st === 'reserved' || st === 'waitlist') {
+            right = '<span class="res-on"><span class="tag-y">' + (st === 'waitlist' ? 'Waitlist' : 'Reserved') + '</span>' +
+              (started ? '' : '<button class="linkbtn res-x" data-act="res-cancel" data-id="' + c.id + '">Cancel</button>') + '</span>';
+          } else if (started || closed) right = '';
+          else if (early) spots = 'Opens ' + new Date(c.opens_at).toLocaleString('en-US', { weekday: 'short', hour: 'numeric', minute: '2-digit' });
+          else if (full && !c.waitlist) right = '';
+          else right = '<button class="btn btn-ghost btn-sm" data-act="res-go" data-id="' + c.id + '">' + (full ? 'Waitlist' : 'Reserve') + '</button>';
+        }
+        // Time leads. Nearly every row is the same program, so the name sits small under it.
+        return '<div class="item cl-row' + (st ? ' item-on' : '') + '"><span class="grow"><span class="cl-time">' + esc(clock(c.start)) + '</span>' +
+          '<span class="item-s">' + esc(c.program) + '</span><span class="item-s cl-spots">' + esc(spots) + '</span></span>' + right + '</div>';
       }).join('') + '</div>' +
-        '<p class="fine">Reserve your spot in the Wodify app, the same as always.</p>';
+        '<p class="fine">' + (res ? 'This is the same list as Wodify. Reserve or cancel in either place.' : 'Reserve your spot in the Wodify app, the same as always.') + '</p>';
     } else {
       // No classes: say so, and say when Open Gym is open if it is.
       var allDay = og.length === 1 && og[0].start <= '06:00' && og[0].end >= '22:00';
@@ -720,7 +785,7 @@
     if (el.dataset.tab) {
       S.tab = el.dataset.tab;
       // Spots change through the day, so refresh the schedule when it is more than a minute old.
-      if (S.tab === 'schedule' && S.sched && Date.now() - S.schedAt > 60000) loadSched();
+      if (S.tab === 'schedule' && S.sched && Date.now() - S.schedAt > 60000) loadSched(true);
       render(); window.scrollTo(0, 0); return;
     }
     if (el.dataset.board) { S.boardMode = el.dataset.board; render(); return; }
@@ -743,6 +808,16 @@
     if (act === 'wod-day') { S.wodDay = +el.dataset.i; return render(); }
     if (act === 'sched-day') { S.schedDay = el.dataset.d; return render(); }
     if (act === 'sched-reload') { S.sched = null; return render(); }
+    if (act === 'res-go') return doReserve(el.dataset.id, 'reserve');
+    if (act === 'res-cancel') {
+      var rc = classById(el.dataset.id);
+      if (!rc) return;
+      return openSheet('Cancel your spot',
+        '<p class="fine">' + esc(rc.program) + ', ' + esc(classWhen(rc)) + '. Your spot opens up for someone else.</p>' +
+        '<button class="btn btn-y w100" data-act="res-cancel-yes" data-id="' + rc.id + '">Cancel my spot</button>' +
+        '<button class="btn btn-ghost w100" data-act="close">Keep it</button>');
+    }
+    if (act === 'res-cancel-yes') return doReserve(el.dataset.id, 'cancel');
     if (act === 'share-wod') {
       var wl = (S.wod || []).filter(function (w) { return w.parts && w.parts.length && w.date >= S.d.today; });
       return sheetInvite(wl[+el.dataset.i] || null);
@@ -856,7 +931,7 @@
   sb.auth.onAuthStateChange(function (event, session) {
     var had = S.session && S.session.user.id, has = session && session.user.id;
     S.session = session;
-    if (!session) { S.d = null; S.board = null; S.tab = 'missions'; closeSheet(); return render(); }
+    if (!session) { S.d = null; S.board = null; S.mine = null; S.tab = 'missions'; closeSheet(); return render(); }
     if (had !== has || !S.d) { render(); setTimeout(load, 0); }
   });
 })();
