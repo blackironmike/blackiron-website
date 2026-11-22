@@ -165,21 +165,20 @@ button.item{cursor:pointer}
 
 /* The day's workout: part name, then its lines as written */
 .wod{display:flex;flex-direction:column}
-.wod-part{display:flex;flex-direction:column;gap:4px;padding:14px 0;border-top:1px solid var(--steel-line)}
-.wod-part:first-child{border-top:0;padding-top:0}
+.wod{gap:18px}
+.wod-part{display:flex;flex-direction:column;gap:4px;padding:2px 0 2px 14px;border-left:3px solid var(--yellow)}
 .wod-name{color:var(--white);font-weight:900;font-size:1.05rem;line-height:1.2;text-transform:uppercase;letter-spacing:-.005em}
 .wod-line{font-size:.92rem;line-height:1.5;color:var(--gray)}
 .days{display:flex;gap:6px;overflow-x:auto}
 .days button{flex:1 0 46px;min-height:56px;background:none;border:1px solid var(--steel-line);color:var(--gray);font:inherit;cursor:pointer;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;padding:6px 2px}
 .days b{font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase}
 .days span{font-size:1.05rem;font-weight:900;line-height:1;color:var(--white)}
-.days button[aria-pressed=true]{background:var(--white);border-color:var(--white);color:var(--black)}
+.days button[aria-pressed=true]{background:var(--yellow);border-color:var(--yellow);color:var(--black)}
 .days button[aria-pressed=true] span{color:var(--black)}
 /* Schedule tab: all seven days fit without scrolling, and the selected day is Forge. */
 .days-y{overflow:visible}
 .days-y button{flex:1 1 0;min-width:0}
 .days-y b{letter-spacing:.5px}
-.days-y button[aria-pressed=true]{background:var(--yellow);border-color:var(--yellow);color:var(--black)}
 .tag-y{flex:none;background:var(--yellow);color:var(--black);font-size:10px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;padding:6px 8px;white-space:nowrap}
 .res-on{flex:none;display:flex;flex-direction:column;align-items:flex-end;gap:2px}
 .res-x{min-height:32px;padding:6px 0;font-size:10px;color:var(--gray)}

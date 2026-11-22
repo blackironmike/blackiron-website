@@ -233,7 +233,7 @@
     var list = (S.wod || []).filter(function (w) { return w.parts && w.parts.length && w.date >= S.d.today; });
     if (!list.length) return '';
     var i = Math.min(S.wodDay, list.length - 1), w = list[i];
-    return '<section class="card"><span class="kicker">' + esc(B.fmtDay(w.date, { weekday: 'long', month: 'short', day: 'numeric' })) + '</span>' +
+    return '<section class="card"><span class="kicker kicker-y">' + esc(B.fmtDay(w.date, { weekday: 'long', month: 'short', day: 'numeric' })) + '</span>' +
       '<h2 class="ch-h2">' + wodLabel(w) + '</h2>' +
       (list.length > 1 ? '<div class="days" role="group" aria-label="Day">' + list.map(function (x, k) {
         return '<button data-act="wod-day" data-i="' + k + '" aria-pressed="' + (k === i) + '" aria-label="' + esc(B.fmtDay(x.date, { weekday: 'long', month: 'long', day: 'numeric' })) + '">' +
@@ -383,7 +383,7 @@
     }
     h += '</section>';
     var w = (S.wod || []).filter(function (x) { return x.date === day && x.parts && x.parts.length; })[0];
-    if (w) h += '<section class="card"><span class="kicker">What we’re training</span>' + wodParts(w) + '</section>';
+    if (w) h += '<section class="card"><span class="kicker kicker-y">What we’re training</span>' + wodParts(w) + '</section>';
     return h;
   }
 
