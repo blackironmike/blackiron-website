@@ -26,6 +26,14 @@
 .tv-bar{height:14px;background:var(--steel-line);margin-top:14px}
 .tv-bar i{display:block;height:14px;background:var(--gray)}
 .tv-row.first + .tv-bar i{background:var(--yellow)}
+/* Six or more teams: tighten the board so every row stays on screen. */
+.tv-right.dense{gap:22px}
+.tv-right.dense .tv-av{width:84px;height:84px;font-size:28px}
+.tv-right.dense .tv-pos{font-size:56px}
+.tv-right.dense .tv-name{font-size:44px}
+.tv-right.dense .tv-pts{font-size:50px}
+.tv-right.dense .tv-bar{height:10px;margin-top:10px}
+.tv-right.dense .tv-bar i{height:10px}
 .tv-people{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px 56px}
 .tv-people .tv-name{font-size:34px}
 .tv-people .tv-pts{font-size:38px}

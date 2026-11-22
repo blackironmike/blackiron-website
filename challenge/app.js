@@ -40,7 +40,7 @@
       '<main class="ch-main no-nav">' +
       '<header class="ch-hero"><span class="eyebrow eyebrow-y">Black Iron Athletics</span>' +
       '<h1 class="ch-h1">Rally <span class="outline">Point</span></h1>' +
-      '<p class="ch-lead">Eight weeks. Five teams. Show up, bring your people, and carry your team through the holidays.</p></header>' +
+      '<p class="ch-lead">Eight weeks. Six teams. Show up, bring your people, and carry your team through the holidays.</p></header>' +
       '<section class="card"><h2 class="ch-h2">Sign in</h2>' +
       (S.signErr ? '<p class="err" role="alert">' + esc(S.signErr) + '</p>' : '') +
       '<div id="gbtn" class="gbtn"></div><p id="gnote" class="note" hidden></p>' +
@@ -136,7 +136,7 @@
       avatar(t.captain_name, t.captain_photo, 'av-xl') +
       '<h1>' + esc(t.name.split(' ')[0]) + ' <span class="outline">' + esc(t.name.split(' ').slice(1).join(' ')) + '</span></h1>' +
       '<p class="ch-lead">' + (cap
-        ? 'You don’t earn points yourself. Your team’s total is your score. Approvals for your team come to you.'
+        ? 'You don’t earn points yourself. Your team’s total is your score. You can log points for your people from the coach view.'
         : 'Captained by ' + esc(t.captain_name) + '. When you travel, your team carries you. When they travel, you carry them.') + '</p>' +
       '<button class="btn btn-y w100" data-act="revealed">Let’s go</button></main>';
   }
@@ -158,7 +158,7 @@
     return '<section class="card"><div class="row"><div class="grow"><span class="kicker">Your rank</span><div class="mid">' + esc(r.cur.name) + '</div></div>' +
       '<div class="right"><span class="kicker">Points</span><div class="mid">' + S.d.points + '</div></div></div>' +
       '<p class="fine">' + (r.next ? (r.next.min - S.d.points) + ' to ' + esc(r.next.name) + '.' : 'Top rank. Hold it.') +
-      (S.d.pending_points ? ' ' + S.d.pending_points + ' more waiting on a coach.' : '') + '</p></section>';
+      '</p><button class="linkbtn" data-act="how">How to earn points</button></section>';
   }
 
   function tabMissions() {
@@ -178,8 +178,8 @@
           preItem(true, 'Rally Point Original', 'You signed up before kickoff. That’s 3 points and a badge you keep.', '+3') +
           preItem(profileComplete(), 'Finish your profile', 'Your photo and one line on why you train.', '+2', profileComplete() ? null : 'edit') +
           preItem(false, 'Bring a guest this week', 'Friends & Family Week. Guests train free with a waiver.', '+5', 'invite') +
-          preItem(false, 'Make your post', 'Drop your photo in the Rally Point frame and share it.', '', 'frame') +
-          '</div></section>';
+          preItem(false, 'Make your post', 'Drop your photo in the Black Iron frame, tag us and share it.', '', 'frame') +
+          '</div><button class="linkbtn" data-act="how">How to earn points</button></section>';
       }
       h += '<section class="card"><h2 class="ch-h2">Sign-ups by team</h2>' + teamBars('members') +
         '<p class="fine">Every teammate who signs up before kickoff adds a point to your team.</p></section>';
@@ -277,7 +277,7 @@
       (cap || m.role !== 'member' ? '<a class="item" href="/challenge/coach"><span class="grow item-t">Coach view</span></a>' : '') +
       '<button class="item" data-act="invite"><span class="grow"><span class="item-t">Invite a friend</span><br><span class="item-s">Your own link with the waiver.</span></span></button>' +
       '<button class="item" data-act="frame"><span class="grow"><span class="item-t">Make my post</span><br><span class="item-s">Your photo in the Rally Point frame.</span></span></button>' +
-      '<button class="item" data-act="how"><span class="grow item-t">How it works</span></button></div></section>';
+      '<button class="item" data-act="how"><span class="grow item-t">How to earn points</span></button></div></section>';
     if (!cap) {
       h += '<section class="card"><h2 class="ch-h2">Your log</h2>' + (d.entries.length ? '<div class="list">' + d.entries.map(function (e) {
         var c = cat(e.category_key) || { label: e.category_key };
@@ -327,8 +327,8 @@
       (c.proof === 'link_or_photo' ? '<div class="field"><label for="ll">Link to your post</label><input id="ll" type="url" inputmode="url" placeholder="https://instagram.com/p/…"></div>' : '') +
       '<div class="field"><label for="lc">' + (c.key === 'guest' ? 'Who did you bring?' : 'Caption (optional)') + '</label><input id="lc" type="text" maxlength="200"' + (c.key === 'guest' ? ' required' : '') + '></div>' +
       '<p class="err" id="lerr" role="alert" hidden></p>' +
-      '<button class="btn btn-y w100" type="submit">Submit for +' + pts + '</button>' +
-      '<p class="fine">A coach on your team confirms it. Anything not reviewed in 48 hours counts automatically.' + (c.proof !== 'none' ? ' Photos only show on the feed or the gym TV after a coach approves them.' : '') + '</p></form>');
+      '<button class="btn btn-y w100" type="submit">Log it for +' + pts + '</button>' +
+      '<p class="fine">It counts right away. Keep it honest. Coaches can take back anything that doesn’t check out.' + (c.proof !== 'none' ? ' Only coaches see this photo.' : '') + '</p></form>');
   }
 
   function inviteText(link) {
@@ -354,17 +354,36 @@
     }).catch(function (e) { openSheet('Invite a friend', '<p class="err">' + esc(B.errMsg(e)) + '</p>'); });
   }
 
+  // Every way to earn, with what it's worth and how often it counts.
+  function howLimit(c) {
+    if (c.per === 'day') return 'Once a day';
+    if (c.per === 'week') return 'Once a week';
+    if (c.per === 'once') return 'One time';
+    if (c.per === 'mission') return 'Each flash mission';
+    return c.max_total ? 'Up to ' + c.max_total : 'Every time';
+  }
   function sheetHow() {
-    var rows = S.d.categories.filter(function (c) { return !c.team_only; }).map(function (c) {
-      return '<div class="item"><span class="grow"><span class="item-t">' + esc(c.label) + '</span>' + (c.hint ? '<br><span class="item-s">' + esc(c.hint) + '</span>' : '') + '</span><span class="val">+' + c.points + '</span></div>';
-    }).join('');
-    openSheet('How it works',
-      '<p class="fine">' + (['Zero', 'One', 'Two', 'Three', 'Four', 'Five', 'Six', 'Seven', 'Eight'][S.d.teams.length] || S.d.teams.length) + ' teams, one per coach. Every point you earn counts for you and for your team. Scoring runs ' + esc(B.fmtDay(S.d.challenge.scoring_starts_on)) + ' through ' + esc(B.fmtDay(S.d.challenge.ends_on)) + '.</p>' +
-      '<div class="list">' + rows + '</div>' +
-      '<p class="fine">Class check-ins come from Wodify and post by the next morning. Sign in to class like you always do.</p>' +
-      '<p class="fine">Traveling or stuck at home? Anything active counts once a day: a run, a walk, a hotel gym. Add a photo.</p>' +
-      '<p class="fine">A coach on your team confirms what you log. Anything not reviewed in 48 hours counts automatically.</p>' +
-      '<p class="fine">Your rank climbs with your points: ' + S.d.ranks.map(function (r) { return esc(r.name) + ' ' + r.min; }).join(', ') + '.</p>' +
+    var d = S.d, dblWeek = d.weeks.filter(function (w) { return w.double_category; });
+    function rows(list) {
+      return '<div class="list">' + list.map(function (c) {
+        var dbl = dblWeek.filter(function (w) { return w.double_category === c.key; })[0];
+        return '<div class="item"><span class="grow"><span class="item-t">' + esc(c.label) + '</span>' +
+          (c.hint ? '<br><span class="item-s">' + esc(c.hint) + '</span>' : '') +
+          '<br><span class="item-s">' + howLimit(c) + (dbl ? ' · Double in Week ' + dbl.week_no : '') + '</span></span>' +
+          '<span class="val">+' + c.points + '</span></div>';
+      }).join('') + '</div>';
+    }
+    var mine = d.categories.filter(function (c) { return !c.team_only && c.logged_by === 'member'; });
+    var auto = d.categories.filter(function (c) { return !c.team_only && c.logged_by !== 'member'; });
+    openSheet('How to earn points',
+      '<p class="fine">' + (['Zero', 'One', 'Two', 'Three', 'Four', 'Five', 'Six', 'Seven', 'Eight'][d.teams.length] || d.teams.length) + ' teams, one per coach. Every point you earn counts for you and for your team. Scoring runs ' + esc(B.fmtDay(d.challenge.scoring_starts_on)) + ' through ' + esc(B.fmtDay(d.challenge.ends_on)) + '.</p>' +
+      '<h3 class="ch-h2" style="margin-top:8px">You log these</h3>' +
+      '<p class="fine">Tap Log points on the Missions tab. It counts right away.</p>' + rows(mine) +
+      '<h3 class="ch-h2" style="margin-top:20px">These count on their own</h3>' +
+      '<p class="fine">Sign in to class like you always do. Check-ins come from Wodify and post by the next morning.</p>' + rows(auto) +
+      '<p class="fine">Keep it honest. Coaches can take back anything that doesn’t check out.</p>' +
+      '<p class="fine">Posting your workout? Tag @blackiron_athletics and add #BlackIron2027.</p>' +
+      '<p class="fine">Your rank climbs with your points: ' + d.ranks.map(function (r) { return esc(r.name) + ' ' + r.min; }).join(', ') + '.</p>' +
       '<p class="fine">Prizes along the way.</p>');
   }
 
@@ -380,7 +399,7 @@
       '<label class="btn btn-ghost w100" for="ff">Choose a photo<input id="ff" type="file" accept="image/*" style="position:absolute;width:1px;height:1px;opacity:0"></label>' +
       '<button class="btn btn-y w100" data-act="frame-save">Save image</button>' +
       '<button class="linkbtn" data-act="frame-blank">Download the blank frame</button>' +
-      '<p class="fine">Post it and tag @blackiron_athletics. Stories keep the frame clear of Instagram’s own buttons.</p>');
+      '<p class="fine">Post it, tag @blackiron_athletics and add #BlackIron2027. Stories keep the frame clear of Instagram’s own buttons.</p>');
     document.fonts.load('900 100px Montserrat').then(function () { return document.fonts.load('700 30px Montserrat'); }).then(drawFrame, drawFrame);
   }
   // Text drawn one letter at a time with a fixed gap. Works in every browser.
@@ -577,7 +596,7 @@
       var upl = L.photo ? B.resizeImage(L.photo, { max: 1600 }).then(function (b) { return B.upload('proof', S.session.user.id, b); }) : Promise.resolve(null);
       upl.then(function (path) {
         return B.rpc('submit_entry', { p_category: L.cat, p_date: day ? day.value : S.d.today, p_photo: path, p_link: link ? link.trim() : null, p_caption: document.getElementById('lc').value, p_mission: L.mission });
-      }).then(function (r) { closeSheet(); B.toast('Logged. +' + r.points + ' once a coach confirms.'); return load(); }).catch(function (e) { lfail(B.errMsg(e)); });
+      }).then(function (r) { closeSheet(); B.toast('Logged. +' + r.points + '.'); return load(); }).catch(function (e) { lfail(B.errMsg(e)); });
     }
   });
 

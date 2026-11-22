@@ -471,6 +471,7 @@ begin
   if p_link is not null and (p_link !~* '^https?://' or char_length(p_link) > 500) then raise exception 'That link doesn’t look right.'; end if;
   if c.proof = 'photo' and p_photo is null then raise exception 'Add a photo.'; end if;
   if c.proof = 'link_or_photo' and p_photo is null and p_link is null then raise exception 'Add a link or a photo.'; end if;
+  if c.key = 'guest' and coalesce(trim(p_caption), '') = '' then raise exception 'Add your guest’s name.'; end if;
 
   if c.per = 'day' and exists (select 1 from public.entries e where e.challenge_id = ch.id and e.user_id = v_uid
       and e.category_key = c.key and e.activity_date = v_date and e.status <> 'declined') then
@@ -500,9 +501,10 @@ begin
   insert into public.entries (challenge_id, user_id, team_id, category_key, mission_id, week_no, activity_date, points,
                               team_only, status, source, photo_path, link_url, caption)
   values (ch.id, v_uid, tm.team_id, c.key, case when c.per = 'mission' then m.id end, v_wk, v_date, v_pts,
-          c.team_only, 'pending', 'member', p_photo, p_link, nullif(trim(left(coalesce(p_caption, ''), 200)), ''))
+          c.team_only, 'approved', 'member', p_photo, p_link, nullif(trim(left(coalesce(p_caption, ''), 200)), ''))
   returning id into v_id;
-  return jsonb_build_object('id', v_id, 'points', v_pts, 'status', 'pending');
+  -- No approval step: what a member logs counts right away. A coach can take it back with review_entry.
+  return jsonb_build_object('id', v_id, 'points', v_pts, 'status', 'approved');
 end $$;
 
 create function app.my_invite() returns text language plpgsql security definer set search_path = '' as $$
@@ -584,11 +586,8 @@ begin
         where t.challenge_id = ch.id and not t.is_captain and p.show_on_tv and p.photo_path is not null
           and coalesce(trim(p.why_i_train), '') <> ''
         order by md5(p.id::text || v_today::text) limit 6) h),
-    'photos', (select coalesce(jsonb_agg(f.x), '[]'::jsonb) from (
-        select jsonb_build_object('path', e.photo_path, 'name', p.display_name, 'caption', e.caption, 'team_id', e.team_id) as x
-        from public.entries e join public.profiles p on p.id = e.user_id and p.show_on_tv
-        where e.challenge_id = ch.id and e.status = 'approved' and e.reviewed_by is not null and e.photo_path is not null
-        order by e.reviewed_at desc limit 8) f),
+    -- Photos sent with a log entry are for coaches only. They never go on the gym screen.
+    'photos', '[]'::jsonb,
     'ticker', (select coalesce(jsonb_agg(k.x), '[]'::jsonb) from (
         select jsonb_build_object('name', case when p.show_on_tv then p.display_name else 'A teammate' end,
                  'label', c.label, 'points', e.points, 'team_id', e.team_id) as x
@@ -624,15 +623,16 @@ begin
     'me', jsonb_build_object('role', pp.role, 'team_id', v_team, 'first_name', pp.first_name),
     'challenge', to_jsonb(ch), 'today', app.today(),
     'teams', app.team_board(ch.id),
-    'queue', (select coalesce(jsonb_agg(s.x order by s.created_at), '[]'::jsonb) from (
+    'queue', (select coalesce(jsonb_agg(s.x order by s.created_at desc), '[]'::jsonb) from (
         select e.created_at, jsonb_build_object('id', e.id, 'name', p.display_name, 'avatar', p.photo_path, 'team_id', e.team_id,
           'category_key', e.category_key, 'points', e.points, 'photo_path', e.photo_path, 'link_url', e.link_url,
           'caption', e.caption, 'activity_date', e.activity_date, 'created_at', e.created_at,
           'status', e.status, 'auto_approved', e.auto_approved) as x
         from public.entries e join public.profiles p on p.id = e.user_id
-        where e.challenge_id = ch.id and e.source = 'member'
-          and (e.status = 'pending' or (e.auto_approved and e.photo_path is not null and e.reviewed_by is null))
-          and (pp.role = 'admin' or e.team_id = v_team)) s),
+        where e.challenge_id = ch.id and e.source = 'member' and e.status <> 'declined'
+          and e.created_at > now() - interval '14 days'
+          and (pp.role = 'admin' or e.team_id = v_team)
+        order by e.created_at desc limit 60) s),
     'pending_people', (select coalesce(jsonb_agg(jsonb_build_object('id', x.id, 'email', x.email, 'name', p.display_name,
           'created_at', x.created_at) order by x.created_at), '[]'::jsonb)
         from public.profile_private x join public.profiles p on p.id = x.id where not x.verified),
@@ -645,7 +645,7 @@ begin
         from app.roster r where r.active and r.role = 'member'
           and not exists (select 1 from public.profile_private x where x.wodify_client_id = r.wodify_client_id)),
     'categories', (select coalesce(jsonb_agg(to_jsonb(c) order by c.sort), '[]'::jsonb) from public.point_categories c
-        where c.challenge_id = ch.id and c.active and (c.logged_by = 'coach' or c.key = 'guest')),
+        where c.challenge_id = ch.id and c.active and c.logged_by in ('coach', 'member') and c.per <> 'mission'),
     'labels', (select coalesce(jsonb_object_agg(c.key, c.label), '{}'::jsonb) from public.point_categories c where c.challenge_id = ch.id),
     'flash', (select coalesce(jsonb_agg(jsonb_build_object('id', m.id, 'title', m.title, 'closes_at', m.closes_at,
           'open', now() between m.opens_at and m.closes_at) order by m.closes_at desc), '[]'::jsonb)
@@ -678,8 +678,16 @@ begin
   select * into tm from public.team_members where challenge_id = ch.id and user_id = p_user and not is_captain;
   if not found then raise exception 'That member hasn’t joined yet.'; end if;
   select * into c from public.point_categories where challenge_id = ch.id and key = p_category and active
-    and (logged_by = 'coach' or key = 'guest');
+    and logged_by in ('coach', 'member') and per <> 'mission';
   if not found then raise exception 'Coaches can’t log that one.'; end if;
+  if c.per = 'day' and exists (select 1 from public.entries e where e.challenge_id = ch.id and e.user_id = p_user
+      and e.category_key = c.key and e.activity_date = v_today and e.status <> 'declined') then
+    raise exception 'They already have that for today.';
+  end if;
+  if c.per = 'week' and exists (select 1 from public.entries e where e.challenge_id = ch.id and e.user_id = p_user
+      and e.category_key = c.key and e.week_no = app.week_no(ch.id, v_today) and e.status <> 'declined') then
+    raise exception 'They already have that this week.';
+  end if;
   if v_today < ch.starts_on or v_today > ch.ends_on or (v_today < ch.scoring_starts_on and not c.allowed_pre) then
     raise exception 'That isn’t open for points right now.';
   end if;
@@ -743,15 +751,9 @@ begin
   end loop;
 end $$;
 
--- Storage: who can see a proof photo.
+-- Storage: who can see a photo sent with a log entry. The member who sent it, and coaches.
 create function app.can_view_proof(p_name text) returns boolean language sql stable security definer set search_path = '' as $$
-  select
-    split_part(p_name, '/', 1) = coalesce((select auth.uid())::text, '')
-    or app.is_coach()
-    or exists (
-      select 1 from public.entries e join public.profiles p on p.id = e.user_id
-      where e.photo_path = p_name and e.status = 'approved' and e.reviewed_by is not null
-        and (p.show_on_tv or app.is_verified()))
+  select split_part(p_name, '/', 1) = coalesce((select auth.uid())::text, '') or app.is_coach()
 $$;
 
 -- ------------------------------------------------------------------

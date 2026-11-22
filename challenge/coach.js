@@ -1,5 +1,6 @@
-/* Coach view at /challenge/coach. Approvals for your own team (admins see all),
-   confirming sign-ups, logging guests and toys, flash missions, moving members. */
+/* Coach view at /challenge/coach. What your team logged lately (admins see all),
+   with a way to take one back, plus confirming sign-ups, logging points for a
+   member, flash missions and moving members. Nothing here needs approving. */
 (function () {
   'use strict';
   var B = window.BIA, sb = B.sb, esc = B.esc, avatar = B.avatar;
@@ -27,13 +28,12 @@
       return '<article class="card"><div class="row">' + avatar(q.name, q.avatar) +
         '<div class="grow"><span class="item-t">' + esc(q.name) + (admin ? ' · ' + esc(teamName(q.team_id)) : '') + '</span><br>' +
         '<span class="item-s">' + esc(label(q.category_key)) + ' · +' + q.points + ' · ' + esc(B.fmtDay(q.activity_date, { month: 'short', day: 'numeric' })) +
-        (q.auto_approved ? ' · Points already counted. Photo needs a look.' : '') + '</span></div></div>' +
+        '</span></div></div>' +
         (q.caption ? '<p class="fine">“' + esc(q.caption) + '”</p>' : '') +
         (q.photo_path ? (url ? '<img class="proof proof-lg" src="' + esc(url) + '" alt="Photo from ' + esc(q.name) + '">' : '<p class="fine">Loading photo…</p>') : '') +
         (q.link_url ? '<a class="linkbtn" href="' + esc(q.link_url) + '" target="_blank" rel="noopener noreferrer">Open their post</a>' : '') +
-        '<div class="row"><button class="btn btn-y grow" data-act="review" data-id="' + q.id + '" data-ok="1">Approve</button>' +
-        '<button class="btn btn-ghost" data-act="review" data-id="' + q.id + '" data-ok="0">Decline</button></div></article>';
-    }).join('') : '<section class="card"><p class="fine">Nothing waiting. Anything left 48 hours counts on its own, but photos stay off the feed and TV until one of you approves them.</p></section>';
+        '<button class="btn btn-ghost w100" data-act="review" data-id="' + q.id + '" data-ok="0">Take it back</button></article>';
+    }).join('') : '<section class="card"><p class="fine">Nothing logged in the last two weeks.</p></section>';
 
     var people = d.pending_people.length ? '<section class="card"><h2 class="ch-h2">People to confirm</h2>' +
       '<p class="fine">These people signed in with an email that isn’t on the member list. Match them to their membership so class check-ins count, then confirm.</p>' +
@@ -76,8 +76,8 @@
       '<button class="btn btn-ghost w100" type="submit">Move</button><p class="fine">Their points move with them. Use it to keep couples and training partners together.</p></form></section>';
 
     $app.innerHTML = shell(
-      '<div class="row"><h1 class="ch-h1 grow" style="font-size:2.2rem">Approvals</h1><span class="ch-chip">' + d.queue.length + ' waiting</span></div>' +
-      '<p class="fine">' + (admin ? 'You see every team.' : 'You see ' + esc(teamName(d.me.team_id) || 'your team') + '.') + ' Approve what’s real. A photo only reaches the feed and the gym TV after you approve it.</p>' +
+      '<div class="row"><h1 class="ch-h1 grow" style="font-size:2.2rem">Recent logs</h1><span class="ch-chip">' + d.queue.length + ' logged</span></div>' +
+      '<p class="fine">' + (admin ? 'You see every team.' : 'You see ' + esc(teamName(d.me.team_id) || 'your team') + '.') + ' Everything members log counts right away, so there is nothing to approve. If one doesn’t check out, take it back here. Photos are only seen by coaches.</p>' +
       '<div class="grid2">' + queue + '</div>' + people + '<div class="grid2">' + log + flash + '</div>' + teams +
       '<a class="linkbtn" href="/challenge">Back to the app</a><a class="linkbtn" href="/challenge/tv" target="_blank" rel="noopener">Open the gym screen</a>');
   }
@@ -101,7 +101,7 @@
   document.addEventListener('click', function (ev) {
     var el = ev.target.closest('[data-act]'); if (!el) return;
     var act = el.dataset.act;
-    if (act === 'review') { el.disabled = true; return run(B.rpc('review_entry', { p_id: +el.dataset.id, p_approve: el.dataset.ok === '1' }), el.dataset.ok === '1' ? 'Approved.' : 'Declined.'); }
+    if (act === 'review') { el.disabled = true; return run(B.rpc('review_entry', { p_id: +el.dataset.id, p_approve: el.dataset.ok === '1' }), el.dataset.ok === '1' ? 'Counted.' : 'Taken back.'); }
     if (act === 'verify') {
       var sel = document.getElementById('r-' + el.dataset.id);
       el.disabled = true;
