@@ -745,7 +745,7 @@ begin
                           sum(e.points) filter (where not e.team_only and e.week_no = v_wk) as wk
                    from public.entries e where e.challenge_id = ch.id and e.status = 'approved' group by e.user_id) s on s.user_id = t.user_id
         where t.challenge_id = ch.id and not t.is_captain
-        order by coalesce(s.pts, 0) desc, p.display_name limit 12) q),
+        order by coalesce(s.pts, 0) desc, p.display_name limit 20) q),
     'highlights', (select coalesce(jsonb_agg(h.x), '[]'::jsonb) from (
         select jsonb_build_object('name', p.display_name, 'photo', p.photo_path, 'why', p.why_i_train, 'team_id', t.team_id) as x
         from public.team_members t join public.profiles p on p.id = t.user_id
