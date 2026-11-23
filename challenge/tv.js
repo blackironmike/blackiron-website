@@ -55,7 +55,9 @@
     }).join('') + '</div>';
   }
   function scrPeople() {
-    return '<div class="tv-right"><div class="tv-k">Individual leaderboard</div><div class="tv-people">' + D.people.slice(0, 10).map(function (p, i) {
+    // Top 20, read down the left column and then down the right. Past ten names the rows tighten so all twenty fit.
+    var list = D.people.slice(0, 20), rows = Math.ceil(list.length / 2);
+    return '<div class="tv-right"><div class="tv-k">Individual leaderboard</div><div class="tv-people' + (list.length > 10 ? ' deep' : '') + '" style="grid-template-rows:repeat(' + rows + ',auto)">' + list.map(function (p, i) {
       return '<div class="tv-row' + (i === 0 ? ' first' : '') + '"><span class="tv-pos">' + (i + 1) + '</span>' + stripe(p.team_id, av(p.name, p.photo, 'sm')) +
         '<span class="tv-name">' + esc(p.name) + '<small>' + esc(team(p.team_id).name) + '</small></span><span class="tv-pts">' + p.points + '</span></div>';
     }).join('') + '</div></div>';

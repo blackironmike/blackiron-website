@@ -34,10 +34,19 @@
 .tv-right.dense .tv-pts{font-size:50px}
 .tv-right.dense .tv-bar{height:10px;margin-top:10px}
 .tv-right.dense .tv-bar i{height:10px}
-.tv-people{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px 56px}
+.tv-people{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));grid-auto-flow:column;gap:18px 56px}
 .tv-people .tv-name{font-size:34px}
+.tv-people .tv-name small{font-size:18px;letter-spacing:2px}
 .tv-people .tv-pts{font-size:38px}
 .tv-people .tv-pos{font-size:38px;width:44px}
+/* Eleven to twenty names: tighter rows so the whole top 20 stays on screen. */
+.tv-people.deep{gap:14px 56px}
+.tv-people.deep .tv-av.sm{width:62px;height:62px;font-size:20px}
+.tv-people.deep .tv-name{font-size:30px}
+.tv-people.deep .tv-name small{font-size:17px;margin-top:7px;letter-spacing:2px}
+.tv-people.deep .tv-pts{font-size:34px}
+.tv-people.deep .tv-pos{font-size:32px;width:48px}
+.tv-people.deep .tv-row{gap:20px}
 .tv-hi{display:flex;gap:56px;align-items:center;flex:1}
 .tv-hi img,.tv-hi .tv-av{width:420px;height:420px;font-size:120px}
 .tv-quote{font-size:54px;line-height:1.15;font-weight:900;color:var(--white);text-transform:uppercase}
