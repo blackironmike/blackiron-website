@@ -593,10 +593,22 @@ add(id='merach-s28', shelf='cardio', group='Rowers and bikes', src='impact', bra
     blurb='Magnetic resistance and an app. Low-impact cardio for the days your joints want a break.',
     kw='bike exercise bike cycling cardio')
 
-add(id='concept2-rower', pick=True, splurge=True, shelf='cardio', group='Rowers and bikes', src='amazon', brand='Concept2',
-    name='RowErg rower', asin='B00NH9WEUA',
+# Concept2 through Awin. The deep link lands on the shop home page; swap ued=
+# for a product URL once we have confirmed ones. No img: the tile renders
+# without a photo rather than hotlinking one we have not checked.
+C2 = 'https://www.awin1.com/cread.php?awinmid=30151&awinaffid=3085499&ued=https%3A%2F%2Fshop.concept2.com%2F'
+add(id='concept2-rower', pick=True, splurge=True, shelf='cardio', group='Rowers and bikes', src='direct', brand='Concept2',
+    name='RowErg rower', url=C2,
     blurb='The rower on our floor. Every gym uses it because it never breaks, and your times compare to everyone else in the world.',
-    kw='rower rowing machine concept2 erg')
+    kw='rower rowing machine concept2 erg rowerg')
+add(id='concept2-skierg', splurge=True, shelf='cardio', group='Rowers and bikes', src='direct', brand='Concept2',
+    name='SkiErg', url=C2,
+    blurb='The ski on our floor and a HYROX race station. Upper body and core conditioning for the days your legs are cooked.',
+    kw='skierg ski erg concept2 hyrox')
+add(id='concept2-bikeerg', splurge=True, shelf='cardio', group='Rowers and bikes', src='direct', brand='Concept2',
+    name='BikeErg', url=C2,
+    blurb='The bike on our floor. Smooth air resistance and the same monitor as the rower, easy on the knees and back.',
+    kw='bikeerg bike erg exercise bike cycling concept2')
 add(id='schwinn-airdyne', shelf='cardio', group='Rowers and bikes', src='amazon', brand='Schwinn',
     name='AD7 Airdyne bike', asin='B072Q63BDD',
     blurb='A fan bike that gets harder the harder you push. Brutal intervals with zero impact on the joints.',
@@ -808,11 +820,15 @@ def tile(p, compact=False):
     else:
         href = p['url']
         well = 'ptile-img is-cover' if p.get('cover') else 'ptile-img'
-        media = (f'<span class="{well}"><img src="{e(p["img"])}" alt="" loading="lazy" decoding="async"'
-                 f' onerror="this.closest(\'.ptile\').classList.add(\'no-img\');this.closest(\'.ptile-img\').style.display=\'none\'"></span>')
         attrs = ''
         price = ''
         cls = 'ptile no-price'
+        if p.get('img'):
+            media = (f'<span class="{well}"><img src="{e(p["img"])}" alt="" loading="lazy" decoding="async"'
+                     f' onerror="this.closest(\'.ptile\').classList.add(\'no-img\');this.closest(\'.ptile-img\').style.display=\'none\'"></span>')
+        else:
+            media = ''
+            cls += ' no-img'
     blurb = '' if compact else f'<span class="ptile-blurb">{p["blurb"]}</span>'
     return (f'<a class="{cls}" href="{e(href)}"{OUT}'
             f' data-product="{e(p["name"])}" data-brand="{e(p["brand"])}" data-src="{src}" data-kw="{e(kw)}"{attrs}>'
