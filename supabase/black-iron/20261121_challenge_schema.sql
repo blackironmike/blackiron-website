@@ -470,6 +470,26 @@ begin
     'pending_points', (select coalesce(sum(e.points), 0) from public.entries e
                where e.challenge_id = ch.id and e.user_id = v_uid and e.status = 'pending'),
     'signups', (select count(*) from public.team_members t where t.challenge_id = ch.id and not t.is_captain),
+    -- The scorecard and the streak: every active day (a class, Open Gym or Active Anywhere),
+    -- points by category and points by week, over all of a member's entries. The log above
+    -- is capped at the latest 40. Points before kickoff count in Week 1.
+    'stats', jsonb_build_object(
+      'days', (select coalesce(jsonb_agg(jsonb_build_object('d', q.d, 'k', q.k) order by q.d), '[]'::jsonb) from (
+          select e.activity_date as d,
+                 case when bool_or(e.category_key = 'class') then 'class'
+                      when bool_or(e.category_key = 'open_gym') then 'open_gym' else 'active' end as k
+          from public.entries e
+          where e.challenge_id = ch.id and e.user_id = v_uid and e.status = 'approved'
+            and e.category_key in ('class', 'open_gym', 'active')
+          group by e.activity_date) q),
+      'by_cat', (select coalesce(jsonb_object_agg(q.k, q.p), '{}'::jsonb) from (
+          select e.category_key as k, sum(e.points) as p from public.entries e
+          where e.challenge_id = ch.id and e.user_id = v_uid and e.status = 'approved' and not e.team_only
+          group by e.category_key) q),
+      'by_week', (select coalesce(jsonb_object_agg(q.w, q.p), '{}'::jsonb) from (
+          select greatest(coalesce(e.week_no, 1), 1) as w, sum(e.points) as p from public.entries e
+          where e.challenge_id = ch.id and e.user_id = v_uid and e.status = 'approved' and not e.team_only
+          group by 1) q)),
     'invite_code', (select i.code from public.invites i where i.challenge_id = ch.id and i.inviter_id = v_uid)
   );
 end $$;

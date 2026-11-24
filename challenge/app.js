@@ -238,10 +238,75 @@
 
   function pointsStrip() {
     var r = B.rankFor(S.d.ranks, S.d.points);
+    var pct = r.next ? Math.round((S.d.points - r.cur.min) / Math.max(1, r.next.min - r.cur.min) * 100) : 100;
     return '<section class="card"><div class="row"><div class="grow"><span class="kicker">Your rank</span><div class="mid">' + esc(r.cur.name) + '</div></div>' +
       '<div class="right"><span class="kicker">Points</span><div class="mid">' + S.d.points + '</div></div></div>' +
+      '<div class="bar mine" role="img" aria-label="' + pct + ' percent of the way to the next rank"><i style="width:' + Math.max(0, Math.min(100, pct)) + '%"></i></div>' +
       '<p class="fine">' + (r.next ? (r.next.min - S.d.points) + ' to ' + esc(r.next.name) + '.' : 'Top rank. Hold it.') +
-      '</p><button class="linkbtn" data-act="how">How to earn points</button></section>';
+      '</p><div class="links"><button class="linkbtn" data-act="see-points">Where your points came from</button><button class="linkbtn" data-act="how">How to earn points</button></div></section>';
+  }
+
+  // ---------- scorecard and streak ----------
+  // An active day is a class, Open Gym or an Active Anywhere log. The streak counts weeks
+  // with three active days, so a rest day never breaks it (Coach Mike, Nov 23).
+  var STREAK_DAYS = 3, DAY_KIND = { class: 'Class', open_gym: 'Open Gym', active: 'Active' };
+  function stats() { return S.d.stats || { days: [], by_cat: {}, by_week: {} }; }
+  function weekOf(n) { return S.d.weeks.filter(function (w) { return w.week_no === n; })[0]; }
+  function activeDays(n) {
+    var w = weekOf(n); if (!w) return 0;
+    var end = B.addDays(w.starts_on, 6);
+    return stats().days.filter(function (x) { return x.d >= w.starts_on && x.d <= end; }).length;
+  }
+  function streak() {
+    var cur = activeDays(S.d.week_no), n = 0, w = cur >= STREAK_DAYS ? S.d.week_no : S.d.week_no - 1;
+    while (w >= 1 && activeDays(w) >= STREAK_DAYS) { n++; w--; }
+    return { weeks: n, cur: cur, locked: cur >= STREAK_DAYS };
+  }
+  function weekCard() {
+    var d = S.d, w = weekOf(d.week_no); if (!w) return '';
+    var kinds = {}; stats().days.forEach(function (x) { kinds[x.d] = x.k; });
+    var boxes = '';
+    for (var i = 0; i < 7; i++) {
+      var day = B.addDays(w.starts_on, i), k = kinds[day], name = B.fmtDay(day, { weekday: 'long' });
+      boxes += '<div class="d7' + (k ? ' on' : '') + (day === d.today ? ' today' : '') + '" role="img" aria-label="' + esc(name + (k ? ': ' + DAY_KIND[k] : day > d.today ? '' : ': nothing yet')) + '">' +
+        '<i>' + (k ? IC.check : esc(name.charAt(0))) + '</i>' + esc(B.fmtDay(day, { weekday: 'short' })) + (k ? '<br>' + DAY_KIND[k] : '') + '</div>';
+    }
+    return '<section class="card"><span class="kicker kicker-y">Week ' + d.week_no + ' · ' + esc(B.fmtDay(d.today, { weekday: 'long' })) + '</span>' +
+      '<h2 class="ch-h2">Your week</h2><div class="d7s">' + boxes + '</div>' +
+      '<div class="row"><div class="big">' + (stats().by_week[d.week_no] || 0) + '</div><div class="item-s grow">' + ((stats().by_week[d.week_no] || 0) === 1 ? 'point' : 'points') + ' this week.<br>' + d.points + ' in all.</div></div>' +
+      '<p class="fine">Class check-ins come in from Wodify on their own, usually the same day.</p></section>';
+  }
+  function streakCard() {
+    var s = streak(), left = STREAK_DAYS - s.cur;
+    var head = s.weeks
+      ? '<div class="big">' + s.weeks + '</div><div class="item-s grow"><span class="item-t">' + (s.weeks === 1 ? 'week locked in' : 'weeks in a row') + '</span><br>with three active days.</div>'
+      : '<div class="big">' + s.cur + '</div><div class="item-s grow"><span class="item-t">of 3 active days</span><br>this week. Three starts your streak.</div>';
+    var line = s.locked ? 'This week is locked in. ' : s.weeks ? left + ' more active ' + (left === 1 ? 'day' : 'days') + ' by Sunday keeps it going. ' : '';
+    return '<section class="card card-y"><span class="kicker kicker-y">Your streak</span><div class="row">' + head + '</div>' +
+      '<p class="fine">' + line + 'A class, Open Gym or Active Anywhere all count. A rest day never breaks it.</p>' +
+      '<div class="ms" role="img" aria-label="Streak milestones: 2, 4, 6 and 8 weeks">' + [2, 4, 6, 8].map(function (m) {
+        return '<i class="' + (s.weeks >= m ? 'on' : '') + '">' + m + '<small>' + (m === 8 ? 'all in' : 'weeks') + '</small></i>';
+      }).join('') + '</div></section>';
+  }
+  // Where the points came from, and week by week. Lives on the Me tab above the log.
+  var PT_GROUPS = [['Classes and Open Gym', ['class', 'open_gym']], ['Active anywhere', ['active']], ['Missions and bonuses', ['mission_bonus', 'clean_sweep', 'in_class', 'social', 'flash']],
+    ['Guests', ['guest']], ['Toy drop', ['toy']], ['Sign-up and profile', ['original', 'profile']]];
+  function pointsCards() {
+    var st = stats(), d = S.d, used = {}, rows = PT_GROUPS.map(function (g) {
+      return [g[0], g[1].reduce(function (a, k) { used[k] = 1; return a + (st.by_cat[k] || 0); }, 0)];
+    });
+    var other = Object.keys(st.by_cat).reduce(function (a, k) { return a + (used[k] ? 0 : st.by_cat[k]); }, 0);
+    if (other) rows.push(['Everything else', other]);
+    var max = Math.max.apply(null, rows.map(function (r) { return r[1]; }).concat([1]));
+    var wmax = Math.max.apply(null, d.weeks.map(function (w) { return st.by_week[w.week_no] || 0; }).concat([1]));
+    return '<section class="card" id="pts"><h2 class="ch-h2">Where your points came from</h2><div class="brk">' + rows.map(function (r) {
+        return '<div class="row"><span class="lab">' + esc(r[0]) + '</span><div class="bar"><i style="width:' + Math.round(r[1] / max * 100) + '%"></i></div><span class="val">' + r[1] + '</span></div>';
+      }).join('') + '</div></section>' +
+      '<section class="card"><h2 class="ch-h2">Week by week</h2><div class="wkcols">' + d.weeks.map(function (w) {
+        var p = st.by_week[w.week_no] || 0, cls = w.week_no === d.week_no ? 'now' : w.week_no < d.week_no ? 'past' : '';
+        return '<div class="' + cls + '" role="img" aria-label="Week ' + w.week_no + ': ' + p + ' points">' + (w.week_no <= d.week_no ? '<b>' + p + '</b>' : '') +
+          '<i style="height:' + Math.round(p / wmax * 60) + 'px"></i>' + w.week_no + '</div>';
+      }).join('') + '</div></section>';
   }
 
   // ---------- the day's workout ----------
@@ -427,6 +492,7 @@
         '<button class="btn btn-ghost" data-act="invite">Invite a friend</button>' +
         '<button class="btn btn-ghost" data-act="frame">Make my post</button></div>';
     }
+    if (d.phase === 'live') h += weekCard() + streakCard();
     h += wodCard();
     if (d.phase === 'pre') {
       var days = B.daysBetween(d.today, d.challenge.scoring_starts_on);
@@ -533,7 +599,7 @@
     var original = d.entries.some(function (e) { return e.category_key === 'original'; });
     var h = '<section class="card"><div class="row">' + avatar(m.display_name, myPhoto(), 'av-lg av-color') +
       '<div class="grow"><h2 class="mid">' + esc(m.display_name) + '</h2><p class="item-s">' + esc(myTeam().name) + (cap ? ' · Captain' : '') + ' · ' + esc(r.cur.name) + '</p>' +
-      (original ? '<span class="ch-chip" style="display:inline-block;margin-top:8px">Rally Point Original</span>' : '') + '</div></div>' +
+      (original ? '<span class="ch-chip" style="display:inline-block;margin-top:8px;white-space:normal">Rally Point Original</span>' : '') + '</div></div>' +
       (m.why_i_train ? '<p class="fine">“' + esc(m.why_i_train) + '”</p>' : '') +
       '<button class="btn btn-ghost w100" data-act="edit">Edit profile</button></section>';
     h += '<section class="card"><div class="list">' +
@@ -545,6 +611,7 @@
       '<button class="item" data-act="how"><span class="grow item-t">How to earn points</span></button>' +
       (isInstalled() ? '' : '<button class="item" data-act="install"><span class="grow"><span class="item-t">Add to home screen</span><br><span class="item-s">Open Rally Point like an app.</span></span></button>') +
       '</div></section>';
+    if (d.phase !== 'pre') h += pointsCards();
     {
       h += '<section class="card"><h2 class="ch-h2">Your log</h2>' + (d.entries.length ? '<div class="list">' + d.entries.map(function (e) {
         var c = cat(e.category_key) || { label: e.category_key };
@@ -717,7 +784,7 @@
       '<h3 class="ch-h2" style="margin-top:8px">You log these</h3>' +
       '<p class="fine">Tap Log points on the Missions tab. It counts right away.</p>' + rows(mine) +
       '<h3 class="ch-h2" style="margin-top:20px">These count on their own</h3>' +
-      '<p class="fine">Sign in to class like you always do. Check-ins come from Wodify and post by the next morning.</p>' + rows(auto) +
+      '<p class="fine">Sign in to class like you always do. Check-ins come from Wodify on their own, usually the same day.</p>' + rows(auto) +
       '<p class="fine">Keep it honest. Coaches can take back anything that doesn’t check out.</p>' +
       '<p class="fine">Posting your workout? Tag @blackiron_athletics and add #BlackIron2027.</p>' +
       '<p class="fine">Your rank climbs with your points: ' + d.ranks.map(function (r) { return esc(r.name) + ' ' + r.min; }).join(', ') + '.</p>' +
@@ -876,6 +943,11 @@
       return sheetInvite(wl[+el.dataset.i] || null);
     }
     if (act === 'how') return sheetHow();
+    if (act === 'see-points') {
+      S.tab = 'me'; render();
+      var pts = document.getElementById('pts'); if (pts) pts.scrollIntoView({ block: 'start' });
+      return;
+    }
     if (act === 'install') return sheetInstall();
     if (act === 'install-no') { note('hs', 'no'); return render(); }
     if (act === 'frame') return sheetFrame();
