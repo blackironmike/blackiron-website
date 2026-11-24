@@ -110,6 +110,30 @@ button.item{cursor:pointer}
 .bar{height:8px;background:var(--steel-line)}
 .bar > i{display:block;height:8px;background:var(--gray)}
 .bar.mine > i{background:var(--yellow)}
+/* Scorecard and streak. Seven day boxes for the week, a breakdown by category, week columns and streak milestones. */
+.links{display:flex;flex-direction:column;align-items:flex-start}
+.links .linkbtn{text-align:left}
+.d7s{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:6px}
+.d7{display:flex;flex-direction:column;align-items:center;gap:6px;font-size:9px;font-weight:700;letter-spacing:.5px;line-height:1.5;text-transform:uppercase;color:var(--gray);text-align:center}
+.d7 i{font-style:normal;width:100%;aspect-ratio:1;border:1px solid var(--steel-line);display:flex;align-items:center;justify-content:center;font-weight:900;font-size:13px;color:#7a7a7a}
+.d7.on i{background:var(--white);border-color:var(--white);color:var(--black)}
+.d7.today i{box-shadow:0 0 0 2px var(--yellow)}
+.d7 svg{width:16px;height:16px;stroke:currentColor;stroke-width:3;fill:none}
+.brk{display:flex;flex-direction:column;gap:12px}
+.brk .row{gap:10px}
+.brk .bar{flex:1}
+.brk .lab{width:118px;flex:none;font-size:.78rem;color:var(--gray);line-height:1.2}
+.brk .val{min-width:22px;text-align:right}
+.wkcols{display:grid;grid-template-columns:repeat(8,minmax(0,1fr));gap:6px;height:96px}
+.wkcols div{display:flex;flex-direction:column;justify-content:flex-end;align-items:center;gap:6px;font-size:10px;font-weight:700;color:var(--gray)}
+.wkcols i{display:block;width:100%;background:var(--steel-line);min-height:3px}
+.wkcols .past i{background:var(--gray)}
+.wkcols .now i{background:var(--yellow)}
+.wkcols b{color:var(--white);font-weight:800;font-size:11px}
+.ms{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:6px}
+.ms i{font-style:normal;border:1px solid var(--steel-line);padding:10px 0;text-align:center;font-weight:900;color:#7a7a7a;font-size:.95rem}
+.ms i small{display:block;font-size:9px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;margin-top:3px}
+.ms i.on{border-color:var(--white);color:var(--white)}
 .segs{display:flex;gap:4px}
 .segs i{flex:1;height:6px;background:var(--steel-line)}
 .segs i.on{background:var(--white)}
