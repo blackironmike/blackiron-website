@@ -89,9 +89,13 @@ create table public.missions (
   opens_at timestamptz,
   closes_at timestamptz,
   status text not null default 'draft' check (status in ('draft','live')),
-  created_by uuid
+  created_by uuid,
+  -- A flash mission started by a coach belongs to that coach's team: only that team sees it
+  -- and can log it. Null means everyone (weekly missions, and a flash mission the admin sends to all).
+  team_id smallint references public.teams(id) on delete cascade
 );
 create index missions_week on public.missions (challenge_id, week_no);
+create index missions_team on public.missions (team_id) where team_id is not null;
 
 -- What other members can see about you.
 create table public.profiles (
@@ -455,10 +459,11 @@ begin
                  from public.missions m
                  where m.challenge_id = ch.id and m.status = 'live' and not m.is_flash and m.week_no = v_wk),
     'flash', (select coalesce(jsonb_agg(jsonb_build_object(
-                'id', m.id, 'title', m.title, 'detail', m.detail, 'points', m.points_label, 'closes_at', m.closes_at,
+                'id', m.id, 'title', m.title, 'detail', m.detail, 'points', m.points_label, 'closes_at', m.closes_at, 'team_id', m.team_id,
                 'done', app.mission_count(v_uid, m, 'approved') + app.mission_count(v_uid, m, 'pending')) order by m.closes_at), '[]'::jsonb)
               from public.missions m
-              where m.challenge_id = ch.id and m.status = 'live' and m.is_flash and now() between m.opens_at and m.closes_at),
+              where m.challenge_id = ch.id and m.status = 'live' and m.is_flash and now() between m.opens_at and m.closes_at
+                and (m.team_id is null or m.team_id = (select t.team_id from public.team_members t where t.challenge_id = ch.id and t.user_id = v_uid))),
     'entries', (select coalesce(jsonb_agg(s.x order by s.created_at desc), '[]'::jsonb) from (
                   select e.created_at, jsonb_build_object('id', e.id, 'category_key', e.category_key, 'points', e.points,
                     'status', e.status, 'activity_date', e.activity_date, 'created_at', e.created_at,
@@ -578,6 +583,7 @@ begin
     select * into m from public.missions
     where id = p_mission and challenge_id = ch.id and is_flash and status = 'live' and now() between opens_at and closes_at;
     if not found then raise exception 'That flash mission has closed.'; end if;
+    if m.team_id is not null and m.team_id is distinct from tm.team_id then raise exception 'That flash mission is for another team.'; end if;
     if exists (select 1 from public.entries e where e.user_id = v_uid and e.mission_id = m.id and e.status <> 'declined') then
       raise exception 'You already logged this one.';
     end if;
@@ -815,7 +821,7 @@ begin
   perform app.sweep(ch.id);
   select team_id, is_captain into v_team, v_cap from public.team_members where challenge_id = ch.id and user_id = v_uid;
   return jsonb_build_object(
-    'me', jsonb_build_object('role', pp.role, 'team_id', v_team, 'first_name', pp.first_name),
+    'me', jsonb_build_object('role', pp.role, 'team_id', v_team, 'is_captain', coalesce(v_cap, false), 'first_name', pp.first_name),
     -- Only a team captain sees who on their team has gone quiet, and their phone numbers.
     'check_in', app.check_ins(ch.id, case when coalesce(v_cap, false) then v_team end, pp.role = 'admin'),
     'shoutouts', app.shoutouts(true),
@@ -846,8 +852,10 @@ begin
         where c.challenge_id = ch.id and c.active and c.logged_by in ('coach', 'member') and c.per <> 'mission'),
     'labels', (select coalesce(jsonb_object_agg(c.key, c.label), '{}'::jsonb) from public.point_categories c where c.challenge_id = ch.id),
     'flash', (select coalesce(jsonb_agg(jsonb_build_object('id', m.id, 'title', m.title, 'closes_at', m.closes_at,
-          'open', now() between m.opens_at and m.closes_at) order by m.closes_at desc), '[]'::jsonb)
-        from public.missions m where m.challenge_id = ch.id and m.is_flash),
+          'open', now() between m.opens_at and m.closes_at, 'team_id', m.team_id, 'points', m.points_label,
+          'logged', (select count(*) from public.entries e where e.mission_id = m.id and e.status <> 'declined')) order by m.closes_at desc), '[]'::jsonb)
+        from public.missions m where m.challenge_id = ch.id and m.is_flash
+          and (pp.role = 'admin' or m.team_id is null or (coalesce(v_cap, false) and m.team_id = v_team))),
     'signups', (select count(*) from public.team_members t where t.challenge_id = ch.id and not t.is_captain),
     'roster_count', (select count(*) from app.roster r where r.active and r.role = 'member')
   );
@@ -977,18 +985,46 @@ begin
   delete from app.removed_members where challenge_id = v_ch and user_id = p_user;
 end $$;
 
-create function app.create_flash(p_title text, p_detail text, p_hours int, p_points int) returns bigint
+-- Flash missions belong to a team. A captain starts one and only their own team sees it and can
+-- log it. The admin can also send one to everyone (p_all). One open flash mission per team at a time.
+create function app.create_flash(p_title text, p_detail text, p_hours int, p_points int, p_all boolean) returns bigint
 language plpgsql security definer set search_path = '' as $$
-declare v_ch smallint; v_id bigint;
+declare v_uid uuid := auth.uid(); v_ch smallint; v_id bigint; v_team smallint;
 begin
   if not app.is_coach() then raise exception 'Coaches only.'; end if;
+  if coalesce(trim(p_title), '') = '' then raise exception 'Give the mission a name.'; end if;
   select id into v_ch from public.challenges where is_active limit 1;
-  insert into public.missions (challenge_id, week_no, title, detail, category_key, points_label, is_flash, opens_at, closes_at, status, created_by)
+  if coalesce(p_all, false) and app.is_admin() then
+    v_team := null;
+  else
+    select t.team_id into v_team from public.team_members t
+    where t.challenge_id = v_ch and t.user_id = v_uid and t.is_captain;
+    if v_team is null then raise exception 'Only a team captain can start a flash mission.'; end if;
+    if exists (select 1 from public.missions m where m.challenge_id = v_ch and m.is_flash and m.status = 'live'
+               and m.team_id = v_team and now() between m.opens_at and m.closes_at) then
+      raise exception 'Your team already has a flash mission open. Close it or wait for it to end.';
+    end if;
+  end if;
+  insert into public.missions (challenge_id, week_no, title, detail, category_key, points_label, is_flash, opens_at, closes_at, status, created_by, team_id)
   values (v_ch, app.week_no(v_ch, app.today()), left(trim(p_title), 80), nullif(left(trim(coalesce(p_detail, '')), 200), ''),
           'flash', greatest(1, least(coalesce(p_points, 3), 10)), true, now(),
-          now() + make_interval(hours => greatest(1, least(coalesce(p_hours, 48), 168))), 'live', auth.uid())
+          now() + make_interval(hours => greatest(1, least(coalesce(p_hours, 48), 168))), 'live', v_uid, v_team)
   returning id into v_id;
   return v_id;
+end $$;
+
+-- Close a flash mission early. A captain can close their own team's. The admin can close any.
+create function app.close_flash(p_mission bigint) returns void language plpgsql security definer set search_path = '' as $$
+declare v_uid uuid := auth.uid(); m public.missions%rowtype;
+begin
+  if not app.is_coach() then raise exception 'Coaches only.'; end if;
+  select * into m from public.missions where id = p_mission and is_flash;
+  if not found then raise exception 'That flash mission is gone.'; end if;
+  if not app.is_admin() and not exists (select 1 from public.team_members t
+      where t.challenge_id = m.challenge_id and t.user_id = v_uid and t.is_captain and t.team_id = m.team_id) then
+    raise exception 'You can only close your own team’s flash mission.';
+  end if;
+  update public.missions set closes_at = now() where id = m.id and closes_at > now();
 end $$;
 
 -- Service use (the daily Wodify pull): post class points and any bonuses they trigger, for everyone.
@@ -1031,7 +1067,8 @@ create function public.review_entry(p_id bigint, p_approve boolean) returns void
 create function public.coach_log(p_user uuid, p_category text, p_note text default null) returns jsonb language sql security invoker set search_path = '' as $$ select app.coach_log(p_user, p_category, p_note) $$;
 create function public.verify_person(p_user uuid, p_roster_email text default null) returns void language sql security invoker set search_path = '' as $$ select app.verify_person(p_user, p_roster_email) $$;
 create function public.move_member(p_user uuid, p_team smallint) returns void language sql security invoker set search_path = '' as $$ select app.move_member(p_user, p_team) $$;
-create function public.create_flash(p_title text, p_detail text default null, p_hours int default 48, p_points int default 3) returns bigint language sql security invoker set search_path = '' as $$ select app.create_flash(p_title, p_detail, p_hours, p_points) $$;
+create function public.create_flash(p_title text, p_detail text default null, p_hours int default 48, p_points int default 3, p_all boolean default false) returns bigint language sql security invoker set search_path = '' as $$ select app.create_flash(p_title, p_detail, p_hours, p_points, p_all) $$;
+create function public.close_flash(p_mission bigint) returns void language sql security invoker set search_path = '' as $$ select app.close_flash(p_mission) $$;
 
 -- ------------------------------------------------------------------
 -- Privileges: start from nothing, grant what each role needs.
@@ -1050,7 +1087,7 @@ grant execute on function
   app.bootstrap(), app.join_challenge(), app.mark_revealed(), app.submit_entry(text, date, text, text, text, bigint),
   app.my_invite(), app.invite_info(text), app.invite_click(text), app.leaderboard(), app.tv_snapshot(), app.delete_my_account(),
   app.coach_home(), app.review_entry(bigint, boolean), app.coach_log(uuid, text, text), app.verify_person(uuid, text),
-  app.move_member(uuid, smallint), app.create_flash(text, text, int, int)
+  app.move_member(uuid, smallint), app.create_flash(text, text, int, int, boolean), app.close_flash(bigint)
 to authenticated;
 grant execute on function app.can_view_proof(text), app.invite_info(text), app.invite_click(text), app.tv_snapshot() to anon;
 grant execute on function app.workout_preview() to anon, authenticated;
@@ -1059,7 +1096,7 @@ grant execute on function
   public.bootstrap(), public.join_challenge(), public.mark_revealed(), public.submit_entry(text, date, text, text, text, bigint),
   public.my_invite(), public.invite_info(text), public.invite_click(text), public.leaderboard(), public.tv_snapshot(), public.delete_my_account(),
   public.coach_home(), public.review_entry(bigint, boolean), public.coach_log(uuid, text, text), public.verify_person(uuid, text),
-  public.move_member(uuid, smallint), public.create_flash(text, text, int, int)
+  public.move_member(uuid, smallint), public.create_flash(text, text, int, int, boolean), public.close_flash(bigint)
 to authenticated;
 grant execute on function public.invite_info(text), public.invite_click(text), public.tv_snapshot() to anon;
 grant execute on function public.workout_preview() to anon, authenticated;
@@ -1088,7 +1125,10 @@ create policy "read teams" on public.teams for select to authenticated using (tr
 create policy "read weeks" on public.weeks for select to authenticated using (true);
 create policy "read ranks" on public.ranks for select to authenticated using (true);
 create policy "read categories" on public.point_categories for select to authenticated using (true);
-create policy "read live missions" on public.missions for select to authenticated using (status = 'live');
+-- A team's flash mission is not readable by other teams, even straight from the table.
+create policy "read live missions" on public.missions for select to authenticated
+  using (status = 'live' and (team_id is null or (select app.is_coach())
+         or team_id in (select t.team_id from public.team_members t where t.user_id = (select auth.uid()))));
 
 -- Profiles: you always see your own; confirmed members see each other's display info.
 create policy "read profiles" on public.profiles for select to authenticated

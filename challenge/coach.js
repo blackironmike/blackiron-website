@@ -8,7 +8,7 @@
   'use strict';
   var B = window.BIA, sb = B.sb, esc = B.esc, avatar = B.avatar;
   var $app = document.getElementById('app');
-  var S = { session: null, d: null, urls: {}, story: false, off: {}, roster: null, rosterTeam: 0, rm: null };
+  var S = { session: null, d: null, urls: {}, story: false, off: {}, roster: null, rosterTeam: 0, rm: null, fc: null };
   var HANDLE = '@BLACKIRON_ATHLETICS';
 
   // Small per-device notes (who you already texted). Never required to work.
@@ -159,15 +159,36 @@
       '<div class="field"><label for="ln">Note (optional)</label><input id="ln" type="text" maxlength="200" placeholder="Guest’s name, class time…"></div>' +
       '<button class="btn btn-y w100" type="submit">Add points</button></form></section>';
 
-    var flash = '<section class="card"><h2 class="ch-h2">Flash mission</h2>' +
-      '<p class="fine">A surprise bonus that shows as a banner in everyone’s app until it closes.</p>' +
-      '<form class="stack" data-form="flash"><div class="field"><label for="ft">Mission</label><input id="ft" type="text" maxlength="80" required placeholder="Holiday socks to class"></div>' +
-      '<div class="field"><label for="fd">Details (optional)</label><input id="fd" type="text" maxlength="200" placeholder="Post the photo, log it here."></div>' +
-      '<div class="two"><div class="field"><label for="fh">Open for (hours)</label><input id="fh" type="number" min="1" max="168" value="48"></div>' +
-      '<div class="field"><label for="fp">Points</label><input id="fp" type="number" min="1" max="10" value="3"></div></div>' +
-      '<button class="btn btn-ghost w100" type="submit">Start flash mission</button></form>' +
-      (d.flash.length ? '<div class="list">' + d.flash.slice(0, 5).map(function (f) {
-        return '<div class="item"><span class="grow item-t">' + esc(f.title) + '</span><span class="item-s">' + (f.open ? 'Open' : 'Closed') + '</span></div>';
+    // A flash mission belongs to the coach's own team: only that team sees it and can log it.
+    // Coach Mike can also send one to everyone. One open at a time per team.
+    var myTeam = d.teams.filter(function (t) { return t.id === d.me.team_id; })[0];
+    var captain = !!myTeam && d.me.is_captain !== false;
+    var ownOpen = captain && d.flash.some(function (f) { return f.open && f.team_id === d.me.team_id; });
+    var toTeam = captain && !ownOpen;
+    var flashForm = (toTeam || admin)
+      ? '<form class="stack" data-form="flash"><div class="field"><label for="ft">Mission</label><input id="ft" type="text" maxlength="80" required placeholder="Holiday socks to class"></div>' +
+        '<div class="field"><label for="fd">Details (optional)</label><input id="fd" type="text" maxlength="200" placeholder="Post the photo, log it here."></div>' +
+        (admin ? '<div class="field"><label for="fa">Send to</label><select id="fa">' + (toTeam ? '<option value="team">' + esc(myTeam.name) + ' only</option>' : '') + '<option value="all">Everyone</option></select></div>' : '') +
+        '<div class="two"><div class="field"><label for="fh">Open for (hours)</label><input id="fh" type="number" min="1" max="168" value="48"></div>' +
+        '<div class="field"><label for="fp">Points</label><input id="fp" type="number" min="1" max="10" value="3"></div></div>' +
+        '<button class="btn btn-ghost w100" type="submit">Start flash mission</button></form>'
+      : '';
+    var flashNote = !captain && !admin ? 'Only a team captain can start a flash mission.'
+      : ownOpen ? esc(myTeam.name) + ' already has one open. Close it or wait for it to end before starting the next.' + (admin ? ' You can still send one to everyone.' : '')
+      : captain && admin ? 'A surprise bonus. Send it to ' + esc(myTeam.name) + ' only, or to everyone. It shows at the top of the app until it closes.'
+      : captain ? 'A surprise bonus for ' + esc(myTeam.name) + ' only. Your team sees it at the top of the app until it closes. Other teams never see it.'
+      : 'A surprise bonus for everyone. It shows at the top of the app until it closes.';
+    var flash = '<section class="card"><h2 class="ch-h2">Flash mission</h2><p class="fine">' + flashNote + '</p>' + flashForm +
+      (d.flash.length ? '<div class="list">' + d.flash.slice(0, 6).map(function (f) {
+        var mine = admin || (captain && f.team_id === d.me.team_id), n = f.logged || 0;
+        if (S.fc === f.id) {
+          return '<div class="item rm-ask"><span class="item-t">Close “' + esc(f.title) + '” now?</span><span class="item-s">Points already logged stay. Nobody else can log it.</span>' +
+            '<span class="rm-btns"><button class="btn btn-y btn-sm" data-act="flash-close-yes" data-id="' + f.id + '">Close it</button><button class="btn btn-ghost btn-sm" data-act="flash-close-no">Keep open</button></span></div>';
+        }
+        return '<div class="item"><span class="grow"><span class="item-t">' + esc(f.title) + '</span><br><span class="item-s">' +
+          esc(f.team_id ? teamName(f.team_id) + ' only' : 'Everyone') + ' · ' + (f.points ? '+' + f.points + ' · ' : '') + n + ' logged · ' +
+          (f.open ? 'open until ' + esc(new Date(f.closes_at).toLocaleString('en-US', { weekday: 'short', hour: 'numeric', minute: '2-digit' })) : 'closed') + '</span></span>' +
+          (f.open && mine ? '<button class="linkbtn" data-act="flash-close" data-id="' + f.id + '">Close<span class="sr"> ' + esc(f.title) + '</span></button>' : '') + '</div>';
       }).join('') + '</div>' : '') + '</section>';
 
     var teams = '<section class="card"><h2 class="ch-h2">Teams</h2><p class="fine">' + d.signups + ' of ' + d.roster_count + ' members signed up.</p><div class="list">' +
@@ -300,6 +321,9 @@
   document.addEventListener('click', function (ev) {
     var el = ev.target.closest('[data-act]'); if (!el) return;
     var act = el.dataset.act;
+    if (act === 'flash-close') { S.fc = +el.dataset.id; return draw(); }
+    if (act === 'flash-close-no') { S.fc = null; return draw(); }
+    if (act === 'flash-close-yes') { el.disabled = true; S.fc = null; return run(B.rpc('close_flash', { p_mission: +el.dataset.id }), 'Flash mission closed.'); }
     if (act === 'roster-team') { S.rosterTeam = +el.dataset.t; S.rm = null; return draw(); }
     if (act === 'roster-remove') { S.rm = el.dataset.id; return draw(); }
     if (act === 'roster-remove-no') { S.rm = null; return draw(); }
@@ -332,7 +356,9 @@
       var c = ev.target.querySelector('input[name=cat]:checked');
       run(B.rpc('coach_log', { p_user: document.getElementById('lm').value, p_category: c.value, p_note: document.getElementById('ln').value || null }), 'Points added.');
     } else if (kind === 'flash') {
-      run(B.rpc('create_flash', { p_title: document.getElementById('ft').value, p_detail: document.getElementById('fd').value || null, p_hours: +document.getElementById('fh').value, p_points: +document.getElementById('fp').value }), 'Flash mission is live.');
+      var fa = document.getElementById('fa'), all = !!fa && fa.value === 'all';
+      run(B.rpc('create_flash', { p_title: document.getElementById('ft').value, p_detail: document.getElementById('fd').value || null, p_hours: +document.getElementById('fh').value, p_points: +document.getElementById('fp').value, p_all: all }),
+        all ? 'Flash mission is live for everyone.' : 'Flash mission is live for your team.');
     } else if (kind === 'move') {
       run(B.rpc('move_member', { p_user: document.getElementById('mm').value, p_team: +document.getElementById('mt').value }), 'Moved.');
     }

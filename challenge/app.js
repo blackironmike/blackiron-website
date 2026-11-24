@@ -512,7 +512,9 @@
     } else {
       h += pointsStrip();
       h += d.flash.map(function (f) {
-        return '<section class="card card-y"><span class="kicker kicker-y">Flash mission · closes ' + esc(new Date(f.closes_at).toLocaleString('en-US', { weekday: 'short', hour: 'numeric', minute: '2-digit' })) + '</span>' +
+        // A coach's flash mission only goes to their own team. Say so, so it reads as theirs.
+        var ft = f.team_id ? S.d.teams.filter(function (t) { return t.id === f.team_id; })[0] : null;
+        return '<section class="card card-y"><span class="kicker kicker-y">Flash mission' + (ft ? ' · ' + esc(ft.name) + ' only' : '') + ' · closes ' + esc(new Date(f.closes_at).toLocaleString('en-US', { weekday: 'short', hour: 'numeric', minute: '2-digit' })) + '</span>' +
           '<h2 class="ch-h2">' + esc(f.title) + '</h2>' + (f.detail ? '<p class="fine">' + esc(f.detail) + '</p>' : '') +
           (f.done ? '<p class="fine">Logged.</p>' : '<button class="btn btn-ghost w100" data-act="log" data-cat="flash" data-mission="' + f.id + '">Log it for +' + f.points + '</button>') + '</section>';
       }).join('');
